@@ -1,11 +1,15 @@
 <template>
-  <div class="container about">
-    <div class="row">
-        <div class="col-sm-12">
-            <h1>This is an about page</h1>
+<div id="about">
+    <div class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>About</h1>
+                </div>
+            </div>
         </div>
     </div>
-  </div>
+</div>
 </template>
 
 <script>

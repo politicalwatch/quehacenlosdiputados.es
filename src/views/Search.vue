@@ -1,5 +1,14 @@
 <template>
-  <div class="search">
+  <div id="search">
+    <div class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>Search</h1>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container page">
             <div class="row">
                 <div class="col-sm-12">
@@ -175,7 +184,6 @@
 			<div class="col-sm-12 text-center">
                             <p class="well"><i class="fa fa-lightbulb-o"></i> Tip: <strong>Los nombres de l@s diputad@s se autocompletan. Introduce una letra y verás.</strong></p>
 			</div>
-                    :w
                     </div>
                 </div>
             </div>
