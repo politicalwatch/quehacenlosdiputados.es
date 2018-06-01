@@ -153,10 +153,10 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12 text-center">
-        <p class="well"><i class="fa fa-lightbulb-o"></i> Tip: <strong>Los nombres de l@s diputad@s se autocompletan. Introduce una letra y verás.</strong></p>
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <p class="well"><i class="fa fa-lightbulb-o"></i> Tip: <strong>Los nombres de l@s diputad@s se autocompletan. Introduce una letra y verás.</strong></p>
+        </div>
       </div>
     </div>
   </div>
