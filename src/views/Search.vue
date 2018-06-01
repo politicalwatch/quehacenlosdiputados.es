@@ -1,14 +1,6 @@
 <template>
   <div id="search">
-    <div class="page-title">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <h1>Search</h1>
-          </div>
-        </div>
-      </div>
-    </div>
+    <page-header :title="'Search'"></page-header>
     <div class="container page">
       <div class="row">
         <div class="col-sm-12">
@@ -159,22 +151,26 @@
               </fieldset>
             </form>
           </div>
-          <div class="row">
-            <div class="col-sm-12 text-center">
-              <p class="well"><i class="fa fa-lightbulb-o"></i> Tip: <strong>Los nombres de l@s diputad@s se autocompletan. Introduce una letra y verás.</strong></p>
-            </div>
-          </div>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <p class="well"><i class="fa fa-lightbulb-o"></i> Tip: <strong>Los nombres de l@s diputad@s se autocompletan. Introduce una letra y verás.</strong></p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import { apiClient } from '../main'
+import PageHeader from '@/components/page-header';
+import { apiClient } from '../main'
 
 export default {
   name: 'search',
+  components: {
+    PageHeader
+  },
   data() {
     return {
       topics: [],
