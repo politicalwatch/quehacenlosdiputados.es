@@ -1,14 +1,6 @@
 <template>
   <div id="search">
-    <div class="page-title">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <h1>Search</h1>
-                </div>
-            </div>
-        </div>
-    </div>
+    <page-header :title="'Search'"></page-header>
     <div class="container page">
             <div class="row">
                 <div class="col-sm-12">
@@ -21,7 +13,7 @@
                                     <select class="form-control" id="dicts" name="dicts">
                                         <option value="">Todos</option>
                                                 <option value="cambio climático y política energética">cambio climático y política energética</option>
-                                            
+
                                                 <option value="comercio internacional">comercio internacional</option>
                                                 <option value="conductas adictivas">conductas adictivas</option>
                                                 <option value="conflictos internacionales y construcción de paz">conflictos internacionales y construcción de paz</option>
@@ -192,9 +184,14 @@
 </template>
 
 <script>
-export default {
-  name: 'search'
-}
+  import PageHeader from '@/components/page-header';
+
+  export default {
+    name: 'search',
+    components: {
+      PageHeader
+    }
+  }
 </script>
 
 <style scoped lang="scss">
