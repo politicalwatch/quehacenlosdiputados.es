@@ -13,7 +13,3 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
-
-export const apiClient = axios.create({
-  baseURL: config.URL
-})

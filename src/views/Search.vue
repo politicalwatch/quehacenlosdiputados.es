@@ -159,7 +159,7 @@
 <script>
 import PageHeader from '@/components/page-header';
 import SelectBox from '@/components/select-box';
-import { apiClient } from '../main'
+import api from '@/api'
 
 export default {
   name: 'search',
@@ -175,17 +175,13 @@ export default {
   },
   methods: {
     getTopics() {
-      apiClient.get("/topics/")
-        .then(response => {
-          this.topics = response.data
-        })
-        .catch(e => {
-          this.errors.push(e)
-        })
+      api.getTopics()
+        .then(topics => this.topics = topics)
+        .catch(error => this.error = error);
     }
   },
   created() {
-    this.getTopics()
+    this.getTopics();
   }
 }
 </script>
