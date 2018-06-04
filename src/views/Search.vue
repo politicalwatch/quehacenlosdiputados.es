@@ -10,29 +10,26 @@
                 <div class="form-group">
                   <label for="dicts" class="col-sm-1 control-label">Tema</label>
                   <div class="col-sm-3">
-                    <select class="form-control" id="dicts" name="dicts">
-                      <option value="">Todos</option>
-                      <option v-for="topic in topics" v-bind:key="topic.name" :value="topic.name" v-text="topic.name"></option>
-                    </select>
+                    <select-box name="dicts" placeholder="Todos" :options="topics"></select-box>
                   </div>
                   <label for="terms" class="col-sm-1 control-label">Términos</label>
                   <div class="col-sm-7">
+                    <select-box name="test" id="idtest" :options="['lorem', 'ipsum']"></select-box>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="grupootro" class="col-sm-1 control-label">Autor</label>
                   <div class="col-sm-3">
-                    <select class="form-control" id="grupootro" name="grupootro">
-                      <option value="">Todos</option>
-                      <option value="Gobierno">Gobierno</option>
-                      <option value="Grupo Popular">Grupo Popular</option>
-                      <option value="Grupo Socialista">Grupo Socialista</option>
-                      <option value="Grupo Confederal de Unidos Podemos-En Comú Podem-En Mare">Grupo Confederal de Unidos Podemos-En Comú Podem-En Mare</option>
-                      <option value="Grupo Ciudadanos">Grupo Ciudadanos</option>
-                      <option value="Grupo Vasco - EAJ PNV">Grupo Vasco - EAJ PNV</option>
-                      <option value="Grupo Esquerra Republicana">Grupo Esquerra Republicana</option>
-                      <option value="Grupo Mixto">Grupo Mixto</option>
-                    </select>
+                    <select-box name="grupootro" placeholder="Todos" :options="[
+                      'Gobierno',
+                      'Grupo Popular',
+                      'Grupo Socialista',
+                      'Grupo Confederal de Unidos Podemos-En Comú Podem-En Mare',
+                      'Grupo Ciudadanos',
+                      'Grupo Vasco - EAJ PNV',
+                      'Grupo Esquerra Republicana',
+                      'Grupo Mixto'
+                    ]"></select-box>
                   </div>
                   <label for="autor" class="col-sm-1 control-label">Diputado/a</label>
                   <div class="col-sm-7">
@@ -51,36 +48,35 @@
                     </div>
                     <label for="lugar" class="col-sm-1 control-label">Lugar</label>
                     <div class="col-sm-3">
-                      <select class="form-control" id="lugar" name="lugar">
-                        <option value="">Cualquiera</option>
-                        <option value="Pleno">Pleno</option>
-                        <option value="Comisión Constitucional">Comisión Constitucional</option>
-                        <option value="Comisión de Asuntos Exteriores">Comisión de Asuntos Exteriores</option>
-                        <option value="Comisión de Justicia">Comisión de Justicia</option>
-                        <option value="Comisión de Interior">Comisión de Interior</option>
-                        <option value="Comisión de Defensa">Comisión de Defensa</option>
-                        <option value="Comisión de Economía y Competitividad">Comisión de Economía y Competitividad</option>
-                        <option value="Comisión de Hacienda y Administraciones Públicas">Comisión de Hacienda y Administraciones Públicas</option>
-                        <option value="Comisión de Presupuestos">Comisión de Presupuestos</option>
-                        <option value="Comisión de Fomento">Comisión de Fomento</option>
-                        <option value="Comisión de Educación y Deporte">Comisión de Educación y Deporte</option>
-                        <option value="Comisión de Empleo y Seguridad Social">Comisión de Empleo y Seguridad Social</option>
-                        <option value="Comisión de Industria, Energía y Turismo">Comisión de Industria, Energía y Turismo</option>
-                        <option value="Comisión de Agricultura, Alimentación y Medio Ambiente">Comisión de Agricultura, Alimentación y Medio Ambiente</option>
-                        <option value="Comisión de Sanidad y Servicios Sociales">Comisión de Sanidad y Servicios Sociales</option>
-                        <option value="Comisión de Cooperación Internacional para el Desarrollo">Comisión de Cooperación Internacional para el Desarrollo</option>
-                        <option value="Comisión de Cultura">Comisión de Cultura</option>
-                        <option value="Comisión de Igualdad">Comisión de Igualdad</option>
-                        <option value="Comisión de Reglamento">Comisión de Reglamento</option>
-                        <option value="Comisión del Estatuto de los Diputados">Comisión del Estatuto de los Diputados</option>
-                        <option value="Comisión de Peticiones">Comisión de Peticiones</option>
-                        <option value="Comisión de Seguimiento y Evaluación de los Acuerdos Pacto de Toledo">Comisión de Seguimiento y Evaluación de los Acuerdos Pacto de Toledo</option>
-                        <option value="Comisión sobre Seguridad Vial y Movilidad Sostenible">Comisión sobre Seguridad Vial y Movilidad Sostenible</option>
-                        <option value="Comisión para las Políticas Integrales de la Discapacidad">Comisión para las Políticas Integrales de la Discapacidad</option>
-                        <option value="Comisión para el Estudio del Cambio Climático">Comisión para el Estudio del Cambio Climático</option>
-                        <option value="Comisión de Derechos de la Infancia y Adolescencia">Comisión de Derechos de la Infancia y Adolescencia</option>
-                        <option value="C. calidad democrática, contra corrupción y reformas inst. y legales">C. calidad democrática, contra corrupción y reformas inst. y legales</option>
-                      </select>
+                      <select-box name="lugar" placeholder="Cualquiera" :options="[
+                        'Pleno',
+                        'Comisión Constitucional',
+                        'Comisión de Asuntos Exteriores',
+                        'Comisión de Justicia',
+                        'Comisión de Interior',
+                        'Comisión de Defensa',
+                        'Comisión de Economía y Competitividad',
+                        'Comisión de Hacienda y Administraciones Públicas',
+                        'Comisión de Presupuestos',
+                        'Comisión de Fomento',
+                        'Comisión de Educación y Deporte',
+                        'Comisión de Empleo y Seguridad Social',
+                        'Comisión de Industria, Energía y Turismo',
+                        'Comisión de Agricultura, Alimentación y Medio Ambiente',
+                        'Comisión de Sanidad y Servicios Sociales',
+                        'Comisión de Cooperación Internacional para el Desarrollo',
+                        'Comisión de Cultura',
+                        'Comisión de Igualdad',
+                        'Comisión de Reglamento',
+                        'Comisión del Estatuto de los Diputados',
+                        'Comisión de Peticiones',
+                        'Comisión de Seguimiento y Evaluación de los Acuerdos Pacto de Toledo',
+                        'Comisión sobre Seguridad Vial y Movilidad Sostenible',
+                        'Comisión para las Políticas Integrales de la Discapacidad',
+                        'Comisión para el Estudio del Cambio Climático',
+                        'Comisión de Derechos de la Infancia y Adolescencia',
+                        'C. calidad democrática, contra corrupción y reformas inst. y legales'
+                      ]"></select-box>
                     </div>
                   </div>
                   <div class="form-group">
@@ -90,41 +86,39 @@
                     </div>
                     <label for="vtipo" class="col-sm-1 control-label">Tipo</label>
                     <div class="col-sm-7">
-                      <select class="form-control" name="vtipo" id="vtipo">
-                        <option value="">Cualquiera</option>
-                        <option value="Comparecencias">Comparecencias</option>
-                        <option value="Convenios internacionales">Convenios internacionales</option>
-                        <option value="Creación de comisiones, subcomisiones y ponencias">Creación de comisiones, subcomisiones y ponencias</option>
-                        <option value="Interpelación y su respuesta">Interpelación y su respuesta</option>
-                        <option value="Moción consecuencia de interpelación y sus enmiendas">Moción consecuencia de interpelación y sus enmiendas</option>
-                        <option value="Planes, programas y dictámenes">Planes, programas y dictámenes</option>
-                        <option value="Pregunta oral y su respuesta">Pregunta oral y su respuesta</option>
-                        <option value="Pregunta para respuesta escrita y su respuesta">Pregunta para respuesta escrita y su respuesta</option>
-                        <option value="Proposición de ley y sus enmiendas">Proposición de ley y sus enmiendas</option>
-                        <option value="Proposición no de ley y sus enmiendas">Proposición no de ley y sus enmiendas</option>
-                        <option value="Proyecto de Ley y sus enmiendas">Proyecto de Ley y sus enmiendas</option>
-                        <option value="Real decreto legislativo">Real decreto legislativo</option>
-                        <option value="Real decreto-ley">Real decreto-ley</option>
-                        <option value="Otros actos y sus enmiendas">Otros actos y sus enmiendas</option>
-                      </select>
+                      <select-box name="vtipo" placeholder="Cualquiera" :options="[
+                        'Comparecencias',
+                        'Convenios internacionales',
+                        'Creación de comisiones, subcomisiones y ponencias',
+                        'Interpelación y su respuesta',
+                        'Moción consecuencia de interpelación y sus enmiendas',
+                        'Planes, programas y dictámenes',
+                        'Pregunta oral y su respuesta',
+                        'Pregunta para respuesta escrita y su respuesta',
+                        'Proposición de ley y sus enmiendas',
+                        'Proposición no de ley y sus enmiendas',
+                        'Proyecto de Ley y sus enmiendas',
+                        'Real decreto legislativo',
+                        'Real decreto-ley',
+                        'Otros actos y sus enmiendas'
+                      ]"></select-box>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="tramitacion" class="col-sm-1 control-label">Estado</label>
                     <div class="col-sm-3">
-                      <select class="form-control" name="tramitacion" id="tramitacion">
-                        <option value="">Cualquiera</option>
-                        <option value="aprobada">Aprobada</option>
-                        <option value="respondida">Respondida</option>
-                        <option value="celebrada">Celebrada</option>
-                        <option value="tramitacion">En tramitación</option>
-                        <option value="rechazada">Rechazada</option>
-                        <option value="retirada">Retirada</option>
-                        <option value="noadmitida">No admitida a trámite</option>
-                        <option value="nodebatida">No debatida</option>
-                        <option value="convertida">Convertida en otra</option>
-                        <option value="acumulada">Acumulada en otra</option>
-                      </select>
+                      <select-box name="tramitacion" placeholder="Cualquiera" :options="[
+                        { value: 'aprobada', name: 'Aprobada' },
+                        { value: 'respondida', name: 'Respondida' },
+                        { value: 'celebrada', name: 'Celebrada' },
+                        { value: 'tramitacion', name: 'En tramitación' },
+                        { value: 'rechazada', name: 'Rechazada' },
+                        { value: 'retirada', name: 'Retirada' },
+                        { value: 'noadmitida', name: 'No admitida a trámite' },
+                        { value: 'nodebatida', name: 'No debatida' },
+                        { value: 'convertida', name: 'Convertida en otra' },
+                        { value: 'acumulada', name: 'Acumulada en otra' }
+                      ]"></select-box>
                     </div>
                     <label for="titulo" class="col-sm-1 control-label">Título</label>
                     <div class="col-sm-7">
@@ -164,12 +158,14 @@
 
 <script>
 import PageHeader from '@/components/page-header';
+import SelectBox from '@/components/select-box';
 import { apiClient } from '../main'
 
 export default {
   name: 'search',
   components: {
-    PageHeader
+    PageHeader,
+    SelectBox
   },
   data() {
     return {
