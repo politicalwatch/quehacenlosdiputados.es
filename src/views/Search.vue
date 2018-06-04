@@ -177,7 +177,7 @@ export default {
     getTopics() {
       api.getTopics()
         .then(topics => this.topics = topics)
-        .catch(error => this.error = error);
+        .catch(error => this.errors = error);
     }
   },
   created() {
