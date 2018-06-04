@@ -8,7 +8,7 @@ export default {
     function getEndpoint() {
       return [
         config.URL,
-        '/dicts/'
+        '/topics/'
       ].join('');
     }
   }
