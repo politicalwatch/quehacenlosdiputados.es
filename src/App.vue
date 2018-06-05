@@ -6,14 +6,14 @@
 </template>
 
 <script>
-import Navbar from '@/components/navbar';
+  import Navbar from '@/components/navbar';
 
-export default {
-  name: 'app',
-  components: {
-    Navbar
+  export default {
+    name: 'app',
+    components: {
+      Navbar
+    }
   }
-}
 </script>
 
 <style lang="scss">
