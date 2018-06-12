@@ -17,7 +17,8 @@
         :class="{ 'active': index === arrowIndex }"
         v-for="(item, index) in data"
         :key="index"
-        @click="selectElement(item)">
+        @click="selectElement(item)"
+        @mouseover="arrowIndex = index">
           {{ item }}
       </li>
     </ul>
@@ -54,11 +55,19 @@ export default {
     onArrowDown() {
       if (this.arrowIndex < this.data.length) {
         this.arrowIndex = this.arrowIndex + 1;
+        this.scrollToItem();
       }
     },
     onArrowUp() {
       if (this.arrowIndex > 0) {
         this.arrowIndex = this.arrowIndex - 1;
+        this.scrollToItem();
+      }
+    },
+    scrollToItem() {
+      const element = this.$el.getElementsByClassName('autocomplete__list-item')[this.arrowIndex];
+      if (element) {
+        element.scrollIntoView(false);
       }
     },
     onEnter() {
@@ -87,7 +96,7 @@ export default {
       width: 80%;
       border: 1px solid #dce4ec;
       background: #fff;
-      height: 120px;
+      height: 220px;
       overflow: auto;
     }
     &__list-item {
