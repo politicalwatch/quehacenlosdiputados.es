@@ -9,7 +9,7 @@
       @keydown.down="onArrowDown"
       @keydown.up="onArrowUp"
       @keydown.enter.prevent="onEnter"
-      @keydown.tab.prevent="onEnter">
+      @keydown.tab="onEnter">
 
     <ul class="autocomplete__list" :class="id || name" v-show="isOpen">
       <li
@@ -71,9 +71,11 @@ export default {
       }
     },
     onEnter() {
-      this.input = this.data[this.arrowIndex];
-      this.isOpen = false;
-      this.arrowIndex = -1;
+      if (this.isOpen && this.arrowIndex >= 0) {
+        this.input = this.data[this.arrowIndex];
+        this.isOpen = false;
+        this.arrowIndex = -1;
+      }
     },
   },
   computed: {
