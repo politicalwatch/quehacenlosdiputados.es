@@ -1,9 +1,27 @@
 <template>
-  <div class="autcomplete">
-    <input class="form-control" type="text" :placeholder="placeholder" :id="id || name" :name="name" v-model="input" @input="onChange" autocomplete="off">
+  <div class="autocomplete">
+    <input class="form-control" type="text"
+      :placeholder="placeholder"
+      :id="id || name" :name="name"
+      v-model="input"
+      @input="onChange"
+      autocomplete="off"
+      @keydown.down="onArrowDown"
+      @keydown.up="onArrowUp"
+      @keydown.enter.prevent="onEnter"
+      @keydown.tab.prevent="onEnter">
+
     <ul class="autocomplete__list" :class="id || name" v-show="isOpen">
-      <li class="autocomplete__list-item" v-for="(item, i) in data" :key="i" @click="selectElement(item)">{{ item }}</li>
+      <li
+        class="autocomplete__list-item"
+        :class="{ 'active': index === arrowIndex }"
+        v-for="(item, index) in data"
+        :key="index"
+        @click="selectElement(item)">
+          {{ item }}
+      </li>
     </ul>
+
   </div>
 </template>
 
@@ -16,6 +34,14 @@ export default {
     'options',
     'placeholder'
   ],
+  data() {
+    return {
+      input: '',
+      isOpen: false,
+      arrowIndex: -1,
+      data: []
+    }
+  },
   methods: {
     selectElement(item) {
       this.isOpen = false;
@@ -24,14 +50,22 @@ export default {
     onChange() {
       this.isOpen = this.input.length > 0;
       this.data = this.items.filter(item => item.toLowerCase().indexOf(this.input.toLowerCase()) > -1);
-    }
-  },
-  data() {
-    return {
-      input: '',
-      isOpen: false,
-      data: []
-    }
+    },
+    onArrowDown() {
+      if (this.arrowIndex < this.data.length) {
+        this.arrowIndex = this.arrowIndex + 1;
+      }
+    },
+    onArrowUp() {
+      if (this.arrowIndex > 0) {
+        this.arrowIndex = this.arrowIndex - 1;
+      }
+    },
+    onEnter() {
+      this.input = this.data[this.arrowIndex];
+      this.isOpen = false;
+      this.arrowIndex = -1;
+    },
   },
   computed: {
     items: function() {
@@ -61,7 +95,7 @@ export default {
       padding: .5rem 1rem;
       border-bottom: 1px solid #dce4ec;
       cursor: pointer;
-      &:hover {
+      &:hover, &.active {
         background-color: #0094cd;
         color: white;
       }
