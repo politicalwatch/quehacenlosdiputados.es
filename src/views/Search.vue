@@ -24,7 +24,7 @@
                   </div>
                   <label for="autor" class="col-sm-1 control-label">Diputado/a</label>
                   <div class="col-sm-7">
-                    <input type="text" id="autor" name="autor" class="form-control" placeholder="Apellidos, Nombre">
+                    <auto-complete name="autor" :options="deputies" placeholder="Apellidos, Nombre"></auto-complete>
                   </div>
                 </div>
                 <div class="adv-search-block" style="display: block;">
@@ -150,18 +150,21 @@
 <script>
 import PageHeader from '@/components/page-header';
 import SelectBox from '@/components/select-box';
+import AutoComplete from '@/components/auto-complete';
 import api from '@/api'
 
 export default {
   name: 'search',
   components: {
     PageHeader,
-    SelectBox
+    SelectBox,
+    AutoComplete
   },
   data() {
     return {
       topics: [],
       groups: [],
+      deputies: [],
       errors: []
     }
   },
@@ -176,9 +179,15 @@ export default {
         .then(groups => this.groups = ['Gobierno'].concat(groups))
         .catch(error => this.errors = error);
     },
+    getDeputies() {
+      api.getDeputies()
+        .then(deputies => this.deputies = deputies)
+        .catch(error => this.errors = error);
+    },
     prepareForm() {
       this.getTopics();
       this.getGroups();
+      this.getDeputies();
     }
   },
   created() {
