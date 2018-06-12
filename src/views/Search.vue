@@ -20,16 +20,7 @@
                 <div class="form-group">
                   <label for="grupootro" class="col-sm-1 control-label">Autor</label>
                   <div class="col-sm-3">
-                    <select-box name="grupootro" placeholder="Todos" :options="[
-                      'Gobierno',
-                      'Grupo Popular',
-                      'Grupo Socialista',
-                      'Grupo Confederal de Unidos Podemos-En Comú Podem-En Mare',
-                      'Grupo Ciudadanos',
-                      'Grupo Vasco - EAJ PNV',
-                      'Grupo Esquerra Republicana',
-                      'Grupo Mixto'
-                    ]"></select-box>
+                    <select-box name="grupootro" placeholder="Todos" :options="groups"></select-box>
                   </div>
                   <label for="autor" class="col-sm-1 control-label">Diputado/a</label>
                   <div class="col-sm-7">
@@ -170,6 +161,7 @@ export default {
   data() {
     return {
       topics: [],
+      groups: [],
       errors: []
     }
   },
@@ -178,10 +170,19 @@ export default {
       api.getTopics()
         .then(topics => this.topics = topics)
         .catch(error => this.errors = error);
+    },
+    getGroups() {
+      api.getGroups()
+        .then(groups => this.groups = ['Gobierno'].concat(groups))
+        .catch(error => this.errors = error);
+    },
+    prepareForm() {
+      this.getTopics();
+      this.getGroups();
     }
   },
   created() {
-    this.getTopics();
+    this.prepareForm();
   }
 }
 </script>

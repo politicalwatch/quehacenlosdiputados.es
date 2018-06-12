@@ -11,5 +11,15 @@ export default {
         '/topics/'
       ].join('');
     }
+  },
+  getGroups() {
+    return axios.get(getEndpoint()).then(response => response.data);
+
+    function getEndpoint() {
+      return [
+        config.URL,
+        '/parliamentarygroups/'
+      ].join('');
+    }
   }
 };
