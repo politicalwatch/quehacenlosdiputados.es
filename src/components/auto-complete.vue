@@ -98,7 +98,7 @@ export default {
       width: 80%;
       border: 1px solid #dce4ec;
       background: #fff;
-      height: 220px;
+      max-height: 220px;
       overflow: auto;
     }
     &__list-item {
