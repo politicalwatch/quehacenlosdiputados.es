@@ -61,5 +61,17 @@ export default {
         '/initiative-types/'
       ].join('');
     }
+  },
+  getInitiatives(params) {
+    return axios
+      .get(getEndpoint(), { params: params })
+      .then(response => response.data);
+
+    function getEndpoint() {
+      return [
+        config.URL,
+        '/initiatives/'
+      ].join('');
+    }
   }
 };

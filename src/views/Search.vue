@@ -5,16 +5,16 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="well">
-            <form class="form-horizontal" role="form">
+            <form id="search-form" class="form-horizontal" role="form" @submit.prevent="getInitiatives">
               <fieldset>
                 <div class="form-group">
                   <label for="dicts" class="col-sm-1 control-label">Tema</label>
                   <div class="col-sm-3">
-                    <select-box name="dicts" placeholder="Todos" :options="topics"></select-box>
+                    <select-box name="terms" placeholder="Todos" :options="topics"></select-box>
                   </div>
                   <label for="terms" class="col-sm-1 control-label">Términos</label>
                   <div class="col-sm-7">
-                    <select-box name="test" id="idtest" :options="['lorem', 'ipsum']"></select-box>
+                    <select-box name="test" placeholder="Cualquiera" :options="['lorem', 'ipsum']"></select-box>
                   </div>
                 </div>
                 <div class="form-group">
@@ -43,9 +43,9 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="ref" class="col-sm-1 control-label">Referencia</label>
+                    <label for="reference" class="col-sm-1 control-label">Referencia</label>
                     <div class="col-sm-3">
-                      <input class="form-control" type="text" id="ref" name="ref" placeholder="Ej.: 121/000001">
+                      <input class="form-control" type="text" id="reference" name="reference" placeholder="Ej.: 121/000001">
                     </div>
                     <label for="vtipo" class="col-sm-1 control-label">Tipo</label>
                     <div class="col-sm-7">
@@ -82,6 +82,7 @@
               </fieldset>
             </form>
           </div>
+          <results-table v-if="initiatives.length" :initiatives="initiatives"></results-table>
         </div>
       </div>
       <div class="row">
@@ -97,6 +98,7 @@
 import PageHeader from '@/components/page-header';
 import SelectBox from '@/components/select-box';
 import AutoComplete from '@/components/auto-complete';
+import ResultsTable from '@/components/results-table';
 import Datepicker from 'vuejs-datepicker';
 import api from '@/api'
 
@@ -106,7 +108,8 @@ export default {
     PageHeader,
     SelectBox,
     AutoComplete,
-    Datepicker
+    Datepicker,
+    ResultsTable
   },
   data() {
     return {
@@ -117,6 +120,7 @@ export default {
       states: [],
       types: [],
       errors: [],
+      initiatives: [],
       advanced: false
     }
   },
@@ -149,6 +153,18 @@ export default {
     getTypes() {
       api.getTypes()
         .then(types => this.types = types)
+        .catch(error => this.errors = error);
+    },
+    getInitiatives() {
+      const form = document.getElementById('search-form');
+      let params = {};
+      new FormData(form).forEach((value, key) => {
+        if (value) {
+          params[key] = value;
+        }
+      });
+      api.getInitiatives(params)
+        .then(initiatives => this.initiatives = initiatives)
         .catch(error => this.errors = error);
     },
     prepareForm() {
