@@ -31,11 +31,11 @@
                   <div class="form-group">
                     <label for="fechadesde" class="col-sm-1 control-label">Desde</label>
                     <div class="col-sm-3">
-                      <input class="form-control" type="text" id="fechadesde" name="fechadesde" placeholder="dd/mm/YYYY">
+                      <datepicker input-class="form-control" placeholder="dd/mm/YYYY"  format="dd/MM/yyyy" name="fechadesde"></datepicker>
                     </div>
                     <label for="fechahasta" class="col-sm-1 control-label">Hasta</label>
                     <div class="col-sm-3">
-                      <input class="form-control" type="text" id="fechahasta" name="fechahasta" placeholder="dd/mm/YYYY">
+                      <datepicker input-class="form-control" placeholder="dd/mm/YYYY"  format="dd/MM/yyyy" name="fechahasta"></datepicker>
                     </div>
                     <label for="lugar" class="col-sm-1 control-label">Lugar</label>
                     <div class="col-sm-3">
@@ -97,6 +97,7 @@
 import PageHeader from '@/components/page-header';
 import SelectBox from '@/components/select-box';
 import AutoComplete from '@/components/auto-complete';
+import Datepicker from 'vuejs-datepicker';
 import api from '@/api'
 
 export default {
@@ -104,7 +105,8 @@ export default {
   components: {
     PageHeader,
     SelectBox,
-    AutoComplete
+    AutoComplete,
+    Datepicker
   },
   data() {
     return {
