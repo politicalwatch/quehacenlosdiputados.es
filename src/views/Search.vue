@@ -8,11 +8,11 @@
             <form id="search-form" class="form-horizontal" role="form" @submit.prevent="getInitiatives">
               <fieldset>
                 <div class="form-group">
-                  <label for="dicts" class="col-sm-1 control-label">Tema</label>
+                  <label for="topic" class="col-sm-1 control-label">Tema</label>
                   <div class="col-sm-3">
-                    <select-box name="terms" placeholder="Todos" :options="topics"></select-box>
+                    <select-box name="topic" placeholder="Todos" :options="topics"></select-box>
                   </div>
-                  <label for="terms" class="col-sm-1 control-label">Términos</label>
+                  <label for="tags" class="col-sm-1 control-label">Términos</label>
                   <div class="col-sm-7">
                     <select-box name="test" placeholder="Cualquiera" :options="['lorem', 'ipsum']"></select-box>
                   </div>
@@ -29,11 +29,11 @@
                 </div>
                 <div class="adv-search-block" v-if="advanced">
                   <div class="form-group">
-                    <label for="fechadesde" class="col-sm-1 control-label">Desde</label>
+                    <label for="startdate" class="col-sm-1 control-label">Desde</label>
                     <div class="col-sm-3">
                       <datepicker input-class="form-control" placeholder="dd/mm/YYYY"  format="dd/MM/yyyy" name="fechadesde"></datepicker>
                     </div>
-                    <label for="fechahasta" class="col-sm-1 control-label">Hasta</label>
+                    <label for="enddate" class="col-sm-1 control-label">Hasta</label>
                     <div class="col-sm-3">
                       <datepicker input-class="form-control" placeholder="dd/mm/YYYY"  format="dd/MM/yyyy" name="fechahasta"></datepicker>
                     </div>
