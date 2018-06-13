@@ -27,7 +27,7 @@
                     <auto-complete name="autor" :options="deputies" placeholder="Apellidos, Nombre"></auto-complete>
                   </div>
                 </div>
-                <div class="adv-search-block" style="display: block;">
+                <div class="adv-search-block" v-if="advanced">
                   <div class="form-group">
                     <label for="fechadesde" class="col-sm-1 control-label">Desde</label>
                     <div class="col-sm-3">
@@ -69,11 +69,11 @@
                   <div class="col-sm-12 pull-right">
                     <button class="btn btn-primary pull-right" type="submit">Iniciar la búsqueda</button>
                     <br>
-                    <a href="#" class="adv-search-link show-block" style="display: none;">
+                    <a href="#" class="adv-search-link show-block" @click="toggleAdvanced" v-if="!advanced">
                       <i class="fa fa-caret-square-o-down"></i>
                       Mostrar búsqueda avanzada
                     </a>
-                    <a href="#" class="adv-search-link hide-block" style="display: inline;">
+                    <a href="#" class="adv-search-link hide-block" v-if="advanced" @click="toggleAdvanced">
                       <i class="fa fa-caret-square-o-up"></i>
                       Ocultar búsqueda avanzada
                     </a>
@@ -114,7 +114,8 @@ export default {
       places: [],
       states: [],
       types: [],
-      errors: []
+      errors: [],
+      advanced: false
     }
   },
   methods: {
@@ -155,6 +156,9 @@ export default {
       this.getPlaces();
       this.getStates();
       this.getTypes();
+    },
+    toggleAdvanced() {
+      this.advanced = !this.advanced;
     }
   },
   created() {
