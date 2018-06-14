@@ -163,9 +163,19 @@ export default {
           params[key] = value;
         }
       });
+      this.$router.push("/results/" + encodeURIComponent(JSON.stringify(params)));
       api.getInitiatives(params)
-        .then(initiatives => this.initiatives = initiatives)
-        .catch(error => this.errors = error);
+         .then(initiatives => this.initiatives = initiatives)
+         .catch(error => this.errors = error);
+    },
+    getResults() {
+      const params = this.$route.params.data ?
+        JSON.parse(decodeURIComponent(this.$route.params.data))
+        : {};
+      console.log(params);
+      api.getInitiatives(params)
+         .then(initiatives => this.initiatives = initiatives)
+         .catch(error => this.errors = error);
     },
     prepareForm() {
       this.getTopics();
@@ -181,6 +191,7 @@ export default {
   },
   created() {
     this.prepareForm();
+    this.getResults();
   }
 }
 </script>

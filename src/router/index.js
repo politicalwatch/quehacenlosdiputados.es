@@ -6,17 +6,22 @@ import About from '@/views/About.vue'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  mode: "history",
   routes: [
     {
-      path: '/',
-      name: 'search',
+      path: "/",
+      name: "search",
       component: Search
     },
     {
-      path: '/about',
-      name: 'about',
+      path: "/about",
+      name: "about",
       component: About
+    },
+    {
+      path: "/results/:data?",
+      name: "results",
+      component: Search
     }
   ]
-})
+});

@@ -8,7 +8,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/"><img src="img/tipi-ods.svg"></a>
+        <a class="navbar-brand" href="/"><img src="/img/tipi-ods.svg"></a>
       </div>
       <div id="main-menu" class="collapse navbar-collapse" aria-expanded="false">
         <ul class="nav navbar-nav navbar-right">
