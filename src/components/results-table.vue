@@ -14,8 +14,8 @@
     <tbody>
       <tr v-for="(initiative, index) in initiatives" :key="index">
         <td class="titulo">{{ initiative.title }}</td>
-        <td class="autor_diputado">{{ initiative.author_deputies.join('') }}</td>
-        <td class="autor_grupo">{{ initiative.author_parliamentarygroups.join('') }}</td>
+        <td class="autor_diputado">{{ getDeputies(initiative) }}</td>
+        <td class="autor_grupo">{{ getGroups(initiative) }}</td>
         <td class="capitalize-text">-</td>
         <td class="actualizacion"><span :sort="initiative.created">{{ moment(initiative.created).format('DD/MM/Y') }}</span></td>
       </tr>
@@ -34,6 +34,18 @@ export default {
   data() {
     return{
       moment: moment
+    }
+  },
+  methods: {
+    getGroups(initiative) {
+      return initiative.hasOwnProperty('author_parliamentarygroups') ?
+        initiative.author_parliamentarygroups.join('') :
+        initiative.author_others.join('');
+    },
+    getDeputies(initiative) {
+      return initiative.hasOwnProperty('author_deputies') ?
+        initiative.author_deputies.join('') :
+        '';
     }
   }
 }
