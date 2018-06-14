@@ -10,56 +10,56 @@
                 <div class="form-group">
                   <label for="topic" class="col-sm-1 control-label">Tema</label>
                   <div class="col-sm-3">
-                    <select-box name="topic" placeholder="Todos" :options="topics"></select-box>
+                    <select-box v-model="data.topic" name="topic" placeholder="Todos" :options="topics"></select-box>
                   </div>
                   <label for="tags" class="col-sm-1 control-label">Términos</label>
                   <div class="col-sm-7">
-                    <select-box name="test" placeholder="Cualquiera" :options="['lorem', 'ipsum']"></select-box>
+                    <select-box v-model="data.tags" name="tags" placeholder="Cualquiera" :options="['lorem', 'ipsum']"></select-box>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="grupootro" class="col-sm-1 control-label">Autor</label>
+                  <label for="author" class="col-sm-1 control-label">Autor</label>
                   <div class="col-sm-3">
-                    <select-box name="grupootro" placeholder="Todos" :options="groups"></select-box>
+                    <select-box v-model="data.author.group" name="author[group]" id="author" placeholder="Todos" :options="groups"></select-box>
                   </div>
-                  <label for="autor" class="col-sm-1 control-label">Diputado/a</label>
+                  <label for="author_deputies" class="col-sm-1 control-label">Diputado/a</label>
                   <div class="col-sm-7">
-                    <auto-complete name="autor" :options="deputies" placeholder="Apellidos, Nombre"></auto-complete>
+                    <auto-complete v-model="data.author.deputies" name="author[deputies]" id="author_deputies" :options="deputies" placeholder="Apellidos, Nombre"></auto-complete>
                   </div>
                 </div>
                 <div class="adv-search-block" v-if="advanced">
                   <div class="form-group">
                     <label for="startdate" class="col-sm-1 control-label">Desde</label>
                     <div class="col-sm-3">
-                      <datepicker input-class="form-control" placeholder="dd/mm/YYYY"  format="dd/MM/yyyy" name="fechadesde"></datepicker>
+                      <datepicker v-model="data.startdate" input-class="form-control" placeholder="dd/mm/YYYY"  format="dd/MM/yyyy" name="startdate"></datepicker>
                     </div>
                     <label for="enddate" class="col-sm-1 control-label">Hasta</label>
                     <div class="col-sm-3">
-                      <datepicker input-class="form-control" placeholder="dd/mm/YYYY"  format="dd/MM/yyyy" name="fechahasta"></datepicker>
+                      <datepicker v-model="data.enddate" i input-class="form-control" placeholder="dd/mm/YYYY"  format="dd/MM/yyyy" name="enddate"></datepicker>
                     </div>
-                    <label for="lugar" class="col-sm-1 control-label">Lugar</label>
+                    <label for="place" class="col-sm-1 control-label">Lugar</label>
                     <div class="col-sm-3">
-                      <select-box name="lugar" placeholder="Cualquiera" :options="places"></select-box>
+                      <select-box v-model="data.place" name="place" placeholder="Cualquiera" :options="places"></select-box>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="reference" class="col-sm-1 control-label">Referencia</label>
                     <div class="col-sm-3">
-                      <input class="form-control" type="text" id="reference" name="reference" placeholder="Ej.: 121/000001">
+                      <input v-model="data.reference" class="form-control" type="text" id="reference" name="reference" placeholder="Ej.: 121/000001">
                     </div>
-                    <label for="vtipo" class="col-sm-1 control-label">Tipo</label>
+                    <label for="type" class="col-sm-1 control-label">Tipo</label>
                     <div class="col-sm-7">
-                      <select-box name="vtipo" placeholder="Cualquiera" :options="types"></select-box>
+                      <select-box v-model="data.type" name="type" placeholder="Cualquiera" :options="types"></select-box>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="tramitacion" class="col-sm-1 control-label">Estado</label>
+                    <label for="state" class="col-sm-1 control-label">Estado</label>
                     <div class="col-sm-3">
-                      <select-box name="tramitacion" placeholder="Cualquiera" :options="states"></select-box>
+                      <select-box v-model="data.state" name="state" placeholder="Cualquiera" :options="states"></select-box>
                     </div>
-                    <label for="titulo" class="col-sm-1 control-label">Título</label>
+                    <label for="title" class="col-sm-1 control-label">Título</label>
                     <div class="col-sm-7">
-                      <input class="form-control" type="text" id="titulo" name="titulo" placeholder="Nota: Se admiten expresiones regulares">
+                      <input v-model="data.title" class="form-control" type="text" id="title" name="title" placeholder="Nota: Se admiten expresiones regulares">
                     </div>
                   </div>
                   <div class="form-group">
@@ -121,6 +121,21 @@ export default {
       types: [],
       errors: [],
       initiatives: [],
+      data: {
+        topic: '',
+        tags: '',
+        author: {
+          group: '',
+          deputies: ''
+        },
+        startdate: '',
+        enddate: '',
+        place: '',
+        reference: '',
+        type: '',
+        state: '',
+        title: '',
+      },
       advanced: false
     }
   },
@@ -172,6 +187,7 @@ export default {
       const params = this.$route.params.data ?
         JSON.parse(decodeURIComponent(this.$route.params.data))
         : {};
+        this.data = Object.assign(this.data, params);
       console.log(params);
       api.getInitiatives(params)
          .then(initiatives => this.initiatives = initiatives)
