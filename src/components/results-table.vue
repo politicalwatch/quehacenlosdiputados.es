@@ -12,46 +12,21 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(initiative, index) in initiatives" :key="index">
-        <td class="titulo">{{ initiative.title }}</td>
-        <td class="autor_diputado">{{ getDeputies(initiative) }}</td>
-        <td class="autor_grupo">{{ getGroups(initiative) }}</td>
-        <td class="capitalize-text">{{ getTopics(initiative) }}</td>
-        <td class="actualizacion"><span :sort="initiative.created">{{ moment(initiative.created).format('DD/MM/Y') }}</span></td>
-      </tr>
+      <result-row v-for="(initiative, index) in initiatives" :key="index" :initiative="initiative"></result-row>
     </tbody>
   </table>
 </template>
 
 <script>
-const moment = require('moment');
+import ResultRow from '@/components/result-row';
 
 export default {
   name: 'results-table',
   props: [
     'initiatives'
   ],
-  data() {
-    return{
-      moment: moment
-    }
-  },
-  methods: {
-    getGroups(initiative) {
-      return initiative.hasOwnProperty('author_parliamentarygroups') ?
-        initiative.author_parliamentarygroups.join('') :
-        initiative.author_others.join('');
-    },
-    getDeputies(initiative) {
-      return initiative.hasOwnProperty('author_deputies') ?
-        initiative.author_deputies.join('') :
-        '';
-    },
-    getTopics(initiative) {
-      return initiative.hasOwnProperty('topics') ?
-        initiative.topics.join('') :
-        '';
-    }
+  components: {
+    ResultRow
   }
 }
 </script>
