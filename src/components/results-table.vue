@@ -16,7 +16,7 @@
         <td class="titulo">{{ initiative.title }}</td>
         <td class="autor_diputado">{{ getDeputies(initiative) }}</td>
         <td class="autor_grupo">{{ getGroups(initiative) }}</td>
-        <td class="capitalize-text">-</td>
+        <td class="capitalize-text">{{ getTopics(initiative) }}</td>
         <td class="actualizacion"><span :sort="initiative.created">{{ moment(initiative.created).format('DD/MM/Y') }}</span></td>
       </tr>
     </tbody>
@@ -45,6 +45,11 @@ export default {
     getDeputies(initiative) {
       return initiative.hasOwnProperty('author_deputies') ?
         initiative.author_deputies.join('') :
+        '';
+    },
+    getTopics(initiative) {
+      return initiative.hasOwnProperty('topics') ?
+        initiative.topics.join('') :
         '';
     }
   }
