@@ -25,16 +25,16 @@ export default {
     getGroups(initiative) {
       return initiative.hasOwnProperty('author_parliamentarygroups') ?
         initiative.author_parliamentarygroups.join('') :
-        initiative.author_others.join('');
+        initiative.author_others.join(' / ');
     },
     getDeputies(initiative) {
       return initiative.hasOwnProperty('author_deputies') ?
-        initiative.author_deputies.join('') :
+        initiative.author_deputies.join(' / ') :
         '';
     },
     getTopics(initiative) {
       return initiative.hasOwnProperty('topics') ?
-        initiative.topics.join('') :
+        initiative.topics.join(' / ') :
         '';
     }
   }

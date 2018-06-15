@@ -27,7 +27,7 @@
                     <auto-complete v-model="data.author.deputies" name="author[deputies]" id="author_deputies" :options="deputies" placeholder="Apellidos, Nombre"></auto-complete>
                   </div>
                 </div>
-                <div class="adv-search-block" v-if="advanced">
+                <div class="adv-search-block" v-show="advanced">
                   <div class="form-group">
                     <label for="startdate" class="col-sm-1 control-label">Desde</label>
                     <div class="col-sm-3">
