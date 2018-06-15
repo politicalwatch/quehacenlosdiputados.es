@@ -7,8 +7,8 @@
     <td class="actualizacion"><span :sort="this.initiative.created">{{ moment(this.initiative.created).format('DD/MM/Y') }}</span></td>
   </tr>
 </template>
-<script>
 
+<script>
 const moment = require('moment');
 
 export default {
