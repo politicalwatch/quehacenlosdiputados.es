@@ -2,7 +2,7 @@
   <tr>
     <td class="titulo">{{ this.initiative.title }}</td>
     <td class="autor_diputado">{{ getDeputies(this.initiative) }}</td>
-    <td class="autor_grupo">{{ getGroups(this.initiative) }}</td>
+    <td class="autor_grupo">{{ getAuthors(this.initiative) }}</td>
     <td class="capitalize-text">{{ getTopics(this.initiative) }}</td>
     <td class="actualizacion"><span :sort="this.initiative.created">{{ moment(this.initiative.created).format('DD/MM/Y') }}</span></td>
   </tr>
@@ -10,6 +10,7 @@
 
 <script>
 const moment = require('moment');
+
 
 export default {
   name: 'result-row',
@@ -22,14 +23,14 @@ export default {
     }
   },
   methods: {
-    getGroups(initiative) {
-      return initiative.hasOwnProperty('author_parliamentarygroups') ?
-        initiative.author_parliamentarygroups.join('') :
-        initiative.author_others.join(' / ');
+    getAuthors(initiative) {
+      return initiative.authors.length ?
+        initiative.authors.join(' / ') :
+        '';
     },
     getDeputies(initiative) {
-      return initiative.hasOwnProperty('author_deputies') ?
-        initiative.author_deputies.join(' / ') :
+      return initiative.deputies.length ?
+        initiative.deputies.join(' / ') :
         '';
     },
     getTopics(initiative) {

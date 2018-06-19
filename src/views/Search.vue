@@ -178,7 +178,7 @@ export default {
       });
       this.$router.push("/results/" + encodeURIComponent(JSON.stringify(params)));
       api.getInitiatives(params)
-         .then(initiatives => this.initiatives = initiatives)
+         .then(response => this.initiatives = response.initiatives)
          .catch(error => this.errors = error);
     },
     getResults() {
@@ -188,7 +188,7 @@ export default {
         this.data = Object.assign(this.data, params);
       console.log(params);
       api.getInitiatives(params)
-         .then(initiatives => this.initiatives = initiatives)
+         .then(response => this.initiatives = response.initiatives)
          .catch(error => this.errors = error);
     },
     prepareForm() {
