@@ -42,13 +42,13 @@ export default {
       ].join('');
     }
   },
-  getStates() {
+  getStatus() {
     return axios.get(getEndpoint()).then(response => response.data);
 
     function getEndpoint() {
       return [
         config.URL,
-        '/initiative-states/'
+        '/initiative-status/'
       ].join('');
     }
   },

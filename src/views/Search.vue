@@ -20,11 +20,11 @@
                 <div class="form-group">
                   <label for="author" class="col-sm-1 control-label">Autor</label>
                   <div class="col-sm-3">
-                    <select-box v-model="data.author.group" name="author[group]" id="author" placeholder="Todos" :options="groups"></select-box>
+                    <select-box v-model="data.author" name="author" id="author" placeholder="Todos" :options="groups"></select-box>
                   </div>
                   <label for="author_deputies" class="col-sm-1 control-label">Diputado/a</label>
                   <div class="col-sm-7">
-                    <auto-complete v-model="data.author.deputies" name="author[deputies]" id="author_deputies" :options="deputies" placeholder="Apellidos, Nombre"></auto-complete>
+                    <auto-complete v-model="data.deputy" name="deputy" id="deputy" :options="deputies" placeholder="Apellidos, Nombre"></auto-complete>
                   </div>
                 </div>
                 <div class="adv-search-block" v-show="advanced">
@@ -53,9 +53,9 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="state" class="col-sm-1 control-label">Estado</label>
+                    <label for="status" class="col-sm-1 control-label">Estado</label>
                     <div class="col-sm-3">
-                      <select-box v-model="data.state" name="state" placeholder="Cualquiera" :options="states"></select-box>
+                      <select-box v-model="data.status" name="status" placeholder="Cualquiera" :options="status"></select-box>
                     </div>
                     <label for="title" class="col-sm-1 control-label">Título</label>
                     <div class="col-sm-7">
@@ -117,23 +117,21 @@ export default {
       groups: [],
       deputies: [],
       places: [],
-      states: [],
+      status: [],
       types: [],
       errors: [],
       initiatives: [],
       data: {
         topic: '',
         tags: '',
-        author: {
-          group: '',
-          deputies: ''
-        },
+        author: '',
+        deputy: '',
         startdate: '',
         enddate: '',
         place: '',
         reference: '',
         type: '',
-        state: '',
+        status: '',
         title: '',
       },
       advanced: false
@@ -160,9 +158,9 @@ export default {
         .then(places => this.places = places)
         .catch(error => this.errors = error);
     },
-    getStates() {
-      api.getStates()
-        .then(states => this.states = states)
+    getStatus() {
+      api.getStatus()
+        .then(status => this.status = status)
         .catch(error => this.errors = error);
     },
     getTypes() {
@@ -198,7 +196,7 @@ export default {
       this.getGroups();
       this.getDeputies();
       this.getPlaces();
-      this.getStates();
+      this.getStatus();
       this.getTypes();
     },
     toggleAdvanced() {
