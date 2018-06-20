@@ -121,6 +121,7 @@ export default {
       types: [],
       errors: [],
       initiatives: [],
+      query_meta: [],
       data: {
         topic: '',
         tags: '',
@@ -135,6 +136,14 @@ export default {
         title: '',
       },
       advanced: false
+    }
+  },
+  computed: {
+    total_pages() {
+      return Math.ceil(this.query_meta.total / this.query_meta.limit);
+    },
+    current_page() {
+      return this.query_meta.offset + 1;
     }
   },
   methods: {
@@ -178,7 +187,10 @@ export default {
       });
       this.$router.push("/results/" + encodeURIComponent(JSON.stringify(params)));
       api.getInitiatives(params)
-         .then(response => this.initiatives = response.initiatives)
+         .then(response => {
+           this.initiatives = response.initiatives;
+           this.query_meta = response.query_meta;
+          })
          .catch(error => this.errors = error);
     },
     getResults() {
@@ -186,9 +198,11 @@ export default {
         JSON.parse(decodeURIComponent(this.$route.params.data))
         : {};
         this.data = Object.assign(this.data, params);
-      console.log(params);
       api.getInitiatives(params)
-         .then(response => this.initiatives = response.initiatives)
+         .then(response => {
+           this.initiatives = response.initiatives;
+           this.query_meta = response.query_meta;
+          })
          .catch(error => this.errors = error);
     },
     prepareForm() {
@@ -205,7 +219,9 @@ export default {
   },
   created() {
     this.prepareForm();
-    this.getResults();
+    if (this.$route.name == "results") {
+      this.getResults();
+    }
   }
 }
 </script>
