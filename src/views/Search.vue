@@ -83,6 +83,7 @@
             </form>
           </div>
           <results-table v-if="initiatives.length" :initiatives="initiatives"></results-table>
+          <a v-if="isMoreResults" href="#" class="load-more btn btn-primary" @click.prevent="loadMore">Cagar más</a>
         </div>
       </div>
       <div class="row">
@@ -134,16 +135,14 @@ export default {
         type: '',
         status: '',
         title: '',
+        offset: 0
       },
       advanced: false
     }
   },
   computed: {
-    total_pages() {
-      return Math.ceil(this.query_meta.total / this.query_meta.limit);
-    },
-    current_page() {
-      return this.query_meta.offset + 1;
+    isMoreResults() {
+      return this.query_meta.offset < this.query_meta.total - this.query_meta.limit;
     }
   },
   methods: {
@@ -178,15 +177,8 @@ export default {
         .catch(error => this.errors = error);
     },
     getInitiatives() {
-      const form = document.getElementById('search-form');
-      let params = {};
-      new FormData(form).forEach((value, key) => {
-        if (value) {
-          params[key] = value;
-        }
-      });
-      this.$router.push("/results/" + encodeURIComponent(JSON.stringify(params)));
-      api.getInitiatives(params)
+      this.$router.push("/results/" + encodeURIComponent(JSON.stringify(this.data)));
+      api.getInitiatives(this.data)
          .then(response => {
            this.initiatives = response.initiatives;
            this.query_meta = response.query_meta;
@@ -197,13 +189,22 @@ export default {
       const params = this.$route.params.data ?
         JSON.parse(decodeURIComponent(this.$route.params.data))
         : {};
-        this.data = Object.assign(this.data, params);
-      api.getInitiatives(params)
+
+      //keep current offset and ignored offset in url params
+      const currentOffset = this.data.offset;
+      this.data = Object.assign(this.data, params);
+      this.data.offset = currentOffset;
+
+      api.getInitiatives(this.data)
          .then(response => {
-           this.initiatives = response.initiatives;
+           this.initiatives.push.apply(this.initiatives, response.initiatives);
            this.query_meta = response.query_meta;
           })
          .catch(error => this.errors = error);
+    },
+    loadMore() {
+      this.data.offset = this.data.offset + this.query_meta.limit;
+      this.getResults();
     },
     prepareForm() {
       this.getTopics();
@@ -227,4 +228,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.load-more {
+  display: block;
+  margin: 2rem auto;
+  max-width: 320px;
+  text-align: center;
+}
 </style>
