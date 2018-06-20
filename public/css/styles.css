@@ -7302,6 +7302,21 @@ fieldset[disabled] .btn-tipi.focus {
 #dict .capitalize .value small a {
   color: #798d8f;
 }
+#initiative .state strong {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+#initiative .color-green {
+  background-color: #5cb85c;
+  color: #fff;
+}
+#initiative .color-black {
+  color: #222;
+}
+#initiative .color-red {
+  background-color: #E74C3C;
+  color: #fff;
+}
 #initiative .congress-link,
 #dict .congress-link {
   font-size: 1.2em;

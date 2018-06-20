@@ -1,6 +1,8 @@
 <template>
   <tr>
-    <td class="titulo">{{ this.initiative.title }}</td>
+    <td class="titulo">
+      <router-link :to="{path: '/initiatives/' + this.initiative.id}">{{this.initiative.title}}</router-link>
+    </td>
     <td class="autor_diputado">{{ getDeputies(this.initiative) }}</td>
     <td class="autor_grupo">{{ getAuthors(this.initiative) }}</td>
     <td class="capitalize-text">{{ getTopics(this.initiative) }}</td>

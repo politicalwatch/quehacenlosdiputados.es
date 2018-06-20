@@ -73,5 +73,18 @@ export default {
         '/initiatives/'
       ].join('');
     }
+  },
+  getInitiative(id) {
+    return axios
+      .get(getEndpoint(id))
+      .then(response => response.data);
+
+    function getEndpoint() {
+      return [
+        config.URL,
+        '/initiatives/',
+        id
+      ].join('');
+    }
   }
 };
