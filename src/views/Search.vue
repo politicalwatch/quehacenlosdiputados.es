@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="well">
-            <form id="search-form" class="form-horizontal" role="form" @submit.prevent="getInitiatives">
+            <form id="search-form" class="form-horizontal" role="form" @submit.prevent="getResults()">
               <fieldset>
                 <div class="form-group">
                   <label for="topic" class="col-sm-1 control-label">Tema</label>
@@ -69,11 +69,11 @@
                   <div class="col-sm-12 pull-right">
                     <button class="btn btn-primary pull-right" type="submit">Iniciar la búsqueda</button>
                     <br>
-                    <a href="#" class="adv-search-link show-block" @click="toggleAdvanced" v-if="!advanced">
+                    <a href="#" class="adv-search-link show-block" @click="toggleAdvanced()" v-if="!advanced">
                       <i class="fa fa-caret-square-o-down"></i>
                       Mostrar búsqueda avanzada
                     </a>
-                    <a href="#" class="adv-search-link hide-block" v-if="advanced" @click="toggleAdvanced">
+                    <a href="#" class="adv-search-link hide-block" v-if="advanced" @click="toggleAdvanced()">
                       <i class="fa fa-caret-square-o-up"></i>
                       Ocultar búsqueda avanzada
                     </a>
@@ -83,7 +83,7 @@
             </form>
           </div>
           <results-table v-if="initiatives.length" :initiatives="initiatives"></results-table>
-          <a v-if="isMoreResults" href="#" class="load-more btn btn-primary" @click.prevent="loadMore">Cagar más</a>
+          <a v-if="isMoreResults" href="#" class="load-more btn btn-primary" @click.prevent="loadMore()">Cagar más</a>
         </div>
       </div>
       <div class="row">
@@ -176,15 +176,6 @@ export default {
         .then(types => this.types = types)
         .catch(error => this.errors = error);
     },
-    getInitiatives() {
-      this.$router.push("/results/" + encodeURIComponent(JSON.stringify(this.data)));
-      api.getInitiatives(this.data)
-         .then(response => {
-           this.initiatives = response.initiatives;
-           this.query_meta = response.query_meta;
-          })
-         .catch(error => this.errors = error);
-    },
     getResults() {
       const params = this.$route.params.data ?
         JSON.parse(decodeURIComponent(this.$route.params.data))
@@ -195,10 +186,16 @@ export default {
       this.data = Object.assign(this.data, params);
       this.data.offset = currentOffset;
 
+      this.$router.push("/results/" + encodeURIComponent(JSON.stringify(this.data)));
+
       api.getInitiatives(this.data)
          .then(response => {
-           this.initiatives.push.apply(this.initiatives, response.initiatives);
-           this.query_meta = response.query_meta;
+            if (this.data.offset>0) {
+              this.initiatives.push.apply(this.initiatives, response.initiatives);
+            } else {
+              this.initiatives = response.initiatives;
+            }
+            this.query_meta = response.query_meta;
           })
          .catch(error => this.errors = error);
     },
