@@ -1,7 +1,7 @@
 <template>
   <select v-model="initialValue" class="form-control" :id="id || name" :name="name">
     <option value="" v-if="placeholder">{{ placeholder }}</option>
-    <option v-for="option in options" :key="option.name || option" :value="option.value || option.name || option" v-text="option.name || option"></option>
+    <option v-for="(option, index) in options" :key="index" :value="option.value || option.name || option" v-text="option.name || option"></option>
   </select>
 </template>
 
@@ -28,6 +28,7 @@ export default {
       set: function(newValue) {
         this.currentValue = newValue;
         this.$emit('input', newValue);
+        this.$emit('change', newValue);
       }
     }
   }

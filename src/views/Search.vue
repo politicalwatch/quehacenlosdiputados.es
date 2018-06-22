@@ -10,11 +10,13 @@
                 <div class="form-group">
                   <label for="topic" class="col-sm-1 control-label">Tema</label>
                   <div class="col-sm-3">
-                    <select-box v-model="data.topic" name="topic" placeholder="Todos" :options="topics"></select-box>
+                    <select-box
+                    @change="fillTags"
+                    v-model="data.topic" name="topic" placeholder="Todos" :options="topics"></select-box>
                   </div>
                   <label for="tags" class="col-sm-1 control-label">Términos</label>
                   <div class="col-sm-7">
-                    <select-box v-model="data.tags" name="tags" placeholder="Cualquiera" :options="['lorem', 'ipsum']"></select-box>
+                    <select-box v-model="data.tags" name="tags" placeholder="Cualquiera" :options="tags"></select-box>
                   </div>
                 </div>
                 <div class="form-group">
@@ -122,6 +124,7 @@ export default {
   data: function() {
     return {
       topics: [],
+      tags: [],
       groups: [],
       deputies: [],
       places: [],
@@ -154,16 +157,26 @@ export default {
     }
   },
   methods: {
-    selectStartDate: function(date){
+    fillTags: function() {
+      const currentTopic = this.topics.find(topic => topic.name === this.data.topic);
+      this.getTags(currentTopic.id);
+    },
+    selectStartDate: function(date) {
       this.data.startdate = moment(date).format('YYYY-MM-DD');
     },
-    selectEndDate: function(date){
+    selectEndDate: function(date) {
       this.data.enddate = moment(date).format('YYYY-MM-DD');
     },
     getTopics: function() {
       api.getTopics()
-        .then(topics => this.topics = topics)
+        .then(topics => {
+          this.topics = topics;
+          if (this.data.topic) {
+            this.fillTags();
+          }
+        })
         .catch(error => this.errors = error);
+
     },
     getGroups: function() {
       api.getGroups()
@@ -188,6 +201,16 @@ export default {
     getTypes: function() {
       api.getTypes()
         .then(types => this.types = types)
+        .catch(error => this.errors = error);
+    },
+    getTags: function(topicID) {
+      api.getTags(topicID)
+        .then(tags => {
+          this.tags = tags.map(tag => {
+            tag.name = tag.tag
+            return tag;
+          })
+        })
         .catch(error => this.errors = error);
     },
     getResults: function(event) {
@@ -225,16 +248,17 @@ export default {
       this.getPlaces();
       this.getStatus();
       this.getTypes();
+
     },
     toggleAdvanced: function() {
       this.advanced = !this.advanced;
     }
   },
   created: function() {
-    this.prepareForm();
     if (this.$route.name == "results") {
       this.getResults();
     }
+    this.prepareForm();
   }
 }
 </script>

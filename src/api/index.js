@@ -86,5 +86,18 @@ export default {
         id
       ].join('');
     }
+  },
+  getTags(topicId) {
+    return axios
+      .get(getEndpoint(topicId))
+      .then(response => response.data.tags);
+
+    function getEndpoint() {
+      return [
+        config.URL,
+        '/topics/',
+        topicId
+      ].join('');
+    }
   }
 };
