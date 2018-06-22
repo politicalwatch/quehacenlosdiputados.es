@@ -47,6 +47,7 @@ export default {
     selectElement(item) {
       this.isOpen = false;
       this.input = item;
+      this.$emit('input', this.input);
     },
     onChange() {
       this.isOpen = this.input.length > 0;
