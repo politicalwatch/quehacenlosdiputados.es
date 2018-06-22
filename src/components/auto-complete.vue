@@ -4,12 +4,12 @@
       :placeholder="placeholder"
       :id="id || name" :name="name"
       v-model="input"
-      @input="onChange"
+      @input="onChange()"
       autocomplete="off"
-      @keydown.down="onArrowDown"
-      @keydown.up="onArrowUp"
-      @keydown.enter.prevent="onEnter"
-      @keydown.tab="onEnter">
+      @keydown.down="onArrowDown()"
+      @keydown.up="onArrowUp()"
+      @keydown.enter.prevent="onEnter()"
+      @keydown.tab="onEnter()">
 
     <ul class="autocomplete__list" :class="id || name" v-show="isOpen">
       <li
@@ -35,7 +35,7 @@ export default {
     'options',
     'placeholder'
   ],
-  data() {
+  data: function() {
     return {
       input: '',
       isOpen: false,
@@ -44,34 +44,34 @@ export default {
     }
   },
   methods: {
-    selectElement(item) {
+    selectElement: function(item) {
       this.isOpen = false;
       this.input = item;
       this.$emit('input', this.input);
     },
-    onChange() {
+    onChange: function() {
       this.isOpen = this.input.length > 0;
       this.data = this.items.filter(item => item.toLowerCase().indexOf(this.input.toLowerCase()) > -1);
     },
-    onArrowDown() {
+    onArrowDown: function() {
       if (this.arrowIndex < this.data.length) {
         this.arrowIndex = this.arrowIndex + 1;
         this.scrollToItem();
       }
     },
-    onArrowUp() {
+    onArrowUp: function() {
       if (this.arrowIndex > 0) {
         this.arrowIndex = this.arrowIndex - 1;
         this.scrollToItem();
       }
     },
-    scrollToItem() {
+    scrollToItem: function() {
       const element = this.$el.getElementsByClassName('autocomplete__list-item')[this.arrowIndex];
       if (element) {
         element.scrollIntoView(false);
       }
     },
-    onEnter() {
+    onEnter: function() {
       if (this.isOpen && this.arrowIndex >= 0) {
         this.input = this.data[this.arrowIndex];
         this.isOpen = false;

@@ -19,23 +19,23 @@ export default {
   props: [
     'initiative',
   ],
-  data() {
+  data: function() {
     return{
       moment: moment
     }
   },
   methods: {
-    getAuthors(initiative) {
+    getAuthors: function(initiative) {
       return initiative.authors.length ?
         initiative.authors.join(' / ') :
         '';
     },
-    getDeputies(initiative) {
+    getDeputies: function(initiative) {
       return initiative.deputies.length ?
         initiative.deputies.join(' / ') :
         '';
     },
-    getTopics(initiative) {
+    getTopics: function(initiative) {
       return initiative.hasOwnProperty('topics') ?
         initiative.topics.join(' / ') :
         '';

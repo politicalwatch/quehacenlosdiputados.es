@@ -15,15 +15,17 @@ export default {
     'options',
     'placeholder'
   ],
-  data() {
+  data: function() {
     return {
       currentValue: this.value
     }
   },
   computed: {
     initialValue: {
-      get() { return this.currentValue },
-      set(newValue) {
+      get: function() {
+        return this.currentValue
+      },
+      set: function(newValue) {
         this.currentValue = newValue;
         this.$emit('input', newValue);
       }

@@ -9,9 +9,12 @@
 <script>
 export default {
   name: 'text-element',
-  props: ['meta', 'value'],
+  props: [
+    'meta',
+    'value'
+  ],
   methods: {
-    show(value) {
+    show: function(value) {
       if (value.constructor === Array) return value.join('/')
       return value
     }
