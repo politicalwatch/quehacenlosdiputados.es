@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="well">
-            <form id="search-form" class="form-horizontal" role="form" @submit.prevent="getResults($event)">
+            <form id="search-form" class="form-horizontal" role="form" @submit.prevent="getResults">
               <fieldset>
                 <div class="form-group">
                   <label for="topic" class="col-sm-1 control-label">Tema</label>
@@ -31,11 +31,16 @@
                   <div class="form-group">
                     <label for="startdate" class="col-sm-1 control-label">Desde</label>
                     <div class="col-sm-3">
-                      <datepicker v-model="data.startdate" input-class="form-control" placeholder="dd/mm/YYYY"  format="dd/MM/yyyy" name="startdate"></datepicker>
+                      <datepicker
+                      :value="moment(this.data.startdate, 'YYYY-MM-DD').format('DD/MMM/YYYY')" @selected="selectStartDate"
+                      input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="startdate"></datepicker>
                     </div>
                     <label for="enddate" class="col-sm-1 control-label">Hasta</label>
                     <div class="col-sm-3">
-                      <datepicker v-model="data.enddate" i input-class="form-control" placeholder="dd/mm/YYYY"  format="dd/MM/yyyy" name="enddate"></datepicker>
+                      <datepicker
+                      :value="moment(this.data.enddate, 'YYYY-MM-DD').format('DD/MMM/YYYY')"
+                      @selected="selectEndDate"
+                      input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="enddate"></datepicker>
                     </div>
                     <label for="place" class="col-sm-1 control-label">Lugar</label>
                     <div class="col-sm-3">
@@ -103,6 +108,8 @@ import ResultsTable from '@/components/results-table';
 import Datepicker from 'vuejs-datepicker';
 import api from '@/api'
 
+const moment = require('moment');
+
 export default {
   name: 'search',
   components: {
@@ -123,6 +130,7 @@ export default {
       errors: [],
       initiatives: [],
       query_meta: [],
+      moment: moment,
       data: {
         topic: '',
         tags: '',
@@ -146,6 +154,12 @@ export default {
     }
   },
   methods: {
+    selectStartDate: function(date){
+      this.data.startdate = moment(date).format('YYYY-MM-DD');
+    },
+    selectEndDate: function(date){
+      this.data.enddate = moment(date).format('YYYY-MM-DD');
+    },
     getTopics: function() {
       api.getTopics()
         .then(topics => this.topics = topics)
