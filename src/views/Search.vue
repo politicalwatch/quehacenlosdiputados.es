@@ -74,11 +74,11 @@
                   <div class="col-sm-12 pull-right">
                     <button class="btn btn-primary pull-right" type="submit">Iniciar la búsqueda</button>
                     <br>
-                    <a href="#" class="adv-search-link show-block" @click="toggleAdvanced()" v-if="!advanced">
+                    <a href="#" class="adv-search-link show-block" @click="toggleAdvanced" v-if="!advanced">
                       <i class="fa fa-caret-square-o-down"></i>
                       Mostrar búsqueda avanzada
                     </a>
-                    <a href="#" class="adv-search-link hide-block" v-if="advanced" @click="toggleAdvanced()">
+                    <a href="#" class="adv-search-link hide-block" v-if="advanced" @click="toggleAdvanced">
                       <i class="fa fa-caret-square-o-up"></i>
                       Ocultar búsqueda avanzada
                     </a>
@@ -88,7 +88,7 @@
             </form>
           </div>
           <results-table v-if="initiatives.length" :initiatives="initiatives"></results-table>
-          <a v-if="isMoreResults" href="#" class="load-more btn btn-primary" @click.prevent="loadMore()">Cagar más</a>
+          <a v-if="isMoreResults" href="#" class="load-more btn btn-primary" @click.prevent="loadMore">Cagar más</a>
         </div>
       </div>
       <div class="row">

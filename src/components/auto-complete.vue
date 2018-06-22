@@ -4,14 +4,14 @@
       :placeholder="placeholder"
       :id="id || name" :name="name"
       v-model="input"
-      @input="onChange()"
+      @input="onChange"
       autocomplete="off"
-      @keydown.down="onArrowDown()"
-      @keydown.up="onArrowUp()"
-      @keydown.enter.prevent="onEnter()"
-      @keydown.tab="onEnter()"
-      @blur="setValue()"
-      @focus="setValue()">
+      @keydown.down="onArrowDown"
+      @keydown.up="onArrowUp"
+      @keydown.enter.prevent="onEnter"
+      @keydown.tab="onEnter"
+      @blur="setValue"
+      @focus="setValue">
 
     <ul class="autocomplete__list" :class="id || name" v-show="isOpen">
       <li
