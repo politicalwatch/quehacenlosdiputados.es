@@ -112,7 +112,7 @@ export default {
     Datepicker,
     ResultsTable
   },
-  data() {
+  data: function() {
     return {
       topics: [],
       groups: [],
@@ -141,42 +141,42 @@ export default {
     }
   },
   computed: {
-    isMoreResults() {
+    isMoreResults: function() {
       return this.query_meta.offset < this.query_meta.total - this.query_meta.limit;
     }
   },
   methods: {
-    getTopics() {
+    getTopics: function() {
       api.getTopics()
         .then(topics => this.topics = topics)
         .catch(error => this.errors = error);
     },
-    getGroups() {
+    getGroups: function() {
       api.getGroups()
         .then(groups => this.groups = ['Gobierno'].concat(groups))
         .catch(error => this.errors = error);
     },
-    getDeputies() {
+    getDeputies: function() {
       api.getDeputies()
         .then(deputies => this.deputies = deputies)
         .catch(error => this.errors = error);
     },
-    getPlaces() {
+    getPlaces: function() {
       api.getPlaces()
         .then(places => this.places = places)
         .catch(error => this.errors = error);
     },
-    getStatus() {
+    getStatus: function() {
       api.getStatus()
         .then(status => this.status = status)
         .catch(error => this.errors = error);
     },
-    getTypes() {
+    getTypes: function() {
       api.getTypes()
         .then(types => this.types = types)
         .catch(error => this.errors = error);
     },
-    getResults(event) {
+    getResults: function(event) {
       const isNewSearch = event && event.type === 'submit';
       const params = this.$route.params.data && !isNewSearch ?
         JSON.parse(decodeURIComponent(this.$route.params.data))
@@ -200,11 +200,11 @@ export default {
           })
          .catch(error => this.errors = error);
     },
-    loadMore() {
+    loadMore: function() {
       this.data.offset = this.data.offset + this.query_meta.limit;
       this.getResults();
     },
-    prepareForm() {
+    prepareForm: function() {
       this.getTopics();
       this.getGroups();
       this.getDeputies();
@@ -212,11 +212,11 @@ export default {
       this.getStatus();
       this.getTypes();
     },
-    toggleAdvanced() {
+    toggleAdvanced: function() {
       this.advanced = !this.advanced;
     }
   },
-  created() {
+  created: function() {
     this.prepareForm();
     if (this.$route.name == "results") {
       this.getResults();
