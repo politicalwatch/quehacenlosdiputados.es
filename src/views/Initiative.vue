@@ -48,7 +48,7 @@ export default {
     PageHeader,
     TextElement
   },
-  data() {
+  data: function() {
     return {
       initiative: null,
       color_by_status: color_by_status,
@@ -56,20 +56,20 @@ export default {
     }
   },
   methods: {
-    getInitiative() {
+    getInitiative: function() {
       api.getInitiative(this.$route.params.id)
         .then(response => this.initiative = response)
         .catch(error => this.errors = error);
       console.log(this.initiative)
     },
-    getColorByStatus(status) {
+    getColorByStatus: function(status) {
       for(let color in this.color_by_status) {
         if (this.color_by_status[color].indexOf(status) != -1) return color
       }
       return 'black'
     },
   },
-  created() {
+  created: function() {
     this.getInitiative()
   }
 }
