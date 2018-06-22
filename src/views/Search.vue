@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="well">
-            <form id="search-form" class="form-horizontal" role="form" @submit.prevent="getResults()">
+            <form id="search-form" class="form-horizontal" role="form" @submit.prevent="getResults($event)">
               <fieldset>
                 <div class="form-group">
                   <label for="topic" class="col-sm-1 control-label">Tema</label>
@@ -176,8 +176,9 @@ export default {
         .then(types => this.types = types)
         .catch(error => this.errors = error);
     },
-    getResults() {
-      const params = this.$route.params.data ?
+    getResults(event) {
+      const isNewSearch = event && event.type === 'submit';
+      const params = this.$route.params.data && !isNewSearch ?
         JSON.parse(decodeURIComponent(this.$route.params.data))
         : {};
 
@@ -190,7 +191,7 @@ export default {
 
       api.getInitiatives(this.data)
          .then(response => {
-            if (this.data.offset>0) {
+            if (!isNewSearch) {
               this.initiatives.push.apply(this.initiatives, response.initiatives);
             } else {
               this.initiatives = response.initiatives;
