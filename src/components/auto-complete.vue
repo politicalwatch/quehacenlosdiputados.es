@@ -9,7 +9,9 @@
       @keydown.down="onArrowDown()"
       @keydown.up="onArrowUp()"
       @keydown.enter.prevent="onEnter()"
-      @keydown.tab="onEnter()">
+      @keydown.tab="onEnter()"
+      @blur="setValue()"
+      @focus="setValue()">
 
     <ul class="autocomplete__list" :class="id || name" v-show="isOpen">
       <li
@@ -47,6 +49,9 @@ export default {
     selectElement: function(item) {
       this.isOpen = false;
       this.input = item;
+      this.$emit('input', this.input);
+    },
+    setValue: function() {
       this.$emit('input', this.input);
     },
     onChange: function() {
