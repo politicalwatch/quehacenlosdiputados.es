@@ -176,7 +176,6 @@ export default {
           }
         })
         .catch(error => this.errors = error);
-
     },
     getGroups: function() {
       api.getGroups()
@@ -248,7 +247,6 @@ export default {
       this.getPlaces();
       this.getStatus();
       this.getTypes();
-
     },
     toggleAdvanced: function() {
       this.advanced = !this.advanced;
