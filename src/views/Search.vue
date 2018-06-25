@@ -134,8 +134,6 @@
 
 <script>
 import PageHeader from '@/components/page-header';
-import SelectBox from '@/components/select-box';
-import AutoComplete from '@/components/auto-complete';
 import ResultsTable from '@/components/results-table';
 import Datepicker from 'vuejs-datepicker';
 import Multiselect from 'vue-multiselect'
@@ -147,8 +145,6 @@ export default {
   name: 'search',
   components: {
     PageHeader,
-    SelectBox,
-    AutoComplete,
     Datepicker,
     ResultsTable,
     Multiselect
