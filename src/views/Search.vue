@@ -120,7 +120,7 @@
             </form>
           </div>
           <results-table v-if="initiatives.length" :initiatives="initiatives"></results-table>
-          <a v-if="isMoreResults" href="#" class="load-more btn btn-primary" @click.prevent="loadMore">Cagar más</a>
+          <a v-if="isMoreResults" href="#" class="load-more btn btn-primary" @click.prevent="loadMore">Cargar más</a>
         </div>
       </div>
       <div class="row">
