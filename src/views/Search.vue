@@ -205,7 +205,7 @@ export default {
         .then(topics => {
           this.topics = topics;
           if (this.data.topic) {
-            this.fillTags();
+            this.fillTags(this.data.topic);
           }
         })
         .catch(error => this.errors = error);
