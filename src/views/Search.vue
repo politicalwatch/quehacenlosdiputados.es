@@ -246,13 +246,13 @@ export default {
       const params = this.$route.params.data && !isNewSearch ?
         JSON.parse(decodeURIComponent(this.$route.params.data))
         : {};
-
-      //keep current offset and ignored offset in url params
-      const currentOffset = this.data.offset;
       this.data = Object.assign(this.data, params);
-      this.data.offset = currentOffset;
+      const urlParams = Object.assign({}, this.data);
 
-      this.$router.push("/results/" + encodeURIComponent(JSON.stringify(this.data)));
+      Object.keys(urlParams).forEach(
+        key => (urlParams[key].length === 0 || key === "offset") && delete urlParams[key])
+
+      this.$router.push("/results/" + encodeURIComponent(JSON.stringify(urlParams)));
 
       api.getInitiatives(this.data)
          .then(response => {
