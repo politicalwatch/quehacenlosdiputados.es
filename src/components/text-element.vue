@@ -2,7 +2,7 @@
   <p v-if="value">
     <span class="meta">{{meta}}</span>
     <br>
-    <span class="value">{{show(value)}}</span>
+    <span class="value" v-html="show(value)"></span>
   </p>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   ],
   methods: {
     show: function(value) {
-      if (value.constructor === Array) return value.join('/')
+      if (value.constructor === Array) return value.join('<br/>')
       return value
     }
   }
