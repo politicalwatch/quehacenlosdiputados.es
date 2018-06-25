@@ -3,8 +3,8 @@
   <span class="meta">{{meta}}</span>
   <br>
   <ul class="list-unstyled">
-    <li v-for="topic in topics" class="value">
-      {{topic}}
+    <li v-for="topic in topics" v-bind:key="topic" class="value">
+      <router-link :to="{ name: 'results', params: { topic: topic } }">{{topic}}</router-link>
     <!--   <br> -->
     <!--   <small> -->
     <!--     (Por mencionar: -->

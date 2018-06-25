@@ -243,8 +243,11 @@ export default {
     },
     getResults: function(event) {
       const isNewSearch = event && event.type === 'submit';
-      const params = this.$route.params.data && !isNewSearch ?
-        JSON.parse(decodeURIComponent(this.$route.params.data))
+      const routeParams = this.$route.params.data ?
+        this.$route.params.data
+        : JSON.stringify(this.$route.params);
+      const params = routeParams && !isNewSearch ?
+        JSON.parse(decodeURIComponent(routeParams))
         : {};
       this.data = Object.assign(this.data, params);
       const urlParams = Object.assign({}, this.data);
