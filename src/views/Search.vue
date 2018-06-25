@@ -215,8 +215,11 @@ export default {
     },
     getResults: function(event) {
       const isNewSearch = event && event.type === 'submit';
-      const params = this.$route.params.data && !isNewSearch ?
-        JSON.parse(decodeURIComponent(this.$route.params.data))
+      const routeParams = this.$route.params.data ?
+        this.$route.params.data
+        : JSON.stringify(this.$route.params);
+      const params = routeParams && !isNewSearch ?
+        JSON.parse(decodeURIComponent(routeParams))
         : {};
 
       //keep current offset and ignored offset in url params
