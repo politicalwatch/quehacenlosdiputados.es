@@ -11,6 +11,9 @@
           <text-element :meta="'Lugar'" :value="initiative.place"></text-element>
           <text-element :meta="'Registro'" :value="moment(initiative.created).format('DD/MM/Y')"></text-element>
           <text-element :meta="'Actualización'" :value="moment(initiative.updated).format('DD/MM/Y')"></text-element>
+          <div class="capitalize">
+            <topics-element :meta="'Temas tratados'" :topics="initiative.topics"></topics-element>
+          </div>
         </div>
         <div class="col-sm-4 text-center">
           <div :class="'state well color-'+getColorByStatus(initiative.status)">
@@ -32,6 +35,7 @@
 <script>
 import PageHeader from '@/components/page-header'
 import TextElement from '@/components/text-element'
+import TopicsElement from '@/components/topics-element'
 import api from '@/api'
 
 const moment = require('moment');
@@ -46,7 +50,8 @@ export default {
   name: 'initiative',
   components: {
     PageHeader,
-    TextElement
+    TextElement,
+    TopicsElement
   },
   data: function() {
     return {
