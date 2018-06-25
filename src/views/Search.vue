@@ -10,23 +10,39 @@
                 <div class="form-group">
                   <label for="topic" class="col-sm-1 control-label">Tema</label>
                   <div class="col-sm-3">
-                    <select-box
-                    @change="fillTags"
-                    v-model="data.topic" name="topic" placeholder="Todos" :options="topics"></select-box>
+                    <multiselect
+                      @select="fillTags"
+                      v-model="data.topic"
+                      :options="topics.map(topic => topic.name)"
+                      name="topic" id="topic" placeholder="Todos">
+                    </multiselect>
                   </div>
                   <label for="tags" class="col-sm-1 control-label">Términos</label>
                   <div class="col-sm-7">
-                    <select-box v-model="data.tags" name="tags" placeholder="Cualquiera" :options="tags"></select-box>
+                    <multiselect
+                      v-model="data.tags"
+                      :multiple="true"
+                      :options="tags"
+                      name="tags" id="tags" placeholder="Cualquiera">
+                    </multiselect>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="author" class="col-sm-1 control-label">Autor</label>
                   <div class="col-sm-3">
-                    <select-box v-model="data.author" name="author" id="author" placeholder="Todos" :options="groups"></select-box>
+                    <multiselect
+                      v-model="data.author"
+                      :options="groups.map(group => group.name || group)"
+                      name="author" id="author" placeholder="Todos">
+                    </multiselect>
                   </div>
                   <label for="author_deputies" class="col-sm-1 control-label">Diputado/a</label>
                   <div class="col-sm-7">
-                    <auto-complete v-model="data.deputy" name="deputy" id="deputy" :options="deputies" placeholder="Apellidos, Nombre"></auto-complete>
+                    <multiselect
+                      v-model="data.deputy"
+                      :options="deputies"
+                      name="deputy" id="deputy" placeholder="Apellidos, Nombre">
+                    </multiselect>
                   </div>
                 </div>
                 <div class="adv-search-block" v-show="advanced">
@@ -34,19 +50,25 @@
                     <label for="startdate" class="col-sm-1 control-label">Desde</label>
                     <div class="col-sm-3">
                       <datepicker
-                      :value="moment(this.data.startdate, 'YYYY-MM-DD').format('DD/MMM/YYYY')" @selected="selectStartDate"
-                      input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="startdate"></datepicker>
+                        :value="moment(this.data.startdate, 'YYYY-MM-DD').format('DD/MMM/YYYY')" @selected="selectStartDate"
+                        input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="startdate">
+                      </datepicker>
                     </div>
                     <label for="enddate" class="col-sm-1 control-label">Hasta</label>
                     <div class="col-sm-3">
                       <datepicker
-                      :value="moment(this.data.enddate, 'YYYY-MM-DD').format('DD/MMM/YYYY')"
-                      @selected="selectEndDate"
-                      input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="enddate"></datepicker>
+                        :value="moment(this.data.enddate, 'YYYY-MM-DD').format('DD/MMM/YYYY')"
+                        @selected="selectEndDate"
+                        input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="enddate">
+                      </datepicker>
                     </div>
                     <label for="place" class="col-sm-1 control-label">Lugar</label>
                     <div class="col-sm-3">
-                      <select-box v-model="data.place" name="place" placeholder="Cualquiera" :options="places"></select-box>
+                      <multiselect
+                        v-model="data.place"
+                        :options="places"
+                        name="place" id="place" placeholder="Cualquiera">
+                      </multiselect>
                     </div>
                   </div>
                   <div class="form-group">
@@ -56,13 +78,21 @@
                     </div>
                     <label for="type" class="col-sm-1 control-label">Tipo</label>
                     <div class="col-sm-7">
-                      <select-box v-model="data.type" name="type" placeholder="Cualquiera" :options="types"></select-box>
+                      <multiselect
+                        v-model="data.type"
+                        :options="types"
+                        name="type" id="type" placeholder="Cualquiera">
+                      </multiselect>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="status" class="col-sm-1 control-label">Estado</label>
                     <div class="col-sm-3">
-                      <select-box v-model="data.status" name="status" placeholder="Cualquiera" :options="status"></select-box>
+                      <multiselect
+                        v-model="data.status"
+                        :options="status"
+                        name="status" id="status" placeholder="Cualquiera">
+                      </multiselect>
                     </div>
                     <label for="title" class="col-sm-1 control-label">Título</label>
                     <div class="col-sm-7">
@@ -108,6 +138,7 @@ import SelectBox from '@/components/select-box';
 import AutoComplete from '@/components/auto-complete';
 import ResultsTable from '@/components/results-table';
 import Datepicker from 'vuejs-datepicker';
+import Multiselect from 'vue-multiselect'
 import api from '@/api'
 
 const moment = require('moment');
@@ -119,7 +150,8 @@ export default {
     SelectBox,
     AutoComplete,
     Datepicker,
-    ResultsTable
+    ResultsTable,
+    Multiselect
   },
   data: function() {
     return {
@@ -157,8 +189,9 @@ export default {
     }
   },
   methods: {
-    fillTags: function() {
-      const currentTopic = this.topics.find(topic => topic.name === this.data.topic);
+    fillTags: function(selectedTopic) {
+      this.data.tags = [];
+      const currentTopic = this.topics.find(topic => topic.name === selectedTopic);
       this.getTags(currentTopic.id);
     },
     selectStartDate: function(date) {
@@ -184,7 +217,7 @@ export default {
     },
     getDeputies: function() {
       api.getDeputies()
-        .then(deputies => this.deputies = deputies)
+        .then(deputies => this.deputies = deputies.map(deputy => deputy.name))
         .catch(error => this.errors = error);
     },
     getPlaces: function() {
@@ -207,7 +240,7 @@ export default {
         .then(tags => {
           this.tags = tags.map(tag => {
             tag.name = tag.tag
-            return tag;
+            return tag.name;
           })
         })
         .catch(error => this.errors = error);
@@ -261,6 +294,7 @@ export default {
 }
 </script>
 
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style scoped lang="scss">
 .load-more {
   display: block;
