@@ -255,7 +255,12 @@ export default {
       Object.keys(urlParams).forEach(
         key => (urlParams[key].length === 0 || key === "offset") && delete urlParams[key])
 
-      this.$router.push("/results/" + encodeURIComponent(JSON.stringify(urlParams)));
+      this.$router.push({
+        name: 'results',
+        params: {
+          data: encodeURIComponent(JSON.stringify(urlParams))
+        }
+      });
 
       api.getInitiatives(this.data)
          .then(response => {
