@@ -55,7 +55,7 @@ export default {
   },
   data: function() {
     return {
-      initiative: null,
+      initiative: {},
       color_by_status: color_by_status,
       moment: moment
     }
