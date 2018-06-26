@@ -18,7 +18,7 @@ export default {
     function getEndpoint() {
       return [
         config.URL,
-        '/parliamentarygroups/'
+        '/parliamentary-groups/'
       ].join('');
     }
   },
