@@ -8,22 +8,22 @@
             <form id="search-form" class="form-horizontal" role="form" @submit.prevent="getResults">
               <fieldset>
                 <div class="form-group">
-                  <label for="topic" class="col-sm-1 control-label">Tema</label>
+                  <label for="topic" class="col-sm-1 control-label">Objetivos</label>
                   <div class="col-sm-3">
                     <multiselect
-                      @select="fillTags"
+                      @select="fillSubtopics"
                       v-model="data.topic"
                       :options="topics.map(topic => topic.name)"
                       name="topic" id="topic" placeholder="Todos">
                     </multiselect>
                   </div>
-                  <label for="tags" class="col-sm-1 control-label">Términos</label>
+                  <label for="subtopics" class="col-sm-1 control-label">Metas</label>
                   <div class="col-sm-7">
                     <multiselect
-                      v-model="data.tags"
+                      v-model="data.subtopics"
                       :multiple="true"
-                      :options="tags"
-                      name="tags" id="tags" placeholder="Cualquiera">
+                      :options="subtopics"
+                      name="subtopics" id="subtopics" placeholder="Cualquiera">
                     </multiselect>
                   </div>
                 </div>
@@ -152,7 +152,7 @@ export default {
   data: function() {
     return {
       topics: [],
-      tags: [],
+      subtopics: [],
       groups: [],
       deputies: [],
       places: [],
@@ -164,7 +164,7 @@ export default {
       moment: moment,
       data: {
         topic: '',
-        tags: '',
+        subtopics: '',
         author: '',
         deputy: '',
         startdate: '',
@@ -185,10 +185,10 @@ export default {
     }
   },
   methods: {
-    fillTags: function(selectedTopic) {
-      this.data.tags = [];
+    fillSubtopics: function(selectedTopic) {
+      this.data.subtopics = [];
       const currentTopic = this.topics.find(topic => topic.name === selectedTopic);
-      this.getTags(currentTopic.id);
+      this.getSubtopics(currentTopic.id);
     },
     selectStartDate: function(date) {
       this.data.startdate = moment(date).format('YYYY-MM-DD');
@@ -201,7 +201,7 @@ export default {
         .then(topics => {
           this.topics = topics;
           if (this.data.topic) {
-            this.fillTags(this.data.topic);
+            this.fillSubtopics(this.data.topic);
           }
         })
         .catch(error => this.errors = error);
@@ -231,13 +231,10 @@ export default {
         .then(types => this.types = types)
         .catch(error => this.errors = error);
     },
-    getTags: function(topicID) {
+    getSubtopics: function(topicID) {
       api.getTags(topicID)
         .then(tags => {
-          this.tags = tags.map(tag => {
-            tag.name = tag.tag
-            return tag.name;
-          })
+          this.subtopics = [...new Set(tags.map(tag => tag.subtopic))];
         })
         .catch(error => this.errors = error);
     },
