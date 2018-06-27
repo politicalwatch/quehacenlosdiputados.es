@@ -174,19 +174,19 @@ export default {
         type: '',
         status: '',
         title: '',
-        offset: 0
+        page: 1
       },
       advanced: false
     }
   },
   computed: {
     isMoreResults: function() {
-      return this.query_meta.offset < this.query_meta.total - this.query_meta.limit;
+      return this.query_meta.page < this.query_meta.pages;
     }
   },
   methods: {
-    fillSubtopics: function(selectedTopic) {
-      this.data.subtopics = [];
+    fillSubtopics: function(selectedTopic, clearValues) {
+      this.data.subtopics = clearValues ? [] : this.data.subtopics;
       const currentTopic = this.topics.find(topic => topic.name === selectedTopic);
       this.getSubtopics(currentTopic.id);
     },
@@ -201,7 +201,7 @@ export default {
         .then(topics => {
           this.topics = topics;
           if (this.data.topic) {
-            this.fillSubtopics(this.data.topic);
+            this.fillSubtopics(this.data.topic, false);
           }
         })
         .catch(error => this.errors = error);
@@ -250,7 +250,7 @@ export default {
       const urlParams = Object.assign({}, this.data);
 
       Object.keys(urlParams).forEach(
-        key => (urlParams[key].length === 0 || key === "offset") && delete urlParams[key])
+        key => (urlParams[key].length === 0 || key === "page") && delete urlParams[key])
 
       this.$router.push({
         name: 'results',
@@ -271,7 +271,7 @@ export default {
          .catch(error => this.errors = error);
     },
     loadMore: function() {
-      this.data.offset = this.data.offset + this.query_meta.limit;
+      this.data.page++;
       this.getResults();
     },
     prepareForm: function() {
