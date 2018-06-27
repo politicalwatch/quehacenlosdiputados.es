@@ -185,8 +185,8 @@ export default {
     }
   },
   methods: {
-    fillSubtopics: function(selectedTopic) {
-      this.data.subtopics = [];
+    fillSubtopics: function(selectedTopic, clearValues) {
+      this.data.subtopics = clearValues ? [] : this.data.subtopics;
       const currentTopic = this.topics.find(topic => topic.name === selectedTopic);
       this.getSubtopics(currentTopic.id);
     },
@@ -201,7 +201,7 @@ export default {
         .then(topics => {
           this.topics = topics;
           if (this.data.topic) {
-            this.fillSubtopics(this.data.topic);
+            this.fillSubtopics(this.data.topic, false);
           }
         })
         .catch(error => this.errors = error);
