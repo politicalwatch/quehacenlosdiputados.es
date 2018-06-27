@@ -174,14 +174,14 @@ export default {
         type: '',
         status: '',
         title: '',
-        offset: 0
+        page: 1
       },
       advanced: false
     }
   },
   computed: {
     isMoreResults: function() {
-      return this.query_meta.offset < this.query_meta.total - this.query_meta.limit;
+      return this.query_meta.page < this.query_meta.pages;
     }
   },
   methods: {
@@ -250,7 +250,7 @@ export default {
       const urlParams = Object.assign({}, this.data);
 
       Object.keys(urlParams).forEach(
-        key => (urlParams[key].length === 0 || key === "offset") && delete urlParams[key])
+        key => (urlParams[key].length === 0 || key === "page") && delete urlParams[key])
 
       this.$router.push({
         name: 'results',
@@ -271,7 +271,7 @@ export default {
          .catch(error => this.errors = error);
     },
     loadMore: function() {
-      this.data.offset = this.data.offset + this.query_meta.limit;
+      this.data.page++;
       this.getResults();
     },
     prepareForm: function() {
