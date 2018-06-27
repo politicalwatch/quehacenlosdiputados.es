@@ -7,7 +7,7 @@
       <router-link :to="{ name: 'results', params: { topic: topic } }">{{topic}}</router-link>
       <br>
       <div v-for="subtopic in getSubtopics(topic)" v-bind:key="subtopic" class="subtopic">
-        {{subtopic}}
+        Meta {{subtopic}}
         <br>
         <span v-for="tag in getTags(subtopic)" v-bind:key="tag" class="tag">{{tag}}</span>
         <br>
