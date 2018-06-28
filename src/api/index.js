@@ -65,7 +65,7 @@ export default {
     }
   },
   getInitiatives(params) {
-    Object.keys(params).forEach(key => params[key].length === 0 && delete params[key]);
+    Object.keys(params).forEach(key => !params[key] && delete params[key]);
 
     return axios
       .get(getEndpoint(), {

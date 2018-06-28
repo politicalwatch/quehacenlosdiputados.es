@@ -248,7 +248,7 @@ export default {
       const urlParams = Object.assign({}, this.data);
 
       Object.keys(urlParams).forEach(
-        key => (urlParams[key].length === 0 || key === "page") && delete urlParams[key])
+        key => (!urlParams[key] || key === "page") && delete urlParams[key])
 
       this.$router.push({
         name: 'results',
