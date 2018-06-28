@@ -241,7 +241,7 @@ export default {
     },
     getResults: function(event) {
       const isNewSearch = event && event.type === 'submit';
-      const params = routeParams && !isNewSearch ?
+      const params = this.$route.params.data && !isNewSearch ?
         qs.parse(this.$route.params.data)
         : {};
       this.data = Object.assign(this.data, params);
@@ -253,7 +253,6 @@ export default {
       this.$router.push({
         name: 'results',
         params: {
-          //data: encodeURIComponent(JSON.stringify(urlParams))
           data: qs.stringify(urlParams, { arrayFormat: 'repeat' })
         }
       });
