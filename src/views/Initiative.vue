@@ -37,7 +37,14 @@
           </div>
         </div>
       </div>
-      
+      <div v-if="initiative.related">
+        <hr>
+        <div class="row">
+          <div class="col-sm-12">
+            <related-initiatives :meta="'Actos relacionados'" :related="initiative.related"></related-initiatives>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -46,6 +53,7 @@
 import PageHeader from '@/components/page-header'
 import TextElement from '@/components/text-element'
 import TopicsElement from '@/components/topics-element'
+import RelatedInitiatives from '@/components/related-initiatives'
 import Neuron from '@/components/neuron'
 import api from '@/api'
 
@@ -63,6 +71,7 @@ export default {
     PageHeader,
     TextElement,
     TopicsElement,
+    RelatedInitiatives,
     Neuron
   },
   data: function() {
