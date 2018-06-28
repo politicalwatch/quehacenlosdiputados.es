@@ -1,8 +1,7 @@
 import config from '@/config';
 import axios from 'axios';
 
-var qs = require("qs");
-
+const qs = require("qs");
 
 export default {
   getTopics() {
