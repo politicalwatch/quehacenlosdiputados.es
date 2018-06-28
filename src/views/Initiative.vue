@@ -17,24 +17,18 @@
         </div>
         <div class="col-sm-6">
           <div class="row">
-            <div class="col-sm-8 col-sm-offset-2 text-center">
+            <div class="col-sm-8 col-sm-offset-2">
               <div :class="'text-center state well color-'+getColorByStatus(initiative.status)">
                 <strong>{{initiative.status}}</strong>
               </div>
+              <p class="congress-link text-center">
+                <a :href="initiative.url" target="_blank" :title="'Ver '+initiative.title+' en su fuente original'">
+                  <i class="fa fa-institution"></i><span>Ver en el Congreso de los Diputados</span>
+                </a>
+              </p>
             </div>
           </div>
           <neuron :initiative="initiative"></neuron>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="well">
-            <p class="congress-link">
-              <a :href="initiative.url" target="_blank" :title="'Ver '+initiative.title+' en su fuente original'">
-                <i class="fa fa-institution fa-2x"></i>&nbsp;&nbsp;&nbsp;Consulta en la web del Congreso toda la información sobre su tramitación Parlamentaria
-              </a>
-            </p>
-          </div>
         </div>
       </div>
       <div v-if="initiative.related">

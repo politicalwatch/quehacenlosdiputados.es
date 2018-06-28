@@ -7319,7 +7319,7 @@ fieldset[disabled] .btn-tipi.focus {
 }
 #initiative .congress-link,
 #dict .congress-link {
-  font-size: 1em;
+  font-size: 1.1em;
 }
 #initiative .congress-link a,
 #dict .congress-link a {
@@ -7328,6 +7328,13 @@ fieldset[disabled] .btn-tipi.focus {
 #initiative .congress-link a:hover,
 #dict .congress-link a:hover {
   color: #222222;
+}
+#initiative .congress-link a i {
+  padding-right: 5px;
+}
+#initiative .congress-link a span {
+  padding-left: 5px;
+  border-left: 2px solid #222;
 }
 #faq-infoblock {
   padding-top: 60px;
