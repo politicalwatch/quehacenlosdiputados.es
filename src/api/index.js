@@ -1,6 +1,9 @@
 import config from '@/config';
 import axios from 'axios';
 
+var qs = require("qs");
+
+
 export default {
   getTopics() {
     return axios.get(getEndpoint()).then(response => response.data);
@@ -64,7 +67,12 @@ export default {
   },
   getInitiatives(params) {
     return axios
-      .get(getEndpoint(), { params: params })
+      .get(getEndpoint(), {
+        params: params,
+        paramsSerializer: function (params) {
+          return qs.stringify(params, { arrayFormat: 'repeat' })
+        },
+      })
       .then(response => response.data);
 
     function getEndpoint() {
