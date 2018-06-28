@@ -94,11 +94,11 @@ export default {
       return 'black'
     },
   },
-  updated: function() {
-    this.getInitiative()
-  },
   created: function() {
     this.getInitiative()
+  },
+  watch: {
+    '$route': 'getInitiative'
   }
 }
 </script>
