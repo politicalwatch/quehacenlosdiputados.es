@@ -140,6 +140,7 @@ import Multiselect from 'vue-multiselect'
 import api from '@/api'
 
 const moment = require('moment');
+const qs = require('qs');
 
 export default {
   name: 'search',
@@ -244,7 +245,7 @@ export default {
         this.$route.params.data
         : JSON.stringify(this.$route.params);
       const params = routeParams && !isNewSearch ?
-        JSON.parse(decodeURIComponent(routeParams))
+        qs.parse(routeParams)
         : {};
       this.data = Object.assign(this.data, params);
       const urlParams = Object.assign({}, this.data);
@@ -255,7 +256,8 @@ export default {
       this.$router.push({
         name: 'results',
         params: {
-          data: encodeURIComponent(JSON.stringify(urlParams))
+          //data: encodeURIComponent(JSON.stringify(urlParams))
+          data: qs.stringify(urlParams, { arrayFormat: 'repeat' })
         }
       });
 
