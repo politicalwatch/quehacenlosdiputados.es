@@ -51,6 +51,7 @@
                     <div class="col-sm-3">
                       <datepicker
                         :value="moment(this.data.startdate, 'YYYY-MM-DD').format('DD/MMM/YYYY')" @selected="selectStartDate"
+                        @cleared="clearStartDate"
                         input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="startdate"
                         :clear-button="true">
                       </datepicker>
@@ -60,6 +61,7 @@
                       <datepicker
                         :value="moment(this.data.enddate, 'YYYY-MM-DD').format('DD/MMM/YYYY')"
                         @selected="selectEndDate"
+                        @cleared="clearEndDate"
                         input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="enddate"
                         :clear-button="true">
                       </datepicker>
@@ -194,6 +196,12 @@ export default {
       this.data.subtopics = clearValues ? [] : this.data.subtopics;
       const currentTopic = this.topics.find(topic => topic.name === selectedTopic);
       this.getSubtopics(currentTopic.id);
+    },
+    clearStartDate: function() {
+      this.data.startdate = '';
+    },
+    clearEndDate: function() {
+      this.data.enddate = '';
     },
     selectStartDate: function(date) {
       this.data.startdate = moment(date).format('YYYY-MM-DD');
