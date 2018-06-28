@@ -119,7 +119,8 @@
               </fieldset>
             </form>
           </div>
-          <results-table v-if="initiatives.length" :initiatives="initiatives"></results-table>
+          <div v-if="this.loadingResults" class="text-center"><h2>Loading results</h2></div>
+          <results-table v-if="initiatives.length && !this.loadingResults" :initiatives="initiatives"></results-table>
           <a v-if="isMoreResults" href="#" class="load-more btn btn-primary" @click.prevent="loadMore">Cargar más</a>
         </div>
       </div>
@@ -177,12 +178,13 @@ export default {
         title: '',
         page: 1
       },
+      loadingResults: false,
       advanced: false
     }
   },
   computed: {
     isMoreResults: function() {
-      return this.query_meta.page < this.query_meta.pages;
+      return !this.loadingResults && (this.query_meta.page < this.query_meta.pages);
     }
   },
   methods: {
@@ -240,6 +242,7 @@ export default {
         .catch(error => this.errors = error);
     },
     getResults: function(event) {
+      this.loadingResults = true;
       const isNewSearch = event && event.type === 'submit';
       const params = this.$route.params.data && !isNewSearch ?
         qs.parse(this.$route.params.data)
@@ -265,6 +268,7 @@ export default {
               this.initiatives = response.initiatives;
             }
             this.query_meta = response.query_meta;
+            this.loadingResults = false;
           })
          .catch(error => this.errors = error);
     },
