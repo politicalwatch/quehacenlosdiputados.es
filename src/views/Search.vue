@@ -241,11 +241,8 @@ export default {
     },
     getResults: function(event) {
       const isNewSearch = event && event.type === 'submit';
-      const routeParams = this.$route.params.data ?
-        this.$route.params.data
-        : JSON.stringify(this.$route.params);
       const params = routeParams && !isNewSearch ?
-        qs.parse(routeParams)
+        qs.parse(this.$route.params.data)
         : {};
       this.data = Object.assign(this.data, params);
       const urlParams = Object.assign({}, this.data);

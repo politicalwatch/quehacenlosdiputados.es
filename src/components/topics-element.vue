@@ -4,7 +4,7 @@
   <br>
   <ul class="list-unstyled">
     <li v-for="topic in topics" v-bind:key="topic" class="value">
-      <router-link :to="{ name: 'results', params: { topic: topic } }">{{topic}}</router-link>
+      <router-link :to="{ name: 'results', params: { data: paramsData(topic) } }">{{topic}}</router-link>
       <br>
       <div v-for="subtopic in getSubtopics(topic)" v-bind:key="subtopic" class="subtopic">
         Meta {{subtopic}}
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+const qs = require('qs');
+
 export default {
   name: 'topics-element',
   props: [
@@ -33,6 +35,11 @@ export default {
     getTags: function(subtopic) {
       return this.$props.tags.filter(tag => tag.subtopic === subtopic).map(tag => tag.tag)
     },
+    paramsData: function(currentTopic) {
+      return qs.stringify({
+        topic: currentTopic
+      });
+    }
   }
 }
 </script>
@@ -44,7 +51,7 @@ export default {
     margin-left: 20px;
     .tag {
       background-color: lighten(#abe8ff, 5%);
-      color: #222; 
+      color: #222;
       padding: 5px;
       margin: 0px 5px 5px 5px;
       font-size: 0.8em;
