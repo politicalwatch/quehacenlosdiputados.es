@@ -51,7 +51,9 @@
                     <div class="col-sm-3">
                       <datepicker
                         :value="moment(this.data.startdate, 'YYYY-MM-DD').format('DD/MMM/YYYY')" @selected="selectStartDate"
-                        input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="startdate">
+                        @cleared="clearStartDate"
+                        input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="startdate"
+                        :clear-button="true">
                       </datepicker>
                     </div>
                     <label for="enddate" class="col-sm-1 control-label">Hasta</label>
@@ -59,7 +61,9 @@
                       <datepicker
                         :value="moment(this.data.enddate, 'YYYY-MM-DD').format('DD/MMM/YYYY')"
                         @selected="selectEndDate"
-                        input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="enddate">
+                        @cleared="clearEndDate"
+                        input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="enddate"
+                        :clear-button="true">
                       </datepicker>
                     </div>
                     <label for="place" class="col-sm-1 control-label">Lugar</label>
@@ -119,7 +123,8 @@
               </fieldset>
             </form>
           </div>
-          <results-table v-if="initiatives.length" :initiatives="initiatives"></results-table>
+          <div v-if="this.loadingResults" class="text-center"><h2>Loading results</h2></div>
+          <results-table v-if="initiatives.length && !this.loadingResults" :initiatives="initiatives"></results-table>
           <a v-if="isMoreResults" href="#" class="load-more btn btn-primary" @click.prevent="loadMore">Cargar más</a>
         </div>
       </div>
@@ -177,12 +182,13 @@ export default {
         title: '',
         page: 1
       },
+      loadingResults: false,
       advanced: false
     }
   },
   computed: {
     isMoreResults: function() {
-      return this.query_meta.page < this.query_meta.pages;
+      return !this.loadingResults && (this.query_meta.page < this.query_meta.pages);
     }
   },
   methods: {
@@ -190,6 +196,12 @@ export default {
       this.data.subtopics = clearValues ? [] : this.data.subtopics;
       const currentTopic = this.topics.find(topic => topic.name === selectedTopic);
       this.getSubtopics(currentTopic.id);
+    },
+    clearStartDate: function() {
+      this.data.startdate = '';
+    },
+    clearEndDate: function() {
+      this.data.enddate = '';
     },
     selectStartDate: function(date) {
       this.data.startdate = moment(date).format('YYYY-MM-DD');
@@ -240,6 +252,7 @@ export default {
         .catch(error => this.errors = error);
     },
     getResults: function(event) {
+      this.loadingResults = true;
       const isNewSearch = event && event.type === 'submit';
       const params = this.$route.params.data && !isNewSearch ?
         qs.parse(this.$route.params.data)
@@ -265,6 +278,7 @@ export default {
               this.initiatives = response.initiatives;
             }
             this.query_meta = response.query_meta;
+            this.loadingResults = false;
           })
          .catch(error => this.errors = error);
     },

@@ -6,7 +6,7 @@
     <td class="autor_diputado" v-html="getDeputies(this.initiative)"></td>
     <td class="autor_grupo" v-html="getAuthors(this.initiative)"></td>
     <td class="capitalize-text" v-html="getTopics(this.initiative)"></td>
-    <td class="actualizacion"><span :sort="this.initiative.created">{{ moment(this.initiative.created).format('DD/MM/Y') }}</span></td>
+    <td class="actualizacion"><span :sort="this.initiative.updated">{{ moment(this.initiative.updated).format('DD/MM/Y') }}</span></td>
   </tr>
 </template>
 
