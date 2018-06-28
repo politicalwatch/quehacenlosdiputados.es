@@ -94,6 +94,9 @@ export default {
       return 'black'
     },
   },
+  updated: function() {
+    this.getInitiative()
+  },
   created: function() {
     this.getInitiative()
   }
