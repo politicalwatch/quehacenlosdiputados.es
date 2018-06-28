@@ -7583,3 +7583,10 @@ fieldset[disabled] .btn-tipi.focus {
 #checkboxes label:hover {
   background-color: #abe8ff;
 }
+
+.vdp-datepicker__clear-button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}

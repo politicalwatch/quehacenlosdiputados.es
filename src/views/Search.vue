@@ -51,7 +51,8 @@
                     <div class="col-sm-3">
                       <datepicker
                         :value="moment(this.data.startdate, 'YYYY-MM-DD').format('DD/MMM/YYYY')" @selected="selectStartDate"
-                        input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="startdate">
+                        input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="startdate"
+                        :clear-button="true">
                       </datepicker>
                     </div>
                     <label for="enddate" class="col-sm-1 control-label">Hasta</label>
@@ -59,7 +60,8 @@
                       <datepicker
                         :value="moment(this.data.enddate, 'YYYY-MM-DD').format('DD/MMM/YYYY')"
                         @selected="selectEndDate"
-                        input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="enddate">
+                        input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="enddate"
+                        :clear-button="true">
                       </datepicker>
                     </div>
                     <label for="place" class="col-sm-1 control-label">Lugar</label>
