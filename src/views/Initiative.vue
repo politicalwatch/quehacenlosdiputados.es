@@ -31,7 +31,7 @@
           <neuron :initiative="initiative"></neuron>
         </div>
       </div>
-      <div v-if="initiative.related">
+      <div v-if="initiative.related.length != 0">
         <hr>
         <div class="row">
           <div class="col-sm-12">
