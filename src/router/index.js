@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Search from '@/views/Search.vue'
+import Dashboard from '@/views/Dashboard.vue'
 import About from '@/views/About.vue'
 import Initiative from '@/views/Initiative.vue'
 
@@ -21,6 +22,11 @@ export default new Router({
       path: "/results/:data?",
       name: "results",
       component: Search
+    },
+    {
+      path: "/dashboard",
+      name: "dashboard",
+      component: Dashboard
     },
     {
       path: "/about",
