@@ -111,7 +111,7 @@
                   </div>
                   <div class="form-group">
                     <div class="col-sm-12 pull-right">
-                      <button class="btn btn-primary pull-right" type="submit">Iniciar la búsqueda</button>
+                      <button class="btn btn-primary pull-right" type="submit">Buscar</button>
                       <br>
                       <a href="#" class="adv-search-link show-block" @click="toggleAdvanced" v-if="!advanced">
                         <i class="fa fa-caret-square-o-down"></i>
