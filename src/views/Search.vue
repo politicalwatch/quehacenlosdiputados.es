@@ -1,143 +1,158 @@
 <template>
-  <div id="search">
-    <page-header :title="'Buscar'"></page-header>
-    <div class="container page">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="well">
-            <form id="search-form" class="form-horizontal" role="form" @submit.prevent="getResults">
-              <fieldset>
-                <div class="form-group">
-                  <label for="topic" class="col-sm-1 control-label">Objetivos</label>
-                  <div class="col-sm-3">
-                    <multiselect
-                      @select="fillSubtopics"
-                      v-model="data.topic"
-                      :options="topics.map(topic => topic.name)"
-                      name="topic" id="topic" placeholder="Todos">
-                    </multiselect>
-                  </div>
-                  <label for="subtopics" class="col-sm-1 control-label">Metas</label>
-                  <div class="col-sm-7">
-                    <multiselect
-                      v-model="data.subtopics"
-                      :multiple="true"
-                      :options="subtopics"
-                      name="subtopics" id="subtopics" placeholder="Cualquiera">
-                    </multiselect>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="author" class="col-sm-1 control-label">Autor</label>
-                  <div class="col-sm-3">
-                    <multiselect
-                      v-model="data.author"
-                      :options="groups.map(group => group.name || group)"
-                      name="author" id="author" placeholder="Todos">
-                    </multiselect>
-                  </div>
-                  <label for="author_deputies" class="col-sm-1 control-label">Diputado/a</label>
-                  <div class="col-sm-7">
-                    <multiselect
-                      v-model="data.deputy"
-                      :options="deputies"
-                      name="deputy" id="deputy" placeholder="Apellidos, Nombre">
-                    </multiselect>
-                  </div>
-                </div>
-                <div class="adv-search-block" v-show="advanced">
+  <div>
+    <div style="width:100%;height:10px;background: url('/img/cascade.png') repeat-x;"></div>
+    <navbar></navbar>
+    <div id="search">
+      <page-header :title="'Buscar'"></page-header>
+      <div class="container page">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="well">
+              <form id="search-form" class="form-horizontal" role="form" @submit.prevent="getResults">
+                <fieldset>
                   <div class="form-group">
-                    <label for="startdate" class="col-sm-1 control-label">Desde</label>
-                    <div class="col-sm-3">
-                      <datepicker
-                        :value="moment(this.data.startdate, 'YYYY-MM-DD').format('DD/MMM/YYYY')" @selected="selectStartDate"
-                        @cleared="clearStartDate"
-                        input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="startdate"
-                        :clear-button="true">
-                      </datepicker>
-                    </div>
-                    <label for="enddate" class="col-sm-1 control-label">Hasta</label>
-                    <div class="col-sm-3">
-                      <datepicker
-                        :value="moment(this.data.enddate, 'YYYY-MM-DD').format('DD/MMM/YYYY')"
-                        @selected="selectEndDate"
-                        @cleared="clearEndDate"
-                        input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="enddate"
-                        :clear-button="true">
-                      </datepicker>
-                    </div>
-                    <label for="place" class="col-sm-1 control-label">Lugar</label>
+                    <label for="topic" class="col-sm-1 control-label">Objetivos</label>
                     <div class="col-sm-3">
                       <multiselect
-                        v-model="data.place"
-                        :options="places"
-                        name="place" id="place" placeholder="Cualquiera">
+                        @select="fillSubtopics"
+                        v-model="data.topic"
+                        :options="topics.map(topic => topic.name)"
+                        name="topic" id="topic" placeholder="Todos">
                       </multiselect>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="reference" class="col-sm-1 control-label">Referencia</label>
-                    <div class="col-sm-3">
-                      <input v-model="data.reference" class="form-control" type="text" id="reference" name="reference" placeholder="Ej.: 121/000001">
-                    </div>
-                    <label for="type" class="col-sm-1 control-label">Tipo</label>
+                    <label for="subtopics" class="col-sm-1 control-label">Metas</label>
                     <div class="col-sm-7">
                       <multiselect
-                        v-model="data.type"
-                        :options="types"
-                        name="type" id="type" placeholder="Cualquiera">
+                        v-model="data.subtopics"
+                        :multiple="true"
+                        :options="subtopics"
+                        name="subtopics" id="subtopics" placeholder="Cualquiera">
                       </multiselect>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="status" class="col-sm-1 control-label">Estado</label>
+                    <label for="author" class="col-sm-1 control-label">Autor</label>
                     <div class="col-sm-3">
                       <multiselect
-                        v-model="data.status"
-                        :options="status"
-                        name="status" id="status" placeholder="Cualquiera">
+                        v-model="data.author"
+                        :options="groups.map(group => group.name || group)"
+                        name="author" id="author" placeholder="Todos">
                       </multiselect>
                     </div>
-                    <label for="title" class="col-sm-1 control-label">Título</label>
+                    <label for="author_deputies" class="col-sm-1 control-label">Diputado/a</label>
                     <div class="col-sm-7">
-                      <input v-model="data.title" class="form-control" type="text" id="title" name="title" placeholder="Nota: Se admiten expresiones regulares">
+                      <multiselect
+                        v-model="data.deputy"
+                        :options="deputies"
+                        name="deputy" id="deputy" placeholder="Apellidos, Nombre">
+                      </multiselect>
+                    </div>
+                  </div>
+                  <div class="adv-search-block" v-show="advanced">
+                    <div class="form-group">
+                      <label for="startdate" class="col-sm-1 control-label">Desde</label>
+                      <div class="col-sm-3">
+                        <datepicker
+                          :value="moment(this.data.startdate, 'YYYY-MM-DD').format('DD/MMM/YYYY')" @selected="selectStartDate"
+                          @cleared="clearStartDate"
+                          input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="startdate"
+                          :clear-button="true">
+                        </datepicker>
+                      </div>
+                      <label for="enddate" class="col-sm-1 control-label">Hasta</label>
+                      <div class="col-sm-3">
+                        <datepicker
+                          :value="moment(this.data.enddate, 'YYYY-MM-DD').format('DD/MMM/YYYY')"
+                          @selected="selectEndDate"
+                          @cleared="clearEndDate"
+                          input-class="form-control" placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="enddate"
+                          :clear-button="true">
+                        </datepicker>
+                      </div>
+                      <label for="place" class="col-sm-1 control-label">Lugar</label>
+                      <div class="col-sm-3">
+                        <multiselect
+                          v-model="data.place"
+                          :options="places"
+                          name="place" id="place" placeholder="Cualquiera">
+                        </multiselect>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="reference" class="col-sm-1 control-label">Referencia</label>
+                      <div class="col-sm-3">
+                        <input v-model="data.reference" class="form-control" type="text" id="reference" name="reference" placeholder="Ej.: 121/000001">
+                      </div>
+                      <label for="type" class="col-sm-1 control-label">Tipo</label>
+                      <div class="col-sm-7">
+                        <multiselect
+                          v-model="data.type"
+                          :options="types"
+                          name="type" id="type" placeholder="Cualquiera">
+                        </multiselect>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="status" class="col-sm-1 control-label">Estado</label>
+                      <div class="col-sm-3">
+                        <multiselect
+                          v-model="data.status"
+                          :options="status"
+                          name="status" id="status" placeholder="Cualquiera">
+                        </multiselect>
+                      </div>
+                      <label for="title" class="col-sm-1 control-label">Título</label>
+                      <div class="col-sm-7">
+                        <input v-model="data.title" class="form-control" type="text" id="title" name="title" placeholder="Nota: Se admiten expresiones regulares">
+                      </div>
+                    </div>
+                    <div class="form-group">
                     </div>
                   </div>
                   <div class="form-group">
+                    <div class="col-sm-12 pull-right">
+                      <button class="btn btn-primary pull-right" type="submit">Iniciar la búsqueda</button>
+                      <br>
+                      <a href="#" class="adv-search-link show-block" @click="toggleAdvanced" v-if="!advanced">
+                        <i class="fa fa-caret-square-o-down"></i>
+                        Mostrar búsqueda avanzada
+                      </a>
+                      <a href="#" class="adv-search-link hide-block" v-if="advanced" @click="toggleAdvanced">
+                        <i class="fa fa-caret-square-o-up"></i>
+                        Ocultar búsqueda avanzada
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-sm-12 pull-right">
-                    <button class="btn btn-primary pull-right" type="submit">Iniciar la búsqueda</button>
-                    <br>
-                    <a href="#" class="adv-search-link show-block" @click="toggleAdvanced" v-if="!advanced">
-                      <i class="fa fa-caret-square-o-down"></i>
-                      Mostrar búsqueda avanzada
-                    </a>
-                    <a href="#" class="adv-search-link hide-block" v-if="advanced" @click="toggleAdvanced">
-                      <i class="fa fa-caret-square-o-up"></i>
-                      Ocultar búsqueda avanzada
-                    </a>
-                  </div>
-                </div>
-              </fieldset>
-            </form>
+                </fieldset>
+              </form>
+            </div>
+            <div v-if="this.loadingResults" class="text-center"><h2>Loading results</h2></div>
+            <results-table v-if="initiatives.length && !this.loadingResults" :initiatives="initiatives"></results-table>
+            <a v-if="isMoreResults" href="#" class="load-more btn btn-primary" @click.prevent="loadMore">Cargar más</a>
           </div>
-          <div v-if="this.loadingResults" class="text-center"><h2>Loading results</h2></div>
-          <results-table v-if="initiatives.length && !this.loadingResults" :initiatives="initiatives"></results-table>
-          <a v-if="isMoreResults" href="#" class="load-more btn btn-primary" @click.prevent="loadMore">Cargar más</a>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12 text-center">
-          <p class="well"><i class="fa fa-lightbulb-o"></i> Tip: <strong>Los nombres de l@s diputad@s se autocompletan. Introduce una letra y verás.</strong></p>
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <p class="well"><i class="fa fa-lightbulb-o"></i> Tip: <strong>Los nombres de l@s diputad@s se autocompletan. Introduce una letra y verás.</strong></p>
+          </div>
         </div>
       </div>
     </div>
+    <div class="container-fluid">
+      <div id="credits" class="row">
+        <div class="col-sm-12 text-center">
+          <small><strong>TIPI</strong> está licenciado bajo <a href="https://www.gnu.org/copyleft/gpl.html" target="_blank">GNU GPL v3</a></small>
+          <br>
+          <small>Hecho con ♥ por <a href="https://unmundosalvadorsoler.org/ciecode/" target="_blank">CIECODE (Fundacion Salvador Soler)</a></small>
+        </div>
+      </div>
+    </div>
+    <div style="width:100%;height:10px;background: url('/img/cascade.png') repeat-x;"></div>
   </div>
 </template>
 
 <script>
+import Navbar from '@/components/navbar';
 import PageHeader from '@/components/page-header';
 import ResultsTable from '@/components/results-table';
 import Datepicker from 'vuejs-datepicker';
@@ -150,6 +165,7 @@ const qs = require('qs');
 export default {
   name: 'search',
   components: {
+    Navbar,
     PageHeader,
     Datepicker,
     ResultsTable,

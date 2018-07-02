@@ -1,49 +1,65 @@
 <template>
-  <div id="initiative">
-    <page-header :title="initiative.title"></page-header>
-    <div class="container page">
-      <div class="row">
-        <div class="col-sm-6 keyvalues">
-          <text-element :meta="'Tipo de acto parlamentario'" :value="initiative.initiative_type_alt"></text-element>
-          <text-element :meta="'Referencia'" :value="initiative.reference"></text-element>
-          <text-element :meta="'Autor'" :value="initiative.authors"></text-element>
-          <text-element :meta="'Diputada/o'" :value="initiative.deputies"></text-element>
-          <text-element :meta="'Lugar'" :value="initiative.place"></text-element>
-          <text-element :meta="'Registro'" :value="moment(initiative.created).format('DD/MM/Y')"></text-element>
-          <text-element :meta="'Actualización'" :value="moment(initiative.updated).format('DD/MM/Y')"></text-element>
-          <div class="capitalize">
-            <topics-element :meta="'Temas tratados'" :topics="initiative.topics" :tags="initiative.tags"></topics-element>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
-              <div :class="'text-center state well color-'+getColorByStatus(initiative.status)">
-                <strong>{{initiative.status}}</strong>
-              </div>
-              <p class="congress-link text-center">
-                <a :href="initiative.url" target="_blank" :title="'Ver '+initiative.title+' en su fuente original'">
-                  <i class="fa fa-institution"></i><span>Ver en el Congreso de los Diputados</span>
-                </a>
-              </p>
+  <div>
+    <div style="width:100%;height:10px;background: url('/img/cascade.png') repeat-x;"></div>
+    <navbar></navbar>
+    <div id="initiative">
+      <page-header :title="initiative.title"></page-header>
+      <div class="container page">
+        <div class="row">
+          <div class="col-sm-6 keyvalues">
+            <text-element :meta="'Tipo de acto parlamentario'" :value="initiative.initiative_type_alt"></text-element>
+            <text-element :meta="'Referencia'" :value="initiative.reference"></text-element>
+            <text-element :meta="'Autor'" :value="initiative.authors"></text-element>
+            <text-element :meta="'Diputada/o'" :value="initiative.deputies"></text-element>
+            <text-element :meta="'Lugar'" :value="initiative.place"></text-element>
+            <text-element :meta="'Registro'" :value="moment(initiative.created).format('DD/MM/Y')"></text-element>
+            <text-element :meta="'Actualización'" :value="moment(initiative.updated).format('DD/MM/Y')"></text-element>
+            <div class="capitalize">
+              <topics-element :meta="'Temas tratados'" :topics="initiative.topics" :tags="initiative.tags"></topics-element>
             </div>
           </div>
-          <neuron :initiative="initiative"></neuron>
+          <div class="col-sm-6">
+            <div class="row">
+              <div class="col-sm-8 col-sm-offset-2">
+                <div :class="'text-center state well color-'+getColorByStatus(initiative.status)">
+                  <strong>{{initiative.status}}</strong>
+                </div>
+                <p class="congress-link text-center">
+                  <a :href="initiative.url" target="_blank" :title="'Ver '+initiative.title+' en su fuente original'">
+                    <i class="fa fa-institution"></i><span>Ver en el Congreso de los Diputados</span>
+                  </a>
+                </p>
+              </div>
+            </div>
+            <neuron :initiative="initiative"></neuron>
+          </div>
         </div>
-      </div>
-      <div v-if="initiative.related && initiative.related.length">
-        <hr>
-        <div class="row">
-          <div class="col-sm-12">
-            <related-initiatives :meta="'Actos relacionados'" :related="initiative.related"></related-initiatives>
+        <div v-if="initiative.related && initiative.related.length">
+          <hr>
+          <div class="row">
+            <div class="col-sm-12">
+              <related-initiatives :meta="'Actos relacionados'" :related="initiative.related"></related-initiatives>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="container-fluid">
+      <div id="credits" class="row">
+        <div class="col-sm-12 text-center">
+          <small><strong>TIPI</strong> está licenciado bajo <a href="https://www.gnu.org/copyleft/gpl.html" target="_blank">GNU GPL v3</a></small>
+          <br>
+          <small>Hecho con ♥ por <a href="https://unmundosalvadorsoler.org/ciecode/" target="_blank">CIECODE (Fundacion Salvador Soler)</a></small>
+        </div>
+      </div>
+    </div>
+    <div style="width:100%;height:10px;background: url('/img/cascade.png') repeat-x;"></div>
   </div>
 </template>
 
 <script>
+import Navbar from '@/components/navbar';
 import PageHeader from '@/components/page-header'
 import TextElement from '@/components/text-element'
 import TopicsElement from '@/components/topics-element'
@@ -62,6 +78,7 @@ const color_by_status = {
 export default {
   name: 'initiative',
   components: {
+    Navbar,
     PageHeader,
     TextElement,
     TopicsElement,

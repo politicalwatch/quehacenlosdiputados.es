@@ -7597,3 +7597,45 @@ fieldset[disabled] .btn-tipi.focus {
   right: 10px;
   transform: translateY(-50%);
 }
+
+
+.slide-leave-active {
+  animation: slide-out .25s linear both;
+}
+.slide-enter-active {
+  width: 100%;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  animation: slide-in .25s linear both;
+}
+
+.slide-back-leave-active {
+  animation: slide-in .25s linear both reverse;
+}
+
+.slide-back-enter-active {
+  width: 100%;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  animation: slide-out .25s linear both reverse;
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
