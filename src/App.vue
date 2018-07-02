@@ -10,7 +10,7 @@
   export default {
     name: 'app',
     watch: {
-      '$route' (to, from) {
+      '$route' (to) {
         const goBack = to.name === 'search' || to.name === 'results'
         this.transitionName = goBack ? 'slide-back' : 'slide'
       }

@@ -23,7 +23,7 @@ import Navbar from '@/components/navbar';
 import PageHeader from '@/components/page-header';
 
 export default {
-  name: 'search',
+  name: 'about',
   components: {
     Navbar,
     PageHeader

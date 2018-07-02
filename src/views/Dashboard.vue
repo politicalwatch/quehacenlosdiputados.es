@@ -61,8 +61,6 @@ import PageHeader from '@/components/page-header';
 import Multiselect from 'vue-multiselect'
 import api from '@/api'
 
-const moment = require('moment');
-
 export default {
   name: 'dashboard',
   components: {
