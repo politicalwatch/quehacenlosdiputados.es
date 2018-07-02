@@ -1,6 +1,6 @@
 <template>
   <div id="search">
-    <page-header :title="'Search'"></page-header>
+    <page-header :title="'Buscar'"></page-header>
     <div class="container page">
       <div class="row">
         <div class="col-sm-12">

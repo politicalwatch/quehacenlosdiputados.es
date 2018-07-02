@@ -1,6 +1,6 @@
 <template>
   <div id="about">
-    <page-header :title="'About'"></page-header>
+    <page-header :title="'Acerca'"></page-header>
   </div>
 </template>
 
