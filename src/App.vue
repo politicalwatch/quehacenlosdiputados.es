@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <transition :name="transitionName">
+    <transition name="fade" mode="out-in">
       <router-view/>
     </transition>
   </div>
@@ -8,13 +8,7 @@
 
 <script>
   export default {
-    name: 'app',
-    watch: {
-      '$route' (to, from) {
-        const goBack = to.name === 'search' || to.name === 'results'
-        this.transitionName = goBack ? 'slide-back' : 'slide'
-      }
-    }
+    name: 'app'
   }
 </script>
 

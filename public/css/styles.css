@@ -7599,43 +7599,16 @@ fieldset[disabled] .btn-tipi.focus {
 }
 
 
-.slide-leave-active {
-  animation: slide-out .25s linear both;
+.fade-enter {
+  opacity: 0;
 }
-.slide-enter-active {
-  width: 100%;
-  background: #fff;
+.fade-enter-active {
+  transition: opacity .5s linear;
   position: absolute;
-  top: 0;
-  animation: slide-in .25s linear both;
-}
-
-.slide-back-leave-active {
-  animation: slide-in .25s linear both reverse;
-}
-
-.slide-back-enter-active {
   width: 100%;
-  background: #fff;
-  position: absolute;
-  top: 0;
-  animation: slide-out .25s linear both reverse;
+}
+.fade-leave-active {
+  transition: opacity .5s linear;
+  opacity: 0;
 }
 
-@keyframes slide-out {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes slide-in {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
