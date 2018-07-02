@@ -13,10 +13,10 @@
       <div id="main-menu" class="collapse navbar-collapse" aria-expanded="false">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <router-link to="/" class="menuitem">Search</router-link>
+            <router-link to="/" class="menuitem">Buscar</router-link>
           </li>
           <li>
-            <router-link to="/about" class="menuitem">About</router-link>
+            <router-link to="/about" class="menuitem">Acerca</router-link>
           </li>
         </ul>
       </div>
