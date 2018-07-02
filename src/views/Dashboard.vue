@@ -38,6 +38,100 @@
             </div>
             <!-- <div v&#45;if="this.loadingResults" class="text&#45;center"><h2>Loading results</h2></div> -->
             <!-- <results&#45;table v&#45;if="initiatives.length &#38;&#38; !this.loadingResults" :initiatives="initiatives"></results&#45;table> -->
+            <div class="row">
+              <div class="col-sm-12 widget">
+                <h3>Comparando iniciativas</h3>
+                <div class="row">
+                  <div class="col-sm-6 text-center">
+                    <svg width="200" height="200"><g transform="translate(100,100)"><g class="node"><circle r="87.5" fill="#abe8ff"></circle><circle fill="#0094cd" r="50"></circle></g></g></svg>
+                  </div>
+                  <div class="col-sm-6">
+                    <p class="description">
+                      Hay un total de <strong>140</strong> iniciativas de <strong>ODS o Meta</strong>, que en comparación con las iniciativas de <strong>ODS o Meta</strong>, el más activo, es un <strong>15%</strong>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 widget">
+                <h3>Ranking de grupos</h3>
+                <ul class="list-unstyled">
+                  <li>
+                    <span class="itemname">Grupo Confederal de Unidos Podemos-En Comú Podem-En Mare</span>
+                  </li>
+                  <li>
+                    <span class="itemname">Grupo Socialista</span>
+                  </li>
+                  <li>
+                    <span class="itemname">Grupo Ciudadanos</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-sm-6 widget">
+                <h3>Ranking de lugares</h3>
+                <ul class="list-unstyled">
+                  <li>
+                    <span class="itemname">Comisión de Medio Ambiente</span>
+                  </li>
+                  <li>
+                    <span class="itemname">Comisión de Agricultura</span>
+                  </li>
+                  <li>
+                    <span class="itemname">Pleno</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 widget">
+                <h3>Preguntas más antiguas sin responder</h3>
+                <table class="table table-striped table-hover">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <a href="#">Proposición no de Ley relativa a impulsar medidas contra la turismofobia en España</a> 
+                      </td>
+                      <td>
+                        <small>2/7/2018</small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#">Proposición no de Ley relativa a impulsar medidas contra la turismofobia en España</a> 
+                      </td>
+                      <td>
+                        <small>2/7/2018</small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#">Proposición no de Ley relativa a impulsar medidas contra la turismofobia en España</a> 
+                      </td>
+                      <td>
+                        <small>2/7/2018</small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#">Proposición no de Ley relativa a impulsar medidas contra la turismofobia en España</a> 
+                      </td>
+                      <td>
+                        <small>2/7/2018</small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="#">Proposición no de Ley relativa a impulsar medidas contra la turismofobia en España</a> 
+                      </td>
+                      <td>
+                        <small>2/7/2018</small>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -114,4 +208,19 @@ export default {
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style scoped lang="scss">
+#dashboard {
+  .widget {
+    padding: 20px 0px;
+    h3 {
+      text-decoration: underline;
+    }
+  }
+  .description {
+    font-size: 1.3em;
+  }
+  .itemname {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+}
 </style>
