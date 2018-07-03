@@ -26,7 +26,7 @@
                         v-model="data.subtopics"
                         :multiple="true"
                         :options="subtopics"
-                        name="subtopics" id="subtopics" placeholder="Cualquiera">
+                        name="subtopics" id="subtopics" placeholder="Todas">
                       </multiselect>
                     </div>
                   </div>
