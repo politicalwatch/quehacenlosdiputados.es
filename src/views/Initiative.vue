@@ -60,8 +60,8 @@ import api from '@/api'
 const moment = require('moment');
 const color_by_status = {
   'green': ['Aprobada', 'Respondida', 'Celebrada', 'Convertida en otra', 'Acumulada en otra'],
-  'black': ['En tramitación'],
-  'red': ['No admitida a trámite', 'No debatida', 'Rechazada', 'Retirada']
+  'black': ['En tramitación', 'Desconocida'],
+  'red': ['No admitida a trámite', 'No debatida', 'Rechazada', 'Retirada', 'Derogada', 'No celebrada']
   }
 
 
