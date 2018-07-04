@@ -2,7 +2,7 @@
   <div class="related">
     <span class="meta">{{meta}}</span>
     <ul class="list-unstyled">
-      <li class="value" v-for="r in related" v-bind:key="r.title">
+      <li class="value" v-for="r in related" v-bind:key="r.title+r.authors">
         <small v-if="r.id">
           <router-link :to="{name: 'initiative', params: {id: r.id}}">{{r.initiative_type_alt}} ({{show(getAuthor(r))}})</router-link>
         </small>
