@@ -90,7 +90,7 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="row"> --._id>
+            <!-- <div class="row"> -->
             <!--   <div class="col&#45;sm&#45;12 widget"> -->
             <!--     <h4>Las preguntas olvidadas sin responder</h4> -->
               <!--     <p class="description">Estas son las preguntas parlamentarias más antiguas con contenido relacionado con <strong>{{data.selection._id}}</strong> que siguen sin ser respondidas. Pincha en cada una de ellas y descubre más detalles de lo que el Gobierno aún no ha contestado.</p> -->
@@ -179,7 +179,6 @@ export default {
     getResults: function() {
       api.getOverallStats()
         .then(overall => {
-          console.log(this.data.subtopic);
           if (this.data.subtopic) {
             this.data.selection = overall.subtopics.find(el => el._id === this.data.subtopic);
             this.data.selection_compareswith = overall.subtopics[0];
@@ -187,8 +186,6 @@ export default {
             this.data.selection = overall.topics.find(el => el._id === this.data.topic);
             this.data.selection_compareswith = overall.topics[0];
           }
-          console.log(this.data.selection)
-          console.log(this.data.selection_compareswith)
         })
         .catch(error => this.errors = error);
       api.getParliamentarygroupsRanking(this.data.topic, this.data.subtopic)
