@@ -6,13 +6,18 @@
       <page-header :title="'Métricas'"></page-header>
       <div class="container page">
         <div class="row">
+          <div class="col-sm-9">
+            <p class="description help">Elige un Objetivo de Desarrollo Sostenible, o profundiza a nivel meta, y descubre las principales magnitudes de la actividad del Congreso de los Diputados sobre la Agenda 2030</p>
+          </div>
+          </div>
+        <div class="row">
           <div class="col-sm-12">
             <div class="well">
               <form id="search-form" class="form-horizontal" role="form" @submit.prevent="getResults">
                 <fieldset>
                   <div class="form-group">
                     <label for="topic" class="col-sm-1 control-label">Objetivos</label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                       <multiselect
                         @select="fillSubtopics"
                         v-model="data.topic"
@@ -21,16 +26,12 @@
                       </multiselect>
                     </div>
                     <label for="subtopics" class="col-sm-1 control-label">Metas</label>
-                    <div class="col-sm-5">
+                    <div class="col-sm-6">
                       <multiselect
-                        v-model="data.subtopics"
-                        :multiple="true"
+                        v-model="data.subtopic"
                         :options="subtopics"
-                        name="subtopics" id="subtopics" placeholder="Cualquiera">
+                        name="subtopic" id="subtopic" placeholder="Todas">
                       </multiselect>
-                    </div>
-                    <div class="col-sm-2">
-                      <button class="btn btn-primary pull-right" type="submit">Mostrar</button>
                     </div>
                   </div>
                 </fieldset>
@@ -39,99 +40,74 @@
             <!-- <div v&#45;if="this.loadingResults" class="text&#45;center"><h2>Loading results</h2></div> -->
             <!-- <results&#45;table v&#45;if="initiatives.length &#38;&#38; !this.loadingResults" :initiatives="initiatives"></results&#45;table> -->
             <div class="row">
-              <div class="col-sm-12 widget">
-                <h3>Comparando iniciativas</h3>
-                <div class="row">
+              <div class="col-sm-12 widget" v-if="data.selection">
+                <h4>Comparando objetivos y metas</h4>
+                <p class="description"><strong>¿Cuánta atención recibe {{data.selection._id}}?</strong></p>
+                <p class="description">Descubre su volumen de actividad frente al más popular.</p>
+                <div class="row vizz-block">
                   <div class="col-sm-6 text-center">
                     <svg width="200" height="200"><g transform="translate(100,100)"><g class="node"><circle r="87.5" fill="#abe8ff"></circle><circle fill="#0094cd" r="50"></circle></g></g></svg>
                   </div>
                   <div class="col-sm-6">
-                    <p class="description">
-                      Hay un total de <strong>140</strong> iniciativas de <strong>ODS o Meta</strong>, que en comparación con las iniciativas de <strong>ODS o Meta</strong>, el más activo, es un <strong>15%</strong>.
+                    <p class="description main">
+                    Hay un total de <strong>{{data.selection.initiatives}}</strong> iniciativas cuyo contenido está relacionado con <strong>{{data.selection._id}}</strong>, frente al que más actividad concentra que es <strong>{{data.selection_compareswith._id}}</strong> con <strong>{{data.selection_compareswith.initiatives}}</strong> iniciativas.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-6 widget">
-                <h3>Ranking de grupos</h3>
-                <ul class="list-unstyled">
-                  <li>
-                    <span class="itemname">Grupo Confederal de Unidos Podemos-En Comú Podem-En Mare</span>
-                  </li>
-                  <li>
-                    <span class="itemname">Grupo Socialista</span>
-                  </li>
-                  <li>
-                    <span class="itemname">Grupo Ciudadanos</span>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-sm-6 widget">
-                <h3>Ranking de lugares</h3>
-                <ul class="list-unstyled">
-                  <li>
-                    <span class="itemname">Comisión de Medio Ambiente</span>
-                  </li>
-                  <li>
-                    <span class="itemname">Comisión de Agricultura</span>
-                  </li>
-                  <li>
-                    <span class="itemname">Pleno</span>
-                  </li>
-                </ul>
+              <div class="col-sm-12 widget" v-if="data.parliamentarygroups">
+                <h4>Grupos parlamentarios más activos</h4>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <ul class="list-unstyled">
+                      <li v-for="pg in data.parliamentarygroups" v-bind:key="pg._id">
+                        <span class="itemname">{{pg._id}}</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-sm-5">
+                    <p class="description leftline">Ránking de los grupos que más iniciativas presentan relacionadas con <strong>{{data.selection._id}}</strong></p>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-12 widget">
-                <h3>Preguntas más antiguas sin responder</h3>
-                <table class="table table-striped table-hover">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <a href="#">Proposición no de Ley relativa a impulsar medidas contra la turismofobia en España</a> 
-                      </td>
-                      <td>
-                        <small>2/7/2018</small>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="#">Proposición no de Ley relativa a impulsar medidas contra la turismofobia en España</a> 
-                      </td>
-                      <td>
-                        <small>2/7/2018</small>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="#">Proposición no de Ley relativa a impulsar medidas contra la turismofobia en España</a> 
-                      </td>
-                      <td>
-                        <small>2/7/2018</small>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="#">Proposición no de Ley relativa a impulsar medidas contra la turismofobia en España</a> 
-                      </td>
-                      <td>
-                        <small>2/7/2018</small>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="#">Proposición no de Ley relativa a impulsar medidas contra la turismofobia en España</a> 
-                      </td>
-                      <td>
-                        <small>2/7/2018</small>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div class="col-sm-12 widget" v-if="data.places">
+                <h4>¿Dónde se tramitan las iniciativas?</h4>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <ul class="list-unstyled">
+                      <li v-for="place in data.places" v-bind:key="place._id">
+                        <span class="itemname">{{place._id}}</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-sm-5">
+                    <p class="description leftline">Descubre cuáles son los lugares más habituales en los que se tramitan las iniciativas relacionadas con <strong>{{data.selection._id}}</strong></p>
+                  </div>
+                </div>
               </div>
             </div>
+            <!-- <div class="row"> --._id>
+            <!--   <div class="col&#45;sm&#45;12 widget"> -->
+            <!--     <h4>Las preguntas olvidadas sin responder</h4> -->
+              <!--     <p class="description">Estas son las preguntas parlamentarias más antiguas con contenido relacionado con <strong>{{data.selection._id}}</strong> que siguen sin ser respondidas. Pincha en cada una de ellas y descubre más detalles de lo que el Gobierno aún no ha contestado.</p> -->
+            <!--     <table class="table table&#45;striped table&#45;hover"> -->
+            <!--       <tbody> -->
+            <!--         <tr> -->
+            <!--           <td> -->
+            <!--             <a href="#">Proposición no de Ley relativa a impulsar medidas contra la turismofobia en España</a>  -->
+            <!--           </td> -->
+            <!--           <td> -->
+            <!--             <small>2/7/2018</small> -->
+            <!--           </td> -->
+            <!--         </tr> -->
+            <!--       </tbody> -->
+            <!--     </table> -->
+            <!--   </div> -->
+            <!-- </div> -->
           </div>
         </div>
       </div>
@@ -168,14 +144,18 @@ export default {
       subtopics: [],
       data: {
         topic: '',
-        subtopics: ''
+        subtopic: '',
+        selection: null,
+        selection_compareswith: null,
+        parliamentarygroups: null,
+        places: null
       },
       loadingResults: false
     }
   },
   methods: {
     fillSubtopics: function(selectedTopic, clearValues) {
-      this.data.subtopics = clearValues ? [] : this.data.subtopics;
+      this.data.subtopic = clearValues ? "" : this.data.subtopic;
       const currentTopic = this.topics.find(topic => topic.name === selectedTopic);
       this.getSubtopics(currentTopic.id);
     },
@@ -196,12 +176,44 @@ export default {
         })
         .catch(error => this.errors = error);
     },
+    getResults: function() {
+      api.getOverallStats()
+        .then(overall => {
+          console.log(this.data.subtopic);
+          if (this.data.subtopic) {
+            this.data.selection = overall.subtopics.find(el => el._id === this.data.subtopic);
+            this.data.selection_compareswith = overall.subtopics[0];
+          } else {
+            this.data.selection = overall.topics.find(el => el._id === this.data.topic);
+            this.data.selection_compareswith = overall.topics[0];
+          }
+          console.log(this.data.selection)
+          console.log(this.data.selection_compareswith)
+        })
+        .catch(error => this.errors = error);
+      api.getParliamentarygroupsRanking(this.data.topic, this.data.subtopic)
+        .then(ranking => {
+          this.data.parliamentarygroups = ranking;
+        })
+        .catch(error => this.errors = error);
+      api.getPlacesRanking(this.data.topic, this.data.subtopic)
+        .then(ranking => {
+          this.data.places = ranking;
+        })
+        .catch(error => this.errors = error);
+    },
     prepareForm: function() {
       this.getTopics();
     }
   },
   created: function() {
     this.prepareForm();
+  },
+  watch: {
+    'data.topic': 'getResults',
+    'data.subtopic': function() {
+      if (this.data.subtopic !== "") this.getResults();
+    }
   }
 }
 </script>
@@ -210,17 +222,35 @@ export default {
 <style scoped lang="scss">
 #dashboard {
   .widget {
-    padding: 20px 0px;
-    h3 {
-      text-decoration: underline;
+    padding: 40px 0px;
+    h4 {
+      text-transform: uppercase;
+      font-weight: bold;
+      border-bottom: 10px solid #abe8ff;
+      margin-bottom: 30px;
+      padding: 5px;
     }
   }
   .description {
+    font-size: 1.1em;
+  }
+  .description.main {
+    font-size: 1.6em;
+  }
+  .description.help {
     font-size: 1.3em;
+      padding-bottom: 20px;
   }
   .itemname {
     font-size: 1.2em;
     font-weight: bold;
+  }
+  .vizz-block {
+    padding: 40px 0px;
+  }
+  .leftline {
+    padding-left: 10px;
+    border-left: 2px solid lighten(#222, 10%);
   }
 }
 </style>
