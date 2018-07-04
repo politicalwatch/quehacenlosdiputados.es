@@ -28,17 +28,6 @@ export default {
     width = +svg.node().getBoundingClientRect().width;
     height = +svg.node().getBoundingClientRect().height;
     
-    //Data Visualization for the relationship between tipiciudadano.es initiatives (iniciativas) and the themes (tematicas)
-    //Developed by: David Jonas
-    //Date: June 4th 2018
-    //Dependencies:
-    // * https://d3js.org/d3.v4.min.js
-    // * tipistyle.css (included in package)
-    // * On the HTML that imports this file there should be an svg element with id "tipiviz".
-    //
-    //exaple of data node:
-    //       {name: "personas con discapacidad", related: true, intensity: 0.6666666666666666}
-
     //=== Utilities ===
     //Mapping ranges
     function map(x, in_min, in_max, out_min, out_max) {
@@ -71,11 +60,16 @@ export default {
 
     //Configurations
     var color = {
-      "related": "#0094cd",
+      "related": {
+        "ODS 6": "#00aed9",
+        "ODS 7": "#fdb713",
+        "ODS 11": "#f99d26",
+        "ODS 12": "#cf8d2a",
+        "ODS 15": "#3eb049",
+      },
       "notRelated": "#cecece",
-      "center": "#0094cd",
-      "lineRelated": "#45cbff",
-      "lineNotRelated": "#cecece"
+      "center": "#888",
+      "line": "#cecece"
     }
 
     //TODO: Encapsulate this in a class so we can have multiple vizualisations in one page.
@@ -125,7 +119,7 @@ export default {
                    + "L " + pos[0] + " " + pos[1];
             })
           .attr("stroke-width",function(d){return d["related"] ? '3px' : '1px'})
-          .attr("stroke",function(d){return d["related"] ? color["lineRelated"] : color["lineNotRelated"]});
+          .attr("stroke", function(d){ return d["related"] ? color["related"][d["name"].split('-')[0].trim()] : color["line"]});
 
       var node = svg.selectAll(".node")
       .data(data)
@@ -142,7 +136,7 @@ export default {
       node.append("circle")
           .attr("class", function(d){return d["related"] ? "related" : ""})
           .attr("r", function(d){return d["related"] ? 15 : 10})
-          .style("fill", function(d){ return d["related"] ? color["related"] : color["notRelated"]});
+          .style("fill", function(d){ return d["related"] ? color["related"][d["name"].split('-')[0].trim()] : color["notRelated"]});
 
       node.append("path")
           .attr("d", d3.arc()
@@ -152,14 +146,16 @@ export default {
             .endAngle(function (d){
               return Math.PI * 2 * d["intensity"]}))
           .attr("class", function(d){return d["related"] ? "related" : ""})
-          .style("fill", function(d){ return d["related"] ? color["related"] : color["notRelated"]});
+          .style("fill", function(d){ return d["related"] ? color["related"][d["name"].split('-')[0].trim()] : color["notRelated"]});
 
       node.append("text")
-          .attr("class", "label_percentage")
+          .attr("class", "label_name")
           .attr("text-anchor", "middle")
-          .attr("alignment-baseline", "central");
-          // .text(function(d){return d["related"] ? Math.round(d["intensity"]*100) + "%" : ""})
+          .attr("alignment-baseline", "central")
+          .text(function(d) { return d["related"] ? d["name"].split('-')[0].trim() : ""; });
+          //.text(function(d){return d["related"] ? Math.round(d["intensity"]*100) + "%" : ""})
 
+       /*
       node.append("text")
           .attr("class", "label_name")
           .attr("transform", function(d,i) {
@@ -175,6 +171,7 @@ export default {
             return "translate(" + (Math.cos(angle)*(25 + size)) + "," + (Math.sin(angle)*(25+size)) + "), rotate("+ ((angle)*(180/Math.PI) + flip) + ")";
           })
           .text(function(d) { return d["related"] ? d["name"].split('-')[0].trim() : ""; });
+      */
 
       var center = svg.append("g")
         .attr("class", "center")
@@ -192,7 +189,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
   .node circle {
     /* IE 8 */
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
@@ -232,13 +229,27 @@ export default {
     opacity: 1;
   }
 
+  .node path {
+    /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+    /* IE 5-7 */
+    filter: alpha(opacity=40);
+    /* Netscape */
+    -moz-opacity: .4;
+    /* Safari 1.x */
+    -khtml-opacity:.4;
+    /* Good browsers */
+    opacity: .4;
+
+  }
+
   .node .label_percentage {
     font-size: 10px;
     font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 
   .node .label_name {
-    font-size: 10px;
+    font-size: 20px;
     font-weight: bold;
     font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
