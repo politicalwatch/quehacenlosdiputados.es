@@ -30,7 +30,7 @@
                 </p>
               </div>
             </div>
-            <neuron :initiative="initiative"></neuron>
+            <neuron :initiative="initiative" v-if="dataLoaded"></neuron>
           </div>
         </div>
         <div v-if="initiative.related && initiative.related.length">
@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-    <footer-block></footer-block> 
+    <footer-block></footer-block>
   </div>
 </template>
 
@@ -80,13 +80,17 @@ export default {
     return {
       initiative: {},
       color_by_status: color_by_status,
-      moment: moment
+      moment: moment,
+      dataLoaded: false
     }
   },
   methods: {
     getInitiative: function() {
       api.getInitiative(this.$route.params.id)
-        .then(response => this.initiative = response)
+        .then(response => {
+          this.initiative = response;
+          this.dataLoaded = true;
+        })
         .catch(error => this.errors = error);
     },
     getColorByStatus: function(status) {
