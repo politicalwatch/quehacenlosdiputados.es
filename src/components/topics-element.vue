@@ -47,9 +47,11 @@ export default {
 
 <style scoped lang="scss">
 .value {
+  margin-bottom: 40px;
   .subtopic {
     font-size: 0.8em;
     margin-left: 20px;
+    margin-bottom: 20px;
     .tag {
       background-color: lighten(#abe8ff, 5%);
       color: #222;
