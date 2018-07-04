@@ -17,17 +17,18 @@ export default {
     api.getTopics()
       .then(topics => {
         this.topics = topics;
+        //TODO:  We should use the ID of the initiative on the SVG element
+        //       so that we can have multiple viz in the same page, not rely on querystrinty
+        //       and make the creation of the viz on the HTML side completely transparent.
+        svg = d3.select(this.$el);
+        width = +svg.node().getBoundingClientRect().width;
+        height = +svg.node().getBoundingClientRect().height;
         onDataReady();
       })
       .catch(error => this.errors = error);
 
-    //TODO:  We should use the ID of the initiative on the SVG element
-    //       so that we can have multiple viz in the same page, not rely on querystrinty
-    //       and make the creation of the viz on the HTML side completely transparent.
-    svg = d3.select(this.$el);
-    width = +svg.node().getBoundingClientRect().width;
-    height = +svg.node().getBoundingClientRect().height;
-    
+
+
     //=== Utilities ===
     //Mapping ranges
     function map(x, in_min, in_max, out_min, out_max) {
