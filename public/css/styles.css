@@ -7349,31 +7349,26 @@ fieldset[disabled] .btn-tipi.focus {
 #credits {
   background-color: #efefef;
   color: #222;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 #footer h6,
 #credits h6 {
   color: #222;
   text-transform: uppercase;
 }
-#footer li > a,
-#credits li > a,
+#footer p,
+#credits p {
+  font-size: 16px;
+}
 #footer a,
 #credits a {
-  color: #222;
-  font-weight: normal;
+  font-weight: bold;
 }
-#footer li > a:hover,
-#credits li > a:hover,
-#footer a:hover,
-#credits a:hover,
-#footer li > a:focus,
-#credits li > a:focus,
-#footer a:focus,
-#credits a:focus {
-  color: #222;
-  background-color: transparent;
+#footer img,
+#credits img {
+  width: 200px;
+  padding-bottom: 20px;
 }
 #stats {
   background-color: #222222;

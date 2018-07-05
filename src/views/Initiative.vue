@@ -14,7 +14,7 @@
             <text-element :meta="'Registro'" :value="moment(initiative.created).format('DD/MM/Y')"></text-element>
             <text-element :meta="'Actualización'" :value="moment(initiative.updated).format('DD/MM/Y')"></text-element>
             <div class="capitalize">
-              <topics-element :meta="'Temas tratados'" :topics="initiative.topics" :tags="initiative.tags"></topics-element>
+              <topics-element :meta="'ODS tratados'" :topics="initiative.topics" :tags="initiative.tags"></topics-element>
             </div>
           </div>
           <div class="col-sm-6">
