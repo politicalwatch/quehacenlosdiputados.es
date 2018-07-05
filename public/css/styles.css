@@ -4512,14 +4512,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-color: transparent;
 }
 .navbar-default .navbar-toggle {
-  border-color: #0094cd;
+  border-color: #f8f8f8;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #0094cd;
+  background-color: #f8f8f8;
 }
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: #fff;
+  background-color: #222;
 }
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
