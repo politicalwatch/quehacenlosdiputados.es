@@ -7640,3 +7640,14 @@ fieldset[disabled] .btn-tipi.focus {
   padding-right: 10px;
   font-size: 20px;
 }
+
+
+#about h4 {
+  font-weight: bold;
+}
+#about p {
+  padding: 0px 0px 40px 0px;
+}
+#about p:first-of-type {
+    padding: 40px 0px;
+}
