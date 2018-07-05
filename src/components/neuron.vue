@@ -56,7 +56,7 @@ export default {
       let data = [];
       let svg = d3.select(this.$el);
       svg.selectAll("*").remove();
-      let width = +svg.node().getBoundingClientRect().width;;
+      let width = +svg.node().getBoundingClientRect().width;
       let height = +svg.node().getBoundingClientRect().height;
 
       function onDataReady(topics, initiative) {
