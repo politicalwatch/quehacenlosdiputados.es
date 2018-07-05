@@ -72,7 +72,7 @@ export default {
           "ODS 15": "#3eb049",
         },
         "notRelated": "#cecece",
-        "center": "#888",
+        "center": "#222",
         "line": "#cecece"
       }
 

@@ -110,7 +110,7 @@
                   </div>
                   <div class="form-group">
                     <div class="col-sm-12 pull-right">
-                      <button class="btn btn-primary pull-right" type="submit">Buscar</button>
+                      <button class="btn btn-custom pull-right" type="submit">Buscar</button>
                       <br>
                       <a href="#" class="adv-search-link show-block" @click="toggleAdvanced" v-if="!advanced">
                         <i class="fa fa-caret-square-o-down"></i>
@@ -127,7 +127,7 @@
             </div>
             <div v-if="this.loadingResults" class="text-center"><h2>Loading results</h2></div>
             <results-table v-if="initiatives.length && !this.loadingResults" :initiatives="initiatives"></results-table>
-            <a v-if="isMoreResults" href="#" class="load-more btn btn-primary" @click.prevent="loadMore">Cargar más</a>
+            <a v-if="isMoreResults" href="#" class="load-more btn btn-custom" @click.prevent="loadMore">Cargar más</a>
           </div>
         </div>
         <div class="row">

@@ -53,7 +53,7 @@ export default {
     margin-left: 20px;
     margin-bottom: 20px;
     .tag {
-      background-color: lighten(#abe8ff, 5%);
+      background-color: #efefef;
       color: #222;
       padding: 5px;
       margin: 0px 5px 5px 5px;
