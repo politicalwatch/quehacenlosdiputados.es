@@ -2,7 +2,7 @@
   <div>
     <div class="disclaimer" v-if="!closedDisclaimer">
       <router-link :to="{name: 'about-en'}">Learn more about this project in English</router-link>
-      <a class="close-disclaimer pull-right" href="#" @click="closedDisclaimer=true">&times;</a>
+      <a class="close-disclaimer pull-right" href="#" @click="closeDisclaimer">&times;</a>
     </div>
     <div class="cascade"></div>
     <nav class="navbar navbar-default"><div class="container">
@@ -37,9 +37,20 @@
 <script>
 export default {
   name: 'navbar',
-  data: function() {
+  data: function () {
     return {
-      closedDisclaimer: false
+      closedMessage: false
+    }
+  },
+  computed: {
+    closedDisclaimer: function () {
+      return localStorage.getItem('closedDisclaimer') || this.closedMessage ? true : false;
+    }
+  },
+  methods: {
+    closeDisclaimer: function() {
+      localStorage.setItem('closedDisclaimer', true);
+      this.closedMessage = true;
     }
   }
 }

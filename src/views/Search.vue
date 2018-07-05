@@ -137,7 +137,7 @@
                 </fieldset>
               </form>
             </div>
-            <div v-if="this.loadingResults" class="text-center"><h2>Loading results</h2></div>
+            <div v-if="this.loadingResults" class="text-center"><h2>Cargando resultados...</h2></div>
             <results-table v-if="initiatives.length && !this.loadingResults" :initiatives="initiatives"></results-table>
             <a v-if="isMoreResults" href="#" class="load-more btn btn-custom" @click.prevent="loadMore">
               Cargar más {{ nextResultsLabel }}
