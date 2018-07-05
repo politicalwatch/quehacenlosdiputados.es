@@ -145,7 +145,7 @@
                 <i class="fa fa fa-times-circle-o"></i> Limpiar criterios de búsqueda
               </a>
               <a href="#" class="disabled pull-right" id="exportcsv">
-                <i class="fa fa fa-download"></i> Descargar datos (proximamente)</a>
+                <i class="fa fa fa-download"></i> Descargar datos (proximamente)
               </a>
             </div>
 
