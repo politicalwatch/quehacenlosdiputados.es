@@ -49,7 +49,7 @@
                   </div>
                   <div class="col-sm-6">
                     <p class="description main">
-                    Hay un total de <strong>{{data.selection.initiatives}}</strong> iniciativas cuyo contenido está relacionado con <strong>{{data.selection._id}}</strong>, frente al que más actividad concentra que es <strong>{{data.selection_compareswith._id}}</strong> con <strong>{{data.selection_compareswith.initiatives}}</strong> iniciativas.
+                    Hay <strong>{{data.selection.initiatives}}</strong> iniciativas relacionadas con <strong>{{data.selection._id}}</strong>. ¿Suficientes?<br/>El ODS que más actividad concentra es <strong>{{data.selection_compareswith._id}}</strong> con <strong>{{data.selection_compareswith.initiatives}}</strong> iniciativas.
                     </p>
                   </div>
                 </div>
