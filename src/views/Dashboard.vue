@@ -2,13 +2,8 @@
   <div>
     <navbar></navbar>
     <div id="dashboard">
-      <page-header :title="'Métricas'"></page-header>
+      <page-header :title="'Métricas'" :subtitle="'Elige un Objetivo de Desarrollo Sostenible, o profundiza a nivel meta, y descubre las principales magnitudes de la actividad del Congreso de los Diputados sobre la Agenda 2030'"></page-header>
       <div class="container page">
-        <div class="row">
-          <div class="col-sm-9">
-            <p class="description help">Elige un Objetivo de Desarrollo Sostenible, o profundiza a nivel meta, y descubre las principales magnitudes de la actividad del Congreso de los Diputados sobre la Agenda 2030</p>
-          </div>
-          </div>
         <div class="row">
           <div class="col-sm-12">
             <div class="well">
