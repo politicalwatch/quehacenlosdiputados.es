@@ -5,7 +5,7 @@
         <div class="col-sm-12">
           <h1>
             {{title}}
-            <span v-if="subtitle">{{subtitle}}</span> 
+            <span v-if="subtitle">{{subtitle}}</span>
           </h1>
         </div>
       </div>
@@ -22,10 +22,14 @@ export default {
 
 <style scoped lang="scss">
 h1 {
+  margin: 1rem 0;
+  font-size: 28px;
+  @media (min-width: 768px) {
+    font-size: 39px;
+  }
   span {
-    padding-left: 10px;
     font-size: 0.5em;
-    width: 50%;
+    display: block;
   }
 }
 </style>
