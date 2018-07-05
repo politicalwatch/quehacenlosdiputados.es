@@ -2,7 +2,7 @@
   <div>
     <navbar></navbar>
     <div id="search">
-      <page-header :title="'Buscar'"></page-header>
+      <page-header :title="'Buscar'" :subtitle="'Bucea en la actividad parlamentaria relacionada con los ODS con las múltiples opciones que te ofrece el buscador de Parlamento 2030'"></page-header>
       <div id="messages" class="container" v-if="query_meta.hasOwnProperty('total')">
           <div class="row">
             <div class="col-sm-12">

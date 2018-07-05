@@ -3,7 +3,10 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <h1>{{ title }}</h1>
+          <h1>
+            {{title}}
+            <span v-if="subtitle">{{subtitle}}</span> 
+          </h1>
         </div>
       </div>
     </div>
@@ -13,6 +16,16 @@
 <script>
 export default {
   name: 'page-header',
-  props: ['title']
+  props: ['title', 'subtitle']
 }
 </script>
+
+<style scoped lang="scss">
+h1 {
+  span {
+    padding-left: 10px;
+    font-size: 0.5em;
+    width: 50%;
+  }
+}
+</style>
