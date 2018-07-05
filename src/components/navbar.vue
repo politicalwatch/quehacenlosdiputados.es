@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="disclaimer">
-      <router-link :to="{name: 'about-en'}">Learn more about this project in English</router-link>
-      <!-- <a class="close&#38;#45;disclaimer pull&#38;#45;right" href="" @click="">&#38;#38;times;</a> -->
+    <div class="disclaimer" v-if="!closedDisclaimer">
+      <router-link :to="{name: 'about-en'}">Read more about us on english</router-link>
+      <a class="close-disclaimer pull-right" href="#" @click="closedDisclaimer=true">&times;</a>
     </div>
     <div class="cascade"></div>
     <nav class="navbar navbar-default"><div class="container">
@@ -37,19 +37,10 @@
 <script>
 export default {
   name: 'navbar',
-  // data: function() {
-  //   return {
-  //     close: null
-  //   }
-  // },
-  // created: function() {
-  //   this.close = false;
-  //   console.log("Se crea el navbar")
-  // },
-  // methods: {
-  //   closeBlock: function() {
-  //     this.close = true;
-  //   }
-  // }
+  data: function() {
+    return {
+      closedDisclaimer: false
+    }
+  }
 }
 </script>

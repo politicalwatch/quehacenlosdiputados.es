@@ -14,7 +14,7 @@
             <text-element :meta="'Registro'" :value="moment(initiative.created).format('DD/MM/Y')"></text-element>
             <text-element :meta="'Actualización'" :value="moment(initiative.updated).format('DD/MM/Y')"></text-element>
             <div class="capitalize">
-              <topics-element :meta="'Temas tratados'" :topics="initiative.topics" :tags="initiative.tags"></topics-element>
+              <topics-element :meta="'ODS tratados'" :topics="initiative.topics" :tags="initiative.tags"></topics-element>
             </div>
           </div>
           <div class="col-sm-6">
@@ -30,7 +30,7 @@
                 </p>
               </div>
             </div>
-            <neuron :initiative="initiative"></neuron>
+            <neuron :initiative="initiative"  v-if="dataLoaded"></neuron>
           </div>
         </div>
         <div v-if="initiative.related && initiative.related.length">
@@ -80,7 +80,8 @@ export default {
     return {
       initiative: {},
       color_by_status: color_by_status,
-      moment: moment
+      moment: moment,
+      dataLoaded: false
     }
   },
   methods: {
@@ -88,6 +89,7 @@ export default {
       api.getInitiative(this.$route.params.id)
         .then(response => {
           this.initiative = response;
+          this.dataLoaded = true;
         })
         .catch(error => this.errors = error);
     },
