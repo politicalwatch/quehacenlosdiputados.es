@@ -3,6 +3,18 @@
     <navbar></navbar>
     <div id="search">
       <page-header :title="'Buscar'"></page-header>
+      <div id="messages" class="container" v-if="query_meta.hasOwnProperty('total')">
+          <div class="row">
+            <div class="col-sm-12">
+              <div v-if="this.query_meta.total" class="alert alert-dismissible alert-info" role="alert">
+                Se han encontrado {{ this.query_meta.total }} iniciativas.
+              </div>
+              <div v-else class="alert alert-dismissible alert-danger" role="alert">
+                No se han encontrado iniciativas que cumplan los criterios.
+              </div>
+            </div>
+          </div>
+        </div>
       <div class="container page">
         <div class="row">
           <div class="col-sm-12">
