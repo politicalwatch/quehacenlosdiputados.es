@@ -37,7 +37,9 @@
                         v-model="data.subtopics"
                         :multiple="true"
                         :options="subtopics"
-                        name="subtopics" id="subtopics" placeholder="Todas">
+                        :disabled="!this.subtopics.length"
+                        :placeholder="this.subtopics.length ? 'Todos' : 'Selecciona previamente ODS/SDG'"
+                        name="subtopics" id="subtopics" >
                       </multiselect>
                     </div>
                   </div>
