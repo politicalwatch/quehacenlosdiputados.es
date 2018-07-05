@@ -215,7 +215,7 @@ export default {
     h4 {
       text-transform: uppercase;
       font-weight: bold;
-      border-bottom: 10px solid #abe8ff;
+      border-bottom: 10px solid #efefef;
       margin-bottom: 30px;
       padding: 5px;
     }
