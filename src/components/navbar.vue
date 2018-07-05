@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="disclaimer">
-      <router-link :to="{name: 'about-en'}">Read more about us on english</router-link>
+      <router-link :to="{name: 'about-en'}">Learn more about this project in English</router-link>
       <!-- <a class="close&#38;#45;disclaimer pull&#38;#45;right" href="" @click="">&#38;#38;times;</a> -->
     </div>
     <div class="cascade"></div>
