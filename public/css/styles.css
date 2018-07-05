@@ -7347,8 +7347,9 @@ fieldset[disabled] .btn-tipi.focus {
 #credits {
   background-color: #efefef;
   color: #222;
-  padding-top: 40px;
+  padding-top: 60px;
   padding-bottom: 40px;
+  margin-top: 40px;
 }
 #footer h6,
 #credits h6 {
