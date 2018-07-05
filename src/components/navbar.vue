@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="disclaimer" v-if="!this.closedDisclaimer">
-      <router-link :to="{name: 'about-en'}">Read more about us on english</router-link>
+    <div class="disclaimer" v-if="!closedDisclaimer">
+      <router-link :to="{name: 'about-en'}">Learn more about this project in English</router-link>
       <a class="close-disclaimer pull-right" href="#" @click="closeDisclaimer">&times;</a>
     </div>
     <div class="cascade"></div>
