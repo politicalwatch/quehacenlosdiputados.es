@@ -5,8 +5,11 @@
         <div class="col-sm-12">
           <div class="container">
             <div class="row">
-              <div class="col-sm-10">
-                <img src="/img/politicalwatch.png" alt="Logo de PoliticalWatch.es">
+              <div class="col-sm-4 text-center">
+                <a href="/"><img src="/img/logo-beta.png" class="big" alt="Logo de Parlamento 2030"></a>
+                <a href="http://politicalwatch.es" target="_blank"><img src="/img/politicalwatch.png" class="small" alt="Logo de Political Watch"></a>
+              </div>
+              <div class="col-sm-7">
                 <p>
                 <strong>Parlamento 2030</strong> es un proyecto de <a href="http://politicalwatch.es" target="_blank">Political Watch</a>, plataforma que se inscribe dentro del think-and-do tank <a href="http://ciecode.es" target="_blank">CIECODE</a>.
                 <br/>
@@ -15,6 +18,7 @@
                 Contáctanos en <a href="mailto:parlamento2030@ciecode.es" target="_blank">parlamento2030@ciecode.es</a>
                 </p>
               </div>
+              
             </div>
           </div>
         </div>  
