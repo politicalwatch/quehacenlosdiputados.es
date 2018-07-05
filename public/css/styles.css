@@ -7650,3 +7650,16 @@ fieldset[disabled] .btn-tipi.focus {
 #about p:first-of-type {
     padding: 40px 0px;
 }
+
+
+a.disabled, a[disabled] {
+  cursor: default;
+  background-image: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  color: #333;
+  background-color: #E6E6E6;
+}

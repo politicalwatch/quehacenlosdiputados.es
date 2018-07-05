@@ -139,11 +139,22 @@
                 </fieldset>
               </form>
             </div>
+
+            <div v-show="initiatives.length" class="well search-actions">
+              <a href="/">
+                <i class="fa fa fa-times-circle-o"></i> Limpiar criterios de búsqueda
+              </a>
+              <a href="#" class="disabled pull-right" id="exportcsv">
+                <i class="fa fa fa-download"></i> Descargar datos (proximamente)</a>
+              </a>
+            </div>
+
             <div v-if="this.loadingResults" class="text-center"><h2>Cargando resultados...</h2></div>
             <results-table v-if="initiatives.length && !this.loadingResults" :initiatives="initiatives"></results-table>
             <a v-if="isMoreResults" href="#" class="load-more btn btn-custom" @click.prevent="loadMore">
               Cargar más {{ nextResultsLabel }}
             </a>
+
           </div>
         </div>
       </div>
