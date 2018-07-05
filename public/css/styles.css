@@ -7365,10 +7365,14 @@ fieldset[disabled] .btn-tipi.focus {
 #credits a {
   font-weight: bold;
 }
-#footer img,
-#credits img {
-  width: 200px;
+#footer img {
   padding-bottom: 20px;
+}
+#footer img.big {
+  width: 300px;
+}
+#footer img.small {
+  width: 150px;
 }
 #stats {
   background-color: #222222;
