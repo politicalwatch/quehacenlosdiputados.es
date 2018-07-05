@@ -10,7 +10,7 @@
               <form id="search-form" class="form-horizontal" role="form" @submit.prevent="getResults">
                 <fieldset>
                   <div class="form-group">
-                    <label for="topic" class="col-sm-1 control-label">Objetivos</label>
+                    <label for="topic" class="col-sm-1 control-label">ODS/SDG</label>
                     <div class="col-sm-3">
                       <multiselect
                         @select="fillSubtopics"
