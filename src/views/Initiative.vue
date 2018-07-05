@@ -30,7 +30,7 @@
                 </p>
               </div>
             </div>
-            <neuron :initiative="initiative" v-if="dataLoaded"></neuron>
+            <neuron :initiative="initiative"></neuron>
           </div>
         </div>
         <div v-if="initiative.related && initiative.related.length">
@@ -80,8 +80,7 @@ export default {
     return {
       initiative: {},
       color_by_status: color_by_status,
-      moment: moment,
-      dataLoaded: false
+      moment: moment
     }
   },
   methods: {
@@ -89,7 +88,6 @@ export default {
       api.getInitiative(this.$route.params.id)
         .then(response => {
           this.initiative = response;
-          this.dataLoaded = true;
         })
         .catch(error => this.errors = error);
     },
