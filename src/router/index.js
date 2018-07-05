@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Search from '@/views/Search.vue'
 import Dashboard from '@/views/Dashboard.vue'
 import About from '@/views/About.vue'
+import AboutEnglish from '@/views/AboutEnglish.vue'
 import Initiative from '@/views/Initiative.vue'
 
 Vue.use(Router)
@@ -32,6 +33,11 @@ export default new Router({
       path: "/about",
       name: "about",
       component: About
+    },
+    {
+      path: "/about-en",
+      name: "about-en",
+      component: AboutEnglish
     },
     {
       path: "/initiatives/:id",

@@ -35,7 +35,7 @@ import PageHeader from '@/components/page-header';
 import FooterBlock from '@/components/footer-block';
 
 export default {
-  name: 'about',
+  name: 'about-english',
   components: {
     Navbar,
     PageHeader,

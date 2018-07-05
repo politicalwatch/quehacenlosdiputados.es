@@ -7613,3 +7613,31 @@ fieldset[disabled] .btn-tipi.focus {
   background-color: #222222;
   border-color: #222222;
 }
+
+.cascade {
+  width: 100%;
+  height: 10px;
+  background: url('../img/cascade.png') repeat-x;
+}
+
+.disclaimer {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  background: #222;
+  color: #f8f8f8;
+  text-align: center;
+  font-weight: bold;
+}
+.disclaimer a {
+  color: #f8f8f8;
+}
+.disclaimer a:active
+.disclaimer a:visited
+.disclaimer a:hover {
+  color: #f8f8f8;
+}
+.disclaimer a.close-disclaimer {
+  padding-right: 10px;
+  font-size: 20px;
+}

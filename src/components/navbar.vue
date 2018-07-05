@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div style="width:100%;height:10px;background: url('/img/cascade.png') repeat-x;"></div>
+    <div class="disclaimer">
+      <router-link :to="{name: 'about-en'}">Read more about us on english</router-link>
+      <!-- <a class="close&#38;#45;disclaimer pull&#38;#45;right" href="" @click="">&#38;#38;times;</a> -->
+    </div>
+    <div class="cascade"></div>
     <nav class="navbar navbar-default"><div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
@@ -32,6 +36,20 @@
 
 <script>
 export default {
-  name: 'navbar'
+  name: 'navbar',
+  // data: function() {
+  //   return {
+  //     close: null
+  //   }
+  // },
+  // created: function() {
+  //   this.close = false;
+  //   console.log("Se crea el navbar")
+  // },
+  // methods: {
+  //   closeBlock: function() {
+  //     this.close = true;
+  //   }
+  // }
 }
 </script>

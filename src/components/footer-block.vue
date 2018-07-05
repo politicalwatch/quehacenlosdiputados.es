@@ -9,7 +9,7 @@
         </div>
       </div>
     </div>
-    <div style="width:100%;height:10px;background: url('/img/cascade.png') repeat-x;"></div>
+    <div class="cascade"></div>
   </div>
 </template>
 
