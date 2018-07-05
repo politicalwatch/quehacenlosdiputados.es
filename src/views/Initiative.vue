@@ -30,7 +30,12 @@
                 </p>
               </div>
             </div>
-            <neuron :initiative="initiative"  v-if="dataLoaded"></neuron>
+            <div class="row">
+              <div class="col-sm-12 text-center neuron-block">
+                <span>Relación de esta iniciativa con los ODS <sup title="El gráfico muestra los ODS relacionados con la iniciativa y el grado de relación con cada uno de ellos, cuya intensidad se refleja en la barra circular que los rodea."><i class="fa fa-question-circle"></i></sup></strong></span>
+                <neuron :initiative="initiative"  v-if="dataLoaded"></neuron>
+              </div>
+            </div>
           </div>
         </div>
         <div v-if="initiative.related && initiative.related.length">
@@ -110,4 +115,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.neuron-block {
+  margin-top: 60px;
+    span {
+      border-bottom: 5px solid #efefef;
+      padding-bottom: 10px;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+}
 </style>
