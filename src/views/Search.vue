@@ -139,7 +139,9 @@
             </div>
             <div v-if="this.loadingResults" class="text-center"><h2>Loading results</h2></div>
             <results-table v-if="initiatives.length && !this.loadingResults" :initiatives="initiatives"></results-table>
-            <a v-if="isMoreResults" href="#" class="load-more btn btn-custom" @click.prevent="loadMore">Cargar más</a>
+            <a v-if="isMoreResults" href="#" class="load-more btn btn-custom" @click.prevent="loadMore">
+              Cargar más {{ nextResultsLabel }}
+            </a>
           </div>
         </div>
       </div>
@@ -204,6 +206,11 @@ export default {
   computed: {
     isMoreResults: function() {
       return !this.loadingResults && (this.query_meta.page < this.query_meta.pages);
+    },
+    nextResultsLabel: function() {
+      let nextResult = (this.query_meta.page * this.query_meta.per_page) + 1;
+      let lastResult = nextResult + this.query_meta.per_page -1;
+      return `(${nextResult}-${lastResult})`;
     }
   },
   methods: {
