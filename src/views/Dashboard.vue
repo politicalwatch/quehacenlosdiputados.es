@@ -62,7 +62,7 @@
                     </ul>
                   </div>
                   <div class="col-sm-5">
-                    <p class="description leftline">Ránking de los grupos que más iniciativas presentan relacionadas con <strong>{{data.selection.selected._id}}</strong></p>
+                    <p v-if="data.isSelected" class="description leftline">Ránking de los grupos que más iniciativas presentan relacionadas con <strong>{{data.selection.selected._id}}</strong></p>
                   </div>
                 </div>
               </div>
@@ -88,7 +88,7 @@
         </div>
       </div>
     </div>
-    <footer-block></footer-block> 
+    <footer-block></footer-block>
   </div>
 </template>
 
