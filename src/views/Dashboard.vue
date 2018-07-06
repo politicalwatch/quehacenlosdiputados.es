@@ -79,7 +79,7 @@
                     </ul>
                   </div>
                   <div class="col-sm-5">
-                    <p class="description leftline">Descubre cuáles son los lugares más habituales en los que se tramitan las iniciativas relacionadas con <strong>{{data.selection.selected._id}}</strong></p>
+                    <p v-if="data.isSelected" class="description leftline">Descubre cuáles son los lugares más habituales en los que se tramitan las iniciativas relacionadas con <strong>{{data.selection.selected._id}}</strong></p>
                   </div>
                 </div>
               </div>
@@ -117,7 +117,16 @@ export default {
         topic: '',
         subtopic: '',
         isSelected: false,
-        selection: null,
+        selection: {
+          compareswith: {
+            _id: "",
+            initiatives: 0
+          },
+          selected: {
+            _id: "",
+            initiatives: 0
+          }
+        },
         parliamentarygroups: null,
         places: null
       },

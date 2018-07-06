@@ -10,9 +10,6 @@ export default {
   props: ['selection'],
   methods: {
     loadVizz: function() {
-
-      console.log("load graph")
-
       //Configurations
       let duration = 2000;
       let color = {
@@ -51,17 +48,14 @@ export default {
         .attr("r", 0)
         .transition()
         .duration(duration)
-        .attr("r", (d) => Math.round((d.initiatives*maxRadius)/maxNumber) );
-
-
-
+        .attr("r", (d) => Math.round((d.initiatives*maxRadius)/maxNumber));
     }
   },
   mounted: function() {
     this.loadVizz();
   },
   watch: {
-    'this.$props.selection': 'loadVizz'
+    'selection.selected._id': 'loadVizz'
   }
 }
 </script>
