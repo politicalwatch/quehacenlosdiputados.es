@@ -34,17 +34,17 @@
             <!-- <div v&#45;if="this.loadingResults" class="text&#45;center"><h2>Loading results</h2></div> -->
             <!-- <results&#45;table v&#45;if="initiatives.length &#38;&#38; !this.loadingResults" :initiatives="initiatives"></results&#45;table> -->
             <div class="row">
-              <div class="col-sm-12 widget" v-if="data.selection">
+              <div class="col-sm-12 widget" v-if="data.isSelected">
                 <h4>Comparando objetivos y metas</h4>
-                <p class="description"><strong>¿Cuánta atención recibe {{data.selection._id}}?</strong></p>
+                <p class="description"><strong>¿Cuánta atención recibe {{data.selection.selected._id}}?</strong></p>
                 <p class="description">Descubre su volumen de actividad frente al más popular.</p>
                 <div class="row vizz-block">
                   <div class="col-sm-6 text-center">
-                    <svg width="200" height="200"><g transform="translate(100,100)"><g class="node"><circle r="87.5" fill="#abe8ff"></circle><circle fill="#0094cd" r="50"></circle></g></g></svg>
+                    <two-circles :selection="data.selection"></two-circles>
                   </div>
                   <div class="col-sm-6">
                     <p class="description main">
-                    Hay <strong>{{data.selection.initiatives}}</strong> iniciativas relacionadas con <strong>{{data.selection._id}}</strong>. ¿Suficientes?<br/>El ODS que más actividad concentra es <strong>{{data.selection_compareswith._id}}</strong> con <strong>{{data.selection_compareswith.initiatives}}</strong> iniciativas.
+                    Hay <strong>{{data.selection.selected.initiatives}}</strong> iniciativas relacionadas con <strong>{{data.selection.selected._id}}</strong>. ¿Suficientes?<br/>Compáralo con <strong>{{data.selection.compareswith._id}}</strong> que, con <strong>{{data.selection.compareswith.initiatives}}</strong> iniciativas, es el que más actividad concentra.
                     </p>
                   </div>
                 </div>
@@ -62,7 +62,7 @@
                     </ul>
                   </div>
                   <div class="col-sm-5">
-                    <p class="description leftline">Ránking de los grupos que más iniciativas presentan relacionadas con <strong>{{data.selection._id}}</strong></p>
+                    <p class="description leftline">Ránking de los grupos que más iniciativas presentan relacionadas con <strong>{{data.selection.selected._id}}</strong></p>
                   </div>
                 </div>
               </div>
@@ -79,29 +79,11 @@
                     </ul>
                   </div>
                   <div class="col-sm-5">
-                    <p class="description leftline">Descubre cuáles son los lugares más habituales en los que se tramitan las iniciativas relacionadas con <strong>{{data.selection._id}}</strong></p>
+                    <p class="description leftline">Descubre cuáles son los lugares más habituales en los que se tramitan las iniciativas relacionadas con <strong>{{data.selection.selected._id}}</strong></p>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- <div class="row"> -->
-            <!--   <div class="col&#45;sm&#45;12 widget"> -->
-            <!--     <h4>Las preguntas olvidadas sin responder</h4> -->
-              <!--     <p class="description">Estas son las preguntas parlamentarias más antiguas con contenido relacionado con <strong>{{data.selection._id}}</strong> que siguen sin ser respondidas. Pincha en cada una de ellas y descubre más detalles de lo que el Gobierno aún no ha contestado.</p> -->
-            <!--     <table class="table table&#45;striped table&#45;hover"> -->
-            <!--       <tbody> -->
-            <!--         <tr> -->
-            <!--           <td> -->
-            <!--             <a href="#">Proposición no de Ley relativa a impulsar medidas contra la turismofobia en España</a>  -->
-            <!--           </td> -->
-            <!--           <td> -->
-            <!--             <small>2/7/2018</small> -->
-            <!--           </td> -->
-            <!--         </tr> -->
-            <!--       </tbody> -->
-            <!--     </table> -->
-            <!--   </div> -->
-            <!-- </div> -->
           </div>
         </div>
       </div>
@@ -114,6 +96,7 @@
 import Navbar from '@/components/navbar';
 import PageHeader from '@/components/page-header';
 import FooterBlock from '@/components/footer-block';
+import TwoCircles from '@/components/two-circles';
 import Multiselect from 'vue-multiselect'
 import api from '@/api'
 
@@ -123,6 +106,7 @@ export default {
     Navbar,
     PageHeader,
     FooterBlock,
+    TwoCircles,
     Multiselect
   },
   data: function() {
@@ -132,8 +116,8 @@ export default {
       data: {
         topic: '',
         subtopic: '',
+        isSelected: false,
         selection: null,
-        selection_compareswith: null,
         parliamentarygroups: null,
         places: null
       },
@@ -167,11 +151,15 @@ export default {
       api.getOverallStats()
         .then(overall => {
           if (this.data.subtopic) {
-            this.data.selection = overall.subtopics.find(el => el._id === this.data.subtopic);
-            this.data.selection_compareswith = overall.subtopics[0];
+            if (this.data.selection === null) this.data.selection = {};
+            this.data.selection.selected = overall.subtopics.find(el => el._id === this.data.subtopic);
+            this.data.selection.compareswith = overall.subtopics[0];
+            this.data.isSelected = true;
           } else {
-            this.data.selection = overall.topics.find(el => el._id === this.data.topic);
-            this.data.selection_compareswith = overall.topics[0];
+            if (this.data.selection === null) this.data.selection = {};
+            this.data.selection.selected = overall.topics.find(el => el._id === this.data.topic);
+            this.data.selection.compareswith = overall.topics[0];
+            this.data.isSelected = true;
           }
         })
         .catch(error => this.errors = error);
@@ -196,7 +184,10 @@ export default {
   watch: {
     'data.topic': 'getResults',
     'data.subtopic': function() {
-      if (this.data.subtopic !== "") this.getResults();
+        if (this.data.subtopic !== "") this.getResults()
+    },
+    'data.selection': function() {
+      console.log("Change selection");
     }
   }
 }
