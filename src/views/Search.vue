@@ -124,9 +124,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <div class="col-sm-12 pull-right">
-                      <button class="btn btn-custom pull-right" type="submit">Buscar</button>
-                      <br>
+                    <div class="col-sm-9">
                       <a href="#" class="adv-search-link show-block" @click="toggleAdvanced" v-if="!advanced">
                         <i class="fa fa-caret-square-o-down"></i>
                         Mostrar búsqueda avanzada
@@ -135,6 +133,9 @@
                         <i class="fa fa-caret-square-o-up"></i>
                         Ocultar búsqueda avanzada
                       </a>
+                    </div>
+                    <div class="col-sm-3">
+                      <button class="btn btn-custom btn-block" type="submit">Buscar</button>
                     </div>
                   </div>
                 </fieldset>

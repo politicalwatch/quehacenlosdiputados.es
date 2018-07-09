@@ -7670,3 +7670,11 @@ a.disabled, a[disabled] {
     height: 34px;
   }
 }
+
+
+.adv-search-link {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
