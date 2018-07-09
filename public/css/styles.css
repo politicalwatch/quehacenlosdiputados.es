@@ -7663,3 +7663,10 @@ a.disabled, a[disabled] {
   color: #333;
   background-color: #E6E6E6;
 }
+
+
+@media (max-width: 400px) {
+  .navbar-brand img {
+    height: 34px;
+  }
+}
