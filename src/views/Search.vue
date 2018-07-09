@@ -1,5 +1,6 @@
 <template>
   <div>
+    <splash></splash>
     <navbar></navbar>
     <div id="search">
       <page-header :title="'Buscar'" :subtitle="'Bucea en la actividad parlamentaria relacionada con los ODS con las múltiples opciones que te ofrece el buscador de Parlamento 2030'"></page-header>
@@ -164,6 +165,7 @@
 </template>
 
 <script>
+  import Splash from '@/components/splash';
 import Navbar from '@/components/navbar';
 import PageHeader from '@/components/page-header';
 import FooterBlock from '@/components/footer-block';
@@ -178,6 +180,7 @@ const qs = require('qs');
 export default {
   name: 'search',
   components: {
+    Splash,
     Navbar,
     PageHeader,
     FooterBlock,
