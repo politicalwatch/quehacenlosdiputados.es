@@ -57,7 +57,7 @@
                   <div class="col-sm-6">
                     <ul class="list-unstyled">
                       <li v-for="pg in data.parliamentarygroups" v-bind:key="pg._id">
-                        <span class="itemname">{{pg._id}}</span>
+                        <span class="itemname">{{pg._id}} ({{pg.initiatives}} iniciativas)</span>
                       </li>
                     </ul>
                   </div>
@@ -74,7 +74,7 @@
                   <div class="col-sm-6">
                     <ul class="list-unstyled">
                       <li v-for="place in data.places" v-bind:key="place._id">
-                        <span class="itemname">{{place._id}}</span>
+                        <span class="itemname">{{place._id}} ({{place.initiatives}} iniciativas)</span>
                       </li>
                     </ul>
                   </div>
