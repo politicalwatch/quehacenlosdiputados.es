@@ -57,7 +57,7 @@
                   <div class="col-sm-6">
                     <ul class="list-unstyled">
                       <li v-for="pg in data.parliamentarygroups" v-bind:key="pg._id">
-                        <span class="itemname">{{pg._id}} ({{pg.initiatives}} iniciativas)</span>
+                        <span class="itemname">{{pg._id}} ({{pg.initiatives}} {{pluralizeInitiatives(pg.initiatives)}})</span>
                       </li>
                     </ul>
                   </div>
@@ -74,7 +74,7 @@
                   <div class="col-sm-6">
                     <ul class="list-unstyled">
                       <li v-for="place in data.places" v-bind:key="place._id">
-                        <span class="itemname">{{place._id}} ({{place.initiatives}} iniciativas)</span>
+                        <span class="itemname">{{place._id}} ({{place.initiatives}} {{pluralizeInitiatives(place.initiatives)}})</span>
                       </li>
                     </ul>
                   </div>
@@ -182,6 +182,9 @@ export default {
           this.data.places = ranking;
         })
         .catch(error => this.errors = error);
+    },
+    pluralizeInitiatives: function(number_of_initiatives) {
+      return (number_of_initiatives == 1) ? "iniciativa" : "iniciativas";
     },
     prepareForm: function() {
       this.getTopics();
