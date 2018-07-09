@@ -44,12 +44,12 @@ export default {
   },
   computed: {
     closedDisclaimer: function () {
-      return localStorage.getItem('closedDisclaimer') || this.closedMessage ? true : false;
+      return window.sessionStorage.getItem('closedDisclaimer') || this.closedMessage ? true : false;
     }
   },
   methods: {
     closeDisclaimer: function() {
-      localStorage.setItem('closedDisclaimer', true);
+      window.sessionStorage.setItem('closedDisclaimer', true);
       this.closedMessage = true;
     }
   }
