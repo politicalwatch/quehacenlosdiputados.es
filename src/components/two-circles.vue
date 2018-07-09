@@ -13,11 +13,20 @@ export default {
       //Configurations
       let duration = 2000;
       let color = {
-        "ODS 6": "#00aed9",
-        "ODS 7": "#fdb713",
-        "ODS 11": "#f99d26",
-        "ODS 12": "#cf8d2a",
-        "ODS 15": "#3eb049",
+        "objetivos": {
+          "ODS 6": "#00aed9",
+          "ODS 7": "#fdb713",
+          "ODS 11": "#f99d26",
+          "ODS 12": "#cf8d2a",
+          "ODS 15": "#3eb049"
+        },
+        "metas": {
+          "6": "#00aed9",
+          "": "#fdb713",
+          "11": "#f99d26",
+          "12": "#cf8d2a",
+          "ODS 15": "#3eb049"
+        }
       }
 
       //Globals
@@ -30,7 +39,9 @@ export default {
       let data = [this.$props.selection.selected];
       let maxName = this.$props.selection.compareswith._id;
       let maxNumber = this.$props.selection.compareswith.initiatives;
-      let maxColor = color[maxName.split('-')[0].trim()];
+      let color_objetivo = color['objetivos'][maxName.split('-')[0].trim()];
+      let color_meta = color['metas'][maxName.split('.')[0].trim()];
+      let maxColor = (color_objetivo) ? color_objetivo : color_meta;
 
       let node = svg.selectAll(".node")
         .data(data)
@@ -44,7 +55,11 @@ export default {
         .attr("fill", maxColor);
 
       node.append("circle")
-        .attr("fill", (d) => color[d._id.split('-')[0].trim()])
+        .attr("fill", function(d) {
+          let color_objetivo = color['objetivos'][d._id.split('-')[0].trim()];
+          let color_meta = color['metas'][d._id.split('.')[0].trim()];
+          return (color_objetivo) ? color_objetivo : color_meta;
+        })
         .attr("r", 0)
         .transition()
         .duration(duration)
