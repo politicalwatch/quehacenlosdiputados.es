@@ -22,10 +22,10 @@ export default {
         },
         "metas": {
           "6": "#00aed9",
-          "": "#fdb713",
+          "7": "#fdb713",
           "11": "#f99d26",
           "12": "#cf8d2a",
-          "ODS 15": "#3eb049"
+          "15": "#3eb049"
         }
       }
 
@@ -35,6 +35,7 @@ export default {
       let width = +svg.node().getBoundingClientRect().width;
       let height = +svg.node().getBoundingClientRect().height;
       let maxRadius = 100;
+      let minRadius = 5;
 
       let data = [this.$props.selection.selected];
       let maxName = this.$props.selection.compareswith._id;
@@ -51,6 +52,7 @@ export default {
            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
       node.append("circle")
+        .attr("class", "compared")
         .attr("r", maxRadius)
         .attr("fill", maxColor);
 
@@ -63,7 +65,10 @@ export default {
         .attr("r", 0)
         .transition()
         .duration(duration)
-        .attr("r", (d) => Math.round((d.initiatives*maxRadius)/maxNumber));
+        .attr("r", function(d) {
+          let radius = Math.round((d.initiatives*maxRadius)/maxNumber);
+          return (radius > minRadius) ? radius : minRadius;
+        });
     }
   },
   mounted: function() {
@@ -75,5 +80,11 @@ export default {
 }
 </script>
 
+
 <style lang="scss">
+
+circle.compared {
+  opacity: .3;
+}
+
 </style>

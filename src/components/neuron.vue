@@ -159,19 +159,10 @@ export default {
 </script>
 
 <style lang="scss">
+
 .node {
   font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 10px;
-  circle {
-    opacity: .5;
-    &:hover,
-    &.related {
-      opacity: 1;
-    }
-  }
-  path {
-    opacity: .4;
-  }
   .label_name {
     font-size: 20px;
     font-weight: bold;
