@@ -1,5 +1,5 @@
 <template>
-  <svg style="width:240px; height:240px"></svg>
+  <svg style="width:300px; height:500px"></svg>
 </template>
 
 <script>
@@ -34,7 +34,7 @@ export default {
       svg.selectAll("*").remove();
       let width = +svg.node().getBoundingClientRect().width;
       let height = +svg.node().getBoundingClientRect().height;
-      let maxRadius = 100;
+      let maxRadius = 150;
       let minRadius = 5;
 
       let data = [this.$props.selection.selected];
@@ -49,7 +49,7 @@ export default {
          .enter()
          .append("g")
            .attr("class", "node")
-           .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+           .attr("transform", "translate(" + width / 2 + "," + maxRadius + ")");
 
       node.append("circle")
         .attr("class", "compared")
@@ -57,11 +57,7 @@ export default {
         .attr("fill", maxColor);
 
       node.append("circle")
-        .attr("fill", function(d) {
-          let color_objetivo = color['objetivos'][d._id.split('-')[0].trim()];
-          let color_meta = color['metas'][d._id.split('.')[0].trim()];
-          return (color_objetivo) ? color_objetivo : color_meta;
-        })
+        .attr("fill", function(d) { return selectColor(d); })
         .attr("r", 0)
         .transition()
         .duration(duration)
@@ -69,6 +65,54 @@ export default {
           let radius = Math.round((d.initiatives*maxRadius)/maxNumber);
           return (radius > minRadius) ? radius : minRadius;
         });
+
+
+      let legend = svg.selectAll(".legend")
+        .data(data)
+        .enter()
+        .append("g")
+        .attr("class", "legend");
+
+      legend.append("rect")
+        .attr("width", maxRadius*2)
+        .attr("height", 10)
+        .attr("fill", function(d) { return selectColor(d); })
+        .attr("transform", "translate(0," + (maxRadius*2+50) + ")");
+
+      legend.append("text")
+        .attr("x", 0)
+        .attr("y", 0)
+        .style("fill", "#222")
+        .style("font-size", "13px")
+        .text(function(d) { return d._id; })
+        .attr("text-anchor", "middle")
+        .attr("alignment-baseline", "central")
+        .attr("transform", "translate(" + width/2 + "," + (maxRadius*2+70) + ")");
+
+      legend.append("rect")
+        .attr("width", maxRadius*2)
+        .attr("height", 10)
+        .attr("class", "compared")
+        .attr("fill", maxColor)
+        .attr("transform", "translate(0," + (maxRadius*2+90) + ")");
+
+      legend.append("text")
+        .attr("x", 0)
+        .attr("y", 0)
+        .style("fill", "#222")
+        .style("font-size", "13px")
+        .text(maxName)
+        .attr("text-anchor", "middle")
+        .attr("alignment-baseline", "central")
+        .attr("transform", "translate(" + width/2 + "," + (maxRadius*2+110) + ")");
+
+
+      function selectColor(d) {
+          let color_objetivo = color['objetivos'][d._id.split('-')[0].trim()];
+          let color_meta = color['metas'][d._id.split('.')[0].trim()];
+          return (color_objetivo) ? color_objetivo : color_meta;
+      }
+
     }
   },
   mounted: function() {
@@ -83,7 +127,8 @@ export default {
 
 <style lang="scss">
 
-circle.compared {
+circle.compared,
+rect.compared {
   opacity: .3;
 }
 
