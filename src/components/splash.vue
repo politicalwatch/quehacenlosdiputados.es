@@ -36,29 +36,41 @@ export default {
 <style scoped lang="scss">
 #splash {
   .outer {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
+    left: 0;
+    top: 0;
     background-color: rgba(0,0,0,.5);
     text-align: center;
     z-index: 999;
     .inner {
       position: absolute;
-      width: 800px;
-      height: 500px;
+      width: 95%;
+      max-width: 800px;
+      height: 95vh;
+      max-height: 500px;
       top: 50%;
       left: 50%;
-      margin: -250px 0 0 -400px;
+      margin: 0;
+      transform: translate3d(-50%, -50%, 0);
       background-color: #f8f8f8;
-      padding: 40px;
-        img {
-          width: 75%;
-            margin-bottom: 20px;
-        }
-        p {
+      padding: 15px;
+      @media (min-width: 768px) {
+        padding: 40px;
+      }
+      img {
+        width: 75%;
+          margin-bottom: 20px;
+      }
+      p {
+        font-size: 1em;
+        margin: 15px 0;
+        @media (min-width: 768px) {
+          margin: 20px 0;
           font-size: 1.2em;
-          margin: 20px 0px 0px 20px;
         }
+      }
     }
   }
 }
