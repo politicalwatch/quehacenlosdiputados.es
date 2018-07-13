@@ -27,6 +27,9 @@
             <li>
               <router-link :to="{name:'about'}" class="menuitem">Acerca</router-link>
             </li>
+            <li>
+              <router-link :to="{name:'mediakit'}" class="menuitem">Mediakit</router-link>
+            </li>
           </ul>
         </div>
       </div>
