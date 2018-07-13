@@ -44,7 +44,7 @@
                   </div>
                   <div class="col-sm-6">
                     <p class="description main">
-                    Hay <strong>{{data.selection.selected.initiatives}}</strong> iniciativas relacionadas con <strong>{{data.selection.selected._id}}</strong>. ¿Suficientes?<br/>Compáralo con <strong>{{data.selection.compareswith._id}}</strong> que, con <strong>{{data.selection.compareswith.initiatives}}</strong> iniciativas, es el que más actividad concentra.
+                    Hay <strong>{{data.selection.selected.initiatives}}</strong> iniciativas relacionadas con <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la meta</span>&nbsp;<strong>{{data.selection.selected._id}}</strong>. ¿Suficientes?<br/>Compáralo con <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la meta</span>&nbsp;<strong>{{data.selection.compareswith._id}}</strong> que, con <strong>{{data.selection.compareswith.initiatives}}</strong> iniciativas, es <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la</span> que más actividad concentra<span v-show="data.selectedTarget"> dentro del <strong>{{data.topic}}</strong></span>.
                     </p>
                   </div>
                 </div>
@@ -117,6 +117,7 @@ export default {
         topic: '',
         subtopic: '',
         isSelected: false,
+        selectedTarget: false,
         selection: {
           compareswith: {
             _id: "",
@@ -162,13 +163,16 @@ export default {
           if (this.data.subtopic) {
             if (this.data.selection === null) this.data.selection = {};
             this.data.selection.selected = overall.subtopics.find(el => el._id === this.data.subtopic);
-            this.data.selection.compareswith = overall.subtopics[0];
+            let compareswith_posibilities = overall.subtopics.filter(el => el._id.startsWith(this.data.selection.selected._id.split('.')[0]));
+            this.data.selection.compareswith = compareswith_posibilities[0];
             this.data.isSelected = true;
+            this.data.selectedTarget = true;
           } else {
             if (this.data.selection === null) this.data.selection = {};
             this.data.selection.selected = overall.topics.find(el => el._id === this.data.topic);
             this.data.selection.compareswith = overall.topics[0];
             this.data.isSelected = true;
+            this.data.selectedTarget = false;
           }
         })
         .catch(error => this.errors = error);
