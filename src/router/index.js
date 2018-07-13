@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Search from '@/views/Search.vue'
+import Initiative from '@/views/Initiative.vue'
 import Dashboard from '@/views/Dashboard.vue'
 import About from '@/views/About.vue'
 import AboutEnglish from '@/views/AboutEnglish.vue'
-import Initiative from '@/views/Initiative.vue'
+import Mediakit from '@/views/Mediakit.vue'
 
 Vue.use(Router)
 
@@ -25,6 +26,11 @@ export default new Router({
       component: Search
     },
     {
+      path: "/initiatives/:id",
+      name: "initiative",
+      component: Initiative
+    },
+    {
       path: "/dashboard",
       name: "dashboard",
       component: Dashboard
@@ -40,9 +46,9 @@ export default new Router({
       component: AboutEnglish
     },
     {
-      path: "/initiatives/:id",
-      name: "initiative",
-      component: Initiative
+      path: "/mediakit",
+      name: "mediakit",
+      component: Mediakit
     },
   ]
 });

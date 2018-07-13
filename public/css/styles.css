@@ -7611,6 +7611,16 @@ fieldset[disabled] .btn-tipi.focus {
   background-color: #222222;
   border-color: #222222;
 }
+.btn-custom-naked {
+  color: #222222;
+  border-color: #222222;
+}
+.btn-custom-naked:hover,
+.btn-custom-naked:active {
+  color: #f8f8f8;
+  background-color: #222222;
+  border-color: #222222;
+}
 
 .cascade {
   width: 100%;
@@ -7641,14 +7651,21 @@ fieldset[disabled] .btn-tipi.focus {
 }
 
 
-#about h4 {
+#about h4,
+#mediakit h4 {
   font-weight: bold;
 }
 #about p {
   padding: 0px 0px 40px 0px;
 }
 #about p:first-of-type {
-    padding: 40px 0px;
+  padding: 40px 0px;
+}
+#mediakit .language-block {
+  margin: 40px 0px 40px 0px;
+}
+#mediakit .download-block {
+  margin: 20px 10px 20px 0px;
 }
 
 
