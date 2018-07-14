@@ -44,7 +44,7 @@
                   </div>
                   <div class="col-sm-6">
                     <p class="description main">
-                    Hay <strong>{{data.selection.selected.initiatives}}</strong> iniciativas relacionadas con <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la meta</span>&nbsp;<strong>{{data.selection.selected._id}}</strong>. ¿Suficientes?<br/>Compáralo con <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la meta</span>&nbsp;<strong>{{data.selection.compareswith._id}}</strong> que, con <strong>{{data.selection.compareswith.initiatives}}</strong> iniciativas, es <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la</span> que más actividad concentra<span v-show="data.selectedTarget"> dentro del <strong>{{data.topic}}</strong></span>.
+                    Hay <strong>{{data.selection.selected.initiatives}}</strong> iniciativas relacionadas con <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la meta</span>&nbsp;<strong>{{data.selection.selected._id}}</strong>&nbsp;<span v-show="data.sameSelection">(<span v-show="!data.selectedTarget">el más popular</span><span v-show="data.selectedTarget">la meta más popular del <strong>{{data.topic}}</strong></span>)</span>.<span v-show="!data.sameSelection"> ¿Suficientes?<br/>Compáralo con <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la meta</span>&nbsp;<strong>{{data.selection.compareswith._id}}</strong> que, con <strong>{{data.selection.compareswith.initiatives}}</strong> iniciativas, es <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la</span> que más actividad concentra<span v-show="data.selectedTarget"> dentro del <strong>{{data.topic}}</strong></span>.</span>
                     </p>
                   </div>
                 </div>
@@ -118,6 +118,7 @@ export default {
         subtopic: '',
         isSelected: false,
         selectedTarget: false,
+        sameSelection: false,
         selection: {
           compareswith: {
             _id: "",
@@ -174,6 +175,7 @@ export default {
             this.data.isSelected = true;
             this.data.selectedTarget = false;
           }
+          this.data.sameSelection = (this.data.selection.selected._id == this.data.selection.compareswith._id) ? true : false;
         })
         .catch(error => this.errors = error);
       api.getParliamentarygroupsRanking(this.data.topic, this.data.subtopic)
