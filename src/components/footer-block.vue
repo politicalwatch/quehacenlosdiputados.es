@@ -25,12 +25,15 @@
       </div>
     </div>
     <div class="cascade"></div>
+    <cookie-law theme="base" buttonText="Entendido" buttonClass="btn btn-custom" message="Este sitio usa cookies para asegurarte la mejor experiencia web."></cookie-law>
   </div>
 </template>
 
 <script>
+  import CookieLaw from 'vue-cookie-law'
   export default {
-    name: "footer-block"
+    name: "footer-block",
+    components: {CookieLaw}
   }
 </script>
 
