@@ -7695,3 +7695,7 @@ a.disabled, a[disabled] {
   margin-bottom: 10px;
 
 }
+
+.multiselect__content-wrapper {
+  overflow: visible !important;
+}
