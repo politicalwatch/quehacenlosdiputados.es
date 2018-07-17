@@ -7698,4 +7698,6 @@ a.disabled, a[disabled] {
 
 .multiselect__content-wrapper {
   overflow: visible !important;
+  width: auto !important;
+  min-width: 100% !important;
 }
