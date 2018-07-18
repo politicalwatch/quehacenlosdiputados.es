@@ -7669,19 +7669,6 @@ fieldset[disabled] .btn-tipi.focus {
 }
 
 
-a.disabled, a[disabled] {
-  cursor: default;
-  background-image: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  color: #333;
-  background-color: #E6E6E6;
-}
-
-
 @media (max-width: 400px) {
   .navbar-brand img {
     height: 34px;

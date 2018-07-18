@@ -64,8 +64,9 @@ export default {
       ].join('');
     }
   },
-  getInitiatives(params) {
+  getInitiatives(params, all=false) {
     Object.keys(params).forEach(key => !params[key] && delete params[key]);
+    if (all) params['per_page'] = -1;
 
     return axios
       .get(getEndpoint(), {

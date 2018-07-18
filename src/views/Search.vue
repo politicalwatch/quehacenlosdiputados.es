@@ -146,9 +146,9 @@
               <a href="/">
                 <i class="fa fa fa-times-circle-o"></i> Limpiar criterios de búsqueda
               </a>
-              <a href="#" class="disabled pull-right" id="exportcsv">
-                <i class="fa fa fa-download"></i> Descargar datos (proximamente)
-              </a>
+              <vue-csv-downloader v-on:click="this.loadCSVItems" :data="csvitems" :fields="csvfields" class="pull-right">
+                <i class="fa fa-download" aria-hidden="true"></i>&nbsp;Descargar datos
+              </vue-csv-downloader>
             </div>
 
             <div v-if="this.loadingResults" class="text-center"><h2>Cargando resultados...</h2></div>
@@ -166,13 +166,14 @@
 </template>
 
 <script>
-  import Splash from '@/components/splash';
+import Splash from '@/components/splash';
 import Navbar from '@/components/navbar';
 import PageHeader from '@/components/page-header';
 import FooterBlock from '@/components/footer-block';
 import ResultsTable from '@/components/results-table';
 import Datepicker from 'vuejs-datepicker';
 import Multiselect from 'vue-multiselect'
+import VueCsvDownloader from 'vue-csv-downloader';
 import api from '@/api'
 
 const moment = require('moment');
@@ -187,7 +188,8 @@ export default {
     FooterBlock,
     Datepicker,
     ResultsTable,
-    Multiselect
+    Multiselect,
+    VueCsvDownloader
   },
   data: function() {
     return {
@@ -217,7 +219,9 @@ export default {
         page: 1
       },
       loadingResults: false,
-      advanced: false
+      advanced: false,
+      csvitems: [],
+      csvfields: ['title', 'reference', 'initiative_type_alt', 'authors', 'deputies', 'topics', 'status', 'updated']
     }
   },
   computed: {
@@ -332,6 +336,13 @@ export default {
       this.getPlaces();
       this.getStatus();
       this.getTypes();
+    },
+    loadCSVItems: function() {
+      api.getInitiatives(this.data, true)
+         .then(response => {
+           this.csvitems = response.initiatives;
+          })
+         .catch(error => this.errors = error);
     },
     toggleAdvanced: function() {
       this.advanced = !this.advanced;
