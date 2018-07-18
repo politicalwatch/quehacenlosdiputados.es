@@ -146,7 +146,20 @@
               <a href="/">
                 <i class="fa fa fa-times-circle-o"></i> Limpiar criterios de búsqueda
               </a>
-              <vue-csv-downloader v-on:click="this.loadCSVItems" :data="csvitems" :fields="csvfields" class="pull-right">
+              <a
+                v-if="!csvItems.length"
+                :class="{ disabled: !canDownloadCSV }"
+                :title="!canDownloadCSV ? 'Demasiados resultados para poder descargar. Afina la búsqueda' : 'Descarga CSV con todos los resultados'"
+                @click.prevent="loadCSVItems"
+                class="pull-right" href="#">
+                <i class="fa fa-download" aria-hidden="true"></i>&nbsp;Descargar datos
+              </a>
+              <vue-csv-downloader
+                v-else
+                :data="csvItems"
+                :fields="csvFields"
+                id="downloadCSV"
+                class="pull-right">
                 <i class="fa fa-download" aria-hidden="true"></i>&nbsp;Descargar datos
               </vue-csv-downloader>
             </div>
@@ -220,8 +233,9 @@ export default {
       },
       loadingResults: false,
       advanced: false,
-      csvitems: [],
-      csvfields: ['title', 'reference', 'initiative_type_alt', 'authors', 'deputies', 'topics', 'status', 'updated']
+      csvItems: [],
+      csvFields: ['title', 'reference', 'initiative_type_alt', 'authors', 'deputies', 'topics', 'status', 'updated'],
+      LIMITCSV: 1000
     }
   },
   computed: {
@@ -232,6 +246,9 @@ export default {
       let nextResult = (this.query_meta.page * this.query_meta.per_page) + 1;
       let lastResult = nextResult + this.query_meta.per_page -1;
       return `(${nextResult}-${lastResult})`;
+    },
+    canDownloadCSV: function() {
+      return this.query_meta.total < this.LIMITCSV;
     }
   },
   methods: {
@@ -296,6 +313,7 @@ export default {
     },
     getResults: function(event) {
       this.loadingResults = true;
+      this.csvItems = [];
       const isNewSearch = event && event.type === 'submit';
       const params = this.$route.params.data && !isNewSearch ?
         qs.parse(this.$route.params.data)
@@ -337,10 +355,14 @@ export default {
       this.getStatus();
       this.getTypes();
     },
-    loadCSVItems: function() {
-      api.getInitiatives(this.data, true)
+    loadCSVItems: function(event) {
+      if (!this.canDownloadCSV) return false;
+      event.target.innerText = "Procesando descarga...";
+      let params =  Object.assign({ per_page: this.LIMITCSV }, this.data);
+      api.getInitiatives(params)
          .then(response => {
-           this.csvitems = response.initiatives;
+           this.csvItems = response.initiatives;
+           event.target.innerText = "Descargar datos";
           })
          .catch(error => this.errors = error);
     },
@@ -353,6 +375,11 @@ export default {
       this.getResults();
     }
     this.prepareForm();
+  },
+  updated: function() {
+    if (document.getElementById('downloadCSV')) {
+      document.getElementById('downloadCSV').click();
+    }
   }
 }
 </script>
@@ -364,5 +391,9 @@ export default {
   margin: 2rem auto;
   max-width: 320px;
   text-align: center;
+}
+a.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 </style>
