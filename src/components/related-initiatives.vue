@@ -4,7 +4,7 @@
     <ul class="list-unstyled">
       <li class="value" v-for="r in related" v-bind:key="r.title+r.authors">
         <small v-if="r.id">
-          <router-link :to="{name: 'initiative', params: {id: r.id}}">{{r.initiative_type_alt}} ({{show(getAuthor(r))}})</router-link>
+          <router-link :to="{name: 'initiative', params: {id: r.id}}" v-html="r.initiative_type_alt (show(getAuthor(r)))"></router-link>
         </small>
         <small v-if="!r.id">
           <span>{{r.initiative_type_alt}} ({{show(getAuthor(r))}})</span>
@@ -27,7 +27,7 @@ export default {
       return initiative.deputies;
     },
     show: function(value) {
-      if (value.constructor === Array) return value.join('<br/>')
+      if (value.constructor === Array) return value.join(' | ')
       return value
     }
   }
