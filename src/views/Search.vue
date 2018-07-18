@@ -158,6 +158,7 @@
                 v-else
                 :data="csvItems"
                 :fields="csvFields"
+                :downloadName="getNameFromCSV()"
                 id="downloadCSV"
                 class="pull-right">
                 <i class="fa fa-download" aria-hidden="true"></i>&nbsp;Descargar datos
@@ -354,6 +355,10 @@ export default {
       this.getPlaces();
       this.getStatus();
       this.getTypes();
+    },
+    getNameFromCSV: function() {
+      let d = new Date();
+      return "export-" + d.toISOString() + ".csv";
     },
     loadCSVItems: function(event) {
       if (!this.canDownloadCSV) return false;
