@@ -29,6 +29,7 @@
                         @select="fillSubtopics"
                         v-model="data.topic"
                         :options="topics.map(topic => topic.name)"
+                        :allow-empty="true"
                         name="topic" id="topic" placeholder="Todos">
                       </multiselect>
                     </div>
@@ -38,6 +39,7 @@
                         v-model="data.subtopics"
                         :multiple="true"
                         :options="subtopics"
+                        :allow-empty="true"
                         :disabled="!this.subtopics.length"
                         :placeholder="this.subtopics.length ? 'Todos' : 'Selecciona previamente ODS/SDG'"
                         name="subtopics" id="subtopics" >
@@ -50,6 +52,7 @@
                       <multiselect
                         v-model="data.author"
                         :options="groups.map(group => group.name || group)"
+                        :allow-empty="true"
                         name="author" id="author" placeholder="Todos">
                       </multiselect>
                     </div>
@@ -58,6 +61,7 @@
                       <multiselect
                         v-model="data.deputy"
                         :options="deputies"
+                        :allow-empty="true"
                         name="deputy" id="deputy" placeholder="Apellidos, Nombre">
                       </multiselect>
                     </div>
@@ -88,6 +92,7 @@
                         <multiselect
                           v-model="data.place"
                           :options="places"
+                          :allow-empty="true"
                           name="place" id="place" placeholder="Cualquiera">
                         </multiselect>
                       </div>
@@ -102,6 +107,7 @@
                         <multiselect
                           v-model="data.type"
                           :options="types"
+                          :allow-empty="true"
                           name="type" id="type" placeholder="Cualquiera">
                         </multiselect>
                       </div>
@@ -112,6 +118,7 @@
                         <multiselect
                           v-model="data.status"
                           :options="status"
+                          :allow-empty="true"
                           name="status" id="status" placeholder="Cualquiera">
                         </multiselect>
                       </div>
