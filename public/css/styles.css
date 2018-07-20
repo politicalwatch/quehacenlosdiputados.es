@@ -7683,8 +7683,3 @@ fieldset[disabled] .btn-tipi.focus {
 
 }
 
-.multiselect__content-wrapper {
-  overflow: visible !important;
-  width: auto !important;
-  min-width: 100% !important;
-}
