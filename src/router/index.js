@@ -6,6 +6,7 @@ import Dashboard from '@/views/Dashboard.vue'
 import About from '@/views/About.vue'
 import AboutEnglish from '@/views/AboutEnglish.vue'
 import Mediakit from '@/views/Mediakit.vue'
+import Page404 from '@/views/Page404.vue'
 
 Vue.use(Router)
 
@@ -49,6 +50,11 @@ export default new Router({
       path: "/mediakit",
       name: "mediakit",
       component: Mediakit
+    },
+    {
+      path: "/*",
+      name: "Page404",
+      component: Page404
     },
   ]
 });
