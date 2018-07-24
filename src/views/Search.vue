@@ -434,5 +434,13 @@ a.disabled {
     max-width: 100%;
     font-size: 14px;
   }
+  &__option {
+    white-space: normal;
+  }
+}
+.container {
+  @media (min-width: 992px) and (max-width: 1200px) {
+    width: 98%;
+  }
 }
 </style>
