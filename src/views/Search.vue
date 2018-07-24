@@ -24,7 +24,7 @@
                 <fieldset>
                   <div class="form-group">
                     <label for="topic" class="col-sm-1 control-label">ODS/SDG</label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-5">
                       <multiselect
                         @select="fillSubtopics"
                         v-model="data.topic"
@@ -34,21 +34,21 @@
                       </multiselect>
                     </div>
                     <label for="subtopics" class="col-sm-1 control-label">Metas</label>
-                    <div class="col-sm-7">
+                    <div class="col-sm-5">
                       <multiselect
                         v-model="data.subtopics"
                         :multiple="true"
                         :options="subtopics"
                         :allow-empty="true"
                         :disabled="!this.subtopics.length"
-                        :placeholder="this.subtopics.length ? 'Todos' : 'Selecciona previamente ODS/SDG'"
+                        :placeholder="this.subtopics.length ? 'Todos' : 'Selecciona previamente un ODS/SDG'"
                         name="subtopics" id="subtopics" >
                       </multiselect>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="author" class="col-sm-1 control-label">Autor</label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-5">
                       <multiselect
                         v-model="data.author"
                         :options="groups.map(group => group.name || group)"
@@ -57,7 +57,7 @@
                       </multiselect>
                     </div>
                     <label for="author_deputies" class="col-sm-1 control-label">Diputado/a</label>
-                    <div class="col-sm-7">
+                    <div class="col-sm-5">
                       <multiselect
                         v-model="data.deputy"
                         :options="deputies"
@@ -87,32 +87,6 @@
                           :clear-button="true">
                         </datepicker>
                       </div>
-                      <label for="place" class="col-sm-1 control-label">Lugar</label>
-                      <div class="col-sm-3">
-                        <multiselect
-                          v-model="data.place"
-                          :options="places"
-                          :allow-empty="true"
-                          name="place" id="place" placeholder="Cualquiera">
-                        </multiselect>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="reference" class="col-sm-1 control-label">Referencia</label>
-                      <div class="col-sm-3">
-                        <input v-model="data.reference" class="form-control" type="text" id="reference" name="reference" placeholder="Ej.: 121/000001">
-                      </div>
-                      <label for="type" class="col-sm-1 control-label">Tipo</label>
-                      <div class="col-sm-7">
-                        <multiselect
-                          v-model="data.type"
-                          :options="types"
-                          :allow-empty="true"
-                          name="type" id="type" placeholder="Cualquiera">
-                        </multiselect>
-                      </div>
-                    </div>
-                    <div class="form-group">
                       <label for="status" class="col-sm-1 control-label">Estado</label>
                       <div class="col-sm-3">
                         <multiselect
@@ -122,8 +96,34 @@
                           name="status" id="status" placeholder="Cualquiera">
                         </multiselect>
                       </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="place" class="col-sm-1 control-label">Lugar</label>
+                      <div class="col-sm-5">
+                        <multiselect
+                          v-model="data.place"
+                          :options="places"
+                          :allow-empty="true"
+                          name="place" id="place" placeholder="Cualquiera">
+                        </multiselect>
+                      </div>
+                      <label for="type" class="col-sm-1 control-label">Tipo</label>
+                      <div class="col-sm-5">
+                        <multiselect
+                          v-model="data.type"
+                          :options="types"
+                          :allow-empty="true"
+                          name="type" id="type" placeholder="Cualquiera">
+                        </multiselect>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="reference" class="col-sm-1 control-label">Referencia</label>
+                      <div class="col-sm-5">
+                        <input v-model="data.reference" class="form-control" type="text" id="reference" name="reference" placeholder="Ej.: 121/000001">
+                      </div>
                       <label for="title" class="col-sm-1 control-label">Título</label>
-                      <div class="col-sm-7">
+                      <div class="col-sm-5">
                         <input v-model="data.title" class="form-control" type="text" id="title" name="title" placeholder="Nota: Se admiten expresiones regulares">
                       </div>
                     </div>
