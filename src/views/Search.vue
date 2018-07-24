@@ -408,4 +408,10 @@ a.disabled {
   cursor: not-allowed;
   opacity: 0.5;
 }
+.multiselect {
+  &__content {
+    max-width: 100%;
+    font-size: 14px;
+  }
+}
 </style>
