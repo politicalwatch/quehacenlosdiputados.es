@@ -63,6 +63,7 @@ export default {
         .duration(duration)
         .attr("r", function(d) {
           let radius = Math.round((d.initiatives*maxRadius)/maxNumber);
+          if (d.initiatives === 0) return 0;
           return (radius > minRadius) ? radius : minRadius;
         });
 
