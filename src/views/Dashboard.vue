@@ -50,7 +50,7 @@
                 </div>
               </div>
             </div>
-            <div class="row">
+            <div class="row" v-show="data.selection.selected.initiatives">
               <div class="col-sm-12 widget" v-if="data.parliamentarygroups">
                 <h4>Grupos parlamentarios más activos</h4>
                 <div class="row">
@@ -67,7 +67,7 @@
                 </div>
               </div>
             </div>
-            <div class="row">
+            <div class="row" v-show="data.selection.selected.initiatives">
               <div class="col-sm-12 widget" v-if="data.places">
                 <h4>¿Dónde se tramitan las iniciativas?</h4>
                 <div class="row">
