@@ -33,7 +33,6 @@ export default {
       let svg = d3.select(this.$el);
       svg.selectAll("*").remove();
       let width = +svg.node().getBoundingClientRect().width;
-      let height = +svg.node().getBoundingClientRect().height;
       let maxRadius = 150;
       let minRadius = 5;
 
