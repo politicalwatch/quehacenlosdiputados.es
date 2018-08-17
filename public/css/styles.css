@@ -7098,9 +7098,6 @@ fieldset[disabled] .btn-tipi.focus {
   color: #222222;
   background: #ecf0f1;
 }
-.capitalize-text {
-  text-transform: capitalize;
-}
 .foto {
   border-radius: 50%;
   border: 3px solid #abe8ff;

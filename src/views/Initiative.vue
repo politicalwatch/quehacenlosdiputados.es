@@ -13,9 +13,7 @@
             <text-element :meta="'Lugar'" :value="initiative.place"></text-element>
             <text-element :meta="'Registro'" :value="moment(initiative.created).format('DD/MM/Y')"></text-element>
             <text-element :meta="'Actualización'" :value="moment(initiative.updated).format('DD/MM/Y')"></text-element>
-            <div class="capitalize">
-              <topics-element :meta="'ODS tratados'" :topics="initiative.topics" :tags="initiative.tags"></topics-element>
-            </div>
+            <topics-element :meta="'ODS tratados'" :topics="initiative.topics" :tags="initiative.tags"></topics-element>
           </div>
           <div class="col-sm-6">
             <div class="row">
