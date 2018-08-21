@@ -380,7 +380,7 @@ export default {
     filterTags: function() {
       let filtered = (this.selectedSubtopics.length) ?
         (tag => this.selectedSubtopics.indexOf(tag.subtopic) !== -1)
-        : (tag => true);
+        : (() => true);
       this.filteredTags = this.tags.filter(filtered).map(tag => tag.tag);
     },
     addSubtopicToTagsFilter: function(selectedSubtopic) {
@@ -391,7 +391,7 @@ export default {
     removeSubtopicToTagsFilter: function(removedSubtopic) {
       this.data.tags = [];
       this.selectedSubtopics.splice(this.selectedSubtopics.indexOf(removedSubtopic), 1);
-      this.filterTags(subtopics);
+      this.filterTags();
     },
     getResults: function(event) {
       this.loadingResults = true;
