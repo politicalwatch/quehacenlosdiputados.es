@@ -29,7 +29,8 @@
                         selectedLabel="Seleccionado"
                         selectLabel=""
                         deselectLabel="Pulsa para deseleccionar"
-                        @select="fillSubtopics"
+                        @select="fillSubtopicsAndTags"
+                        @remove="clearSubtopicsAndTags"
                         v-model="data.topic"
                         :options="topics.map(topic => topic.name)"
                         :allow-empty="true"
@@ -39,9 +40,11 @@
                     <label for="subtopics" class="col-sm-1 control-label">Metas</label>
                     <div class="col-sm-5">
                       <multiselect
-                        selectedLabel="Seleccionado"
+                        selectedLabel="Seleccionada"
                         selectLabel=""
                         deselectLabel="Pulsa para deseleccionar"
+                        @select="addSubtopicToTagsFilter"
+                        @remove="removeSubtopicToTagsFilter"
                         v-model="data.subtopics"
                         :multiple="true"
                         :options="subtopics"
@@ -49,6 +52,23 @@
                         :disabled="!this.subtopics.length"
                         :placeholder="this.subtopics.length ? 'Todos' : 'Selecciona previamente un ODS/SDG'"
                         name="subtopics" id="subtopics" >
+                      </multiselect>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="tags" class="col-sm-1 control-label">Etiquetas</label>
+                    <div class="col-sm-11">
+                      <multiselect
+                        selectedLabel="Seleccionada"
+                        selectLabel=""
+                        deselectLabel="Pulsa para deseleccionar"
+                        v-model="data.tags"
+                        :multiple="true"
+                        :options="filteredTags"
+                        :allow-empty="true"
+                        :disabled="!this.filteredTags.length"
+                        :placeholder="this.filteredTags.length ? 'Todos' : 'Selecciona previamente un ODS/SDG'"
+                        name="tags" id="tags" >
                       </multiselect>
                     </div>
                   </div>
@@ -237,6 +257,7 @@ export default {
     return {
       topics: [],
       subtopics: [],
+      tags: [],
       groups: [],
       deputies: [],
       places: [],
@@ -248,7 +269,8 @@ export default {
       moment: moment,
       data: {
         topic: '',
-        subtopics: '',
+        subtopics: [],
+        tags: [],
         author: '',
         deputy: '',
         startdate: '',
@@ -260,6 +282,8 @@ export default {
         title: '',
         page: 1
       },
+      selectedSubtopics: [],
+      filteredTags: [],
       loadingResults: false,
       advanced: false,
       csvItems: [],
@@ -281,10 +305,21 @@ export default {
     }
   },
   methods: {
-    fillSubtopics: function(selectedTopic, clearValues) {
-      this.data.subtopics = clearValues ? [] : this.data.subtopics;
+    fillSubtopicsAndTags: function(selectedTopic, clearValues) {
+      if (clearValues) {
+        this.data.subtopics = [];
+        this.data.tags = [];
+      }
       const currentTopic = this.topics.find(topic => topic.name === selectedTopic);
-      this.getSubtopics(currentTopic.id);
+      this.getSubtopicsAndTags(currentTopic.id);
+    },
+    clearSubtopicsAndTags: function() {
+      this.subtopics = [];
+      this.selectedSubtopics = [];
+      this.tags = [];
+      this.filteredTags = [];
+      this.data.subtopics = [];
+      this.data.tags = [];
     },
     clearStartDate: function() {
       this.data.startdate = '';
@@ -303,7 +338,7 @@ export default {
         .then(topics => {
           this.topics = topics;
           if (this.data.topic) {
-            this.fillSubtopics(this.data.topic, false);
+            this.fillSubtopicsAndTags(this.data.topic, false);
           }
         })
         .catch(error => this.errors = error);
@@ -333,12 +368,30 @@ export default {
         .then(types => this.types = types)
         .catch(error => this.errors = error);
     },
-    getSubtopics: function(topicID) {
+    getSubtopicsAndTags: function(topicID) {
       api.getTags(topicID)
         .then(tags => {
           this.subtopics = [...new Set(tags.map(tag => tag.subtopic))];
+          this.tags = tags;
+          this.filteredTags = this.tags.map(tag => tag.tag);
         })
         .catch(error => this.errors = error);
+    },
+    filterTags: function() {
+      let filtered = (this.selectedSubtopics.length) ?
+        (tag => this.selectedSubtopics.indexOf(tag.subtopic) !== -1)
+        : (tag => true);
+      this.filteredTags = this.tags.filter(filtered).map(tag => tag.tag);
+    },
+    addSubtopicToTagsFilter: function(selectedSubtopic) {
+      this.data.tags = [];
+      this.selectedSubtopics.push(selectedSubtopic);
+      this.filterTags();
+    },
+    removeSubtopicToTagsFilter: function(removedSubtopic) {
+      this.data.tags = [];
+      this.selectedSubtopics.splice(this.selectedSubtopics.indexOf(removedSubtopic), 1);
+      this.filterTags(subtopics);
     },
     getResults: function(event) {
       this.loadingResults = true;
