@@ -9,7 +9,9 @@
       <div v-for="subtopic in getSubtopics(topic)" v-bind:key="subtopic" class="subtopic">
         <router-link :to="{ name: 'results', params: { data: paramsData(topic, subtopic) } }">Meta {{subtopic}} </router-link>
         <br>
-        <span v-for="tag in getTags(subtopic)" v-bind:key="tag" class="tag">{{tag}}</span>
+        <span v-for="tag in getTags(subtopic)" v-bind:key="tag" class="tag">
+          <router-link :to="{ name: 'results', params: { data: paramsData(topic, subtopic, tag) } }">{{tag}} </router-link>
+        </span>
         <br>
       </div>
 
@@ -35,10 +37,11 @@ export default {
     getTags: function(subtopic) {
       return this.$props.tags.filter(tag => tag.subtopic === subtopic).map(tag => tag.tag)
     },
-    paramsData: function(currentTopic, currentSubtopic) {
+    paramsData: function(currentTopic, currentSubtopic, currentTag) {
       return qs.stringify({
         topic: currentTopic,
         subtopics: currentSubtopic ? currentSubtopic : undefined,
+        tags: currentTag ? currentTag : undefined
       });
     }
   }
