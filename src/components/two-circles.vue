@@ -14,6 +14,7 @@ export default {
       let duration = 2000;
       let color = {
         "objetivos": {
+          "ODS 2": "#dea73a",
           "ODS 6": "#00aed9",
           "ODS 7": "#fdb713",
           "ODS 11": "#f99d26",
@@ -21,6 +22,7 @@ export default {
           "ODS 15": "#3eb049"
         },
         "metas": {
+          "2": "#dea73a",
           "6": "#00aed9",
           "7": "#fdb713",
           "11": "#f99d26",
