@@ -14,6 +14,17 @@ export default {
       ].join('');
     }
   },
+  getTopic(topicId) {
+    return axios.get(getEndpoint(topicId)).then(response => response.data);
+
+    function getEndpoint(topicId) {
+      return [
+        config.URL,
+        '/topics/',
+        topicId
+      ].join('');
+    }
+  },
   getGroups() {
     return axios.get(getEndpoint()).then(response => response.data);
 
@@ -24,6 +35,17 @@ export default {
       ].join('');
     }
   },
+  getGroup(parliamentarygroupId) {
+    return axios.get(getEndpoint(parliamentarygroupId)).then(response => response.data);
+
+    function getEndpoint(parliamentarygroupId) {
+      return [
+        config.URL,
+        '/parliamentary-groups/',
+        parliamentarygroupId
+      ].join('');
+    }
+  },
   getDeputies() {
     return axios.get(getEndpoint()).then(response => response.data);
 
@@ -31,6 +53,17 @@ export default {
       return [
         config.URL,
         '/deputies/'
+      ].join('');
+    }
+  },
+  getDeputy(deputyId) {
+    return axios.get(getEndpoint(deputyId)).then(response => response.data);
+
+    function getEndpoint(deputyId) {
+      return [
+        config.URL,
+        '/deputies/',
+        deputyId
       ].join('');
     }
   },
@@ -88,7 +121,7 @@ export default {
       .get(getEndpoint(id))
       .then(response => response.data);
 
-    function getEndpoint() {
+    function getEndpoint(id) {
       return [
         config.URL,
         '/initiatives/',
@@ -101,7 +134,7 @@ export default {
       .get(getEndpoint(topicId))
       .then(response => response.data.tags);
 
-    function getEndpoint() {
+    function getEndpoint(topicId) {
       return [
         config.URL,
         '/topics/',
@@ -121,6 +154,24 @@ export default {
       ].join('');
     }
   },
+  getDeputiesRanking(topic, subtopic) {
+    let params = {'topic': topic};
+    if (subtopic) {
+      params['subtopic'] = subtopic;
+    }
+    return axios
+      .get(getEndpoint(), {
+        params: params
+      })
+      .then(response => response.data.slice(0,5));
+
+    function getEndpoint() {
+      return [
+        config.URL,
+        '/stats/deputies'
+      ].join('');
+    }
+  },
   getParliamentarygroupsRanking(topic, subtopic) {
     let params = {'topic': topic};
     if (subtopic) {
@@ -136,6 +187,21 @@ export default {
       return [
         config.URL,
         '/stats/parliamentarygroups'
+      ].join('');
+    }
+  },
+  getLatestInitiatives(topic) {
+    let params = {'topic': topic};
+    return axios
+      .get(getEndpoint(), {
+        params: params
+      })
+      .then(response => response.data);
+
+    function getEndpoint() {
+      return [
+        config.URL,
+        '/stats/latest-initiatives'
       ].join('');
     }
   },

@@ -22,6 +22,9 @@
               <router-link :to="{name:'search'}" class="menuitem">Buscar</router-link>
             </li>
             <li>
+              <router-link :to="{name:'topics'}" class="menuitem">Temáticas</router-link>
+            </li>
+            <li>
               <router-link :to="{name:'dashboard'}" class="menuitem">Métricas</router-link>
             </li>
             <li>
