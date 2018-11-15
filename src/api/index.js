@@ -25,8 +25,18 @@ export default {
       ].join('');
     }
   },
-  getGroups() {
-    return axios.get(getEndpoint()).then(response => response.data);
+  getGroups(params) {
+    if (params === undefined) params = {};
+    Object.keys(params).forEach(key => !params[key] && delete params[key]);
+
+    return axios
+      .get(getEndpoint(), {
+        params: params,
+        paramsSerializer: function (params) {
+          return qs.stringify(params)
+        },
+      })
+      .then(response => response.data);
 
     function getEndpoint() {
       return [
@@ -46,8 +56,18 @@ export default {
       ].join('');
     }
   },
-  getDeputies() {
-    return axios.get(getEndpoint()).then(response => response.data);
+  getDeputies(params) {
+    if (params === undefined) params = {};
+    Object.keys(params).forEach(key => !params[key] && delete params[key]);
+
+    return axios
+      .get(getEndpoint(), {
+        params: params,
+        paramsSerializer: function (params) {
+          return qs.stringify(params)
+        },
+      })
+      .then(response => response.data);
 
     function getEndpoint() {
       return [
