@@ -8,8 +8,8 @@
           <div class="col-sm-6 keyvalues">
             <text-element :meta="'Tipo de acto parlamentario'" :value="initiative.initiative_type_alt"></text-element>
             <text-element :meta="'Referencia'" :value="initiative.reference"></text-element>
-            <text-element :meta="'Autor'" :value="initiative.authors"></text-element>
-            <text-element :meta="'Diputada/o'" :value="initiative.deputies"></text-element>
+            <people-element :meta="'Autor'" :value="initiative.authors" :type="'parliamentarygroups'" :source="allParliamentarygroups"></people-element>
+            <people-element :meta="'Diputada/o'" :value="initiative.deputies" :type="'deputies'" :source="allDeputies"></people-element>
             <text-element :meta="'Lugar'" :value="initiative.place"></text-element>
             <text-element :meta="'Registro'" :value="moment(initiative.created).format('DD/MM/Y')"></text-element>
             <text-element :meta="'Actualización'" :value="moment(initiative.updated).format('DD/MM/Y')"></text-element>
@@ -55,6 +55,7 @@ import Navbar from '@/components/navbar';
 import PageHeader from '@/components/page-header'
 import FooterBlock from '@/components/footer-block';
 import TextElement from '@/components/text-element'
+import PeopleElement from '@/components/people-element'
 import TopicsElement from '@/components/topics-element'
 import RelatedInitiatives from '@/components/related-initiatives'
 import Neuron from '@/components/neuron'
@@ -75,6 +76,7 @@ export default {
     PageHeader,
     FooterBlock,
     TextElement,
+    PeopleElement,
     TopicsElement,
     RelatedInitiatives,
     Neuron
@@ -82,12 +84,30 @@ export default {
   data: function() {
     return {
       initiative: {},
+      allDeputies: null,
+      allParliamentarygroups: null,
       color_by_status: color_by_status,
       moment: moment,
       dataLoaded: false
     }
   },
   methods: {
+    getDeputies: function() {
+      api.getDeputies()
+        .then(response => {
+          this.allDeputies = response;
+          this.getParliamentarygroups();
+        })
+        .catch(error => this.errors = error);
+    },
+    getParliamentarygroups: function() {
+      api.getGroups()
+        .then(response => {
+          this.allParliamentarygroups = response;
+          this.getInitiative();
+        })
+        .catch(error => this.errors = error);
+    },
     getInitiative: function() {
       api.getInitiative(this.$route.params.id)
         .then(response => {
@@ -104,7 +124,7 @@ export default {
     },
   },
   created: function() {
-    this.getInitiative()
+    this.getDeputies()
   },
   watch: {
     '$route': 'getInitiative'
