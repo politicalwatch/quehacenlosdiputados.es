@@ -57,7 +57,9 @@
                   <div class="col-sm-6">
                     <ul class="list-unstyled">
                       <li v-for="pg in data.parliamentarygroups" v-bind:key="pg._id">
-                        <span class="itemname">{{pg._id}} ({{pg.initiatives}} {{pluralizeInitiatives(pg.initiatives)}})</span>
+                        <span class="itemname">
+                          <router-link :to="{path: '/parliamentarygroups/' + getPgIdFromName(pg._id)}">{{pg._id}} ({{pg.initiatives}} {{pluralizeInitiatives(pg.initiatives)}})</router-link>
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -97,8 +99,9 @@ import Navbar from '@/components/navbar';
 import PageHeader from '@/components/page-header';
 import FooterBlock from '@/components/footer-block';
 import TwoCircles from '@/components/two-circles';
-import Multiselect from 'vue-multiselect'
-import api from '@/api'
+import PeopleElement from '@/components/people-element';
+import Multiselect from 'vue-multiselect';
+import api from '@/api';
 
 export default {
   name: 'dashboard',
@@ -107,12 +110,14 @@ export default {
     PageHeader,
     FooterBlock,
     TwoCircles,
+    PeopleElement,
     Multiselect
   },
   data: function() {
     return {
       topics: [],
       subtopics: [],
+      allParliamentarygroups: null,
       data: {
         topic: '',
         subtopic: '',
@@ -204,10 +209,21 @@ export default {
     },
     prepareForm: function() {
       this.getTopics();
-    }
+    },
+    getParliamentarygroups: function() {
+      api.getGroups()
+        .then(response => {
+          this.allParliamentarygroups = response;
+          this.prepareForm();
+        })
+        .catch(error => this.errors = error);
+    },
+    getPgIdFromName: function (name) {
+      return this.allParliamentarygroups.find(s => s.name == name).id;
+    },
   },
   created: function() {
-    this.prepareForm();
+    this.getParliamentarygroups();
   },
   watch: {
     'data.topic': 'getResults',
