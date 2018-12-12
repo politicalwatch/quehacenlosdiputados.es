@@ -7,12 +7,18 @@
       <div id="messages" class="container" v-if="query_meta.hasOwnProperty('total')">
           <div class="row">
             <div class="col-sm-12">
+              <div v-if="this.errors">
+                <div class="alert alert-dismissible alert-danger" role="alert">
+                  {{this.errors}}
+                </div>
+                <br/>
+              </div>
               <div v-if="this.query_meta.total" class="alert alert-dismissible alert-info" role="alert">
                 Se han encontrado {{ this.query_meta.total }} iniciativas.
               </div>
               <div v-else class="alert alert-dismissible alert-danger" role="alert">
                 No se han encontrado iniciativas que cumplan los criterios.
-              </div>
+              </div> 
             </div>
           </div>
         </div>
@@ -191,9 +197,7 @@
             </div>
 
             <div v-show="initiatives.length" class="well search-actions">
-              <a href="/">
-                <i class="fa fa fa-times-circle-o"></i> Limpiar criterios de búsqueda
-              </a>
+              <save-alert :searchparams="data"></save-alert>
               <a
                 v-if="!csvItems.length"
                 :class="{ disabled: !canDownloadCSV }"
@@ -236,6 +240,7 @@ import ResultsTable from '@/components/results-table';
 import Datepicker from 'vuejs-datepicker';
 import Multiselect from 'vue-multiselect'
 import VueCsvDownloader from 'vue-csv-downloader';
+import SaveAlert from '@/components/save-alert';
 import api from '@/api'
 
 const moment = require('moment');
@@ -251,7 +256,8 @@ export default {
     Datepicker,
     ResultsTable,
     Multiselect,
-    VueCsvDownloader
+    VueCsvDownloader,
+    SaveAlert
   },
   data: function() {
     return {
@@ -263,7 +269,7 @@ export default {
       places: [],
       status: [],
       types: [],
-      errors: [],
+      errors: null,
       initiatives: [],
       query_meta: [],
       moment: moment,

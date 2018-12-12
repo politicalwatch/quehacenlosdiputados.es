@@ -149,6 +149,20 @@ export default {
       ].join('');
     }
   },
+  saveAlert(search) {
+    Object.keys(search).forEach(key => !search[key] && delete search[key]);
+
+    return axios
+      .post(getEndpoint(), search)
+      .then(response => response.data);
+
+    function getEndpoint() {
+      return [
+        config.URL,
+        '/alerts/'
+      ].join('');
+    }
+  },
   getTags(topicId) {
     return axios
       .get(getEndpoint(topicId))
