@@ -197,7 +197,7 @@
             </div>
 
             <div v-show="initiatives.length" class="well search-actions">
-              <save-alert :searchparams="data"></save-alert>
+              <save-alert :searchparams="data" v-show="alertsIsEnabled()"></save-alert>
               <a
                 v-if="!csvItems.length"
                 :class="{ disabled: !canDownloadCSV }"
@@ -241,6 +241,7 @@ import Datepicker from 'vuejs-datepicker';
 import Multiselect from 'vue-multiselect'
 import VueCsvDownloader from 'vue-csv-downloader';
 import SaveAlert from '@/components/save-alert';
+import config from '@/config'
 import api from '@/api'
 
 const moment = require('moment');
@@ -446,6 +447,9 @@ export default {
     getNameFromCSV: function() {
       let d = new Date();
       return "export-" + d.toISOString() + ".csv";
+    },
+    alertsIsEnabled: function() {
+      return config.USE_ALERTS;
     },
     loadCSVItems: function(event) {
       if (!this.canDownloadCSV) return false;
