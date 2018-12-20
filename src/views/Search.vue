@@ -294,7 +294,7 @@ export default {
       loadingResults: false,
       advanced: false,
       csvItems: [],
-      csvFields: ['title', 'reference', 'initiative_type_alt', 'authors', 'deputies', 'topics', 'status', 'updated'],
+      csvFields: ['title', 'reference', 'initiative_type_alt', 'authors', 'deputies', 'topics', 'subtopics', 'tags', 'status', 'updated'],
       LIMITCSV: 1000
     }
   },
