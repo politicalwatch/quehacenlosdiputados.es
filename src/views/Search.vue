@@ -204,7 +204,7 @@
                 :title="!canDownloadCSV ? 'Demasiados resultados para poder descargar. Afina la búsqueda' : 'Descarga CSV con todos los resultados'"
                 @click.prevent="loadCSVItems"
                 class="pull-right" href="#">
-                <i class="fa fa-download" aria-hidden="true"></i>&nbsp;Descargar datos
+                <i class="fa fa-download" aria-hidden="true"></i>&nbsp;Descarga datos
               </a>
               <vue-csv-downloader
                 v-else
@@ -213,7 +213,7 @@
                 :downloadName="getNameFromCSV()"
                 id="downloadCSV"
                 class="pull-right">
-                <i class="fa fa-download" aria-hidden="true"></i>&nbsp;Descargar datos
+                <i class="fa fa-download" aria-hidden="true"></i>&nbsp;Descarga datos
               </vue-csv-downloader>
             </div>
 
@@ -458,7 +458,7 @@ export default {
       api.getInitiatives(params)
          .then(response => {
            this.csvItems = response.initiatives;
-           event.target.innerText = "Descargar datos";
+           event.target.innerText = "Descarga datos";
           })
          .catch(error => this.errors = error);
     },

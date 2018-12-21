@@ -1,6 +1,6 @@
 <template>
   <a href="#" @click.prevent="saveAlert">
-    <i class="fa fa fa-save"></i> Guardar búsqueda
+    <i class="fa fa fa-envelope"></i> Recibe alertas
   </a>
 </template>
 
