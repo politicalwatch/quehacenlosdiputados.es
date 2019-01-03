@@ -196,7 +196,7 @@
               </form>
             </div>
 
-            <div class="well search-actions">
+            <div class="well search-actions" v-show="this.query_meta.total >= 0">
               <save-alert :searchparams="data" v-show="alertsIsEnabled()"></save-alert>
               <span v-show="initiatives.length">
                 <a
