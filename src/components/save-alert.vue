@@ -19,13 +19,17 @@ export default {
       delete search_params.page;
       const {value: email} = await swal({
         title: 'Introduce tu correo electrónico',
+        text: 'A esta dirección de correo te enviaremos alertas cada vez que haya una novedad en el Congreso de los Diputados dentro de los parámetros que has seleccionado',
         input: 'email',
         inputPlaceholder: 'nombre@dominio.com',
         imageUrl: 'http://www.newdesignfile.com/postpic/2014/10/send-email-message-icon_173882.png',
         imageWidth: 200,
         imageHeight: 200,
-        imageAlt: 'Custom image',
+        imageAlt: 'Imagen de correo electrónico',
         animation: false,
+        focusConfirm: false,
+        confirmButtonText: 'Guardar',
+        confirmButtonAriaLabel: 'Guardar',
       });
       if (email) {
         let params = {
@@ -37,6 +41,7 @@ export default {
             swal({
               title: 'Alerta guardada!',
               text: 'Recibirá en breve un correo de confirmación',
+              focusConfirm: false,
               type: 'success'
             });
 
@@ -46,6 +51,7 @@ export default {
             swal({
               title: 'Error al guardar la búsqueda',
               text: 'Inténtalo de nuevo más tarde',
+              focusConfirm: false,
               type: 'error'
             });
           });
