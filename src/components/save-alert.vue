@@ -17,6 +17,15 @@ export default {
     saveAlert: async function() {
       let search_params = Object.assign({}, this.searchparams);
       delete search_params.page;
+
+      // ensure some params are array
+      search_params.subtopics = search_params.subtopics.constructor !== Array ?
+        [search_params.subtopics] :
+        search_params.subtopics;
+      search_params.tags = search_params.tags.constructor !== Array ?
+        [search_params.tags] :
+        search_params.tags;
+      
       const {value: email} = await swal({
         title: 'Introduce tu correo electrónico',
         text: 'A esta dirección de correo te enviaremos alertas cada vez que haya una novedad en el Congreso de los Diputados dentro de los parámetros que has seleccionado',
