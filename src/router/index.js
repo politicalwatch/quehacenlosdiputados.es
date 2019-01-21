@@ -10,6 +10,7 @@ import Parliamentarygroup from '@/views/Parliamentarygroup.vue'
 import About from '@/views/About.vue'
 import AboutEnglish from '@/views/AboutEnglish.vue'
 import Mediakit from '@/views/Mediakit.vue'
+import Alerts from '@/views/Alerts.vue'
 import Page404 from '@/views/Page404.vue'
 
 Vue.use(Router)
@@ -74,6 +75,11 @@ export default new Router({
       path: "/mediakit",
       name: "mediakit",
       component: Mediakit
+    },
+    {
+      path: "/alerts",
+      name: "alerts",
+      component: Alerts
     },
     {
       path: "/*",
