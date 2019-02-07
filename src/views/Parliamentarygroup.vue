@@ -7,6 +7,7 @@
         <latest-initiatives :initiatives="latestInitiatives"></latest-initiatives>
       </div>
     </div>
+    <footer-block></footer-block>
   </div>
 </template>
 
