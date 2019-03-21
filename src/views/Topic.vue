@@ -131,7 +131,6 @@ export default {
         .then(response => {
           this.latestInitiatives = response.slice(0, 10);
           this.latestInitiatives.forEach((initiative, index) => {
-            console.log(initiative.date.$date)
             this.latestInitiatives[index].updated = initiative.date.$date;
           });
         })
