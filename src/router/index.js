@@ -7,6 +7,7 @@ import Topics from '@/views/Topics.vue'
 import Topic from '@/views/Topic.vue'
 import Deputy from '@/views/Deputy.vue'
 import Parliamentarygroup from '@/views/Parliamentarygroup.vue'
+import Scanner from '@/views/Scanner.vue'
 import About from '@/views/About.vue'
 import AboutEnglish from '@/views/AboutEnglish.vue'
 import Mediakit from '@/views/Mediakit.vue'
@@ -60,6 +61,11 @@ export default new Router({
       path: "/parliamentarygroups/:id",
       name: "parliamentarygroup",
       component: Parliamentarygroup
+    },
+    {
+      path: "/scanner",
+      name: "scanner",
+      component: Scanner
     },
     {
       path: "/about",

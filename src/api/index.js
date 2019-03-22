@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const qs = require("qs");
 
+
 export default {
   getTopics() {
     return axios.get(getEndpoint()).then(response => response.data);
@@ -254,6 +255,22 @@ export default {
       return [
         config.URL,
         '/stats/places'
+      ].join('');
+    }
+  },
+  annotate(text) {
+    return axios.post(
+      getEndpoint(),
+      qs.stringify({ 'text': text })
+    ).then(response => response.data)
+    .catch(error => {
+      console.log(error.response)
+    });
+
+    function getEndpoint() {
+      return [
+        config.URL,
+        '/labels/extract'
       ].join('');
     }
   }

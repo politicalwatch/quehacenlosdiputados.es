@@ -7266,26 +7266,31 @@ fieldset[disabled] .btn-tipi.focus {
   padding-bottom: 10px;
 }
 #initiative .meta,
+#scanner .meta,
 #dict .meta {
   font-size: 0.9em;
   text-transform: uppercase;
   color: #95a5a6;
 }
 #initiative .value,
+#scanner .value,
 #dict .value {
   font-size: 1.5em;
   font-weight: bold;
 }
 #initiative .value small,
+#scanner .value small,
 #dict .value small {
   font-size: 0.8em;
   font-weight: normal;
 }
 #initiative .capitalize .value,
+#scanner .capitalize .value,
 #dict .capitalize .value {
   text-transform: capitalize;
 }
 #initiative .capitalize .value small,
+#scanner .capitalize .value small,
 #dict .capitalize .value small {
   text-transform: none;
   color: #798d8f;
@@ -7293,6 +7298,7 @@ fieldset[disabled] .btn-tipi.focus {
   padding-left: 15px;
 }
 #initiative .capitalize .value small a,
+#scanner .capitalize .value small a,
 #dict .capitalize .value small a {
   color: #798d8f;
 }
