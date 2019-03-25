@@ -22,7 +22,7 @@
               <div class="row">
                 <div class="col-sm-7">
                   <div class="alert alert-dismissible alert-danger" role="alert">
-                    No se han encontrado ninguna coincidencia entre tu texto y nuestras etiquetas.
+                    No hemos encontrado ninguna coincidencia entre tu texto y nuestras etiquetas.
                   </div>
                 </div>
               </div>
