@@ -8,30 +8,41 @@
           <div class="col-sm-7">
             <textarea placeholder="Inserta aqui el texto que quieres escanear..." v-model="inputText">
             </textarea>
-            <a class="btn btn-custom btn-block" @click="annotate">Iniciar proceso</a>
+            <a class="btn btn-custom btn-block" href="#result" @click="annotate">Iniciar proceso</a>
           </div>
           <div class="col-sm-5">
             <p class="helptext" v-html="config.SCANNER_HELPTEXT"></p>
           </div>
         </div>
 
-        <div class="row">
+        <div id="result" class="row">
           <div class="col-sm-12 result" v-if="result">
             <h2>Resultado del escáner:</h2>
-            <div class="row">
-              <div class="col-sm-7">
-                <neuron :initiative="fakeInitiative" v-if="fakeInitiative"></neuron>
-              </div>
-              <div class="col-sm-5">
-                <p class="helptext">Aquí tienes una una relación visual de tu texto, para que de un primer vistazo veas conexiones interesantes.</p>
+            <div class="nodata-result" v-if="!result.topics.length">
+              <div class="row">
+                <div class="col-sm-7">
+                  <div class="alert alert-dismissible alert-danger" role="alert">
+                    No se han encontrado ninguna coincidencia entre tu texto y nuestras etiquetas.
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-sm-7">
-                <topics-element :meta="'ODS tratados'" :topics="result.topics" :tags="result.tags"></topics-element>
+            <div class="data-result" v-else>
+              <div class="row">
+                <div class="col-sm-7">
+                  <neuron :initiative="fakeInitiative" v-if="fakeInitiative"></neuron>
+                </div>
+                <div class="col-sm-5">
+                  <p class="helptext">Aquí tienes una una relación visual de tu texto, para que de un primer vistazo veas conexiones interesantes.</p>
+                </div>
               </div>
-              <div class="col-sm-5">
-                <p class="helptext">Si haces clic en cualquiera de las etiquetas relacionadas con tu texto podrás conocer además toda la actividad parlamentaria asociada con dicha etiqueta.</p>
+              <div class="row">
+                <div class="col-sm-7">
+                  <topics-element :meta="'ODS tratados'" :topics="result.topics" :tags="result.tags"></topics-element>
+                </div>
+                <div class="col-sm-5">
+                  <p class="helptext">Si haces clic en cualquiera de las etiquetas relacionadas con tu texto podrás conocer además toda la actividad parlamentaria asociada con dicha etiqueta.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -87,6 +98,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+#result {
+  min-height: 500px;
+}
 .helptext {
   border-left: 2px solid #3c3c3c;
   padding-left: 15px;
