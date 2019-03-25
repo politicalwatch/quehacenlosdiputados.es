@@ -20,6 +20,11 @@
             <p>Parlamento 2030 es un proyecto de <a href="http://politicalwatch.es" target="_blank">Political Watch</a>, la plataforma que se inscribe dentro de la estrategia del think tank <a href="http://ciecode.es" target="_blank">CIECODE</a> y que está formado por profesionales de distintas disciplinas como informáticos, periodistas y economistas. Nuestra misión es fomentar un debate público informado y basado en hechos sobre el desarrollo sostenible. Desarrollamos tecnologías innovadoras que automáticamente rastrean actividad relacionada con el desarrollo sostenible y que ofrecen acceso a esta información de forma pública, directa y gratuita a actores clave y ciudadanos.</p>
             <h4>¿De dónde venimos?</h4>
             <p>Parlamento 2030 es una adaptación de TiPi, una herramienta digital implementada en España desde 2015, que monitoriza toda la actividad parlamentaria de 21 temáticas relacionadas con la lucha contra la pobreza y la desigualdad. TiPi (que responde a las siglas de Transparencia + Información + Participación + Influencia) es otro innovador proyecto de Political Watch que genera datos abiertos y fomenta la transparencia, el acceso a información y la rendición de cuentas política a través de la monitorización parlamentaria de las 21 temáticas estratégicamente seleccionadas, a través del mismo avanzado sistema de escrapeo y etiquetado utilizado en Parlamento 2030.</p>
+            <div style="text-align:center">
+              <router-link class="btn btn-custom" :to="{name: 'mediakit'}">Visita nuestro Mediakit</router-link>
+            </div>
+            
+            
           </div>
         </div>
       </div>
