@@ -27,14 +27,14 @@
             <li>
               <router-link :to="{name:'dashboard'}" class="menuitem">Métricas</router-link>
             </li>
+            <li>
+              <router-link :to="{name:'scanner'}" class="menuitem">Scanner</router-link>
+            </li>
             <li v-show="config.USE_ALERTS">
               <router-link :to="{name:'alerts'}" class="menuitem">Alertas</router-link>
             </li>
             <li>
               <router-link :to="{name:'about'}" class="menuitem">Acerca</router-link>
-            </li>
-            <li>
-              <router-link :to="{name:'mediakit'}" class="menuitem">Mediakit</router-link>
             </li>
           </ul>
         </div>
