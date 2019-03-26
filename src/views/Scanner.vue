@@ -9,6 +9,10 @@
             <textarea placeholder="Inserta aqui el texto que quieres escanear..." v-model="inputText">
             </textarea>
             <a class="btn btn-custom btn-block" href="#result" @click="annotate">Iniciar proceso</a>
+            <div class="text-center clean-text">
+              <a v-if="inputText!=''" @click="inputText=''"><i class="fa fa-times"></i> Limpiar texto</a>
+            </div>
+            
           </div>
           <div class="col-sm-5">
             <p class="helptext" v-html="config.SCANNER_HELPTEXT"></p>
@@ -98,8 +102,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#result {
-  min-height: 500px;
+a {
+  cursor: pointer;
+}
+.clean-text {
+  padding-top: 10px;
 }
 .helptext {
   border-left: 2px solid #3c3c3c;
@@ -113,7 +120,8 @@ textarea {
   border: 0px;
   padding: 10px;
 }
-.result {
+#result {
+  min-height: 500px;
   padding: 20px 0px;
 }
 </style>
