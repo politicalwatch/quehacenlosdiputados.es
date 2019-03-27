@@ -21,6 +21,9 @@
             <p>This is a project of <a href="http://politicalwatch.es" target="_blank">Political Watch</a>, a platform of engineers, economic experts and journalists created under the umbrella of <a href="http://ciecode.es" target="_blank">CIECODE</a>, a think-and-do tank focused on policy coherence for sustainable development. Our mission is to promote an informed and fact-based public debate on sustainable development. We develop innovative technologies to automatically track sustainable development-related activity and offer public, direct, and free access to this information to citizens and key stakeholders.</p>
             <h4>Where this come from?</h4>
             <p>Parlamento 2030 is an adaptation of TiPi, an existing online tool implemented in Spain since 2015, which monitors all parliamentarian activity in 21 selected topics related with the fight against poverty and inequality. TiPi (which stands for Transparency + Information + Participation + Influence) is another Political Watch’s innovative project that generates open-data and promotes transparency, access to information, and political accountability by allowing the monitoring of all parliamentarian activity related to the fight against poverty and inequality. TiPi is able to automatically classify the parliamentarian activity in 21 strategically selected topics, through the same advanced scraping and labeling technology used in Parlamento 2030.</p>
+            <div style="text-align:center">
+              <router-link class="btn btn-custom" :to="{name: 'mediakit'}">Visit our Mediakit</router-link>
+            </div>
           </div>
         </div>
       </div>
