@@ -6,10 +6,10 @@
     <li v-for="topic in topics" v-bind:key="topic" class="value">
       <router-link :to="{ name: 'results', params: { data: paramsData(topic) } }">{{topic}}</router-link>
       <br>
-      <div v-for="subtopic in getSubtopics(topic)" v-bind:key="subtopic" class="subtopic">
+      <div v-for="subtopic in getSubtopics(topic)" v-bind:key="subtopic+' - '+topic" class="subtopic">
         <router-link :to="{ name: 'results', params: { data: paramsData(topic, subtopic) } }">{{subtopic}} </router-link>
         <br>
-        <span v-for="tag in getTags(subtopic)" v-bind:key="tag" class="tag">
+        <span v-for="tag in getTags(subtopic)" v-bind:key="tag+' - '+topic" class="tag">
           <router-link :to="{ name: 'results', params: { data: paramsData(topic, subtopic, tag) } }">{{tag}} </router-link>
         </span>
         <br>
