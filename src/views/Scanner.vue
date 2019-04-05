@@ -48,6 +48,18 @@
                   <p class="helptext">Si haces clic en cualquiera de las etiquetas relacionadas con tu texto podrás conocer además toda la actividad parlamentaria asociada con dicha etiqueta.</p>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-sm-12 text-center">
+                  <vue-csv-downloader
+                    :data="csvItems"
+                    :fields="csvFields"
+                    :downloadName="getNameFromCSV()"
+                    id="downloadExportCSV"
+                    class="btn btn-custom btn-naked">
+                    <i class="fa fa-download" aria-hidden="true"></i>&nbsp;Descárgalo en CSV
+                  </vue-csv-downloader>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -63,6 +75,7 @@
 import PageHeader from '@/components/page-header'
 import FooterBlock from '@/components/footer-block'
 import TopicsElement from '@/components/topics-element'
+import VueCsvDownloader from 'vue-csv-downloader';
 import Neuron from '@/components/neuron'
 import config from '@/config'
 import api from '@/api'
@@ -73,6 +86,7 @@ export default {
     Navbar,
     PageHeader,
     TopicsElement,
+    VueCsvDownloader,
     Neuron,
     FooterBlock
   },
@@ -81,7 +95,9 @@ export default {
       config: config,
       inputText: '',
       result: null,
-      fakeInitiative: null
+      fakeInitiative: null,
+      csvItems: [],
+      csvFields: ['topic', 'subtopic', 'tag']
     };
   },
   methods: {
@@ -90,13 +106,18 @@ export default {
       api.annotate(this.inputText)
         .then(response => {
           this.result = response
+          this.csvItems = this.result.tags
           this.fakeInitiative = {
-            'topics': this.result['topics'],
-            'tags': this.result['tags']
+            'topics': this.result.topics,
+            'tags': this.result.tags
           }
         }) 
         .catch(error => this.errors = error);
-    }
+    },
+    getNameFromCSV: function() {
+      let d = new Date();
+      return "export-scanner-" + d.toISOString() + ".csv";
+    },
   }
 }
 </script>
