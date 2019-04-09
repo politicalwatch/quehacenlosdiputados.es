@@ -8,9 +8,9 @@
           <div class="col-sm-7">
             <textarea placeholder="Inserta aqui el texto que quieres escanear..." v-model="inputText">
             </textarea>
-            <a class="btn btn-custom btn-block" href="#result" @click="annotate">Iniciar proceso</a>
+            <a id="start" class="btn btn-custom btn-block" @click.prevent="annotate">Iniciar proceso</a>
             <div class="text-center clean-text">
-              <a v-if="inputText!=''" @click="inputText=''"><i class="fa fa-times"></i> Limpiar texto</a>
+              <a id="clean" :class="{ disabled: inProgress }" v-if="inputText!=''" @click="cleanTextAndResult"><i class="fa fa-times"></i> Limpiar texto <span v-if="result">y resultados</span></a>
             </div>
             
           </div>
@@ -96,12 +96,27 @@ export default {
       inputText: '',
       result: null,
       fakeInitiative: null,
+      inProgress: false,
       csvItems: [],
       csvFields: ['topic', 'subtopic', 'tag']
     };
   },
   methods: {
+    cleanText() {
+      this.inputText = ""
+    },
+    cleanResult() {
+      this.fakeInitiative = null
+      this.result = null
+    },
+    cleanTextAndResult() {
+      this.cleanText()
+      this.cleanResult()
+    },
     annotate() {
+      this.cleanResult()
+      this.inProgress = true;
+      document.getElementById('start').text = 'Procesando...'
       this.fakeInitiative = null
       api.annotate(this.inputText)
         .then(response => {
@@ -111,8 +126,14 @@ export default {
             'topics': this.result.topics,
             'tags': this.result.tags
           }
+          this.inProgress = false;
+          document.getElementById('start').text = 'Iniciar proceso'
         }) 
-        .catch(error => this.errors = error);
+        .catch(error => {
+          this.errors = error
+          this.inProgress = false;
+          document.getElementById('start').text = 'Iniciar proceso'
+        });
     },
     getNameFromCSV: function() {
       let d = new Date();
@@ -144,5 +165,9 @@ textarea {
 #result {
   min-height: 500px;
   padding: 20px 0px;
+}
+a.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 </style>
