@@ -71,7 +71,7 @@
 </template>
 
 <script>
-  import Navbar from '@/components/navbar'
+import Navbar from '@/components/navbar'
 import PageHeader from '@/components/page-header'
 import FooterBlock from '@/components/footer-block'
 import TopicsElement from '@/components/topics-element'
@@ -79,6 +79,8 @@ import VueCsvDownloader from 'vue-csv-downloader';
 import Neuron from '@/components/neuron'
 import config from '@/config'
 import api from '@/api'
+
+const VueScrollTo = require('vue-scrollto');
 
 export default {
   name: 'tagger',
@@ -128,6 +130,7 @@ export default {
           }
           this.inProgress = false;
           document.getElementById('start').text = 'Iniciar proceso'
+          VueScrollTo.scrollTo('#result', 1500)
         }) 
         .catch(error => {
           this.errors = error
