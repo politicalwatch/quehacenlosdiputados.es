@@ -364,7 +364,7 @@ export default {
     },
     getPlaces: function() {
       api.getPlaces()
-        .then(places => this.places = places)
+        .then(places => this.places = places.map(places => places.name))
         .catch(error => this.errors = error);
     },
     getStatus: function() {
