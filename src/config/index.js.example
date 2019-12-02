@@ -1,5 +1,7 @@
 export default {
-  URL: 'http://api.example.com',
+  SHORTNAME: 'p2030',
+  URL: 'http://localhost:5000',
+  GOOGLE_ANALYTICS: 'XXXXXXXXXXXX',
   USE_ALERTS: false,
   SCANNER_HELPTEXT: ""
 }
