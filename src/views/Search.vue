@@ -4,6 +4,7 @@
     <navbar></navbar>
     <div id="search">
       <page-header :title="'Buscar'" :subtitle="'Bucea en la actividad parlamentaria relacionada con los ODS con las múltiples opciones que te ofrece el buscador de Parlamento 2030'"></page-header>
+      <HelloWorld :msg="'Hola mundo!'" />
       <div id="messages" class="container" v-if="query_meta.hasOwnProperty('total')">
           <div class="row">
             <div class="col-sm-12">
@@ -18,7 +19,7 @@
               </div>
               <div v-else class="alert alert-dismissible alert-danger" role="alert">
                 No se han encontrado iniciativas que cumplan los criterios.
-              </div> 
+              </div>
             </div>
           </div>
         </div>
@@ -245,6 +246,7 @@ import VueCsvDownloader from 'vue-csv-downloader';
 import SaveAlert from '@/components/save-alert';
 import config from '@/config'
 import api from '@/api'
+import HelloWorld from 'tipi-frontend-uikit'
 
 const moment = require('moment');
 const qs = require('qs');
@@ -260,7 +262,8 @@ export default {
     ResultsTable,
     Multiselect,
     VueCsvDownloader,
-    SaveAlert
+    SaveAlert,
+    HelloWorld
   },
   data: function() {
     return {
