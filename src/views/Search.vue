@@ -219,7 +219,7 @@
               </span>
             </div>
 
-            <Results :loadingResults="this.loadingResults" :initiatives="initiatives || []" />
+            <tipi-results :loadingResults="this.loadingResults" :initiatives="initiatives || []" />
             <HelloWorld :msg="'Hola mundo!'" />
             <a v-if="isMoreResults" href="#" class="load-more btn btn-custom" @click.prevent="loadMore">
               Cargar más {{ nextResultsLabel }}
@@ -244,7 +244,7 @@ import VueCsvDownloader from 'vue-csv-downloader';
 import SaveAlert from '@/components/save-alert';
 import config from '@/config'
 import api from '@/api'
-import { HelloWorld, Results } from 'tipi-frontend-uikit/src/components'
+import { HelloWorld, TipiResults } from 'tipi-frontend-uikit/src/components'
 
 const moment = require('moment');
 const qs = require('qs');
@@ -262,7 +262,7 @@ export default {
     VueCsvDownloader,
     SaveAlert,
     HelloWorld,
-    Results
+    TipiResults
   },
   data: function() {
     return {
