@@ -5,23 +5,23 @@
     <div id="search">
       <page-header :title="'Buscar'" :subtitle="'Bucea en la actividad parlamentaria relacionada con los ODS con las múltiples opciones que te ofrece el buscador de Parlamento 2030'"></page-header>
       <div id="messages" class="container" v-if="query_meta.hasOwnProperty('total')">
-          <div class="row">
-            <div class="col-sm-12">
-              <div v-if="this.errors">
-                <div class="alert alert-dismissible alert-danger" role="alert">
-                  {{this.errors}}
-                </div>
-                <br/>
+        <div class="row">
+          <div class="col-sm-12">
+            <div v-if="this.errors">
+              <div class="alert alert-dismissible alert-danger" role="alert">
+                {{this.errors}}
               </div>
-              <div v-if="this.query_meta.total" class="alert alert-dismissible alert-info" role="alert">
-                Se han encontrado {{ this.query_meta.total }} iniciativas.
-              </div>
-              <div v-else class="alert alert-dismissible alert-danger" role="alert">
-                No se han encontrado iniciativas que cumplan los criterios.
-              </div>
+              <br/>
+            </div>
+            <div v-if="this.query_meta.total" class="alert alert-dismissible alert-info" role="alert">
+              Se han encontrado {{ this.query_meta.total }} iniciativas.
+            </div>
+            <div v-else class="alert alert-dismissible alert-danger" role="alert">
+              No se han encontrado iniciativas que cumplan los criterios.
             </div>
           </div>
         </div>
+      </div>
       <div class="container page">
         <div class="row">
           <div class="col-sm-12">
@@ -219,11 +219,12 @@
               </span>
             </div>
 
-            <tipi-results :loadingResults="this.loadingResults" :initiatives="initiatives || []" />
-            <HelloWorld :msg="'Hola mundo!'" />
-            <a v-if="isMoreResults" href="#" class="load-more btn btn-custom" @click.prevent="loadMore">
-              Cargar más {{ nextResultsLabel }}
-            </a>
+            <tipi-results
+              :loadingResults="loadingResults"
+              :initiatives="initiatives || []"
+              :queryMeta="query_meta"
+              @loadMore="loadMore"
+            />
           </div>
         </div>
       </div>
@@ -237,14 +238,13 @@ import Splash from '@/components/splash';
 import Navbar from '@/components/navbar';
 import PageHeader from '@/components/page-header';
 import FooterBlock from '@/components/footer-block';
-import ResultsTable from '@/components/results-table';
 import Datepicker from 'vuejs-datepicker';
 import Multiselect from 'vue-multiselect'
 import VueCsvDownloader from 'vue-csv-downloader';
 import SaveAlert from '@/components/save-alert';
 import config from '@/config'
 import api from '@/api'
-import { HelloWorld, TipiResults } from 'tipi-frontend-uikit/src/components'
+import { TipiResults } from 'tipi-frontend-uikit/src/components'
 
 const moment = require('moment');
 const qs = require('qs');
@@ -257,11 +257,9 @@ export default {
     PageHeader,
     FooterBlock,
     Datepicker,
-    ResultsTable,
     Multiselect,
     VueCsvDownloader,
     SaveAlert,
-    HelloWorld,
     TipiResults
   },
   data: function() {
@@ -276,7 +274,7 @@ export default {
       types: [],
       errors: null,
       initiatives: [],
-      query_meta: [],
+      query_meta: {},
       moment: moment,
       data: {
         topic: '',
@@ -303,14 +301,6 @@ export default {
     }
   },
   computed: {
-    isMoreResults: function() {
-      return !this.loadingResults && (this.query_meta.page < this.query_meta.pages);
-    },
-    nextResultsLabel: function() {
-      let nextResult = (this.query_meta.page * this.query_meta.per_page) + 1;
-      let lastResult = nextResult + this.query_meta.per_page -1;
-      return `(${nextResult}-${lastResult})`;
-    },
     canDownloadCSV: function() {
       return this.query_meta.total < this.LIMITCSV;
     }
@@ -486,12 +476,6 @@ export default {
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style scoped lang="scss">
-.load-more {
-  display: block;
-  margin: 2rem auto;
-  max-width: 320px;
-  text-align: center;
-}
 a.disabled {
   cursor: not-allowed;
   opacity: 0.5;
