@@ -4,24 +4,7 @@
     <navbar></navbar>
     <div id="search">
       <page-header :title="'Buscar'" :subtitle="'Bucea en la actividad parlamentaria relacionada con los ODS con las múltiples opciones que te ofrece el buscador de Parlamento 2030'"></page-header>
-      <div id="messages" class="container" v-if="query_meta.hasOwnProperty('total')">
-        <div class="row">
-          <div class="col-sm-12">
-            <div v-if="this.errors">
-              <div class="alert alert-dismissible alert-danger" role="alert">
-                {{this.errors}}
-              </div>
-              <br/>
-            </div>
-            <div v-if="this.query_meta.total" class="alert alert-dismissible alert-info" role="alert">
-              Se han encontrado {{ this.query_meta.total }} iniciativas.
-            </div>
-            <div v-else class="alert alert-dismissible alert-danger" role="alert">
-              No se han encontrado iniciativas que cumplan los criterios.
-            </div>
-          </div>
-        </div>
-      </div>
+      <tipi-messages :errors="this.errors" :queryMeta="this.query_meta" />
       <div class="container page">
         <div class="row">
           <div class="col-sm-12">
@@ -198,24 +181,12 @@
 
             <div class="well search-actions" v-show="this.query_meta.total >= 0">
               <save-alert :searchparams="data" v-show="alertsIsEnabled()"></save-alert>
-              <span v-show="initiatives.length">
-                <a
-                  v-if="!csvItems.length"
-                  :class="{ disabled: !canDownloadCSV }"
-                  :title="!canDownloadCSV ? 'Demasiados resultados para poder descargar. Afina la búsqueda' : 'Descarga CSV con todos los resultados'"
-                  @click.prevent="loadCSVItems"
-                  class="pull-right" href="#">
-                  <i class="fa fa-download" aria-hidden="true"></i>&nbsp;Descarga datos
-                </a>
-                <vue-csv-downloader
-                  v-else
-                  :data="csvItems"
-                  :fields="csvFields"
-                  :downloadName="getNameFromCSV()"
-                  id="downloadCSV"
-                  class="pull-right">
-                  <i class="fa fa-download" aria-hidden="true"></i>&nbsp;Descarga datos
-                </vue-csv-downloader>
+              <tipi-csv-download
+                :initiatives="initiatives || []"
+                :csvItems="csvItems"
+                :canDownloadCSV="canDownloadCSV"
+                @loadCSVItems="loadCSVItems"
+              />
               </span>
             </div>
 
@@ -240,11 +211,10 @@ import PageHeader from '@/components/page-header';
 import FooterBlock from '@/components/footer-block';
 import Datepicker from 'vuejs-datepicker';
 import Multiselect from 'vue-multiselect'
-import VueCsvDownloader from 'vue-csv-downloader';
 import SaveAlert from '@/components/save-alert';
 import config from '@/config'
 import api from '@/api'
-import { TipiResults } from 'tipi-frontend-uikit/src/components'
+import { TipiCsvDownload, TipiMessages, TipiResults } from 'tipi-frontend-uikit/src/components'
 
 const moment = require('moment');
 const qs = require('qs');
@@ -258,9 +228,10 @@ export default {
     FooterBlock,
     Datepicker,
     Multiselect,
-    VueCsvDownloader,
     SaveAlert,
-    TipiResults
+    TipiResults,
+    TipiMessages,
+    TipiCsvDownload,
   },
   data: function() {
     return {
@@ -296,7 +267,6 @@ export default {
       loadingResults: false,
       advanced: false,
       csvItems: [],
-      csvFields: ['title', 'reference', 'initiative_type_alt', 'authors', 'deputies', 'topics', 'subtopics', 'tags', 'place', 'status', 'updated', 'url'],
       LIMITCSV: 1000
     }
   },
@@ -438,10 +408,6 @@ export default {
       this.getStatus();
       this.getTypes();
     },
-    getNameFromCSV: function() {
-      let d = new Date();
-      return "export-" + d.toISOString() + ".csv";
-    },
     alertsIsEnabled: function() {
       return config.USE_ALERTS;
     },
@@ -476,10 +442,6 @@ export default {
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style scoped lang="scss">
-a.disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
 .multiselect {
   &__content {
     max-width: 100%;
