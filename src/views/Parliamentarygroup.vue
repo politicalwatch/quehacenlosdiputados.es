@@ -1,7 +1,7 @@
 <template>
   <div>
     <navbar></navbar>
-    <page-header :title="parliamentarygroup.name"></page-header>
+    <tipi-header :title="parliamentarygroup.name"/>
     <div id="group">
       <div class="container page">
         <latest-initiatives :initiatives="latestInitiatives"></latest-initiatives>
@@ -13,7 +13,7 @@
 
 <script>
 import Navbar from '@/components/navbar';
-import PageHeader from '@/components/page-header'
+import { TipiHeader } from 'tipi-frontend-uikit/src/components'
 import FooterBlock from '@/components/footer-block';
 import LatestInitiatives from '@/components/latest-initiatives';
 import api from '@/api'
@@ -24,7 +24,7 @@ export default {
   name: 'parliamentarygroup',
   components: {
     Navbar,
-    PageHeader,
+    TipiHeader,
     FooterBlock,
     LatestInitiatives
   },

@@ -2,7 +2,7 @@
   <div>
     <navbar></navbar>
     <div id="initiative">
-      <page-header :title="initiative.title"></page-header>
+      <tipi-header :title="initiative.title"/>
       <div class="container page">
         <div class="row">
           <div class="col-sm-6 keyvalues">
@@ -52,7 +52,7 @@
 
 <script>
 import Navbar from '@/components/navbar';
-import PageHeader from '@/components/page-header'
+import { TipiHeader } from 'tipi-frontend-uikit/src/components'
 import FooterBlock from '@/components/footer-block';
 import TextElement from '@/components/text-element'
 import PeopleElement from '@/components/people-element'
@@ -73,7 +73,7 @@ export default {
   name: 'initiative',
   components: {
     Navbar,
-    PageHeader,
+    TipiHeader,
     FooterBlock,
     TextElement,
     PeopleElement,

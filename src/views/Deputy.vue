@@ -1,7 +1,7 @@
 <template>
   <div>
     <navbar></navbar>
-    <page-header :title="deputy.name"></page-header>
+    <tipi-header :title="deputy.name"/>
     <div id="deputy">
       <div class="container page">
         <div class="row">
@@ -30,7 +30,7 @@
 
 <script>
 import Navbar from '@/components/navbar';
-import PageHeader from '@/components/page-header'
+import { TipiHeader } from 'tipi-frontend-uikit/src/components'
 import FooterBlock from '@/components/footer-block';
 import LatestInitiatives from '@/components/latest-initiatives';
 import api from '@/api'
@@ -41,7 +41,7 @@ export default {
   name: 'deputy',
   components: {
     Navbar,
-    PageHeader,
+    TipiHeader,
     FooterBlock,
     LatestInitiatives
   },

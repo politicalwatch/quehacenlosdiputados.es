@@ -3,7 +3,7 @@
     <splash></splash>
     <navbar></navbar>
     <div id="search">
-      <page-header :title="'Buscar'" :subtitle="'Bucea en la actividad parlamentaria relacionada con los ODS con las múltiples opciones que te ofrece el buscador de Parlamento 2030'"></page-header>
+      <tipi-header :title="'Buscar'" :subtitle="'Bucea en la actividad parlamentaria relacionada con los ODS con las múltiples opciones que te ofrece el buscador de Parlamento 2030'" />
       <tipi-messages :errors="this.errors" :queryMeta="this.query_meta" />
       <div class="container page">
         <div class="row">
@@ -37,13 +37,12 @@
 <script>
 import Splash from '@/components/splash';
 import Navbar from '@/components/navbar';
-import PageHeader from '@/components/page-header';
 import FooterBlock from '@/components/footer-block';
 import searchForm from '@/components/search-form';
 import SaveAlert from '@/components/save-alert';
 import config from '@/config'
 import api from '@/api'
-import { TipiCsvDownload, TipiMessages, TipiResults } from 'tipi-frontend-uikit/src/components'
+import { TipiHeader, TipiCsvDownload, TipiMessages, TipiResults } from 'tipi-frontend-uikit/src/components'
 
 const qs = require('qs');
 
@@ -52,12 +51,12 @@ export default {
   components: {
     Splash,
     Navbar,
-    PageHeader,
     FooterBlock,
     SaveAlert,
     TipiResults,
     TipiMessages,
     TipiCsvDownload,
+    TipiHeader,
     searchForm,
   },
   data: function() {

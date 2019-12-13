@@ -2,7 +2,7 @@
   <div>
     <navbar></navbar>
     <div id="about">
-      <page-header :title="'Acerca'"></page-header>
+      <tipi-header :title="'Acerca'"/>
       <div class="container">
         <div class="row">
           <div class="col-sm-8 col-sm-offset-2">
@@ -23,8 +23,8 @@
             <div style="text-align:center">
               <router-link class="btn btn-custom" :to="{name: 'mediakit'}">Visita nuestro Mediakit</router-link>
             </div>
-            
-            
+
+
           </div>
         </div>
       </div>
@@ -35,14 +35,14 @@
 
 <script>
 import Navbar from '@/components/navbar';
-import PageHeader from '@/components/page-header';
+import { TipiHeader } from 'tipi-frontend-uikit/src/components';
 import FooterBlock from '@/components/footer-block';
 
 export default {
   name: 'about',
   components: {
     Navbar,
-    PageHeader,
+    TipiHeader,
     FooterBlock
   }
 }

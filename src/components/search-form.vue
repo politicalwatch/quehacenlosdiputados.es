@@ -172,11 +172,9 @@
 <script>
 import Datepicker from 'vuejs-datepicker';
 import Multiselect from 'vue-multiselect'
-import config from '@/config'
 import api from '@/api'
 
 const moment = require('moment');
-const qs = require('qs');
 
 export default {
   name: 'searchForm',

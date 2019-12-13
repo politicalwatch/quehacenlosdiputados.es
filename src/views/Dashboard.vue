@@ -2,7 +2,7 @@
   <div>
     <navbar></navbar>
     <div id="dashboard">
-      <page-header :title="'Métricas'" :subtitle="'Elige un Objetivo de Desarrollo Sostenible, o profundiza a nivel meta, y descubre las principales magnitudes de la actividad del Congreso de los Diputados sobre la Agenda 2030'"></page-header>
+      <tipi-header :title="'Métricas'" :subtitle="'Elige un Objetivo de Desarrollo Sostenible, o profundiza a nivel meta, y descubre las principales magnitudes de la actividad del Congreso de los Diputados sobre la Agenda 2030'"/>
       <div class="container page">
         <div class="row">
           <div class="col-sm-12">
@@ -96,7 +96,7 @@
 
 <script>
 import Navbar from '@/components/navbar';
-import PageHeader from '@/components/page-header';
+import { TipiHeader } from 'tipi-frontend-uikit/src/components';
 import FooterBlock from '@/components/footer-block';
 import TwoCircles from '@/components/two-circles';
 import PeopleElement from '@/components/people-element';
@@ -107,7 +107,7 @@ export default {
   name: 'dashboard',
   components: {
     Navbar,
-    PageHeader,
+    TipiHeader,
     FooterBlock,
     TwoCircles,
     PeopleElement,

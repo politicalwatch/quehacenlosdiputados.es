@@ -1,7 +1,7 @@
 <template>
   <div>
     <navbar></navbar>
-    <page-header title="Temáticas"></page-header>
+    <tipi-header title="Temáticas"/>
     <div id="dicts">
       <div class="container page">
         <div class="row">
@@ -22,7 +22,7 @@
 
 <script>
 import Navbar from '@/components/navbar';
-import PageHeader from '@/components/page-header'
+import { TipiHeader } from 'tipi-frontend-uikit/src/components'
 import FooterBlock from '@/components/footer-block';
 import api from '@/api'
 
@@ -30,7 +30,7 @@ export default {
   name: 'topics',
   components: {
     Navbar,
-    PageHeader,
+    TipiHeader,
     FooterBlock
   },
   data: function() {

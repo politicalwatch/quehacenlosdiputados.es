@@ -1,7 +1,7 @@
 <template>
   <div>
     <navbar></navbar>
-    <page-header title="Scanner"></page-header>
+    <tipi-header title="Scanner"/>
     <div id="scanner">
       <div class="container page">
         <div class="row">
@@ -12,7 +12,7 @@
             <div class="text-center clean-text">
               <a id="clean" :class="{ disabled: inProgress }" v-if="inputText!=''" @click="cleanTextAndResult"><i class="fa fa-times"></i> Limpiar texto <span v-if="result">y resultados</span></a>
             </div>
-            
+
           </div>
           <div class="col-sm-5">
             <p class="helptext" v-html="config.SCANNER_HELPTEXT"></p>
@@ -72,7 +72,7 @@
 
 <script>
 import Navbar from '@/components/navbar'
-import PageHeader from '@/components/page-header'
+import { TipiHeader } from 'tipi-frontend-uikit/src/components'
 import FooterBlock from '@/components/footer-block'
 import TopicsElement from '@/components/topics-element'
 import VueCsvDownloader from 'vue-csv-downloader';
@@ -86,7 +86,7 @@ export default {
   name: 'tagger',
   components: {
     Navbar,
-    PageHeader,
+    TipiHeader,
     TopicsElement,
     VueCsvDownloader,
     Neuron,
@@ -131,7 +131,7 @@ export default {
           this.inProgress = false;
           document.getElementById('start').text = 'Iniciar proceso'
           VueScrollTo.scrollTo('#result', 1500)
-        }) 
+        })
         .catch(error => {
           this.errors = error
           this.inProgress = false;

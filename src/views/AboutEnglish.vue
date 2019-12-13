@@ -2,7 +2,7 @@
   <div>
     <navbar></navbar>
     <div id="about">
-      <page-header :title="'About'"></page-header>
+      <tipi-header :title="'About'"/>
       <div class="container">
         <div class="row">
           <div class="col-sm-8 col-sm-offset-2">
@@ -14,7 +14,7 @@
             <h4>Why parliaments?</h4>
             <p>National parliaments have a key role in the Agenda 2030 implementation process. They are the most relevant and best-positioned public institutions to ensure the coherence with sustainable development in the hundreds of thousands of laws, legislative initiatives, public plans and budgets that will be passed in each country in the years to come.</p>
             <h4>Can it be adapted to other countries?</h4>
-            <p>Yes, it can. The technology used for Parlamento 2030 is currently adapted to the Spanish Parliament due to the interest of the Spanish Government to include this platform as part of the official Spanish National Action Plan for the implementation of the Agenda 2030, presented to United Nations during the Spanish Voluntary National Report in 2018. 
+            <p>Yes, it can. The technology used for Parlamento 2030 is currently adapted to the Spanish Parliament due to the interest of the Spanish Government to include this platform as part of the official Spanish National Action Plan for the implementation of the Agenda 2030, presented to United Nations during the Spanish Voluntary National Report in 2018.
             As it has been adapted to the Spanish Parliament, it is possible also to do so in another country or another level of public administration. Whether it is another country, a region or the EU Parliament who shows interest, this technology could be quickly implemented in a short period of time due the open source and code used.
             </p>
             <h4>Who we are?</h4>
@@ -34,14 +34,14 @@
 
 <script>
 import Navbar from '@/components/navbar';
-import PageHeader from '@/components/page-header';
+import { TipiHeader } from 'tipi-frontend-uikit/src/components';
 import FooterBlock from '@/components/footer-block';
 
 export default {
   name: 'about-english',
   components: {
     Navbar,
-    PageHeader,
+    TipiHeader,
     FooterBlock
   }
 }

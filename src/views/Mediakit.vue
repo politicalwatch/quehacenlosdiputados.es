@@ -2,7 +2,7 @@
   <div>
     <navbar></navbar>
     <div id="mediakit">
-      <page-header :title="'Media Kit'"></page-header>
+      <tipi-header :title="'Media Kit'"/>
       <div class="container">
         <div class="row">
           <div class="col-sm-6 language-block text-center">
@@ -45,14 +45,14 @@
 
 <script>
 import Navbar from '@/components/navbar';
-import PageHeader from '@/components/page-header';
+import { TipiHeader } from 'tipi-frontend-uikit/src/components';
 import FooterBlock from '@/components/footer-block';
 
 export default {
   name: 'mediakit',
   components: {
     Navbar,
-    PageHeader,
+    TipiHeader,
     FooterBlock
   }
 }

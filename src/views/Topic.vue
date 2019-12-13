@@ -1,7 +1,7 @@
 <template>
   <div>
     <navbar></navbar>
-    <page-header :title="topic.name"></page-header>
+    <tipi-header :title="topic.name"/>
     <div id="dict">
       <div class="container page">
         <div class="row" v-if="topic.description.length > 0 && topic.icon != ''">
@@ -49,7 +49,7 @@
 
 <script>
 import Navbar from '@/components/navbar';
-import PageHeader from '@/components/page-header'
+import { TipiHeader } from 'tipi-frontend-uikit/src/components'
 import FooterBlock from '@/components/footer-block';
 import LatestInitiatives from '@/components/latest-initiatives';
 import TextElement from '@/components/text-element'
@@ -59,7 +59,7 @@ export default {
   name: 'topic',
   components: {
     Navbar,
-    PageHeader,
+    TipiHeader,
     FooterBlock,
     LatestInitiatives,
     TextElement
