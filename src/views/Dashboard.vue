@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar></navbar>
+    <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
     <div id="dashboard">
       <tipi-header :title="'Métricas'" :subtitle="'Elige un Objetivo de Desarrollo Sostenible, o profundiza a nivel meta, y descubre las principales magnitudes de la actividad del Congreso de los Diputados sobre la Agenda 2030'"/>
       <div class="container page">
@@ -95,18 +95,19 @@
 </template>
 
 <script>
-import Navbar from '@/components/navbar';
-import { TipiHeader } from 'tipi-frontend-uikit/src/components';
+
+import { TipiHeader, TipiNavbar } from 'tipi-frontend-uikit/src/components';
 import FooterBlock from '@/components/footer-block';
 import TwoCircles from '@/components/two-circles';
 import PeopleElement from '@/components/people-element';
 import Multiselect from 'vue-multiselect';
 import api from '@/api';
+import config from '@/config'
 
 export default {
   name: 'dashboard',
   components: {
-    Navbar,
+    TipiNavbar,
     TipiHeader,
     FooterBlock,
     TwoCircles,
@@ -137,7 +138,10 @@ export default {
         parliamentarygroups: null,
         places: null
       },
-      loadingResults: false
+      loadingResults: false,
+      MENU: config.MENU,
+      DISCLAIMER: config.DISCLAIMER,
+      LOGO: config.LOGO,
     }
   },
   methods: {

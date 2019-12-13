@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar></navbar>
+    <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
     <tipi-header title="Temáticas"/>
     <div id="dicts">
       <div class="container page">
@@ -21,21 +21,25 @@
 </template>
 
 <script>
-import Navbar from '@/components/navbar';
-import { TipiHeader } from 'tipi-frontend-uikit/src/components'
+
+import { TipiHeader, TipiNavbar } from 'tipi-frontend-uikit/src/components'
 import FooterBlock from '@/components/footer-block';
-import api from '@/api'
+import api from '@/api';
+import config from '@/config';
 
 export default {
   name: 'topics',
   components: {
-    Navbar,
+    TipiNavbar,
     TipiHeader,
     FooterBlock
   },
   data: function() {
     return {
-      topics: {}
+      topics: {},
+      MENU: config.MENU,
+      DISCLAIMER: config.DISCLAIMER,
+      LOGO: config.LOGO,
     }
   },
   methods: {

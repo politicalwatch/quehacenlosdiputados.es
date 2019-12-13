@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar></navbar>
+    <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
     <tipi-header title="Scanner"/>
     <div id="scanner">
       <div class="container page">
@@ -71,21 +71,20 @@
 </template>
 
 <script>
-import Navbar from '@/components/navbar'
-import { TipiHeader } from 'tipi-frontend-uikit/src/components'
+import { TipiHeader, TipiNavbar } from 'tipi-frontend-uikit/src/components'
 import FooterBlock from '@/components/footer-block'
 import TopicsElement from '@/components/topics-element'
 import VueCsvDownloader from 'vue-csv-downloader';
-import Neuron from '@/components/neuron'
-import config from '@/config'
-import api from '@/api'
+import Neuron from '@/components/neuron';
+import config from '@/config';
+import api from '@/api';
 
 const VueScrollTo = require('vue-scrollto');
 
 export default {
   name: 'tagger',
   components: {
-    Navbar,
+    TipiNavbar,
     TipiHeader,
     TopicsElement,
     VueCsvDownloader,

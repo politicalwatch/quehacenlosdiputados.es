@@ -3,5 +3,42 @@ export default {
   URL: 'http://localhost:5000',
   GOOGLE_ANALYTICS: 'XXXXXXXXXXXX',
   USE_ALERTS: false,
-  SCANNER_HELPTEXT: ""
+  SCANNER_HELPTEXT: "",
+  MENU: [
+    {
+      route : 'search',
+      name: 'Buscar',
+      condition: true,
+    },
+    {
+      route: 'topics',
+      name: 'Temáticas',
+      condition: true,
+    },
+    {
+      route: 'dashboard',
+      name: 'Métricas',
+      condition: true,
+    },
+    {
+      route: 'scanner',
+      name: 'Scanner',
+      condition: true,
+    },
+    {
+      route: 'alerts',
+      name: 'Alertas',
+      condition: false,
+    },
+    {
+      route: 'about',
+      name: 'Acerca',
+      condition: true,
+    },
+  ],
+  DISCLAIMER: {
+    route: 'about-en',
+    name: 'Learn more about this project in English',
+  },
+  LOGO: '/img/logo-beta.png',
 }

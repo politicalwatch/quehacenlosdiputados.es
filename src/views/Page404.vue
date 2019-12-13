@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar></navbar>
+    <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
     <div id="page404">
       <div class="container">
         <div class="row">
@@ -17,15 +17,24 @@
 </template>
 
 <script>
-import Navbar from '@/components/navbar';
+
+import { TipiNavbar } from 'tipi-frontend-uikit/src/components';
 import FooterBlock from '@/components/footer-block';
+import config from '@/config';
 
 export default {
   name: 'PAge404',
   components: {
-    Navbar,
+    TipiNavbar,
     FooterBlock
-  }
+  },
+  data: function() {
+    return {
+      MENU: config.MENU,
+      DISCLAIMER: config.DISCLAIMER,
+      LOGO: config.LOGO,
+    }
+  },
 }
 </script>
 

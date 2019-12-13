@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar></navbar>
+    <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
     <tipi-header :title="topic.name"/>
     <div id="dict">
       <div class="container page">
@@ -48,17 +48,19 @@
 </template>
 
 <script>
-import Navbar from '@/components/navbar';
-import { TipiHeader } from 'tipi-frontend-uikit/src/components'
+
+import { TipiHeader, TipiNavbar } from 'tipi-frontend-uikit/src/components'
 import FooterBlock from '@/components/footer-block';
 import LatestInitiatives from '@/components/latest-initiatives';
-import TextElement from '@/components/text-element'
-import api from '@/api'
+import TextElement from '@/components/text-element';
+import api from '@/api';
+import config from '@/config';
+
 
 export default {
   name: 'topic',
   components: {
-    Navbar,
+    TipiNavbar,
     TipiHeader,
     FooterBlock,
     LatestInitiatives,
@@ -71,7 +73,10 @@ export default {
       deputies: null,
       allParliamentarygroups: null,
       parliamentarygroups: null,
-      latestInitiatives: null
+      latestInitiatives: null,
+      MENU: config.MENU,
+      DISCLAIMER: config.DISCLAIMER,
+      LOGO: config.LOGO,
     }
   },
   methods: {

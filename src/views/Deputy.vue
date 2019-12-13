@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar></navbar>
+    <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
     <tipi-header :title="deputy.name"/>
     <div id="deputy">
       <div class="container page">
@@ -29,18 +29,20 @@
 </template>
 
 <script>
-import Navbar from '@/components/navbar';
-import { TipiHeader } from 'tipi-frontend-uikit/src/components'
+
+import { TipiHeader, TipiNavbar } from 'tipi-frontend-uikit/src/components'
 import FooterBlock from '@/components/footer-block';
 import LatestInitiatives from '@/components/latest-initiatives';
-import api from '@/api'
+import api from '@/api';
+import config from '@/config';
+
 
 const moment = require('moment');
 
 export default {
   name: 'deputy',
   components: {
-    Navbar,
+    TipiNavbar,
     TipiHeader,
     FooterBlock,
     LatestInitiatives
@@ -51,7 +53,9 @@ export default {
       parliamentarygroup: null,
       latestInitiatives: null,
       moment: moment,
-
+      MENU: config.MENU,
+      DISCLAIMER: config.DISCLAIMER,
+      LOGO: config.LOGO,
     }
   },
   methods: {

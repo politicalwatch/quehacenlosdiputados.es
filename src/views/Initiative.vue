@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar></navbar>
+    <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
     <div id="initiative">
       <tipi-header :title="initiative.title"/>
       <div class="container page">
@@ -51,15 +51,16 @@
 </template>
 
 <script>
-import Navbar from '@/components/navbar';
-import { TipiHeader } from 'tipi-frontend-uikit/src/components'
+
+import { TipiHeader, TipiNavbar } from 'tipi-frontend-uikit/src/components'
 import FooterBlock from '@/components/footer-block';
 import TextElement from '@/components/text-element'
 import PeopleElement from '@/components/people-element'
 import TopicsElement from '@/components/topics-element'
 import RelatedInitiatives from '@/components/related-initiatives'
 import Neuron from '@/components/neuron'
-import api from '@/api'
+import api from '@/api';
+import config from '@/config';
 
 const moment = require('moment');
 const color_by_status = {
@@ -72,7 +73,7 @@ const color_by_status = {
 export default {
   name: 'initiative',
   components: {
-    Navbar,
+    TipiNavbar,
     TipiHeader,
     FooterBlock,
     TextElement,
@@ -88,7 +89,10 @@ export default {
       allParliamentarygroups: null,
       color_by_status: color_by_status,
       moment: moment,
-      dataLoaded: false
+      dataLoaded: false,
+      MENU: config.MENU,
+      DISCLAIMER: config.DISCLAIMER,
+      LOGO: config.LOGO,
     }
   },
   methods: {
