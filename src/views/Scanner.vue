@@ -99,7 +99,10 @@ export default {
       fakeInitiative: null,
       inProgress: false,
       csvItems: [],
-      csvFields: ['topic', 'subtopic', 'tag']
+      csvFields: ['topic', 'subtopic', 'tag'],
+      MENU: config.MENU,
+      DISCLAIMER: config.DISCLAIMER,
+      LOGO: config.LOGO,
     };
   },
   methods: {
