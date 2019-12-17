@@ -6,7 +6,7 @@
       <div class="container page">
         <tipi-deputy :deputy="deputy" :parliamentaryGroup="parliamentarygroup" />
         <hr v-if="latestInitiatives">
-        <latest-initiatives :initiatives="latestInitiatives"></latest-initiatives>
+        <tipi-results layout="tiny" :initiatives="latestInitiatives"/>
       </div>
     </div>
     <footer-block></footer-block>
@@ -15,14 +15,10 @@
 
 <script>
 
-import { TipiHeader, TipiNavbar, TipiDeputy } from 'tipi-frontend-uikit/src/components'
+import { TipiHeader, TipiNavbar, TipiDeputy, TipiResults } from 'tipi-frontend-uikit/src/components'
 import FooterBlock from '@/components/footer-block';
-import LatestInitiatives from '@/components/latest-initiatives';
 import api from '@/api';
 import config from '@/config';
-
-
-const moment = require('moment');
 
 export default {
   name: 'deputy',
@@ -31,14 +27,13 @@ export default {
     TipiHeader,
     TipiDeputy,
     FooterBlock,
-    LatestInitiatives
+    TipiResults
   },
   data: function() {
     return {
       deputy: null,
       parliamentarygroup: null,
       latestInitiatives: null,
-      moment: moment,
       MENU: config.MENU,
       DISCLAIMER: config.DISCLAIMER,
       LOGO: config.LOGO,
