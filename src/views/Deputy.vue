@@ -1,25 +1,10 @@
 <template>
   <div>
     <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
-    <tipi-header :title="deputy.name"/>
+    <tipi-header v-if="deputy" :title="deputy.name"/>
     <div id="deputy">
       <div class="container page">
-        <div class="row">
-          <div class="col-sm-2">
-            <span class="foto grande">
-              <img class="img-responsive" :src="deputy.image" :alt="'Foto de ' + deputy.name">
-            </span>
-          </div>
-          <div class="col-sm-10">
-            <h3>
-                <router-link :to="{path: '/parliamentarygroups/' + parliamentarygroup.id}">{{parliamentarygroup.name}}</router-link>
-            </h3>
-            <ul class="list-unstyled">
-              <li v-if="deputy.email"><a :href="'mailto:'+deputy.email" target="_blank"><i class="fa fa-envelope"></i> {{deputy.email}}</a></li>
-              <li v-if="deputy.twitter"><a :href="deputy.twitter" target="_blank"><i class="fa fa-twitter"></i> {{deputy.twitter}}</a></li>
-            </ul>
-          </div>
-        </div>
+        <tipi-deputy :deputy="deputy" :parliamentaryGroup="parliamentarygroup" />
         <hr v-if="latestInitiatives">
         <latest-initiatives :initiatives="latestInitiatives"></latest-initiatives>
       </div>
@@ -30,7 +15,7 @@
 
 <script>
 
-import { TipiHeader, TipiNavbar } from 'tipi-frontend-uikit/src/components'
+import { TipiHeader, TipiNavbar, TipiDeputy } from 'tipi-frontend-uikit/src/components'
 import FooterBlock from '@/components/footer-block';
 import LatestInitiatives from '@/components/latest-initiatives';
 import api from '@/api';
@@ -44,6 +29,7 @@ export default {
   components: {
     TipiNavbar,
     TipiHeader,
+    TipiDeputy,
     FooterBlock,
     LatestInitiatives
   },
