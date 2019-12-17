@@ -1,7 +1,6 @@
 <template>
   <div>
     <splash></splash>
-    <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
     <div id="search">
       <tipi-header :title="'Buscar'" :subtitle="'Bucea en la actividad parlamentaria relacionada con los ODS con las múltiples opciones que te ofrece el buscador de Parlamento 2030'" />
       <tipi-messages :errors="this.errors" :queryMeta="this.query_meta" />
@@ -30,18 +29,16 @@
         </div>
       </div>
     </div>
-    <footer-block></footer-block>
   </div>
 </template>
 
 <script>
 import Splash from '@/components/splash';
-import FooterBlock from '@/components/footer-block';
 import searchForm from '@/components/search-form';
 import SaveAlert from '@/components/save-alert';
 import config from '@/config'
 import api from '@/api'
-import { TipiNavbar, TipiHeader, TipiCsvDownload, TipiMessages, TipiResults } from 'tipi-frontend-uikit/src/components'
+import { TipiHeader, TipiCsvDownload, TipiMessages, TipiResults } from 'tipi-frontend-uikit/src/components'
 
 const qs = require('qs');
 
@@ -49,8 +46,6 @@ export default {
   name: 'search',
   components: {
     Splash,
-    TipiNavbar,
-    FooterBlock,
     SaveAlert,
     TipiResults,
     TipiMessages,
@@ -76,9 +71,6 @@ export default {
       loadingResults: false,
       csvItems: [],
       LIMITCSV: 1000,
-      MENU: config.MENU,
-      DISCLAIMER: config.DISCLAIMER,
-      LOGO: config.LOGO,
     }
   },
   computed: {

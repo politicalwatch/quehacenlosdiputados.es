@@ -1,6 +1,5 @@
 <template>
   <div>
-    <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
     <tipi-header v-if="deputy" :title="deputy.name"/>
     <div id="deputy">
       <div class="container page">
@@ -9,21 +8,18 @@
         <tipi-results layout="tiny" :initiatives="latestInitiatives"/>
       </div>
     </div>
-    <footer-block></footer-block>
   </div>
 </template>
 
 <script>
 
-import { TipiHeader, TipiNavbar, TipiDeputy, TipiResults } from 'tipi-frontend-uikit/src/components'
+import { TipiHeader, TipiDeputy, TipiResults } from 'tipi-frontend-uikit/src/components'
 import FooterBlock from '@/components/footer-block';
 import api from '@/api';
-import config from '@/config';
 
 export default {
   name: 'deputy',
   components: {
-    TipiNavbar,
     TipiHeader,
     TipiDeputy,
     FooterBlock,
@@ -34,9 +30,6 @@ export default {
       deputy: null,
       parliamentarygroup: null,
       latestInitiatives: null,
-      MENU: config.MENU,
-      DISCLAIMER: config.DISCLAIMER,
-      LOGO: config.LOGO,
     }
   },
   methods: {
