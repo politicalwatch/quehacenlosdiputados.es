@@ -17,20 +17,13 @@
           <div class="col-sm-6">
             <div class="row">
               <div class="col-sm-8 col-sm-offset-2">
-                <div :class="'text-center state well color-'+getColorByStatus(initiative.status)">
-                  <strong>{{initiative.status}}</strong>
-                </div>
-                <p class="congress-link text-center">
-                  <a :href="initiative.url" target="_blank" :title="'Ver '+initiative.title+' en su fuente original'">
-                    <i class="fa fa-institution"></i><span>Ver en el Congreso de los Diputados</span>
-                  </a>
-                </p>
+                <tipi-initiative-meta :initiative="initiative" link-text="Ver en el Congreso de los Diputados" />
               </div>
             </div>
             <div class="row">
               <div class="col-sm-12 text-center neuron-block">
                 <span>Relación de esta iniciativa con los ODS <sup title="El gráfico muestra los ODS relacionados con la iniciativa y el grado de relación con cada uno de ellos, cuya intensidad se refleja en la barra circular que los rodea."><i class="fa fa-question-circle"></i></sup></span>
-                <neuron :initiative="initiative"  v-if="dataLoaded"></neuron>
+                <tipi-neuron :initiative="initiative"  :topics="neuronTopics" v-if="dataLoaded" />
               </div>
             </div>
           </div>
@@ -50,36 +43,30 @@
 
 <script>
 
-import { TipiHeader, TipiText, TipiTopics } from 'tipi-frontend-uikit/src/components'
+import { TipiHeader, TipiText, TipiTopics, TipiInitiativeMeta, TipiNeuron } from 'tipi-frontend-uikit/src/components'
 import RelatedInitiatives from '@/components/related-initiatives'
-import Neuron from '@/components/neuron'
 import api from '@/api';
-import config from '@/config';
 
 const moment = require('moment');
-const color_by_status = {
-  'green': ['Aprobada', 'Respondida', 'Celebrada', 'Convertida en otra', 'Acumulada en otra'],
-  'black': ['En tramitación', 'Desconocida'],
-  'red': ['No admitida a trámite', 'No debatida', 'Rechazada', 'Retirada', 'Derogada', 'No celebrada']
-  }
 
 export default {
   name: 'initiative',
   components: {
     TipiHeader,
     RelatedInitiatives,
-    Neuron,
     TipiText,
     TipiTopics,
+    TipiInitiativeMeta,
+    TipiNeuron,
   },
   data: function() {
     return {
       initiative: {},
       allDeputies: null,
       allParliamentarygroups: null,
-      color_by_status: color_by_status,
       moment: moment,
       dataLoaded: false,
+      neuronTopics: [],
     }
   },
   methods: {
@@ -107,15 +94,17 @@ export default {
         })
         .catch(error => this.errors = error);
     },
-    getColorByStatus: function(status) {
-      for(let color in this.color_by_status) {
-        if (this.color_by_status[color].indexOf(status) != -1) return color
-      }
-      return 'black'
+    getTopics: function () {
+      api.getTopics()
+      .then(topics => {
+        this.neuronTopics = topics;
+      })
+      .catch(error => this.errors = error);
     },
   },
   created: function() {
-    this.getDeputies()
+    this.getDeputies();
+    this.getTopics();
   },
   watch: {
     '$route': 'getInitiative'
