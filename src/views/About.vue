@@ -1,6 +1,5 @@
 <template>
   <div>
-    <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
     <div id="about">
       <tipi-header :title="'Acerca'"/>
       <div class="container">
@@ -29,29 +28,17 @@
         </div>
       </div>
     </div>
-    <footer-block></footer-block>
   </div>
 </template>
 
 <script>
 
-import { TipiHeader, TipiNavbar } from 'tipi-frontend-uikit/src/components';
-import FooterBlock from '@/components/footer-block';
-import config from '@/config';
+import { TipiHeader } from 'tipi-frontend-uikit';
 
 export default {
   name: 'about',
   components: {
-    TipiNavbar,
     TipiHeader,
-    FooterBlock
-  },
-  data: function() {
-    return {
-      MENU: config.MENU,
-      DISCLAIMER: config.DISCLAIMER,
-      LOGO: config.LOGO,
-    }
   },
 }
 </script>

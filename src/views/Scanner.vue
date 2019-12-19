@@ -1,6 +1,5 @@
 <template>
   <div>
-    <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
     <tipi-header title="Scanner"/>
     <div id="scanner">
       <div class="container page">
@@ -71,7 +70,7 @@
 </template>
 
 <script>
-import { TipiHeader, TipiNavbar } from 'tipi-frontend-uikit/src/components'
+import { TipiHeader } from 'tipi-frontend-uikit'
 import FooterBlock from '@/components/footer-block'
 import TopicsElement from '@/components/topics-element'
 import VueCsvDownloader from 'vue-csv-downloader';
@@ -84,7 +83,6 @@ const VueScrollTo = require('vue-scrollto');
 export default {
   name: 'tagger',
   components: {
-    TipiNavbar,
     TipiHeader,
     TopicsElement,
     VueCsvDownloader,

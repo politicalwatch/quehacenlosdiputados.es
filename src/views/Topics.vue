@@ -22,7 +22,7 @@
 
 <script>
 
-import { TipiHeader, TipiNavbar } from 'tipi-frontend-uikit/src/components'
+import { TipiHeader, TipiNavbar } from 'tipi-frontend-uikit'
 import FooterBlock from '@/components/footer-block';
 import api from '@/api';
 import config from '@/config';

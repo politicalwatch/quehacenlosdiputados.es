@@ -32,7 +32,7 @@
           <hr>
           <div class="row">
             <div class="col-sm-12">
-              <related-initiatives :meta="'Actos relacionados'" :related="initiative.related"></related-initiatives>
+              <tipi-related-initiatives meta="Actos relacionados" :related="initiative.related"/>
             </div>
           </div>
         </div>
@@ -43,8 +43,7 @@
 
 <script>
 
-import { TipiHeader, TipiText, TipiTopics, TipiInitiativeMeta, TipiNeuron } from 'tipi-frontend-uikit/src/components'
-import RelatedInitiatives from '@/components/related-initiatives'
+import { TipiHeader, TipiText, TipiTopics, TipiInitiativeMeta, TipiNeuron, TipiRelatedInitiatives } from 'tipi-frontend-uikit'
 import api from '@/api';
 
 const moment = require('moment');
@@ -53,11 +52,11 @@ export default {
   name: 'initiative',
   components: {
     TipiHeader,
-    RelatedInitiatives,
     TipiText,
     TipiTopics,
     TipiInitiativeMeta,
     TipiNeuron,
+    TipiRelatedInitiatives,
   },
   data: function() {
     return {

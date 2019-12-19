@@ -13,7 +13,7 @@
 
 <script>
 
-import { TipiHeader, TipiDeputy, TipiResults } from 'tipi-frontend-uikit/src/components'
+import { TipiHeader, TipiDeputy, TipiResults } from 'tipi-frontend-uikit'
 import FooterBlock from '@/components/footer-block';
 import api from '@/api';
 

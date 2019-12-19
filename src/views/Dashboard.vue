@@ -96,7 +96,7 @@
 
 <script>
 
-import { TipiHeader, TipiNavbar } from 'tipi-frontend-uikit/src/components';
+import { TipiHeader, TipiNavbar } from 'tipi-frontend-uikit';
 import FooterBlock from '@/components/footer-block';
 import TwoCircles from '@/components/two-circles';
 import PeopleElement from '@/components/people-element';
