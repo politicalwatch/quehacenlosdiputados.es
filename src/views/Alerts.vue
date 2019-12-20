@@ -1,8 +1,7 @@
 <template>
   <div>
-    <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
     <div id="alerts">
-      <tipi-header :title="'Sistema de alertas'"/>
+      <tipi-header title="Sistema de alertas"/>
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
@@ -34,34 +33,21 @@
                 <router-link class="btn btn-custom btn-block" :to="{name: 'search'}">Probarlo ahora</router-link>
               </div>
             </div>
-
           </div>
         </div>
       </div>
     </div>
-    <footer-block></footer-block>
   </div>
 </template>
 
 <script>
 
-import { TipiHeader, TipiNavbar } from 'tipi-frontend-uikit';
-import FooterBlock from '@/components/footer-block';
-import config from '@/config';
+import { TipiHeader } from 'tipi-frontend-uikit';
 
 export default {
   name: 'alerts',
   components: {
-    TipiNavbar,
     TipiHeader,
-    FooterBlock
-  },
-  data: function() {
-    return {
-      MENU: config.MENU,
-      DISCLAIMER: config.DISCLAIMER,
-      LOGO: config.LOGO,
-    }
   },
 }
 </script>
