@@ -10,7 +10,7 @@
             <tipi-text meta="Diputadas/os más activas/os" :value="deputies" type="deputies" :source="deputies" />
           </div>
           <div class="col-sm-6" v-if="parliamentarygroups">
-            <tipi-text meta="Grupos más activoss" :value="parliamentarygroups" type="parliamentarygroups" :source="parliamentarygroups" />
+            <tipi-text meta="Grupos más activos" :value="parliamentarygroups" type="parliamentarygroups" :source="parliamentarygroups" />
           </div>
         </div>
         <hr v-if="latestInitiatives">
