@@ -14,7 +14,6 @@
 <script>
 
 import { TipiHeader, TipiDeputy, TipiResults } from 'tipi-frontend-uikit'
-import FooterBlock from '@/components/footer-block';
 import api from '@/api';
 
 export default {
@@ -22,7 +21,6 @@ export default {
   components: {
     TipiHeader,
     TipiDeputy,
-    FooterBlock,
     TipiResults
   },
   data: function() {
