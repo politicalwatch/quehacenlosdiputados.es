@@ -1,6 +1,13 @@
 <template>
   <div>
-    <splash></splash>
+    <tipi-splash>
+      <img src="/img/logo.png">
+      <p><strong>Parlamento 2030</strong> te ofrece toda la información sobre la actividad del Congreso de los Diputados relacionada con los <strong>Objetivos de Desarrollo Sostenible (ODS)</strong>. Entra y descubre cómo trabajan los diputados españoles de cara al cumplimiento de la <strong>Agenda 2030</strong>.</p>
+      <p>Estás a punto de entrar en la versión beta de Parlamento 2030. En ella encontrarás toda la información parlamentaria relacionada con 6 de los 17 ODS que configuran la Agenda 2030. Estamos actualmente trabajando en el resto de ODS y pronto estarán disponible.</p>
+      <p>
+        <router-link :to="{name: 'about-en'}">Learn more about this project in English</router-link>
+      </p>
+    </tipi-splash>
     <div id="search">
       <tipi-header :title="'Buscar'" :subtitle="'Bucea en la actividad parlamentaria relacionada con los ODS con las múltiples opciones que te ofrece el buscador de Parlamento 2030'" />
       <tipi-messages :errors="this.errors" :queryMeta="this.query_meta" />
@@ -8,10 +15,10 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="well">
-              <search-form :data="this.data" @getResults="getResults"/>
+              <search-form :data="this.data" @getResults="getResults" />
             </div>
             <div class="well search-actions" v-show="this.query_meta.total >= 0">
-              <save-alert :searchparams="data" v-show="alertsIsEnabled()"></save-alert>
+              <save-alert :searchparams="data" v-show="alertsIsEnabled()" />
               <tipi-csv-download
                 :initiatives="initiatives || []"
                 :csvItems="csvItems"
@@ -33,19 +40,18 @@
 </template>
 
 <script>
-import Splash from '@/components/splash';
 import searchForm from '@/components/search-form';
 import SaveAlert from '@/components/save-alert';
 import config from '@/config'
 import api from '@/api'
-import { TipiHeader, TipiCsvDownload, TipiMessages, TipiResults } from 'tipi-frontend-uikit'
+import { TipiHeader, TipiCsvDownload, TipiMessages, TipiResults, TipiSplash } from 'tipi-frontend-uikit'
 
 const qs = require('qs');
 
 export default {
   name: 'search',
   components: {
-    Splash,
+    TipiSplash,
     SaveAlert,
     TipiResults,
     TipiMessages,
