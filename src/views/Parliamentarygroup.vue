@@ -1,43 +1,30 @@
 <template>
   <div>
-    <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
     <tipi-header :title="parliamentarygroup.name"/>
     <div id="group">
       <div class="container page">
-        <latest-initiatives :initiatives="latestInitiatives"></latest-initiatives>
+        <h4>Últimas iniciativas</h4>
+        <tipi-results layout="tiny" :initiatives="latestInitiatives"/>
       </div>
     </div>
-    <footer-block></footer-block>
   </div>
 </template>
 
 <script>
 
-import { TipiHeader, TipiNavbar } from 'tipi-frontend-uikit'
-import FooterBlock from '@/components/footer-block';
-import LatestInitiatives from '@/components/latest-initiatives';
+import { TipiHeader, TipiResults } from 'tipi-frontend-uikit'
 import api from '@/api';
-import config from '@/config';
-
-
-const moment = require('moment');
 
 export default {
   name: 'parliamentarygroup',
   components: {
-    TipiNavbar,
     TipiHeader,
-    FooterBlock,
-    LatestInitiatives
+    TipiResults
   },
   data: function() {
     return {
       parliamentarygroup: null,
       latestInitiatives: null,
-      moment: moment,
-      MENU: config.MENU,
-      DISCLAIMER: config.DISCLAIMER,
-      LOGO: config.LOGO,
     }
   },
   methods: {
@@ -62,6 +49,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="scss">
-</style>
