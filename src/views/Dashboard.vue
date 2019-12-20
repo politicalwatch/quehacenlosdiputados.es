@@ -1,6 +1,5 @@
 <template>
   <div>
-    <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
     <div id="dashboard">
       <tipi-header :title="'Métricas'" :subtitle="'Elige un Objetivo de Desarrollo Sostenible, o profundiza a nivel meta, y descubre las principales magnitudes de la actividad del Congreso de los Diputados sobre la Agenda 2030'"/>
       <div class="container page">
@@ -31,8 +30,6 @@
                 </fieldset>
               </form>
             </div>
-            <!-- <div v&#45;if="this.loadingResults" class="text&#45;center"><h2>Loading results</h2></div> -->
-            <!-- <results&#45;table v&#45;if="initiatives.length &#38;&#38; !this.loadingResults" :initiatives="initiatives"></results&#45;table> -->
             <div class="row">
               <div class="col-sm-12 widget" v-if="data.isSelected">
                 <h4>Comparando objetivos y metas</h4>
@@ -40,7 +37,7 @@
                 <p class="description">Descubre su volumen de actividad frente al más popular.</p>
                 <div class="row vizz-block">
                   <div class="col-sm-6 text-center">
-                    <two-circles :selection="data.selection"></two-circles>
+                    <tipi-two-circles :selection="data.selection" />
                   </div>
                   <div class="col-sm-6">
                     <p class="description main">
@@ -90,29 +87,21 @@
         </div>
       </div>
     </div>
-    <footer-block></footer-block>
   </div>
 </template>
 
 <script>
 
-import { TipiHeader, TipiNavbar } from 'tipi-frontend-uikit';
-import FooterBlock from '@/components/footer-block';
-import TwoCircles from '@/components/two-circles';
-import PeopleElement from '@/components/people-element';
+import { TipiHeader, TipiTwoCircles } from 'tipi-frontend-uikit';
 import Multiselect from 'vue-multiselect';
 import api from '@/api';
-import config from '@/config'
 
 export default {
   name: 'dashboard',
   components: {
-    TipiNavbar,
     TipiHeader,
-    FooterBlock,
-    TwoCircles,
-    PeopleElement,
-    Multiselect
+    TipiTwoCircles,
+    Multiselect,
   },
   data: function() {
     return {
@@ -139,9 +128,6 @@ export default {
         places: null
       },
       loadingResults: false,
-      MENU: config.MENU,
-      DISCLAIMER: config.DISCLAIMER,
-      LOGO: config.LOGO,
     }
   },
   methods: {
