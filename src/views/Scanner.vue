@@ -33,7 +33,7 @@
             <div class="data-result" v-else>
               <div class="row">
                 <div class="col-sm-7">
-                  <neuron :initiative="fakeInitiative" v-if="fakeInitiative"></neuron>
+                  <tipi-neuron :initiative="fakeInitiative" :topics="neuronTopics" v-if="fakeInitiative && neuronTopics" />
                 </div>
                 <div class="col-sm-5">
                   <p class="helptext">Aquí tienes una una relación visual de tu texto, para que de un primer vistazo veas conexiones interesantes.</p>
@@ -41,7 +41,7 @@
               </div>
               <div class="row">
                 <div class="col-sm-7">
-                  <topics-element :meta="'ODS tratados'" :topics="result.topics" :tags="result.tags"></topics-element>
+                  <tipi-topics meta="ODS tratados" :topics="result.topics" :tags="result.tags" />
                 </div>
                 <div class="col-sm-5">
                   <p class="helptext">Si haces clic en cualquiera de las etiquetas relacionadas con tu texto podrás conocer además toda la actividad parlamentaria asociada con dicha etiqueta.</p>
@@ -49,32 +49,26 @@
               </div>
               <div class="row">
                 <div class="col-sm-12 text-center">
-                  <vue-csv-downloader
-                    :data="csvItems"
-                    :fields="csvFields"
-                    :downloadName="getNameFromCSV()"
-                    id="downloadExportCSV"
-                    class="btn btn-custom btn-naked">
-                    <i class="fa fa-download" aria-hidden="true"></i>&nbsp;Descárgalo en CSV
-                  </vue-csv-downloader>
+                  <tipi-csv-download
+                    :initiatives="csvItems || []"
+                    :csvItems="csvItems"
+                    :csvFields="csvFields"
+                    :canDownloadCSV="true"
+                    class="btn btn-custom btn-naked"
+                    label="Descárgalo en CSV"
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
-    <footer-block></footer-block>
   </div>
 </template>
 
 <script>
-import { TipiHeader } from 'tipi-frontend-uikit'
-import FooterBlock from '@/components/footer-block'
-import TopicsElement from '@/components/topics-element'
-import VueCsvDownloader from 'vue-csv-downloader';
-import Neuron from '@/components/neuron';
+import { TipiHeader, TipiTopics, TipiNeuron, TipiCsvDownload } from 'tipi-frontend-uikit'
 import config from '@/config';
 import api from '@/api';
 
@@ -84,10 +78,9 @@ export default {
   name: 'tagger',
   components: {
     TipiHeader,
-    TopicsElement,
-    VueCsvDownloader,
-    Neuron,
-    FooterBlock
+    TipiTopics,
+    TipiNeuron,
+    TipiCsvDownload,
   },
   data() {
     return {
@@ -98,9 +91,7 @@ export default {
       inProgress: false,
       csvItems: [],
       csvFields: ['topic', 'subtopic', 'tag'],
-      MENU: config.MENU,
-      DISCLAIMER: config.DISCLAIMER,
-      LOGO: config.LOGO,
+      neuronTopics: [],
     };
   },
   methods: {
@@ -116,7 +107,8 @@ export default {
       this.cleanResult()
     },
     annotate() {
-      this.cleanResult()
+      this.cleanResult();
+      this.getTopics();
       this.inProgress = true;
       document.getElementById('start').text = 'Procesando...'
       this.fakeInitiative = null
@@ -137,6 +129,13 @@ export default {
           this.inProgress = false;
           document.getElementById('start').text = 'Iniciar proceso'
         });
+    },
+    getTopics: function () {
+      api.getTopics()
+      .then(topics => {
+        this.neuronTopics = topics;
+      })
+      .catch(error => this.errors = error);
     },
     getNameFromCSV: function() {
       let d = new Date();

@@ -5,14 +5,14 @@
       <div class="container page">
         <div class="row">
           <div class="col-sm-6 keyvalues">
-            <tipi-text :meta="'Tipo de acto parlamentario'" :value="initiative.initiative_type_alt" />
-            <tipi-text :meta="'Referencia'" :value="initiative.reference" />
-            <tipi-text :meta="'Autor'" :value="initiative.authors" type="parliamentarygroups" :source="allParliamentarygroups" />
-            <tipi-text :meta="'Diputada/o'" :value="initiative.deputies" type="deputies" :source="allDeputies" />
-            <tipi-text :meta="'Lugar'" :value="initiative.place" />
-            <tipi-text :meta="'Registro'" :value="moment(initiative.created).format('DD/MM/Y')" />
-            <tipi-text :meta="'Actualización'" :value="moment(initiative.updated).format('DD/MM/Y')" />
-            <tipi-topics :meta="'ODS tratados'" :topics="initiative.topics" :tags="initiative.tags" />
+            <tipi-text meta="Tipo de acto parlamentario" :value="initiative.initiative_type_alt" />
+            <tipi-text meta="Referencia" :value="initiative.reference" />
+            <tipi-text meta="Autor" :value="initiative.authors" type="parliamentarygroups" :source="allParliamentarygroups" />
+            <tipi-text meta="Diputada/o" :value="initiative.deputies" type="deputies" :source="allDeputies" />
+            <tipi-text meta="Lugar" :value="initiative.place" />
+            <tipi-text meta="Registro" :value="moment(initiative.created).format('DD/MM/Y')" />
+            <tipi-text meta="Actualización" :value="moment(initiative.updated).format('DD/MM/Y')" />
+            <tipi-topics meta="ODS tratados" :topics="initiative.topics" :tags="initiative.tags" />
           </div>
           <div class="col-sm-6">
             <div class="row">

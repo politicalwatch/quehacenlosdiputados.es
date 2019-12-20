@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tipi-header :title="parliamentarygroup.name"/>
+    <tipi-header v-if="parliamentarygroup" :title="parliamentarygroup.name"/>
     <div id="group">
       <div class="container page">
         <h4>Últimas iniciativas</h4>
