@@ -1,6 +1,5 @@
 <template>
   <div>
-    <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
     <div id="mediakit">
       <tipi-header :title="'Media Kit'"/>
       <div class="container">
@@ -39,32 +38,16 @@
         </div>
       </div>
     </div>
-    <footer-block></footer-block>
   </div>
 </template>
 
 <script>
-
-import { TipiHeader, TipiNavbar } from 'tipi-frontend-uikit';
-import FooterBlock from '@/components/footer-block';
-import config from '@/config';
+import { TipiHeader } from 'tipi-frontend-uikit';
 
 export default {
   name: 'mediakit',
   components: {
-    TipiNavbar,
     TipiHeader,
-    FooterBlock
-  },
-  data: function() {
-    return {
-      MENU: config.MENU,
-      DISCLAIMER: config.DISCLAIMER,
-      LOGO: config.LOGO,
-    }
   },
 }
 </script>
-
-<style scoped lang="scss">
-<
