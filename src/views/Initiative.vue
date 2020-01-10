@@ -45,6 +45,7 @@
 
 import { TipiHeader, TipiText, TipiTopics, TipiInitiativeMeta, TipiNeuron, TipiRelatedInitiatives } from 'tipi-frontend-uikit'
 import api from '@/api';
+import config from '@/config';
 
 const moment = require('moment');
 
@@ -90,6 +91,7 @@ export default {
         .then(response => {
           this.initiative = response;
           this.dataLoaded = true;
+          window.document.title = window.document.head.querySelector('meta[property="og:title"]').content = window.document.head.querySelector('meta[name="twitter:title"]').content = `${this.initiative.title} - ${config.DEFAULT_PAGE_TITLE}`;
         })
         .catch(error => this.errors = error);
     },

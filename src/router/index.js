@@ -31,6 +31,10 @@ const routes = [{
         {
           property: 'og:description',
           content: 'Test Buscar'
+        },
+        {
+          property: 'og:title',
+          content: 'Test Buscar'
         }
         , ...config.DEFAULT_METATAGS]
     }
@@ -56,7 +60,24 @@ const routes = [{
   {
     path: "/initiatives/:id",
     name: "initiative",
-    component: Initiative
+    component: Initiative,
+    meta: {
+      title: 'Iniciativa - Parlamento 2030',
+      metaTags: [
+        {
+          name: 'description',
+          content: 'Test Iniciativa'
+        },
+        {
+          property: 'og:title',
+          content: 'Iniciativa OG title'
+        },
+        {
+          property: 'og:description',
+          content: 'Test Iniciativa'
+        }, ...config.DEFAULT_METATAGS
+      ]
+    }
   },
   {
     path: "/dashboard",
