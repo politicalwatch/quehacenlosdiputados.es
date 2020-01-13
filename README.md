@@ -3,13 +3,13 @@ PARLAMENTO2030.ES
 
 ## Requirements
 
-NodeJS > 8.0
+NodeJS > 10.0
 
 ## Setup
 
 ```
-git clone git@github.com:ciecode/tipi-frontend.git
-cd tipi-frontend
+git clone https://github.com/politicalwatch/parlamento2030.es.git
+cd parlamento2030.es
 npm install
 cp src/config/index.js.example src/config/index.js
 ```
