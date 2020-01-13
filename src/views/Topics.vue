@@ -20,7 +20,7 @@
 
 <script>
 
-import { TipiHeader, TipiTopicLink } from 'tipi-frontend-uikit'
+import { TipiHeader, TipiTopicLink } from 'tipi-uikit'
 import api from '@/api';
 
 export default {

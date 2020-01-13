@@ -12,7 +12,7 @@
 
 <script>
 
-import { TipiHeader, TipiResults } from 'tipi-frontend-uikit'
+import { TipiHeader, TipiResults } from 'tipi-uikit'
 import api from '@/api';
 
 export default {

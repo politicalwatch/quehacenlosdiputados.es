@@ -43,7 +43,7 @@
 
 <script>
 
-import { TipiHeader, TipiText, TipiTopics, TipiInitiativeMeta, TipiNeuron, TipiRelatedInitiatives } from 'tipi-frontend-uikit'
+import { TipiHeader, TipiText, TipiTopics, TipiInitiativeMeta, TipiNeuron, TipiRelatedInitiatives } from 'tipi-uikit'
 import api from '@/api';
 import config from '@/config';
 

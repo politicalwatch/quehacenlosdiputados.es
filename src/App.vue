@@ -9,7 +9,7 @@
 </template>
 
 <script>
-  import { TipiNavbar } from 'tipi-frontend-uikit'
+  import { TipiNavbar } from 'tipi-uikit'
   import FooterBlock from '@/components/footer-block';
   import config from '@/config';
 

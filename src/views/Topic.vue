@@ -23,7 +23,7 @@
 
 <script>
 
-import { TipiHeader, TipiResults, TipiTopicCard, TipiText } from 'tipi-frontend-uikit'
+import { TipiHeader, TipiResults, TipiTopicCard, TipiText } from 'tipi-uikit'
 import api from '@/api';
 
 export default {

@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import { TipiHeader, TipiTopics, TipiNeuron, TipiCsvDownload } from 'tipi-frontend-uikit'
+import { TipiHeader, TipiTopics, TipiNeuron, TipiCsvDownload } from 'tipi-uikit'
 import config from '@/config';
 import api from '@/api';
 

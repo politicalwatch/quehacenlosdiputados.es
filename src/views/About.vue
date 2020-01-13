@@ -33,7 +33,7 @@
 
 <script>
 
-import { TipiHeader } from 'tipi-frontend-uikit';
+import { TipiHeader } from 'tipi-uikit';
 
 export default {
   name: 'about',

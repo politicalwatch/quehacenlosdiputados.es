@@ -92,7 +92,7 @@
 
 <script>
 
-import { TipiHeader, TipiTwoCircles } from 'tipi-frontend-uikit';
+import { TipiHeader, TipiTwoCircles } from 'tipi-uikit';
 import Multiselect from 'vue-multiselect';
 import api from '@/api';
 

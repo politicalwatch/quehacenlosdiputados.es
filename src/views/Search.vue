@@ -44,7 +44,7 @@ import searchForm from '@/components/search-form';
 import SaveAlert from '@/components/save-alert';
 import config from '@/config'
 import api from '@/api'
-import { TipiHeader, TipiCsvDownload, TipiMessages, TipiResults, TipiSplash } from 'tipi-frontend-uikit'
+import { TipiHeader, TipiCsvDownload, TipiMessages, TipiResults, TipiSplash } from 'tipi-uikit'
 
 const qs = require('qs');
 
