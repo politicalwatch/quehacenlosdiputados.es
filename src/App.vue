@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
-      <transition name="fade" mode="out-in">
-        <router-view/>
-      </transition>
-    <footer-block />
+    <transition name="fade" mode="out-in">
+      <div>
+        <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
+          <router-view/>
+        <footer-block />
+      </div>
+    </transition>
   </div>
 </template>
 
