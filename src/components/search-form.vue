@@ -1,5 +1,5 @@
 <template>
-  <form id="search-form" class="form-horizontal" role="form" @submit.prevent="getResults">
+  <form id="search-form" class="form-horizontal" role="form" @submit.prevent="getResults($event)">
     <fieldset>
       <div class="form-group">
         <label for="topic" class="col-sm-1 control-label">ODS/SDG</label>
@@ -291,8 +291,8 @@ export default {
       this.selectedSubtopics.splice(this.selectedSubtopics.indexOf(removedSubtopic), 1);
       this.filterTags();
     },
-    getResults: function() {
-      this.$emit('getResults');
+    getResults: function(event) {
+      this.$emit('getResults', event);
     },
     prepareForm: function() {
       this.getTopics();
