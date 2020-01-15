@@ -33,7 +33,12 @@
             <div class="data-result" v-else>
               <div class="row">
                 <div class="col-sm-7">
-                  <tipi-neuron :initiative="fakeInitiative" :topics="neuronTopics" v-if="fakeInitiative && neuronTopics" />
+                  <tipi-neuron
+                    v-if="fakeInitiative && neuronTopics"
+                    :initiative="fakeInitiative"
+                    :topics="neuronTopics"
+                    :styles="styles"
+                  />
                 </div>
                 <div class="col-sm-5">
                   <p class="helptext">Aquí tienes una una relación visual de tu texto, para que de un primer vistazo veas conexiones interesantes.</p>
@@ -41,7 +46,7 @@
               </div>
               <div class="row">
                 <div class="col-sm-7">
-                  <tipi-topics meta="ODS tratados" :topics="result.topics" :tags="result.tags" />
+                  <tipi-topics meta="ODS tratados" :topics="result.topics" :tags="result.tags"/>
                 </div>
                 <div class="col-sm-5">
                   <p class="helptext">Si haces clic en cualquiera de las etiquetas relacionadas con tu texto podrás conocer además toda la actividad parlamentaria asociada con dicha etiqueta.</p>
@@ -92,6 +97,7 @@ export default {
       csvItems: [],
       csvFields: ['topic', 'subtopic', 'tag'],
       neuronTopics: [],
+      styles: config.STYLES,
     };
   },
   methods: {

@@ -104,5 +104,85 @@ export default {
       property: 'og:site_name',
       content: 'Parlamentp2030'
     },
-  ]
+  ],
+  STYLES: {
+    topics: {
+      "ODS 1 - Fin de la Pobreza": {
+        color: "#eb1c2d",
+        image: "S_SDG-goals_icons-individual-rgb-01.png",
+      },
+      "ODS 2 - Hambre Cero": {
+        color: "#d3a029",
+        image: "S_SDG-goals_icons-individual-rgb-02.png",
+      },
+      "ODS 4 - Educación de calidad": {
+        color: "#c52333",
+        image: "S_SDG-goals_icons-individual-rgb-04.png",
+      },
+      "ODS 5 - Igualdad de género": {
+        color: "#ed4135",
+        image: "S_SDG-goals_icons-individual-rgb-05.png",
+      },
+      "ODS 6 - Agua limpia y saneamiento": {
+        color: "#00aed9",
+        image: "S_SDG-goals_icons-individual-rgb-06.png",
+      },
+      "ODS 7 - Energía asequible y no contaminante": {
+        color: "#fdb713",
+        image: "S_SDG-goals_icons-individual-rgb-07.png",
+      },
+      "ODS 8": {
+        color: "#8f1838",
+        image: "S_SDG-goals_icons-individual-rgb-08.png",
+      },
+      "ODS 9": {
+        color: "#f06a38",
+        image: "S_SDG-goals_icons-individual-rgb-09.png",
+      },
+      "ODS 10": {
+        color: "#dd1367",
+        image: "S_SDG-goals_icons-individual-rgb-10.png",
+      },
+      "ODS 11 - Ciudades y comunidades sostenibles": {
+        color: "#f69c39",
+        image: "S_SDG-goals_icons-individual-rgb-11.png",
+      },
+      "ODS 12 - Producción y consumo responsables": {
+        color: "#cf8d2a",
+        image: "S_SDG-goals_icons-individual-rgb-12.png",
+      },
+      "ODS 13 - Acción por el clima": {
+        color: "#48773e",
+        image: "S_SDG-goals_icons-individual-rgb-13.png",
+      },
+      "ODS 14": {
+        color: "#007dbc",
+        image: "S_SDG-goals_icons-individual-rgb-14.png",
+      },
+      "ODS 15 - Vida de ecosistemas terrestres": {
+        color: "#5cb84d",
+        image: "S_SDG-goals_icons-individual-rgb-15.png",
+      },
+      "ODS 16 - Paz, justicia e instituciones sólidas": {
+        color: "#02558b",
+        image: "S_SDG-goals_icons-individual-rgb-16.png",
+      },
+      "ODS 17 - Alianzas para lograr los objetivos": {
+        color: "#183668",
+        image: "S_SDG-goals_icons-individual-rgb-17.png",
+      },
+    },
+    subtopics: {
+      "1.1 Erradicar la pobreza extrema": {
+        color: "#eb1c2d",
+        image: "S_SDG-goals_icons-individual-rgb-01.png",
+      },
+      "1.2 Niveles nacionales de pobreza": {
+        color: "#eb1c2d",
+        image: "S_SDG-goals_icons-individual-rgb-01.png",
+      },
+    },
+    defaultColor: "#cecece",
+    defaultImage: "placeholder.png",
+  },
 }

@@ -37,7 +37,7 @@
                 <p class="description">Descubre su volumen de actividad frente al más popular.</p>
                 <div class="row vizz-block">
                   <div class="col-sm-6 text-center">
-                    <tipi-two-circles :selection="data.selection" />
+                    <tipi-two-circles :selection="data.selection" :topic="data.topic" :styles="data.styles"/>
                   </div>
                   <div class="col-sm-6">
                     <p class="description main">
@@ -95,6 +95,7 @@
 import { TipiHeader, TipiTwoCircles } from 'tipi-uikit';
 import Multiselect from 'vue-multiselect';
 import api from '@/api';
+import config from '@/config';
 
 export default {
   name: 'dashboard',
@@ -125,7 +126,8 @@ export default {
           }
         },
         parliamentarygroups: null,
-        places: null
+        places: null,
+        styles: config.STYLES,
       },
       loadingResults: false,
     }
