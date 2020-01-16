@@ -115,6 +115,10 @@ export default {
         color: "#d3a029",
         image: "S_SDG-goals_icons-individual-rgb-02.png",
       },
+      "ODS 3 - Salud y bienestar": {
+        color: "#4c9f38",
+        image: "S_SDG-goals_icons-individual-rgb-03.png",
+      },
       "ODS 4 - Educación de calidad": {
         color: "#c52333",
         image: "S_SDG-goals_icons-individual-rgb-04.png",
@@ -131,15 +135,15 @@ export default {
         color: "#fdb713",
         image: "S_SDG-goals_icons-individual-rgb-07.png",
       },
-      "ODS 8": {
+      "ODS 8 - Trabajo decente y crecimiento económico": {
         color: "#8f1838",
         image: "S_SDG-goals_icons-individual-rgb-08.png",
       },
-      "ODS 9": {
+      "ODS 9 - Industria, innovación e infraestructura": {
         color: "#f06a38",
         image: "S_SDG-goals_icons-individual-rgb-09.png",
       },
-      "ODS 10": {
+      "ODS 10 - Reducción de las desigualdades": {
         color: "#dd1367",
         image: "S_SDG-goals_icons-individual-rgb-10.png",
       },
@@ -155,7 +159,7 @@ export default {
         color: "#48773e",
         image: "S_SDG-goals_icons-individual-rgb-13.png",
       },
-      "ODS 14": {
+      "ODS 14 - Vida submarina": {
         color: "#007dbc",
         image: "S_SDG-goals_icons-individual-rgb-14.png",
       },
