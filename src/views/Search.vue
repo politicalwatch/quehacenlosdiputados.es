@@ -103,7 +103,7 @@ export default {
         params: {
           data: qs.stringify(urlParams, { arrayFormat: 'repeat' })
         }
-      });
+      }).catch(e => e);
 
       api.getInitiatives(this.data)
          .then(response => {
