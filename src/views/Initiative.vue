@@ -23,7 +23,7 @@
             <div class="row">
               <div class="col-sm-12 text-center neuron-block">
                 <span>Relación de esta iniciativa con los ODS <sup title="El gráfico muestra los ODS relacionados con la iniciativa y el grado de relación con cada uno de ellos, cuya intensidad se refleja en la barra circular que los rodea."><i class="fa fa-question-circle"></i></sup></span>
-                <tipi-neuron :initiative="initiative"  :topics="neuronTopics" v-if="dataLoaded" :styles="styles"/>
+                <tipi-neuron :initiative="initiative" :topics="neuronTopics" v-if="dataLoaded" :styles="styles"/>
               </div>
             </div>
           </div>
@@ -83,7 +83,7 @@ export default {
       api.getGroups()
         .then(response => {
           this.allParliamentarygroups = response;
-          this.getInitiative();
+          this.getTopics() ;
         })
         .catch(error => this.errors = error);
     },
@@ -100,13 +100,13 @@ export default {
       api.getTopics()
       .then(topics => {
         this.neuronTopics = topics;
+        this.getInitiative();
       })
       .catch(error => this.errors = error);
     },
   },
   created: function() {
     this.getDeputies();
-    this.getTopics();
   },
   watch: {
     '$route': 'getInitiative'
