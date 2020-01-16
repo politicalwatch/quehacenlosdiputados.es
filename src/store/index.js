@@ -11,9 +11,9 @@ const types = {
 };
 
 const state = {
-  topics: {},
-  deputies: {},
-  parliamentaryGroups: {},
+  allTopics: [],
+  allDeputies: [],
+  allParliamentaryGroups: [],
 };
 
 const getters = {};
@@ -44,13 +44,13 @@ const actions = {
 
 const mutations = {
   [types.GET_DEPUTIES](state, deputies) {
-    state.deputies = deputies;
+    state.allDeputies = deputies;
   },
   [types.GET_TOPICS](state, topics) {
-    state.topics = topics;
+    state.allTopics = topics;
   },
   [types.GET_PARLIAMENTARY_GROUPS](state, parliamentaryGroups) {
-    state.parliamentaryGroups = parliamentaryGroups;
+    state.allParliamentaryGroups = parliamentaryGroups;
   },
 };
 
