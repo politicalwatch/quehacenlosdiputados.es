@@ -14,6 +14,7 @@
   import { TipiNavbar } from 'tipi-uikit'
   import FooterBlock from '@/components/footer-block';
   import config from '@/config';
+  import { mapActions } from 'vuex';
 
   export default {
     name: 'app',
@@ -28,6 +29,18 @@
         LOGO: config.LOGO,
       }
     },
+    methods: {
+      ...mapActions([
+        'getDeputies',
+        'getTopics',
+        'getParliamentaryGroups',
+      ]),
+    },
+    created: function() {
+      this.getDeputies();
+      this.getTopics();
+      this.getParliamentaryGroups();
+    }
   }
 </script>
 
