@@ -96,6 +96,7 @@ import { TipiHeader, TipiTwoCircles } from 'tipi-uikit';
 import Multiselect from 'vue-multiselect';
 import api from '@/api';
 import config from '@/config';
+import { mapState } from 'vuex';
 
 export default {
   name: 'dashboard',
@@ -106,9 +107,7 @@ export default {
   },
   data: function() {
     return {
-      topics: [],
       subtopics: [],
-      allParliamentarygroups: null,
       data: {
         topic: '',
         subtopic: '',
@@ -132,6 +131,12 @@ export default {
       loadingResults: false,
     }
   },
+  computed: {
+    ...mapState({
+        allParliamentaryGroups: 'allParliamentaryGroups',
+        topics: 'allTopics',
+      }),
+  },
   methods: {
     fillSubtopics: function(selectedTopic, clearValues) {
       this.data.subtopic = clearValues ? "" : this.data.subtopic;
@@ -142,9 +147,7 @@ export default {
       api.getTopics()
         .then(topics => {
           this.topics = topics;
-          if (this.data.topic) {
-            this.fillSubtopics(this.data.topic, false);
-          }
+
         })
         .catch(error => this.errors = error);
     },
@@ -200,22 +203,16 @@ export default {
       return (number_of_initiatives == 1) ? "iniciativa" : "iniciativas";
     },
     prepareForm: function() {
-      this.getTopics();
-    },
-    getParliamentarygroups: function() {
-      api.getGroups()
-        .then(response => {
-          this.allParliamentarygroups = response;
-          this.prepareForm();
-        })
-        .catch(error => this.errors = error);
+      if (this.data.topic) {
+        this.fillSubtopics(this.data.topic, false);
+      }
     },
     getPgIdFromName: function (name) {
-      return this.allParliamentarygroups.find(s => s.name == name).id;
+      return this.allParliamentaryGroups.find(s => s.name == name).id;
     },
   },
   created: function() {
-    this.getParliamentarygroups();
+    this.prepareForm();
   },
   watch: {
     'data.topic': 'getResults',

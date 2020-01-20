@@ -15,6 +15,7 @@
 
 import { TipiHeader, TipiDeputy, TipiResults } from 'tipi-uikit'
 import api from '@/api';
+import { mapState } from 'vuex';
 
 export default {
   name: 'deputy',
@@ -30,31 +31,25 @@ export default {
       latestInitiatives: null,
     }
   },
+  computed: {
+    ...mapState(['allParliamentaryGroups'])
+  },
   methods: {
     getDeputy: function() {
       api.getDeputy(this.$route.params.id)
         .then(response => {
           this.deputy = response;
-          this.getParliamentaryGroup();
+          this.parliamentarygroup = this.allParliamentaryGroups.find(allPG => allPG.shortname === this.deputy.parliamentarygroup);
           this.getLatestInitiatives();
-
-        })
-        .catch(error => this.errors = error);
-    },
-    getParliamentaryGroup: function() {
-      api.getGroups()
-        .then(response => {
-          let parliamentarygroups = response;
-          this.parliamentarygroup = parliamentarygroups.find(allPG => allPG.shortname === this.deputy.parliamentarygroup );
         })
         .catch(error => this.errors = error);
     },
     getLatestInitiatives: function() {
       api.getInitiatives({ 'deputy': this.deputy.name, 'per_page': 10 })
-         .then(response => {
-           if (response.initiatives) this.latestInitiatives = response.initiatives;
-          })
-         .catch(error => this.errors = error);
+        .then(response => {
+          if (response.initiatives) this.latestInitiatives = response.initiatives;
+        })
+        .catch(error => this.errors = error);
     }
   },
   created: function() {
