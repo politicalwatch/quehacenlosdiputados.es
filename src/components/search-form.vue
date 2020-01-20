@@ -173,6 +173,7 @@
 import Datepicker from 'vuejs-datepicker';
 import Multiselect from 'vue-multiselect'
 import api from '@/api'
+import { mapGetters, mapState } from 'vuex';
 
 const moment = require('moment');
 
@@ -187,11 +188,8 @@ export default {
   },
   data: function() {
     return {
-      topics: [],
       subtopics: [],
       tags: [],
-      groups: [],
-      deputies: [],
       places: [],
       status: [],
       types: [],
@@ -201,6 +199,15 @@ export default {
       filteredTags: [],
       advanced: false,
     }
+  },
+  computed: {
+    ...mapGetters({
+      deputies: 'allDeputiesName',
+      groups: 'allParliamentaryGroupsWithGoverment',
+    }),
+    ...mapState({
+      topics: 'allTopics'
+    })
   },
   methods: {
     fillSubtopicsAndTags: function(selectedTopic, clearValues) {
@@ -230,26 +237,6 @@ export default {
     },
     selectEndDate: function(date) {
       this.data.enddate = moment(date).format('YYYY-MM-DD');
-    },
-    getTopics: function() {
-      api.getTopics()
-        .then(topics => {
-          this.topics = topics;
-          if (this.data.topic) {
-            this.fillSubtopicsAndTags(this.data.topic, false);
-          }
-        })
-        .catch(error => this.errors = error);
-    },
-    getGroups: function() {
-      api.getGroups()
-        .then(groups => this.groups = ['Gobierno'].concat(groups))
-        .catch(error => this.errors = error);
-    },
-    getDeputies: function() {
-      api.getDeputies()
-        .then(deputies => this.deputies = deputies.map(deputy => deputy.name))
-        .catch(error => this.errors = error);
     },
     getPlaces: function() {
       api.getPlaces()
@@ -295,9 +282,9 @@ export default {
       this.$emit('getResults', event);
     },
     prepareForm: function() {
-      this.getTopics();
-      this.getGroups();
-      this.getDeputies();
+      if (this.data.topic) {
+        this.fillSubtopicsAndTags(this.data.topic, false);
+      }
       this.getPlaces();
       this.getStatus();
       this.getTypes();

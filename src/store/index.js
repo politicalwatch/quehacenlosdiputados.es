@@ -16,7 +16,14 @@ const state = {
   allParliamentaryGroups: [],
 };
 
-const getters = {};
+const getters = {
+  allDeputiesName(state) {
+    return state.allDeputies.map(deputy => deputy.name)
+  },
+  allParliamentaryGroupsWithGoverment(state) {
+    return ['Gobierno'].concat(state.allParliamentaryGroups)
+  },
+};
 
 const actions = {
   getDeputies(context) {
