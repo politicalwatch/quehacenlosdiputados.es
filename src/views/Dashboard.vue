@@ -143,14 +143,6 @@ export default {
       const currentTopic = this.topics.find(topic => topic.name === selectedTopic);
       this.getSubtopics(currentTopic.id);
     },
-    getTopics: function() {
-      api.getTopics()
-        .then(topics => {
-          this.topics = topics;
-
-        })
-        .catch(error => this.errors = error);
-    },
     getSubtopics: function(topicID) {
       api.getTags(topicID)
         .then(tags => {

@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-sm-12">
             <tipi-topic-link
-              v-for="topic in topics"
+              v-for="topic in allTopics"
               :key="topic.id"
               :topic="topic"
               class="col-sm-3 col-xs-6 text-center dict"
@@ -21,7 +21,7 @@
 <script>
 
 import { TipiHeader, TipiTopicLink } from 'tipi-uikit'
-import api from '@/api';
+import { mapState } from 'vuex';
 
 export default {
   name: 'topics',
@@ -29,20 +29,8 @@ export default {
     TipiHeader,
     TipiTopicLink,
   },
-  data: function() {
-    return {
-      topics: {},
-    }
-  },
-  methods: {
-    getTopics: function() {
-      api.getTopics()
-        .then(response => this.topics = response)
-        .catch(error => this.errors = error);
-    }
-  },
-  created: function() {
-    this.getTopics()
+  computed: {
+    ...mapState(['allTopics'])
   }
 }
 </script>

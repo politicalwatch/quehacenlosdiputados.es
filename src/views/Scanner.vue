@@ -34,9 +34,9 @@
               <div class="row">
                 <div class="col-sm-7">
                   <tipi-neuron
-                    v-if="fakeInitiative && neuronTopics"
+                    v-if="fakeInitiative && allTopics"
                     :initiative="fakeInitiative"
-                    :topics="neuronTopics"
+                    :topics="allTopics"
                     :styles="styles"
                   />
                 </div>
@@ -76,6 +76,7 @@
 import { TipiHeader, TipiTopics, TipiNeuron, TipiCsvDownload } from 'tipi-uikit'
 import config from '@/config';
 import api from '@/api';
+import { mapState } from 'vuex';
 
 const VueScrollTo = require('vue-scrollto');
 
@@ -96,9 +97,11 @@ export default {
       inProgress: false,
       csvItems: [],
       csvFields: ['topic', 'subtopic', 'tag'],
-      neuronTopics: [],
       styles: config.STYLES,
     };
+  },
+  computed: {
+    ...mapState(['allTopics'])
   },
   methods: {
     cleanText() {
@@ -114,7 +117,6 @@ export default {
     },
     annotate() {
       this.cleanResult();
-      this.getTopics();
       this.inProgress = true;
       document.getElementById('start').text = 'Procesando...'
       this.fakeInitiative = null
@@ -135,13 +137,6 @@ export default {
           this.inProgress = false;
           document.getElementById('start').text = 'Iniciar proceso'
         });
-    },
-    getTopics: function () {
-      api.getTopics()
-      .then(topics => {
-        this.neuronTopics = topics;
-      })
-      .catch(error => this.errors = error);
     },
     getNameFromCSV: function() {
       let d = new Date();
