@@ -225,21 +225,6 @@ export default {
       ].join('');
     }
   },
-  getLatestInitiatives(topic) {
-    let params = {'topic': topic};
-    return axios
-      .get(getEndpoint(), {
-        params: params
-      })
-      .then(response => response.data);
-
-    function getEndpoint() {
-      return [
-        config.URL,
-        '/stats/latest-initiatives'
-      ].join('');
-    }
-  },
   getPlacesRanking(topic, subtopic) {
     let params = {'topic': topic};
     if (subtopic) {

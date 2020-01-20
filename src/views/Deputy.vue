@@ -50,9 +50,9 @@ export default {
         .catch(error => this.errors = error);
     },
     getLatestInitiatives: function() {
-      api.getInitiatives({'deputy': this.deputy.name})
+      api.getInitiatives({ 'deputy': this.deputy.name, 'per_page': 10 })
          .then(response => {
-           if (response.initiatives) this.latestInitiatives = response.initiatives.slice(0, 10);
+           if (response.initiatives) this.latestInitiatives = response.initiatives;
           })
          .catch(error => this.errors = error);
     }

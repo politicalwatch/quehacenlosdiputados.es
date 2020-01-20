@@ -97,15 +97,12 @@ export default {
         .catch(error => this.errors = error);
     },
     getLatestInitiatives: function(topic) {
-      api.getLatestInitiatives(topic)
-        .then(response => {
-          this.latestInitiatives = response.slice(0, 10);
-          this.latestInitiatives.forEach((initiative, index) => {
-            this.latestInitiatives[index].updated = initiative.date.$date;
-          });
-        })
-        .catch(error => this.errors = error);
-    }
+      api.getInitiatives({ 'topic': topic, 'per_page': 10 })
+         .then(response => {
+            if (response.initiatives) this.latestInitiatives = response.initiatives;
+          })
+         .catch(error => this.errors = error);
+    },
   },
   created: function() {
     this.getTopic()
