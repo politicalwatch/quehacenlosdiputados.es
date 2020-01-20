@@ -25,6 +25,7 @@
 
 import { TipiHeader, TipiResults, TipiTopicCard, TipiText } from 'tipi-uikit'
 import api from '@/api';
+import { mapState } from 'vuex';
 
 export default {
   name: 'topic',
@@ -37,28 +38,22 @@ export default {
   data: function() {
     return {
       topic: {},
-      allDeputies: null,
       deputies: null,
-      allParliamentarygroups: null,
       parliamentarygroups: null,
       latestInitiatives: null,
     }
+  },
+  computed: {
+    ...mapState(['allDeputies', 'allParliamentaryGroups']),
   },
   methods: {
     getTopic: function() {
       api.getTopic(this.$route.params.id)
         .then(response => {
           this.topic = response;
-          this.getDeputies();
-          this.getParliamentarygroups();
           this.getLatestInitiatives(this.topic.name);
-        })
-        .catch(error => this.errors = error);
-    },
-    getDeputies: function() {
-      api.getDeputies()
-        .then(response => {
-          this.allDeputies = response;
+          this.getParliamentarygroupsRanking(this.topic.name);
+
           this.getDeputiesRanking(this.topic.name);
         })
         .catch(error => this.errors = error);
@@ -76,20 +71,12 @@ export default {
         })
         .catch(error => this.errors = error);
     },
-    getParliamentarygroups: function() {
-      api.getGroups()
-        .then(response => {
-          this.allParliamentarygroups = response;
-          this.getParliamentarygroupsRanking(this.topic.name);
-        })
-        .catch(error => this.errors = error);
-    },
     getParliamentarygroupsRanking: function(topic) {
       api.getParliamentarygroupsRanking(topic)
         .then(response => {
           this.parliamentarygroups = response;
           this.parliamentarygroups.forEach((group, index) => {
-            let foundGroup = this.allParliamentarygroups.find(allPG => allPG.name === group._id );
+            let foundGroup = this.allParliamentaryGroups.find(allPG => allPG.name === group._id );
             this.parliamentarygroups[index].name = this.parliamentarygroups[index]._id;
             this.parliamentarygroups[index].id = foundGroup.id;
           });
