@@ -17,7 +17,17 @@
             <div class="well">
               <search-form :data="this.data" @getResults="getResults" />
             </div>
-            <div class="well search-actions" v-show="this.query_meta.total >= 0">
+            <p v-if="this.query_meta.page">
+              <span v-if="this.data.author">
+                ¿Quieres ver el perfil del
+                <router-link :to="{ path: `/parliamentarygroups/${getParliamentaryGroupByName(this.data.author).id}` }">{{ this.data.author }}</router-link>?
+              </span>
+              <span v-if="this.data.deputy">
+                ¿Quieres ver el perfil del diputado
+                <router-link :to="{ path: `/deputies/${getDeputyByName(this.data.deputy).id}` }">{{ this.data.deputy }}</router-link>?
+              </span>
+            </p>
+            <div class="well search-actions" v-show="this.query_meta.total">
               <save-alert :searchparams="data" v-show="alertsIsEnabled()" />
               <tipi-csv-download
                 :initiatives="initiatives || []"
@@ -45,6 +55,7 @@ import SaveAlert from '@/components/save-alert';
 import config from '@/config'
 import api from '@/api'
 import { TipiHeader, TipiCsvDownload, TipiMessages, TipiResults, TipiSplash } from 'tipi-uikit'
+import { mapGetters } from 'vuex';
 
 const qs = require('qs');
 
@@ -82,7 +93,8 @@ export default {
   computed: {
     canDownloadCSV: function() {
       return this.query_meta.total < this.LIMITCSV;
-    }
+    },
+    ...mapGetters(['getDeputyByName', 'getParliamentaryGroupByName']),
   },
   methods: {
     getResults: function(event) {

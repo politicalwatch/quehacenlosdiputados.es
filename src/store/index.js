@@ -29,6 +29,16 @@ const getters = {
   allParliamentaryGroupsWithGoverment(state) {
     return ['Gobierno'].concat(state.allParliamentaryGroups)
   },
+  getDeputyByName(state) {
+    return name => state.allDeputies.find(deputy =>{
+      return deputy.name === name
+    });
+  },
+  getParliamentaryGroupByName(state) {
+    return name => state.allParliamentaryGroups.find(group =>{
+      return group.name === name
+    });
+  },
 };
 
 const actions = {
