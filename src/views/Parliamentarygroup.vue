@@ -3,8 +3,11 @@
     <tipi-header v-if="parliamentarygroup" :title="parliamentarygroup.name"/>
     <div id="group">
       <div class="container page">
-        <h4>Últimas iniciativas</h4>
+        <h4 v-if="latestInitiatives.length">Últimas iniciativas</h4>
         <tipi-results layout="tiny" :initiatives="latestInitiatives"/>
+
+        <h4>Diputados/as</h4>
+        <tipi-text meta="" :value="this.deputies" type="deputies" :source="allDeputies" />
       </div>
     </div>
   </div>
@@ -12,19 +15,31 @@
 
 <script>
 
-import { TipiHeader, TipiResults } from 'tipi-uikit'
+import { TipiHeader, TipiResults, TipiText } from 'tipi-uikit'
 import api from '@/api';
+import { mapGetters, mapState } from  'vuex';
 
 export default {
   name: 'parliamentarygroup',
   components: {
     TipiHeader,
-    TipiResults
+    TipiResults,
+    TipiText,
   },
   data: function() {
     return {
       parliamentarygroup: null,
       latestInitiatives: null,
+    }
+  },
+  computed: {
+    ...mapState(['allDeputies']),
+    ...mapGetters(['getDeputiesByParliamentaryGroup']),
+    deputies: function () {
+      if (this.parliamentarygroup) {
+        return this.getDeputiesByParliamentaryGroup(this.parliamentarygroup.shortname).map(deputy => deputy.name);
+      }
+      return [];
     }
   },
   methods: {
@@ -52,3 +67,17 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+  .value {
+    display: inline-block !important;
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: 50%;
+    }
+
+    @media (min-width: 1200px) {
+      width: 33%;
+    }
+  }
+</style>

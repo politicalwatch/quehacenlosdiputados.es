@@ -34,6 +34,11 @@ const getters = {
       return deputy.name === name
     });
   },
+  getDeputiesByParliamentaryGroup(state) {
+    return parliamentarygroup => state.allDeputies.filter(deputy =>{
+      return deputy.parliamentarygroup === parliamentarygroup
+    });
+  },
   getParliamentaryGroupByName(state) {
     return name => state.allParliamentaryGroups.find(group =>{
       return group.name === name
