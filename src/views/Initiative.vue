@@ -80,7 +80,10 @@ export default {
           this.initiative = response;
           window.document.title = window.document.head.querySelector('meta[property="og:title"]').content = window.document.head.querySelector('meta[name="twitter:title"]').content = `${this.initiative.title} - ${config.DEFAULT_PAGE_TITLE}`;
         })
-        .catch(error => this.errors = error);
+        .catch(error => {
+          this.errors = error;
+          this.$router.push({name: 'Page404', params: { '0': '404'}});
+        });
     },
   },
   created: function() {

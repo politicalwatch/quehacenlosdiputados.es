@@ -34,7 +34,10 @@ export default {
           this.parliamentarygroup = response;
           this.getLatestInitiatives();
         })
-        .catch(error => this.errors = error);
+        .catch(error => {
+          this.errors = error
+          this.$router.push({name: 'Page404', params: { '0': '404'}});
+        });
     },
     getLatestInitiatives: function() {
       api.getInitiatives({'author': this.parliamentarygroup.name, 'per_page': 10 })

@@ -53,10 +53,12 @@ export default {
           this.topic = response;
           this.getLatestInitiatives(this.topic.name);
           this.getParliamentarygroupsRanking(this.topic.name);
-
           this.getDeputiesRanking(this.topic.name);
         })
-        .catch(error => this.errors = error);
+        .catch(error => {
+          this.errors = error
+          this.$router.push({name: 'Page404', params: { '0': '404'}});
+        });
     },
     getDeputiesRanking: function(topic) {
       api.getDeputiesRanking(topic)

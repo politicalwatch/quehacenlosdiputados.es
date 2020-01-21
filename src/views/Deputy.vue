@@ -42,7 +42,10 @@ export default {
           this.parliamentarygroup = this.allParliamentaryGroups.find(allPG => allPG.shortname === this.deputy.parliamentarygroup);
           this.getLatestInitiatives();
         })
-        .catch(error => this.errors = error);
+        .catch(error => {
+          this.errors = error
+          this.$router.push({name: 'Page404', params: { '0': '404'}});
+        });
     },
     getLatestInitiatives: function() {
       api.getInitiatives({ 'deputy': this.deputy.name, 'per_page': 10 })
