@@ -190,9 +190,6 @@ export default {
     return {
       subtopics: [],
       tags: [],
-      places: [],
-      status: [],
-      types: [],
       errors: null,
       moment: moment,
       selectedSubtopics: [],
@@ -206,7 +203,10 @@ export default {
       groups: 'allParliamentaryGroupsWithGoverment',
     }),
     ...mapState({
-      topics: 'allTopics'
+      topics: 'allTopics',
+      places: 'allPlaces',
+      types: 'allTypes',
+      status: 'allStatus',
     })
   },
   methods: {
@@ -237,21 +237,6 @@ export default {
     },
     selectEndDate: function(date) {
       this.data.enddate = moment(date).format('YYYY-MM-DD');
-    },
-    getPlaces: function() {
-      api.getPlaces()
-        .then(places => this.places = places.map(places => places.name))
-        .catch(error => this.errors = error);
-    },
-    getStatus: function() {
-      api.getStatus()
-        .then(status => this.status = status)
-        .catch(error => this.errors = error);
-    },
-    getTypes: function() {
-      api.getTypes()
-        .then(types => this.types = types)
-        .catch(error => this.errors = error);
     },
     getSubtopicsAndTags: function(topicID) {
       api.getTags(topicID)
@@ -285,9 +270,6 @@ export default {
       if (this.data.topic) {
         this.fillSubtopicsAndTags(this.data.topic, false);
       }
-      this.getPlaces();
-      this.getStatus();
-      this.getTypes();
     },
     toggleAdvanced: function() {
       this.advanced = !this.advanced;

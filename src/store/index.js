@@ -8,12 +8,18 @@ const types = {
   GET_DEPUTIES: 'GET_DEPUTIES',
   GET_TOPICS: 'GET_TOPICS',
   GET_PARLIAMENTARY_GROUPS: 'GET_PARLIAMENTARY_GROUPS',
+  GET_PLACES: 'GET_PLACES',
+  GET_STATUS: 'GET_STATUS',
+  GET_TYPES: 'GET_TYPES',
 };
 
 const state = {
   allTopics: [],
   allDeputies: [],
   allParliamentaryGroups: [],
+  allTypes: [],
+  allStatus: [],
+  allPlaces: [],
 };
 
 const getters = {
@@ -47,6 +53,27 @@ const actions = {
       })
       .catch(error => this.errors = error);
   },
+  getPlaces(context) {
+    api.getPlaces()
+      .then(response => {
+        context.commit(types.GET_PLACES, response);
+      })
+      .catch(error => this.errors = error);
+  },
+  getStatus(context) {
+    api.getStatus()
+      .then(response => {
+        context.commit(types.GET_STATUS, response);
+      })
+      .catch(error => this.errors = error);
+  },
+  getTypes(context) {
+    api.getTypes()
+      .then(response => {
+        context.commit(types.GET_TYPES, response);
+      })
+      .catch(error => this.errors = error);
+  },
 };
 
 const mutations = {
@@ -58,6 +85,15 @@ const mutations = {
   },
   [types.GET_PARLIAMENTARY_GROUPS](state, parliamentaryGroups) {
     state.allParliamentaryGroups = parliamentaryGroups;
+  },
+  [types.GET_PLACES](state, places) {
+    state.allPlaces = places;
+  },
+  [types.GET_STATUS](state, status) {
+    state.allStatus = status;
+  },
+  [types.GET_TYPES](state, types) {
+    state.allTypes = types;
   },
 };
 
