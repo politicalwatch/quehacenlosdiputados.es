@@ -18,11 +18,11 @@
               <search-form :data="this.data" @getResults="getResults" />
             </div>
             <p v-if="this.query_meta.page">
-              <span v-if="this.data.author">
+              <span v-if="getParliamentaryGroupByName(this.data.author)">
                 ¿Quieres ver el perfil del
                 <router-link :to="{ path: `/parliamentarygroups/${getParliamentaryGroupByName(this.data.author).id}` }">{{ this.data.author }}</router-link>?
               </span>
-              <span v-if="this.data.deputy">
+              <span v-if="getDeputyByName(this.data.deputy)">
                 ¿Quieres ver el perfil del diputado
                 <router-link :to="{ path: `/deputies/${getDeputyByName(this.data.deputy).id}` }">{{ this.data.deputy }}</router-link>?
               </span>
