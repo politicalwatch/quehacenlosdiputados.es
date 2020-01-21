@@ -17,7 +17,7 @@
             <div class="well">
               <search-form :data="this.data" @getResults="getResults" />
             </div>
-            <p v-if="this.query_meta.page">
+            <p v-if="this.data.author || this.data.deputy">
               <span v-if="getParliamentaryGroupByName(this.data.author)">
                 ¿Quieres ver el perfil del
                 <router-link :to="{ path: `/parliamentarygroups/${getParliamentaryGroupByName(this.data.author).id}` }">{{ this.data.author }}</router-link>?
