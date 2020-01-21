@@ -37,7 +37,7 @@ export default {
         .catch(error => this.errors = error);
     },
     getLatestInitiatives: function() {
-      api.getInitiatives({'author': this.parliamentarygroup.name})
+      api.getInitiatives({'author': this.parliamentarygroup.name, 'per_page': 10 })
          .then(response => {
            if (response.initiatives) this.latestInitiatives = response.initiatives;
           })
