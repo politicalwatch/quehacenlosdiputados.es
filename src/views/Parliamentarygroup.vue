@@ -68,7 +68,7 @@ export default {
 }
 </script>
 <style lang="scss">
-  .value {
+  #group .value {
     display: inline-block !important;
     width: 100%;
 
