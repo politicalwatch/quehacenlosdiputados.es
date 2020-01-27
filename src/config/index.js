@@ -1,9 +1,9 @@
 export default {
-  SHORTNAME: 'p2030',
-  URL: 'http://localhost:5000',
-  GOOGLE_ANALYTICS: 'XXXXXXXXXXXX',
-  USE_ALERTS: false,
-  SCANNER_HELPTEXT: "",
+  SHORTNAME: process.env.SHORTNAME || 'p2030',
+  URL: process.env.URL || 'http://localhost:5000',
+  GOOGLE_ANALYTICS: process.env.GOOGLE_ANALYTICS || 'XXXXXXXXXXXX',
+  USE_ALERTS: process.env.USE_ALERTS || false,
+  SCANNER_HELPTEXT: process.env.SCANNER_HELPTEXT || "",
   MENU: [
     {
       route : 'search',
