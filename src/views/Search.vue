@@ -8,43 +8,48 @@
         <router-link :to="{name: 'about-en'}">Learn more about this project in English</router-link>
       </p>
     </tipi-splash>
-    <div id="search">
+    <div id="search" class="o-container o-section u-padding-top-0">
+
       <tipi-header :title="'Buscar'" :subtitle="'Bucea en la actividad parlamentaria relacionada con los ODS con las múltiples opciones que te ofrece el buscador de Parlamento 2030'" />
-      <tipi-messages :errors="this.errors" :queryMeta="this.query_meta" />
-      <div class="container page">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="well">
-              <search-form :data="this.data" @getResults="getResults" />
-            </div>
-            <p v-if="this.data.author || this.data.deputy">
-              <span v-if="getParliamentaryGroupByName(this.data.author)">
-                ¿Quieres ver el perfil del
-                <router-link :to="{ path: `/parliamentarygroups/${getParliamentaryGroupByName(this.data.author).id}` }">{{ this.data.author }}</router-link>?
-              </span>
-              <span v-if="getDeputyByName(this.data.deputy)">
-                ¿Quieres ver el perfil del diputado
-                <router-link :to="{ path: `/deputies/${getDeputyByName(this.data.deputy).id}` }">{{ this.data.deputy }}</router-link>?
-              </span>
-            </p>
-            <div class="well search-actions" v-show="this.query_meta.total">
-              <save-alert :searchparams="data" v-show="alertsIsEnabled()" />
-              <tipi-csv-download
-                :initiatives="initiatives || []"
-                :csvItems="csvItems"
-                :canDownloadCSV="canDownloadCSV"
-                @loadCSVItems="loadCSVItems"
-              />
-            </div>
-            <tipi-results
-              :loadingResults="loadingResults"
-              :initiatives="initiatives || []"
-              :queryMeta="query_meta"
-              @loadMore="loadMore"
-            />
-          </div>
+
+      <search-form :data="this.data" @getResults="getResults" />
+
+      <div class="o-grid u-padding-bottom-4" v-if="this.data.author || this.data.deputy">
+        <div class="o-grid__col o-grid__col--fill">
+          <router-link
+            class="c-button c-button--secondary u-block"
+            v-if="getParliamentaryGroupByName(this.data.author)"
+            :to="{ path: `/parliamentarygroups/${getParliamentaryGroupByName(this.data.author).id}` }">
+            ¿Quieres ver el perfil del {{ this.data.author }}?
+          </router-link>
+        </div>
+        <div class="o-grid__col o-grid__col--fill">
+          <router-link
+            class="c-button c-button--secondary u-block"
+            v-if="getDeputyByName(this.data.deputy)"
+            :to="{ path: `/deputies/${getDeputyByName(this.data.deputy).id}` }">
+            ¿Quieres ver el perfil del diputado {{ this.data.deputy }}?
+          </router-link>
         </div>
       </div>
+      <div class="o-grid o-grid--center">
+        <tipi-message v-if="this.query_meta.page" :type="message.type" :icon="message.icon">{{ message.message }}</tipi-message>
+      </div>
+      <div class="well search-actions" v-show="this.query_meta.total">
+        <save-alert :searchparams="data" v-show="alertsIsEnabled()" />
+        <tipi-csv-download
+          :initiatives="initiatives || []"
+          :csvItems="csvItems"
+          :canDownloadCSV="canDownloadCSV"
+          @loadCSVItems="loadCSVItems"
+        />
+      </div>
+      <tipi-results
+        :loadingResults="loadingResults"
+        :initiatives="initiatives || []"
+        :queryMeta="query_meta"
+        @loadMore="loadMore"
+      />
     </div>
   </div>
 </template>
@@ -54,7 +59,7 @@ import searchForm from '@/components/search-form';
 import SaveAlert from '@/components/save-alert';
 import config from '@/config'
 import api from '@/api'
-import { TipiHeader, TipiCsvDownload, TipiMessages, TipiResults, TipiSplash } from 'tipi-uikit'
+import { TipiHeader, TipiCsvDownload, TipiMessage, TipiResults, TipiSplash } from 'tipi-uikit'
 import { mapGetters } from 'vuex';
 
 const qs = require('qs');
@@ -65,7 +70,7 @@ export default {
     TipiSplash,
     SaveAlert,
     TipiResults,
-    TipiMessages,
+    TipiMessage,
     TipiCsvDownload,
     TipiHeader,
     searchForm,
@@ -95,6 +100,16 @@ export default {
       return this.query_meta.total < this.LIMITCSV;
     },
     ...mapGetters(['getDeputyByName', 'getParliamentaryGroupByName']),
+    message: function() {
+      if (this.errors) {
+        return { icon: true, type: 'error', message: this.errors }
+      }
+      if (this.query_meta.total) {
+        return { icon: true, type: 'success', message: `Se han encontrado ${this.query_meta.total} iniciativas.` }
+      } else {
+        return { icon: true, type: 'error', message: `No se han encontrado iniciativas que cumplan los criterios.` }
+      }
+    }
   },
   methods: {
     getResults: function(event) {

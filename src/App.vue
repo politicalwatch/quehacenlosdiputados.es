@@ -2,7 +2,7 @@
   <div id="app">
     <transition name="fade" mode="out-in">
       <div>
-        <tipi-navbar :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
+        <tipi-navbar pre-image="/img/multicolor.svg" :links="MENU" :disclaimerLink="DISCLAIMER" :logo="LOGO" />
           <router-view/>
         <footer-block />
       </div>
