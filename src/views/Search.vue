@@ -14,7 +14,7 @@
 
       <search-form :data="this.data" @getResults="getResults" />
 
-      <div class="o-grid u-padding-bottom-4" v-if="this.data.author || this.data.deputy">
+      <div class="o-grid u-padding-bottom-4" v-show="false" v-if="this.data.author || this.data.deputy">
         <div class="o-grid__col o-grid__col--fill">
           <router-link
             class="c-button c-button--secondary u-block"
@@ -47,6 +47,7 @@
       <tipi-results
         :loadingResults="loadingResults"
         :initiatives="initiatives || []"
+        :topicsStyles="topicsStyles"
         :queryMeta="query_meta"
         @loadMore="loadMore"
       />
@@ -93,6 +94,7 @@ export default {
       loadingResults: false,
       csvItems: [],
       LIMITCSV: 1000,
+      topicsStyles: config.STYLES.topics,
     }
   },
   computed: {
