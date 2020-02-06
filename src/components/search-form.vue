@@ -66,6 +66,12 @@
             name="author" id="author" placeholder="Todos">
           </multiselect>
         </div>
+        <router-link
+          class="u-tbody2"
+          v-if="getParliamentaryGroupByName(data.author)"
+          :to="{ path: `/parliamentarygroups/${getParliamentaryGroupByName(data.author).id}` }">
+          ¿Quieres ver el perfil del {{ data.author }}?
+        </router-link>
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-select-label u-block">
@@ -80,6 +86,12 @@
             name="deputy" id="deputy" placeholder="Apellidos, Nombre">
           </multiselect>
         </div>
+        <router-link
+          class="u-tbody2"
+          v-if="getDeputyByName(data.deputy)"
+          :to="{ path: `/deputies/${getDeputyByName(data.deputy).id}` }">
+          ¿Quieres ver el perfil del diputado {{ data.deputy }}?
+        </router-link>
       </div>
     </div> <!-- /.o-grid -->
     <div class="o-grid" v-show="advanced">
@@ -208,6 +220,8 @@ export default {
     ...mapGetters({
       deputies: 'allDeputiesName',
       groups: 'allParliamentaryGroupsWithGoverment',
+      getDeputyByName: 'getDeputyByName',
+      getParliamentaryGroupByName: 'getParliamentaryGroupByName',
     }),
     ...mapState({
       topics: 'allTopics',
