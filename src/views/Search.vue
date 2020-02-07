@@ -37,13 +37,13 @@
           <tipi-message v-if="this.query_meta.page" :type="message.type" :icon="message.icon">{{ message.message }}</tipi-message>
         </div>
         <div class="o-grid__col o-grid__col--right">
-          <save-alert :searchparams="data" v-show="alertsIsEnabled && this.query_meta.page" />
           <tipi-csv-download
             :initiatives="initiatives || []"
             :csvItems="csvItems"
             :canDownloadCSV="canDownloadCSV"
             @loadCSVItems="loadCSVItems"
           />
+          <save-alert :searchparams="data" v-show="alertsIsEnabled && this.query_meta.page" />
         </div>
       </div>
       <tipi-results
