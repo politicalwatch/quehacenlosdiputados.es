@@ -32,17 +32,19 @@
           </router-link>
         </div>
       </div>
-      <div class="o-grid o-grid--center">
-        <tipi-message v-if="this.query_meta.page" :type="message.type" :icon="message.icon">{{ message.message }}</tipi-message>
-      </div>
-      <div class="well search-actions" v-show="this.query_meta.total">
-        <save-alert :searchparams="data" v-show="alertsIsEnabled()" />
-        <tipi-csv-download
-          :initiatives="initiatives || []"
-          :csvItems="csvItems"
-          :canDownloadCSV="canDownloadCSV"
-          @loadCSVItems="loadCSVItems"
-        />
+      <div class="o-grid o-grid--align-center u-margin-bottom-4">
+        <div class="o-grid__col o-grid__col--fill">
+          <tipi-message v-if="this.query_meta.page" :type="message.type" :icon="message.icon">{{ message.message }}</tipi-message>
+        </div>
+        <div class="o-grid__col o-grid__col--right">
+          <save-alert :searchparams="data" v-show="alertsIsEnabled && this.query_meta.page" />
+          <tipi-csv-download
+            :initiatives="initiatives || []"
+            :csvItems="csvItems"
+            :canDownloadCSV="canDownloadCSV"
+            @loadCSVItems="loadCSVItems"
+          />
+        </div>
       </div>
       <tipi-results
         :loadingResults="loadingResults"

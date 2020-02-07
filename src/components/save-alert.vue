@@ -1,18 +1,23 @@
 <template>
-  <a href="#" @click.prevent="saveAlert">
-    <i class="fa fa fa-envelope"></i> Recibe alertas
+  <a class="c-button c-button--compact c-button--primary c-button--icon-right" href="#" @click.prevent="saveAlert">
+    Recibe alertas <tipi-icon class="c-icon--white" icon="bell" />
   </a>
 </template>
 
 <script>
 import swal from 'sweetalert2';
 import api from '@/api';
+import { TipiIcon } from 'tipi-uikit';
+
 
 export default {
   name: "save-alert",
   props: [
     'searchparams'
   ],
+  components: {
+    TipiIcon,
+  },
   methods: {
     saveAlert: async function() {
       let search_params = Object.assign({}, this.searchparams);
@@ -25,7 +30,7 @@ export default {
       search_params.tags = search_params.tags.constructor !== Array ?
         [search_params.tags] :
         search_params.tags;
-      
+
       const {value: email} = await swal({
         title: 'Introduce tu correo electrónico',
         text: 'A esta dirección de correo te enviaremos alertas cada vez que haya una novedad en el Congreso de los Diputados dentro de los parámetros que has seleccionado',

@@ -2,7 +2,7 @@ export default {
   SHORTNAME: process.env.SHORTNAME || 'p2030',
   URL: process.env.URL || 'https://api.dev.parlamento2030.es',
   GOOGLE_ANALYTICS: process.env.GOOGLE_ANALYTICS || 'XXXXXXXXXXXX',
-  USE_ALERTS: process.env.USE_ALERTS || false,
+  USE_ALERTS: process.env.USE_ALERTS || true,
   SCANNER_HELPTEXT: process.env.SCANNER_HELPTEXT || "",
   MENU: [
     {
