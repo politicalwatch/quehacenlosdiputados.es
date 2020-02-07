@@ -1,5 +1,5 @@
 <template>
-  <form id="search-form" class="form-horizontal" role="form" @submit.prevent="getResults($event)">
+  <form id="search-form" class="u-margin-bottom-4 u-border-bottom" role="form" @submit.prevent="getResults($event)">
     <div class="o-grid">
       <div class="o-grid__col u-12 u-padding-bottom-4">
         <div class="c-select-label u-block">
@@ -304,6 +304,3 @@ export default {
   },
 }
 </script>
-
-<style scoped lang="scss">
-</style>
