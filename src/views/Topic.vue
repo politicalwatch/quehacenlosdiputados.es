@@ -17,7 +17,7 @@
         <h4 class="u-margin-bottom-4" v-if="latestInitiatives">Últimas iniciativas</h4>
         <tipi-results layout="tiny" :initiatives="latestInitiatives" :topicsStyles="styles"/>
       </div>
-      <div class="u-padding-top-4 u-padding-bottom-4">
+      <div class="u-padding-top-4 u-padding-bottom-4" v-if="latestInitiatives">
         <p class="u-subtitle u-margin-0">MÁS INICIATIVAS SOBRE</p>
         <h4 class="u-th2">{{ topic.name.toUpperCase() }}</h4>
         <a href="#" class="c-button c-button--primary">Explorar</a>
@@ -93,7 +93,7 @@ export default {
         .catch(error => this.errors = error);
     },
     getLatestInitiatives: function(topic) {
-      api.getInitiatives({ 'topic': topic, 'per_page': 10 })
+      api.getInitiatives({ 'topic': topic, 'per_page': 9 })
          .then(response => {
             if (response.initiatives) this.latestInitiatives = response.initiatives;
           })
