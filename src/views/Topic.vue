@@ -1,21 +1,26 @@
 <template>
   <div>
-    <tipi-header :title="topic.name"/>
-    <div id="dict">
-      <div class="container page">
-        <tipi-topic-card :topic="topic" />
-        <hr v-if="topic.description && topic.icon">
-        <div class="row">
-          <div class="col-sm-6" v-if="deputies">
-            <tipi-text meta="Diputadas/os más activas/os" :value="deputies" type="deputies" :source="deputies" />
-          </div>
-          <div class="col-sm-6" v-if="parliamentarygroups">
-            <tipi-text meta="Grupos más activos" :value="parliamentarygroups" type="parliamentarygroups" :source="parliamentarygroups" />
-          </div>
+    <tipi-topic-card :topic="topic" :topicsStyles="styles"/>
+    <div id="topic" class="o-container o-section">
+      <div class="o-grid">
+        <div class="o-grid__col u-12 u-4@sm" v-if="deputies">
+          <tipi-text meta="Diputadas/os más activas/os" :value="deputies" type="deputies" :source="deputies" />
         </div>
-        <hr v-if="latestInitiatives">
-        <h4 v-if="latestInitiatives">Últimas iniciativas</h4>
-        <tipi-results layout="tiny" :initiatives="latestInitiatives"/>
+        <div class="o-grid__col u-12 u-4@sm" v-if="parliamentarygroups">
+          <tipi-text meta="Grupos más activos" :value="parliamentarygroups" type="parliamentarygroups" :source="parliamentarygroups" />
+        </div>
+        <div class="o-grid__col u-12 u-4@sm">
+          <tipi-text meta="Lugares" :value="['Item 1', 'Item 2', 'Item 3', 'Item 5', 'Item 4']" />
+        </div>
+      </div>
+      <div class="u-border-top u-padding-top-4" v-if="latestInitiatives">
+        <h4 class="u-margin-bottom-4" v-if="latestInitiatives">Últimas iniciativas</h4>
+        <tipi-results layout="tiny" :initiatives="latestInitiatives" :topicsStyles="styles"/>
+      </div>
+      <div class="u-padding-top-4 u-padding-bottom-4">
+        <p class="u-subtitle u-margin-0">MÁS INICIATIVAS SOBRE</p>
+        <h4 class="u-th2">{{ topic.name.toUpperCase() }}</h4>
+        <a href="#" class="c-button c-button--primary">Explorar</a>
       </div>
     </div>
   </div>
@@ -25,6 +30,7 @@
 
 import { TipiHeader, TipiResults, TipiTopicCard, TipiText } from 'tipi-uikit'
 import api from '@/api';
+import config from '@/config';
 import { mapState } from 'vuex';
 
 export default {
@@ -41,6 +47,7 @@ export default {
       deputies: null,
       parliamentarygroups: null,
       latestInitiatives: null,
+      styles: config.STYLES.topics,
     }
   },
   computed: {
@@ -61,7 +68,7 @@ export default {
         });
     },
     getDeputiesRanking: function(topic) {
-      api.getDeputiesRanking(topic)
+      api.getDeputiesRanking(topic, null, 3)
         .then(response => {
           this.deputies = response;
           this.deputies.forEach((deputy, index) => {
