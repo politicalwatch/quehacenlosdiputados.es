@@ -23,7 +23,8 @@
         </div>
       </div>
     </div>
-    <img class="c-decorator" src="/img/multicolor.svg" alt="Decoración">
+    <div class="c-decorator" style="background-image: url('/img/multicolor.svg')"></div>
+
     <cookie-law theme="base" buttonText="Entendido" buttonClass="btn btn-custom" message="Este sitio usa cookies para asegurarte la mejor experiencia web."></cookie-law>
   </div>
 </template>
