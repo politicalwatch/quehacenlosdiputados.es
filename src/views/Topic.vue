@@ -20,7 +20,7 @@
       <div class="u-padding-top-4 u-padding-bottom-4" v-if="latestInitiatives">
         <p class="u-subtitle u-margin-0">MÁS INICIATIVAS SOBRE</p>
         <h4 class="u-th2">{{ topic.name.toUpperCase() }}</h4>
-        <a href="#" class="c-button c-button--primary">Explorar</a>
+        <a href="#" class="c-button c-button--primary" :style="`background-color: ${styles[topic.name].color}`">Explorar</a>
       </div>
     </div>
   </div>
