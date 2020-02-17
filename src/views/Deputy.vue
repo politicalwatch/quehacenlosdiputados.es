@@ -1,11 +1,11 @@
 <template>
   <div>
-    <tipi-header v-if="deputy" :title="deputy.name"/>
-    <div id="deputy">
-      <div class="container page">
-        <tipi-deputy :deputy="deputy" :parliamentaryGroup="parliamentarygroup" />
-        <hr v-if="latestInitiatives">
-        <tipi-results layout="tiny" :initiatives="latestInitiatives"/>
+    <div id="deputy" class="o-container o-section">
+      <tipi-header v-if="deputy" :title="deputy.name"/>
+      <tipi-deputy :deputy="deputy" :parliamentaryGroup="parliamentarygroup" />
+      <div class="u-border-top u-padding-top-4" v-if="latestInitiatives">
+        <h4 class="u-margin-bottom-4" v-if="latestInitiatives">Últimas iniciativas</h4>
+        <tipi-results layout="tiny" :initiatives="latestInitiatives" :topicsStyles="styles"/>
       </div>
     </div>
   </div>
