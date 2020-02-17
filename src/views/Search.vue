@@ -12,7 +12,7 @@
 
       <tipi-header :title="'Buscar'" :subtitle="'Bucea en la actividad parlamentaria relacionada con los ODS con las múltiples opciones que te ofrece el buscador de Parlamento 2030'" />
 
-      <search-form :data="this.data" @getResults="getResults" />
+      <search-form :formData="this.data" @getResults="getResults" />
 
       <div class="o-grid u-padding-bottom-4" v-show="false" v-if="this.data.author || this.data.deputy">
         <div class="o-grid__col o-grid__col--fill">
@@ -116,13 +116,13 @@ export default {
     }
   },
   methods: {
-    getResults: function(event) {
+    getResults: function(event, formData) {
       this.loadingResults = true;
       this.csvItems = [];
       const isNewSearch = event && event.type === 'submit';
       const params = this.$route.params.data && !isNewSearch ?
         qs.parse(this.$route.params.data)
-        : {};
+        : formData;
       this.data = Object.assign(this.data, params);
       const urlParams = Object.assign({}, this.data);
 
@@ -167,6 +167,11 @@ export default {
          .catch(error => this.errors = error);
     },
   },
+  created: function() {
+    if (this.$route.name == "results") {
+      this.getResults();
+    }
+  },
   updated: function() {
     if (document.getElementById('downloadCSV')) {
       document.getElementById('downloadCSV').click();
@@ -174,18 +179,3 @@ export default {
   }
 }
 </script>
-
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
-<style scoped lang="scss">
-.multiselect {
-  &__content {
-    max-width: 100%;
-    font-size: 14px;
-  }
-}
-.container {
-  @media (min-width: 992px) and (max-width: 1200px) {
-    width: 98%;
-  }
-}
-</style>

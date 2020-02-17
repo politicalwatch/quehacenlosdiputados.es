@@ -10,7 +10,7 @@
             deselectLabel="Pulsa para deseleccionar"
             @select="fillSubtopicsAndTags"
             @remove="clearSubtopicsAndTags"
-            v-model="data.topic"
+            v-model="form.topic"
             :options="topics.map(topic => topic.name)"
             :allow-empty="true"
             name="topic" id="topic" placeholder="Todos">
@@ -26,7 +26,7 @@
             deselectLabel="Pulsa para deseleccionar"
             @select="addSubtopicToTagsFilter"
             @remove="removeSubtopicToTagsFilter"
-            v-model="data.subtopics"
+            v-model="form.subtopics"
             :multiple="true"
             :options="subtopics"
             :allow-empty="true"
@@ -43,7 +43,7 @@
           selectedLabel="Seleccionada"
           selectLabel=""
           deselectLabel="Pulsa para deseleccionar"
-          v-model="data.tags"
+          v-model="form.tags"
           :multiple="true"
           :options="filteredTags"
           :allow-empty="true"
@@ -60,7 +60,7 @@
             selectedLabel="Seleccionado"
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
-            v-model="data.author"
+            v-model="form.author"
             :options="groups.map(group => group.name || group)"
             :allow-empty="true"
             name="author" id="author" placeholder="Todos">
@@ -68,9 +68,9 @@
         </div>
         <router-link
           class="u-tbody2"
-          v-if="getParliamentaryGroupByName(data.author)"
-          :to="{ path: `/parliamentarygroups/${getParliamentaryGroupByName(data.author).id}` }">
-          ¿Quieres ver el perfil del {{ data.author }}?
+          v-if="getParliamentaryGroupByName(form.author)"
+          :to="{ path: `/parliamentarygroups/${getParliamentaryGroupByName(form.author).id}` }">
+          ¿Quieres ver el perfil del {{ form.author }}?
         </router-link>
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
@@ -80,7 +80,7 @@
             selectedLabel="Seleccionado"
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
-            v-model="data.deputy"
+            v-model="form.deputy"
             :options="deputies"
             :allow-empty="true"
             name="deputy" id="deputy" placeholder="Apellidos, Nombre">
@@ -88,9 +88,9 @@
         </div>
         <router-link
           class="u-tbody2"
-          v-if="getDeputyByName(data.deputy)"
-          :to="{ path: `/deputies/${getDeputyByName(data.deputy).id}` }">
-          ¿Quieres ver el perfil del diputado {{ data.deputy }}?
+          v-if="getDeputyByName(form.deputy)"
+          :to="{ path: `/deputies/${getDeputyByName(form.deputy).id}` }">
+          ¿Quieres ver el perfil del diputado {{ form.deputy }}?
         </router-link>
       </div>
     </div> <!-- /.o-grid -->
@@ -99,7 +99,7 @@
         <div class="c-datepicker-label u-block">
           <label for="startdate">Desde</label>
           <datepicker
-            :value="moment(this.data.startdate, 'YYYY-MM-DD').format('DD/MMM/YYYY')" @selected="selectStartDate"
+            :value="moment(this.form.startdate, 'YYYY-MM-DD').format('DD/MMM/YYYY')" @selected="selectStartDate"
             @cleared="clearStartDate"
             placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="startdate">
           </datepicker>
@@ -109,7 +109,7 @@
         <div class="c-datepicker-label u-block">
           <label for="enddate">Hasta</label>
           <datepicker
-            :value="moment(this.data.enddate, 'YYYY-MM-DD').format('DD/MMM/YYYY')"
+            :value="moment(this.form.enddate, 'YYYY-MM-DD').format('DD/MMM/YYYY')"
             @selected="selectEndDate"
             @cleared="clearEndDate"
             placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="enddate">
@@ -123,7 +123,7 @@
             selectedLabel="Seleccionado"
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
-            v-model="data.status"
+            v-model="form.status"
             :options="status"
             :allow-empty="true"
             name="status" id="status" placeholder="Cualquiera">
@@ -137,7 +137,7 @@
             selectedLabel="Seleccionado"
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
-            v-model="data.place"
+            v-model="form.place"
             :options="places"
             :allow-empty="true"
             name="place" id="place" placeholder="Cualquiera">
@@ -151,7 +151,7 @@
             selectedLabel="Seleccionado"
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
-            v-model="data.type"
+            v-model="form.type"
             :options="types"
             :allow-empty="true"
             name="type" id="type" placeholder="Cualquiera">
@@ -161,13 +161,13 @@
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-input-label u-block">
           <label for="reference">Tipo</label>
-          <input v-model="data.reference" type="text" id="reference" name="reference" placeholder="Ej.: 121/000001">
+          <input v-model="form.reference" type="text" id="reference" name="reference" placeholder="Ej.: 121/000001">
         </div>
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-input-label u-block">
           <label for="title">Tipo</label>
-          <input v-model="data.title" type="text" id="title" name="title" placeholder="Nota: Se admiten expresiones regulares">
+          <input v-model="form.title" type="text" id="title" name="title" placeholder="Nota: Se admiten expresiones regulares">
         </div>
       </div>
     </div> <!-- /.o-grid -->
@@ -203,12 +203,13 @@ export default {
     TipiIcon,
   },
   props: {
-    data: Object,
+    formData: Object,
   },
   data: function() {
     return {
       subtopics: [],
       tags: [],
+      form: {},
       errors: null,
       moment: moment,
       selectedSubtopics: [],
@@ -233,8 +234,8 @@ export default {
   methods: {
     fillSubtopicsAndTags: function(selectedTopic, clearValues) {
       if (clearValues) {
-        this.data.subtopics = [];
-        this.data.tags = [];
+        this.form.subtopics = [];
+        this.form.tags = [];
       }
       const currentTopic = this.topics.find(topic => topic.name === selectedTopic);
       this.getSubtopicsAndTags(currentTopic.id);
@@ -244,20 +245,20 @@ export default {
       this.selectedSubtopics = [];
       this.tags = [];
       this.filteredTags = [];
-      this.data.subtopics = [];
-      this.data.tags = [];
+      this.form.subtopics = [];
+      this.form.tags = [];
     },
     clearStartDate: function() {
-      this.data.startdate = '';
+      this.form.startdate = '';
     },
     clearEndDate: function() {
-      this.data.enddate = '';
+      this.form.enddate = '';
     },
     selectStartDate: function(date) {
-      this.data.startdate = moment(date).format('YYYY-MM-DD');
+      this.form.startdate = moment(date).format('YYYY-MM-DD');
     },
     selectEndDate: function(date) {
-      this.data.enddate = moment(date).format('YYYY-MM-DD');
+      this.form.enddate = moment(date).format('YYYY-MM-DD');
     },
     getSubtopicsAndTags: function(topicID) {
       api.getTags(topicID)
@@ -275,21 +276,21 @@ export default {
       this.filteredTags = this.tags.filter(filtered).map(tag => tag.tag);
     },
     addSubtopicToTagsFilter: function(selectedSubtopic) {
-      this.data.tags = [];
+      this.form.tags = [];
       this.selectedSubtopics.push(selectedSubtopic);
       this.filterTags();
     },
     removeSubtopicToTagsFilter: function(removedSubtopic) {
-      this.data.tags = [];
+      this.form.tags = [];
       this.selectedSubtopics.splice(this.selectedSubtopics.indexOf(removedSubtopic), 1);
       this.filterTags();
     },
     getResults: function(event) {
-      this.$emit('getResults', event);
+      this.$emit('getResults', event, this.form);
     },
     prepareForm: function() {
-      if (this.data.topic) {
-        this.fillSubtopicsAndTags(this.data.topic, false);
+      if (this.form.topic) {
+        this.fillSubtopicsAndTags(this.form.topic, false);
       }
     },
     toggleAdvanced: function() {
@@ -297,10 +298,10 @@ export default {
     }
   },
   created: function() {
-    if (this.$route.name == "results") {
-      this.$emit('getResults');
+    this.form = Object.assign({}, this.formData);
+    if (this.topics.length) {
+      this.prepareForm();
     }
-    this.prepareForm();
   },
 }
 </script>
