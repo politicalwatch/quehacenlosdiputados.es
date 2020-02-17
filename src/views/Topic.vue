@@ -17,10 +17,12 @@
         <h4 class="u-margin-bottom-4" v-if="latestInitiatives">Últimas iniciativas</h4>
         <tipi-results layout="tiny" :initiatives="latestInitiatives" :topicsStyles="styles"/>
       </div>
-      <div class="u-padding-top-4 u-padding-bottom-4" v-if="latestInitiatives">
-        <p class="u-subtitle u-margin-0">MÁS INICIATIVAS SOBRE</p>
-        <h4 class="u-th2">{{ topic.name.toUpperCase() }}</h4>
-        <a href="#" class="c-button c-button--primary" :style="`background-color: ${styles[topic.name].color}`">Explorar</a>
+    </div>
+    <div class="o-section o-section--double" v-if="latestInitiatives" :style="`background-color: ${styles[topic.name].color}`">
+      <div class="o-container">
+        <p class="u-subtitle u-margin-0 u-text-white">MÁS INICIATIVAS SOBRE</p>
+        <h4 class="u-th2 u-text-white">{{ topic.name.toUpperCase() }}</h4>
+        <a href="#" class="c-button c-button--outline">Explorar</a>
       </div>
     </div>
   </div>
