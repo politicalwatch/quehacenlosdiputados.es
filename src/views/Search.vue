@@ -14,24 +14,6 @@
 
       <search-form :formData="this.data" @getResults="getResults" />
 
-      <div class="o-grid u-padding-bottom-4" v-show="false" v-if="this.data.author || this.data.deputy">
-        <div class="o-grid__col o-grid__col--fill">
-          <router-link
-            class="c-button c-button--secondary u-block"
-            v-if="getParliamentaryGroupByName(this.data.author)"
-            :to="{ path: `/parliamentarygroups/${getParliamentaryGroupByName(this.data.author).id}` }">
-            ¿Quieres ver el perfil del {{ this.data.author }}?
-          </router-link>
-        </div>
-        <div class="o-grid__col o-grid__col--fill">
-          <router-link
-            class="c-button c-button--secondary u-block"
-            v-if="getDeputyByName(this.data.deputy)"
-            :to="{ path: `/deputies/${getDeputyByName(this.data.deputy).id}` }">
-            ¿Quieres ver el perfil del diputado {{ this.data.deputy }}?
-          </router-link>
-        </div>
-      </div>
       <div class="o-grid o-grid--align-center u-margin-bottom-4">
         <div class="o-grid__col o-grid__col--fill">
           <tipi-message v-if="this.query_meta.page" :type="message.type" :icon="message.icon">{{ message.message }}</tipi-message>
@@ -91,7 +73,8 @@ export default {
         enddate: '',
         place: '',
         reference: '',
-        page: 1
+        page: 1,
+        tags: [],
       },
       loadingResults: false,
       csvItems: [],
