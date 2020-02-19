@@ -1,12 +1,9 @@
 <template>
-  <div>
-    <div id="deputy" class="o-container o-section">
-      <tipi-header v-if="deputy" :title="deputy.name"/>
-      <tipi-deputy :deputy="deputy" :parliamentaryGroup="parliamentarygroup" />
-      <div class="u-border-top u-padding-top-4" v-if="latestInitiatives">
-        <h4 class="u-margin-bottom-4" v-if="latestInitiatives">Últimas iniciativas</h4>
-        <tipi-results layout="tiny" :initiatives="latestInitiatives" :topicsStyles="styles"/>
-      </div>
+  <div id="deputy">
+    <tipi-deputy :deputy="deputy" :parliamentaryGroup="parliamentarygroup" />
+    <div v-if="latestInitiatives" class="o-container o-section">
+      <h4 class="u-margin-bottom-4">Últimas iniciativas</h4>
+      <tipi-results layout="tiny" :initiatives="latestInitiatives" :topicsStyles="styles.topics"/>
     </div>
   </div>
 </template>
@@ -15,6 +12,7 @@
 
 import { TipiHeader, TipiDeputy, TipiResults } from 'tipi-uikit'
 import api from '@/api';
+import config from '@/config';
 import { mapState } from 'vuex';
 
 export default {
@@ -29,6 +27,7 @@ export default {
       deputy: null,
       parliamentarygroup: null,
       latestInitiatives: null,
+      styles: config.STYLES,
     }
   },
   computed: {
