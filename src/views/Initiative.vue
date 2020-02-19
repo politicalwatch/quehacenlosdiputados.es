@@ -48,7 +48,7 @@
 
 <script>
 
-import { TipiHeader, TipiText, TipiTopics, TipiInitiativeMeta, TipiNeuron, TipiTopicPill, TipiResults, TipiRelatedInitiatives } from 'tipi-uikit'
+import { TipiHeader, TipiText, TipiTopics, TipiInitiativeMeta, TipiNeuron, TipiTopicPill, TipiResults } from 'tipi-uikit'
 import api from '@/api';
 import config from '@/config';
 import { mapState } from 'vuex';
@@ -64,7 +64,6 @@ export default {
     TipiTopics,
     TipiInitiativeMeta,
     TipiNeuron,
-    TipiRelatedInitiatives,
     TipiTopicPill,
     TipiResults,
   },
