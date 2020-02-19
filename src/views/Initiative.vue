@@ -20,8 +20,11 @@
           </div>
           <tipi-topics meta="ODS tratados" :topics="initiative.topics" :tags="initiative.tags" :topicsStyles="styles.topics" />
 
-          <div v-if="initiative.related && initiative.related.length">
-            <tipi-related-initiatives meta="Actos relacionados" :related="initiative.related"/>
+          <div class="o-grid u-margin-top-4 u-padding-top-4 u-border-top" v-if="initiative.related && initiative.related.length">
+            <div class="o-grid__col o-grid__col--fill">
+              <h4 id="related" class="u-margin-bottom-4">Iniciativas relacionadas</h4>
+              <tipi-results layout="tiny" :initiatives="initiative.related" :topicsStyles="styles.topics"/>
+            </div>
           </div>
         </div>
         <div class="o-grid__col u-12 u-3@md">
@@ -45,7 +48,7 @@
 
 <script>
 
-import { TipiHeader, TipiText, TipiTopics, TipiInitiativeMeta, TipiNeuron, TipiTopicPill, TipiRelatedInitiatives } from 'tipi-uikit'
+import { TipiHeader, TipiText, TipiTopics, TipiInitiativeMeta, TipiNeuron, TipiTopicPill, TipiResults, TipiRelatedInitiatives } from 'tipi-uikit'
 import api from '@/api';
 import config from '@/config';
 import { mapState } from 'vuex';
@@ -63,6 +66,7 @@ export default {
     TipiNeuron,
     TipiRelatedInitiatives,
     TipiTopicPill,
+    TipiResults,
   },
   data: function() {
     return {
