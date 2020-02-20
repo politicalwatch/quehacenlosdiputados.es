@@ -4,80 +4,60 @@
       <tipi-header :title="'Métricas'" :subtitle="'Elige un Objetivo de Desarrollo Sostenible, o profundiza a nivel meta, y descubre las principales magnitudes de la actividad del Congreso de los Diputados sobre la Agenda 2030'"/>
       <div class="o-grid u-margin-bottom-4">
         <div class="o-grid__col u-12">
-      <form @submit.prevent="getResults">
-        <div class="o-grid">
-          <div class="o-grid__col u-12 u-6@sm">
-            <div class="c-select-label u-block">
-            <label for="topic">Objetivos</label>
-            <multiselect
-              @select="fillSubtopics"
-              v-model="data.topic"
-              :options="topics.map(topic => topic.name)"
-              name="topic" id="topic" placeholder="Todos">
-            </multiselect>
+          <form @submit.prevent="getResults">
+            <div class="o-grid">
+              <div class="o-grid__col u-12 u-6@sm">
+                <div class="c-select-label u-block">
+                <label for="topic">Objetivos</label>
+                <multiselect
+                  @select="fillSubtopics"
+                  v-model="data.topic"
+                  :options="topics.map(topic => topic.name)"
+                  name="topic" id="topic" placeholder="Todos">
+                </multiselect>
+                </div>
+              </div>
+              <div class="o-grid__col u-12 u-6@sm">
+                <div class="c-select-label u-block">
+                <label for="subtopics">Metas</label>
+                <multiselect
+                  v-model="data.subtopic"
+                  :options="subtopics"
+                  name="subtopic" id="subtopic" placeholder="Todas">
+                </multiselect>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="o-grid__col u-12 u-6@sm">
-            <div class="c-select-label u-block">
-            <label for="subtopics">Metas</label>
-            <multiselect
-              v-model="data.subtopic"
-              :options="subtopics"
-              name="subtopic" id="subtopic" placeholder="Todas">
-            </multiselect>
-            </div>
-          </div>
+          </form>
         </div>
-      </form>
-	  </div>
-	  </div>
-      <div class="o-grid u-margin-bottom-4">
-        <div class="o-grid__col u-12" v-if="data.isSelected">
-          <h4>Comparando objetivos y metas</h4>
-          <p><strong>¿Cuánta atención recibe {{ data.selection.selected._id }}?</strong></p>
-          <p>Descubre su volumen de actividad frente al más popular.</p>
+	    </div>
+      <div v-if="data.isSelected" class="o-grid u-margin-bottom-8 u-padding-top-8 u-border-top u-border-bottom u-margin-top-8">
+        <div class="o-grid__col u-12">
           <div class="o-grid">
-            <div class="o-grid__col u-6@sm u-text-center">
-              <tipi-two-circles :selection="data.selection" :topic="data.topic" :styles="data.styles"/>
-            </div>
-            <div class="o-grid__col u-6@sm">
-              <p>
-              Hay <strong>{{data.selection.selected.initiatives}}</strong> iniciativas relacionadas con <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la meta</span>&nbsp;<strong>{{data.selection.selected._id}}</strong>&nbsp;<span v-show="data.sameSelection">(<span v-show="!data.selectedTarget">el más popular</span><span v-show="data.selectedTarget">la meta más popular del <strong>{{data.topic}}</strong></span>)</span>.<span v-show="!data.sameSelection"> ¿Suficientes?<br/>Compáralo con <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la meta</span>&nbsp;<strong>{{data.selection.compareswith._id}}</strong> que, con <strong>{{data.selection.compareswith.initiatives}}</strong> iniciativas, es <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la</span> que más actividad concentra<span v-show="data.selectedTarget"> dentro del <strong>{{data.topic}}</strong></span>.</span>
+            <div class="o-grid__col u-8@sm">
+              <h4 class="u-margin-bottom-4">Comparando objetivos y metas</h4>
+              <p class="u-margin-bottom-0"><strong>¿Cuánta atención recibe {{ data.selection.selected._id }}?</strong></p>
+              <p class="u-margin-top-0">Descubre su volumen de actividad frente al más popular.</p>
+              <p class="u-subtitle">
+              Hay <strong>{{data.selection.selected.initiatives}}</strong> iniciativas relacionadas con <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la meta</span>&nbsp;<strong>{{data.selection.selected._id}}</strong>&nbsp;<span v-show="data.sameSelection">(<span v-show="!data.selectedTarget">el más popular</span><span v-show="data.selectedTarget">la meta más popular del <strong>{{data.topic}}</strong></span>)</span>.<span v-show="!data.sameSelection"> ¿Suficientes? Compáralo con <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la meta</span>&nbsp;<strong>{{data.selection.compareswith._id}}</strong> que, con <strong>{{data.selection.compareswith.initiatives}}</strong> iniciativas, es <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la</span> que más actividad concentra<span v-show="data.selectedTarget"> dentro del <strong>{{data.topic}}</strong></span>.</span>
               </p>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="o-grid u-margin-bottom-4" v-show="data.selection.selected.initiatives">
-        <div class="o-grid__col u-12" v-if="data.parliamentarygroups">
-          <h4>Grupos parlamentarios más activos</h4>
-          <div class="o-grid">
-            <div class="o-grid__col u-6@sm">
-              <ul>
-                <li v-for="pg in data.parliamentarygroups" v-bind:key="pg._id">
-                  <router-link :to="{path: '/parliamentarygroups/' + getPgIdFromName(pg._id)}">{{pg._id}} ({{pg.initiatives}} {{pluralizeInitiatives(pg.initiatives)}})</router-link>
-                </li>
-              </ul>
-            </div>
-            <div class="o-grid__col u-5@sm">
-              <p v-if="data.isSelected">Ránking de los grupos que más iniciativas presentan relacionadas con <strong>{{data.selection.selected._id}}</strong></p>
+            <div class="o-grid__col u-4@sm u-text-right">
+              <tipi-two-circles :selection="data.selection" :topic="data.topic" :styles="data.styles"/>
             </div>
           </div>
         </div>
       </div>
       <div class="o-grid u-margin-bottom-4" v-show="data.selection.selected.initiatives">
-        <div class="o-grid__col u-12" v-if="data.places">
-          <h4>¿Dónde se tramitan las iniciativas?</h4>
+        <div class="o-grid__col u-12">
           <div class="o-grid">
-            <div class="o-grid__col u-6@sm">
-              <ul>
-                <li v-for="place in data.places" v-bind:key="place._id">
-                  {{place._id}} ({{place.initiatives}} {{pluralizeInitiatives(place.initiatives)}})
-                </li>
-              </ul>
+            <div class="o-grid__col u-6@sm" v-if="data.parliamentarygroups">
+              <h5 v-if="data.isSelected">Ránking de los grupos que más iniciativas presentan relacionadas con <strong>{{data.selection.selected._id}}</strong></h5>
+              <tipi-text meta="Grupos parlamentarios más activos" :value="data.parliamentarygroups.map(group => group._id)" type="parliamentarygroups" :source="allParliamentaryGroups"/>
             </div>
-            <div class="o-grid__col u-5@sm">
-              <p v-if="data.isSelected">Descubre cuáles son los lugares más habituales en los que se tramitan las iniciativas relacionadas con <strong>{{data.selection.selected._id}}</strong></p>
+            <div class="o-grid__col u-6@sm" v-if="data.places">
+              <h5 v-if="data.isSelected">Descubre cuáles son los lugares más habituales en los que se tramitan las iniciativas relacionadas con <strong>{{data.selection.selected._id}}</strong></h5>
+              <tipi-text meta="¿Dónde se tramitan las iniciativas?" :value="data.places.map(place => `${place._id} (${place.initiatives} ${pluralizeInitiatives(place.initiatives)})`)" />
             </div>
           </div>
         </div>
@@ -88,7 +68,7 @@
 
 <script>
 
-import { TipiHeader, TipiTwoCircles } from 'tipi-uikit';
+import { TipiHeader, TipiMessage, TipiTwoCircles, TipiText } from 'tipi-uikit';
 import Multiselect from 'vue-multiselect';
 import api from '@/api';
 import config from '@/config';
@@ -97,9 +77,11 @@ import { mapState } from 'vuex';
 export default {
   name: 'dashboard',
   components: {
+    TipiText,
     TipiHeader,
     TipiTwoCircles,
     Multiselect,
+    TipiMessage,
   },
   data: function() {
     return {
