@@ -3,25 +3,36 @@
     <div id="scanner" class="o-container o-section">
       <tipi-header title="Scanner"/>
       <div class="o-grid">
-        <div class="o-grid__col u-12 u-7@sm">
-          <textarea placeholder="Inserta aqui el texto que quieres escanear..." v-model="inputText" />
+
+        <div class="o-grid__col u-12 u-6@sm" v-if="config.SCANNER_HELPTEXT">
+          <tipi-message type="info" icon><div v-html="config.SCANNER_HELPTEXT"></div></tipi-message>
+        </div>
+
+        <div class="o-grid__col u-12 u-6@sm">
+          <p><textarea placeholder="Inserta aqui el texto que quieres escanear..." v-model="inputText" rows="9"/></p>
+          <div class="c-input-label c-input-label--file u-block">
+            <label for="file">Sube un archivo</label>
+            <input type="file" id="file" name="file" placeholder="PDF, doc o txt">
+          </div>
           <p>
             <a id="start" class="c-button c-button--primary" @click.prevent="annotate">Iniciar proceso</a>
             <a class="c-button" :class="{ disabled: inProgress }" v-if="inputText!=''" @click="cleanTextAndResult">Limpiar texto <span v-if="result">y resultados</span></a>
           </p>
+        </div>
 
-        </div>
-        <div class="o-grid__col u-12 u-5@sm">
-          <p class="helptext" v-html="config.SCANNER_HELPTEXT"></p>
-        </div>
       </div>
 
       <div id="result" class="o-section o-grid">
         <div class="o-grid__col u-12 result" v-if="result">
-          <h3>Resultado del escáner:</h3>
+            <h4>Resultado del escáner:</h4>
             <tipi-message v-if="!result.topics.length" type="error" icon>No hemos encontrado ninguna coincidencia entre tu texto y nuestras etiquetas.</tipi-message>
             <div class="o-grid" v-else>
               <div class="o-grid__col u-12 u-7@sm">
+                <tipi-message type="info" icon>Si haces clic en cualquiera de las etiquetas relacionadas con tu texto podrás conocer además toda la actividad parlamentaria asociada con dicha etiqueta.</tipi-message >
+                <tipi-topics meta="ODS tratados" :topics="result.topics" :tags="result.tags" :topicsStyles="styles.topics"/>
+              </div>
+              <div class="o-grid__col u-12 u-offset-2@sm u-3@sm">
+                <tipi-message type="info" icon>Aquí tienes una una relación visual de tu texto, para que de un primer vistazo veas conexiones interesantes.</tipi-message>
                 <tipi-neuron
                   v-if="fakeInitiative && allTopics"
                   :initiative="fakeInitiative"
@@ -29,16 +40,7 @@
                   :styles="styles"
                 />
               </div>
-              <div class="o-grid__col u-12 u-5@sm">
-                <p>Aquí tienes una una relación visual de tu texto, para que de un primer vistazo veas conexiones interesantes.</p>
-              </div>
-              <div class="o-grid__col u-12 u-7@sm">
-                <tipi-topics meta="ODS tratados" :topics="result.topics" :tags="result.tags"/>
-              </div>
-              <div class="o-grid__col u-12 u-5@sm">
-                <p>Si haces clic en cualquiera de las etiquetas relacionadas con tu texto podrás conocer además toda la actividad parlamentaria asociada con dicha etiqueta.</p>
-              </div>
-              <div class="o-grid__col u-12 u-text-center u-padding-top-4">
+              <div class="o-grid__col u-12 u-text-center u-margin-top-4 u-padding-top-4 u-border-top">
                 <tipi-csv-download
                   :initiatives="csvItems || []"
                   :csvItems="csvItems"
