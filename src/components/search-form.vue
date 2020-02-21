@@ -67,7 +67,7 @@
           </multiselect>
         </div>
         <router-link
-          class="u-tbody2"
+          class="u-text-tbody2"
           v-if="getParliamentaryGroupByName(form.author)"
           :to="{ path: `/parliamentarygroups/${getParliamentaryGroupByName(form.author).id}` }">
           ¿Quieres ver el perfil del {{ form.author }}?
@@ -87,7 +87,7 @@
           </multiselect>
         </div>
         <router-link
-          class="u-tbody2"
+          class="u-text-tbody2"
           v-if="getDeputyByName(form.deputy)"
           :to="{ path: `/deputies/${getDeputyByName(form.deputy).id}` }">
           ¿Quieres ver el perfil del diputado {{ form.deputy }}?

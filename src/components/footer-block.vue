@@ -9,7 +9,7 @@
                 <a href="/"><img src="/img/logo-beta.png" class="big" alt="Logo de Parlamento 2030"></a>
                 <a href="http://politicalwatch.es" target="_blank"><img src="/img/politicalwatch.png" class="small" alt="Logo de Political Watch"></a>
               </div>
-              <div class="o-grid__col u-8@sm u-offset-1@sm u-tbody2">
+              <div class="o-grid__col u-8@sm u-offset-1@sm u-text-tbody2">
                 <p>
                 <strong>Parlamento 2030</strong> es un proyecto de <a href="http://politicalwatch.es" target="_blank">Political Watch</a>, plataforma que se inscribe dentro del think-and-do tank <a href="http://ciecode.es" target="_blank">CIECODE</a>.
                 <br/>

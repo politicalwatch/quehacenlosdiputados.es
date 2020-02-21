@@ -38,7 +38,7 @@
               <h4 class="u-margin-bottom-4">Comparando objetivos y metas</h4>
               <p class="u-margin-bottom-0"><strong>¿Cuánta atención recibe {{ data.selection.selected._id }}?</strong></p>
               <p class="u-margin-top-0">Descubre su volumen de actividad frente al más popular.</p>
-              <p class="u-subtitle">
+              <p class="u-text-subtitle">
               Hay <strong>{{data.selection.selected.initiatives}}</strong> iniciativas relacionadas con <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la meta</span>&nbsp;<strong>{{data.selection.selected._id}}</strong>&nbsp;<span v-show="data.sameSelection">(<span v-show="!data.selectedTarget">el más popular</span><span v-show="data.selectedTarget">la meta más popular del <strong>{{data.topic}}</strong></span>)</span>.<span v-show="!data.sameSelection"> ¿Suficientes? Compáralo con <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la meta</span>&nbsp;<strong>{{data.selection.compareswith._id}}</strong> que, con <strong>{{data.selection.compareswith.initiatives}}</strong> iniciativas, es <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la</span> que más actividad concentra<span v-show="data.selectedTarget"> dentro del <strong>{{data.topic}}</strong></span>.</span>
               </p>
             </div>

@@ -4,8 +4,8 @@
       <div class="o-grid o-grid--between">
         <div class="o-grid__col u-12 u-8@md">
           <tipi-topic-pill class="u-margin-bottom-4" :topicsStyles="styles.topics" :initiative="initiative" />
-          <p class="u-text-secondary u-margin-bottom-1 u-margin-top-0">Actualizado {{ moment(initiative.updated).fromNow() }}</p>
-          <h1 class="u-th4 u-margin-bottom-4">{{ initiative.title }}</h1>
+          <p class="u-color-secondary u-margin-bottom-1 u-margin-top-0">Actualizado {{ moment(initiative.updated).fromNow() }}</p>
+          <h1 class="u-text-th4 u-margin-bottom-4">{{ initiative.title }}</h1>
 
           <div class="o-grid u-padding-top-4 u-border-top u-border-bottom u-margin-bottom-4">
             <div class="o-grid__col o-grid__col--fill">
@@ -34,7 +34,7 @@
 
           <div class="u-padding-bottom-4 u-border-bottom u-margin-bottom-4">
             <tipi-neuron :initiative="initiative" :topics="allTopics" v-if="dataLoaded" :styles="styles"/>
-            <span class="u-tbody2">Relación de esta iniciativa con los ODS <sup title="El gráfico muestra los ODS relacionados con la iniciativa y el grado de relación con cada uno de ellos, cuya intensidad se refleja en la barra circular que los rodea."><i class="fa fa-question-circle"></i></sup></span>
+            <span class="u-text-tbody2">Relación de esta iniciativa con los ODS <sup title="El gráfico muestra los ODS relacionados con la iniciativa y el grado de relación con cada uno de ellos, cuya intensidad se refleja en la barra circular que los rodea."><i class="fa fa-question-circle"></i></sup></span>
           </div>
           <div class="u-border-bottom u-margin-bottom-4">
             <tipi-text meta="Autor" :value="initiative.authors" type="parliamentarygroups" :source="allParliamentaryGroups" />
