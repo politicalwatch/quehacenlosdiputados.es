@@ -2,7 +2,7 @@
   <div>
     <div id="scanner" class="o-container o-section">
       <tipi-header title="Scanner"/>
-      <div class="o-grid">
+      <div class="o-grid u-margin-bottom-4">
 
         <div class="o-grid__col u-12 u-6@sm" v-if="config.SCANNER_HELPTEXT">
           <tipi-message type="info" icon><div v-html="config.SCANNER_HELPTEXT"></div></tipi-message>
@@ -21,7 +21,7 @@
         </div>
 
       </div>
-
+      <tipi-loader v-if="inProgress" title="Escaneando resultados" subtitle="Ten paciencia, estamos trabajando duro" />
       <div id="result" class="o-section o-grid">
         <div class="o-grid__col u-12 result" v-if="result">
             <h4>Resultado del escáner:</h4>
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { TipiMessage, TipiHeader, TipiTopics, TipiNeuron, TipiCsvDownload } from 'tipi-uikit'
+import { TipiMessage, TipiHeader, TipiLoader, TipiTopics, TipiNeuron, TipiCsvDownload } from 'tipi-uikit'
 import config from '@/config';
 import api from '@/api';
 import { mapState } from 'vuex';
@@ -74,6 +74,7 @@ export default {
     TipiNeuron,
     TipiCsvDownload,
     TipiMessage,
+    TipiLoader,
   },
   data() {
     return {

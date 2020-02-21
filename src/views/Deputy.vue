@@ -1,13 +1,14 @@
 <template>
   <div id="deputy">
-    <tipi-deputy :deputy="deputy" :parliamentaryGroup="parliamentarygroup">
-      <a :href="deputy.twitter"><tipi-icon icon="twitter" /> Twitter</a>
-      <a :href="`mailto:${deputy.email}`"><tipi-icon icon="mail" /> {{deputy.email}}</a>
+    <tipi-deputy v-if="deputy" :deputy="deputy" :parliamentaryGroup="parliamentarygroup">
+      <a v-if="deputy.hasOwnProperty('twitter')" :href="deputy.twitter"><tipi-icon icon="twitter" /> Twitter</a>
+      <a v-if="deputy.hasOwnProperty('email')" :href="`mailto:${deputy.email}`"><tipi-icon icon="mail" /> {{deputy.email}}</a>
     </tipi-deputy>
-    <div v-if="latestInitiatives" class="o-container o-section">
+    <div v-if="latestInitiatives && latestInitiatives.length" class="o-container o-section">
       <h4 class="u-margin-bottom-4">Últimas iniciativas</h4>
       <tipi-results layout="tiny" :initiatives="latestInitiatives" :topicsStyles="styles.topics"/>
     </div>
+    <p class="u-text-center u-margin-bottom-10" v-else>No se han encontrado iniciativas para este diputado/a</p>
   </div>
 </template>
 
