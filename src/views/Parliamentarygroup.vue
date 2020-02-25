@@ -2,8 +2,8 @@
   <div>
     <div id="group" class="o-container o-section">
       <tipi-header v-if="parliamentarygroup" :title="parliamentarygroup.name"/>
-      <h4 class="u-margin-bottom-4" v-if="latestInitiatives.length">Últimas iniciativas</h4>
-      <tipi-results layout="tiny" :initiatives="latestInitiatives" class="u-margin-bottom-4" />
+      <h4 class="u-margin-bottom-4" v-if="latestInitiatives && latestInitiatives.length">Últimas iniciativas</h4>
+      <tipi-results layout="tiny" :initiatives="latestInitiatives" class="u-margin-bottom-4" :topicsStyles="topicsStyles"/>
 
       <h4 class="u-margin-bottom-4">Diputados/as</h4>
       <div class="o-grid">
@@ -26,6 +26,7 @@
 
 import { TipiHeader, TipiResults, TipiText } from 'tipi-uikit'
 import api from '@/api';
+import config from '@/config'
 import { mapGetters, mapState } from  'vuex';
 
 export default {
@@ -39,6 +40,7 @@ export default {
     return {
       parliamentarygroup: null,
       latestInitiatives: null,
+      topicsStyles: config.STYLES.topics,
     }
   },
   computed: {
