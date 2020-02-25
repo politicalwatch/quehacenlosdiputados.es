@@ -9,8 +9,8 @@
         <div class="o-grid__col u-12 u-4@sm" v-if="parliamentarygroups">
           <tipi-text meta="Grupos más activos" :value="parliamentarygroups" type="parliamentarygroups" :source="parliamentarygroups" />
         </div>
-        <div class="o-grid__col u-12 u-4@sm">
-          <tipi-text meta="Lugares" :value="['Item 1', 'Item 2', 'Item 3', 'Item 5', 'Item 4']" />
+        <div class="o-grid__col u-12 u-4@sm" v-if="places">
+          <tipi-text meta="Dónde se trata más" :value="places" />
         </div>
       </div>
       <div class="u-border-top u-padding-top-4" v-if="latestInitiatives">
@@ -47,6 +47,7 @@ export default {
     return {
       topic: {},
       deputies: null,
+      places: null,
       parliamentarygroups: null,
       latestInitiatives: null,
       styles: config.STYLES.topics,
@@ -63,6 +64,7 @@ export default {
           this.getLatestInitiatives(this.topic.name);
           this.getParliamentarygroupsRanking(this.topic.name);
           this.getDeputiesRanking(this.topic.name);
+          this.getPlacesRanking(this.topic.name);
         })
         .catch(error => {
           this.errors = error
@@ -79,6 +81,13 @@ export default {
             this.deputies[index].id = foundDeputy.id;
             this.deputies[index].image = foundDeputy.image;
           });
+        })
+        .catch(error => this.errors = error);
+    },
+    getPlacesRanking: function(topic) {
+      api.getPlacesRanking(topic, null, 3)
+        .then(response => {
+          this.places = response.map(place => `${place._id}`);
         })
         .catch(error => this.errors = error);
     },
