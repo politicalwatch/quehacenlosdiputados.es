@@ -22,7 +22,11 @@
       <div class="o-container">
         <p class="u-text-subtitle u-margin-0 u-color-white">MÁS INICIATIVAS SOBRE</p>
         <h4 class="u-text-th2 u-color-white">{{ topic.name.toUpperCase() }}</h4>
-        <a href="#" class="c-button c-button--outline">Explorar</a>
+        <router-link
+          class="c-button c-button--outline"
+          :to="{ name: 'results', params: { data: { topic: topic.name } } }">
+          Explorar
+        </router-link>
       </div>
     </div>
   </div>
