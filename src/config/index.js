@@ -11,8 +11,8 @@ export default {
       condition: true,
     },
     {
-      route: 'topics',
-      name: 'Temáticas',
+      route: 'ods',
+      name: 'ODS',
       condition: true,
     },
     {

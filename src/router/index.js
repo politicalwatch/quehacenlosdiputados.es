@@ -85,12 +85,12 @@ const routes = [{
     component: Dashboard
   },
   {
-    path: "/topics",
-    name: "topics",
+    path: "/ods",
+    name: "ods",
     component: Topics
   },
   {
-    path: "/topics/:id",
+    path: "/ods/:id",
     name: "topic",
     component: Topic
   },
