@@ -66,10 +66,6 @@ export default {
       return datum;
     },
   },
-  created() {
-    console.log('created');
-    console.log('datum', this.datum);
-  },
 };
 </script>
 

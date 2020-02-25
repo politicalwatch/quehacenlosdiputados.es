@@ -14,7 +14,7 @@
             <tipi-text meta="Actualización" :value="moment(initiative.updated).format('DD/MM/Y')" />
             <tipi-topics meta="ODS tratados" :topics="initiative.topics" :tags="initiative.tags" />
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-6 aside">
             <div class="row">
               <div class="col-sm-8 col-sm-offset-2">
                 <tipi-initiative-meta :initiative="initiative" link-text="Ver en el Congreso de los Diputados" />
@@ -99,11 +99,15 @@ export default {
 <style scoped lang="scss">
 .neuron-block {
   margin-top: 60px;
+  position: static;
     span {
       text-transform: uppercase;
       border-bottom: 5px solid #efefef;
       padding-bottom: 10px;
       font-weight: bold;
     }
+}
+.aside {
+  position: static;
 }
 </style>
