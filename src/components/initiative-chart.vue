@@ -19,7 +19,7 @@ export default {
         key: 'name',
         value: 'value',
         color: {key: 'color', default: '#CCC'},
-        radius: {outter: 150, inner: 87, padding: 0.05, round: 0},
+        radius: {outter: 120, inner: 70, padding: 0.05, round: 0},
         transition: {duration: 200},
       },
       odsColors: {
