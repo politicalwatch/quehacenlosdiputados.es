@@ -23,7 +23,7 @@
             <div class="row">
               <div class="col-sm-12 text-center neuron-block">
                 <span>Relación de esta iniciativa con los ODS <sup title="El gráfico muestra los ODS relacionados con la iniciativa y el grado de relación con cada uno de ellos, cuya intensidad se refleja en la barra circular que los rodea."><i class="fa fa-question-circle"></i></sup></span>
-                <tipi-neuron :initiative="initiative" :topics="allTopics" v-if="dataLoaded" :styles="styles"/>
+                <InitiativeChart :initiative="initiative" :topics="allTopics" v-if="dataLoaded"></InitiativeChart>
               </div>
             </div>
           </div>
@@ -43,10 +43,11 @@
 
 <script>
 
-import { TipiHeader, TipiText, TipiTopics, TipiInitiativeMeta, TipiNeuron, TipiRelatedInitiatives } from 'tipi-uikit'
+import { TipiHeader, TipiText, TipiTopics, TipiInitiativeMeta, TipiRelatedInitiatives } from 'tipi-uikit'
 import api from '@/api';
 import config from '@/config';
 import { mapState } from 'vuex';
+import InitiativeChart from '@/components/initiative-chart.vue';
 
 const moment = require('moment');
 
@@ -57,8 +58,8 @@ export default {
     TipiText,
     TipiTopics,
     TipiInitiativeMeta,
-    TipiNeuron,
     TipiRelatedInitiatives,
+    InitiativeChart,
   },
   data: function() {
     return {
