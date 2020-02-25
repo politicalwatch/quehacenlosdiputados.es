@@ -8,7 +8,7 @@
         <router-link :to="{name: 'about-en'}">Learn more about this project in English</router-link>
       </p>
     </tipi-splash>
-    <div id="search" class="o-container o-section">
+    <div id="search" class="o-container o-section u-margin-bottom-10">
 
       <tipi-header :title="'Buscar'" :subtitle="'Bucea en la actividad parlamentaria relacionada con los ODS con las múltiples opciones que te ofrece el buscador de Parlamento 2030'" />
 

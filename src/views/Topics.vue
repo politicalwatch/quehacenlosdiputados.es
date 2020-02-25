@@ -1,5 +1,5 @@
 <template>
-  <div class="o-container o-section u-padding-bottom-10">
+  <div class="o-container o-section u-padding-bottom-10 u-margin-bottom-10">
     <tipi-header title="Temáticas"/>
     <div class="o-grid">
       <div class="o-grid__col u-6 u-3@sm u-2@md" v-for="topic in allTopics" :key="topic.id">

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="initiative" class="o-container o-section">
+    <div id="initiative" class="o-container o-section u-margin-bottom-10">
       <div class="o-grid o-grid--between">
         <div class="o-grid__col u-12 u-8@md">
           <div class="o-grid">

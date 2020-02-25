@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="scanner" class="o-container o-section">
+    <div id="scanner" class="o-container o-section u-margin-bottom-10">
       <tipi-header title="Scanner"/>
       <div class="o-grid u-margin-bottom-4">
 

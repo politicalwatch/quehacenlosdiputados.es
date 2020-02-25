@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="group" class="o-container o-section">
+    <div id="group" class="o-container o-section u-margin-bottom-10">
       <tipi-header v-if="parliamentarygroup" :title="parliamentarygroup.name"/>
       <h4 class="u-margin-bottom-4" v-if="latestInitiatives && latestInitiatives.length">Últimas iniciativas</h4>
       <tipi-results layout="tiny" :initiatives="latestInitiatives" class="u-margin-bottom-4" :topicsStyles="topicsStyles"/>

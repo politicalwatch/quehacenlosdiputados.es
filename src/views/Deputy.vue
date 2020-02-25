@@ -1,5 +1,5 @@
 <template>
-  <div id="deputy">
+  <div id="deputy" class="u-margin-bottom-10">
     <tipi-deputy v-if="deputy" :deputy="deputy" :parliamentaryGroup="parliamentarygroup">
       <a v-if="deputy.hasOwnProperty('twitter')" :href="deputy.twitter"><tipi-icon icon="twitter" /> Twitter</a>
       <a v-if="deputy.hasOwnProperty('email')" :href="`mailto:${deputy.email}`"><tipi-icon icon="mail" /> {{deputy.email}}</a>
