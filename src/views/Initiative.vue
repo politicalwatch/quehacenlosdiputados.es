@@ -3,7 +3,14 @@
     <div id="initiative" class="o-container o-section">
       <div class="o-grid o-grid--between">
         <div class="o-grid__col u-12 u-8@md">
-          <tipi-topic-pill class="u-margin-bottom-4" :topicsStyles="styles.topics" :initiative="initiative" />
+          <div class="o-grid">
+            <div class="o-grid__col u-12 u-6@md">
+              <tipi-topic-pill class="u-margin-bottom-2" :topicsStyles="styles.topics" :initiative="initiative" />
+            </div>
+            <div class="o-grid__col u-12 u-6@md u-text-right@md u-margin-bottom-2" v-if="initiative.related && initiative.related.length">
+              <a href="#related" class="c-button c-button--compact u-padding-left-0">Ver iniciativas relacionadas</a>
+            </div>
+          </div>
           <p class="u-color-secondary u-margin-bottom-1 u-margin-top-0">Actualizado {{ moment(initiative.updated).fromNow() }}</p>
           <h1 class="u-text-th4 u-margin-bottom-4">{{ initiative.title }}</h1>
 
