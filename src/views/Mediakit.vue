@@ -1,39 +1,37 @@
 <template>
   <div>
-    <div id="mediakit">
-      <tipi-header :title="'Media Kit'"/>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6 language-block text-center">
-              <h4>Versión en español</h4>
-              <div class="download-block">
-                <a href="/mediakit-es.zip" class="btn btn-custom-naked">
-                  <i class="fa fa-download fa-2x"></i><br/>Descargar kit
-                </a>
-              </div>
-              <p>
-                Este kit incluye:
-                <ul class="list-unstyled">
-                  <li>Dossier (+ extendido)</li>
-                  <li>Nota de prensa</li>
-                  <li>Logos oficiales</li>
-                </ul>
-              </p>
+    <div id="mediakit" class="o-container o-section u-margin-bottom-10">
+      <tipi-header title="Media Kit"/>
+      <div class="o-grid o-grid--center">
+        <div class="o-grid__col u-12 u-4@sm u-bg-secondary-light u-margin-right-2@sm">
+          <div class="u-padding-4">
+            <h4 class="u-text-center">Versión en español</h4>
+            <p class="u-text-center">
+              <a href="/mediakit-es.zip" class="c-button c-button--primary">Descargar kit</a>
+            </p>
+            <p class="u-margin-top-4">
+              Este kit incluye:
+            </p>
+            <ul>
+              <li>Dossier (+ extendido)</li>
+              <li>Nota de prensa</li>
+              <li>Logos oficiales</li>
+            </ul>
           </div>
-          <div class="col-sm-6 language-block text-center">
-              <h4>English version</h4>
-              <div class="download-block">
-                <a href="/mediakit-en.zip" class="btn btn-custom-naked">
-                  <i class="fa fa-download fa-2x"></i><br/>Download kit
-                </a>
-              </div>
-              <p>
-                This kit includes:
-                <ul class="list-unstyled">
-                  <li>Dossier (+ extended)</li>
-                  <li>Official logos</li>
-                </ul>
-              </p>
+        </div>
+        <div class="o-grid__col u-12 u-4@sm u-bg-secondary-light u-margin-left-2@sm">
+          <div class="u-padding-4">
+            <h4 class="u-text-center">English version</h4>
+            <p class="u-text-center">
+              <a href="/mediakit-en.zip" class="c-button c-button--primary">Download kit</a>
+            </p>
+            <p class="u-margin-top-4">
+              This kit includes:
+            </p>
+            <ul>
+              <li>Dossier (+ extended)</li>
+              <li>Official logos</li>
+            </ul>
           </div>
         </div>
       </div>

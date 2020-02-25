@@ -1,21 +1,32 @@
 <template>
   <div>
-    <tipi-header :title="topic.name"/>
-    <div id="dict">
-      <div class="container page">
-        <tipi-topic-card :topic="topic" />
-        <hr v-if="topic.description && topic.icon">
-        <div class="row">
-          <div class="col-sm-6" v-if="deputies">
-            <tipi-text meta="Diputadas/os más activas/os" :value="deputies" type="deputies" :source="deputies" />
-          </div>
-          <div class="col-sm-6" v-if="parliamentarygroups">
-            <tipi-text meta="Grupos más activos" :value="parliamentarygroups" type="parliamentarygroups" :source="parliamentarygroups" />
-          </div>
+    <tipi-topic-card :topic="topic" :topicsStyles="styles"/>
+    <div id="topic" class="o-container o-section">
+      <div class="o-grid">
+        <div class="o-grid__col u-12 u-4@sm" v-if="deputies">
+          <tipi-text meta="Diputadas/os más activas/os" :value="deputies" type="deputies" :source="deputies" />
         </div>
-        <hr v-if="latestInitiatives">
-        <h4 v-if="latestInitiatives">Últimas iniciativas</h4>
-        <tipi-results layout="tiny" :initiatives="latestInitiatives"/>
+        <div class="o-grid__col u-12 u-4@sm" v-if="parliamentarygroups">
+          <tipi-text meta="Grupos más activos" :value="parliamentarygroups" type="parliamentarygroups" :source="parliamentarygroups" />
+        </div>
+        <div class="o-grid__col u-12 u-4@sm" v-if="places">
+          <tipi-text meta="Dónde se trata más" :value="places" />
+        </div>
+      </div>
+      <div class="u-border-top u-padding-top-4" v-if="latestInitiatives">
+        <h4 class="u-margin-bottom-4" v-if="latestInitiatives">Últimas iniciativas</h4>
+        <tipi-results layout="tiny" :initiatives="latestInitiatives" :topicsStyles="styles"/>
+      </div>
+    </div>
+    <div class="o-section o-section--double" v-if="latestInitiatives" :style="`background-color: ${styles[topic.name].color}`">
+      <div class="o-container">
+        <p class="u-text-subtitle u-margin-0 u-color-white">MÁS INICIATIVAS SOBRE</p>
+        <h4 class="u-text-th2 u-color-white">{{ topic.name.toUpperCase() }}</h4>
+        <router-link
+          class="c-button c-button--outline"
+          :to="{ name: 'results', params: { data: { topic: topic.name } } }">
+          Explorar
+        </router-link>
       </div>
     </div>
   </div>
@@ -25,6 +36,7 @@
 
 import { TipiHeader, TipiResults, TipiTopicCard, TipiText } from 'tipi-uikit'
 import api from '@/api';
+import config from '@/config';
 import { mapState } from 'vuex';
 
 export default {
@@ -39,8 +51,10 @@ export default {
     return {
       topic: {},
       deputies: null,
+      places: null,
       parliamentarygroups: null,
       latestInitiatives: null,
+      styles: config.STYLES.topics,
     }
   },
   computed: {
@@ -54,6 +68,7 @@ export default {
           this.getLatestInitiatives(this.topic.name);
           this.getParliamentarygroupsRanking(this.topic.name);
           this.getDeputiesRanking(this.topic.name);
+          this.getPlacesRanking(this.topic.name);
         })
         .catch(error => {
           this.errors = error
@@ -61,7 +76,7 @@ export default {
         });
     },
     getDeputiesRanking: function(topic) {
-      api.getDeputiesRanking(topic)
+      api.getDeputiesRanking(topic, null, 3)
         .then(response => {
           this.deputies = response;
           this.deputies.forEach((deputy, index) => {
@@ -70,6 +85,13 @@ export default {
             this.deputies[index].id = foundDeputy.id;
             this.deputies[index].image = foundDeputy.image;
           });
+        })
+        .catch(error => this.errors = error);
+    },
+    getPlacesRanking: function(topic) {
+      api.getPlacesRanking(topic, null, 3)
+        .then(response => {
+          this.places = response.map(place => `${place._id}`);
         })
         .catch(error => this.errors = error);
     },
@@ -86,7 +108,7 @@ export default {
         .catch(error => this.errors = error);
     },
     getLatestInitiatives: function(topic) {
-      api.getInitiatives({ 'topic': topic, 'per_page': 10 })
+      api.getInitiatives({ 'topic': topic, 'per_page': 9 })
          .then(response => {
             if (response.initiatives) this.latestInitiatives = response.initiatives;
           })

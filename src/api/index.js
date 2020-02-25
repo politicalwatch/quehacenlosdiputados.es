@@ -189,7 +189,7 @@ export default {
       ].join('');
     }
   },
-  getDeputiesRanking(topic, subtopic) {
+  getDeputiesRanking(topic, subtopic, limit = 5) {
     let params = {'topic': topic};
     if (subtopic) {
       params['subtopic'] = subtopic;
@@ -198,7 +198,7 @@ export default {
       .get(getEndpoint(), {
         params: params
       })
-      .then(response => response.data.slice(0,5));
+      .then(response => response.data.slice(0,limit));
 
     function getEndpoint() {
       return [

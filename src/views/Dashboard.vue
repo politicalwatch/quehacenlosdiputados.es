@@ -1,87 +1,63 @@
 <template>
   <div>
-    <div id="dashboard">
+    <div id="dashboard" class="o-container o-section u-margin-bottom-10">
       <tipi-header :title="'Métricas'" :subtitle="'Elige un Objetivo de Desarrollo Sostenible, o profundiza a nivel meta, y descubre las principales magnitudes de la actividad del Congreso de los Diputados sobre la Agenda 2030'"/>
-      <div class="container page">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="well">
-              <form id="search-form" class="form-horizontal" role="form" @submit.prevent="getResults">
-                <fieldset>
-                  <div class="form-group">
-                    <label for="topic" class="col-sm-1 control-label">Objetivos</label>
-                    <div class="col-sm-4">
-                      <multiselect
-                        @select="fillSubtopics"
-                        v-model="data.topic"
-                        :options="topics.map(topic => topic.name)"
-                        name="topic" id="topic" placeholder="Todos">
-                      </multiselect>
-                    </div>
-                    <label for="subtopics" class="col-sm-1 control-label">Metas</label>
-                    <div class="col-sm-6">
-                      <multiselect
-                        v-model="data.subtopic"
-                        :options="subtopics"
-                        name="subtopic" id="subtopic" placeholder="Todas">
-                      </multiselect>
-                    </div>
-                  </div>
-                </fieldset>
-              </form>
-            </div>
-            <div class="row">
-              <div class="col-sm-12 widget" v-if="data.isSelected">
-                <h4>Comparando objetivos y metas</h4>
-                <p class="description"><strong>¿Cuánta atención recibe {{data.selection.selected._id}}?</strong></p>
-                <p class="description">Descubre su volumen de actividad frente al más popular.</p>
-                <div class="row vizz-block">
-                  <div class="col-sm-6 text-center">
-                    <tipi-two-circles :selection="data.selection" :topic="data.topic" :styles="data.styles"/>
-                  </div>
-                  <div class="col-sm-6">
-                    <p class="description main">
-                    Hay <strong>{{data.selection.selected.initiatives}}</strong> iniciativas relacionadas con <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la meta</span>&nbsp;<strong>{{data.selection.selected._id}}</strong>&nbsp;<span v-show="data.sameSelection">(<span v-show="!data.selectedTarget">el más popular</span><span v-show="data.selectedTarget">la meta más popular del <strong>{{data.topic}}</strong></span>)</span>.<span v-show="!data.sameSelection"> ¿Suficientes?<br/>Compáralo con <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la meta</span>&nbsp;<strong>{{data.selection.compareswith._id}}</strong> que, con <strong>{{data.selection.compareswith.initiatives}}</strong> iniciativas, es <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la</span> que más actividad concentra<span v-show="data.selectedTarget"> dentro del <strong>{{data.topic}}</strong></span>.</span>
-                    </p>
-                  </div>
+      <div class="o-grid u-margin-bottom-4">
+        <div class="o-grid__col u-12">
+          <form @submit.prevent="getResults">
+            <div class="o-grid">
+              <div class="o-grid__col u-12 u-6@sm">
+                <div class="c-select-label u-block">
+                <label for="topic">Objetivos</label>
+                <multiselect
+                  @select="fillSubtopics"
+                  v-model="data.topic"
+                  :options="topics.map(topic => topic.name)"
+                  name="topic" id="topic" placeholder="Todos">
+                </multiselect>
+                </div>
+              </div>
+              <div class="o-grid__col u-12 u-6@sm">
+                <div class="c-select-label u-block">
+                <label for="subtopics">Metas</label>
+                <multiselect
+                  v-model="data.subtopic"
+                  :options="subtopics"
+                  name="subtopic" id="subtopic" placeholder="Todas">
+                </multiselect>
                 </div>
               </div>
             </div>
-            <div class="row" v-show="data.selection.selected.initiatives">
-              <div class="col-sm-12 widget" v-if="data.parliamentarygroups">
-                <h4>Grupos parlamentarios más activos</h4>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <ul class="list-unstyled">
-                      <li v-for="pg in data.parliamentarygroups" v-bind:key="pg._id">
-                        <span class="itemname">
-                          <router-link :to="{path: '/parliamentarygroups/' + getPgIdFromName(pg._id)}">{{pg._id}} ({{pg.initiatives}} {{pluralizeInitiatives(pg.initiatives)}})</router-link>
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="col-sm-5">
-                    <p v-if="data.isSelected" class="description leftline">Ránking de los grupos que más iniciativas presentan relacionadas con <strong>{{data.selection.selected._id}}</strong></p>
-                  </div>
-                </div>
-              </div>
+          </form>
+        </div>
+	    </div>
+      <div v-if="data.isSelected" class="o-grid u-margin-bottom-8 u-padding-top-8 u-border-top u-border-bottom u-margin-top-8">
+        <div class="o-grid__col u-12">
+          <div class="o-grid">
+            <div class="o-grid__col u-8@sm">
+              <h4 class="u-margin-bottom-4">Comparando objetivos y metas</h4>
+              <p class="u-margin-bottom-0"><strong>¿Cuánta atención recibe {{ data.selection.selected._id }}?</strong></p>
+              <p class="u-margin-top-0">Descubre su volumen de actividad frente al más popular.</p>
+              <p class="u-text-subtitle">
+              Hay {{data.selection.selected.initiatives}} iniciativas relacionadas con <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la meta</span>&nbsp;{{data.selection.selected._id}}&nbsp;<span v-show="data.sameSelection">(<span v-show="!data.selectedTarget">el más popular</span><span v-show="data.selectedTarget">la meta más popular del {{data.topic}}</span>)</span>.<span v-show="!data.sameSelection"> ¿Suficientes? Compáralo con <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la meta</span>&nbsp;{{data.selection.compareswith._id}} que, con {{data.selection.compareswith.initiatives}} iniciativas, es <span v-show="!data.selectedTarget">el</span><span v-show="data.selectedTarget">la</span> que más actividad concentra<span v-show="data.selectedTarget"> dentro del {{data.topic}}</span>.</span>
+              </p>
             </div>
-            <div class="row" v-show="data.selection.selected.initiatives">
-              <div class="col-sm-12 widget" v-if="data.places">
-                <h4>¿Dónde se tramitan las iniciativas?</h4>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <ul class="list-unstyled">
-                      <li v-for="place in data.places" v-bind:key="place._id">
-                        <span class="itemname">{{place._id}} ({{place.initiatives}} {{pluralizeInitiatives(place.initiatives)}})</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="col-sm-5">
-                    <p v-if="data.isSelected" class="description leftline">Descubre cuáles son los lugares más habituales en los que se tramitan las iniciativas relacionadas con <strong>{{data.selection.selected._id}}</strong></p>
-                  </div>
-                </div>
-              </div>
+            <div class="o-grid__col u-4@sm u-text-right">
+              <tipi-two-circles :selection="data.selection" :topic="data.topic" :styles="data.styles"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="o-grid u-margin-bottom-4" v-show="data.selection.selected.initiatives">
+        <div class="o-grid__col u-12">
+          <div class="o-grid">
+            <div class="o-grid__col u-6@sm" v-if="data.parliamentarygroups && data.parliamentarygroups.length">
+              <tipi-message type="info" v-if="data.isSelected" icon>Ránking de los grupos que más iniciativas presentan relacionadas con <strong>{{data.selection.selected._id}}</strong></tipi-message>
+              <tipi-text meta="Grupos parlamentarios más activos" :value="data.parliamentarygroups.map(group => group._id)" type="parliamentarygroups" :source="allParliamentaryGroups"/>
+            </div>
+            <div class="o-grid__col u-6@sm" v-if="data.places && data.places.length">
+              <tipi-message type="info" v-if="data.isSelected" icon>Descubre cuáles son los lugares más habituales en los que se tramitan las iniciativas relacionadas con <strong>{{data.selection.selected._id}}</strong></tipi-message>
+              <tipi-text meta="¿Dónde se tramitan las iniciativas?" :value="data.places.map(place => `${place._id} (${place.initiatives} ${pluralizeInitiatives(place.initiatives)})`)" />
             </div>
           </div>
         </div>
@@ -92,7 +68,7 @@
 
 <script>
 
-import { TipiHeader, TipiTwoCircles } from 'tipi-uikit';
+import { TipiHeader, TipiMessage, TipiTwoCircles, TipiText } from 'tipi-uikit';
 import Multiselect from 'vue-multiselect';
 import api from '@/api';
 import config from '@/config';
@@ -101,9 +77,11 @@ import { mapState } from 'vuex';
 export default {
   name: 'dashboard',
   components: {
+    TipiText,
     TipiHeader,
     TipiTwoCircles,
     Multiselect,
+    TipiMessage,
   },
   data: function() {
     return {
@@ -219,38 +197,4 @@ export default {
 </script>
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
-<style scoped lang="scss">
-#dashboard {
-  .widget {
-    padding: 40px 0px;
-    h4 {
-      text-transform: uppercase;
-      font-weight: bold;
-      border-bottom: 10px solid #efefef;
-      margin-bottom: 30px;
-      padding: 5px;
-    }
-  }
-  .description {
-    font-size: 1.1em;
-  }
-  .description.main {
-    font-size: 1.6em;
-  }
-  .description.help {
-    font-size: 1.3em;
-      padding-bottom: 20px;
-  }
-  .itemname {
-    font-size: 1.2em;
-    font-weight: bold;
-  }
-  .vizz-block {
-    padding: 40px 0px;
-  }
-  .leftline {
-    padding-left: 10px;
-    border-left: 2px solid lighten(#222, 10%);
-  }
-}
-</style>
+
