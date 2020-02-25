@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="footer" class="o-container o-container--fluid o-section u-bg-secondary-light">
+    <div id="footer" class="o-container o-container--fluid o-section u-bg-secondary-light u-margin-top-10">
       <div class="o-grid">
         <div class="o-grid__col u-12@sm">
           <div class="o-container">
