@@ -1,6 +1,6 @@
 <template>
   <div class="initiativechart">
-    <D3SlicesChart :config="config" :datum="datum" :height="400"></D3SlicesChart>
+    <D3SlicesChart :config="config" :datum="datum" :height="220"></D3SlicesChart>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
         key: 'name',
         value: 'value',
         color: {key: 'color', default: '#CCC'},
-        radius: {outter: 120, inner: 70, padding: 0.05, round: 0},
+        radius: {outter: 104, inner: 63, padding: 0.05, round: 0},
         transition: {duration: 200},
       },
       odsColors: {
@@ -59,9 +59,11 @@ export default {
     datum() {
       const datum = [];
       Object.keys(this.odsColors).forEach((k) => {
-        const obj = { name: k, color: this.odsColors[k] };
-        obj.value = this.initiative.topics.indexOf(k) >= 0 ? 1 : 0;
-        datum.push(obj);
+        datum.push({
+          name: k,
+          color: this.odsColors[k],
+          value: this.initiative.tags.filter(d => d.topic === k).length,
+        });
       });
       return datum;
     },
