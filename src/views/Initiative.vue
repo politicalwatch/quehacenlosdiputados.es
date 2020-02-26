@@ -30,7 +30,7 @@
           <div class="o-grid u-margin-top-4 u-padding-top-4 u-border-top" v-if="initiative.related && initiative.related.length">
             <div class="o-grid__col o-grid__col--fill">
               <h4 id="related" class="u-margin-bottom-4">Iniciativas relacionadas</h4>
-              <tipi-results layout="tiny" :initiatives="initiative.related" :topicsStyles="styles.topics"/>
+              <tipi-results :initiatives="initiative.related" :topicsStyles="styles.topics"/>
             </div>
           </div>
         </div>
