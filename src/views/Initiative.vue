@@ -5,7 +5,7 @@
         <div class="o-grid__col u-12 u-8@md">
           <div class="o-grid">
             <div class="o-grid__col u-12 u-6@md">
-              <tipi-topic-pill class="u-margin-bottom-2" :topicsStyles="styles.topics" :initiative="initiative" />
+              <tipi-topic-pill class="u-margin-bottom-2" :topicsStyles="styles.topics" :initiative="initiative" with-links/>
             </div>
             <div class="o-grid__col u-12 u-6@md u-text-right@md u-margin-bottom-2" v-if="initiative.related && initiative.related.length">
               <a href="#related" class="c-button c-button--compact u-padding-left-0">Ver iniciativas relacionadas</a>
