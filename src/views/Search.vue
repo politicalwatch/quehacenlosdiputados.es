@@ -29,6 +29,7 @@
         </div>
       </div>
       <tipi-results
+        id="results"
         :loadingResults="loadingResults"
         :initiatives="initiatives || []"
         :topicsStyles="topicsStyles"
@@ -48,6 +49,7 @@ import { TipiHeader, TipiCsvDownload, TipiMessage, TipiResults, TipiSplash } fro
 import { mapGetters } from 'vuex';
 
 const qs = require('qs');
+const VueScrollTo = require('vue-scrollto');
 
 export default {
   name: 'search',
@@ -100,6 +102,7 @@ export default {
   },
   methods: {
     getResults: function(event, formData) {
+      event.preventDefault();
       this.loadingResults = true;
       this.csvItems = [];
       const isNewSearch = event && event.type === 'submit';
@@ -128,6 +131,7 @@ export default {
             }
             this.query_meta = response.query_meta;
             this.loadingResults = false;
+            VueScrollTo.scrollTo('#results', 1500)
           })
          .catch(error => this.errors = error);
     },
