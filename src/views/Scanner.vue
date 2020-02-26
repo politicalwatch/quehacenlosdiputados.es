@@ -24,32 +24,31 @@
       <tipi-loader v-if="inProgress" title="Escaneando resultados" subtitle="Ten paciencia, estamos trabajando duro" />
       <div id="result" class="o-section o-grid">
         <div class="o-grid__col u-12 result" v-if="result">
-            <h4>Resultado del escáner:</h4>
-            <tipi-message v-if="!result.topics.length" type="error" icon>No hemos encontrado ninguna coincidencia entre tu texto y nuestras etiquetas.</tipi-message>
-            <div class="o-grid" v-else>
-              <div class="o-grid__col u-12 u-7@sm">
-                <tipi-message type="info" icon>Si haces clic en cualquiera de las etiquetas relacionadas con tu texto podrás conocer además toda la actividad parlamentaria asociada con dicha etiqueta.</tipi-message >
-                <tipi-topics meta="ODS tratados" :topics="result.topics" :tags="result.tags" :topicsStyles="styles.topics"/>
-              </div>
-              <div class="o-grid__col u-12 u-offset-2@sm u-3@sm">
-                <tipi-message type="info" icon>Aquí tienes una una relación visual de tu texto, para que de un primer vistazo veas conexiones interesantes.</tipi-message>
-                <tipi-neuron
-                  v-if="fakeInitiative && allTopics"
-                  :initiative="fakeInitiative"
-                  :topics="allTopics"
-                  :styles="styles"
-                />
-              </div>
-              <div class="o-grid__col u-12 u-text-center u-margin-top-4 u-padding-top-4 u-border-top">
-                <tipi-csv-download
-                  :initiatives="csvItems || []"
-                  :csvItems="csvItems"
-                  :csvFields="csvFields"
-                  :canDownloadCSV="true"
-                  button-class="c-button--primary"
-                  label="Descárgalo en CSV"
-                />
-              </div>
+          <h4>Resultado del escáner:</h4>
+          <tipi-message v-if="!result.topics.length" type="error" icon>No hemos encontrado ninguna coincidencia entre tu texto y nuestras etiquetas.</tipi-message>
+          <div class="o-grid" v-else>
+            <div class="o-grid__col u-12 u-7@sm">
+              <tipi-message type="info" icon>Si haces clic en cualquiera de las etiquetas relacionadas con tu texto podrás conocer además toda la actividad parlamentaria asociada con dicha etiqueta.</tipi-message >
+              <tipi-topics meta="ODS tratados" :topics="result.topics" :tags="result.tags" :topicsStyles="styles.topics"/>
+            </div>
+            <div class="o-grid__col u-12 u-offset-2@sm u-3@sm">
+              <tipi-message type="info" icon>Aquí tienes una una relación visual de tu texto, para que de un primer vistazo veas conexiones interesantes.</tipi-message>
+              <tipi-neuron
+                v-if="fakeInitiative && allTopics"
+                :initiative="fakeInitiative"
+                :topics="allTopics"
+                :styles="styles"
+              />
+            </div>
+            <div class="o-grid__col u-12 u-text-center u-margin-top-4 u-padding-top-4 u-border-top">
+              <tipi-csv-download
+                :initiatives="csvItems || []"
+                :csvItems="csvItems"
+                :csvFields="csvFields"
+                :canDownloadCSV="true"
+                button-class="c-button--primary"
+                label="Descárgalo en CSV"
+              />
             </div>
           </div>
         </div>
