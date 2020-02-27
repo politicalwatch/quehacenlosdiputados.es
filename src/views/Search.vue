@@ -102,7 +102,6 @@ export default {
   },
   methods: {
     getResults: function(event, formData) {
-      event.preventDefault();
       this.loadingResults = true;
       this.csvItems = [];
       const isNewSearch = event && event.type === 'submit';
@@ -111,6 +110,10 @@ export default {
         : formData;
       this.data = Object.assign(this.data, params);
       const urlParams = Object.assign({}, this.data);
+
+      if (isNewSearch) {
+        event.preventDefault();
+      }
 
       Object.keys(urlParams).forEach(
         key => (!urlParams[key] || key === "page") && delete urlParams[key])
