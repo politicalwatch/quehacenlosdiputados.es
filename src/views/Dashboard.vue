@@ -8,29 +8,29 @@
             <div class="o-grid">
               <div class="o-grid__col u-12 u-6@sm">
                 <div class="c-select-label u-block">
-                <label for="topic">Objetivos</label>
-                <multiselect
-                  @select="fillSubtopics"
-                  v-model="data.topic"
-                  :options="topics.map(topic => topic.name)"
-                  name="topic" id="topic" placeholder="Todos">
-                </multiselect>
+                  <label for="topic">Objetivos</label>
+                  <multiselect
+                    @select="fillSubtopics"
+                    v-model="data.topic"
+                    :options="topics.map(topic => topic.name)"
+                    name="topic" id="topic" placeholder="Todos">
+                  </multiselect>
                 </div>
               </div>
               <div class="o-grid__col u-12 u-6@sm">
                 <div class="c-select-label u-block">
-                <label for="subtopics">Metas</label>
-                <multiselect
-                  v-model="data.subtopic"
-                  :options="subtopics"
-                  name="subtopic" id="subtopic" placeholder="Todas">
-                </multiselect>
-                </div>
+                  <label for="subtopics">Metas</label>
+                  <multiselect
+                    v-model="data.subtopic"
+                    :options="subtopics"
+                    name="subtopic" id="subtopic" placeholder="Todas">
+                  </multiselect>
+                  </div>
               </div>
             </div>
           </form>
         </div>
-	    </div>
+      </div>
       <div v-if="data.isSelected" class="o-grid u-margin-bottom-8 u-padding-top-8 u-border-top u-border-bottom u-margin-top-8">
         <div class="o-grid__col u-12">
           <div class="o-grid">

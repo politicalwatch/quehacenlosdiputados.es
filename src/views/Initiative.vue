@@ -5,7 +5,7 @@
         <div class="o-grid__col u-12 u-8@md">
           <div class="o-grid">
             <div class="o-grid__col u-12 u-6@md">
-              <tipi-topic-pill class="u-margin-bottom-2" :topicsStyles="styles.topics" :initiative="initiative" />
+              <tipi-topic-pill class="u-margin-bottom-2" :topicsStyles="styles.topics" :initiative="initiative" with-links/>
             </div>
             <div class="o-grid__col u-12 u-6@md u-text-right@md u-margin-bottom-2" v-if="initiative.related && initiative.related.length">
               <a href="#related" class="c-button c-button--compact u-padding-left-0">Ver iniciativas relacionadas</a>
@@ -30,7 +30,7 @@
           <div class="o-grid u-margin-top-4 u-padding-top-4 u-border-top" v-if="initiative.related && initiative.related.length">
             <div class="o-grid__col o-grid__col--fill">
               <h4 id="related" class="u-margin-bottom-4">Iniciativas relacionadas</h4>
-              <tipi-results layout="tiny" :initiatives="initiative.related" :topicsStyles="styles.topics"/>
+              <tipi-results :initiatives="initiative.related" :topicsStyles="styles.topics"/>
             </div>
           </div>
         </div>
