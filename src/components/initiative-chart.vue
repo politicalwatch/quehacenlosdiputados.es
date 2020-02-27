@@ -60,7 +60,7 @@ export default {
       const datum = [];
       Object.keys(this.odsColors).forEach((k) => {
         datum.push({
-          name: k,
+          name: k.split(' - ')[0],
           color: this.odsColors[k],
           value: this.initiative.tags.filter(d => d.topic === k).length,
         });
