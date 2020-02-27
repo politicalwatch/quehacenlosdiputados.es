@@ -40,7 +40,7 @@
           </div>
 
           <div class="u-padding-bottom-4 u-border-bottom u-margin-bottom-4">
-            <tipi-neuron :initiative="initiative" :topics="allTopics" v-if="dataLoaded" :styles="styles"/>
+            <InitiativeChart :initiative="initiative" :topics="allTopics" v-if="dataLoaded"></InitiativeChart>
             <span class="u-text-tbody2">Relación de esta iniciativa con los ODS <sup title="El gráfico muestra los ODS relacionados con la iniciativa y el grado de relación con cada uno de ellos, cuya intensidad se refleja en la barra circular que los rodea."><i class="fa fa-question-circle"></i></sup></span>
           </div>
           <div class="u-border-bottom u-margin-bottom-4">
@@ -59,6 +59,7 @@ import { TipiHeader, TipiText, TipiTopics, TipiInitiativeMeta, TipiNeuron, TipiT
 import api from '@/api';
 import config from '@/config';
 import { mapState } from 'vuex';
+import InitiativeChart from '@/components/initiative-chart.vue';
 
 const moment = require('moment');
 moment.locale('es');
@@ -73,6 +74,7 @@ export default {
     TipiNeuron,
     TipiTopicPill,
     TipiResults,
+    InitiativeChart,
   },
   data: function() {
     return {
