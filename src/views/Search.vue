@@ -134,7 +134,9 @@ export default {
             }
             this.query_meta = response.query_meta;
             this.loadingResults = false;
-            VueScrollTo.scrollTo('#results', 1500)
+            if (isNewSearch) {
+              VueScrollTo.scrollTo('#results', 1500)
+            }
           })
          .catch(error => this.errors = error);
     },
