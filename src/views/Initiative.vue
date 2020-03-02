@@ -5,7 +5,7 @@
         <div class="o-grid__col u-12 u-8@md">
           <div class="o-grid">
             <div class="o-grid__col u-12 u-6@md">
-              <tipi-topic-pill v-if="initiative.topics && initiative.topics.length" class="u-margin-bottom-2" :topicsStyles="styles.topics" :topics="['ODS 1 - Fin de la Pobreza','ODS 11 - Ciudades y comunidades sostenibles','ODS 7 - Energía asequible y no contaminante']" with-links/>
+              <tipi-topic-pill v-if="initiative.topics && initiative.topics.length" class="u-margin-bottom-2" :topicsStyles="styles.topics" :topics="initiative.topics" with-links/>
             </div>
             <div class="o-grid__col u-12 u-6@md u-text-right@md u-margin-bottom-2" v-if="initiative.related && initiative.related.length">
               <a href="#related" class="c-button c-button--compact u-padding-left-0">Ver iniciativas relacionadas</a>
