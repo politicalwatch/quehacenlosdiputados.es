@@ -1,5 +1,5 @@
 <template>
-  <div id="deputy" class="u-margin-bottom-10">
+  <div v-if="deputy" id="deputy" class="u-margin-bottom-10">
     <tipi-deputy v-if="deputy" :deputy="deputy" :parliamentaryGroup="parliamentarygroup">
       <a v-if="deputy.hasOwnProperty('twitter')" :href="deputy.twitter"><tipi-icon icon="twitter" /> Twitter</a>
       <a v-if="deputy.hasOwnProperty('email')" :href="`mailto:${deputy.email}`"><tipi-icon icon="mail" /> {{deputy.email}}</a>
@@ -10,11 +10,14 @@
     </div>
     <p class="u-text-center u-margin-bottom-10" v-else>No se han encontrado iniciativas para este diputado/a</p>
   </div>
+  <div v-else class="o-container o-section u-margin-bottom-10">
+    <tipi-loader title="Cargando datos" subtitle="Puede llevar unos segundos"/>
+  </div>
 </template>
 
 <script>
 
-import { TipiHeader, TipiDeputy, TipiResults, TipiIcon } from 'tipi-uikit'
+import { TipiHeader, TipiDeputy, TipiResults, TipiIcon, TipiLoader } from 'tipi-uikit'
 import api from '@/api';
 import config from '@/config';
 import { mapState } from 'vuex';
@@ -26,6 +29,7 @@ export default {
     TipiDeputy,
     TipiResults,
     TipiIcon,
+    TipiLoader,
   },
   data: function() {
     return {
