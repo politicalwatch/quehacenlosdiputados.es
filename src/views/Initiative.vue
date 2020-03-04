@@ -109,9 +109,7 @@ export default {
     },
   },
   created: function() {
-    setTimeout(function() {
-      this.getInitiative();
-    }.bind(this), 5000);
+    this.getInitiative();
   },
   watch: {
     '$route': 'getInitiative'
