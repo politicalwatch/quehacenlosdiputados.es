@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="loaded">
     <tipi-topic-card :topic="topic" :topicsStyles="styles"/>
     <div id="topic" class="o-container o-section">
       <div class="o-grid">
@@ -30,11 +30,14 @@
       </div>
     </div>
   </div>
+  <div v-else class="o-container o-section u-margin-bottom-10">
+    <tipi-loader title="Cargando datos" subtitle="Puede llevar unos segundos"/>
+  </div>
 </template>
 
 <script>
 
-import { TipiHeader, TipiResults, TipiTopicCard, TipiText } from 'tipi-uikit'
+import { TipiHeader, TipiResults, TipiTopicCard, TipiText, TipiLoader } from 'tipi-uikit'
 import api from '@/api';
 import config from '@/config';
 import { mapState } from 'vuex';
@@ -46,6 +49,7 @@ export default {
     TipiResults,
     TipiTopicCard,
     TipiText,
+    TipiLoader,
   },
   data: function() {
     return {
@@ -55,6 +59,7 @@ export default {
       parliamentarygroups: null,
       latestInitiatives: null,
       styles: config.STYLES.topics,
+      loaded: false,
     }
   },
   computed: {
@@ -85,6 +90,7 @@ export default {
             this.deputies[index].id = foundDeputy.id;
             this.deputies[index].image = foundDeputy.image;
           });
+          this.loaded = true;
         })
         .catch(error => this.errors = error);
     },
