@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="initiative" class="o-container o-section u-margin-bottom-10">
+    <div v-if="loaded" id="initiative" class="o-container o-section u-margin-bottom-10">
       <div class="o-grid o-grid--between">
         <div class="o-grid__col u-12 u-8@md">
           <div class="o-grid">
@@ -19,10 +19,10 @@
               <tipi-text meta="Tipo de acto parlamentario" :value="initiative.initiative_type_alt" />
             </div>
             <div class="o-grid__col u-12 u-3@sm">
-              <tipi-text meta="Registro" :value="moment(initiative.created).format('DD/MM/Y')" />
+              <tipi-text meta="Referencia" :value="initiative.reference" />
             </div>
             <div class="o-grid__col u-12 u-3@sm">
-              <tipi-text meta="Referencia" :value="initiative.reference" />
+              <tipi-text meta="Registro" :value="moment(initiative.created).format('DD/MM/Y')" />
             </div>
           </div>
           <tipi-topics meta="ODS tratados" :topics="initiative.topics" :tags="initiative.tags" :topicsStyles="styles.topics" />
@@ -50,12 +50,15 @@
         </div>
       </div>
     </div>
+    <div v-else class="o-container o-section u-margin-bottom-10">
+      <tipi-loader title="Cargando datos" subtitle="Puede llevar unos segundos"/>
+    </div>
   </div>
 </template>
 
 <script>
 
-import { TipiHeader, TipiText, TipiTopics, TipiInitiativeMeta, TipiNeuron, TipiTopicPill, TipiResults } from 'tipi-uikit'
+import { TipiHeader, TipiText, TipiTopics, TipiInitiativeMeta, TipiNeuron, TipiTopicPill, TipiResults, TipiLoader } from 'tipi-uikit'
 import api from '@/api';
 import config from '@/config';
 import { mapState } from 'vuex';
@@ -75,12 +78,14 @@ export default {
     TipiTopicPill,
     TipiResults,
     InitiativeChart,
+    TipiLoader,
   },
   data: function() {
     return {
       initiative: {},
       moment: moment,
       styles: config.STYLES,
+      loaded: false,
     }
   },
   computed: {
@@ -94,6 +99,7 @@ export default {
       api.getInitiative(this.$route.params.id)
         .then(response => {
           this.initiative = response;
+          this.loaded = true;
           window.document.title = window.document.head.querySelector('meta[property="og:title"]').content = window.document.head.querySelector('meta[name="twitter:title"]').content = `${this.initiative.title} - ${config.DEFAULT_PAGE_TITLE}`;
         })
         .catch(error => {
@@ -103,7 +109,9 @@ export default {
     },
   },
   created: function() {
-    this.getInitiative();
+    setTimeout(function() {
+      this.getInitiative();
+    }.bind(this), 5000);
   },
   watch: {
     '$route': 'getInitiative'
