@@ -14,7 +14,7 @@
 
       <search-form :formData="this.data" @getResults="getResults" />
 
-      <div class="o-grid o-grid--align-center u-margin-bottom-4">
+      <div class="o-grid o-grid--align-center u-margin-bottom-4" id="results">
         <div class="o-grid__col o-grid__col--fill">
           <tipi-message v-if="this.query_meta.page" :type="message.type" :icon="message.icon">{{ message.message }}</tipi-message>
         </div>
@@ -29,7 +29,6 @@
         </div>
       </div>
       <tipi-results
-        id="results"
         :loadingResults="loadingResults"
         :initiatives="initiatives || []"
         :topicsStyles="topicsStyles"
@@ -134,7 +133,7 @@ export default {
             }
             this.query_meta = response.query_meta;
             this.loadingResults = false;
-            if (isNewSearch) {
+            if (this.data.page == 1) {
               VueScrollTo.scrollTo('#results', 1500)
             }
           })
