@@ -133,7 +133,7 @@ export default {
             }
             this.query_meta = response.query_meta;
             this.loadingResults = false;
-            if (isNewSearch) {
+            if (this.data.page == 1) {
               VueScrollTo.scrollTo('#results', 1500)
             }
           })
