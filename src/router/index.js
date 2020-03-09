@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import sha1 from 'js-sha1';
 import Search from '@/views/Search.vue'
 import Initiative from '@/views/Initiative.vue'
 import Dashboard from '@/views/Dashboard.vue'
@@ -88,6 +89,125 @@ const routes = [{
     path: "/ods",
     name: "ods",
     component: Topics
+  },
+  {
+    path: '/ods/1',
+    redirect: {
+      name: 'topic',
+      params: {id: sha1('ODS 1 Fin de la pobreza')}
+    }
+  },
+  {
+    path: '/ods/2',
+    redirect: {
+      name: 'topic',
+      params: {id: sha1("ODS 2 Hambre cero")}
+    }
+  },
+  {
+    path: '/ods/3',
+    redirect: {
+      name: 'topic',
+      params: {id: sha1("ODS 3 Salud y bienestar")}
+    }
+  },
+  {
+    path: '/ods/4',
+    redirect: {
+      name: 'topic',
+      params: {id: sha1("ODS 4 Educación de calidad")}
+    }
+  },
+  {
+    path: '/ods/5',
+    redirect: {
+      name: 'topic',
+      params: {id: sha1("ODS 5 Igualdad de género")}
+    }
+  },
+  {
+    path: '/ods/6',
+    redirect: {
+      name: 'topic',
+      params: {id: sha1("ODS 6 Agua limpia y saneamiento")}
+    }
+  },
+  {
+    path: '/ods/7',
+    redirect: {
+      name: 'topic',
+      params: {id: sha1("ODS 7 Energía asequible y no contaminante")}
+    }
+  },
+  {
+    path: '/ods/8',
+    redirect: {
+      name: 'topic',
+      params: {id: sha1("ODS 8 Trabajo decente y crecimiento económico")}
+    }
+  },
+  {
+    path: '/ods/9',
+    redirect: {
+      name: 'topic',
+      params: {id: sha1("ODS 9 Industria, innovación e infraestructura")}
+    }
+  },
+  {
+    path: '/ods/10',
+    redirect: {
+      name: 'topic',
+      params: {id: sha1("oDS 10 Reducción de las desigualdades")}
+    }
+  },
+  {
+    path: '/ods/11',
+    redirect: {
+      name: 'topic',
+      params: {id: sha1("ODS 11 Ciudades y comunidades sostenibles")}
+    }
+  },
+  {
+    path: '/ods/12',
+    redirect: {
+      name: 'topic',
+      params: {id: sha1("ODS 12 Producción y consumo responsables")}
+    }
+  },
+  {
+    path: '/ods/13',
+    redirect: {
+      name: 'topic',
+      params: {id: sha1("ODS 13 Acción por el clima")}
+    }
+  },
+  {
+    path: '/ods/14',
+    redirect: {
+      name: 'topic',
+      params: {id: sha1("ODS 14 Vida submarina")}
+    }
+  },
+  {
+    path: '/ods/15',
+    redirect: {
+      name: 'topic',
+      params: {id: sha1("ODS 15 Vida de ecosistemas terrestres")}
+    }
+  },
+  {
+    path: '/ods/16',
+    redirect: {
+      name: 'topic',
+      params: {id: sha1("ODS 16 Paz, justicia e instituciones sólidas")}
+    }
+  },
+  {
+    path: '/ods/17',
+    redirect: {
+      name: 'topic',
+      params: {id: sha1("ODS 17 Alianzas para lograr los objetivos")}
+    }
   },
   {
     path: "/ods/:id",
