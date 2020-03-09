@@ -10,10 +10,10 @@
 
         <div class="o-grid__col u-12 u-6@sm">
           <p><textarea placeholder="Inserta aqui el texto que quieres escanear..." v-model="inputText" rows="9"/></p>
-          <div class="c-input-label c-input-label--file u-block">
-            <label for="file">Sube un archivo</label>
-            <input type="file" id="file" name="file" placeholder="PDF, doc o txt">
-          </div>
+          <!-- <div class="c&#45;input&#45;label c&#45;input&#45;label&#45;&#45;file u&#45;block"> -->
+          <!--   <label for="file">Sube un archivo</label> -->
+          <!--   <input type="file" id="file" name="file" placeholder="PDF, doc o txt"> -->
+          <!-- </div> -->
           <p>
             <a id="start" class="c-button c-button--primary" @click.prevent="annotate">Iniciar proceso</a>
             <a class="c-button" :class="{ disabled: inProgress }" v-if="inputText!=''" @click="cleanTextAndResult">Limpiar texto <span v-if="result">y resultados</span></a>
@@ -35,12 +35,8 @@
             </div>
             <div class="o-grid__col u-12 u-offset-2@sm u-3@sm">
               <tipi-message type="info" icon>Aquí tienes una una relación visual de tu texto, para que de un primer vistazo veas conexiones interesantes.</tipi-message>
-              <tipi-neuron
-                v-if="fakeInitiative && allTopics"
-                :initiative="fakeInitiative"
-                :topics="allTopics"
-                :styles="styles"
-              />
+              <InitiativeChart :initiative="fakeInitiative" :topics="allTopics"></InitiativeChart>
+              <span class="u-text-tbody2">Relación de este texto con los ODS <sup title="El gráfico muestra los ODS relacionados con el texto y el grado de relación con cada uno de ellos, cuya intensidad se muestra en cuánto de coloreado está cada ODS en al gráfica."><i class="fa fa-question-circle"></i></sup></span>
             </div>
             <div class="o-grid__col u-12 u-text-center u-margin-top-4 u-padding-top-4 u-border-top">
               <tipi-csv-download
@@ -64,6 +60,7 @@ import { TipiMessage, TipiHeader, TipiLoader, TipiTopics, TipiNeuron, TipiCsvDow
 import config from '@/config';
 import api from '@/api';
 import { mapState } from 'vuex';
+import InitiativeChart from '@/components/initiative-chart.vue';
 
 const VueScrollTo = require('vue-scrollto');
 
@@ -75,6 +72,7 @@ export default {
     TipiNeuron,
     TipiCsvDownload,
     TipiMessage,
+    InitiativeChart,
     TipiLoader,
   },
   data() {
@@ -109,9 +107,10 @@ export default {
       this.inProgress = true;
       document.getElementById('start').text = 'Procesando...'
       this.fakeInitiative = null
+      console.log("llega aqui")
       api.annotate(this.inputText)
         .then(response => {
-          this.result = response
+          this.result = response.result
           this.csvItems = this.result.tags
           this.fakeInitiative = {
             'topics': this.result.topics,
