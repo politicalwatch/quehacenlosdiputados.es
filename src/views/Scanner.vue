@@ -21,8 +21,10 @@
         </div>
 
       </div>
-      <tipi-loader v-if="inProgress" title="Escaneando resultados" subtitle="Ten paciencia, estamos trabajando duro" />
       <div id="result" class="o-section o-grid">
+        <div v-if="inProgress" class="o-grid__col u-12">
+          <tipi-loader title="Escaneando resultados" subtitle="Ten paciencia, estamos trabajando duro" />
+        </div>
         <div class="o-grid__col u-12 result" v-if="result">
           <h4>Resultado del escáner:</h4>
           <tipi-message v-if="!result.topics.length" type="error" icon>No hemos encontrado ninguna coincidencia entre tu texto y nuestras etiquetas.</tipi-message>
