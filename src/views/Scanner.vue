@@ -23,7 +23,7 @@
       </div>
       <div id="result" class="o-section o-grid">
         <div v-if="inProgress" class="o-grid__col u-12">
-          <tipi-loader title="Escaneando resultados" subtitle="Ten paciencia, estamos trabajando duro" />
+          <tipi-loader title="Escaneando resultados" :subtitle="subtitle" />
         </div>
         <div class="o-grid__col u-12 result" v-if="result">
           <h4>Resultado del escáner:</h4>
@@ -82,13 +82,17 @@ export default {
       result: null,
       fakeInitiative: null,
       inProgress: false,
+      estimatedTime: 0,
       csvItems: [],
       csvFields: ['topic', 'subtopic', 'tag'],
       styles: config.STYLES,
     };
   },
   computed: {
-    ...mapState(['allTopics'])
+    ...mapState(['allTopics']),
+    subtitle () {
+      return this.estimatedTime ? `Tardaremos unos ${this.estimatedTime} segundos en mostrarte resultados. No te vayas` : "Ten paciencia, estamos trabajando duro"
+    }
   },
   methods: {
     cleanText() {
@@ -107,18 +111,24 @@ export default {
       this.inProgress = true;
       document.getElementById('start').text = 'Procesando...'
       this.fakeInitiative = null
-      console.log("llega aqui")
       api.annotate(this.inputText)
         .then(response => {
-          this.result = response.result
-          this.csvItems = this.result.tags
-          this.fakeInitiative = {
-            'topics': this.result.topics,
-            'tags': this.result.tags
+          if (response.status==="SUCCESS") {
+            this.result = response.result
+            this.csvItems = this.result.tags
+            this.fakeInitiative = {
+              'topics': this.result.topics,
+              'tags': this.result.tags
+            }
+            this.inProgress = false;
+            document.getElementById('start').text = 'Iniciar proceso'
+            VueScrollTo.scrollTo('#result', 1500)
+          } else if (response.status==="PROCESSING") {
+            this.estimatedTime = response.estimated_time
+            setTimeout(() => {
+              this.getAsyncResults(response.task_id)
+            }, response.estimated_time * 1000);
           }
-          this.inProgress = false;
-          document.getElementById('start').text = 'Iniciar proceso'
-          VueScrollTo.scrollTo('#result', 1500)
         })
         .catch(error => {
           this.errors = error
@@ -130,6 +140,29 @@ export default {
       let d = new Date();
       return "export-scanner-" + d.toISOString() + ".csv";
     },
+    getAsyncResults: function(taskID) {
+      api.getScannerResult(taskID).then(response => {
+        if (response.status==="SUCCESS") {
+          this.result = response.result
+          this.csvItems = this.result.tags
+          this.fakeInitiative = {
+            'topics': this.result.topics,
+            'tags': this.result.tags
+          }
+          this.inProgress = false;
+          document.getElementById('start').text = 'Iniciar proceso'
+          VueScrollTo.scrollTo('#result', 1500)
+        } else if (response.status==="PENDING") {
+          setTimeout(() => {
+            this.getAsyncResults(taskID)
+          }, 3000);
+        }
+      }).catch(() => {
+        setTimeout(() => {
+          this.getAsyncResults(taskID)
+        }, 3000);
+      })
+    }
   }
 }
 </script>

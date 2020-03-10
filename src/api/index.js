@@ -258,5 +258,21 @@ export default {
         '/labels/extract'
       ].join('');
     }
+  },
+  getScannerResult(taskID) {
+    return axios.get(
+      getEndpoint(taskID)
+    ).then(response => response.data)
+    .catch(error => {
+      console.log(error.response)
+    });
+
+    function getEndpoint(taskID) {
+      return [
+        config.URL,
+        '/labels/result/',
+        taskID
+      ].join('');
+    }
   }
 };
