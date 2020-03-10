@@ -25,7 +25,7 @@
             :canDownloadCSV="canDownloadCSV"
             @loadCSVItems="loadCSVItems"
           />
-          <save-alert :searchparams="data" v-show="alertsIsEnabled && this.query_meta.page" />
+          <save-alert :searchparams="data" v-show="alertsIsEnabled() && this.query_meta.page" />
         </div>
       </div>
       <tipi-results
@@ -144,7 +144,7 @@ export default {
       this.getResults();
     },
     alertsIsEnabled: function() {
-      return config.USE_ALERTS;
+      return (config.USE_ALERTS === "true");
     },
     loadCSVItems: function(event) {
       if (!this.canDownloadCSV) return false;
