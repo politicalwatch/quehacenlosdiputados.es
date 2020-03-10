@@ -247,10 +247,7 @@ export default {
     return axios.post(
       getEndpoint(),
       qs.stringify({ 'text': text })
-    ).then(response => response.data)
-    .catch(error => {
-      console.log(error.response)
-    });
+    )
 
     function getEndpoint() {
       return [
@@ -262,10 +259,7 @@ export default {
   getScannerResult(taskID) {
     return axios.get(
       getEndpoint(taskID)
-    ).then(response => response.data)
-    .catch(error => {
-      console.log(error.response)
-    });
+    )
 
     function getEndpoint(taskID) {
       return [

@@ -22,8 +22,9 @@
 
       </div>
       <div id="result" class="o-section o-grid">
-        <div v-if="inProgress" class="o-grid__col u-12">
-          <tipi-loader title="Escaneando resultados" :subtitle="subtitle" />
+        <div v-if="inProgress || errors" class="o-grid__col u-12">
+          <tipi-message v-if="errors" type="error" icon>Has sobrepasado el límite de escaneos por hora. Vuelve a intentarlo pasado un tiempo</tipi-message>
+          <tipi-loader v-if="inProgress" title="Escaneando resultados" :subtitle="subtitle" />
         </div>
         <div class="o-grid__col u-12 result" v-if="result">
           <h4>Resultado del escáner:</h4>
@@ -80,6 +81,7 @@ export default {
       config: config,
       inputText: '',
       result: null,
+      errors: null,
       fakeInitiative: null,
       inProgress: false,
       estimatedTime: 0,
@@ -131,7 +133,7 @@ export default {
           }
         })
         .catch(error => {
-          this.errors = error
+          this.errors = error.response.data.message
           this.inProgress = false;
           document.getElementById('start').text = 'Iniciar proceso'
         });
