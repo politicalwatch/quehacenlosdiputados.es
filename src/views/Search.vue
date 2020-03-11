@@ -3,7 +3,6 @@
     <tipi-splash>
       <img src="/img/logo.png">
       <p><strong>Parlamento 2030</strong> te ofrece toda la información sobre la actividad del Congreso de los Diputados relacionada con los <strong>Objetivos de Desarrollo Sostenible (ODS)</strong>. Entra y descubre cómo trabajan los diputados españoles de cara al cumplimiento de la <strong>Agenda 2030</strong>.</p>
-      <p>Estás a punto de entrar en la versión beta de Parlamento 2030. En ella encontrarás toda la información parlamentaria relacionada con 6 de los 17 ODS que configuran la Agenda 2030. Estamos actualmente trabajando en el resto de ODS y pronto estarán disponible.</p>
       <p>
         <router-link :to="{name: 'about-en'}">Learn more about this project in English</router-link>
       </p>
