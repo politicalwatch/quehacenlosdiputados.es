@@ -144,8 +144,8 @@ export default {
     },
     getAsyncResults: function(taskID) {
       api.getScannerResult(taskID).then(response => {
-        if (response.status==="SUCCESS") {
-          this.result = response.result
+        if (response.data.status==="SUCCESS") {
+          this.result = response.data.result
           this.csvItems = this.result.tags
           this.fakeInitiative = {
             'topics': this.result.topics,
@@ -154,7 +154,7 @@ export default {
           this.inProgress = false;
           document.getElementById('start').text = 'Iniciar proceso'
           VueScrollTo.scrollTo('#result', 1500)
-        } else if (response.status==="PENDING") {
+        } else if (response.data.status==="PENDING") {
           setTimeout(() => {
             this.getAsyncResults(taskID)
           }, 3000);
