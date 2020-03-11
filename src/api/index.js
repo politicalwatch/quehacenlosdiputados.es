@@ -247,7 +247,7 @@ export default {
     return axios.post(
       getEndpoint(),
       qs.stringify({ 'text': text })
-    )
+    ).then(response => response.data);
 
     function getEndpoint() {
       return [
