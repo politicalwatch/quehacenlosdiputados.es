@@ -220,13 +220,13 @@ export default {
   computed: {
     ...mapGetters({
       deputies: 'allDeputiesName',
+      places: 'allPlacesName',
       groups: 'allParliamentaryGroupsWithGoverment',
       getDeputyByName: 'getDeputyByName',
       getParliamentaryGroupByName: 'getParliamentaryGroupByName',
     }),
     ...mapState({
       topics: 'allTopics',
-      places: 'allPlaces',
       types: 'allTypes',
       status: 'allStatus',
     })
