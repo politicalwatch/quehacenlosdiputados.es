@@ -53,7 +53,7 @@
           <div class="o-grid">
             <div class="o-grid__col u-6@sm" v-if="data.parliamentarygroups && data.parliamentarygroups.length">
               <tipi-message type="info" v-if="data.isSelected" icon>Ránking de los grupos que más iniciativas presentan relacionadas con <strong>{{data.selection.selected._id}}</strong></tipi-message>
-              <tipi-text meta="Grupos parlamentarios más activos" :value="data.parliamentarygroups.map(group => group._id)" type="parliamentarygroups" :source="allParliamentaryGroups"/>
+              <tipi-text meta="Grupos parlamentarios más activos" :value="data.parliamentarygroups.map(group => `${group._id} (${group.initiatives} ${pluralizeInitiatives(group.initiatives)})`)" type="parliamentarygroups" :source="allParliamentaryGroups"/>
             </div>
             <div class="o-grid__col u-6@sm" v-if="data.places && data.places.length">
               <tipi-message type="info" v-if="data.isSelected" icon>Descubre cuáles son los lugares más habituales en los que se tramitan las iniciativas relacionadas con <strong>{{data.selection.selected._id}}</strong></tipi-message>
