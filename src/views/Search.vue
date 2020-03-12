@@ -75,6 +75,7 @@ export default {
         reference: '',
         page: 1,
         tags: [],
+        subtopics: [],
       },
       loadingResults: false,
       csvItems: [],
