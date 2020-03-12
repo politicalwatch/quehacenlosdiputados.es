@@ -192,6 +192,9 @@ export default {
         color: "#183668",
         image: "ods-17.svg",
       },
+      "no-topic": {
+        shortname: "Sin relación con la Agenda2030"
+      }
     },
     subtopics: {
       "1.1 Erradicar la pobreza extrema": {
