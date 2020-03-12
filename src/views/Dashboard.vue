@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="dashboard" class="o-container o-section u-margin-bottom-10">
-      <tipi-header :title="'Métricas'" :subtitle="'Elige un Objetivo de Desarrollo Sostenible, o profundiza a nivel meta, y descubre las principales magnitudes de la actividad del Congreso de los Diputados sobre la Agenda 2030'"/>
+      <tipi-header :title="'Métricas'" :subtitle="'Elige un Objetivo de Desarrollo Sostenible o profundiza en sus Metas y descubre cuánto de la Agenda 2030 se está tratando en el Congreso de los Diputados'"/>
       <div class="o-grid u-margin-bottom-4">
         <div class="o-grid__col u-12">
           <form @submit.prevent="getResults">
