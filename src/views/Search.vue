@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import searchForm from '@/components/search-form';
 import SaveAlert from '@/components/save-alert';
 import config from '@/config'
@@ -81,6 +82,7 @@ export default {
       csvItems: [],
       LIMITCSV: 1000,
       topicsStyles: config.STYLES.topics,
+      scrollToID: '#results'
     }
   },
   computed: {
@@ -111,6 +113,7 @@ export default {
       const urlParams = Object.assign({}, this.data);
 
       if (isNewSearch) {
+        this.scrollToID = '#results';
         event.preventDefault();
       }
 
@@ -133,13 +136,17 @@ export default {
             }
             this.query_meta = response.query_meta;
             this.loadingResults = false;
-            if (this.data.page == 1) {
-              VueScrollTo.scrollTo('#results', 1500)
-            }
+            Vue.nextTick()
+              .then(() => {
+                VueScrollTo.scrollTo(this.scrollToID, 1500)
+              })
           })
          .catch(error => this.errors = error);
     },
     loadMore: function() {
+      let node = document.querySelectorAll('.c-initiative-card');
+      node = node[node.length - 1]
+      this.scrollToID = `#${node.id}`;
       this.data.page++;
       this.getResults();
     },
