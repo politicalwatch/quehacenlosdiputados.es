@@ -76,7 +76,7 @@ export default {
         });
     },
     getLatestInitiatives: function() {
-      api.getInitiatives({'author': this.parliamentarygroup.name, 'per_page': 10 })
+      api.getInitiatives({'author': this.parliamentarygroup.name, 'per_page': 12 })
          .then(response => {
            if (response.initiatives) this.latestInitiatives = response.initiatives;
           })

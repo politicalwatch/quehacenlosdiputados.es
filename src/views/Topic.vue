@@ -114,7 +114,7 @@ export default {
         .catch(error => this.errors = error);
     },
     getLatestInitiatives: function(topic) {
-      api.getInitiatives({ 'topic': topic, 'per_page': 9 })
+      api.getInitiatives({ 'topic': topic, 'per_page': 12 })
          .then(response => {
             if (response.initiatives) this.latestInitiatives = response.initiatives;
           })

@@ -56,7 +56,7 @@ export default {
         });
     },
     getLatestInitiatives: function() {
-      api.getInitiatives({ 'deputy': this.deputy.name, 'per_page': 10 })
+      api.getInitiatives({ 'deputy': this.deputy.name, 'per_page': 12 })
         .then(response => {
           if (response.initiatives) this.latestInitiatives = response.initiatives;
         })
