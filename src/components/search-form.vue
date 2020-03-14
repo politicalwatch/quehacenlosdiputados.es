@@ -90,7 +90,7 @@
           class="u-text-tbody2"
           v-if="getDeputyByName(form.deputy)"
           :to="{ path: `/deputies/${getDeputyByName(form.deputy).id}` }">
-          ¿Quieres ver el perfil del diputado {{ form.deputy }}?
+          ¿Quieres ver el perfil de {{ form.deputy }}?
         </router-link>
       </div>
     </div> <!-- /.o-grid -->
