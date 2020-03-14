@@ -160,7 +160,7 @@ export default {
     function getEndpoint() {
       return [
         config.URL,
-        '/alerts/'
+        '/alerts'
       ].join('');
     }
   },
