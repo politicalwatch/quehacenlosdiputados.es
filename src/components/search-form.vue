@@ -3,7 +3,7 @@
     <div class="o-grid">
       <div class="o-grid__col u-12 u-padding-bottom-4">
         <div class="c-select-label u-block">
-          <label for="topic">ODS/SDG</label>
+          <label for="topic">ODS</label>
           <multiselect
             selectedLabel="Seleccionado"
             selectLabel=""
@@ -160,13 +160,13 @@
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-input-label u-block">
-          <label for="reference">Tipo</label>
+          <label for="reference">Referencia</label>
           <input v-model="form.reference" type="text" id="reference" name="reference" placeholder="Ej.: 121/000001">
         </div>
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-input-label u-block">
-          <label for="title">Tipo</label>
+          <label for="title">Título</label>
           <input v-model="form.title" type="text" id="title" name="title" placeholder="Nota: Se admiten expresiones regulares">
         </div>
       </div>
