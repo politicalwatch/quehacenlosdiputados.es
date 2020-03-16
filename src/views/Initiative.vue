@@ -25,9 +25,9 @@
               <tipi-text meta="Registro" :value="moment(initiative.created).format('DD/MM/Y')" />
             </div>
           </div>
-          <tipi-topics meta="ODS tratados" :topics="initiative.topics" :tags="initiative.tags" :topicsStyles="styles.topics" />
+          <tipi-topics class="u-hide u-block@md" meta="ODS tratados" :topics="initiative.topics" :tags="initiative.tags" :topicsStyles="styles.topics" />
 
-          <div class="o-grid u-margin-top-4 u-padding-top-4 u-border-top" v-if="initiative.related && initiative.related.length">
+          <div class="o-grid u-margin-top-4 u-padding-top-4 u-border-top u-hide u-block@md" v-if="initiative.related && initiative.related.length">
             <div class="o-grid__col o-grid__col--fill">
               <h4 id="related" class="u-margin-bottom-4">Iniciativas relacionadas</h4>
               <tipi-results :initiatives="initiative.related" :topicsStyles="styles.topics"/>
@@ -47,6 +47,14 @@
             <tipi-text meta="Autor" :value="initiative.authors" type="parliamentarygroups" :source="allParliamentaryGroups" />
             <tipi-text meta="Diputada/o" :value="initiative.deputies" type="deputies" :source="allDeputies" />
           </div>
+        </div>
+      </div>
+      <div class="u-hide@md">
+        <tipi-topics meta="ODS tratados" :topics="initiative.topics" :tags="initiative.tags" :topicsStyles="styles.topics" />
+
+        <div class="u-margin-top-4 u-padding-top-4 u-border-top" v-if="initiative.related && initiative.related.length">
+          <h4 id="related" class="u-margin-bottom-4">Iniciativas relacionadas</h4>
+          <tipi-results :initiatives="initiative.related" :topicsStyles="styles.topics"/>
         </div>
       </div>
     </div>
