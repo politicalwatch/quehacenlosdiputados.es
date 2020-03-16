@@ -193,6 +193,8 @@ import Multiselect from 'vue-multiselect'
 import { TipiIcon } from 'tipi-uikit';
 import api from '@/api'
 import { mapGetters, mapState } from 'vuex';
+// eslint-disable-next-line no-unused-vars
+import assign from "core-js/features/object/assign";
 
 const moment = require('moment');
 

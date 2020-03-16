@@ -15,6 +15,8 @@ import Mediakit from '@/views/Mediakit.vue'
 import Alerts from '@/views/Alerts.vue'
 import Page404 from '@/views/Page404.vue'
 import config from '@/config';
+// eslint-disable-next-line no-unused-vars
+import from from "core-js/features/array/from";
 
 Vue.use(VueRouter);
 
