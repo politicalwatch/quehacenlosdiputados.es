@@ -1,4 +1,4 @@
-PARLAMENTO2030.ES
+tipiciudadano.es
 =============
 
 ## Requirements
@@ -8,8 +8,8 @@ NodeJS > 10.0
 ## Setup
 
 ```
-git clone https://github.com/politicalwatch/parlamento2030.es.git
-cd parlamento2030.es
+git clone https://github.com/politicalwatch/tipiciudadano.es.git
+cd tipiciudadano.es
 npm install
 cp src/config/index.js.example src/config/index.js
 ```

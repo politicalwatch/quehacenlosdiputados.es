@@ -10,7 +10,6 @@ import Deputy from '@/views/Deputy.vue'
 import Parliamentarygroup from '@/views/Parliamentarygroup.vue'
 import Scanner from '@/views/Scanner.vue'
 import About from '@/views/About.vue'
-import AboutEnglish from '@/views/AboutEnglish.vue'
 import Mediakit from '@/views/Mediakit.vue'
 import Alerts from '@/views/Alerts.vue'
 import Page404 from '@/views/Page404.vue'
@@ -235,11 +234,6 @@ const routes = [{
     path: "/about",
     name: "about",
     component: About
-  },
-  {
-    path: "/about-en",
-    name: "about-en",
-    component: AboutEnglish
   },
   {
     path: "/mediakit",
