@@ -24,7 +24,7 @@ const routes = [{
     name: "search",
     component: Search,
     meta: {
-      title: 'Buscar - Parlamento 2030',
+      title: 'Buscar - TIPI Ciudadano',
       metaTags: [
         {
           name: 'description',
@@ -46,7 +46,7 @@ const routes = [{
     name: "results",
     component: Search,
     meta: {
-      title: 'Resultados - Parlamento 2030',
+      title: 'Resultados - TIPI Ciudadano',
       metaTags: [{
           name: 'description',
           content: 'Test Resultados'
@@ -64,7 +64,7 @@ const routes = [{
     name: "initiative",
     component: Initiative,
     meta: {
-      title: 'Iniciativa - Parlamento 2030',
+      title: 'Iniciativa - TIPI Ciudadano',
       metaTags: [
         {
           name: 'description',

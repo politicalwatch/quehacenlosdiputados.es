@@ -69,7 +69,7 @@ export default {
     },
     {
       name: "twitter:title",
-      content: "Parlamento2030"
+      content: "TIPI Ciudadano"
     },
     {
       name: "twitter:description",
@@ -87,7 +87,7 @@ export default {
     },
     {
       property: "og:title",
-      content: "Parlamento2030"
+      content: "TIPI Ciudadano"
     },
     {
       property: "og:type",
