@@ -36,7 +36,7 @@
             </div>
             <div class="o-grid__col u-12 u-offset-2@sm u-3@sm">
               <tipi-message type="info" icon>Aquí tienes una una relación visual de tu texto, para que de un primer vistazo veas conexiones interesantes.</tipi-message>
-              <InitiativeChart :initiative="fakeInitiative" :topics="allTopics" :styles="styles"></InitiativeChart>
+              <TipiBarchart :result="fakeInitiative" :styles="styles"></TipiBarchart>
               <span class="u-text-tbody2">Relación de este texto con los ODS <sup title="El gráfico muestra los ODS relacionados con el texto y el grado de relación con cada uno de ellos, cuya intensidad se muestra en cuánto de coloreado está cada ODS en al gráfica."><i class="fa fa-question-circle"></i></sup></span>
             </div>
             <div class="o-grid__col u-12 u-text-center u-margin-top-4 u-padding-top-4 u-border-top">
@@ -57,11 +57,10 @@
 </template>
 
 <script>
-import { TipiMessage, TipiHeader, TipiLoader, TipiTopics, TipiNeuron, TipiCsvDownload } from 'tipi-uikit'
+import { TipiMessage, TipiHeader, TipiLoader, TipiTopics, TipiNeuron, TipiCsvDownload, TipiBarchart } from 'tipi-uikit';
 import config from '@/config';
 import api from '@/api';
 import { mapState } from 'vuex';
-import InitiativeChart from '@/components/initiative-chart.vue';
 
 const VueScrollTo = require('vue-scrollto');
 
@@ -73,7 +72,7 @@ export default {
     TipiNeuron,
     TipiCsvDownload,
     TipiMessage,
-    InitiativeChart,
+    TipiBarchart,
     TipiLoader,
   },
   data() {
