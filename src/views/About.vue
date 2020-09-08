@@ -26,9 +26,6 @@
             <p>TIPI es un proyecto promovido, financiado y ejecutado por CIECODE (Centro de Investigación y Estudios sobre Coherencia y Desarrollo), una organización española especializada en el análisis de políticas públicas, en la coherencia de políticas para el desarrollo y en proyectos de transparencia, rendición de cuentas y participación ciudadana.</p>
             <p>La primera versión de TIPI (mayo 2014 - septiembre 2015) fue financiada por el Programa de Ciudadanía Activa de los EEA Grants y tuvo como socios a UNICEF-comité español, EAPN España, EAPN Castilla la Mancha y Fundación porCausa.</p>
             <p>CIECODE es también la organización impulsora del <a href="https://ciecode.es/political-watch/proyecto-avizor/" target="_blank">Proyecto Avizor</a>, socia fundadora de <a href="http://www.poletika.org/" target="_blank">Polétika</a>, pertenece a la Red Española de Estudios de Desarrollo (<a href="http://www.reedes.es/" target="_blank">REEDES</a>) y a la <a href="http://www.proacceso.org/" target="_blank">Coalición ProAcceso</a> y ha publicado <a href="https://ciecode.es/investigacion/" target="_blank">numerosos informes</a> sobre coherencia de políticas, comercio y desarrollo, transparencia y ciudadanía activa.</p>
-          <div class="u-text-center">
-            <router-link class="c-button c-button--primary" :to="{name: 'mediakit'}">Visita nuestro Mediakit</router-link>
-          </div>
         </div>
       </div>
     </div>

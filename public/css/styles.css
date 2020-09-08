@@ -7655,20 +7655,11 @@ fieldset[disabled] .btn-tipi.focus {
 
 
 #about h4,
-#mediakit h4 {
-  font-weight: bold;
-}
 #about p {
   padding: 0px 0px 40px 0px;
 }
 #about p:first-of-type {
   padding: 40px 0px;
-}
-#mediakit .language-block {
-  margin: 40px 0px 40px 0px;
-}
-#mediakit .download-block {
-  margin: 20px 10px 20px 0px;
 }
 
 
