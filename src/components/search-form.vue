@@ -3,7 +3,7 @@
     <div class="o-grid">
       <div class="o-grid__col u-12 u-padding-bottom-4">
         <div class="c-select-label u-block">
-          <label for="topic">ODS</label>
+          <label for="topic">Temática</label>
           <multiselect
             selectedLabel="Seleccionado"
             selectLabel=""
@@ -19,7 +19,7 @@
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-select-label u-block" :class="{ 'c-select-label--disabled' : !this.subtopics.length }">
-          <label for="subtopics">Metas</label>
+          <label for="subtopics">Subtema</label>
           <multiselect
             selectedLabel="Seleccionada"
             selectLabel=""
