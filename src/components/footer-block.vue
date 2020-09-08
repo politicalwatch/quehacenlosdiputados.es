@@ -1,41 +1,52 @@
 <template>
   <div>
     <div id="footer" class="o-container o-container--fluid o-section u-bg-black">
-      <div class="o-grid">
-        <div class="o-grid__col u-12@sm">
-          <div class="o-container">
-            <div class="o-grid">
-              <div class="o-grid__col u-4@sm u-text-center">
-                <a href="/"><img width="300px" src="/img/logo_big.svg" alt="Logo de TIPI Ciudadano"></a>
-                <a href="http://politicalwatch.es" target="_blank">
-                <img width="150px" src="/img/politicalwatch.png" alt="Logo de Political Watch"></a>
-              </div>
-              <div class="o-grid__col u-8@sm u-text-tbody2 u-color-white">
-                <p>
-                <strong>TIPI Ciudadano</strong> es un proyecto de <a href="http://politicalwatch.es" target="_blank">Political Watch</a>, plataforma que se inscribe dentro del think-and-do tank <a href="http://ciecode.es" target="_blank">CIECODE</a>.
-                <br/>
-                Todo el código fuente está disponible en <a href="https://github.com/politicalwatch" target=_blank>Github</a> con licencia <a href="https://www.gnu.org/copyleft/gpl.html" target="_blank">GNU/GPLv3</a>.
-                <br/>
-                Contáctanos en <a href="mailto:tipiciudadano@ciecode.es" target="_blank">tipiciudadano@ciecode.es</a>
-                </p>
-              </div>
-            </div>
+
+      <div class="o-container">
+        <div class="o-grid">
+          <div class="o-grid__col u-3@sm u-margin-top-4">
+            <a href="/"><img src="/img/logo_big.svg" class="big" alt="Logo de TIPI Ciudadano"></a>
+          </div>
+          <div class="o-grid__col u-3@sm u-offset-1@sm u-margin-top-4">
+            <p class="u-text-overline u-color-white">Impulsado por</p>
+            <a href="http://ciecode.es" target="_blank"><img src="/img/logo-ciecode-alt.png" class="big" alt="Logo de Political Watch"></a>
+          </div>
+          <div class="o-grid__col u-4@sm u-offset-1 u-margin-top-4">
+            <p class="u-text-overline u-color-white">Contacto</p>
+            <tipi-icon icon="github" class="c-icon--white" />&nbsp;<a class="u-color-white u-text-tbody2" href="http://github.com/politicalwatch/" title="github.com/politicalwatch" target="_blank">Consulta nuestro código en Github</a>
+            <br>
+            <tipi-icon icon="mail" class="c-icon--white" />&nbsp;<a class="u-color-white u-text-tbody2" href="mailto:tipi@ciecode.es" title="tipi@ciecode.es" target="_blank">Escribe a tipi@ciecode.es</a>
+          </div>
+        </div>
+        <div class="o-grid">
+          <div class="o-grid__col u-12@sm u-margin-top-4">
+            <p class="u-color-white u-text-tbody2">{{ (new Date()).getFullYear()  }} Political Watch. Algunos derechos reservados.</p>
           </div>
         </div>
       </div>
+
     </div>
+
     <cookie-law theme="base" buttonText="Entendido" buttonClass="btn btn-custom" message="Este sitio usa cookies para asegurarte la mejor experiencia web."></cookie-law>
+
   </div>
 </template>
 
 <script>
   import CookieLaw from 'vue-cookie-law';
+  import { TipiIcon } from 'tipi-uikit';
 
   export default {
     name: "footer-block",
-    components: {CookieLaw}
+    components: {
+      CookieLaw,
+      TipiIcon
+    }
   }
 </script>
 
 <style scoped lang="scss">
+img.big {
+  width: 100%;
+}
 </style>
