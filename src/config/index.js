@@ -1,5 +1,5 @@
 export default {
-  SHORTNAME: process.env.VUE_APP_SHORTNAME || "p2030",
+  SHORTNAME: process.env.VUE_APP_SHORTNAME || "tipi",
   URL: process.env.VUE_APP_BACKEND_URL || "http://localhost:5000",
   GOOGLE_ANALYTICS: process.env.VUE_APP_GOOGLE_ANALYTICS || "XXXXXXXXXXXX",
   USE_ALERTS: process.env.VUE_APP_USE_ALERTS || false,
@@ -52,7 +52,7 @@ export default {
     {
       name: "keywords",
       content:
-        "transparencia, incidencia política, participación, investigación, periodismo de datos, política, españa, congreso de los diputados, monitorización parlamentaria, ods, sdg, agenda 2030, objetivos de desarrollo sostenible, sustainable development goals"
+        "transparencia, incidencia política, participación, investigación, periodismo de datos, política, pobreza, exclusión social, justicia social, españa, congreso de los diputados, monitorización parlamentaria"
     },
     {
       itemprop: "image",
