@@ -51,4 +51,10 @@
 </script>
 
 <style lang="scss">
+.c-disclaimer {
+  background-color: #FBC239;
+  a {
+    color: #000000;
+  }
+}
 </style>

@@ -11,8 +11,8 @@ export default {
       condition: true
     },
     {
-      route: "ods",
-      name: "ODS",
+      route: "topics",
+      name: "Temáticas",
       condition: true
     },
     {
@@ -37,8 +37,8 @@ export default {
     }
   ],
   DISCLAIMER: {
-    route: "about-en",
-    name: "Learn more about this project in English"
+    route: "http://google.com",
+    name: "Hello"
   },
   LOGO: "/img/logo.svg",
 
