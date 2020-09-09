@@ -8,13 +8,13 @@
       <h4 class="u-margin-bottom-4">Diputados/as</h4>
       <div class="o-grid">
         <div class="o-grid__col u-12 u-4@sm">
-          <tipi-text meta="" :value="this.dividedDeputies[0]" type="deputies" :source="allDeputies" hideGroup/>
+          <tipi-text meta="" :value="this.dividedDeputies[0]" type="deputy" :source="allDeputies" hideGroup/>
         </div>
         <div class="o-grid__col u-12 u-4@sm">
-          <tipi-text meta="" :value="this.dividedDeputies[1]" type="deputies" :source="allDeputies" hideGroup/>
+          <tipi-text meta="" :value="this.dividedDeputies[1]" type="deputy" :source="allDeputies" hideGroup/>
         </div>
         <div class="o-grid__col u-12 u-4@sm">
-          <tipi-text meta="" :value="this.dividedDeputies[2]" type="deputies" :source="allDeputies" hideGroup/>
+          <tipi-text meta="" :value="this.dividedDeputies[2]" type="deputy" :source="allDeputies" hideGroup/>
         </div>
       </div>
 

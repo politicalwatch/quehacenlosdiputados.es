@@ -4,10 +4,10 @@
     <div id="topic" class="o-container o-section">
       <div class="o-grid">
         <div class="o-grid__col u-12 u-4@sm" v-if="deputies">
-          <tipi-text meta="Diputadas/os más activas/os" :value="deputies" type="deputies" :source="deputies" />
+          <tipi-text meta="Diputadas/os más activas/os" :value="deputies" type="deputy" :source="deputies" />
         </div>
         <div class="o-grid__col u-12 u-4@sm" v-if="parliamentarygroups">
-          <tipi-text meta="Grupos más activos" :value="parliamentarygroups" type="parliamentarygroups" :source="parliamentarygroups" />
+          <tipi-text meta="Grupos más activos" :value="parliamentarygroups" type="parliamentarygroup" :source="parliamentarygroups" />
         </div>
         <div class="o-grid__col u-12 u-4@sm" v-if="places">
           <tipi-text meta="Dónde se trata más" :value="places" />

@@ -44,8 +44,8 @@
             <span class="u-text-tbody2">Relación de esta iniciativa con nuestras temáticas <sup title="El gráfico muestra las temáticas relacionadas con la iniciativa y el grado de relación con cada una de ellas."><i class="fa fa-question-circle"></i></sup></span>
           </div>
           <div class="u-border-bottom u-margin-bottom-4">
-            <tipi-text meta="Autor" :value="initiative.authors" type="parliamentarygroups" :source="allParliamentaryGroups" />
-            <tipi-text meta="Diputada/o" :value="initiative.deputies" type="deputies" :source="allDeputies" />
+            <tipi-text meta="Autor" :value="initiative.authors" type="parliamentarygroup" :source="allParliamentaryGroups" />
+            <tipi-text meta="Diputada/o" :value="initiative.deputies" type="deputy" :source="allDeputies" />
           </div>
         </div>
       </div>
