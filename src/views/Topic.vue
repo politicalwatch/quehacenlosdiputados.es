@@ -20,8 +20,8 @@
     </div>
     <div class="o-section o-section--double" v-if="latestInitiatives" :style="`background-color: ${styles[topic.name].color}`">
       <div class="o-container">
-        <p class="u-text-subtitle u-margin-0 u-color-white">MÁS INICIATIVAS SOBRE</p>
-        <h4 class="u-text-th2 u-color-white">{{ topic.name.toUpperCase() }}</h4>
+        <p class="u-text-subtitle u-margin-0 u-color-secondary-dark">MÁS INICIATIVAS SOBRE</p>
+        <h4 class="u-text-th2 u-color-secondary-dark">{{ topic.name.toUpperCase() }}</h4>
         <router-link
           class="c-button c-button--outline"
           :to="{ name: 'results', params: { data: { topic: topic.name } } }">
@@ -126,3 +126,17 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.c-topic-card__title { color: $secondary-dark; }
+.c-topic-card__description { color: $secondary-dark; }
+.c-button--outline {
+  border: 2px solid $secondary-dark !important;
+  color: $secondary-dark !important;
+  &:hover {
+    color: $yellow !important;
+    background: $secondary-dark !important;
+    //
+  }
+}
+</style>
