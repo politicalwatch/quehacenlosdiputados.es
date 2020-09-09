@@ -3,19 +3,18 @@
     <div id="footer" class="o-container o-container--fluid o-section u-bg-secondary-dark">
 
       <div class="o-container">
-        <div class="o-grid">
-          <div class="o-grid__col u-3@sm u-margin-top-4">
-            <a href="/"><img src="/img/logo_big.svg" class="big" alt="Logo de TIPI Ciudadano"></a>
-          </div>
-          <div class="o-grid__col u-3@sm u-offset-1@sm u-margin-top-4">
-            <p class="u-text-overline u-color-white">Impulsado por</p>
+        <div class="o-grid u-margin-top-4">
+          <div class="o-grid__col u-4 u-3@sm">
+            <p class="u-text-overline u-color-white">Un proyecto de</p>
             <a href="http://ciecode.es" target="_blank"><img src="/img/logo-ciecode-alt.png" class="big" alt="Logo de Political Watch"></a>
           </div>
-          <div class="o-grid__col u-4@sm u-offset-1 u-margin-top-4">
+          <div class="o-grid__col u-4 u-4@sm u-offset-1@sm">
             <p class="u-text-overline u-color-white">Contacto</p>
-            <tipi-icon icon="github" class="c-icon--white" />&nbsp;<a class="u-color-white u-text-tbody2" href="http://github.com/politicalwatch/" title="github.com/politicalwatch" target="_blank">Consulta nuestro código en Github</a>
+            <tipi-icon icon="chevron-right" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="https://api.tipiciudadano.es" title="github.com/politicalwatch" target="_blank">API para desarrolladorxs</a>
             <br>
-            <tipi-icon icon="mail" class="c-icon--white" />&nbsp;<a class="u-color-white u-text-tbody2" href="mailto:tipi@ciecode.es" title="tipi@ciecode.es" target="_blank">Escribe a tipi@ciecode.es</a>
+            <tipi-icon icon="github" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="http://github.com/politicalwatch/" title="github.com/politicalwatch" target="_blank">Código en Github</a>
+            <br>
+            <tipi-icon icon="mail" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="mailto:tipi@ciecode.es" title="tipi@ciecode.es" target="_blank">tipi@ciecode.es</a>
           </div>
         </div>
         <div class="o-grid">
