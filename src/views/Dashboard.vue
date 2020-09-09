@@ -6,26 +6,15 @@
         <div class="o-grid__col u-12">
           <form @submit.prevent="getResults">
             <div class="o-grid">
-              <div class="o-grid__col u-12 u-6@sm">
+              <div class="o-grid__col u-12 u-12@sm">
                 <div class="c-select-label u-block">
-                  <label for="topic">Objetivos</label>
+                  <label for="topic">Temática</label>
                   <multiselect
-                    @select="fillSubtopics"
                     v-model="data.topic"
                     :options="topics.map(topic => topic.name)"
                     name="topic" id="topic" placeholder="Todos">
                   </multiselect>
                 </div>
-              </div>
-              <div class="o-grid__col u-12 u-6@sm">
-                <div class="c-select-label u-block">
-                  <label for="subtopics">Metas</label>
-                  <multiselect
-                    v-model="data.subtopic"
-                    :options="subtopics"
-                    name="subtopic" id="subtopic" placeholder="Todas">
-                  </multiselect>
-                  </div>
               </div>
             </div>
           </form>
@@ -35,7 +24,7 @@
         <div class="o-grid__col u-12">
           <div class="o-grid">
             <div class="o-grid__col u-8@sm">
-              <h4 class="u-margin-bottom-4">Comparando objetivos y metas</h4>
+              <h4 class="u-margin-bottom-4">Comparando temáticas</h4>
               <p class="u-margin-bottom-0"><strong>¿Cuánta atención recibe {{ data.selection.selected._id }}?</strong></p>
               <p class="u-margin-top-0">Descubre su volumen de actividad frente al más popular.</p>
               <p class="u-text-subtitle">
@@ -116,18 +105,6 @@ export default {
       }),
   },
   methods: {
-    fillSubtopics: function(selectedTopic, clearValues) {
-      this.data.subtopic = clearValues ? "" : this.data.subtopic;
-      const currentTopic = this.topics.find(topic => topic.name === selectedTopic);
-      this.getSubtopics(currentTopic.id);
-    },
-    getSubtopics: function(topicID) {
-      api.getTags(topicID)
-        .then(tags => {
-          this.subtopics = [...new Set(tags.map(tag => tag.subtopic))];
-        })
-        .catch(error => this.errors = error);
-    },
     getResults: function() {
       api.getOverallStats()
         .then(overall => {
