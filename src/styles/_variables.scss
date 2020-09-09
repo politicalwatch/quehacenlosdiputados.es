@@ -1,10 +1,12 @@
 $primary: #FBC239;
-$primary-dark: #CBBE74;
+$primary-dark: #FAB307;
 $primary-light: #DFAB5C;
-$navbar-background-color: #000;
+$secondary: #AEAEAE;
+$secondary-dark: #1E1E1E;
+$navbar-background-color: $secondary-dark;
 $menu-link-color: #fff;
 $navbar-toogle-color: #fff;
-$topic-pill-color: #000;
+$topic-pill-color: $secondary-dark;
 
 
 $topic-pill-separator: 1px;

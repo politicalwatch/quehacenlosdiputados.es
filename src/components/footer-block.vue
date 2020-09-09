@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="footer" class="o-container o-container--fluid o-section u-bg-black">
+    <div id="footer" class="o-container o-container--fluid o-section u-bg-secondary-dark">
 
       <div class="o-container">
         <div class="o-grid">
