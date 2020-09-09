@@ -91,7 +91,7 @@ const routes = [{
     component: Topics
   },
   {
-    path: "/ods/:id",
+    path: "/topics/:id",
     name: "topic",
     component: Topic
   },

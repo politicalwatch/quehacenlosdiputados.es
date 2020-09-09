@@ -25,7 +25,7 @@
               <tipi-text meta="Registro" :value="moment(initiative.created).format('DD/MM/Y')" />
             </div>
           </div>
-          <tipi-topics class="u-hide u-block@md" meta="ODS tratados" :topics="initiative.topics" :tags="initiative.tags" :topicsStyles="styles.topics" />
+          <tipi-topics class="u-hide u-block@md" meta="Temáticas tratadas" :topics="initiative.topics" :tags="initiative.tags" :topicsStyles="styles.topics" />
 
           <div class="o-grid u-margin-top-4 u-padding-top-4 u-border-top u-hide u-block@md" v-if="initiative.related && initiative.related.length">
             <div class="o-grid__col o-grid__col--fill">
@@ -41,7 +41,7 @@
 
           <div class="u-padding-bottom-4 u-border-bottom u-margin-bottom-4">
             <TipiBarchart :result="initiative" :styles="styles" v-if="dataLoaded"></TipiBarchart>
-            <span class="u-text-tbody2">Relación de esta iniciativa con los ODS <sup title="El gráfico muestra los ODS relacionados con la iniciativa y el grado de relación con cada uno de ellos, cuya intensidad se refleja en la barra circular que los rodea."><i class="fa fa-question-circle"></i></sup></span>
+            <span class="u-text-tbody2">Relación de esta iniciativa con nuestras temáticas <sup title="El gráfico muestra las temáticas relacionadas con la iniciativa y el grado de relación con cada una de ellas."><i class="fa fa-question-circle"></i></sup></span>
           </div>
           <div class="u-border-bottom u-margin-bottom-4">
             <tipi-text meta="Autor" :value="initiative.authors" type="parliamentarygroups" :source="allParliamentaryGroups" />
@@ -50,7 +50,7 @@
         </div>
       </div>
       <div class="u-hide@md">
-        <tipi-topics meta="ODS tratados" :topics="initiative.topics" :tags="initiative.tags" :topicsStyles="styles.topics" />
+        <tipi-topics meta="Temáticas tratadas" :topics="initiative.topics" :tags="initiative.tags" :topicsStyles="styles.topics" />
 
         <div class="u-margin-top-4 u-padding-top-4 u-border-top" v-if="initiative.related && initiative.related.length">
           <h4 id="related" class="u-margin-bottom-4">Iniciativas relacionadas</h4>

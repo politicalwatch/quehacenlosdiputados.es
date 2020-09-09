@@ -31,7 +31,7 @@
             :options="subtopics"
             :allow-empty="true"
             :disabled="!this.subtopics.length"
-            :placeholder="this.subtopics.length ? 'Todos' : 'Selecciona previamente un ODS/SDG'"
+            :placeholder="this.subtopics.length ? 'Todos' : 'Selecciona previamente una temática'"
             name="subtopics" id="subtopics" >
           </multiselect>
         </div>
@@ -48,7 +48,7 @@
           :options="filteredTags"
           :allow-empty="true"
           :disabled="!this.filteredTags.length"
-          :placeholder="this.filteredTags.length ? 'Todos' : 'Selecciona previamente un ODS/SDG'"
+          :placeholder="this.filteredTags.length ? 'Todos' : 'Selecciona previamente una temática'"
           name="tags" id="tags" >
         </multiselect>
         </div>

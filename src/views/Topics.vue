@@ -3,7 +3,7 @@
     <tipi-header title="Temáticas"/>
     <div class="o-grid">
       <div class="o-grid__col u-6 u-3@sm u-2@md" v-for="topic in allTopics" :key="topic.id">
-        <tipi-topic-link path="ods" :topic="topic" :image="topicsStyles[topic.name].image" :color="topicsStyles[topic.name].color" />
+        <tipi-topic-link path="topics" :topic="topic" :image="topicsStyles[topic.name].image" :color="topicsStyles[topic.name].color" />
       </div>
     </div>
   </div>

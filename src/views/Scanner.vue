@@ -32,12 +32,12 @@
           <div class="o-grid" v-else>
             <div class="o-grid__col u-12 u-7@sm">
               <tipi-message type="info" icon>Si haces clic en cualquiera de las etiquetas relacionadas con tu texto podrás conocer además toda la actividad parlamentaria asociada con dicha etiqueta.</tipi-message >
-              <tipi-topics meta="ODS tratados" :topics="result.topics" :tags="result.tags" :topicsStyles="styles.topics"/>
+              <tipi-topics meta="Temáticas tratadas" :topics="result.topics" :tags="result.tags" :topicsStyles="styles.topics"/>
             </div>
             <div class="o-grid__col u-12 u-offset-2@sm u-3@sm">
               <tipi-message type="info" icon>Aquí tienes una una relación visual de tu texto, para que de un primer vistazo veas conexiones interesantes.</tipi-message>
               <TipiBarchart :result="fakeInitiative" :styles="styles"></TipiBarchart>
-              <span class="u-text-tbody2">Relación de este texto con los ODS <sup title="El gráfico muestra los ODS relacionados con el texto y el grado de relación con cada uno de ellos, cuya intensidad se muestra en cuánto de coloreado está cada ODS en al gráfica."><i class="fa fa-question-circle"></i></sup></span>
+              <span class="u-text-tbody2">Relación de este texto con nuestras temáticas <sup title="El gráfico muestra las temáticas relacionados con el texto y el grado de relación con cada una de ellas, cuya intensidad se muestra en cuánto de coloreada está cada temática en la gráfica."><i class="fa fa-question-circle"></i></sup></span>
             </div>
             <div class="o-grid__col u-12 u-text-center u-margin-top-4 u-padding-top-4 u-border-top">
               <tipi-csv-download
