@@ -26,6 +26,8 @@
 
     </div>
 
+    <div class="c-decorator" style="background-image: url('/img/yellow.png')"></div
+
     <cookie-law theme="base" buttonText="Entendido" buttonClass="btn btn-custom" message="Este sitio usa cookies para asegurarte la mejor experiencia web."></cookie-law>
 
   </div>
