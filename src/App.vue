@@ -57,4 +57,11 @@
     color: #000000;
   }
 }
+.c-menu__link:hover {
+  color: $yellow !important;
+  text-decoration: none;
+}
+.swal2-confirm {
+  background-color: $primary !important;
+}
 </style>

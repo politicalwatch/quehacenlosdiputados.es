@@ -23,7 +23,7 @@
         <p class="u-text-subtitle u-margin-0 u-color-secondary-dark">MÁS INICIATIVAS SOBRE</p>
         <h4 class="u-text-th2 u-color-secondary-dark">{{ topic.name.toUpperCase() }}</h4>
         <router-link
-          class="c-button c-button--outline"
+          class="c-button c-button--primary"
           :to="{ name: 'results', params: { data: { topic: topic.name } } }">
           Explorar
         </router-link>
