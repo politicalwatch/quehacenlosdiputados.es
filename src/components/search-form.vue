@@ -217,7 +217,7 @@ export default {
       moment: moment,
       selectedSubtopics: [],
       filteredTags: [],
-      advanced: false,
+      advanced: this.formData && (this.formData.startdate || this.formData.enddate || this.formData.status || this.formData.place || this.formData.type || this.formData.reference || this.formData.title),
     }
   },
   computed: {
