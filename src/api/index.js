@@ -243,16 +243,20 @@ export default {
       ].join('');
     }
   },
-  annotate(text) {
+  annotate(text, file) {
+    let formData = new FormData()
+    formData.append('text', text)
+    formData.append('file', file)
+
     return axios.post(
       getEndpoint(),
-      qs.stringify({ 'text': text })
-    ).then(response => response.data);
+      formData,
+    )
 
     function getEndpoint() {
       return [
         config.URL,
-        '/labels/extract'
+        '/tagger/'
       ].join('');
     }
   },
@@ -264,7 +268,7 @@ export default {
     function getEndpoint(taskID) {
       return [
         config.URL,
-        '/labels/result/',
+        '/tagger/result/',
         taskID
       ].join('');
     }
