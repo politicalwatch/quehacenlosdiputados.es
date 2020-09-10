@@ -38,7 +38,7 @@
               <div class="o-grid__col u-12 u-5@sm">
                   <tipi-message type="info" icon>Aquí tienes una relación visual de tu texto, para que de un primer vistazo veas conexiones interesantes.</tipi-message>
                   <TipiBarchart :result="fakeInitiative" :styles="styles"></TipiBarchart>
-                  <span class="u-text-tbody2">Relación de este texto con nuestras temáticas <sup title="El gráfico muestra las temáticas relacionados con el texto y el grado de relación con cada una de ellas."><i class="fa fa-question-circle"></i></sup></span>
+                  <span class="u-text-tbody2">Relación de este texto con nuestras temáticas <sup title="El gráfico muestra las temáticas relacionados con el texto y el grado de relación con cada una de ellas.">?</sup></span>
               </div>
               <div class="o-grid__col u-12 u-text-center u-margin-top-4 u-padding-top-4 u-border-top">
                 <tipi-csv-download
