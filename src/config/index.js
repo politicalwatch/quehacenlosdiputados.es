@@ -115,7 +115,7 @@ export default {
   STYLES: {
     topics: {
       "Conductas adictivas": {
-        shortname: "Conductas adictivas",
+        shortname: "Adicciones",
         color: "#FBC239",
         image: "adictivas-01.svg"
       },
@@ -135,7 +135,7 @@ export default {
         image: "gitana-01.svg"
       },
       "Democracia y Derechos en la era digital": {
-        shortname: "Democracia y Derechos en la era digital",
+        shortname: "Derechos digitales",
         color: "#FBC239",
         image: "digitales-01.svg"
       },
@@ -145,7 +145,7 @@ export default {
         image: "proteccion-01.svg"
       },
       "Cooperación al desarrollo": {
-        shortname: "Cooperación al desarrollo",
+        shortname: "Cooperación al Desarrollo",
         color: "#FBC239",
         image: "cooperacion-01.svg"
       },
@@ -155,7 +155,7 @@ export default {
         image: "infancia-01.svg"
       },
       "Conflictos internacionales y construcción de paz": {
-        shortname: "Conflictos internacionales y construcción de paz",
+        shortname: "Conflictos y Paz",
         color: "#FBC239",
         image: "paz-01.svg"
       },
@@ -175,7 +175,7 @@ export default {
         image: "extranjera-01.svg"
       },
       "Calidad democrática": {
-        shortname: "Calidad democrática",
+        shortname: "Democracia",
         color: "#FBC239",
         image: "democracia-01.svg"
       },
@@ -190,7 +190,7 @@ export default {
         image: "sanidad-01.svg"
       },
       "Cambio climático y política energética": {
-        shortname: "Cambio climático y política energética",
+        shortname: "Energía y Clima",
         color: "#FBC239",
         image: "clima-01.svg"
       },
@@ -205,7 +205,7 @@ export default {
         image: "empleo-01.svg"
       },
       "Personas con discapacidad": {
-        shortname: "Personas con discapacidad",
+        shortname: "Discapacidad",
         color: "#FBC239",
         image: "diversidad-01.svg"
       },
@@ -215,7 +215,7 @@ export default {
         image: "igualdad-01.svg"
       },
       "Personas mayores": {
-        shortname: "Personas mayores",
+        shortname: "Mayores",
         color: "#FBC239",
         image: "mayores-01.svg"
       },
@@ -225,7 +225,8 @@ export default {
         image: "dependencia-01.svg"
       },
       "no-topic": {
-        shortname: "Sin temática"
+        shortname: "Sin temática",
+        color: "#FFAA00",
       }
     },
     subtopics: {
