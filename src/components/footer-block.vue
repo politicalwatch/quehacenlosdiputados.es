@@ -4,17 +4,17 @@
 
       <div class="o-container">
         <div class="o-grid u-margin-top-4">
-          <div class="o-grid__col u-3 u-3@sm">
+          <div class="o-grid__col u-8 u-3@sm">
             <p class="u-text-overline u-color-white">Un proyecto de</p>
             <a href="http://ciecode.es" target="_blank"><img src="/img/logo-ciecode-alt.png" class="big" alt="Logo de Political Watch"></a>
           </div>
-          <div class="o-grid__col u-3 u-3@sm u-offset-2@sm">
+          <div class="o-grid__col u-6 u-3@sm u-offset-2@sm">
             <p class="u-text-overline u-color-white">Colabora</p>
             <tipi-icon icon="chevron-right" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="https://api.tipiciudadano.es" title="github.com/politicalwatch" target="_blank">API para desarrolladorxs</a>
             <br>
             <tipi-icon icon="github" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="https://github.com/politicalwatch/" title="github.com/politicalwatch" target="_blank">Código en Github</a>
           </div>
-          <div class="o-grid__col u-3 u-3@sm">
+          <div class="o-grid__col u-6 u-3@sm">
             <p class="u-text-overline u-color-white">Contacta</p>
             <tipi-icon icon="twitter" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="https://twitter.com/tipi_ciudadano" title="@TIPI_Ciudadano" target="_blank">@TIPI_Ciudadano</a>
             <br>
