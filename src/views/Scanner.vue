@@ -149,10 +149,6 @@ export default {
           document.getElementById('start').text = 'Iniciar proceso'
         });
     },
-    getNameFromCSV: function() {
-      let d = new Date();
-      return "export-scanner-" + d.toISOString() + ".csv";
-    },
     getAsyncResults: function(taskID) {
       api.getScannerResult(taskID).then(response => {
         if (response.data.status==="SUCCESS") {
