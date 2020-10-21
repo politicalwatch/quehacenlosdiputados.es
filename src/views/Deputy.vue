@@ -21,7 +21,7 @@
       <a v-if="deputy.hasOwnProperty('facebook')" :href="deputy.facebook" target="_blank"><tipi-icon icon="open-blank" />Facebook: {{deputy.facebook.split('/').reverse()[0]}}</a>
       <a v-if="deputy.hasOwnProperty('twitter')" :href="deputy.twitter" target="_blank"><tipi-icon icon="twitter" /> @{{ deputy.twitter.split('/').reverse()[0] }}</a>
       <a v-if="deputy.hasOwnProperty('email')" :href="`mailto:${deputy.email}`" target="_blank"><tipi-icon icon="mail" /> {{deputy.email}}</a>
-      
+
     </tipi-deputy>
     <div v-if="latestInitiatives && latestInitiatives.length" class="o-container o-section">
       <h4 class="u-margin-bottom-4">Últimas iniciativas</h4>
@@ -69,7 +69,6 @@ export default {
       api.getDeputy(this.$route.params.id)
         .then(response => {
           this.deputy = response;
-          console.log(this.allParliamentaryGroups)
           this.parliamentarygroup = this.allParliamentaryGroups.find(allPG => allPG.shortname === this.deputy.parliamentarygroup);
           this.getLatestInitiatives();
         })
