@@ -53,6 +53,9 @@ const actions = {
   getDeputies(context) {
     api.getDeputies()
       .then(response => {
+        response.forEach(function(response_item) {
+          response_item.image = api.proxy(response_item.image);
+        });
         context.commit(types.GET_DEPUTIES, response);
       })
       .catch(error => this.errors = error);

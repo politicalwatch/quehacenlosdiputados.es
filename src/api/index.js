@@ -272,5 +272,11 @@ export default {
         taskID
       ].join('');
     }
+  },
+  proxy(url) {
+    return [
+      config.URL,
+      '/proxy?url=' + url
+    ].join('');
   }
 };
