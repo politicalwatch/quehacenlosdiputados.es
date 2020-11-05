@@ -6,7 +6,7 @@
         <div class="o-grid u-margin-top-4">
           <div class="o-grid__col u-8 u-3@sm">
             <p class="u-text-overline u-color-white">Un proyecto de</p>
-            <a href="http://politicalwatch.es" target="_blank"><img src="/img/logo-politicalwatch.png.png" class="big" alt="Logo de Political Watch"></a>
+            <a href="http://politicalwatch.es" target="_blank"><img src="/img/logo-politicalwatch.png" class="big" alt="Logo de Political Watch"></a>
           </div>
           <div class="o-grid__col u-6 u-3@sm u-offset-2@sm">
             <p class="u-text-overline u-color-white">Colabora</p>
