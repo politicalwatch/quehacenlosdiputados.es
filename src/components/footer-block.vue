@@ -6,7 +6,7 @@
         <div class="o-grid u-margin-top-4">
           <div class="o-grid__col u-8 u-3@sm">
             <p class="u-text-overline u-color-white">Un proyecto de</p>
-            <a href="http://ciecode.es" target="_blank"><img src="/img/logo-ciecode-alt.png" class="big" alt="Logo de Political Watch"></a>
+            <a href="http://politicalwatch.es" target="_blank"><img src="/img/logo-politicalwatch.png.png" class="big" alt="Logo de Political Watch"></a>
           </div>
           <div class="o-grid__col u-6 u-3@sm u-offset-2@sm">
             <p class="u-text-overline u-color-white">Colabora</p>
@@ -18,12 +18,12 @@
             <p class="u-text-overline u-color-white">Contacta</p>
             <tipi-icon icon="twitter" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="https://twitter.com/tipi_ciudadano" title="@TIPI_Ciudadano" target="_blank">@TIPI_Ciudadano</a>
             <br>
-            <tipi-icon icon="mail" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="mailto:tipi@ciecode.es" title="tipi@ciecode.es" target="_blank">tipi@ciecode.es</a>
+            <tipi-icon icon="mail" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="mailto:tipi@politicalwatch.es" title="tipi@politicalwatch.es" target="_blank">tipi@politicalwatch.es</a>
           </div>
         </div>
         <div class="o-grid">
           <div class="o-grid__col u-12@sm u-margin-top-4">
-            <p class="u-color-white u-text-tbody2">{{ (new Date()).getFullYear()  }} Political Watch. Algunos derechos reservados.</p>
+            <p class="u-color-white u-text-tbody2">{{ (new Date()).getFullYear()  }} Political Watch - Algunos derechos reservados</p>
           </div>
         </div>
       </div>
