@@ -2,7 +2,7 @@
   <div id="app">
     <transition name="fade" mode="out-in">
       <div>
-        <tipi-navbar pre-image="/img/yellow.png" :links="MENU" :logo="LOGO" />
+        <tipi-navbar pre-image="/img/yellow.png" :disclaimerLink="DISCLAIMER" :links="MENU" :logo="LOGO" />
           <router-view/>
         <footer-block />
       </div>
@@ -52,9 +52,14 @@
 
 <style lang="scss">
 .c-disclaimer {
-  background-color: #FBC239;
+  background-color: #f8f8f8 !important;
   a {
-    color: #000000;
+    color: #000 !important;
+  }
+  svg {
+    path {
+      fill: #000;
+    }
   }
 }
 .c-menu__link:hover {

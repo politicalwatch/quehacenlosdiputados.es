@@ -37,8 +37,9 @@ export default {
     }
   ],
   DISCLAIMER: {
-    route: "http://google.com",
-    name: "Hello"
+    route: "https://parlamento2030.es",
+    name: "<img src='/img/sdg.png' alt='Logo de los ODS'> Descubre la actividad parlamentaria en clave Agenda 2030",
+    external: true
   },
   LOGO: "/img/logo.svg",
 
