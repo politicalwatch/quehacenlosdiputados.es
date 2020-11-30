@@ -37,7 +37,7 @@ export default {
     }
   ],
   DISCLAIMER: {
-    route: "https://parlamento2030.es",
+    route: "https://www.parlamento2030.es?utm_source=tipiciudadano&utm_medium=direct&utm_campaign=engagement",
     name: "<img src='/img/sdg.png' alt='Logo de los ODS'> Descubre la actividad parlamentaria en clave Agenda 2030",
     external: true
   },
