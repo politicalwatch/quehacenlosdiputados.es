@@ -135,7 +135,7 @@ export default {
         color: "#FBC239",
         image: "gitana-01.svg"
       },
-      "Democracia y Derechos en la era digital": {
+      "Democracia y derechos en la era digital": {
         shortname: "Derechos digitales",
         color: "#FBC239",
         image: "digitales-01.svg"
@@ -224,6 +224,11 @@ export default {
         shortname: "Dependencia",
         color: "#FBC239",
         image: "dependencia-01.svg"
+      },
+      "Colectivo LGTBI": {
+        shortname: "LGTBI",
+        color: "#FBC239",
+        image: "lgtbi-01.svg"
       },
       "no-topic": {
         shortname: "Sin temática",
