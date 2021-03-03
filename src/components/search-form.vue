@@ -153,6 +153,7 @@
             deselectLabel="Pulsa para deseleccionar"
             v-model="form.type"
             :options="types"
+            label="name"
             :allow-empty="true"
             name="type" id="type" placeholder="Cualquiera">
           </multiselect>
@@ -232,7 +233,7 @@ export default {
       topics: 'allTopics',
       types: 'allTypes',
       status: 'allStatus',
-    })
+    }),
   },
   methods: {
     cleanForm: function() {
