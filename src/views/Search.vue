@@ -103,9 +103,6 @@ export default {
         qs.parse(this.$route.params.data)
         : formData;
       this.data = Object.assign(this.data, params);
-      if ('type' in this.data) {
-        this.data.type = this.data.type.code
-      }
       const urlParams = Object.assign({}, this.data);
 
       if (isNewSearch) {

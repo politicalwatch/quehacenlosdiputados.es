@@ -47,6 +47,9 @@ const getters = {
       return group.name === name
     });
   },
+  allTypesName(state) {
+    return state.allTypes.map(type => type.name)
+  }
 };
 
 const actions = {

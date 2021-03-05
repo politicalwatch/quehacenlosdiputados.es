@@ -153,7 +153,6 @@
             deselectLabel="Pulsa para deseleccionar"
             v-model="form.type"
             :options="types"
-            label="name"
             :allow-empty="true"
             name="type" id="type" placeholder="Cualquiera">
           </multiselect>
@@ -226,12 +225,12 @@ export default {
       deputies: 'allDeputiesName',
       places: 'allPlacesName',
       groups: 'allParliamentaryGroupsWithGoverment',
+      types: 'allTypesName',
       getDeputyByName: 'getDeputyByName',
       getParliamentaryGroupByName: 'getParliamentaryGroupByName',
     }),
     ...mapState({
       topics: 'allTopics',
-      types: 'allTypes',
       status: 'allStatus',
     }),
   },
