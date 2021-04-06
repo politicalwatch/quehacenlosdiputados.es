@@ -4,7 +4,7 @@
       <a v-if="deputy.hasOwnProperty('url')" :href="deputy.url" target="_blank"><tipi-icon icon="building" /> Ver en el Congreso</a>
       <a v-if="deputy.hasOwnProperty('email')" :href="`mailto:${deputy.email}`" target="_blank"><tipi-icon icon="mail" /> {{deputy.email}}</a>
       <a v-if="deputy.hasOwnProperty('twitter')" :href="deputy.twitter" target="_blank"><tipi-icon icon="twitter" /> @{{ deputy.twitter.split('/').reverse()[0] }}</a>
-      <div class="alerts-block u-margin-top-4" v-show="alertsIsEnabled()">
+      <div class="alerts-block u-margin-top-4" v-show="use_alerts">
         <save-alert :searchparams="{deputy: deputy.name}" />
       </div>
     </tipi-deputy>
@@ -42,6 +42,7 @@ export default {
       deputy: null,
       parliamentarygroup: null,
       latestInitiatives: null,
+      use_alerts: config.USE_ALERTS,
       styles: config.STYLES,
     }
   },
@@ -68,9 +69,6 @@ export default {
           if (response.initiatives) this.latestInitiatives = response.initiatives;
         })
         .catch(error => this.errors = error);
-    },
-    alertsIsEnabled: function() {
-      return (config.USE_ALERTS === "true");
     },
   },
   created: function() {

@@ -1,7 +1,7 @@
 <template>
   <div v-if="loaded">
     <tipi-topic-card :topic="topic" :topicsStyles="styles"/>
-    <div class="alerts-block o-section u-margin-bottom-4" :style="`background-color: ${styles[topic.name].color};`" v-show="alertsIsEnabled()">
+    <div class="alerts-block o-section u-margin-bottom-4" :style="`background-color: ${styles[topic.name].color};`" v-show="use_alerts">
       <div class="o-container">
         <save-alert :searchparams="{topic: topic.name}" />
       </div>
@@ -65,6 +65,7 @@ export default {
       places: null,
       parliamentarygroups: null,
       latestInitiatives: null,
+      use_alerts: config.USE_ALERTS,
       styles: config.STYLES.topics,
       loaded: false,
     }
@@ -126,9 +127,6 @@ export default {
             if (response.initiatives) this.latestInitiatives = response.initiatives;
           })
          .catch(error => this.errors = error);
-    },
-    alertsIsEnabled: function() {
-      return (config.USE_ALERTS === "true");
     },
   },
   created: function() {

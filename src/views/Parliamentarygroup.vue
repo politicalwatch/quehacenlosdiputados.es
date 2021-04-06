@@ -2,7 +2,7 @@
   <div>
     <div id="group" class="o-container o-section u-margin-bottom-10">
       <tipi-header v-if="parliamentarygroup" :title="parliamentarygroup.name"/>
-      <div class="alerts-block u-margin-top-1" v-show="alertsIsEnabled()">
+      <div class="alerts-block u-margin-top-1" v-show="use_alerts">
         <save-alert :searchparams="{author: parliamentarygroup.name}" />
       </div>
       <h4 class="u-margin-bottom-4" v-if="latestInitiatives && latestInitiatives.length">Últimas iniciativas</h4>
@@ -45,6 +45,7 @@ export default {
     return {
       parliamentarygroup: null,
       latestInitiatives: null,
+      use_alerts: config.USE_ALERTS,
       topicsStyles: config.STYLES.topics,
     }
   },
@@ -86,9 +87,6 @@ export default {
            if (response.initiatives) this.latestInitiatives = response.initiatives;
           })
          .catch(error => this.errors = error);
-    },
-    alertsIsEnabled: function() {
-      return (config.USE_ALERTS === "true");
     },
   },
   created: function() {

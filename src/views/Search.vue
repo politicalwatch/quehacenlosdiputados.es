@@ -17,7 +17,7 @@
             :canDownloadCSV="canDownloadCSV"
             @loadCSVItems="loadCSVItems"
           />
-          <save-alert :searchparams="data" v-show="alertsIsEnabled() && this.query_meta.page" />
+          <save-alert :searchparams="data" v-show="use_alerts && this.query_meta.page" />
         </div>
       </div>
       <tipi-results
@@ -74,6 +74,7 @@ export default {
       loadingResults: false,
       csvItems: [],
       LIMITCSV: 1000,
+      use_alerts: config.USE_ALERTS,
       topicsStyles: config.STYLES.topics,
       scrollToID: '#results'
     }
@@ -142,9 +143,6 @@ export default {
       this.scrollToID = `#${node.id}`;
       this.data.page++;
       this.getResults();
-    },
-    alertsIsEnabled: function() {
-      return (config.USE_ALERTS === "true");
     },
     loadCSVItems: function(event) {
       if (!this.canDownloadCSV) return false;
