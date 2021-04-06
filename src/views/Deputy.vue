@@ -4,6 +4,9 @@
       <a v-if="deputy.hasOwnProperty('url')" :href="deputy.url" target="_blank"><tipi-icon icon="building" /> Ver en el Congreso</a>
       <a v-if="deputy.hasOwnProperty('email')" :href="`mailto:${deputy.email}`" target="_blank"><tipi-icon icon="mail" /> {{deputy.email}}</a>
       <a v-if="deputy.hasOwnProperty('twitter')" :href="deputy.twitter" target="_blank"><tipi-icon icon="twitter" /> @{{ deputy.twitter.split('/').reverse()[0] }}</a>
+      <div class="alerts-block u-margin-top-4" v-show="alertsIsEnabled()">
+        <save-alert :searchparams="{deputy: deputy.name}" />
+      </div>
     </tipi-deputy>
     <div v-if="latestInitiatives && latestInitiatives.length" class="o-container o-section">
       <h4 class="u-margin-bottom-4">Últimas iniciativas</h4>
@@ -19,6 +22,7 @@
 <script>
 
 import { TipiHeader, TipiDeputy, TipiResults, TipiIcon, TipiLoader } from 'tipi-uikit'
+import SaveAlert from '@/components/save-alert';
 import api from '@/api';
 import config from '@/config';
 import { mapState } from 'vuex';
@@ -31,6 +35,7 @@ export default {
     TipiResults,
     TipiIcon,
     TipiLoader,
+    SaveAlert
   },
   data: function() {
     return {
@@ -63,7 +68,10 @@ export default {
           if (response.initiatives) this.latestInitiatives = response.initiatives;
         })
         .catch(error => this.errors = error);
-    }
+    },
+    alertsIsEnabled: function() {
+      return (config.USE_ALERTS === "true");
+    },
   },
   created: function() {
     this.getDeputy()
@@ -71,5 +79,17 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
+.alerts-block {
+  padding-bottom: 0rem;
+  a {
+    color: #fff;
+  }
+}
+@media (max-width: 768px) {
+  .alerts-block {
+    text-align: center;
+    margin-top: 0rem;
+  }
+}
 </style>

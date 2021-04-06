@@ -1,6 +1,11 @@
 <template>
   <div v-if="loaded">
     <tipi-topic-card :topic="topic" :topicsStyles="styles"/>
+    <div class="alerts-block o-section u-margin-bottom-4" :style="`background-color: ${styles[topic.name].color};`" v-show="alertsIsEnabled()">
+      <div class="o-container">
+        <save-alert :searchparams="{topic: topic.name}" />
+      </div>
+    </div>
     <div id="topic" class="o-container o-section">
       <div class="o-grid">
         <div class="o-grid__col u-12 u-4@sm" v-if="deputies">
@@ -38,6 +43,7 @@
 <script>
 
 import { TipiHeader, TipiResults, TipiTopicCard, TipiText, TipiLoader } from 'tipi-uikit'
+import SaveAlert from '@/components/save-alert';
 import api from '@/api';
 import config from '@/config';
 import { mapState } from 'vuex';
@@ -50,6 +56,7 @@ export default {
     TipiTopicCard,
     TipiText,
     TipiLoader,
+    SaveAlert
   },
   data: function() {
     return {
@@ -81,7 +88,6 @@ export default {
         });
     },
     getDeputiesRanking: function(topic) {
-            console.log(topic)
       api.getDeputiesRanking(topic, null, 3)
         .then(response => {
           this.deputies = response;
@@ -121,6 +127,9 @@ export default {
           })
          .catch(error => this.errors = error);
     },
+    alertsIsEnabled: function() {
+      return (config.USE_ALERTS === "true");
+    },
   },
   created: function() {
     this.getTopic()
@@ -138,6 +147,17 @@ export default {
     color: $yellow !important;
     background: $secondary-dark !important;
     //
+  }
+}
+.alerts-block {
+  margin-top: -4rem;
+  padding-top: 0;
+  padding-bottom: 4rem;
+}
+@media (max-width: 768px) {
+  .alerts-block {
+    text-align: center;
+    margin-top: -2rem;
   }
 }
 </style>

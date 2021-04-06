@@ -2,6 +2,9 @@
   <div>
     <div id="group" class="o-container o-section u-margin-bottom-10">
       <tipi-header v-if="parliamentarygroup" :title="parliamentarygroup.name"/>
+      <div class="alerts-block u-margin-top-1" v-show="alertsIsEnabled()">
+        <save-alert :searchparams="{author: parliamentarygroup.name}" />
+      </div>
       <h4 class="u-margin-bottom-4" v-if="latestInitiatives && latestInitiatives.length">Últimas iniciativas</h4>
       <tipi-results layout="tiny" :initiatives="latestInitiatives" class="u-margin-bottom-4" :topicsStyles="topicsStyles"/>
 
@@ -25,6 +28,7 @@
 <script>
 
 import { TipiHeader, TipiResults, TipiText } from 'tipi-uikit'
+import SaveAlert from '@/components/save-alert';
 import api from '@/api';
 import config from '@/config'
 import { mapGetters, mapState } from  'vuex';
@@ -35,6 +39,7 @@ export default {
     TipiHeader,
     TipiResults,
     TipiText,
+    SaveAlert
   },
   data: function() {
     return {
@@ -82,9 +87,30 @@ export default {
           })
          .catch(error => this.errors = error);
     },
+    alertsIsEnabled: function() {
+      return (config.USE_ALERTS === "true");
+    },
   },
   created: function() {
     this.getParliamentaryGroup()
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.alerts-block {
+  text-align: left;
+  margin-top: -4rem;
+  padding-top: 0;
+  padding-bottom: 4rem;
+  .o-container {
+    padding-left: -16px;
+  }
+}
+@media (max-width: 768px) {
+  .alerts-block {
+    text-align: left;
+    margin-top: -2rem;
+  }
+}
+</style>

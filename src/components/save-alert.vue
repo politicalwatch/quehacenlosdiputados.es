@@ -21,15 +21,17 @@ export default {
   methods: {
     saveAlert: async function() {
       let search_params = Object.assign({}, this.searchparams);
-      delete search_params.page;
+      if (search_params.hasOwnProperty('page')) delete search_params.page;
 
       // ensure some params are array
-      search_params.subtopics = search_params.subtopics.constructor !== Array ?
-        [search_params.subtopics] :
-        search_params.subtopics;
-      search_params.tags = search_params.tags.constructor !== Array ?
-        [search_params.tags] :
-        search_params.tags;
+      if (search_params.hasOwnProperty('subtopic'))
+        search_params.subtopics = search_params.subtopics.constructor !== Array ?
+          [search_params.subtopics] :
+          search_params.subtopics;
+      if (search_params.hasOwnProperty('tags'))
+        search_params.tags = search_params.tags.constructor !== Array ?
+          [search_params.tags] :
+          search_params.tags;
 
       const {value: email} = await swal({
         title: 'Introduce tu correo electrónico',
