@@ -23,7 +23,7 @@
         </div>
         <div class="o-grid">
           <div class="o-grid__col u-12@sm u-margin-top-4">
-            <p class="u-color-white u-text-tbody2">{{ (new Date()).getFullYear()  }} Political Watch - Algunos derechos reservados</p>
+            <p class="u-color-white u-text-tbody2">{{ (new Date()).getFullYear()  }} Political Watch - <router-link :to="{name: 'legalnotice'}" class="u-color-white">Aviso legal</router-link></p>
           </div>
         </div>
       </div>
