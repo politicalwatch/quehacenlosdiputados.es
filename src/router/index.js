@@ -11,6 +11,8 @@ import Parliamentarygroup from '@/views/Parliamentarygroup.vue'
 import Scanner from '@/views/Scanner.vue'
 import About from '@/views/About.vue'
 import LegalNotice from '@/views/LegalNotice.vue'
+import PrivacyPolicy from '@/views/PrivacyPolicy.vue'
+import CookiePolicy from '@/views/CookiePolicy.vue'
 import Alerts from '@/views/Alerts.vue'
 import Page404 from '@/views/Page404.vue'
 import config from '@/config';
@@ -120,6 +122,16 @@ const routes = [{
     path: "/legal-notice",
     name: "legalnotice",
     component: LegalNotice
+  },
+  {
+    path: "/privacy-policy",
+    name: "privacypolicy",
+    component: PrivacyPolicy
+  },
+  {
+    path: "/cookie-policy",
+    name: "cookiepolicy",
+    component: CookiePolicy
   },
   {
     path: "/alerts",
