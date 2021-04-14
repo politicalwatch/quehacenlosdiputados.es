@@ -149,10 +149,8 @@ export default {
 }
 .alerts-block {
   margin-top: -6rem;
-  padding: 4rem 2rem;
   padding-top: 0;
   padding-bottom: 4rem !important;
-  padding-left: 2rem;
   padding-right: 2rem;
 }
 @media (max-width: 991px) {
