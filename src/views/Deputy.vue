@@ -79,7 +79,7 @@ export default {
 
 <style lang="scss" scoped>
 .c-deputy__links a.c-button {
-  display: inline;
+  display: inline-block;
 }
 .alerts-block {
   padding-bottom: 0rem;

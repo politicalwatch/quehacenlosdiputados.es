@@ -151,16 +151,17 @@ export default {
   margin-top: -6rem;
   padding-top: 0;
   padding-bottom: 4rem !important;
-  padding-right: 2rem;
 }
 @media (max-width: 991px) {
   .alerts-block {
     margin-top: -4rem;
+    padding-left: 2rem;
   }
 }
 @media (max-width: 768px) {
   .alerts-block {
     text-align: center;
+    padding-left: 0rem;
   }
 }
 </style>
