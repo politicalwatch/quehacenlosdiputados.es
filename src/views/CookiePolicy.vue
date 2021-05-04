@@ -12,7 +12,7 @@
               <p>La configuración de las cookies en los navegadores se realiza de la siguiente forma:</p>
               <ul>
                 <li>Firefox: Preferencias &gt; Privacidad.</li>
-                <li>Google Chrome: Configuración &gt; Privacidad &gt; Confguración de contenido &gt; Cookies.</li>
+                <li>Google Chrome: Configuración &gt; Privacidad &gt; Configuración de contenido &gt; Cookies.</li>
                 <li>Safari: Preferencias &gt; Privacidad</li>
                 <li>Internet Explorer: Herramientas &gt; Opciones de Internet &gt; Privacidad &gt; Avanzada.</li>
               </ul>
