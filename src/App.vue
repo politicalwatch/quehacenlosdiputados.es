@@ -52,7 +52,7 @@
 
 <style lang="scss">
 .c-disclaimer {
-  background-color: #fbc239 !important;
+  background-color: #f8f8f8 !important;
   a {
     color: #000 !important;
   }
