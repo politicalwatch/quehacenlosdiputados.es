@@ -35,7 +35,7 @@ export default {
     TipiResults,
     TipiIcon,
     TipiLoader,
-    SaveAlert
+    SaveAlert,
   },
   data: function() {
     return {

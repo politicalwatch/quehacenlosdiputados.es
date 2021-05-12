@@ -39,7 +39,7 @@ export default {
     TipiHeader,
     TipiResults,
     TipiText,
-    SaveAlert
+    SaveAlert,
   },
   data: function() {
     return {
