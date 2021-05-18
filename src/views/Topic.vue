@@ -9,7 +9,7 @@
     <div id="topic" class="o-container o-section">
       <div class="o-grid">
         <div class="o-grid__col u-12 u-4@sm" v-if="deputies">
-          <tipi-text meta="Diputadas/os más activas/os" :value="deputies" type="deputy" :source="deputies" />
+          <tipi-text meta="Diputadas/os más activas/os" :value="deputies" type="deputy" :source="allDeputies" />
         </div>
         <div class="o-grid__col u-12 u-4@sm" v-if="parliamentarygroups">
           <tipi-text meta="Grupos más activos" :value="parliamentarygroups" type="parliamentarygroup" :source="parliamentarygroups" />
@@ -94,9 +94,7 @@ export default {
           this.deputies = response;
           this.deputies.forEach((deputy, index) => {
             let foundDeputy = this.allDeputies.find(allD => allD.name === deputy._id );
-            this.deputies[index].name = this.deputies[index]._id;
-            this.deputies[index].id = foundDeputy.id;
-            this.deputies[index].image = foundDeputy.image;
+            this.deputies[index] = this.deputies[index]._id;
           });
         })
           .catch(error => {this.errors = error; console.log(error)});
