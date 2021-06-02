@@ -81,7 +81,7 @@
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
             v-model="form.deputy"
-            :options="deputies"
+            :options="getDeputies()"
             :allow-empty="true"
             name="deputy" id="deputy" placeholder="Apellidos, Nombre">
           </multiselect>
@@ -228,6 +228,7 @@ export default {
       types: 'allTypesName',
       getDeputyByName: 'getDeputyByName',
       getParliamentaryGroupByName: 'getParliamentaryGroupByName',
+      getDeputiesByParliamentaryGroup: 'getDeputiesByParliamentaryGroup',
     }),
     ...mapState({
       topics: 'allTopics',
@@ -248,6 +249,20 @@ export default {
       this.form.enddate =
       this.form.startdate =
       this.form.title = '';
+    },
+    getDeputies: function() {
+      const { author } = this.form
+      if (author == 'Gobierno') {
+        return []
+      }
+
+      if (author != '') {
+        const parliamentaryGroup = this.getParliamentaryGroupByName(author)
+        const deputies = this.getDeputiesByParliamentaryGroup(parliamentaryGroup.shortname)
+        return deputies.map(deputy => deputy.name)
+      }
+
+      return this.deputies
     },
     fillSubtopicsAndTags: function(selectedTopic, clearValues) {
       if (clearValues) {
