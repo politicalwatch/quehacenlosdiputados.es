@@ -151,7 +151,7 @@ export default {
       api.getInitiatives(params)
          .then(response => {
            this.csvItems = response.initiatives;
-           event.target.innerText = "Descarga datos";
+           event.target.innerText = "Descarga los datos";
           })
          .catch(error => this.errors = error);
     },
