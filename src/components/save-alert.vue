@@ -1,6 +1,6 @@
 <template>
   <a class="c-button c-button--compact c-button--primary c-button--icon-right" href="#" @click.prevent="saveAlert">
-    Crear alerta <tipi-icon class="c-icon--white" icon="bell" />
+    Crea una alerta <tipi-icon class="c-icon--white" icon="bell" />
   </a>
 </template>
 
