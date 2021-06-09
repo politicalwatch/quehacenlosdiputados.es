@@ -258,7 +258,6 @@ export default {
 
       if (author) {
         const parliamentaryGroup = this.getParliamentaryGroupByName(author)
-        console.log([author, parliamentaryGroup])
         const deputies = this.getDeputiesByParliamentaryGroup(parliamentaryGroup.shortname)
         return deputies.map(deputy => deputy.name)
       }
