@@ -152,8 +152,9 @@
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
             v-model="form.type"
-            :options="types"
+            :options="getTypes()"
             :allow-empty="true"
+            :multiple="true"
             name="type" id="type" placeholder="Cualquiera">
           </multiselect>
         </div>
@@ -249,6 +250,13 @@ export default {
       this.form.enddate =
       this.form.startdate =
       this.form.title = '';
+    },
+    getTypes: function() {
+      const options = []
+      for (const type of this.types) {
+        options.push("'" + type + "'")
+      }
+      return options
     },
     getDeputies: function() {
       const { author } = this.form
