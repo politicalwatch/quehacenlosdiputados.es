@@ -5,7 +5,7 @@
       <a v-if="deputy.hasOwnProperty('email')" :href="`mailto:${deputy.email}`" target="_blank"><tipi-icon icon="mail" /> {{deputy.email}}</a>
       <a v-if="deputy.hasOwnProperty('twitter')" :href="deputy.twitter" target="_blank"><tipi-icon icon="twitter" /> @{{ deputy.twitter.split('/').reverse()[0] }}</a>
     </tipi-deputy>
-    <div class="o-container u-margin-top-4" v-show="use_alerts">
+    <div class="o-container u-margin-top-4" v-show="use_alerts && deputy.active">
       <save-alert :searchparams="{deputy: deputy.name}" />
     </div>
     <div v-if="latestInitiatives && latestInitiatives.length" class="o-container o-section">
