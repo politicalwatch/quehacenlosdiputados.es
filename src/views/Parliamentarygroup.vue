@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div id="group" class="o-container o-section u-margin-bottom-10">
+
+    <div v-if="parliamentarygroup" id="group" class="o-container o-section u-margin-bottom-10">
       <tipi-header v-if="parliamentarygroup" :title="parliamentarygroup.name"/>
       <div class="alerts-block u-margin-top-1" v-show="use_alerts">
         <save-alert :searchparams="{author: parliamentarygroup.name}" />
@@ -20,14 +21,18 @@
           <tipi-text meta="" :value="this.dividedDeputies[2]" type="deputy" :source="allDeputies" hideGroup/>
         </div>
       </div>
-
     </div>
+
+    <div v-else class="o-container o-section u-margin-bottom-10">
+      <tipi-loader title="Cargando datos" subtitle="Puede llevar unos segundos"/>
+    </div>
+
   </div>
 </template>
 
 <script>
 
-import { TipiHeader, TipiResults, TipiText } from 'tipi-uikit'
+import { TipiHeader, TipiResults, TipiText, TipiLoader } from 'tipi-uikit'
 import SaveAlert from '@/components/save-alert';
 import api from '@/api';
 import config from '@/config'
@@ -39,6 +44,7 @@ export default {
     TipiHeader,
     TipiResults,
     TipiText,
+    TipiLoader,
     SaveAlert,
   },
   data: function() {
