@@ -29,7 +29,7 @@
         <h4 class="u-text-th2 u-color-secondary-dark">{{ topic.name.toUpperCase() }}</h4>
         <router-link
           class="c-button c-button--outline"
-          :to="{ name: 'results', params: { data: { topic: topic.name } } }">
+          :to="{ name: 'results', params: { data: 'topic=' + topic.name } }">
           Explorar
         </router-link>
       </div>
