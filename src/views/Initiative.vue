@@ -15,7 +15,7 @@
           <div class="o-grid__col u-12 u-8@md">
             <div class="o-grid">
               <div class="o-grid__col u-12 u-6@md">
-                <tipi-topic-pill v-if="initiative.topics && initiative.topics.length" class="u-margin-bottom-2" :topicsStyles="styles.topics" :topics="initiative.topics" with-links/>
+                <tipi-topic-pill v-if="initiative.tagged && initiative.tagged.length" class="u-margin-bottom-2" :topicsStyles="styles.topics" :topics="getTopics(initiative)" with-links/>
               </div>
               <div class="o-grid__col u-12 u-6@md u-text-right@md u-margin-bottom-2" v-if="initiative.related && initiative.related.length">
                 <a href="#related" class="c-button c-button--compact u-padding-left-0">Ver iniciativas relacionadas</a>
@@ -35,7 +35,7 @@
                 <tipi-text meta="Registro" :value="moment(initiative.created).format('DD/MM/Y')" />
               </div>
             </div>
-            <tipi-topics class="u-hide u-block@md" meta="Temáticas tratadas" :topics="initiative.topics" :tags="initiative.tags" :topicsStyles="styles.topics" />
+            <tipi-topics class="u-hide u-block@md" meta="Temáticas tratadas" :topics="getTopics(initiative)" :tags="getTags(initiative)" :topicsStyles="styles.topics" />
 
               <div class="o-grid u-margin-top-4 u-padding-top-4 u-border-top u-hide u-block@md" v-if="initiative.related && initiative.related.length">
                 <div class="o-grid__col o-grid__col--fill">
@@ -125,6 +125,20 @@ export default {
           this.loaded = true;
         });
     },
+    getTopics: function(initiative) {
+      let topics = []
+      for (const tagged of initiative['tagged']) {
+        topics = topics.concat(tagged['topics'])
+      }
+      return topics
+    },
+    getTags: function(initiative) {
+      let tags = []
+      for (const tagged of initiative['tagged']) {
+        tags = tags.concat(tagged['tags'])
+      }
+      return tags
+    }
   },
   created: function() {
     this.getInitiative();
