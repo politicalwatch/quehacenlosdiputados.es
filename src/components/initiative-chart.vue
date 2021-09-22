@@ -45,6 +45,10 @@ export default {
     datum() {
       const datum = [];
       Object.keys(this.styles.topics).forEach((k) => {
+        let tags = []
+        for (const tagged of this.initiative.tagged) {
+          tags = tags.concat(tagged.tags)
+        }
         datum.push({
           name: this.styles.topics[k].shortname,
           color: this.styles.topics[k].color,
