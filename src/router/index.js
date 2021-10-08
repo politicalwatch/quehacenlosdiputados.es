@@ -7,6 +7,7 @@ import Dashboard from '@/views/Dashboard.vue'
 import Topics from '@/views/Topics.vue'
 import Topic from '@/views/Topic.vue'
 import Deputy from '@/views/Deputy.vue'
+import Deputies from '@/views/Deputies.vue'
 import Parliamentarygroup from '@/views/Parliamentarygroup.vue'
 import Scanner from '@/views/Scanner.vue'
 import About from '@/views/About.vue'
@@ -97,6 +98,11 @@ const routes = [{
     path: "/topics/:id",
     name: "topic",
     component: Topic
+  },
+  {
+    path: "/deputies",
+    name: "deputies",
+    component: Deputies
   },
   {
     path: "/deputies/:id",
