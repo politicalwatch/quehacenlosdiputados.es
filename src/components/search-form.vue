@@ -345,3 +345,11 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+span.multiselect__option--selected {
+  span {
+    color: white;
+  }
+}
+</style>
