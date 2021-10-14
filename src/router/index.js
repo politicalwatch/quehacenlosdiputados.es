@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import sha1 from 'js-sha1';
+import Home from '@/views/Home.vue'
 import Search from '@/views/Search.vue'
 import Initiative from '@/views/Initiative.vue'
 import Dashboard from '@/views/Dashboard.vue'
@@ -24,6 +25,28 @@ Vue.use(VueRouter);
 
 const routes = [{
     path: "/",
+    name: "home",
+    component: Home,
+    meta: {
+      title: 'Home - TIPI Ciudadano',
+      metaTags: [
+        {
+          name: 'description',
+          content: 'Test Home'
+        },
+        {
+          property: 'og:description',
+          content: 'Test Home'
+        },
+        {
+          property: 'og:title',
+          content: 'Test Home'
+        }
+        , ...config.DEFAULT_METATAGS]
+    }
+  },
+  {
+    path: "/search",
     name: "search",
     component: Search,
     meta: {
