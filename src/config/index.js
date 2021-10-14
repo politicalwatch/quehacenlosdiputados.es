@@ -7,24 +7,24 @@ export default {
   SCANNER_HELPTEXT: process.env.VUE_APP_SCANNER_HELPTEXT || "",
   MENU: [
     {
+      route: "deputies",
+      name: "Diputadxs",
+      condition: true
+    },
+    {
+      route: "parliamentarygroups",
+      name: "Grupos",
+      condition: true
+    },
+    {
       route: "search",
-      name: "Buscar",
+      name: "Iniciativas",
       condition: true
     },
     {
       route: "topics",
       name: "Temáticas",
-      condition: true
-    },
-    {
-      route: "dashboard",
-      name: "Métricas",
-      condition: true
-    },
-    {
-      route: "scanner",
-      name: "Scanner",
-      condition: true
+      condition: false
     },
     {
       route: "alerts",

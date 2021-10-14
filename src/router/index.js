@@ -9,6 +9,7 @@ import Topics from '@/views/Topics.vue'
 import Topic from '@/views/Topic.vue'
 import Deputy from '@/views/Deputy.vue'
 import Deputies from '@/views/Deputies.vue'
+import Parliamentarygroups from '@/views/Parliamentarygroups.vue'
 import Parliamentarygroup from '@/views/Parliamentarygroup.vue'
 import Scanner from '@/views/Scanner.vue'
 import About from '@/views/About.vue'
@@ -108,11 +109,6 @@ const routes = [{
     }
   },
   {
-    path: "/dashboard",
-    name: "dashboard",
-    component: Dashboard
-  },
-  {
     path: "/topics",
     name: "topics",
     component: Topics
@@ -133,14 +129,14 @@ const routes = [{
     component: Deputy
   },
   {
+    path: "/parliamentarygroups",
+    name: "parliamentarygroups",
+    component: Parliamentarygroups
+  },
+  {
     path: "/parliamentarygroups/:id",
     name: "parliamentarygroup",
     component: Parliamentarygroup
-  },
-  {
-    path: "/scanner",
-    name: "scanner",
-    component: Scanner
   },
   {
     path: "/about",
