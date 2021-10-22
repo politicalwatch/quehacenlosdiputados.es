@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      groups: 'allParliamentaryGroupsWithGoverment',
+      groups: 'allParliamentaryGroups',
     }),
   },
   methods: {

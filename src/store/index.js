@@ -29,6 +29,9 @@ const getters = {
   allPlacesName(state) {
     return state.allPlaces.map(place => place.name)
   },
+  allParliamentaryGroups(state) {
+    return state.allParliamentaryGroups
+  },
   allParliamentaryGroupsWithGoverment(state) {
     return ['Gobierno'].concat(state.allParliamentaryGroups)
   },
