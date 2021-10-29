@@ -1,7 +1,7 @@
 <template>
   <form id="search-form" class="u-margin-bottom-4 u-border-bottom" role="form" @submit.prevent="getResults($event)">
     <div class="o-grid">
-      <div class="o-grid__col u-12 u-padding-bottom-4">
+      <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-select-label u-block">
           <label for="topic">Temática</label>
           <multiselect
@@ -14,25 +14,6 @@
             :options="topics.map(topic => topic.name)"
             :allow-empty="true"
             name="topic" id="topic" placeholder="Todos">
-          </multiselect>
-        </div>
-      </div>
-      <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
-        <div class="c-select-label u-block" :class="{ 'c-select-label--disabled' : !this.subtopics.length }">
-          <label for="subtopics">Subtema</label>
-          <multiselect
-            selectedLabel="Seleccionada"
-            selectLabel=""
-            deselectLabel="Pulsa para deseleccionar"
-            @select="addSubtopicToTagsFilter"
-            @remove="removeSubtopicToTagsFilter"
-            v-model="form.subtopics"
-            :multiple="true"
-            :options="subtopics"
-            :allow-empty="true"
-            :disabled="!this.subtopics.length"
-            :placeholder="this.subtopics.length ? 'Todos' : 'Selecciona previamente una temática'"
-            name="subtopics" id="subtopics" >
           </multiselect>
         </div>
       </div>
@@ -54,24 +35,16 @@
         </div>
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
-        <div class="c-select-label u-block">
-          <label for="author">Autor</label>
-          <multiselect
-            selectedLabel="Seleccionado"
-            selectLabel=""
-            deselectLabel="Pulsa para deseleccionar"
-            v-model="form.author"
-            :options="groups.map(group => group.name || group)"
-            :allow-empty="true"
-            name="author" id="author" placeholder="Todos">
-          </multiselect>
+        <div class="c-input-label u-block">
+          <label for="title">Título</label>
+          <input v-model="form.title" type="text" id="title" name="title" placeholder="Texto libre">
         </div>
-        <router-link
-          class="u-text-tbody2"
-          v-if="getParliamentaryGroupByName(form.author)"
-          :to="{ path: `/parliamentarygroups/${getParliamentaryGroupByName(form.author).id}` }">
-          ¿Quieres ver el perfil del {{ form.author }}?
-        </router-link>
+      </div>
+      <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
+        <div class="c-input-label u-block">
+          <label for="reference">Referencia</label>
+          <input v-model="form.reference" type="text" id="reference" name="reference" placeholder="Ej.: 121/000001">
+        </div>
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-select-label u-block">
@@ -91,6 +64,26 @@
           v-if="getDeputyByName(form.deputy)"
           :to="{ path: `/deputies/${getDeputyByName(form.deputy).id}` }">
           ¿Quieres ver el perfil de {{ form.deputy }}?
+        </router-link>
+      </div>
+      <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
+        <div class="c-select-label u-block">
+          <label for="author">Grupo</label>
+          <multiselect
+            selectedLabel="Seleccionado"
+            selectLabel=""
+            deselectLabel="Pulsa para deseleccionar"
+            v-model="form.author"
+            :options="groups.map(group => group.name || group)"
+            :allow-empty="true"
+            name="author" id="author" placeholder="Todos">
+          </multiselect>
+        </div>
+        <router-link
+          class="u-text-tbody2"
+          v-if="getParliamentaryGroupByName(form.author)"
+          :to="{ path: `/parliamentarygroups/${getParliamentaryGroupByName(form.author).id}` }">
+          ¿Quieres ver el perfil del {{ form.author }}?
         </router-link>
       </div>
     </div> <!-- /.o-grid -->
@@ -132,20 +125,6 @@
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-select-label u-block">
-          <label for="place">Lugar</label>
-          <multiselect
-            selectedLabel="Seleccionado"
-            selectLabel=""
-            deselectLabel="Pulsa para deseleccionar"
-            v-model="form.place"
-            :options="places"
-            :allow-empty="true"
-            name="place" id="place" placeholder="Cualquiera">
-          </multiselect>
-        </div>
-      </div>
-      <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
-        <div class="c-select-label u-block">
           <label for="type">Tipo</label>
           <multiselect
             selectedLabel="Seleccionado"
@@ -160,15 +139,17 @@
         </div>
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
-        <div class="c-input-label u-block">
-          <label for="reference">Referencia</label>
-          <input v-model="form.reference" type="text" id="reference" name="reference" placeholder="Ej.: 121/000001">
-        </div>
-      </div>
-      <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
-        <div class="c-input-label u-block">
-          <label for="title">Título</label>
-          <input v-model="form.title" type="text" id="title" name="title" placeholder="Nota: Se admiten expresiones regulares">
+        <div class="c-select-label u-block">
+          <label for="place">Lugar</label>
+          <multiselect
+            selectedLabel="Seleccionado"
+            selectLabel=""
+            deselectLabel="Pulsa para deseleccionar"
+            v-model="form.place"
+            :options="places"
+            :allow-empty="true"
+            name="place" id="place" placeholder="Cualquiera">
+          </multiselect>
         </div>
       </div>
     </div> <!-- /.o-grid -->
