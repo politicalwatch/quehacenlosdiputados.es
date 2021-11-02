@@ -13,7 +13,7 @@
             v-model="form.topic"
             :options="topics.map(topic => topic.name)"
             :allow-empty="true"
-            name="topic" id="topic" placeholder="Todos">
+            name="topic" id="topic" placeholder="Todas">
           </multiselect>
         </div>
       </div>
@@ -29,7 +29,7 @@
           :options="filteredTags"
           :allow-empty="true"
           :disabled="!this.filteredTags.length"
-          :placeholder="this.filteredTags.length ? 'Todos' : 'Selecciona previamente una temática'"
+          :placeholder="this.filteredTags.length ? 'Todas' : 'Selecciona previamente una temática'"
           name="tags" id="tags" >
         </multiselect>
         </div>
@@ -46,6 +46,43 @@
           <input v-model="form.reference" type="text" id="reference" name="reference" placeholder="Ej.: 121/000001">
         </div>
       </div>
+      <div class="o-grid__col u-12 u-4@sm u-padding-bottom-4">
+        <div class="c-datepicker-label u-block">
+          <label for="startdate">Desde</label>
+          <datepicker
+            :value="moment(this.form.startdate, 'YYYY-MM-DD').format('DD/MMM/YYYY')" @selected="selectStartDate"
+            @cleared="clearStartDate"
+            placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="startdate">
+          </datepicker>
+        </div>
+      </div>
+      <div class="o-grid__col u-12 u-4@sm u-padding-bottom-4">
+        <div class="c-datepicker-label u-block">
+          <label for="enddate">Hasta</label>
+          <datepicker
+            :value="moment(this.form.enddate, 'YYYY-MM-DD').format('DD/MMM/YYYY')"
+            @selected="selectEndDate"
+            @cleared="clearEndDate"
+            placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="enddate">
+          </datepicker>
+        </div>
+      </div>
+      <div class="o-grid__col u-12 u-4@sm u-padding-bottom-4">
+        <div class="c-select-label u-block">
+          <label for="status">Estado</label>
+          <multiselect
+            selectedLabel="Seleccionado"
+            selectLabel=""
+            deselectLabel="Pulsa para deseleccionar"
+            v-model="form.status"
+            :options="status"
+            :allow-empty="true"
+            name="status" id="status" placeholder="Cualquiera">
+          </multiselect>
+        </div>
+      </div>
+    </div> <!-- /.o-grid -->
+    <div class="o-grid" v-show="advanced">
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-select-label u-block">
           <label for="author_deputies">Diputado/a</label>
@@ -85,43 +122,6 @@
           :to="{ path: `/parliamentarygroups/${getParliamentaryGroupByName(form.author).id}` }">
           ¿Quieres ver el perfil del {{ form.author }}?
         </router-link>
-      </div>
-    </div> <!-- /.o-grid -->
-    <div class="o-grid" v-show="advanced">
-      <div class="o-grid__col u-12 u-4@sm u-padding-bottom-4">
-        <div class="c-datepicker-label u-block">
-          <label for="startdate">Desde</label>
-          <datepicker
-            :value="moment(this.form.startdate, 'YYYY-MM-DD').format('DD/MMM/YYYY')" @selected="selectStartDate"
-            @cleared="clearStartDate"
-            placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="startdate">
-          </datepicker>
-        </div>
-      </div>
-      <div class="o-grid__col u-12 u-4@sm u-padding-bottom-4">
-        <div class="c-datepicker-label u-block">
-          <label for="enddate">Hasta</label>
-          <datepicker
-            :value="moment(this.form.enddate, 'YYYY-MM-DD').format('DD/MMM/YYYY')"
-            @selected="selectEndDate"
-            @cleared="clearEndDate"
-            placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="enddate">
-          </datepicker>
-        </div>
-      </div>
-      <div class="o-grid__col u-12 u-4@sm u-padding-bottom-4">
-        <div class="c-select-label u-block">
-          <label for="status">Estado</label>
-          <multiselect
-            selectedLabel="Seleccionado"
-            selectLabel=""
-            deselectLabel="Pulsa para deseleccionar"
-            v-model="form.status"
-            :options="status"
-            :allow-empty="true"
-            name="status" id="status" placeholder="Cualquiera">
-          </multiselect>
-        </div>
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-select-label u-block">
