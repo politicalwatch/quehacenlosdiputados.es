@@ -36,8 +36,8 @@
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-input-label u-block">
-          <label for="title">Título</label>
-          <input v-model="form.title" type="text" id="title" name="title" placeholder="Texto libre">
+          <label for="text">Título y Contenido</label>
+          <input v-model="form.text" type="text" id="text" name="text" placeholder="Texto libre">
         </div>
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
@@ -199,7 +199,7 @@ export default {
       moment: moment,
       selectedSubtopics: [],
       filteredTags: [],
-      advanced: this.formData && (this.formData.startdate || this.formData.enddate || this.formData.status || this.formData.place || this.formData.type || this.formData.reference || this.formData.title),
+      advanced: this.formData && (this.formData.startdate || this.formData.enddate || this.formData.status || this.formData.place || this.formData.type || this.formData.reference || this.formData.text),
     }
   },
   computed: {
@@ -230,7 +230,7 @@ export default {
       this.form.reference =
       this.form.enddate =
       this.form.startdate =
-      this.form.title = '';
+      this.form.text = '';
     },
     getTypes: function() {
       const options = []
