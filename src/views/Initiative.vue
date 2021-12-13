@@ -13,16 +13,16 @@
       <div v-else>
         <div class="o-grid o-grid--between">
           <div class="o-grid__col u-12 u-8@md">
+            <h1 class="u-text-th4 u-margin-bottom-4">{{ initiative.title }}</h1>
+
             <div class="o-grid">
-              <div class="o-grid__col u-12 u-6@md">
-                <tipi-topic-pill v-if="initiative.tagged && initiative.tagged.length" class="u-margin-bottom-2" :topicsStyles="styles.topics" :topics="getTopics(initiative)" with-links/>
+              <div class="o-grid__col u-12 u-6@sm u-text-center u-text-left@sm">
+                <tipi-initiative-meta :initiative="initiative" link-text="Ver en el Congreso de los Diputados" />
               </div>
-              <div class="o-grid__col u-12 u-6@md u-text-right@md u-margin-bottom-2" v-if="initiative.related && initiative.related.length">
-                <a href="#related" class="c-button c-button--compact u-padding-left-0">Ver iniciativas relacionadas</a>
+              <div class="o-grid__col u-12 u-6@sm u-text-left u-text-center u-text-right@sm">
+                <tipi-congress-link :url="initiative.url"></tipi-congress-link>
               </div>
             </div>
-            <p class="u-color-secondary u-margin-bottom-1 u-margin-top-0">Actualizado {{ moment(initiative.updated).fromNow() }}</p>
-            <h1 class="u-text-th4 u-margin-bottom-4">{{ initiative.title }}</h1>
 
             <div class="o-grid u-padding-top-4 u-border-top u-border-bottom u-margin-bottom-4">
               <div class="o-grid__col o-grid__col--fill">
@@ -45,10 +45,6 @@
               </div>
           </div>
           <div class="o-grid__col u-12 u-3@md">
-            <div class="u-padding-bottom-4 u-border-bottom u-margin-bottom-4">
-              <tipi-initiative-meta :initiative="initiative" link-text="Ver en el Congreso de los Diputados" />
-            </div>
-
             <div class="u-padding-bottom-4 u-border-bottom u-margin-bottom-4">
               <TipiBarchart :result="initiative" :styles="styles" v-if="dataLoaded"></TipiBarchart>
               <span class="u-text-tbody2">Relación de esta iniciativa con nuestras temáticas <sup title="El gráfico muestra las temáticas relacionadas con la iniciativa y el grado de relación con cada una de ellas.">?</sup></span>
@@ -77,7 +73,7 @@
 
 <script>
 
-import { TipiHeader, TipiText, TipiTopics, TipiInitiativeMeta, TipiNeuron, TipiTopicPill, TipiResults, TipiLoader, TipiBarchart } from 'tipi-uikit'
+import { TipiHeader, TipiCongressLink, TipiIcon, TipiText, TipiTopics, TipiInitiativeMeta, TipiNeuron, TipiTopicPill, TipiResults, TipiLoader, TipiBarchart } from 'tipi-uikit'
 import api from '@/api';
 import config from '@/config';
 import { mapState } from 'vuex';
@@ -89,6 +85,8 @@ export default {
   name: 'initiative',
   components: {
     TipiHeader,
+    TipiCongressLink,
+    TipiIcon,
     TipiText,
     TipiTopics,
     TipiInitiativeMeta,
@@ -148,3 +146,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.c-initiative-meta, .c-congress-link {
+  display: inline-block;
+  margin-bottom: 37px;
+}
+</style>

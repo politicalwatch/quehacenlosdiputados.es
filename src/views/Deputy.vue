@@ -1,9 +1,11 @@
 <template>
   <div v-if="deputy" id="deputy" class="u-margin-bottom-10">
     <tipi-deputy v-if="deputy" :deputy="deputy" :parliamentaryGroup="parliamentarygroup">
-      <a v-if="deputy.hasOwnProperty('url')" :href="deputy.url" target="_blank"><tipi-icon icon="building" /> Ver en el Congreso</a>
       <a v-if="deputy.hasOwnProperty('email')" :href="`mailto:${deputy.email}`" target="_blank"><tipi-icon icon="mail" /> {{deputy.email}}</a>
       <a v-if="deputy.hasOwnProperty('twitter')" :href="deputy.twitter" target="_blank"><tipi-icon icon="twitter" /> @{{ deputy.twitter.split('/').reverse()[0] }}</a>
+      <div class="u-margin-top-2">
+        <tipi-congress-link v-if="deputy.hasOwnProperty('url')" :url="deputy.url"></tipi-congress-link>
+      </div>
     </tipi-deputy>
     <div class="o-container" v-if="!deputy.active">
       <tipi-message type="info" icon>
@@ -30,7 +32,7 @@
 
 <script>
 
-import { TipiHeader, TipiDeputy, TipiMessage, TipiResults, TipiIcon, TipiLoader } from 'tipi-uikit'
+import { TipiHeader, TipiCongressLink, TipiDeputy, TipiMessage, TipiResults, TipiIcon, TipiLoader } from 'tipi-uikit'
 import SaveAlert from '@/components/save-alert';
 import api from '@/api';
 import config from '@/config';
@@ -40,6 +42,7 @@ export default {
   name: 'deputy',
   components: {
     TipiHeader,
+    TipiCongressLink,
     TipiDeputy,
     TipiMessage,
     TipiResults,
