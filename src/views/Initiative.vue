@@ -35,7 +35,7 @@
                 <tipi-text meta="Registro" :value="moment(initiative.created).format('DD/MM/Y')" />
               </div>
             </div>
-            <tipi-topics class="u-hide u-block@md" meta="Temáticas tratadas" :topics="getTopics(initiative)" :tags="getTags(initiative)" :topicsStyles="styles.topics" />
+            <tipi-topics class="u-hide u-block@md" meta="Temáticas tratadas" :topics="getTopics()" :tags="getTags()" :topicsStyles="styles.topics" />
 
               <div class="o-grid u-margin-top-4 u-padding-top-4 u-border-top u-hide u-block@md" v-if="initiative.related && initiative.related.length">
                 <div class="o-grid__col o-grid__col--fill">
@@ -46,7 +46,7 @@
           </div>
           <div class="o-grid__col u-12 u-3@md">
             <div class="u-padding-bottom-4 u-border-bottom u-margin-bottom-4">
-              <TipiBarchart :result="initiative" :styles="styles" v-if="dataLoaded"></TipiBarchart>
+              <TipiBarchart :result="initiative" :styles="styles" :knowledgebase="knowledgebase" v-if="dataLoaded"></TipiBarchart>
               <span class="u-text-tbody2">Relación de esta iniciativa con nuestras temáticas <sup title="El gráfico muestra las temáticas relacionadas con la iniciativa y el grado de relación con cada una de ellas.">?</sup></span>
             </div>
             <div class="u-border-bottom u-margin-bottom-4">
@@ -56,7 +56,7 @@
           </div>
         </div>
         <div class="u-hide@md">
-          <tipi-topics meta="Temáticas tratadas" :topics="initiative.topics" :tags="initiative.tags" :topicsStyles="styles.topics" />
+          <tipi-topics meta="Temáticas tratadas" :topics="getTopics()" :tags="getTags()" :topicsStyles="styles.topics" />
 
             <div class="u-margin-top-4 u-padding-top-4 u-border-top" v-if="initiative.related && initiative.related.length">
               <h4 id="related" class="u-margin-bottom-4">Iniciativas relacionadas</h4>
@@ -101,6 +101,7 @@ export default {
       initiative: {},
       moment: moment,
       styles: config.STYLES,
+      knowledgebase: config.KNOWLEDGEBASE,
       loaded: false,
     }
   },
@@ -123,16 +124,16 @@ export default {
           this.loaded = true;
         });
     },
-    getTopics: function(initiative) {
+    getTopics: function() {
       let topics = []
-      for (const tagged of initiative['tagged']) {
+      for (const tagged of this.initiative['tagged']) {
         topics = topics.concat(tagged['topics'])
       }
       return topics
     },
-    getTags: function(initiative) {
+    getTags: function() {
       let tags = []
-      for (const tagged of initiative['tagged']) {
+      for (const tagged of this.initiative['tagged']) {
         tags = tags.concat(tagged['tags'])
       }
       return tags
