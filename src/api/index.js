@@ -207,6 +207,18 @@ export default {
       ].join('');
     }
   },
+  getLastdaysStats() {
+    return axios
+      .get(getEndpoint())
+      .then(response => response.data);
+
+    function getEndpoint() {
+      return [
+        config.URL,
+        '/stats/lastdays'
+      ].join('');
+    }
+  },
   getDeputiesRanking(topic, subtopic, limit = 5) {
     let params = {'topic': topic};
     if (subtopic) {
