@@ -1,6 +1,6 @@
 export default {
   SHORTNAME: process.env.VUE_APP_SHORTNAME || "tipi",
-  URL: process.env.VUE_APP_BACKEND_URL || "http://localhost:5000",
+  BACKEND_URL: process.env.VUE_APP_BACKEND_URL || "http://localhost:5000",
   GOOGLE_ANALYTICS: process.env.VUE_APP_GOOGLE_ANALYTICS || "XXXXXXXXXXXX",
   USE_ALERTS: process.env.VUE_APP_USE_ALERTS || false,
   KNOWLEDGEBASE: process.env.KNOWLEDGEBASE || 'tipiciudadano',

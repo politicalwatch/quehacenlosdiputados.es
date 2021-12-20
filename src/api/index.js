@@ -24,7 +24,7 @@ export default {
 
     function getEndpoint() {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/topics/'
       ].join('');
     }
@@ -34,7 +34,7 @@ export default {
 
     function getEndpoint(topicId) {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/topics/',
         topicId
       ].join('');
@@ -56,7 +56,7 @@ export default {
 
     function getEndpoint() {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/parliamentary-groups/'
       ].join('');
     }
@@ -66,7 +66,7 @@ export default {
 
     function getEndpoint(parliamentarygroupId) {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/parliamentary-groups/',
         parliamentarygroupId
       ].join('');
@@ -88,7 +88,7 @@ export default {
 
     function getEndpoint() {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/deputies/'
       ].join('');
     }
@@ -98,7 +98,7 @@ export default {
 
     function getEndpoint(deputyId) {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/deputies/',
         deputyId
       ].join('');
@@ -109,7 +109,7 @@ export default {
 
     function getEndpoint() {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/places/'
       ].join('');
     }
@@ -119,7 +119,7 @@ export default {
 
     function getEndpoint() {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/initiative-status/'
       ].join('');
     }
@@ -129,7 +129,7 @@ export default {
 
     function getEndpoint() {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/initiative-types/'
       ].join('');
     }
@@ -149,7 +149,7 @@ export default {
 
     function getEndpoint() {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/initiatives/'
       ].join('');
     }
@@ -161,7 +161,7 @@ export default {
 
     function getEndpoint(id) {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/initiatives/',
         id
       ].join('');
@@ -177,7 +177,7 @@ export default {
 
     function getEndpoint() {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/alerts'
       ].join('');
     }
@@ -189,7 +189,7 @@ export default {
 
     function getEndpoint(topicId) {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/topics/',
         topicId
       ].join('');
@@ -202,7 +202,7 @@ export default {
 
     function getEndpoint() {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/stats/overall'
       ].join('');
     }
@@ -214,7 +214,7 @@ export default {
 
     function getEndpoint() {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/stats/lastdays'
       ].join('');
     }
@@ -236,7 +236,7 @@ export default {
 
     function getEndpoint() {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/stats/deputies'
       ].join('');
     }
@@ -258,7 +258,7 @@ export default {
 
     function getEndpoint() {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/stats/parliamentarygroups'
       ].join('');
     }
@@ -280,7 +280,7 @@ export default {
 
     function getEndpoint() {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/stats/places'
       ].join('');
     }
@@ -298,7 +298,7 @@ export default {
 
     function getEndpoint() {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/tagger/'
       ].join('');
     }
@@ -311,7 +311,7 @@ export default {
 
     function getEndpoint(taskID) {
       return [
-        config.URL,
+        config.BACKEND_URL,
         '/tagger/result/',
         taskID
       ].join('');
@@ -319,7 +319,7 @@ export default {
   },
   proxy(url) {
     return [
-      config.URL,
+      config.BACKEND_URL,
       '/proxy?url=' + url
     ].join('');
   }
