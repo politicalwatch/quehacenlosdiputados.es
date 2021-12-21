@@ -322,5 +322,26 @@ export default {
       config.BACKEND_URL,
       '/proxy?url=' + url
     ].join('');
+  },
+  getHome() {
+    return axios.get(
+      getEndpoint()
+    )
+      .then(response => {
+        return response.data.length > 0 ? response.data[0] : null;
+      });
+
+    function getEndpoint() {
+      return [
+        config.HOMEBUILDER_URL,
+        '/homes'
+      ].join('');
+    }
+  },
+  getHomeResourceUrl(path) {
+      return [
+        config.HOMEBUILDER_URL,
+        path
+      ].join('');
   }
 };
