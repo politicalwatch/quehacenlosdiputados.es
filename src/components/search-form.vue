@@ -191,7 +191,7 @@
 <script>
 import Datepicker from 'vuejs-datepicker';
 import Multiselect from 'vue-multiselect'
-import { TipiIcon } from 'tipi-uikit';
+import { TipiIcon, Utils } from 'tipi-uikit';
 import api from '@/api'
 import { mapGetters, mapState } from 'vuex';
 // eslint-disable-next-line no-unused-vars
@@ -303,9 +303,9 @@ export default {
     getSubtopicsAndTags: function(topicID) {
       api.getTags(topicID)
         .then(tags => {
-          this.subtopics = [...new Set(tags.map(tag => tag.subtopic))];
+          this.subtopics = [...new Set(tags.map(tag => tag.subtopic))].sort(Utils.naturalSort);
           this.tags = tags;
-          this.filteredTags = this.tags.map(tag => tag.tag);
+          this.filteredTags = this.tags.map(tag => tag.tag).sort(Utils.naturalSort);
         })
         .catch(error => this.errors = error);
     },
@@ -313,7 +313,7 @@ export default {
       let filtered = (this.selectedSubtopics.length) ?
         (tag => this.selectedSubtopics.indexOf(tag.subtopic) !== -1)
         : (() => true);
-      this.filteredTags = this.tags.filter(filtered).map(tag => tag.tag);
+      this.filteredTags = this.tags.filter(filtered).map(tag => tag.tag).sort(Utils.naturalSort);
     },
     addSubtopicToTagsFilter: function(selectedSubtopic) {
       this.form.tags = [];
