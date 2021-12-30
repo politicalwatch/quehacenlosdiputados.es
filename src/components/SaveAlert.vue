@@ -11,7 +11,7 @@ import { TipiIcon } from 'tipi-uikit';
 
 
 export default {
-  name: "save-alert",
+  name: "SaveAlert",
   props: [
     'searchparams'
   ],

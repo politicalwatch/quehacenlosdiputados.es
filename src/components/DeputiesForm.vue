@@ -56,7 +56,7 @@ import Multiselect from 'vue-multiselect'
 import { watch, ref } from 'vue'
 
 export default {
-  name: 'deputiesForm',
+  name: 'DeputiesForm',
   components: {
     Multiselect,
   },

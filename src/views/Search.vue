@@ -4,7 +4,7 @@
 
       <tipi-header :title="'Buscar'" subtitle="Bucea en la actividad parlamentaria relacionada con las temáticas TIPI" />
 
-      <search-form :formData="this.data" @getResults="getResults" />
+      <initiatives-form :formData="this.data" @getResults="getResults" />
 
       <div class="o-grid o-grid--align-center u-margin-bottom-4" id="results">
         <div class="o-grid__col o-grid__col--fill">
@@ -33,8 +33,8 @@
 
 <script>
 import Vue from 'vue'
-import searchForm from '@/components/search-form';
-import SaveAlert from '@/components/save-alert';
+import InitiativesForm from '@/components/InitiativesForm';
+import SaveAlert from '@/components/SaveAlert';
 import config from '@/config'
 import api from '@/api'
 import { TipiHeader, TipiCsvDownload, TipiMessage, TipiResults, TipiSplash } from 'tipi-uikit'
@@ -46,13 +46,13 @@ const VueScrollTo = require('vue-scrollto');
 export default {
   name: 'search',
   components: {
-    TipiSplash,
     SaveAlert,
+    InitiativesForm,
+    TipiHeader,
+    TipiSplash,
     TipiResults,
     TipiMessage,
     TipiCsvDownload,
-    TipiHeader,
-    searchForm,
   },
   data: function() {
     return {

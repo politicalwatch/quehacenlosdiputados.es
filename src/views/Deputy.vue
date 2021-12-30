@@ -33,7 +33,7 @@
 <script>
 
 import { TipiHeader, TipiCongressLink, TipiDeputy, TipiMessage, TipiResults, TipiIcon, TipiLoader } from 'tipi-uikit'
-import SaveAlert from '@/components/save-alert';
+import SaveAlert from '@/components/SaveAlert';
 import api from '@/api';
 import config from '@/config';
 import { mapState } from 'vuex';

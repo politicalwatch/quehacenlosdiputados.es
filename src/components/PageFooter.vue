@@ -42,7 +42,7 @@
   import { TipiIcon } from 'tipi-uikit';
 
   export default {
-    name: "footer-block",
+    name: "FooterBlock",
     components: {
       CookieLaw,
       TipiIcon

@@ -10,7 +10,7 @@
 import { TipiHeader, TipiText } from 'tipi-uikit'
 import api from '@/api'
 import { mapGetters } from 'vuex';
-import DeputiesForm from '@/components/deputies-form';
+import DeputiesForm from '@/components/DeputiesForm';
 
 export default {
   name: 'deputies',

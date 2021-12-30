@@ -1,5 +1,5 @@
 <template>
-  <form id="search-form" class="u-margin-bottom-4 u-border-bottom" role="form" @submit.prevent="getResults($event)">
+  <form id="initiatives-form" class="u-margin-bottom-4 u-border-bottom" role="form" @submit.prevent="getResults($event)">
     <div class="o-grid">
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-select-label u-block">
@@ -181,7 +181,7 @@ import assign from "core-js/features/object/assign";
 const moment = require('moment');
 
 export default {
-  name: 'searchForm',
+  name: 'InitiativesForm',
   components: {
     Datepicker,
     Multiselect,

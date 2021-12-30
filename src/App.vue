@@ -4,7 +4,7 @@
       <div>
         <tipi-navbar pre-image="/img/yellow.png" :links="MENU" :logo="LOGO" />
           <router-view/>
-        <footer-block />
+        <page-footer />
       </div>
     </transition>
   </div>
@@ -12,7 +12,7 @@
 
 <script>
   import { TipiNavbar } from 'tipi-uikit'
-  import FooterBlock from '@/components/footer-block';
+  import PageFooter from '@/components/PageFooter';
   import config from '@/config';
   import { mapActions } from 'vuex';
 
@@ -20,7 +20,7 @@
     name: 'app',
     components: {
       TipiNavbar,
-      FooterBlock,
+      PageFooter,
     },
     data: function() {
       return {
