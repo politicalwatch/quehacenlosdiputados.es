@@ -88,7 +88,7 @@ export default {
       for (const deputy of this.deputies) {
         constituencies[deputy['constituency']] = deputy['constituency']
       }
-      return Object.keys(constituencies)
+      return Object.keys(constituencies).sort(Intl.Collator().compare);
     },
     preventSubmission: function(e) {
       e.preventDefault()
