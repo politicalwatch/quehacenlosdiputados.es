@@ -1,0 +1,49 @@
+.c-initiative-card {
+  @include tbody2;
+
+  border-bottom: 1px solid $neutral;
+  padding-bottom: rem($spacer-unit * 2);
+
+  &__topics {
+    margin-bottom: rem($spacer-unit * 2);
+  }
+
+  &__title {
+    @include tbody;
+
+    margin-bottom: rem($spacer-unit * 2);
+
+    a {
+      color: $secondary-dark;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__authors {
+    @include tbody2;
+
+    margin-bottom: rem($spacer-unit * 2);
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__label {
+    @include overline;
+
+    margin: 0;
+  }
+
+  &__date {
+    color: $secondary;
+  }
+
+  .c-initiative-meta {
+    margin-bottom: 0px;
+  }
+}

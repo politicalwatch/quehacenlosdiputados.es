@@ -1,7 +1,7 @@
 <template>
   <div id="parliamentarygroups" class="o-container o-section u-margin-bottom-10">
-    <tipi-header :title="'Grupos parlamentarios'" />
-      <tipi-text
+    <page-header :title="'Grupos parlamentarios'" />
+      <custom-text
           :value="allParliamentaryGroups"
           type="parliamentarygroup"
           :source="allParliamentaryGroups" />
@@ -9,14 +9,15 @@
 </template>
 
 <script>
-import { TipiHeader, TipiText } from 'tipi-uikit'
+import PageHeader from '@/components/PageHeader';
+import CustomText from '@/components/CustomText';
 import { mapState } from 'vuex';
 
 export default {
   name: 'parliamentarygroups',
   components: {
-    TipiHeader,
-    TipiText,
+    PageHeader,
+    CustomText,
   },
   data: function() {
     return {

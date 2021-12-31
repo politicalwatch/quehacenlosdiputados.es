@@ -1,0 +1,16 @@
+.c-congress-link {
+  font-weight: bold;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  .c-icon {
+    margin-right: 8px;
+
+    path {
+      fill: #ff6565;
+    }
+  }
+}

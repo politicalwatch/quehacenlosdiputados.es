@@ -4,7 +4,6 @@ import sha1 from 'js-sha1';
 import Home from '@/views/Home.vue'
 import Search from '@/views/Search.vue'
 import Initiative from '@/views/Initiative.vue'
-import Dashboard from '@/views/Dashboard.vue'
 import Topics from '@/views/Topics.vue'
 import Topic from '@/views/Topic.vue'
 import Deputy from '@/views/Deputy.vue'

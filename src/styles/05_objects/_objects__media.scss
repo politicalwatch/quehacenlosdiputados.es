@@ -1,0 +1,24 @@
+.o-media {
+  position: relative;
+  width: 100%;
+
+  &::before {
+    content: '';
+    display: block;
+  }
+
+  &--16x9 {
+
+    &::before {
+      padding-top: 56.25%;
+    }
+  }
+
+  &__embed {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+}

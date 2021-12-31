@@ -1,0 +1,28 @@
+$xs: 450px !default;
+$sm: 768px !default;
+$md: 992px !default;
+$lg: 1024px !default;
+$xl: 1200px !default;
+
+$xxs-max: $xs - 0.1 !default;
+$xs-max: $sm - 0.1 !default;
+$sm-max: $md - 0.1 !default;
+$md-max: $lg - 0.1 !default;
+$lg-max: $xl - 0.1 !default;
+
+$breakpoints: (
+  xs: $xs,
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xl: $xl
+) !default;
+
+$breakpoints-max: (
+  max-xs: $xs-max,
+  max-sm: $sm-max,
+  max-md: $md-max,
+  max-lg: $lg-max
+) !default;
+
+$breakpoint-class: '\\@' !default;

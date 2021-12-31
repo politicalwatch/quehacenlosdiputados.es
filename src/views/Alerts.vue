@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="alerts">
-      <tipi-header title="Sistema de alertas"/>
+      <page-header title="Sistema de alertas"/>
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
@@ -42,12 +42,12 @@
 
 <script>
 
-import { TipiHeader } from 'tipi-uikit';
+import PageHeader from '@/components/PageHeader';
 
 export default {
   name: 'alerts',
   components: {
-    TipiHeader,
+    PageHeader,
   },
 }
 </script>

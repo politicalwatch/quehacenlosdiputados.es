@@ -1,0 +1,10 @@
+.c-decorator {
+  width: 100%;
+  height: rem($decorator-mobile-height);
+  background-size: cover;
+  display: block;
+
+  @media (min-width: $md) {
+    height: rem($decorator-desktop-height);
+  }
+}

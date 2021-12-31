@@ -1,11 +1,11 @@
 <template>
   <div>
     <div id="scanner" class="o-container o-section u-margin-bottom-10">
-      <tipi-header title="Scanner"/>
+      <page-header title="Scanner"/>
 
         <div class="o-grid u-margin-bottom-4">
           <div class="o-grid__col u-12 u-6@sm">
-            <tipi-message type="info" icon><div v-html="'Abrimos nuestra tecnología al mundo para que puedas escanear y etiquetar cualquier tipo de texto de la misma manera que TiPi Ciudadano lo hace con la actividad parlamentaria española. Ya seas periodista, estudiante o te dediques a la investigación, ponemos a tu disposición nuestra base de conocimiento, compuesta por más de 3.000 términos relacionados con las 22 temáticas a las que TiPi da seguimiento.'"></div></tipi-message>
+            <message type="info" icon><div v-html="'Abrimos nuestra tecnología al mundo para que puedas escanear y etiquetar cualquier tipo de texto de la misma manera que TiPi Ciudadano lo hace con la actividad parlamentaria española. Ya seas periodista, estudiante o te dediques a la investigación, ponemos a tu disposición nuestra base de conocimiento, compuesta por más de 3.000 términos relacionados con las 22 temáticas a las que TiPi da seguimiento.'"></div></message>
           </div>
 
           <div class="o-grid__col u-12 u-6@sm">
@@ -24,24 +24,23 @@
 
         <div id="result" class="o-section o-grid">
           <div v-if="inProgress || errors" class="o-grid__col u-12">
-            <tipi-message v-if="errors" type="error" icon>Has sobrepasado el límite de escaneos por hora. Vuelve a intentarlo pasado un tiempo</tipi-message>
-            <tipi-loader v-if="inProgress" title="Escaneando resultados" :subtitle="subtitle" />
+            <message v-if="errors" type="error" icon>Has sobrepasado el límite de escaneos por hora. Vuelve a intentarlo pasado un tiempo</message>
+            <loader v-if="inProgress" title="Escaneando resultados" :subtitle="subtitle" />
           </div>
           <div class="o-grid__col u-12 result" v-if="result">
             <h4>Resultado del escáner:</h4>
-            <tipi-message v-if="!result.topics.length" type="error" icon>No hemos encontrado ninguna coincidencia entre tu texto y nuestras etiquetas.</tipi-message>
+            <message v-if="!result.topics.length" type="error" icon>No hemos encontrado ninguna coincidencia entre tu texto y nuestras etiquetas.</message>
             <div class="o-grid" v-else>
               <div class="o-grid__col u-12 u-7@sm">
-                <tipi-message type="info" icon>Si haces clic en cualquiera de las etiquetas relacionadas con tu texto podrás conocer además toda la actividad parlamentaria asociada con dicha etiqueta.</tipi-message >
-                <tipi-topics meta="Temáticas tratadas" :topics="result.topics" :tags="result.tags" :topicsStyles="styles.topics"/>
+                <message type="info" icon>Si haces clic en cualquiera de las etiquetas relacionadas con tu texto podrás conocer además toda la actividad parlamentaria asociada con dicha etiqueta.</message >
+                <topics-section meta="Temáticas tratadas" :topics="result.topics" :tags="result.tags" :topicsStyles="styles.topics"/>
               </div>
               <div class="o-grid__col u-12 u-5@sm">
-                  <tipi-message type="info" icon>Aquí tienes una relación visual de tu texto, para que de un primer vistazo veas conexiones interesantes.</tipi-message>
-                  <TipiBarchart :result="fakeInitiative" :styles="styles"></TipiBarchart>
+                  <message type="info" icon>Aquí tienes una relación visual de tu texto, para que de un primer vistazo veas conexiones interesantes.</message>
                   <span class="u-text-tbody2">Relación de este texto con nuestras temáticas <sup title="El gráfico muestra las temáticas relacionados con el texto y el grado de relación con cada una de ellas.">?</sup></span>
               </div>
               <div class="o-grid__col u-12 u-text-center u-margin-top-4 u-padding-top-4 u-border-top">
-                <tipi-csv-download
+                <csv-download
                   :initiatives="csvItems || []"
                   :csvItems="csvItems"
                   :csvFields="csvFields"
@@ -58,7 +57,11 @@
 </template>
 
 <script>
-  import { TipiMessage, TipiHeader, TipiLoader, TipiTopics, TipiCsvDownload, TipiBarchart } from 'tipi-uikit'
+import PageHeader from '@/components/PageHeader';
+import Message from '@/components/Message';
+import Loader from '@/components/Loader';
+import TopicsSection from '@/components/TopicsSection';
+import CsvDownload from  '@/components/CsvDownload';
 import config from '@/config';
 import api from '@/api';
 import { mapState } from 'vuex';
@@ -68,12 +71,11 @@ const VueScrollTo = require('vue-scrollto');
 export default {
   name: 'tagger',
   components: {
-    TipiHeader,
-    TipiTopics,
-    TipiCsvDownload,
-    TipiMessage,
-    TipiLoader,
-    TipiBarchart,
+    PageHeader,
+    TopicsSection,
+    CsvDownload,
+    Message,
+    Loader,
   },
   data() {
     return {

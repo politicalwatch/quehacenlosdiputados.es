@@ -1,6 +1,6 @@
 <template>
   <div v-if="loaded">
-    <tipi-topic-card :topic="topic" :topicsStyles="styles"/>
+    <topic-header :topic="topic" :topicsStyles="styles"/>
     <div class="alerts-block o-section u-margin-bottom-4" :style="`background-color: ${styles[topic.name].color};`" v-show="use_alerts">
       <div class="o-container">
         <save-alert :searchparams="{topic: topic.name}" />
@@ -9,18 +9,18 @@
     <div id="topic" class="o-container o-section">
       <div class="o-grid">
         <div class="o-grid__col u-12 u-4@sm" v-if="deputies">
-          <tipi-text meta="Diputadas/os más activas/os" :value="deputies" type="deputy" :source="allDeputies" />
+          <custom-text meta="Diputadas/os más activas/os" :value="deputies" type="deputy" :source="allDeputies" />
         </div>
         <div class="o-grid__col u-12 u-4@sm" v-if="parliamentarygroups">
-          <tipi-text meta="Grupos más activos" :value="parliamentarygroups" type="parliamentarygroup" :source="parliamentarygroups" />
+          <custom-text meta="Grupos más activos" :value="parliamentarygroups" type="parliamentarygroup" :source="parliamentarygroups" />
         </div>
         <div class="o-grid__col u-12 u-4@sm" v-if="places">
-          <tipi-text meta="Dónde se trata más" :value="places" />
+          <custom-text meta="Dónde se trata más" :value="places" />
         </div>
       </div>
       <div class="u-border-top u-padding-top-4" v-if="latestInitiatives">
         <h4 class="u-margin-bottom-4" v-if="latestInitiatives">Últimas iniciativas</h4>
-        <tipi-results layout="tiny" :initiatives="latestInitiatives" :topicsStyles="styles"/>
+        <results layout="tiny" :initiatives="latestInitiatives" :topicsStyles="styles"/>
       </div>
     </div>
     <div class="o-section o-section--double" v-if="latestInitiatives" :style="`background-color: ${styles[topic.name].color}`">
@@ -36,13 +36,17 @@
     </div>
   </div>
   <div v-else class="o-container o-section u-margin-bottom-10">
-    <tipi-loader title="Cargando datos" subtitle="Puede llevar unos segundos"/>
+    <loader title="Cargando datos" subtitle="Puede llevar unos segundos"/>
   </div>
 </template>
 
 <script>
 
-import { TipiHeader, TipiResults, TipiTopicCard, TipiText, TipiLoader } from 'tipi-uikit'
+import PageHeader from '@/components/PageHeader';
+import Results from '@/components/Results';
+import TopicHeader from '@/components/TopicHeader';
+import CustomText from '@/components/CustomText';
+import Loader from '@/components/Loader';
 import SaveAlert from '@/components/SaveAlert';
 import api from '@/api';
 import config from '@/config';
@@ -51,11 +55,11 @@ import { mapState } from 'vuex';
 export default {
   name: 'topic',
   components: {
-    TipiHeader,
-    TipiResults,
-    TipiTopicCard,
-    TipiText,
-    TipiLoader,
+    PageHeader,
+    Results,
+    TopicHeader,
+    CustomText,
+    Loader,
     SaveAlert
   },
   data: function() {

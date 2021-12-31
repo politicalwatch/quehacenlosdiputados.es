@@ -1,0 +1,30 @@
+$primary: #ff6565 !default;
+$black: #000 !default;
+$white: #fff !default;
+$neutral: #ddd !default;
+$secondary: #9cb0bf !default;
+$secondary-dark: #2d4252 !default;
+$secondary-light: #f4f6f8 !default;
+$primary-dark: #d64949 !default;
+$primary-light: #ffe0e0 !default;
+$error: #e81c1c !default;
+$completed: #4dca7f !default;
+
+$colors: (
+  "primary": $primary,
+  "primary-dark": $primary-dark,
+  "primary-light": $primary-light,
+  "secondary": $secondary,
+  "secondary-dark": $secondary-dark,
+  "secondary-light": $secondary-light,
+  "error": $error,
+  "white": $white,
+  "black": $black,
+  "completed": $completed,
+  "neutral": $neutral,
+) !default;
+
+$navbar-background-color: $white !default;
+$menu-link-color: $secondary-dark !default;
+$navbar-toogle-color: $secondary-dark !default;
+$topic-pill-color: $white !default;

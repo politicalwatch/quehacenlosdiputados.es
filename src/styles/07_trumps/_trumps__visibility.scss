@@ -1,0 +1,56 @@
+// Visibility
+.u-hide {
+  display: none !important;
+}
+
+@each $bp-key, $bp-value in $breakpoints {
+  @media (min-width: $bp-value) {
+
+    .u-hide#{$breakpoint-class}#{$bp-key} {
+      display: none !important;
+    }
+  }
+}
+
+.u-block {
+  display: block !important;
+}
+
+@each $bp-key, $bp-value in $breakpoints {
+  @media (min-width: $bp-value) {
+
+    .u-block#{$breakpoint-class}#{$bp-key} {
+      display: block !important;
+    }
+  }
+}
+
+.u-inline-block {
+  display: inline-block !important;
+}
+
+@each $bp-key, $bp-value in $breakpoints {
+  @media (min-width: $bp-value) {
+
+    .u-inline-block#{$breakpoint-class}#{$bp-key} {
+      display: inline-block !important;
+    }
+  }
+}
+
+.u-inline {
+  display: inline !important;
+}
+
+@each $bp-key, $bp-value in $breakpoints {
+  @media (min-width: $bp-value) {
+
+    .u-inline#{$breakpoint-class}#{$bp-key} {
+      display: inline !important;
+    }
+  }
+}
+
+.u-hide-overflow {
+  overflow: hidden;
+}

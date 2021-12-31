@@ -1,23 +1,24 @@
 <template>
   <div id="deputies" class="o-container o-section u-margin-bottom-10">
-    <tipi-header :title="'Lista de diputados'" subtitle="Busca entre todos los diputados para conocer qué hacen en el congreso" />
+    <page-header :title="'Lista de diputados'" subtitle="Busca entre todos los diputados para conocer qué hacen en el congreso" />
     <deputies-form :deputies="deputies" :groups="getGroupsLongNames()" @setFilters="setFilters"></deputies-form>
-    <tipi-text meta="Diputadas/os" :value="getFilteredDeputies()" type="deputy" :source="deputies" />
+    <custom-text meta="Diputadas/os" :value="getFilteredDeputies()" type="deputy" :source="deputies" />
   </div>
 </template>
 
 <script>
-import { TipiHeader, TipiText } from 'tipi-uikit'
+import DeputiesForm from '@/components/DeputiesForm';
+import PageHeader from '@/components/PageHeader';
+import CustomText from '@/components/CustomText';
 import api from '@/api'
 import { mapGetters } from 'vuex';
-import DeputiesForm from '@/components/DeputiesForm';
 
 export default {
   name: 'deputies',
   components: {
     DeputiesForm,
-    TipiHeader,
-    TipiText
+    PageHeader,
+    CustomText,
   },
   data: function() {
     return {

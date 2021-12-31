@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="legal-notice" class="o-container o-section u-margin-bottom-10">
-      <tipi-header title="Política de privacidad"/>
+      <page-header title="Política de privacidad"/>
         <div class="o-grid">
           <div class="o-grid__col u-8@sm u-offset-2@sm">
 
@@ -67,12 +67,12 @@ Email: coordinacion@unmundosalvadorsoler.org
 
 <script>
 
-  import { TipiHeader } from 'tipi-uikit';
+  import PageHeader from '@/components/PageHeader';
 
   export default {
       name: 'privacy-policy',
       components: {
-          TipiHeader,
+          PageHeader,
         },
     }
 </script>

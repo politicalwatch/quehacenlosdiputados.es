@@ -1,0 +1,11 @@
+.o-masonry {
+
+  &__item {
+    padding-bottom: rem($grid-gap);
+    width: 100%;
+
+    @media (min-width: $sm) {
+      width: 33%;
+    }
+  }
+}

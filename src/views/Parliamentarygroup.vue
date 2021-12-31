@@ -2,29 +2,29 @@
   <div>
 
     <div v-if="parliamentarygroup" id="group" class="o-container o-section u-margin-bottom-10">
-      <tipi-header v-if="parliamentarygroup" :title="parliamentarygroup.name"/>
+      <page-header v-if="parliamentarygroup" :title="parliamentarygroup.name"/>
       <div class="alerts-block u-margin-top-1" v-show="use_alerts">
         <save-alert :searchparams="{author: parliamentarygroup.name}" />
       </div>
       <h4 class="u-margin-bottom-4" v-if="latestInitiatives && latestInitiatives.length">Últimas iniciativas</h4>
-      <tipi-results layout="tiny" :initiatives="latestInitiatives" class="u-margin-bottom-4" :topicsStyles="topicsStyles"/>
+      <results layout="tiny" :initiatives="latestInitiatives" class="u-margin-bottom-4" :topicsStyles="topicsStyles"/>
 
       <h4 class="u-margin-bottom-4">Diputados/as</h4>
       <div class="o-grid">
         <div class="o-grid__col u-12 u-4@sm">
-          <tipi-text meta="" :value="this.dividedDeputies[0]" type="deputy" :source="allDeputies" hideGroup/>
+          <custom-text meta="" :value="this.dividedDeputies[0]" type="deputy" :source="allDeputies" hideGroup/>
         </div>
         <div class="o-grid__col u-12 u-4@sm">
-          <tipi-text meta="" :value="this.dividedDeputies[1]" type="deputy" :source="allDeputies" hideGroup/>
+          <custom-text meta="" :value="this.dividedDeputies[1]" type="deputy" :source="allDeputies" hideGroup/>
         </div>
         <div class="o-grid__col u-12 u-4@sm">
-          <tipi-text meta="" :value="this.dividedDeputies[2]" type="deputy" :source="allDeputies" hideGroup/>
+          <custom-text meta="" :value="this.dividedDeputies[2]" type="deputy" :source="allDeputies" hideGroup/>
         </div>
       </div>
     </div>
 
     <div v-else class="o-container o-section u-margin-bottom-10">
-      <tipi-loader title="Cargando datos" subtitle="Puede llevar unos segundos"/>
+      <loader title="Cargando datos" subtitle="Puede llevar unos segundos"/>
     </div>
 
   </div>
@@ -32,7 +32,10 @@
 
 <script>
 
-import { TipiHeader, TipiResults, TipiText, TipiLoader } from 'tipi-uikit'
+import PageHeader from '@/components/PageHeader';
+import Results from '@/components/Results'
+import CustomText from '@/components/CustomText';
+import Loader from '@/components/Loader';
 import SaveAlert from '@/components/SaveAlert';
 import api from '@/api';
 import config from '@/config'
@@ -41,10 +44,10 @@ import { mapGetters, mapState } from  'vuex';
 export default {
   name: 'parliamentarygroup',
   components: {
-    TipiHeader,
-    TipiResults,
-    TipiText,
-    TipiLoader,
+    PageHeader,
+    Results,
+    CustomText,
+    Loader,
     SaveAlert,
   },
   data: function() {

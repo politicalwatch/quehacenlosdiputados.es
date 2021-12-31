@@ -10,15 +10,15 @@
           </div>
           <div class="o-grid__col u-3@sm u-offset-2@sm">
             <p class="u-text-overline u-color-white">Colabora</p>
-            <tipi-icon icon="chevron-right" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="https://api.tipiciudadano.es" title="github.com/politicalwatch" target="_blank">API para desarrolladorxs</a>
+            <icon icon="chevron-right" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="https://api.tipiciudadano.es" title="github.com/politicalwatch" target="_blank">API para desarrolladorxs</a>
             <br>
-            <tipi-icon icon="github" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="https://github.com/politicalwatch/" title="github.com/politicalwatch" target="_blank">Código en Github</a>
+            <icon icon="github" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="https://github.com/politicalwatch/" title="github.com/politicalwatch" target="_blank">Código en Github</a>
           </div>
           <div class="o-grid__col u-3@sm">
             <p class="u-text-overline u-color-white">Contacta</p>
-            <tipi-icon icon="twitter" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="https://twitter.com/tipi_ciudadano" title="@TIPI_Ciudadano" target="_blank">@TIPI_Ciudadano</a>
+            <icon icon="twitter" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="https://twitter.com/tipi_ciudadano" title="@TIPI_Ciudadano" target="_blank">@TIPI_Ciudadano</a>
             <br>
-            <tipi-icon icon="mail" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="mailto:tipi@politicalwatch.es" title="tipi@politicalwatch.es" target="_blank">tipi@politicalwatch.es</a>
+            <icon icon="mail" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="mailto:tipi@politicalwatch.es" title="tipi@politicalwatch.es" target="_blank">tipi@politicalwatch.es</a>
           </div>
         </div>
         <div class="o-grid">
@@ -39,13 +39,13 @@
 
 <script>
   import CookieLaw from 'vue-cookie-law';
-  import { TipiIcon } from 'tipi-uikit';
+  import Icon from './Icon';
 
   export default {
-    name: "FooterBlock",
+    name: "PageFooter",
     components: {
       CookieLaw,
-      TipiIcon
+      Icon
     }
   }
 </script>

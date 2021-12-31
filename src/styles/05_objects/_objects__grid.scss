@@ -1,0 +1,57 @@
+.o-grid {
+  display: flex;
+  flex: 0 1 auto;
+  flex-flow: row wrap;
+  margin-left: -$grid-gap-single;
+  margin-right: -$grid-gap-single;
+
+  &__col {
+    flex: 0 0 auto;
+    max-width: 100%;
+    padding-left: rem($grid-gap-single);
+    padding-right: rem($grid-gap-single);
+
+    &--fill {
+      flex: 1 1 0;
+    }
+
+    &--right {
+      margin-left: auto;
+    }
+  }
+
+  &--nowrap {
+    flex-wrap: nowrap;
+  }
+
+  &--reverse {
+    flex-direction: row-reverse;
+  }
+
+  &--between {
+    justify-content: space-between;
+  }
+
+  &--center {
+    justify-content: center;
+  }
+
+  &--align-center {
+    align-items: center;
+  }
+
+  &--wide {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  &--no-gutters {
+    margin-left: 0;
+    margin-right: 0;
+
+    > .o-grid__col {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+}

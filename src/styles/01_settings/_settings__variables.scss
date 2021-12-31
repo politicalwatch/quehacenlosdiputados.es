@@ -1,0 +1,45 @@
+$base-radius: 4px;
+
+$o-container: 1120px !default;
+$o-container__gutter:               32px !default;
+$o-container__gutter-single:        $o-container__gutter/2 !default;
+$container-max: $o-container + $o-container__gutter !default;
+
+$grid-gap: 32px !default;
+$grid-gap-single: $grid-gap/2 !default;
+
+$spacer-unit: 8px !default;
+
+$grid-fractions: (
+  '1': 1/12,
+  '2': 2/12,
+  '2-5': 2/10,
+  '3': 3/12,
+  '4': 4/12,
+  '5': 5/12,
+  '6': 6/12,
+  '7': 7/12,
+  '8': 8/12,
+  '9': 9/12,
+  '10': 10/12,
+  '11': 11/12,
+  '12': 12/12
+) !default;
+
+$o-section-gap: $spacer-unit * 4 !default;
+$o-section-gap-lg: $o-section-gap !default;
+
+$percent-widths: (
+  15,
+  20,
+  25,
+  33,
+  40,
+  50
+) !default;
+
+$logo-mobile-width: 200px !default;
+$logo-desktop-width: 350px !default;
+$decorator-mobile-height: $spacer-unit !default;
+$decorator-desktop-height: $spacer-unit !default;
+$topic-pill-separator: 0 !default;

@@ -1,0 +1,37 @@
+.c-topic-link {
+
+  &__image-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: rem($spacer-unit * 2);
+    margin-bottom: rem($spacer-unit * 2);
+    transition: transform 0.3s ease;
+
+    &::after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  &__image {
+    max-width: 80%;
+    max-height: 80%;
+  }
+
+  &__name {
+    @include overline;
+
+    text-align: center;
+
+    a {
+      color: $secondary;
+      text-decoration: none;
+    }
+  }
+}

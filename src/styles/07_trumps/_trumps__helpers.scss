@@ -1,0 +1,17 @@
+//Position and align
+
+.u-relative {
+  position: relative !important;
+}
+
+.u-block-center {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@include text-aligns();
+
+// Margin and sizes
+@include margins();
+@include paddings();
+@include percent-widths();

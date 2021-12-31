@@ -2,7 +2,7 @@
   <div id="app">
     <transition name="fade" mode="out-in">
       <div>
-        <tipi-navbar pre-image="/img/yellow.png" :links="MENU" :logo="LOGO" />
+        <navbar pre-image="/img/yellow.png" :links="MENU" :logo="LOGO" />
           <router-view/>
         <page-footer />
       </div>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import { TipiNavbar } from 'tipi-uikit'
+  import Navbar from '@/components/Navbar'
   import PageFooter from '@/components/PageFooter';
   import config from '@/config';
   import { mapActions } from 'vuex';
@@ -19,7 +19,7 @@
   export default {
     name: 'app',
     components: {
-      TipiNavbar,
+      Navbar,
       PageFooter,
     },
     data: function() {

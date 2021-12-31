@@ -1,0 +1,29 @@
+.o-columns {
+
+  p,
+  li {
+    break-inside: avoid;
+  }
+
+  &--2 {
+    @media (min-width: $sm) {
+      column-gap: rem($grid-gap);
+      column-count: 2;
+    }
+  }
+
+  &--4 {
+    @media (min-width: $sm) {
+      column-gap: rem($grid-gap);
+      column-count: 2;
+    }
+
+    @media (min-width: $md) {
+      column-count: 3;
+    }
+
+    @media (min-width: $xl) {
+      column-count: 4;
+    }
+  }
+}

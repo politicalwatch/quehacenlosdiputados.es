@@ -1,13 +1,13 @@
 <template>
   <a class="c-button c-button--compact c-button--primary c-button--icon-right" href="#" @click.prevent="saveAlert">
-    Crea una alerta <tipi-icon class="c-icon--white" icon="bell" />
+    Crea una alerta <icon icon="bell" class="c-icon--white" />
   </a>
 </template>
 
 <script>
 import swal from 'sweetalert2';
 import api from '@/api';
-import { TipiIcon } from 'tipi-uikit';
+import Icon from './Icon';
 
 
 export default {
@@ -16,7 +16,7 @@ export default {
     'searchparams'
   ],
   components: {
-    TipiIcon,
+    Icon,
   },
   methods: {
     saveAlert: async function() {

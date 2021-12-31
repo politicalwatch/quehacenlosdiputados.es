@@ -1,0 +1,52 @@
+.c-menu {
+  @include th6;
+
+  color: $menu-link-color;
+  list-style: none;
+  text-align: center;
+  padding-top: rem($spacer-unit * 4);
+
+  @media (min-width: $md) {
+    @include tbody;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    text-align: left;
+    padding: 0 0 0 rem($spacer-unit * 4);
+    margin: 0;
+    justify-content: flex-end;
+  }
+
+  &__item {
+    margin-bottom: rem($spacer-unit * 2);
+
+    @media (min-width: $md) {
+      margin-bottom: 0;
+      padding: 0 rem($spacer-unit * 2);
+    }
+
+    &::before {
+      display: none;
+    }
+  }
+
+  &__link {
+    color: $menu-link-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary;
+      text-decoration: none;
+    }
+  }
+
+  &__icon {
+    margin-left: 5px;
+
+    & svg {
+      width: 10px;
+      height: 10px;
+    }
+  }
+}

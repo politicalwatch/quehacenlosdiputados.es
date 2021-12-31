@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="legal-notice" class="o-container o-section u-margin-bottom-10">
-      <tipi-header title="Aviso legal"/>
+      <page-header title="Aviso legal"/>
       <div class="o-grid">
         <div class="o-grid__col u-8@sm u-offset-2@sm">
           <p>TIPI Ciudadano es un proyecto de Political Watch que a, su vez, forma parte de la Fundación Salvador Soler (en adelante FSS).</p>
@@ -35,12 +35,12 @@ Email: coordinacion@unmundosalvadorsoler.org
 
 <script>
 
-  import { TipiHeader } from 'tipi-uikit';
+  import PageHeader from '@/components/PageHeader';
 
   export default {
       name: 'legal-notice',
       components: {
-        TipiHeader,
+        PageHeader,
       },
     }
 </script>

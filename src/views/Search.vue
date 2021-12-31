@@ -2,7 +2,7 @@
   <div>
     <div id="search" class="o-container o-section u-margin-bottom-10">
 
-      <tipi-header :title="'Buscar'" subtitle="Bucea en la actividad parlamentaria relacionada con las temáticas TIPI" />
+      <page-header :title="'Buscar'" subtitle="Bucea en la actividad parlamentaria relacionada con las temáticas TIPI" />
 
       <initiatives-form :formData="this.data" @getResults="getResults" />
 
@@ -11,7 +11,7 @@
           <h4 v-if="this.query_meta.page">{{ message.message }}</h4>
         </div>
         <div class="o-grid__col o-grid__col--right">
-          <tipi-csv-download
+          <csv-download
             :initiatives="initiatives || []"
             :csvItems="csvItems"
             :canDownloadCSV="canDownloadCSV"
@@ -20,7 +20,7 @@
           <save-alert :searchparams="data" v-show="use_alerts && this.query_meta.page" />
         </div>
       </div>
-      <tipi-results
+      <results
         :loadingResults="loadingResults"
         :initiatives="initiatives || []"
         :topicsStyles="topicsStyles"
@@ -32,13 +32,16 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import InitiativesForm from '@/components/InitiativesForm';
 import SaveAlert from '@/components/SaveAlert';
 import config from '@/config'
 import api from '@/api'
-import { TipiHeader, TipiCsvDownload, TipiMessage, TipiResults, TipiSplash } from 'tipi-uikit'
+import PageHeader from '@/components/PageHeader';
+import CsvDownload from '@/components/CsvDownload';
+import Message from '@/components/Message';
+import Results from '@/components/Results';
 import { mapGetters } from 'vuex';
+import Vue from 'vue'
 
 const qs = require('qs');
 const VueScrollTo = require('vue-scrollto');
@@ -48,11 +51,10 @@ export default {
   components: {
     SaveAlert,
     InitiativesForm,
-    TipiHeader,
-    TipiSplash,
-    TipiResults,
-    TipiMessage,
-    TipiCsvDownload,
+    PageHeader,
+    Results,
+    Message,
+    CsvDownload,
   },
   data: function() {
     return {

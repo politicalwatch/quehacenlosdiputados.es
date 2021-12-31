@@ -1,0 +1,20 @@
+body {
+  @include tbody;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: column;
+  min-height: calc(100vh - 30px);
+  color: $secondary-dark;
+
+  @media (min-width: $md) {
+    min-height: 100vh;
+  }
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}

@@ -1,0 +1,32 @@
+input {
+
+  &[type=text],
+  &[type=email],
+  &[type=password] {
+    @include tbody;
+
+    display: block;
+    width: 100%;
+    border: solid 1px $secondary;
+    padding: rem($spacer-unit * 2);
+
+    &::placeholder {
+      color: $secondary;
+    }
+  }
+}
+
+textarea {
+  @include tbody;
+
+  display: block;
+  width: 100%;
+  border: solid 1px $secondary;
+  padding: rem($spacer-unit * 2);
+  min-height: rem(160px);
+  resize: none;
+
+  &::placeholder {
+    color: $secondary;
+  }
+}

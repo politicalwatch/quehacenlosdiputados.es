@@ -1,0 +1,17 @@
+.c-icon {
+  @each $color-name, $color-value in $colors {
+
+    &--#{$color-name} {
+
+      path {
+        fill: $color-value !important;
+      }
+    }
+  }
+
+  &--type-less {
+    svg {
+      margin-bottom: 4px;
+    }
+  }
+}

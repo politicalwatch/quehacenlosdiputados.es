@@ -1,0 +1,312 @@
+/* GRID */
+@mixin offsets($fractions) {
+  @each $key, $value in $fractions {
+    $modifier: str-replace($key, '/', '\\/');
+    $offset-value: (($value * 100) * 1%);
+
+    .u-#{$modifier} {
+      flex-basis: $offset-value;
+      max-width: $offset-value;
+    }
+
+    .u-offset-#{$modifier} {
+      margin-left: $offset-value;
+    }
+  }
+
+  @each $bp-key, $bp-value in $breakpoints {
+    @media (min-width: $bp-value) {
+      @each $key, $value in $fractions {
+        $modifier: str-replace($key, '/', '\\/');
+        $offset-value: (($value * 100) * 1%);
+
+        .u-#{$modifier}#{$breakpoint-class}#{$bp-key} {
+          flex-basis: $offset-value;
+          max-width: $offset-value;
+        }
+
+        .u-offset-#{$modifier}#{$breakpoint-class}#{$bp-key} {
+          margin-left: $offset-value;
+        }
+      }
+    }
+  }
+}
+
+@mixin container_sizes($min, $max) {
+  @for $i from $min through $max {
+
+    &--#{$i} {
+      max-width: (($container-max - $o-container__gutter) / 12) * $i;
+    }
+  }
+}
+
+@mixin margins() {
+  @each $side in (left, top, bottom, right) {
+    @each $space in (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10) {
+
+      .u-margin-#{$side}-#{$space} {
+        margin-#{$side}: rem($spacer-unit * $space) !important;
+      }
+
+      @each $bp-key, $bp-value in $breakpoints {
+        @media (min-width: $bp-value) {
+
+          .u-margin-#{$side}-#{$space}#{$breakpoint-class}#{$bp-key} {
+            margin-#{$side}: rem($spacer-unit * $space) !important;
+          }
+        }
+      }
+    }
+  }
+
+  @each $space in (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10) {
+
+    .u-margin-#{$space} {
+      margin: rem($spacer-unit * $space) !important;
+    }
+
+    @each $bp-key, $bp-value in $breakpoints {
+      @media (min-width: $bp-value) {
+        .u-margin-#{$space}#{$breakpoint-class}#{$bp-key} {
+          margin: rem($spacer-unit * $space) !important;
+        }
+      }
+    }
+  }
+}
+
+@mixin paddings() {
+  @each $side in (left, top, bottom, right) {
+    @each $space in (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10) {
+
+      .u-padding-#{$side}-#{$space} {
+        padding-#{$side}: rem($spacer-unit * $space) !important;
+      }
+
+      @each $bp-key, $bp-value in $breakpoints {
+        @media (min-width: $bp-value) {
+
+          .u-padding-#{$side}-#{$space}#{$breakpoint-class}#{$bp-key} {
+            padding-#{$side}: rem($spacer-unit * $space) !important;
+          }
+        }
+      }
+    }
+  }
+
+  @each $space in (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10) {
+
+    .u-padding-#{$space} {
+      padding: rem($spacer-unit * $space) !important;
+    }
+
+    @each $bp-key, $bp-value in $breakpoints {
+      @media (min-width: $bp-value) {
+        .u-padding-#{$space}#{$breakpoint-class}#{$bp-key} {
+          padding: rem($spacer-unit * $space) !important;
+        }
+      }
+    }
+  }
+}
+
+@mixin percent-widths() {
+  @each $size in $percent-widths {
+
+    .u-w#{$size} {
+      width: $size + 0%;
+    }
+
+    @each $bp-key, $bp-value in $breakpoints {
+      @media (min-width: $bp-value) {
+
+        .u-w#{$size}#{$breakpoint-class}#{$bp-key} {
+          width: $size+0%;
+        }
+      }
+    }
+  }
+}
+
+//colors
+@mixin background-colors() {
+  @each $color-name, $color-value in $colors {
+
+    .u-bg-#{$color-name} {
+      background-color: $color-value !important;
+    }
+  }
+}
+
+@mixin text-colors() {
+  @each $color-name, $color-value in $colors {
+
+    .u-color-#{$color-name} {
+      color: $color-value !important;
+    }
+  }
+}
+
+//aligns
+@mixin text-aligns() {
+  @each $align in (left, right, center) {
+
+    .u-text-#{$align} {
+      text-align: $align;
+    }
+  }
+
+  @each $align in (left, right, center) {
+    @each $bp-key, $bp-value in $breakpoints {
+      @media (min-width: $bp-value) {
+
+        .u-text-#{$align}#{$breakpoint-class}#{$bp-key} {
+          text-align: $align;
+        }
+      }
+    }
+  }
+}
+
+//borders
+@mixin borders() {
+
+  .u-border {
+    border: 1px solid $neutral;
+  }
+
+  @each $side in (left, right, top, bottom) {
+
+    .u-border-#{$side} {
+      border-#{$side}: 1px solid $neutral;
+    }
+
+    @each $bp-key, $bp-value in $breakpoints {
+      @media (min-width: $bp-value) {
+
+        .u-border-#{$side}#{$breakpoint-class}#{$bp-key} {
+          border-#{$side}: 1px solid $neutral;
+        }
+      }
+    }
+  }
+}
+
+//Text styles
+@mixin th1 {
+  font-family: $font-primary;
+  font-size: rem(40px);
+  font-weight: 500;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 01rem;
+
+  @media (min-width: $md) {
+    font-size: rem(48px);
+    line-height: 1.17;
+  }
+}
+
+@mixin th2 {
+  font-family: $font-primary;
+  font-size: rem(32px);
+  line-height: 1.25;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 1rem;
+
+  @media (min-width: $md) {
+    font-size: rem(40px);
+    line-height: 1.2;
+  }
+}
+
+@mixin th3 {
+  font-family: $font-primary;
+  font-size: rem(24px);
+  line-height: 1.33;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 1rem;
+
+  @media (min-width: $md) {
+    font-size: rem(32px);
+    line-height: 1.25;
+  }
+}
+
+@mixin th4 {
+  font-family: $font-primary;
+  font-size: rem(20px);
+  line-height: 1.6;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 1rem;
+
+  @media (min-width: $md) {
+    font-size: rem(24px);
+    line-height: 1.33;
+  }
+}
+
+@mixin th5 {
+  font-family: $font-primary;
+  font-size: rem(18px);
+  line-height: 1.33;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 1rem;
+
+  @media (min-width: $md) {
+    font-size: rem(20px);
+    line-height: 1.2;
+  }
+}
+
+@mixin th6 {
+  font-family: $font-primary;
+  font-size: rem(16px);
+  line-height: 1.5;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 1rem;
+
+  @media (min-width: $md) {
+    font-size: rem(18px);
+    line-height: 1.33;
+  }
+}
+
+@mixin subtitle {
+  font-family: $font-primary;
+  font-size: rem(20px);
+  line-height: 1.2;
+  font-weight: 300;
+
+  @media (min-width: $md) {
+    font-size: rem(24px);
+    line-height: 1.33;
+  }
+}
+
+@mixin tbody {
+  font-family: $font-primary;
+  font-size: rem(16px);
+  line-height: 1.5;
+}
+
+@mixin tbody2 {
+  font-family: $font-primary;
+  font-size: rem(14px);
+  line-height: 1.71;
+}
+
+@mixin overline {
+  font-family: $font-primary;
+  font-size: rem(12px);
+  line-height: 1.33;
+  font-weight: 500;
+  text-transform: uppercase;
+}

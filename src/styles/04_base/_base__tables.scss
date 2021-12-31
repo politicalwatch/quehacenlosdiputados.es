@@ -1,0 +1,95 @@
+table {
+  width: 100%;
+  margin-bottom: rem($spacer-unit * 4);
+
+  @media (min-width: $md) {
+    border-collapse: collapse;
+  }
+
+  thead {
+
+    tr {
+      @media (min-width: $md) {
+        background-color: $secondary-dark;
+      }
+
+      th {
+        display: none;
+        visibility: hidden;
+
+        @media (min-width: $md) {
+          @include overline;
+
+          padding: rem($spacer-unit * 2);
+          color: $white;
+          display: table-cell;
+          visibility: visible;
+        }
+      }
+    }
+  }
+
+  tbody {
+
+    tr {
+      display: block;
+      margin-bottom: 1px;
+
+      @media (min-width: $md) {
+        display: table-row;
+      }
+
+      th,
+      td {
+        display: block;
+        padding: rem($spacer-unit) 0 0 0;
+
+        @media (min-width: $md) {
+          display: table-cell;
+          padding: rem($spacer-unit * 2);
+        }
+
+        &[data-label] {
+          position: relative;
+          background-color: $secondary-light;
+          display: flex;
+
+          @media (min-width: $md) {
+            display: table-cell;
+          }
+
+          &::before {
+            content: attr(data-label);
+            display: block;
+            min-width: 120px;
+            max-width: 33%;
+            font-weight: bold;
+            background-color: $secondary-dark;
+            color: $white;
+            padding: rem($spacer-unit) rem($spacer-unit) rem($spacer-unit) rem($spacer-unit * 2);
+            margin-top: rem(-$spacer-unit);
+            margin-right: rem($spacer-unit * 4);
+            word-break: break-all;
+
+            @media (min-width: $md) {
+              display: none;
+              content: "";
+            }
+          }
+        }
+      }
+
+      &:nth-child(even) {
+
+        th,
+        td {
+
+          &[data-label] {
+            background-color: $white;
+          }
+        }
+      }
+
+    }
+  }
+}

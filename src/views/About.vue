@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="about" class="o-container o-section u-margin-bottom-10">
-      <tipi-header title="Acerca"/>
+      <page-header title="Acerca"/>
       <div class="o-grid">
         <div class="o-grid__col u-8@sm u-offset-2@sm">
           <p><strong>TiPi Ciudadano</strong> es una herramienta on-line de transparencia, acceso a información y rendición de cuentas. Nacida desde la sociedad civil, está focalizada en el seguimiento de la toda la actividad parlamentaria española relacionada con la pobreza, la justicia social y el desarrollo sostenible.</p>
@@ -34,12 +34,12 @@
 
 <script>
 
-import { TipiHeader } from 'tipi-uikit';
+import PageHeader from '@/components/PageHeader';
 
 export default {
   name: 'about',
   components: {
-    TipiHeader,
+    PageHeader,
   },
 }
 </script>

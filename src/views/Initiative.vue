@@ -16,63 +16,66 @@
             <h1 class="u-text-th4 u-margin-bottom-4">{{ initiative.title }}</h1>
             <div class="o-grid">
               <div class="o-grid__col u-12 u-6@sm u-text-center u-text-left@sm">
-                <tipi-initiative-meta :initiative="initiative" />
+                <initiative-meta :initiative="initiative" />
               </div>
               <div class="o-grid__col u-12 u-6@sm u-text-left u-text-center u-text-right@sm">
-                <tipi-congress-link :url="initiative.url"></tipi-congress-link>
+                <congress-link :url="initiative.url"></congress-link>
               </div>
             </div>
 
             <div class="o-grid u-padding-top-4 u-border-top u-border-bottom u-margin-bottom-4">
               <div class="o-grid__col o-grid__col--fill">
-                <tipi-text meta="Tipo de acto parlamentario" :value="initiative.initiative_type_alt" />
+                <custom-text meta="Tipo de acto parlamentario" :value="initiative.initiative_type_alt" />
               </div>
               <div class="o-grid__col u-12 u-3@sm">
-                <tipi-text meta="Referencia" :value="initiative.reference" />
+                <custom-text meta="Referencia" :value="initiative.reference" />
               </div>
               <div class="o-grid__col u-12 u-3@sm">
-                <tipi-text meta="Registro" :value="moment(initiative.created).format('DD/MM/Y')" />
+                <custom-text meta="Registro" :value="moment(initiative.created).format('DD/MM/Y')" />
               </div>
             </div>
-            <tipi-topics class="u-hide u-block@md" meta="Temáticas tratadas" :topics="getTopics(initiative)" :tags="getTags(initiative)" :topicsStyles="styles.topics" />
+            <topics-section class="u-hide u-block@md" meta="Temáticas tratadas" :topics="getTopics(initiative)" :tags="getTags(initiative)" :topicsStyles="styles.topics" />
 
               <div class="o-grid u-margin-top-4 u-padding-top-4 u-border-top u-hide u-block@md" v-if="initiative.related && initiative.related.length">
                 <div class="o-grid__col o-grid__col--fill">
                   <h4 id="related" class="u-margin-bottom-4">Iniciativas relacionadas</h4>
-                  <tipi-results :initiatives="initiative.related" :topicsStyles="styles.topics"/>
+                  <results :initiatives="initiative.related" :topicsStyles="styles.topics"/>
                 </div>
               </div>
           </div>
           <div class="o-grid__col u-12 u-3@md">
-            <div class="u-padding-bottom-4 u-border-bottom u-margin-bottom-4">
-              <TipiBarchart :result="initiative" :styles="styles" v-if="dataLoaded"></TipiBarchart>
-              <span class="u-text-tbody2">Relación de esta iniciativa con nuestras temáticas <sup title="El gráfico muestra las temáticas relacionadas con la iniciativa y el grado de relación con cada una de ellas.">?</sup></span>
-            </div>
             <div class="u-border-bottom u-margin-bottom-4">
-              <tipi-text meta="Autor" :value="initiative.authors" type="parliamentarygroup" :source="allParliamentaryGroups" />
-                <tipi-text meta="Diputada/o" :value="initiative.deputies" type="deputy" :source="allDeputies" />
+              <custom-text meta="Autor" :value="initiative.authors" type="parliamentarygroup" :source="allParliamentaryGroups" />
+                <custom-text meta="Diputada/o" :value="initiative.deputies" type="deputy" :source="allDeputies" />
             </div>
           </div>
         </div>
         <div class="u-hide@md">
-          <tipi-topics meta="Temáticas tratadas" :topics="initiative.topics" :tags="initiative.tags" :topicsStyles="styles.topics" />
+          <topics-section meta="Temáticas tratadas" :topics="initiative.topics" :tags="initiative.tags" :topicsStyles="styles.topics" />
 
             <div class="u-margin-top-4 u-padding-top-4 u-border-top" v-if="initiative.related && initiative.related.length">
               <h4 id="related" class="u-margin-bottom-4">Iniciativas relacionadas</h4>
-              <tipi-results :initiatives="initiative.related" :topicsStyles="styles.topics"/>
+              <results :initiatives="initiative.related" :topicsStyles="styles.topics"/>
             </div>
         </div>
       </div>
     </div>
     <div v-else class="o-container o-section u-margin-bottom-10">
-      <tipi-loader title="Cargando datos" subtitle="Puede llevar unos segundos"/>
+      <loader title="Cargando datos" subtitle="Puede llevar unos segundos"/>
     </div>
   </div>
 </template>
 
 <script>
 
-import { TipiHeader, TipiCongressLink, TipiText, TipiTopics, TipiInitiativeMeta, TipiNeuron, TipiTopicPill, TipiResults, TipiLoader, TipiBarchart } from 'tipi-uikit'
+import PageHeader from '@/components/PageHeader';
+import CongressLink from '@/components/CongressLink';
+import CustomText from '@/components/CustomText';
+import TopicsSection from '@/components/TopicsSection';
+import InitiativeMeta from '@/components/InitiativeMeta';
+import TopicPill from '@/components/TopicPill';
+import Results from '@/components/Results';
+import Loader from '@/components/Loader';
 import api from '@/api';
 import config from '@/config';
 import { mapState } from 'vuex';
@@ -83,16 +86,14 @@ moment.locale('es');
 export default {
   name: 'initiative',
   components: {
-    TipiHeader,
-    TipiCongressLink,
-    TipiText,
-    TipiTopics,
-    TipiInitiativeMeta,
-    TipiNeuron,
-    TipiTopicPill,
-    TipiResults,
-    TipiBarchart,
-    TipiLoader,
+    PageHeader,
+    CongressLink,
+    CustomText,
+    TopicsSection,
+    InitiativeMeta,
+    TopicPill,
+    Results,
+    Loader,
   },
   data: function() {
     return {

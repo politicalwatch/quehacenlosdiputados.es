@@ -1,0 +1,178 @@
+.c-button {
+  appearance: none;
+  background-color: transparent;
+  padding: rem($spacer-unit * 2) rem($spacer-unit * 4);
+  border: 0;
+  color: $secondary-dark;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+
+  .c-icon {
+    position: relative;
+    top: 2px;
+
+    path {
+      fill: $secondary-dark;
+    }
+  }
+
+  &:hover {
+    color: $primary;
+    text-decoration: none;
+
+    .c-icon {
+
+      path {
+        fill: $primary;
+      }
+    }
+  }
+
+  &.disabled,
+  &[disabled] {
+    color: $secondary;
+    pointer-events: none;
+
+    .c-icon {
+
+      path {
+        fill: $secondary;
+      }
+    }
+  }
+
+  &--primary {
+    background-color: $primary;
+    color: $white;
+    border-radius: 10px;
+
+    &:hover {
+      color: $white;
+      background-color: $primary-dark;
+      text-decoration: none;
+
+      .c-icon {
+
+        path {
+          fill: $white;
+        }
+      }
+    }
+
+    &.disabled,
+    &[disabled] {
+      color: $secondary;
+      background-color: $secondary-light;
+
+      .c-icon {
+
+        path {
+          fill: $secondary;
+        }
+      }
+    }
+
+    .c-icon {
+
+      path {
+        fill: $white;
+      }
+    }
+  }
+
+  &--secondary {
+    background-color: $secondary;
+    color: $white;
+
+    &:hover {
+      color: $white;
+      background-color: $secondary-dark;
+      text-decoration: none;
+
+      .c-icon {
+
+        path {
+          fill: $secondary;
+        }
+      }
+    }
+
+    &.disabled,
+    &[disabled] {
+      color: $secondary;
+      background-color: $secondary-light;
+
+      .c-icon {
+
+        path {
+          fill: $secondary;
+        }
+      }
+    }
+  }
+
+  &--compact {
+    @include tbody2;
+
+    border-radius: 5px;
+    padding: rem($spacer-unit) rem($spacer-unit * 2);
+  }
+
+  &--outline {
+    background-color: transparent;
+    border: 2px solid $white;
+    color: $white;
+
+    .c-icon {
+
+      path {
+        fill: $white;
+      }
+    }
+
+    &:hover {
+      color: $secondary-dark;
+      background-color: $white;
+      text-decoration: none;
+
+      .c-icon {
+
+        path {
+          fill: $secondary-dark;
+        }
+      }
+    }
+
+    &.disabled,
+    &[disabled] {
+      color: $secondary;
+      border-color: $secondary;
+
+      .c-icon {
+
+        path {
+          fill: $secondary;
+        }
+      }
+    }
+  }
+
+  &--icon {
+
+    &-left {
+
+      .c-icon {
+        margin-right: rem($spacer-unit);
+      }
+    }
+
+    &-right {
+
+      .c-icon {
+        margin-left: rem($spacer-unit);
+      }
+    }
+  }
+}

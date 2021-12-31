@@ -156,7 +156,7 @@
     <div class="o-grid">
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <a href="#" class="c-button u-padding-left-0" @click.prevent="toggleAdvanced">
-          <tipi-icon icon="advanced" />
+          <icon icon="advanced" />
           <span v-if="!advanced">Mostrar búsqueda avanzada</span>
           <span v-else>Ocultar búsqueda avanzada</span>
         </a>
@@ -172,7 +172,8 @@
 <script>
 import Datepicker from 'vuejs-datepicker';
 import Multiselect from 'vue-multiselect'
-import { TipiIcon, Utils } from 'tipi-uikit';
+import Icon from './Icon';
+import * as Utils from '@/utils';
 import api from '@/api'
 import { mapGetters, mapState } from 'vuex';
 // eslint-disable-next-line no-unused-vars
@@ -185,7 +186,7 @@ export default {
   components: {
     Datepicker,
     Multiselect,
-    TipiIcon,
+    Icon,
   },
   props: {
     formData: Object,

@@ -9,7 +9,7 @@
       </figure>
       <div class="o-section" v-if="relatedInitiatives.length">
         <h4>Iniciativas relacionadas</h4>
-        <tipi-results :initiatives="relatedInitiatives" class="u-margin-bottom-4" :topicsStyles="topicsStyles"/>
+        <results :initiatives="relatedInitiatives" class="u-margin-bottom-4" :topicsStyles="topicsStyles"/>
         <a :href="home.RelatedInitiativesSearch">Más iniciativas</a>
       </div>
     </div>
@@ -26,14 +26,14 @@
 
 <script>
 
-  import { TipiHeader, TipiResults, TipiText, TipiLoader } from 'tipi-uikit'
-  import config from '@/config'
+  import Results from '@/components/Results';
+  import config from '@/config';
   import api from '@/api';
 
   export default {
       name: 'home',
       components: {
-          TipiResults
+          Results,
         },
       data: function() {
           return {
