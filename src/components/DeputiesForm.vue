@@ -53,7 +53,6 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
-import { watch, ref } from 'vue'
 
 export default {
   name: 'DeputiesForm',
