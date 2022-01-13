@@ -97,7 +97,6 @@ export default {
         .then(response => {
           this.deputies = response;
           this.deputies.forEach((deputy, index) => {
-            let foundDeputy = this.allDeputies.find(allD => allD.name === deputy._id );
             this.deputies[index] = this.deputies[index]._id;
           });
         })
