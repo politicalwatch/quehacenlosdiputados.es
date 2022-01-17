@@ -4,9 +4,9 @@
 
       <page-header :title="'Buscar'" subtitle="Bucea en la actividad parlamentaria relacionada con las temáticas TIPI" />
 
-      <initiatives-form :formData="this.data" @getResults="getResults" />
+      <initiatives-form :formData="this.data" @getResults="getResults" @clearInitiatives="clearInitiatives" />
 
-      <div class="o-grid o-grid--align-center u-margin-bottom-4" id="results">
+        <div class="o-grid o-grid--align-center u-margin-bottom-4" id="results" v-if="initiatives.length > 0">
         <div class="o-grid__col o-grid__col--fill">
           <h4 v-if="this.query_meta.page">{{ message.message }}</h4>
         </div>
@@ -26,6 +26,7 @@
         :topicsStyles="topicsStyles"
         :queryMeta="query_meta"
         @loadMore="loadMore"
+        v-if="initiatives.length > 0"
       />
     </div>
   </div>
@@ -137,6 +138,9 @@ export default {
               })
           })
          .catch(error => this.errors = error);
+    },
+    clearInitiatives: function(event) {
+        this.initiatives = [];
     },
     loadMore: function() {
       let node = document.querySelectorAll('.c-initiative-card');

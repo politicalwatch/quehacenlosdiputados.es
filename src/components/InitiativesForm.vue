@@ -162,7 +162,7 @@
         </a>
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4 u-text-right@sm">
-        <button class="c-button u-padding-left-0 u-margin-right-2" @click.prevent="cleanForm">Limpiar búsqueda</button>
+        <button class="c-button u-padding-left-0 u-margin-right-2" @click.prevent="clearInitiatives">Limpiar búsqueda</button>
         <button class="c-button c-button--primary" type="submit">Buscar</button>
       </div>
     </div>
@@ -309,6 +309,10 @@ export default {
     },
     getResults: function(event) {
       this.$emit('getResults', event, this.form);
+    },
+    clearInitiatives: function(event) {
+      this.cleanForm();
+      this.$emit('clearInitiatives', event);
     },
     prepareForm: function() {
       if (this.form.topic) {
