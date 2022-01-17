@@ -26,7 +26,7 @@ const routes = [{
     name: "home",
     component: Home,
     meta: {
-      title: 'Home - TIPI Ciudadano',
+      title: 'Home - Qué hacen los diputados',
       metaTags: [
         {
           name: 'description',
@@ -44,11 +44,11 @@ const routes = [{
     }
   },
   {
-    path: "/search",
+    path: "/buscar",
     name: "search",
     component: Search,
     meta: {
-      title: 'Buscar - TIPI Ciudadano',
+      title: 'Buscar - Qué hacen los diputados',
       metaTags: [
         {
           name: 'description',
@@ -66,11 +66,11 @@ const routes = [{
     }
   },
   {
-    path: "/results/:data?",
+    path: "/iniciativas/:data?",
     name: "results",
     component: Search,
     meta: {
-      title: 'Resultados - TIPI Ciudadano',
+      title: 'Iniciativas - Qué hacen los diputados',
       metaTags: [{
           name: 'description',
           content: 'Test Resultados'
@@ -84,11 +84,11 @@ const routes = [{
     }
   },
   {
-    path: "/initiatives/:id",
+    path: "/iniciativa/:id",
     name: "initiative",
     component: Initiative,
     meta: {
-      title: 'Iniciativa - TIPI Ciudadano',
+      title: 'Iniciativa - Qué hacen los diputados',
       metaTags: [
         {
           name: 'description',
@@ -106,57 +106,57 @@ const routes = [{
     }
   },
   {
-    path: "/topics",
+    path: "/politicas",
     name: "topics",
     component: Topics
   },
   {
-    path: "/topics/:id",
+    path: "/politicas/:id",
     name: "topic",
     component: Topic
   },
   {
-    path: "/deputies",
+    path: "/diputados",
     name: "deputies",
     component: Deputies
   },
   {
-    path: "/deputies/:id",
+    path: "/diputados/:id",
     name: "deputy",
     component: Deputy
   },
   {
-    path: "/parliamentarygroups",
+    path: "/grupos",
     name: "parliamentarygroups",
     component: Parliamentarygroups
   },
   {
-    path: "/parliamentarygroups/:id",
+    path: "/grupos/:id",
     name: "parliamentarygroup",
     component: Parliamentarygroup
   },
   {
-    path: "/about",
+    path: "/acerca",
     name: "about",
     component: About
   },
   {
-    path: "/legal-notice",
+    path: "/aviso-legal",
     name: "legalnotice",
     component: LegalNotice
   },
   {
-    path: "/privacy-policy",
+    path: "/politica-de-privacidad",
     name: "privacypolicy",
     component: PrivacyPolicy
   },
   {
-    path: "/cookie-policy",
+    path: "/politica-de-cookies",
     name: "cookiepolicy",
     component: CookiePolicy
   },
   {
-    path: "/alerts",
+    path: "/alertas",
     name: "alerts",
     component: Alerts
   },
