@@ -13,7 +13,6 @@ import About from '@/views/About.vue'
 import LegalNotice from '@/views/LegalNotice.vue'
 import PrivacyPolicy from '@/views/PrivacyPolicy.vue'
 import CookiePolicy from '@/views/CookiePolicy.vue'
-import Alerts from '@/views/Alerts.vue'
 import Page404 from '@/views/Page404.vue'
 import config from '@/config';
 // eslint-disable-next-line no-unused-vars
@@ -154,11 +153,6 @@ const routes = [{
     path: "/politica-de-cookies",
     name: "cookiepolicy",
     component: CookiePolicy
-  },
-  {
-    path: "/alertas",
-    name: "alerts",
-    component: Alerts
   },
   {
     path: "/*",

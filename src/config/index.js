@@ -23,16 +23,6 @@ export default {
       condition: true
     },
     {
-      route: "topics",
-      name: "Temáticas",
-      condition: false
-    },
-    {
-      route: "alerts",
-      name: "Alertas",
-      condition: false
-    },
-    {
       route: "about",
       name: "Acerca",
       condition: true
