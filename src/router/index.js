@@ -65,7 +65,7 @@ const routes = [{
     }
   },
   {
-    path: "/iniciativas/:data?",
+    path: "/resultados/:data?",
     name: "results",
     component: Search,
     meta: {
@@ -83,7 +83,7 @@ const routes = [{
     }
   },
   {
-    path: "/iniciativa/:id",
+    path: "/iniciativas/:id",
     name: "initiative",
     component: Initiative,
     meta: {
