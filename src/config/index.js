@@ -4,7 +4,7 @@ export default {
   HOMEBUILDER_URL: process.env.VUE_APP_HOMEBUILDER_URL || "https://homebuilder.quehacenlosdiputados.es",
   GOOGLE_ANALYTICS: process.env.VUE_APP_GOOGLE_ANALYTICS || "XXXXXXXXXXXX",
   USE_ALERTS: process.env.VUE_APP_USE_ALERTS || false,
-  KNOWLEDGEBASE: process.env.KNOWLEDGEBASE || 'tipiciudadano',
+  KNOWLEDGEBASE: process.env.KNOWLEDGEBASE || 'politicas',
   SCANNER_HELPTEXT: process.env.VUE_APP_SCANNER_HELPTEXT || "",
   MENU: [
     {
