@@ -32,8 +32,9 @@
   }
 
   &__link {
-    color: $menu-link-color;
+    color: $black;
     text-decoration: none;
+    text-transform: uppercase;
 
     &:hover {
       color: $primary;

@@ -8,7 +8,7 @@ $container-max: $o-container + $o-container__gutter !default;
 $grid-gap: 32px !default;
 $grid-gap-single: $grid-gap/2 !default;
 
-$spacer-unit: 8px !default;
+$spacer-unit: 16px !default;
 
 $grid-fractions: (
   '1': 1/12,

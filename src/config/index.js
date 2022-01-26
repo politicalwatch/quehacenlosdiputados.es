@@ -24,7 +24,7 @@ export default {
     },
     {
       route: "about",
-      name: "Acerca",
+      name: "Manifiesto",
       condition: true
     }
   ],
