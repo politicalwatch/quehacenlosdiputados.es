@@ -232,6 +232,7 @@ export default {
       this.form.enddate =
       this.form.startdate =
       this.form.text = '';
+      this.clearSubtopicsAndTags();
     },
     getTypes: function() {
       const options = []
