@@ -1,31 +1,41 @@
 <template>
   <div>
     <div id="about" class="o-container o-section u-margin-bottom-10">
-      <page-header title="Acerca"/>
       <div class="o-grid">
-        <div class="o-grid__col u-8@sm u-offset-2@sm">
-          <p><strong>TiPi Ciudadano</strong> es una herramienta on-line de transparencia, acceso a información y rendición de cuentas. Nacida desde la sociedad civil, está focalizada en el seguimiento de la toda la actividad parlamentaria española relacionada con la pobreza, la justicia social y el desarrollo sostenible.</p>
-            <h4>Objetivos de TiPi Ciudadano</h4>
-            <p>El objetivo último de TiPi es promover políticas públicas orientadas a la lucha contra la pobreza y a la promoción de la justicia social y el desarrollo sostenible. Para ello, dos ingredientes son imprescindibles: una ciudadanía activa, informada y exigente y una clase política responsable y sometida al escrutinio público.</p>
-            <p>Partiendo de esta visión, TiPi se propone tres objetivos concretos:</p>
-            <ul>
-              <li>Ofrecer a la sociedad civil española una herramienta que fortalezca su capacidad para participar e incidir en los procesos de toma de decisión política.</li>
-              <li>Fomentar un debate público informado sobre la pobreza, la justicia social y el desarrollo sostenible.</li>
-              <li>Generar un incentivo a las buenas prácticas políticas a través del acceso a la información y la rendición de cuentas.</li>
-            </ul>
-            <h4>¿Qué ofrece TiPi Ciudadano?</h4>
-            <p>TiPi está diseñada para responder a las necesidades específicas de los usuarios, ya sean ciudadanos, periodistas, movimientos sociales o representantes políticos. Para ello:</p>
-            <ul>
-              <li>Escanea toda la actividad política del Congreso de los Diputados y la clasifica automáticamente según su relación con alguna de las 21 áreas temáticas prioritarias para la pobreza, la justicia social y el desarrollo sostenible.</li>
-              <li>Clasifica la actividad parlamentaria a través de más de 3000 palabras clave propuestas por especialistas y organizaciones expertas en cada una de las temáticas.</li>
-              <li>Dispone de un buscador con el que el usuario puede afinar su búsqueda en base a múltiples criterios (autor, fecha, tema, palabra clave, etc.).</li>
-              <li>Ofrece un sistema personalizado de alertas que permite al usuario estar al día sobre las novedades políticas de sus temáticas de interés.</li>
-              <li>Permite el acceso y descarga libre de toda la información disponible.</li>
-            </ul>
-            <h4>¿Quiénes somos?</h4>
-            <p>TiPi es un proyecto promovido, financiado y ejecutado por Political Watch, una organización española especializada en el análisis de políticas públicas, en la coherencia de políticas para el desarrollo y en proyectos de transparencia, rendición de cuentas y participación ciudadana.</p>
-            <p>La primera versión de TiPi (mayo 2014 - septiembre 2015) fue financiada por el Programa de Ciudadanía Activa de los EEA Grants y tuvo como socios a UNICEF-comité español, EAPN España, EAPN Castilla la Mancha y Fundación porCausa.</p>
-            <p>Political Watch es también la organización impulsora del <a href="https://ciecode.es/political-watch/proyecto-avizor/" target="_blank">Proyecto Avizor</a>, socia fundadora de <a href="http://www.poletika.org/" target="_blank">Polétika</a>, pertenece a la Red Española de Estudios de Desarrollo (<a href="http://www.reedes.es/" target="_blank">REEDES</a>) y a la <a href="http://www.proacceso.org/" target="_blank">Coalición ProAcceso</a> y ha publicado <a href="https://ciecode.es/investigacion/" target="_blank">numerosos informes</a> sobre coherencia de políticas, comercio y desarrollo, transparencia y ciudadanía activa.</p>
+        <div class="o-grid__col u-4">
+          <page-header title="Acerca"/>
+        </div>
+        <div class="o-grid__col u-8">
+          <h2>Acortando distancias entre la ciudadanía y sus representantes políticos en el congreso de los diputados de España desde 2011.</h2>
+          <h3>Orígenes</h3>
+          <p>Qué Hacen Los Diputados (QHLD) es un proyecto que nace en 2011 de la mano de un equipo multidisciplinar de desarrolladores y periodistas. En sus inicios, la motivación del proyecto era “ayudar a saber qué hacen los actuales representantes políticos'' brindando información a la ciudadanía de manera sencilla para que “pudieran implicarse en el proceso legislativo”. Sin embargo, el proyecto quedó inactivo en 2018 debido a otros compromisos de su equipo promotor.</p>
+          <h3>Renovación de QHLD</h3>
+          <p>A principios de 2021, Political Watch se reunió con sus fundadoras para ofrecerse a la reactivación de QHLD. El alineamiento resultó inmediato, ya que desde nuestro think-and-do tank también hemos trabajado por más de 10 años herramientas de seguimiento parlamentario como Proyecto Avizor, TIPI Ciudadano o Parlamento 2030. En dicha reunión se cedieron los derechos y el nombre del proyecto a Political Watch, que a su vez decidió unificar toda la experiencia del proyecto previo a las innovaciones realizadas en sus herramientas de seguimiento parlamentario y así lanzar esta nueva plataforma mejorada de QHLD. La misma contiene lo mejor de sus versiones previas y muchas funcionalidades más para cumplir con sus objetivos de promoción de la rendición de cuentas del parlamento y sus parlamentarios y con ella acortando las distancias entre la ciudadanía y sus representantes políticos.</p>
+          <h3>Motivaciones</h3>
+          <p>El proyecto pretende responder a una serie de cuestionamientos en relación con el trabajo de las y los diputados en el Congreso:</p>
+          <ul>
+            <li>¿Cómo votan las y los diputados?</li>
+            <li>¿Qué se está haciendo en relación con el control y la orientación al Gobierno?</li>
+            <li>¿Qué leyes se están debatiendo en este momento?</li>
+            <li>¿Qué tipos de iniciativas son las más comunes?</li>
+            <li>¿Cómo contribuyen las iniciativas en marcha a luchar contra las problemáticas sociales, económicas y medioambientales?</li>
+            <li>¿Quiénes son las y los diputados más activos o influyentes en diferentes políticas?</li>
+            <li>¿Cuáles son las políticas más impulsadas por cada grupo parlamentario?</li>
+            <li>¿Cómo se están tratando ciertos temas en la Cámara?</li>
+          </ul>
+          <h3>Objetivos</h3>
+          <ul>
+            <li>Potenciar la relación existente entre los representados y sus representantes a través del control ciudadano y la rendición de cuentas.</li>
+            <li>Ofrecer una herramienta de acceso libre y gratuito que ofrezca información relativa a la actividad parlamentaria y a la labor de las y los diputados del Congreso para realizar el seguimiento de su actividad de manera fácil e intuitiva.</li>
+            <li>Recopilar datos acerca de la labor de los y las diputadas del Congreso y ofrecerlos para su reutilización por parte de las organizaciones de la sociedad civil, medios de comunicación, centros de investigación, ciudadanía, etc.</li>
+            <li>Procesar la información recopilada y elaborar análisis, informes y artículos de actualidad parlamentaria, respondiendo al qué se hace, cómo se hace y por qué se hace.</li>
+          </ul>
+          <h3>Tecnología</h3>
+          <p>La tecnología de QHLD escanea toda la actividad parlamentaria del Congreso de España y la clasifica automáticamente según su relación con alguna de las 24 políticas prioritarias para la pobreza, la justicia social y el desarrollo sostenible y con alguno de los 17 Objetivos de Desarrollo Sostenible de las Naciones Unidas. Todas estas áreas temáticas han sido diseñadas junto con personas y organizaciones expertas en cada una de ellas.</p>
+          <p>La plataforma digital dispone de un buscador con el que la persona usuaria puede afinar su búsqueda en base a múltiples criterios (autor, fecha, tema, palabra clave, etc.).</p>
+          <p>Además ofrece un sistema personalizado de alertas que permite a la persona usuaria estar al día sobre las novedades parlamentarias de sus políticas de interés.</p>
+          <p>Finalmente permite el acceso y descarga libre de toda la información disponible a través de la misma web en formato reutilizable Excel/CSV o a través de su API en formato JSON.</p>
+          <p>Todo el código informático del proyecto está disponible en la página de Github de Political Watch.</p>
         </div>
       </div>
     </div>
