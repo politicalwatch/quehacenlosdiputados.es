@@ -196,7 +196,7 @@
 
 //Text styles
 @mixin th1 {
-  font-family: $font-primary;
+  font-family: $font-headline;
   font-size: rem(40px);
   font-weight: 500;
   line-height: 1.2;
@@ -210,7 +210,7 @@
 }
 
 @mixin th2 {
-  font-family: $font-primary;
+  font-family: $font-headline;
   font-size: rem(32px);
   line-height: 1.25;
   font-weight: 500;
@@ -224,7 +224,7 @@
 }
 
 @mixin th3 {
-  font-family: $font-primary;
+  font-family: $font-headline;
   font-size: rem(24px);
   line-height: 1.33;
   font-weight: 500;
@@ -238,7 +238,7 @@
 }
 
 @mixin th4 {
-  font-family: $font-primary;
+  font-family: $font-headline;
   font-size: rem(20px);
   line-height: 1.6;
   font-weight: 500;
@@ -252,7 +252,7 @@
 }
 
 @mixin th5 {
-  font-family: $font-primary;
+  font-family: $font-headline;
   font-size: rem(18px);
   line-height: 1.33;
   font-weight: 500;
@@ -266,7 +266,7 @@
 }
 
 @mixin th6 {
-  font-family: $font-primary;
+  font-family: $font-headline;
   font-size: rem(16px);
   line-height: 1.5;
   font-weight: 500;
@@ -299,13 +299,13 @@
 
 @mixin tbody2 {
   font-family: $font-primary;
-  font-size: rem(14px);
+  font-size: rem(16px);
   line-height: 1.71;
 }
 
 @mixin overline {
-  font-family: $font-primary;
-  font-size: rem(12px);
+  font-family: $font-headline;
+  font-size: rem(14px);
   line-height: 1.33;
   font-weight: 500;
   text-transform: uppercase;
