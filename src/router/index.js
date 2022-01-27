@@ -14,6 +14,7 @@ import LegalNotice from '@/views/LegalNotice.vue'
 import PrivacyPolicy from '@/views/PrivacyPolicy.vue'
 import CookiePolicy from '@/views/CookiePolicy.vue'
 import Page404 from '@/views/Page404.vue'
+import Sample from '@/views/Sample.vue'
 import config from '@/config';
 // eslint-disable-next-line no-unused-vars
 import from from "core-js/features/array/from";
@@ -41,6 +42,11 @@ const routes = [{
         }
         , ...config.DEFAULT_METATAGS]
     }
+  },
+  {
+    path: "/sample",
+    name: "sample",
+    component: Sample,
   },
   {
     path: "/buscar",

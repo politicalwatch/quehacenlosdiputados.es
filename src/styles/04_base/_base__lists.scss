@@ -8,13 +8,11 @@ ul {
     margin-bottom: rem($spacer-unit);
 
     &::before {
-      content: "";
+      content: "·";
       display: inline-block;
-      margin-bottom: rem($spacer-unit / 2);
-      background-color: $primary;
-      width: rem($spacer-unit / 2);
-      height: rem($spacer-unit / 2);
-      margin-right: rem($spacer-unit);
+      font-size: 16px;
+      margin-left: 8px;
+      margin-right: 8px;
     }
 
     ul {

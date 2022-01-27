@@ -198,13 +198,14 @@
 @mixin th1 {
   font-family: $font-headline;
   font-size: rem(40px);
+  text-transform: uppercase;
   font-weight: 500;
   line-height: 1.2;
   margin-top: 0;
-  margin-bottom: 01rem;
+  margin-bottom: 1.5rem;
 
   @media (min-width: $md) {
-    font-size: rem(48px);
+    font-size: rem(40px);
     line-height: 1.17;
   }
 }
@@ -212,13 +213,14 @@
 @mixin th2 {
   font-family: $font-headline;
   font-size: rem(32px);
+  text-transform: uppercase;
   line-height: 1.25;
   font-weight: 500;
   margin-top: 0;
   margin-bottom: 1rem;
 
   @media (min-width: $md) {
-    font-size: rem(40px);
+    font-size: rem(32px);
     line-height: 1.2;
   }
 }
@@ -226,55 +228,58 @@
 @mixin th3 {
   font-family: $font-headline;
   font-size: rem(24px);
-  line-height: 1.33;
+  text-transform: uppercase;
+  line-height: 1.5;
   font-weight: 500;
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 
   @media (min-width: $md) {
-    font-size: rem(32px);
-    line-height: 1.25;
+    font-size: rem(24px);
+    line-height: 1.5;
   }
 }
 
 @mixin th4 {
   font-family: $font-headline;
-  font-size: rem(20px);
+  font-size: rem(16px);
+  text-transform: uppercase;
   line-height: 1.6;
   font-weight: 500;
   margin-top: 0;
   margin-bottom: 1rem;
 
   @media (min-width: $md) {
-    font-size: rem(24px);
+    font-size: rem(16px);
     line-height: 1.33;
   }
 }
 
 @mixin th5 {
   font-family: $font-headline;
-  font-size: rem(18px);
+  font-size: rem(14px);
+  text-transform: uppercase;
   line-height: 1.33;
   font-weight: 500;
   margin-top: 0;
   margin-bottom: 1rem;
 
   @media (min-width: $md) {
-    font-size: rem(20px);
+    font-size: rem(14px);
     line-height: 1.2;
   }
 }
 
 @mixin th6 {
   font-family: $font-headline;
-  font-size: rem(16px);
+  font-size: rem(32px);
   line-height: 1.5;
   font-weight: 500;
   margin-top: 0;
   margin-bottom: 1rem;
 
   @media (min-width: $md) {
-    font-size: rem(18px);
+    font-size: rem(32px);
     line-height: 1.33;
   }
 }
