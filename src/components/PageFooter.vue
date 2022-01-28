@@ -1,40 +1,54 @@
 <template>
-  <div>
-    <div id="footer" class="o-container o-container--fluid o-section u-bg-secondary-dark">
-
-      <div class="o-container">
-        <div class="o-grid u-margin-top-4">
-          <div class="o-grid__col u-4@sm">
-            <p class="u-text-overline u-color-white">Un proyecto de</p>
-            <a href="http://politicalwatch.es" target="_blank"><img src="/img/logo-politicalwatch.png" class="big" alt="Logo de Political Watch"></a>
-          </div>
-          <div class="o-grid__col u-3@sm u-offset-2@sm">
-            <p class="u-text-overline u-color-white">Colabora</p>
-            <icon icon="chevron-right" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="https://api.tipiciudadano.es" title="github.com/politicalwatch" target="_blank">API para desarrolladorxs</a>
-            <br>
-            <icon icon="github" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="https://github.com/politicalwatch/" title="github.com/politicalwatch" target="_blank">Código en Github</a>
-          </div>
-          <div class="o-grid__col u-3@sm">
-            <p class="u-text-overline u-color-white">Contacta</p>
-            <icon icon="twitter" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="https://twitter.com/tipi_ciudadano" title="@TIPI_Ciudadano" target="_blank">@TIPI_Ciudadano</a>
-            <br>
-            <icon icon="mail" class="c-icon--white" />&nbsp;&nbsp;<a class="u-color-white u-text-tbody2" href="mailto:tipi@politicalwatch.es" title="tipi@politicalwatch.es" target="_blank">tipi@politicalwatch.es</a>
-          </div>
+  <footer class="c-footer u-padding-top-4 u-padding-bottom-2">
+    <div class="o-container o-container-fluid">
+      <div class="o-grid">
+        <div class="o-grid__col u-3@sm c-footer__brand">
+          <a href="/" class="c-footer__brand-link"><img class="c-footer__brand-logo" src="/img/logo-white-female.png" alt="Logo de Qué hacen las diputadas"></a>
         </div>
-        <div class="o-grid">
-          <div class="o-grid__col u-12@sm u-margin-top-4">
-            <p class="u-color-white u-text-tbody2">{{ (new Date()).getFullYear()  }} Political Watch - <router-link :to="{name: 'legalnotice'}" class="u-color-white">Aviso legal</router-link> - <router-link :to="{name: 'privacypolicy'}" class="u-color-white">Política de privacidad</router-link> - <router-link :to="{name: 'cookiepolicy'}" class="u-color-white">Política de cookies</router-link></p>
+        <div class="o-grid__col u-6@sm u-offset-3@sm">
+          <div class="o-grid">
+            <div class="o-grid__col u-4@sm c-footer__section">
+              <h5 class="c-footer__section-title">Proyecto</h5>
+              <div class="c-footer__section-links">
+                <router-link :to="{name: 'about' }" class="c-footer__menu-link">Acerca</router-link>
+                <router-link :to="{name: 'topics' }" class="c-footer__menu-link">Temáticas</router-link>
+                <a href="https://www.parlamento2030.es/" target="_blank">Congreso y ODS</a>
+                <a href="https://politicalwatch.es/investigaciones/congreso-de-los-diputados" target="_blank">Investigaciones</a>
+              </div>
+            </div>
+            <div class="o-grid__col u-4@sm c-footer__section">
+              <h5 class="c-footer__section-title">Colabora</h5>
+              <div class="c-footer__section-links">
+                <a href="https://api.quehacenlosdiputados.es/" target="_blank">API Docs</a>
+                <a href="https://github.com/politicalwatch/" target="_blank">Código fuente</a>
+                <a href="https://politicalwatch.es/participa" target="_blank">Donaciones</a>
+              </div>
+            </div>
+            <div class="o-grid__col u-4@sm c-footer__section">
+              <h5 class="c-footer__section-title">Síguenos</h5>
+              <div class="c-footer__section-icons">
+                <a href="https://twitter.com/qhld_" target="_blank"><icon icon="twitter" class="c-icon--white" /></a>
+                <a href="https://www.youtube.com/user/QueHacenLosDiputados" target="_blank"><icon icon="youtube" class="c-icon--white" /></a>
+                <a href="#" target="_blank"><icon icon="github" class="c-icon--white" /></a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
+      <div class="o-grid u-margin-top-8">
+        <div class="o-grid__col u-6@sm">
+          <a href="/"><img class="c-footer__brand-logo" src="/img/logo-politicalwatch.png" alt="Logo de Political Watch"></a>
+        </div>
+        <div class="o-grid__col u-6@sm">
+          <p class="c-footer__credits">{{ (new Date()).getFullYear()  }} Political Watch - <router-link :to="{name: 'legalnotice'}" class="u-color-white">Aviso legal</router-link> - <router-link :to="{name: 'privacypolicy'}" class="u-color-white">Política de privacidad</router-link> - <router-link :to="{name: 'cookiepolicy'}" class="u-color-white">Política de cookies</router-link></p>
+        </div>
+      </div>
     </div>
 
-    <div class="c-decorator" style="background-image: url('/img/yellow.png')"></div>
 
     <cookie-law theme="base" buttonText="Entendido" buttonClass="btn btn-custom" message="Este sitio usa cookies para asegurarte la mejor experiencia web."></cookie-law>
 
-  </div>
+  </footer>
 </template>
 
 <script>
@@ -51,7 +65,9 @@
 </script>
 
 <style scoped lang="scss">
-img.big {
-  width: 100%;
+#footer {
+  img {
+    width: 200px;
+  }
 }
 </style>
