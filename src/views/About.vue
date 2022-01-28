@@ -34,8 +34,8 @@
           <p>La tecnología de QHLD escanea toda la actividad parlamentaria del Congreso de España y la clasifica automáticamente según su relación con alguna de las 24 políticas prioritarias para la pobreza, la justicia social y el desarrollo sostenible y con alguno de los 17 Objetivos de Desarrollo Sostenible de las Naciones Unidas. Todas estas áreas temáticas han sido diseñadas junto con personas y organizaciones expertas en cada una de ellas.</p>
           <p>La plataforma digital dispone de un buscador con el que la persona usuaria puede afinar su búsqueda en base a múltiples criterios (autor, fecha, tema, palabra clave, etc.).</p>
           <p>Además ofrece un sistema personalizado de alertas que permite a la persona usuaria estar al día sobre las novedades parlamentarias de sus políticas de interés.</p>
-          <p>Finalmente permite el acceso y descarga libre de toda la información disponible a través de la misma web en formato reutilizable Excel/CSV o a través de su API en formato JSON.</p>
-          <p>Todo el código informático del proyecto está disponible en la página de Github de Political Watch.</p>
+          <p>Finalmente permite el acceso y descarga libre de toda la información disponible a través de la misma web en formato reutilizable Excel/CSV o a través de su <a href="https://api.quehacenlosdiputados.es">API</a> en formato JSON.</p>
+          <p>Todo el código informático del proyecto está disponible en <a href="https://github.com/politicalwatch/">la página de Github de Political Watch</a>.</p>
         </div>
       </div>
     </div>
