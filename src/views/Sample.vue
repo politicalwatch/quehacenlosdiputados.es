@@ -13,7 +13,7 @@
         <li>This is a unordered list element.</li>
         <li>This is a unordered list element.</li>
       </ul>
-      <p>This is a paragraph and <a>this is a link</a></p>
+      <p>This is a paragraph and <a href="/sample">this is a link</a>.</p>
     </div>
   </div>
 </template>
