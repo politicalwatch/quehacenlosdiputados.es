@@ -2,10 +2,10 @@
   <div>
     <div id="about" class="o-container o-section u-margin-bottom-10">
       <div class="o-grid">
-        <div class="o-grid__col u-4">
+        <div class="o-grid__col u-12 u-4@sm">
           <page-header title="Acerca"/>
         </div>
-        <div class="o-grid__col u-8">
+        <div class="o-grid__col u-12 u-8@sm">
           <h3>Acortando distancias entre la ciudadanía y sus representantes políticos en el congreso de los diputados de España desde 2011.</h3>
           <h6>Orígenes</h6>
           <p>Qué Hacen Los Diputados (QHLD) es un proyecto que nace en 2011 de la mano de un equipo multidisciplinar de desarrolladores y periodistas. En sus inicios, la motivación del proyecto era “ayudar a saber qué hacen los actuales representantes políticos'' brindando información a la ciudadanía de manera sencilla para que “pudieran implicarse en el proceso legislativo”. Sin embargo, el proyecto quedó inactivo en 2018 debido a otros compromisos de su equipo promotor.</p>
