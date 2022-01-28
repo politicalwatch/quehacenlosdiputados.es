@@ -20,6 +20,8 @@
 
   &__item {
     margin-bottom: rem($spacer-unit * 2);
+    width: 160px;
+    height: 56px;
 
     @media (min-width: $md) {
       margin-bottom: 0;
@@ -29,12 +31,29 @@
     &::before {
       display: none;
     }
+
+    &:last-child {
+      border-width: 4px;
+      border-color: $black;
+      border-style: solid;
+      padding: 0;
+      padding-left: 16px;
+
+      .c-menu__link {
+        line-height: 48px;
+        background-image: url('../assets/svg/icon-flag.svg');
+        background-position: left center;
+        background-repeat: no-repeat;
+        padding-left: 24px;
+      }
+    }
   }
 
   &__link {
     color: $black;
     text-decoration: none;
     text-transform: uppercase;
+    line-height: 52px;
 
     &:hover {
       color: $primary;
