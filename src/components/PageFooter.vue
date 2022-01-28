@@ -3,7 +3,7 @@
     <div class="o-container o-container-fluid">
       <div class="o-grid">
         <div class="o-grid__col u-3@sm c-footer__brand">
-          <a href="/" class="c-footer__brand-link"><img class="c-footer__brand-logo" src="/img/logo-white-female.png" alt="Logo de Qué hacen las diputadas"></a>
+          <a href="/" class="c-footer__brand-link"><img class="c-footer__brand-logo" :src="'/img/logo-white-'+getLogoVersion()+'.png'" alt="Logo de Qué hacen las diputadas"></a>
         </div>
         <div class="o-grid__col u-6@sm u-offset-3@sm">
           <div class="o-grid">
@@ -60,8 +60,14 @@
     components: {
       CookieLaw,
       Icon
+    },
+    methods: {
+      getLogoVersion: (event) => {
+        const versions = ['female', 'male', 'neutral'];
+          return versions[Math.floor(Math.random()*versions.length)];
+        }
+      }
     }
-  }
 </script>
 
 <style scoped lang="scss">
