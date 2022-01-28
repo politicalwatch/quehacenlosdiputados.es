@@ -1,7 +1,7 @@
 <template>
   <div class="c-topics">
     <span v-html="getTopics()" />
-    <div v-if="limit && (limit < topics.length)" class="c-topics__topic c-topics__topic__small" style="background-color:#2d4252;">
+    <div v-if="limit && (limit < topics.length)" class="c-topics__topic c-topics__topic__small" style="background-color:#A3D5C8;">
       <icon icon="more" />
     </div>
   </div>

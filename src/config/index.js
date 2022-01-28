@@ -109,117 +109,117 @@ export default {
     topics: {
       "Conductas adictivas": {
         shortname: "Adicciones",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "adictivas-01.svg"
       },
       "Vivienda": {
         shortname: "Vivienda",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "vivienda-01.svg"
       },
       "Comercio internacional": {
         shortname: "Comercio internacional",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "comercio-01.svg"
       },
       "Población gitana": {
         shortname: "Población gitana",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "gitana-01.svg"
       },
       "Democracia y derechos en la era digital": {
         shortname: "Derechos digitales",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "digitales-01.svg"
       },
       "Protección social": {
         shortname: "Protección social",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "proteccion-01.svg"
       },
       "Cooperación al desarrollo": {
         shortname: "Cooperación al Desarrollo",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "cooperacion-01.svg"
       },
       "Infancia": {
         shortname: "Infancia",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "infancia-01.svg"
       },
       "Conflictos internacionales y construcción de paz": {
         shortname: "Conflictos y Paz",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "paz-01.svg"
       },
       "Fiscalidad": {
         shortname: "Fiscalidad",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "fiscalidad-01.svg"
       },
       "Personas sin hogar": {
         shortname: "Personas sin hogar",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "sintecho-01.svg"
       },
       "Migraciones": {
         shortname: "Migraciones",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "extranjera-01.svg"
       },
       "Calidad democrática": {
         shortname: "Democracia",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "democracia-01.svg"
       },
       "Educación": {
         shortname: "Educación",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "educacion-01.svg"
       },
       "Sanidad": {
         shortname: "Sanidad",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "sanidad-01.svg"
       },
       "Cambio climático y política energética": {
         shortname: "Energía y Clima",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "clima-01.svg"
       },
       "Población reclusa": {
         shortname: "Población reclusa",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "reclusa-01.svg"
       },
       "Empleo": {
         shortname: "Empleo",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "empleo-01.svg"
       },
       "Personas con discapacidad": {
         shortname: "Discapacidad",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "diversidad-01.svg"
       },
       "Igualdad de género": {
         shortname: "Igualdad de género",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "igualdad-01.svg"
       },
       "Personas mayores": {
         shortname: "Mayores",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "mayores-01.svg"
       },
       "Dependencia": {
         shortname: "Dependencia",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "dependencia-01.svg"
       },
       "Colectivo LGTBI": {
         shortname: "LGTBI",
-        color: "#FBC239",
+        color: "#A3D5C8",
         image: "lgtbi-01.svg"
       },
       "no-topic": {
