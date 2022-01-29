@@ -23,7 +23,7 @@ export default {
       condition: true
     },
     {
-      route: "about",
+      route: "manifest",
       name: "Manifiesto",
       condition: true
     }

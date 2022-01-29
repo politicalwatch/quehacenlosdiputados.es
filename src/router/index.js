@@ -10,6 +10,7 @@ import Deputies from '@/views/Deputies.vue'
 import Parliamentarygroups from '@/views/Parliamentarygroups.vue'
 import Parliamentarygroup from '@/views/Parliamentarygroup.vue'
 import About from '@/views/About.vue'
+import Manifest from '@/views/Manifest.vue'
 import LegalNotice from '@/views/LegalNotice.vue'
 import PrivacyPolicy from '@/views/PrivacyPolicy.vue'
 import CookiePolicy from '@/views/CookiePolicy.vue'
@@ -144,6 +145,11 @@ const routes = [{
     path: "/acerca",
     name: "about",
     component: About
+  },
+  {
+    path: "/manifiesto",
+    name: "manifest",
+    component: Manifest
   },
   {
     path: "/aviso-legal",
