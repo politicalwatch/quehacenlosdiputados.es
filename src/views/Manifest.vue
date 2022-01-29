@@ -13,7 +13,7 @@
           <p>Teniendo en cuenta todo esto, al asumir esta nueva identidad desde Political Watch nos planteamos la posibilidad, o más bien la necesidad de que esta versión renovada del proyecto se adaptara a las necesidades y luchas actuales en materia de lenguaje inclusivo. Y es que seguir generalizando y utilizando Diputados para englobar a todas las personas que conforman el hemiciclo del Congreso no nos sonaba bien.</p>
           <p>Con todo lo anterior, desde Political Watch hemos decidido mantener la versión original en masculino, pero con ciertas particularidades:</p>
           <ol>
-            <li>Nuestra cuenta de twitter y demás redes sociales presentes y futuras usarán siempre una versión abreviada del nombre: QHLD</li>
+            <li>Nuestra cuenta de Twitter y demás redes sociales presentes y futuras usarán siempre una versión abreviada del nombre: QHLD</li>
             <li>El nombre oficial del proyecto contempla tres alternativas, que en la web se mostrarán de manera aleatoria. Estas tres versiones implican el uso de la O, la A y la E indistintamente.</li>
             <li>Todos los documentos y elementos gráficos generados por el proyecto utilizarán la versión abreviada del nombre.</li>
             <li>En las declaraciones públicas se utilizarán indistintamente cualquiera de las tres versiones del nombre.</li>
