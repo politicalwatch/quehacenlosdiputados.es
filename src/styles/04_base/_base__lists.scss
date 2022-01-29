@@ -43,7 +43,8 @@ ol {
 
       counter-increment: section;
       content: counters(section, ".") ". ";
-      color: $primary;
+      margin-left: 8px;
+      margin-right: 8px;
     }
 
     ol {

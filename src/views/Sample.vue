@@ -13,6 +13,11 @@
         <li>This is a unordered list element.</li>
         <li>This is a unordered list element.</li>
       </ul>
+      <ol>
+        <li>This is an ordered list element.</li>
+        <li>This is an ordered list element.</li>
+        <li>This is an ordered list element.</li>
+      </ol>
       <p>This is a paragraph and <a href="/sample">this is a link</a>.</p>
     </div>
   </div>
