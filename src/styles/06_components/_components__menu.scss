@@ -22,10 +22,10 @@
     margin-bottom: rem($spacer-unit * 2);
     height: 56px;
     width: 100%;
-    min-width: 160px;
 
     @media (min-width: $md) {
       margin-bottom: 0;
+      width: 160px;
       padding: 0 rem($spacer-unit * 2);
     }
 
