@@ -1,23 +1,18 @@
 <template>
   <div id="parliamentarygroups" class="o-container o-section u-margin-bottom-10">
-    <page-header :title="'Grupos parlamentarios'" />
-      <custom-text
-          :value="allParliamentaryGroups"
-          type="parliamentarygroup"
-          :source="allParliamentaryGroups" />
+    <h1>Grupos parlamentarios</h1>
+    <CardGrid :items="allParliamentaryGroups" type="parliamentarygroup" />
   </div>
 </template>
 
 <script>
-import PageHeader from '@/components/PageHeader';
-import CustomText from '@/components/CustomText';
+import CardGrid from '@/components/CardGrid';
 import { mapState } from 'vuex';
 
 export default {
   name: 'parliamentarygroups',
   components: {
-    PageHeader,
-    CustomText,
+    CardGrid,
   },
   data: function() {
     return {
