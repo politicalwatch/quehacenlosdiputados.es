@@ -1,19 +1,19 @@
 <template>
-  <div class="o-grid">
-    <div class="o-grid__col u-12 u-4@sm" v-for="item in this.items">
-      <!-- <ParliamentaryGroupCard initiative="item" v&#45;if="isParliamentaryGroup()" /> -->
+  <div class="o-grid c-card-grid">
+    <div :class="classes" v-for="item in this.items">
+      <ParliamentaryGroupCard :parliamentary_group="item" v-if="isParliamentaryGroup()" />
     </div>
   </div>
 </template>
 
 <script>
 
-// import ParliamentaryGroupCard from '@/components/ParliamentaryGroupCard';
+import ParliamentaryGroupCard from '@/components/ParliamentaryGroupCard';
 
 export default {
   name: 'CardGrid',
   components: {
-    // ParliamentaryGroupCard,
+    ParliamentaryGroupCard,
   },
   props: {
     items: Array,
@@ -23,6 +23,11 @@ export default {
     isParliamentaryGroup: function() {
       return this.type == 'parliamentarygroup'
     },
+  },
+  computed: {
+    classes: function() {
+      return "o-grid__col u-12 u-4@sm c-card-grid__item c-card-grid__item__" + this.type
+    }
   }
 }
 </script>

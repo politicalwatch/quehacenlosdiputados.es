@@ -25,28 +25,31 @@
 @import "05_objects/objects__masonry";
 
 // Components
+@import "06_components/components__button";
+@import "06_components/components__card-grid";
 @import "06_components/components__congress-link";
+@import "06_components/components__decorator";
+@import "06_components/components__deputy";
+@import "06_components/components__deputy-card";
+@import "06_components/components__disclaimer";
+@import "06_components/components__footer";
 @import "06_components/components__forms";
 @import "06_components/components__header";
-@import "06_components/components__message";
-@import "06_components/components__button";
 @import "06_components/components__icon";
-@import "06_components/components__navbar";
-@import "06_components/components__footer";
-@import "06_components/components__decorator";
-@import "06_components/components__splash";
-@import "06_components/components__disclaimer";
-@import "06_components/components__menu";
 @import "06_components/components__initiative-card";
-@import "06_components/components__deputy-card";
-@import "06_components/components__topics";
-@import "06_components/components__text";
 @import "06_components/components__initiative-meta";
+@import "06_components/components__loader";
+@import "06_components/components__message";
+@import "06_components/components__menu";
+@import "06_components/components__navbar";
+@import "06_components/components__parliamentary-group-card";
+@import "06_components/components__party-logo";
+@import "06_components/components__party-logo-icon";
+@import "06_components/components__splash";
+@import "06_components/components__text";
+@import "06_components/components__topics";
 @import "06_components/components__topic-card";
 @import "06_components/components__topic-link";
-@import "06_components/components__deputy";
-@import "06_components/components__loader";
-@import "06_components/components__party-logo";
 
 // End components
 @import "07_trumps/trumps__grid";
