@@ -1,18 +1,29 @@
-.c-card-grid {
+.c-card_grid {
   &__item {
     margin-bottom: 32px;
 
     &__parliamentarygroup {
-      height: 350px;
-      min-width: 350px;
-      padding-bottom: 0px;
-      position: relative;
+      &.c-card_grid__large {
+        height: 350px;
+        min-width: 350px;
+        padding-bottom: 0px;
+        position: relative;
 
-      @media (min-width: $sm) {
-        height: 0;
-        padding-bottom: 33.33333%;
-        float: left;
-        overflow: hidden;
+        @media (min-width: $sm) {
+          height: 0;
+          padding-bottom: 33.33333%;
+          float: left;
+          overflow: hidden;
+        }
+      }
+
+      &.c-card_grid__small {
+        position: relative;
+        height: 64px;
+
+        @media (min-width: $sm) {
+          overflow: hidden;
+        }
       }
     }
   }

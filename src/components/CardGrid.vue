@@ -1,7 +1,7 @@
 <template>
-  <div class="o-grid c-card-grid">
+  <div class="o-grid c-card_grid">
     <div :class="classes" v-for="item in this.items">
-      <ParliamentaryGroupCard :parliamentary_group="item" v-if="isParliamentaryGroup()" />
+      <ParliamentaryGroupCard :parliamentary_group="item" v-if="isParliamentaryGroup()" :layout="layout"/>
     </div>
   </div>
 </template>
@@ -18,6 +18,7 @@ export default {
   props: {
     items: Array,
     type: String,
+    layout: String,
   }, 
   methods: {
     isParliamentaryGroup: function() {
@@ -26,7 +27,7 @@ export default {
   },
   computed: {
     classes: function() {
-      return "o-grid__col u-12 u-4@sm c-card-grid__item c-card-grid__item__" + this.type
+      return "o-grid__col u-12 u-4@sm c-card_grid__item c-card_grid__item__" + this.type + " c-card_grid__" + this.layout
     }
   }
 }
