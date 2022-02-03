@@ -19,6 +19,22 @@
         <li>This is an ordered list element.</li>
       </ol>
       <p>This is a paragraph and <a href="/sample">this is a link</a>.</p>
+      <hr>
+      <h3>DeputyCard</h3>
+      <div class="o-grid">
+        <div class="o-grid__col u-4@sm">
+          <h4>Layout: large</h4>
+          <deputy-card :deputy="oneDeputy" layout="large" />
+        </div>
+        <div class="o-grid__col u-4@sm">
+          <h4>Layout: medium</h4>
+          <deputy-card :deputy="oneDeputy" layout="medium" />
+        </div>
+        <div class="o-grid__col u-4@sm">
+          <h4>Layout: small</h4>
+          <deputy-card :deputy="getDeputyByName(deputyName)" layout="small" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -26,11 +42,28 @@
 <script>
 
 import PageHeader from '@/components/PageHeader';
+import DeputyCard from '@/components/DeputyCard';
+import { mapGetters, mapState } from  'vuex';
 
 export default {
   name: 'sample',
   components: {
     PageHeader,
+    DeputyCard,
+  },
+  data: function() {
+    return {
+      deputyName: 'Aizcorbe Torra, Juan José'
+    }
+  },
+  computed: {
+    ...mapState(['allDeputies']),
+    ...mapGetters({
+      getDeputyByName: 'getDeputyByName',
+    }),
+    oneDeputy: function () {
+      return this.allDeputies[3];
+    }
   },
 }
 </script>

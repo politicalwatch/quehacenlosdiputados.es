@@ -9,7 +9,8 @@
     <div id="topic" class="o-container o-section">
       <div class="o-grid">
         <div class="o-grid__col u-12 u-4@sm" v-if="deputies">
-          <custom-text meta="Diputadas/os más activas/os" :value="deputies" type="deputy" :source="allDeputies" />
+          <h3>Diputados más activos</h3>
+          <deputy-card v-for="deputy in deputies" :deputy="deputy" layout="medium" />
         </div>
         <div class="o-grid__col u-12 u-4@sm" v-if="parliamentarygroups">
           <custom-text meta="Grupos más activos" :value="parliamentarygroups" type="parliamentarygroup" :source="parliamentarygroups" />
@@ -46,11 +47,12 @@ import PageHeader from '@/components/PageHeader';
 import Results from '@/components/Results';
 import TopicHeader from '@/components/TopicHeader';
 import CustomText from '@/components/CustomText';
+import DeputyCard from '@/components/DeputyCard';
 import Loader from '@/components/Loader';
 import SaveAlert from '@/components/SaveAlert';
 import api from '@/api';
 import config from '@/config';
-import { mapState } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
   name: 'topic',
@@ -59,6 +61,7 @@ export default {
     Results,
     TopicHeader,
     CustomText,
+    DeputyCard,
     Loader,
     SaveAlert
   },
@@ -76,6 +79,9 @@ export default {
   },
   computed: {
     ...mapState(['allDeputies', 'allParliamentaryGroups']),
+    ...mapGetters({
+      getDeputyByName: 'getDeputyByName',
+    }),
   },
   methods: {
     getTopic: function() {
@@ -97,7 +103,7 @@ export default {
         .then(response => {
           this.deputies = response;
           this.deputies.forEach((deputy, index) => {
-            this.deputies[index] = this.deputies[index]._id;
+            this.deputies[index] = this.getDeputyByName(this.deputies[index]._id);
           });
         })
           .catch(error => {this.errors = error; console.log(error)});

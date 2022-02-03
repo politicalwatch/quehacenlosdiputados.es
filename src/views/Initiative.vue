@@ -46,7 +46,7 @@
           <div class="o-grid__col u-12 u-3@md">
             <div class="u-border-bottom u-margin-bottom-4">
               <custom-text meta="Autor" :value="initiative.authors" type="parliamentarygroup" :source="allParliamentaryGroups" />
-                <custom-text meta="Diputada/o" :value="initiative.deputies" type="deputy" :source="allDeputies" />
+              <deputy-card v-for="deputyName in initiative.deputies" :deputy="getDeputyByName(deputyName)" layout="medium" />
             </div>
           </div>
         </div>
@@ -73,12 +73,13 @@ import CongressLink from '@/components/CongressLink';
 import CustomText from '@/components/CustomText';
 import TopicsSection from '@/components/TopicsSection';
 import InitiativeMeta from '@/components/InitiativeMeta';
+import DeputyCard from '@/components/DeputyCard';
 import TopicPill from '@/components/TopicPill';
 import Results from '@/components/Results';
 import Loader from '@/components/Loader';
 import api from '@/api';
 import config from '@/config';
-import { mapState } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 
 const moment = require('moment');
 moment.locale('es');
@@ -91,6 +92,7 @@ export default {
     CustomText,
     TopicsSection,
     InitiativeMeta,
+    DeputyCard,
     TopicPill,
     Results,
     Loader,
@@ -104,6 +106,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      getDeputyByName: 'getDeputyByName',
+    }),
     ...mapState(['allDeputies', 'allTopics', 'allParliamentaryGroups']),
     dataLoaded: function() {
       return (Object.keys(this.initiative).length && this.allTopics.length > 0);

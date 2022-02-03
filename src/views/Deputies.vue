@@ -2,14 +2,18 @@
   <div id="deputies" class="o-container o-section u-margin-bottom-10">
     <page-header :title="'Lista de diputados'" subtitle="Busca entre todos los diputados para conocer qué hacen en el congreso" />
     <deputies-form :deputies="deputies" :groups="getGroupsLongNames()" @setFilters="setFilters"></deputies-form>
-    <custom-text meta="Diputadas/os" :value="getFilteredDeputies()" type="deputy" :source="deputies" />
+    <div class="o-grid">
+      <div v-for="deputy in getFilteredDeputies()" class="o-grid__col u-4@sm">
+        <deputy-card :deputy="deputy" layout="large" class="u-margin-bottom-6" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import DeputiesForm from '@/components/DeputiesForm';
 import PageHeader from '@/components/PageHeader';
-import CustomText from '@/components/CustomText';
+import DeputyCard from '@/components/DeputyCard';
 import api from '@/api'
 import { mapGetters } from 'vuex';
 
@@ -18,7 +22,7 @@ export default {
   components: {
     DeputiesForm,
     PageHeader,
-    CustomText,
+    DeputyCard,
   },
   data: function() {
     return {

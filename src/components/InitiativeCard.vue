@@ -5,12 +5,10 @@
         <router-link v-if="initiative.id" :to="{name: 'initiative', params: { id: initiative.id }}">{{ initiative.title }}</router-link>
         <span v-else>{{ initiative.title }}</span>
       </h2>
-      <div class="c-initiative-card__authors" v-if="getDeputies(initiative) && extendedLayout">
-        <h3 class="c-initiative-card__label">{{ metaDeputies }}</h3>
-        <p v-html="getDeputies(initiative)"></p>
+      <div class="c-initiative-card__authors" v-if="initiative.deputies && extendedLayout">
+        <deputy-card v-for="deputyName in initiative.deputies" :deputy="getDeputyByName(deputyName)" layout="small" />
       </div>
       <div class="c-initiative-card__authors" v-if="getAuthors(initiative) && extendedLayout">
-        <h3 class="c-initiative-card__label">{{ metaGroupsOthers }}</h3>
         <p v-html="getAuthors(initiative)"></p>
       </div>
       <router-link v-if="initiative.id" :to="{name: 'initiative', params: { id: initiative.id }}" v-slot="{ href }">
@@ -41,6 +39,8 @@ moment.locale('es');
 import Icon from './Icon';
 import TopicPill from './TopicPill';
 import InitiativeMeta from './InitiativeMeta';
+import DeputyCard from '@/components/DeputyCard';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'InitiativeCard',
@@ -48,6 +48,7 @@ export default {
     Icon,
     TopicPill,
     InitiativeMeta,
+    DeputyCard,
   },
   data: function() {
     return{
@@ -58,9 +59,12 @@ export default {
     initiative: Object,
     topicsStyles: Object,
     extendedLayout: Boolean,
-    metaDeputies: String,
-    metaGroupsOthers: String,
     metaColors: {type: Object, default: undefined},
+  },
+  computed: {
+    ...mapGetters({
+      getDeputyByName: 'getDeputyByName',
+    }),
   },
   methods: {
     getAuthors: function(initiative) {
@@ -75,15 +79,9 @@ export default {
       }
       return topics
     },
-    getDeputies: function(initiative) {
-      if (initiative.deputies.length == 0) return '';
-      let regex_id = /\[.*\]/;
-      return initiative.deputies.map(d => {
-        var has_id = regex_id.exec(d);
-        if (!has_id) return d;
-        return d.replace(has_id[0], '').trim();
-      }).join('<br/>');
-    },
   },
 };
 </script>
+
+<style scoped lang="scss">
+</style>
