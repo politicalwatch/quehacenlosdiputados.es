@@ -46,10 +46,7 @@
 
   }
 
-  &__small-layout {
-
-
-  }
+  &__small-layout { }
 
   &__medium-layout {
     display: flex;
@@ -105,6 +102,13 @@
       }
     }
 
+  }
+
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
 }
