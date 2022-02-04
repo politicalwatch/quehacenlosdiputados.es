@@ -2,11 +2,7 @@
   <div id="deputies" class="o-container o-section u-margin-bottom-10">
     <page-header :title="'Lista de diputados'" subtitle="Busca entre todos los diputados para conocer qué hacen en el congreso" />
     <deputies-form :deputies="deputies" :groups="getGroupsLongNames()" @setFilters="setFilters"></deputies-form>
-    <div class="o-grid">
-      <div v-for="deputy in getFilteredDeputies()" class="o-grid__col u-4@sm">
-        <deputy-card :deputy="deputy" layout="large" class="u-margin-bottom-6" />
-      </div>
-    </div>
+    <CardGrid :items="getFilteredDeputies()" type="deputy" layout="large" />
   </div>
 </template>
 
@@ -14,6 +10,7 @@
 import DeputiesForm from '@/components/DeputiesForm';
 import PageHeader from '@/components/PageHeader';
 import DeputyCard from '@/components/DeputyCard';
+import CardGrid from '@/components/CardGrid';
 import api from '@/api'
 import { mapGetters } from 'vuex';
 
@@ -23,6 +20,7 @@ export default {
     DeputiesForm,
     PageHeader,
     DeputyCard,
+    CardGrid,
   },
   data: function() {
     return {

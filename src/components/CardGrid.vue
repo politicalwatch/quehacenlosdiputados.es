@@ -2,6 +2,7 @@
   <div class="o-grid c-card_grid">
     <div :class="classes" v-for="item in this.items">
       <ParliamentaryGroupCard :parliamentary_group="item" v-if="isParliamentaryGroup()" :layout="layout"/>
+      <deputy-card v-if="isDeputy()" :deputy="item" :layout="layout" class="u-margin-bottom-6" />
     </div>
   </div>
 </template>
@@ -9,11 +10,13 @@
 <script>
 
 import ParliamentaryGroupCard from '@/components/ParliamentaryGroupCard';
+import DeputyCard from '@/components/DeputyCard';
 
 export default {
   name: 'CardGrid',
   components: {
     ParliamentaryGroupCard,
+    DeputyCard,
   },
   props: {
     items: Array,
@@ -23,6 +26,9 @@ export default {
   methods: {
     isParliamentaryGroup: function() {
       return this.type == 'parliamentarygroup'
+    },
+    isDeputy: function() {
+      return this.type == 'deputy'
     },
   },
   computed: {
