@@ -26,5 +26,11 @@
         }
       }
     }
+
+    &__deputy {
+      &.c-card_grid__large {
+        margin-bottom: 6rem;
+      }
+    }
   }
 }
