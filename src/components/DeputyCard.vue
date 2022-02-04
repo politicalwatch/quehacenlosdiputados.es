@@ -34,7 +34,7 @@ export default {
     },
     layout: {
       type: String,
-      default: 'mdium' // small, medium, large
+      default: 'medium' // small, medium, large
     },
   },
   computed: {
