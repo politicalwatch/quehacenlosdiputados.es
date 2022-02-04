@@ -222,10 +222,6 @@ export default {
         color: "#A3D5C8",
         image: "lgtbi-01.svg"
       },
-      "no-topic": {
-        shortname: "Sin temática",
-        color: "#FFAA00",
-      }
     },
     subtopics: {
     },
