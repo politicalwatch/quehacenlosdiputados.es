@@ -1,16 +1,18 @@
 <template>
   <div :class="'c-parliamentary_group_card c-parliamentary_group_card__' + layout">
-    <div class="c-parliamentary_group_card__overlay" :style="getBackground()"></div>
-    <div v-if="layout == 'large'" class="c-parliamentary_group_card__wrapper">
-      <h3>{{getGroupName()}}</h3>
-      <h4><icon icon="person" class="c-icon--secondary c-icon--white" />{{parliamentary_group.composition.deputies}} Diputados/as</h4>
-      <div class="c-parliamentary_group_card__icons">
-        <PartyLogoIcon v-for="party in parliamentary_group.parties" :key="party.name" :logo="party.logo" :color="party.color" :name="party.name" />
+    <router-link :to="{name: 'parliamentarygroup', params: {id: parliamentary_group.id }}">
+      <div class="c-parliamentary_group_card__overlay" :style="getBackground()"></div>
+      <div v-if="layout == 'large'" class="c-parliamentary_group_card__wrapper">
+        <h3>{{getGroupName()}}</h3>
+        <h4><icon icon="person" class="c-icon--secondary c-icon--white" />{{parliamentary_group.composition.deputies}} Diputados/as</h4>
+        <div class="c-parliamentary_group_card__icons">
+          <PartyLogoIcon v-for="party in parliamentary_group.parties" :key="party.name" :logo="party.logo" :color="party.color" :name="party.name" />
+        </div>
       </div>
-    </div>
-    <div v-if="layout == 'small'" class="c-parliamentary_group_card__wrapper">
-      <h4>{{getGroupName()}}</h4>
-    </div>
+      <div v-if="layout == 'small'" class="c-parliamentary_group_card__wrapper">
+        <h4>{{getGroupName()}}</h4>
+      </div>
+    </router-link>
   </div>
 </template>
 
