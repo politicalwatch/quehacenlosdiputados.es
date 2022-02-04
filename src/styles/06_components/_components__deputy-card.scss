@@ -13,7 +13,6 @@
     &__image {
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid $primary;
       vertical-align: middle;
     }
 
@@ -21,18 +20,21 @@
       width: rem($spacer-unit*2);
       height: rem($spacer-unit*2);
       margin-right: rem($spacer-unit/2);
+      border: 2px solid $primary;
     }
 
     &__image-medium {
       width: rem($spacer-unit*4);
       height: rem($spacer-unit*4);
       margin-right: rem($spacer-unit);
+      border: 4px solid $primary;
     }
 
     &__image-large {
       width: rem(160px);
       height: rem(160px);
       margin-right: rem($spacer-unit*2);
+      border: 4px solid $primary;
     }
 
     &__info {
