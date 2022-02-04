@@ -4,7 +4,7 @@
     <div v-if="layout == 'large'" class="c-parliamentary_group_card__wrapper">
       <h3>{{getGroupName()}}</h3>
       <h4><icon icon="person" class="c-icon--secondary c-icon--white" />{{parliamentary_group.composition.deputies}} Diputados/as</h4>
-      <div>
+      <div class="c-parliamentary_group_card__icons">
         <PartyLogoIcon v-for="party in parliamentary_group.parties" :key="party.name" :logo="party.logo" :color="party.color" :name="party.name" />
       </div>
     </div>
@@ -39,7 +39,7 @@ export default {
     },
     getGroupName: function () {
       if (this.layout == 'large') {
-        return this.name
+        return this.parliamentary_group.name
       }
       const short_name = this.parliamentary_group.name.replace('Grupo Parlamentario', 'GP')
       if (short_name.length < 30) {
