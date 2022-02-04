@@ -6,6 +6,10 @@
   background-size: cover;
   color: $white;
 
+  a {
+    color: $white;
+  }
+
   &__overlay {
     width: 100%;
     height: 100%;
@@ -32,6 +36,14 @@
   }
 
   &__large {
+    background-image: url('../assets/parliamentary-groups-bg.jpg');
+
+    .c-parliamentary_group_card__wrapper {
+      padding: 32px;
+    }
+  }
+
+  &__medium {
     background-image: url('../assets/parliamentary-groups-bg.jpg');
 
     .c-parliamentary_group_card__wrapper {

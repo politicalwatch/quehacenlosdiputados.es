@@ -2,7 +2,7 @@
   <div :class="'c-parliamentary_group_card c-parliamentary_group_card__' + layout">
     <router-link :to="{name: 'parliamentarygroup', params: {id: parliamentary_group.id }}">
       <div class="c-parliamentary_group_card__overlay" :style="getBackground()"></div>
-      <div v-if="layout == 'large'" class="c-parliamentary_group_card__wrapper">
+      <div v-if="layout == 'medium'" class="c-parliamentary_group_card__wrapper">
         <h3>{{getGroupName()}}</h3>
         <h4><icon icon="person" class="c-icon--secondary c-icon--white" />{{parliamentary_group.composition.deputies}} Diputados/as</h4>
         <div class="c-parliamentary_group_card__icons">
