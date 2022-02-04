@@ -31,8 +31,6 @@ export default {
       if (this.topicsStyles && topics.length) {
         return topics.slice().sort(Utils.naturalSort).map((element, i)=> {
           if (this.withLinks) {
-            console.log(this.topicsStyles)
-            console.log(element)
             return `
               <a href="#topic-${i}" class="c-topics__topic c-topics__topic__small" style="background-color:${this.topicsStyles[element].color}">
                 ${this.topicsStyles[element].shortname}
