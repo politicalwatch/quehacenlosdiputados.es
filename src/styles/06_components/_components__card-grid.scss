@@ -3,7 +3,7 @@
     margin-bottom: 32px;
 
     &__parliamentarygroup {
-      &.c-card_grid__large {
+      &.c-card_grid__medium {
         height: 350px;
         min-width: 350px;
         padding-bottom: 0px;
@@ -24,6 +24,12 @@
         @media (min-width: $sm) {
           overflow: hidden;
         }
+      }
+    }
+
+    &__deputy {
+      &.c-card_grid__large {
+        margin-bottom: 6rem;
       }
     }
   }
