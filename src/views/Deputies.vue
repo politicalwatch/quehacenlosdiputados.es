@@ -1,6 +1,6 @@
 <template>
   <div id="deputies" class="o-container o-section u-margin-bottom-10">
-    <page-header :title="'Lista de diputados'" subtitle="Busca entre todos los diputados para conocer qué hacen en el congreso" />
+    <page-header title="Listado de diputados" />
     <deputies-form :deputies="deputies" :groups="getGroupsLongNames()" @setFilters="setFilters"></deputies-form>
     <CardGrid :items="getFilteredDeputies()" type="deputy" layout="large" />
   </div>
@@ -37,7 +37,7 @@ export default {
     loadDeputies: function() {
       api.getDeputies()
         .then(response => {
-          this.deputies = response
+          this.deputies = response.filter(d => d.active)
         })
         .catch(error => console.log(error))
     },
