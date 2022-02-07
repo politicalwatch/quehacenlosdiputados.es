@@ -1,7 +1,7 @@
 .c-initiative-card {
   @include tbody2;
 
-  padding-bottom: rem($spacer-unit * 4);
+  padding-bottom: rem($spacer-unit * 3);
 
   &__topics {
     margin-bottom: rem($spacer-unit);

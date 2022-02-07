@@ -152,8 +152,12 @@ export default {
 </script>
 
 <style lang="scss">
-.c-initiative-status, .c-congress-link {
-  display: inline-block;
-  margin-bottom: 37px;
+
+#initiative {
+  .c-initiative-status, .c-congress-link {
+    display: inline-block;
+    margin-bottom: 37px;
+  }
 }
+
 </style>
