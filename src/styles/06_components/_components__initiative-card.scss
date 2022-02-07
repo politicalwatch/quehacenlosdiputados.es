@@ -1,17 +1,17 @@
 .c-initiative-card {
   @include tbody2;
 
-  border-bottom: 1px solid $neutral;
-  padding-bottom: rem($spacer-unit * 2);
+  padding-bottom: rem($spacer-unit * 4);
 
   &__topics {
-    margin-bottom: rem($spacer-unit * 2);
+    margin-bottom: rem($spacer-unit);
   }
 
   &__title {
-    @include tbody;
-
-    margin-bottom: rem($spacer-unit * 2);
+    font-size: rem(20px);
+    line-height: 1.67;
+    text-transform: none;
+    margin-bottom: rem($spacer-unit);
 
     a {
       color: $secondary-dark;
@@ -23,14 +23,23 @@
     }
   }
 
-  &__authors {
+  &__groups-gov-others {
     @include tbody2;
+    margin-bottom: rem($spacer-unit);
 
-    margin-bottom: rem($spacer-unit * 2);
+    h5 {
+      display: flex;
+      align-items: left;
+      flex-direction: column;
 
-    p {
-      margin: 0;
+      span {
+        padding-bottom: rem($spacer-unit/2);
+      }
     }
+  }
+
+  &__deputies {
+    margin-bottom: rem($spacer-unit);
   }
 
   &__label {
@@ -39,11 +48,4 @@
     margin: 0;
   }
 
-  &__date {
-    color: $secondary;
-  }
-
-  .c-initiative-meta {
-    margin-bottom: 0px;
-  }
 }

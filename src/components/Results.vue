@@ -3,7 +3,7 @@
     <loader v-if="this.loadingResults" title="Cargando resultados" subtitle="Puede llevar algun tiempo" />
       <section class="o-masonry o-grid" v-if="this.initiatives && this.initiatives.length && !this.loadingResults">
         <div class="o-grid__col u-12 u-4@sm o-masonry__item" v-for="(initiative, index) in this.initiatives" :key="index">
-          <initiative-card :initiative="initiative" :extendedLayout="extendedLayout" :topicsStyles="topicsStyles" :metaColors="metaColors" />
+          <initiative-card :initiative="initiative" :extendedLayout="extendedLayout" :topicsStyles="topicsStyles" />
         </div>
       </section>
       <div class="o-grid o-grid--center" v-if="this.$listeners.loadMore && isMoreResults">
@@ -37,7 +37,6 @@ export default {
     queryMeta: Object,
     layout: String,
     topicsStyles: Object,
-    metaColors: {type: Object, default: undefined},
   },
   computed: {
     isMoreResults: function() {

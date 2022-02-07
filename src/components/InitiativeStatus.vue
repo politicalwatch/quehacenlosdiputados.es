@@ -1,7 +1,10 @@
 <template>
-  <div class="c-initiative-meta">
-    <div :class="`c-initiative-meta__status c-initiative-meta__status--${ getColorByStatus(initiative.status) }`">
-      <strong><icon :icon="getIcon(initiative)" />{{ getStateMessage(initiative) }}</strong>
+  <div class="c-initiative-status">
+    <div :class="`c-initiative-status__icon c-initiative-status__icon--${ getColorByStatus(initiative.status) }`">
+      <icon :icon="getIcon(initiative)" />
+    </div>
+    <div class="c-initiative-status__message">
+      {{ getStateMessage(initiative) }}
     </div>
   </div>
 </template>
@@ -18,7 +21,7 @@ export default {
   },
   props: {
     initiative: Object,
-    metaColors: {
+    mappedStatus: {
       type: Object,
       default: function() {
         return {
@@ -31,8 +34,8 @@ export default {
   },
   methods: {
     getColorByStatus: function(status) {
-      for (let color in this.metaColors) {
-        if (this.metaColors[color].indexOf(status) != -1) return color;
+      for (let color in this.mappedStatus) {
+        if (this.mappedStatus[color].indexOf(status) != -1) return color;
       }
       return 'neutral';
     },

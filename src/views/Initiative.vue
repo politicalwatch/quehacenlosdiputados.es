@@ -16,7 +16,7 @@
             <h1 class="u-text-th4 u-margin-bottom-4">{{ initiative.title }}</h1>
             <div class="o-grid">
               <div class="o-grid__col u-12 u-6@sm u-text-center u-text-left@sm">
-                <initiative-meta :initiative="initiative" />
+                <initiative-status :initiative="initiative" />
               </div>
               <div class="o-grid__col u-12 u-6@sm u-text-left u-text-center u-text-right@sm">
                 <congress-link :url="initiative.url"></congress-link>
@@ -72,7 +72,7 @@ import PageHeader from '@/components/PageHeader';
 import CongressLink from '@/components/CongressLink';
 import CustomText from '@/components/CustomText';
 import TopicsSection from '@/components/TopicsSection';
-import InitiativeMeta from '@/components/InitiativeMeta';
+import InitiativeStatus from '@/components/InitiativeStatus';
 import DeputyCard from '@/components/DeputyCard';
 import TopicPill from '@/components/TopicPill';
 import Results from '@/components/Results';
@@ -91,7 +91,7 @@ export default {
     CongressLink,
     CustomText,
     TopicsSection,
-    InitiativeMeta,
+    InitiativeStatus,
     DeputyCard,
     TopicPill,
     Results,
@@ -152,7 +152,7 @@ export default {
 </script>
 
 <style lang="scss">
-.c-initiative-meta, .c-congress-link {
+.c-initiative-status, .c-congress-link {
   display: inline-block;
   margin-bottom: 37px;
 }
