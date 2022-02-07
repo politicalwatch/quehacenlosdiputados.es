@@ -11,10 +11,6 @@
     text-decoration: none;
   }
 
-  &.c-parliamentary_group_card__large {
-    position: relative;
-  }
-
   &__overlay {
     width: 100%;
     height: 100%;
@@ -41,6 +37,7 @@
   }
 
   &__large {
+    position: relative;
     background-image: url('../assets/parliamentary-groups-bg-large.jpg');
     height: 368px;
     margin-bottom: 128px;
