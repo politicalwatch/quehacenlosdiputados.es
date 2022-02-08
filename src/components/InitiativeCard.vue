@@ -76,8 +76,8 @@ export default {
       return topics
     },
     hasTopics: function(initiative) {
-      if (initiative['tagged'].lenght == 0) return false;
-      if (initiative['tagged'][0].topics.lenght == 0) return false;
+      if (initiative['tagged'].length == 0) return false;
+      if (initiative['tagged'][0].topics.length == 0) return false;
       return true;
     },
   },
