@@ -7,3 +7,7 @@ a {
     text-decoration: none;
   }
 }
+
+.u-border-link {
+  @include border-link;
+}

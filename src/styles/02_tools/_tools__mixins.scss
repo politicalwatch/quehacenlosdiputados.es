@@ -296,3 +296,14 @@
   font-weight: 500;
   text-transform: uppercase;
 }
+
+@mixin border-link {
+  text-decoration: none;
+  padding: 16px 32px;
+  border: solid 4px $black;
+  font-family: $font-headline;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

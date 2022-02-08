@@ -20,13 +20,10 @@
 
   &__item {
     margin-bottom: rem($spacer-unit * 2);
-    height: 56px;
-    width: 100%;
+    padding: 16px 32px;
 
     @media (min-width: $md) {
       margin-bottom: 0;
-      width: 160px;
-      padding: 0 rem($spacer-unit * 2);
     }
 
     &::before {
@@ -34,14 +31,9 @@
     }
 
     &:last-child {
-      border-width: 4px;
-      border-color: $black;
-      border-style: solid;
-      padding: 0;
-      padding-left: 16px;
+      @include border-link;
 
       .c-menu__link {
-        line-height: 48px;
         background-image: url('../assets/svg/icon-flag.svg');
         background-position: left center;
         background-repeat: no-repeat;
@@ -54,7 +46,6 @@
     color: $black;
     text-decoration: none;
     text-transform: uppercase;
-    line-height: 52px;
 
     &:hover {
       color: $primary;

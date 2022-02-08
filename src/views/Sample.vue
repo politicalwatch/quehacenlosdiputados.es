@@ -19,6 +19,7 @@
         <li>This is an ordered list element.</li>
       </ol>
       <p>This is a paragraph and <a href="/sample">this is a link</a>.</p>
+      <p><a class="u-border-link" href="/sample">Border using u-border-link</a></p>
       <hr>
       <h3>DeputyCard</h3>
       <div class="o-grid">
