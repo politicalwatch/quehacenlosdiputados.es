@@ -3,6 +3,8 @@
     <page-header title="Listado de diputados" />
     <deputies-form :deputies="deputies" :groups="getGroupsLongNames()" @setFilters="setFilters"></deputies-form>
     <CardGrid :items="getFilteredDeputies()" type="deputy" layout="large" />
+    <not-found v-if="getFilteredDeputies().length == 0" message="No se han encontrado diputados." />
+
   </div>
 </template>
 
@@ -11,6 +13,7 @@ import DeputiesForm from '@/components/DeputiesForm';
 import PageHeader from '@/components/PageHeader';
 import DeputyCard from '@/components/DeputyCard';
 import CardGrid from '@/components/CardGrid';
+import NotFound from '@/components/NotFound';
 import api from '@/api'
 import { mapGetters } from 'vuex';
 
@@ -21,6 +24,7 @@ export default {
     PageHeader,
     DeputyCard,
     CardGrid,
+    NotFound,
   },
   data: function() {
     return {
