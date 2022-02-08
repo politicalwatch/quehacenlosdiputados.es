@@ -39,11 +39,8 @@
       </div>
     </div>
     <div class="o-grid">
-      <div class="o-grid__col u-4 u-6@sm">
-        <button class="c-button u-padding-left-0 u-margin-right-2" @click.prevent="cleanForm">Limpiar búsqueda</button>
-      </div>
-      <div class="o-grid__col u-8 u-6@sm u-text-right@sm">
-        <button class="c-button u-padding-right-0" @click.prevent="changeOrder">Ordenar alfabéticamente</button>
+      <div class="o-grid__col u-8 u-12@sm u-text-right@sm">
+        <button class="c-button u-padding-right-0" @click.prevent="cleanForm">Limpiar búsqueda</button>
       </div>
     </div>
   </form>
@@ -59,9 +56,7 @@ export default {
   },
   data: function() {
     return {
-      form: {
-        sortUp: true,
-      },
+      form: {},
     }
   },
   props: {
@@ -73,8 +68,6 @@ export default {
       this.form.group = null
       this.form.constituency = null
       this.form.name = ''
-      this.form.sortUp = true
-
       this.emitFilters()
     },
     emitFilters: function() {
@@ -89,10 +82,6 @@ export default {
     },
     preventSubmission: function(e) {
       e.preventDefault()
-    },
-    changeOrder: function() {
-      this.form.sortUp = !this.form.sortUp
-      this.emitFilters()
     },
   }
 }
