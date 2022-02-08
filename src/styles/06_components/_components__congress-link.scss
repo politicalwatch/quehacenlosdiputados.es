@@ -1,16 +1,18 @@
 .c-congress-link {
-  font-weight: bold;
   text-decoration: none;
+  padding: 16px 32px;
+  border: solid 4px $black;
+  font-family: $font-headline;
 
   &:hover {
     text-decoration: underline;
   }
 
   .c-icon {
-    margin-right: 8px;
+    margin-left: 8px;
 
     path {
-      fill: #ff6565;
+      fill: $black;
     }
   }
 }

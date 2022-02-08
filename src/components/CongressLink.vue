@@ -1,5 +1,5 @@
 <template>
-  <a :href="url" class="c-congress-link u-color-primary" target="_blank" title="Ver en el Congreso.es"><icon icon="open-blank"></icon>Ver en el Congreso.es</a>
+  <a :href="url" class="c-congress-link u-uppercase" target="_blank" title="Ver en el Congreso.es">Ver en el Congreso.es<icon icon="open-blank"></icon></a>
 </template>
 
 <script>
