@@ -198,7 +198,6 @@
 @mixin th1 {
   font-family: $font-headline;
   font-size: rem(40px);
-  text-transform: uppercase;
   font-weight: 500;
   line-height: 1.2;
   margin-top: 0;
@@ -213,7 +212,6 @@
 @mixin th2 {
   font-family: $font-headline;
   font-size: rem(32px);
-  text-transform: uppercase;
   line-height: 1.25;
   font-weight: 500;
   margin-top: 0;
@@ -228,7 +226,6 @@
 @mixin th3 {
   font-family: $font-headline;
   font-size: rem(24px);
-  text-transform: uppercase;
   line-height: 1.5;
   font-weight: 500;
   margin-top: 0;
@@ -243,7 +240,6 @@
 @mixin th4 {
   font-family: $font-headline;
   font-size: rem(16px);
-  text-transform: uppercase;
   line-height: 1.6;
   font-weight: 500;
   margin-top: 0;
@@ -258,7 +254,6 @@
 @mixin th5 {
   font-family: $font-headline;
   font-size: rem(14px);
-  text-transform: uppercase;
   line-height: 1.33;
   font-weight: 500;
   margin-top: 0;
@@ -267,20 +262,6 @@
   @media (min-width: $md) {
     font-size: rem(14px);
     line-height: 1.2;
-  }
-}
-
-@mixin th6 {
-  font-family: $font-headline;
-  font-size: rem(32px);
-  line-height: 1.5;
-  font-weight: 500;
-  margin-top: 0;
-  margin-bottom: 1rem;
-
-  @media (min-width: $md) {
-    font-size: rem(32px);
-    line-height: 1.33;
   }
 }
 

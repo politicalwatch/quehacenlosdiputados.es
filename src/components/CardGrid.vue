@@ -24,11 +24,11 @@ export default {
     layout: String,
   }, 
   methods: {
-    isParliamentaryGroup: function() {
-      return this.type == 'parliamentarygroup'
-    },
     isDeputy: function() {
       return this.type == 'deputy'
+    },
+    isParliamentaryGroup: function() {
+      return this.type == 'parliamentarygroup'
     },
   },
   computed: {

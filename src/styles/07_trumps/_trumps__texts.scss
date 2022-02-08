@@ -18,10 +18,6 @@
   @include th5;
 }
 
-.u-text-th6 {
-  @include th6;
-}
-
 .u-text-subtitle {
   @include subtitle;
 }
@@ -36,4 +32,8 @@
 
 .u-text-tbody2 {
   @include tbody2;
+}
+
+.u-uppercase {
+  text-transform: uppercase;
 }
