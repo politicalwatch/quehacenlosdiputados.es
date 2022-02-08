@@ -1,15 +1,13 @@
 <template>
-  <form id="deputies-form" class="u-margin-bottom-4 u-border-bottom" role="form" @submit.prevent="preventSubmission($event)">
+  <form id="deputies-form" class="u-margin-bottom-8" role="form" @submit.prevent="preventSubmission($event)">
     <div class="o-grid">
-      <div class="o-grid__col u-12 u-padding-bottom-4">
+      <div class="o-grid__col u-4@md">
         <div class="c-input-label u-block">
           <label for="name">Nombre</label>
-          <input v-model="form.name" type="text" id="name" name="name" @input="emitFilters()" placeholder="Nota: Se admiten expresiones regulares">
+          <input v-model="form.name" type="text" name="name" id="name" @input="emitFilters()" placeholder="Busca por nombre y apellidos">
         </div>
       </div>
-    </div>
-    <div class="o-grid">
-      <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
+      <div class="o-grid__col u-4@md">
         <div class="c-select-label u-block">
           <label for="group">Grupo</label>
           <multiselect
@@ -20,11 +18,11 @@
             :options="groups"
             :allow-empty="true"
             @input="emitFilters()"
-            name="group" id="group" placeholder="Todos">
+            name="group" id="group" placeholder="Selecciona uno">
           </multiselect>
         </div>
       </div>
-      <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
+      <div class="o-grid__col u-4@md">
         <div class="c-select-label u-block">
           <label for="constituency">Circunscripción</label>
           <multiselect
@@ -35,16 +33,16 @@
             :options="getConstituencies()"
             :allow-empty="true"
             @input="emitFilters()"
-            name="constituency" id="constituency" placeholder="Todos">
+            name="constituency" id="constituency" placeholder="Selecciona una">
           </multiselect>
         </div>
       </div>
     </div>
     <div class="o-grid">
-      <div class="o-grid__col u-4 u-6@sm u-padding-bottom-4">
+      <div class="o-grid__col u-4 u-6@sm">
         <button class="c-button u-padding-left-0 u-margin-right-2" @click.prevent="cleanForm">Limpiar búsqueda</button>
       </div>
-      <div class="o-grid__col u-8 u-6@sm u-padding-bottom-4 u-text-right@sm">
+      <div class="o-grid__col u-8 u-6@sm u-text-right@sm">
         <button class="c-button u-padding-right-0" @click.prevent="changeOrder">Ordenar alfabéticamente</button>
       </div>
     </div>
