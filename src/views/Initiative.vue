@@ -154,7 +154,7 @@ export default {
 <style lang="scss">
 
 #initiative {
-  .c-initiative-status, .c-congress-link {
+  .c-congress-link {
     display: inline-block;
     margin-bottom: 37px;
   }
