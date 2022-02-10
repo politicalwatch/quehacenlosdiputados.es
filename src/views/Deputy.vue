@@ -52,9 +52,7 @@
         No se han encontrado iniciativas para este diputado/a
       </message>
     </div>
-    <div class="o-container u-margin-top-4" v-show="use_alerts && deputy.active">
-      <save-alert :searchparams="{deputy: deputy.name}" />
-    </div>
+    <save-alert :searchparams="{deputy: deputy.name}" :text="deputy.name"/>
   </div>
   <div v-else class="o-container o-section u-margin-bottom-10">
     <loader title="Cargando datos" subtitle="Puede llevar unos segundos"/>

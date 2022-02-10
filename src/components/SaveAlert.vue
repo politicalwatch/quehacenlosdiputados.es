@@ -1,7 +1,16 @@
 <template>
-  <a class="c-button c-button--compact c-button--primary c-button--icon-right" href="#" @click.prevent="saveAlert">
-    Crea una alerta <icon icon="bell" class="c-icon--white" />
-  </a>
+  <div class="c-save-alert o-container u-margin-top-4">
+    <div class="o-grid o-grid--center">
+      <div class="c-save-alert__wrapper o-grid__col u-12 u-6@sm">
+        <div class="c-save-alert__image">
+          <img src="/img/alerts.png" />
+        </div>
+        <h4 class="u-uppercase">No te pierdas nada con la actividad parlamentaria relacionada con</h4>
+        <h1>{{ text }}</h1>
+        <a class="c-save-alert__button u-border-link u-uppercase" href="#" @click.prevent="saveAlert"><icon icon="bell" /> Crea una alerta</a>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -12,9 +21,10 @@ import Icon from './Icon';
 
 export default {
   name: "SaveAlert",
-  props: [
-    'searchparams'
-  ],
+  props: {
+    searchparams: Object,
+    text: String,
+  },
   components: {
     Icon,
   },

@@ -21,7 +21,7 @@
       <p>This is a paragraph and <a href="/sample">this is a link</a>.</p>
       <p><a class="u-border-link" href="/sample">Border using u-border-link</a></p>
       <hr>
-      <h3>DeputyCard</h3>
+      <h3 class="u-uppercase">DeputyCard</h3>
       <div class="o-grid">
         <div class="o-grid__col u-4@sm">
           <h4>Layout: large</h4>
@@ -36,21 +36,26 @@
           <deputy-card :deputy="getDeputyByName(deputyName)" layout="small" />
         </div>
       </div>
+      <hr>
+      <h3 class="u-uppercase">Alerts</h3>
+      <save-alert :searchparams="{deputy: 'Ábalos Meco, José Luis'}" text="Ábalos Meco, José Luis"/>
     </div>
   </div>
 </template>
 
 <script>
 
-import PageHeader from '@/components/PageHeader';
 import DeputyCard from '@/components/DeputyCard';
+import PageHeader from '@/components/PageHeader';
+import SaveAlert from '@/components/SaveAlert';
 import { mapGetters, mapState } from  'vuex';
 
 export default {
   name: 'sample',
   components: {
-    PageHeader,
     DeputyCard,
+    PageHeader,
+    SaveAlert,
   },
   data: function() {
     return {
