@@ -46,7 +46,7 @@ export default {
         "MÁS PAÍS-EQUO": {
           name: 'Más País',
           logo: 'maspais',
-          color: '#Más País',
+          color: '#0a7565',
         },
         "PDeCAT": {
           name: 'Partit Demòcrata',

@@ -5,7 +5,7 @@
         <h1 class="u-uppercase">{{getGroupName()}}</h1>
         <h3 class="u-uppercase"><icon icon="person" class="c-icon--secondary c-icon--white" />{{parliamentary_group.composition.deputies}} Diputados/as</h3>
         <div class="c-parliamentary_group_card__icons">
-          <PartyLogoIcon v-for="party in parliamentary_group.parties" :key="party.name" :logo="party.logo" :color="party.color" :name="party.name" />
+          <PartyLogoIcon v-for="party in parliamentary_group.parties" :key="party" :party="party" />
         </div>
       </div>
       <div v-if="layout == 'medium'" class="c-parliamentary_group_card__wrapper">
@@ -13,7 +13,7 @@
           <h3 class="u-uppercase">{{getGroupName()}}</h3>
           <h4 class="u-uppercase"><icon icon="person" class="c-icon--secondary c-icon--white" />{{parliamentary_group.composition.deputies}} Diputados/as</h4>
           <div class="c-parliamentary_group_card__icons">
-            <PartyLogoIcon v-for="party in parliamentary_group.parties" :key="party.name" :party="party.name" />
+            <PartyLogoIcon v-for="party in parliamentary_group.parties" :key="party" :party="party" />
           </div>
         </router-link>
       </div>
