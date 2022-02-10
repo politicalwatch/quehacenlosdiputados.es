@@ -1,28 +1,59 @@
 <template>
   <div v-if="deputy" id="deputy" class="u-margin-bottom-10">
-    <deputy-header v-if="deputy" :deputy="deputy" :parliamentaryGroup="parliamentarygroup">
-      <a v-if="deputy.hasOwnProperty('email')" :href="`mailto:${deputy.email}`" target="_blank"><icon icon="mail" /> {{deputy.email}}</a>
-      <a v-if="deputy.hasOwnProperty('twitter')" :href="deputy.twitter" target="_blank"><icon icon="twitter" /> @{{ deputy.twitter.split('/').reverse()[0] }}</a>
-      <div class="u-margin-top-2">
-        <congress-link v-if="deputy.hasOwnProperty('url')" :url="deputy.url"></congress-link>
-      </div>
-    </deputy-header>
     <div class="o-container" v-if="!deputy.active">
       <message type="info" icon>
         Causó baja en el Congreso de los Diputados
       </message>
     </div>
-    <div class="o-container u-margin-top-4" v-show="use_alerts && deputy.active">
-      <save-alert :searchparams="{deputy: deputy.name}" />
+    <div class="o-container">
+      <div class="o-grid">
+        <div class="o-grid__col u-12 u-4@sm">
+          <div class="c-deputy__image_container">
+            <img class="c-deputy__image" :src="deputy.image" :alt="'Foto de ' + deputy.name">
+            <div class="c-deputy__links">
+              <social-icon v-if="deputy.hasOwnProperty('email')" link="`mailto:${deputy.email}`" icon="mail"></social-icon>
+              <social-icon v-if="deputy.hasOwnProperty('twitter')" :link="deputy.twitter" icon="twitter"></social-icon>
+              <social-icon v-if="deputy.hasOwnProperty('facebook')" :link="deputy.facebook" icon="facebook"></social-icon>
+            </div>
+            <congress-link v-if="deputy.hasOwnProperty('url')" :url="deputy.url"></congress-link>
+          </div>
+        </div>
+        <div class="o-grid__col u-12 u-8@sm">
+          <h1 class="c-deputy__name">{{ deputy.name }}</h1>
+          <h3 class="c-deputy__group" v-if="parliamentarygroup">
+            <router-link :to="{ name: 'parliamentarygroup', params: {id: parliamentarygroup.id }}">
+              {{ parliamentarygroup.name }}
+            </router-link>
+          </h3>
+          <div class="c-deputy__personal-info">
+            <span class="c-deputy__personal"><party-logo-icon :party="deputy.party_name"/>{{ deputy.party_name }}</span>
+            <span class="c-deputy__personal"><icon icon="location"/>{{ getConstituency() }}</span>
+            <span class="c-deputy__personal"><icon v-if="addBirthdayClass()" icon="birthday"/>{{ getAge() }} años</span>
+            <span class="c-deputy__personal">{{ getLegislatures() }}</span>
+          </div>
+          <info-dropdown title="Ficha personal">
+            <p class="c-info-dropdown__content__item" v-for="bio in deputy.bio" v-key="bio">{{ bio }}</p>
+          </info-dropdown>
+          <info-dropdown title="Cargos">
+            <p class="c-info-dropdown__content__item" v-for="position in deputy.public_position" v-key="position">{{ position }}</p>
+          </info-dropdown>
+          <info-dropdown title="Declaraciones">
+            <a class="c-info-dropdown__content__item" v-for="(link, declaration) in deputy.extra.declarations" v-key="declaration" :href="link">{{ declaration }}</a>
+          </info-dropdown>
+        </div>
+      </div>
     </div>
     <div v-if="latestInitiatives && latestInitiatives.length" class="o-container o-section">
-      <h4 class="u-margin-bottom-4">Últimas iniciativas</h4>
+      <h2 class="u-margin-bottom-4 u-uppercase">Últimas iniciativas</h2>
       <results layout="tiny" :initiatives="latestInitiatives" :topicsStyles="styles.topics"/>
     </div>
     <div class="o-container" v-else>
       <message type="info" icon>
         No se han encontrado iniciativas para este diputado/a
       </message>
+    </div>
+    <div class="o-container u-margin-top-4" v-show="use_alerts && deputy.active">
+      <save-alert :searchparams="{deputy: deputy.name}" />
     </div>
   </div>
   <div v-else class="o-container o-section u-margin-bottom-10">
@@ -38,8 +69,11 @@ import DeputyHeader from '@/components/DeputyHeader';
 import Message from '@/components/Message';
 import Results from '@/components/Results';
 import Icon from '@/components/Icon';
+import InfoDropdown from '@/components/InfoDropdown';
 import Loader from '@/components/Loader';
+import PartyLogoIcon from '@/components/PartyLogoIcon';
 import SaveAlert from '@/components/SaveAlert';
+import SocialIcon from '@/components/SocialIcon';
 import api from '@/api';
 import config from '@/config';
 import { mapState } from 'vuex';
@@ -53,8 +87,11 @@ export default {
     Message,
     Results,
     Icon,
+    InfoDropdown,
+    PartyLogoIcon,
     Loader,
     SaveAlert,
+    SocialIcon,
   },
   data: function() {
     return {
@@ -69,6 +106,23 @@ export default {
     ...mapState(['allParliamentaryGroups'])
   },
   methods: {
+    addBirthdayClass: function () {
+      const date = new Date(this.deputy.birthdate);
+      const today = new Date();
+      if (date.getDate() == today.getDate() && date.getMonth() == today.getMonth()) {
+        return 'c-deputy__birthday';
+      }
+    },
+    getAge: function() {
+      const date = new Date(this.deputy.birthdate);
+      const today = new Date();
+      const age = today.getFullYear() - date.getFullYear();
+      return age;
+    },
+    getConstituency: function() {
+      const constituency = this.deputy.constituency;
+      return constituency;
+    },
     getDeputy: function() {
       api.getDeputy(this.$route.params.id)
         .then(response => {
@@ -88,6 +142,9 @@ export default {
           if (response.initiatives) this.latestInitiatives = response.initiatives;
         })
         .catch(error => this.errors = error);
+    },
+    getLegislatures: function() {
+      return 'Legislaturas ' + this.deputy.legislatures
     },
   },
   created: function() {

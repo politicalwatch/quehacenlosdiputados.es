@@ -8,38 +8,30 @@
   }
 
   &__image_container {
-    position: relative;
-    width: rem($spacer-unit * 20);
-    height: rem($spacer-unit * 20);
+    width: rem($spacer-unit * 16);
     margin: 0 auto 30px;
+    text-align: center;
 
     @media (min-width: $md) {
-      width: rem($spacer-unit * 20);
-      height: rem($spacer-unit * 20);
+      width: rem($spacer-unit * 16);
     }
   }
 
   &__image {
-    width: rem($spacer-unit * 20);
-    height: rem($spacer-unit * 20);
+    width: rem($spacer-unit * 16);
+    height: rem($spacer-unit * 16);
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid $secondary;
-    margin: 0 auto rem($spacer-unit) auto;
     display: block;
-    position: absolute;
     z-index: 0;
-
-    @media (min-width: $md) {
-      margin: 0 0 0 auto;
-    }
   }
 
   &__name {
-    @include th2;
-
+    font-size: rem(56px); 
+    line-height: 72px;
     text-align: center;
-    margin: 0 0 rem($spacer-unit) 0;
+    margin-top: 92px;
+    margin-bottom: 0;
 
     @media (min-width: $sm) {
       text-align: left;
@@ -47,10 +39,10 @@
   }
 
   &__group {
-    @include subtitle;
-
+    font-family: $font-primary;
+    font-size: 24px;
+    line-height: 32px;
     text-transform: uppercase;
-    margin: 0 0 rem($spacer-unit) 0;
     text-align: center;
 
     @media (min-width: $sm) {
@@ -58,6 +50,7 @@
     }
 
     a {
+      font-weight: 300;
       text-decoration: none;
       color: $secondary-dark;
     }
@@ -74,24 +67,13 @@
   }
 
   &__links {
-    @include th2;
-
-    color: $secondary-dark;
-    text-align: center;
-
-    @media (min-width: $sm) {
-      text-align: left;
-    }
-
+    margin-top: 32px;
+    margin-bottom: 32px;
+    
     a {
-      color: $secondary-dark;
-      text-decoration: none;
-      display: block;
-
-      @media (min-width: $md) {
-        display: inline-block;
-        margin-right: rem($spacer-unit * 2);
-      }
+      margin-left: 4px;
+      margin-right: 4px;
+      display: inline-block;
     }
   }
 
@@ -106,10 +88,39 @@
   }
 
   &__personal {
-    margin-right: 16px;
+    font-family: $font-headline;
+    padding-right: 22px;
+    padding-left: 22px;
+    border-right: solid 2px $black;
+    line-height: 32px;
+    display:flex;
+    align-content:center;
+    margin-bottom: 96px;
+
+    &:last-child {
+      border: none;
+    }
+
+    &:first-child {
+      padding-left: 0;
+    }
 
     span {
       margin-right: 4px;
+    }
+
+    .c-party_logo_icon {
+       width: 32px;
+       height: 32px;
+       margin-top: 0;
+       margin-bottom: 0;
+       margin-left: 0;
+       margin-right: 8px;
+
+      img {
+        width: 50%;
+        height: 50%;
+      }
     }
   }
 
@@ -163,5 +174,9 @@
 
   &__birthday {
     background: url('../assets/birthday_bg.png');
+  }
+
+  &__personal-info {
+    display: flex;
   }
 }
