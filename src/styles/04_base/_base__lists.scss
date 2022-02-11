@@ -1,11 +1,11 @@
 ul {
+  line-height: 32px;
   margin: 0;
   padding: 0;
   list-style: none;
 
   li {
     color: $secondary-dark;
-    margin-bottom: rem($spacer-unit);
 
     &::before {
       content: "·";
@@ -33,10 +33,10 @@ ol {
   padding: 0;
   list-style: none;
   counter-reset: section;
+  line-height: 32px;
 
   li {
     color: $secondary-dark;
-    margin-bottom: rem($spacer-unit);
 
     &::before {
       @include overline;
