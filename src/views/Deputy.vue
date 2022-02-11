@@ -37,7 +37,7 @@
           <info-dropdown title="Cargos">
             <p class="c-info-dropdown__content__item" v-for="position in deputy.public_position" v-key="position">{{ position }}</p>
           </info-dropdown>
-          <info-dropdown title="Declaraciones">
+          <info-dropdown title="Bienes y actividades">
             <a class="c-info-dropdown__content__item" v-for="(link, declaration) in deputy.extra.declarations" v-key="declaration" :href="link">{{ declaration }}</a>
           </info-dropdown>
         </div>
