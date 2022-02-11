@@ -7,10 +7,10 @@
       <h2 class="u-uppercase u-margin-bottom-4" v-if="latestInitiatives && latestInitiatives.length">Últimas iniciativas</h2>
       <results layout="tiny" :initiatives="latestInitiatives" class="u-margin-bottom-4" :topicsStyles="topicsStyles"/>
 
+      <save-alert :searchparams="{author: parliamentarygroup.name}" :text="parliamentarygroup.name"/>
+
       <h2 class="u-uppercase u-margin-bottom-4">Diputados/as</h2>
       <CardGrid :items="deputies" type="deputy" layout="medium" />
-
-      <save-alert :searchparams="{author: parliamentarygroup.name}" :text="parliamentarygroup.name"/>
     </div>
 
     <div v-else class="o-container o-section u-margin-bottom-10">
