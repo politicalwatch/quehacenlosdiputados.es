@@ -24,7 +24,7 @@
       </div>
       <div class="o-grid__col u-4@md">
         <div class="c-select-label u-block">
-          <label for="constituency">Circunscripción</label>
+          <label for="constituency">Provincia</label>
           <multiselect
             selectedLabel="Seleccionado"
             selectLabel=""
