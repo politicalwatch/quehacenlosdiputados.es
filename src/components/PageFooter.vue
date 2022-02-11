@@ -22,7 +22,7 @@
                 <a href="https://api.quehacenlosdiputados.es/" target="_blank">API Docs</a>
                 <a href="https://github.com/politicalwatch/" target="_blank">Código fuente</a>
                 <a href="https://politicalwatch.es/participa" target="_blank">Donaciones</a>
-                <a href="mailto://info@quehacenlosdiputados.es" target="_blank">Escríbenos</a>
+                <a href="mailto:qhld@politicalwatch.es?subject=Contacto+a+través+de+qhld.es" target="_blank">Escríbenos</a>
               </div>
             </div>
             <div class="o-grid__col u-4@sm c-footer__section">
