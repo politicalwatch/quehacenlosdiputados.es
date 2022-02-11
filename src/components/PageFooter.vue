@@ -12,7 +12,7 @@
               <div class="c-footer__section-links">
                 <router-link :to="{name: 'about' }" class="c-footer__menu-link">Acerca</router-link>
                 <router-link :to="{name: 'topics' }" class="c-footer__menu-link">Políticas</router-link>
-                <a href="https://www.parlamento2030.es/" target="_blank">Congreso y ODS</a>
+                <a href="https://www.parlamento2030.es/" target="_blank">Agenda 2030</a>
                 <a href="https://politicalwatch.es/investigaciones/congreso-de-los-diputados" target="_blank">Investigaciones</a>
               </div>
             </div>
