@@ -1,9 +1,7 @@
 <template>
   <header class="c-page-header" :class="{ 'c-page-header--nosub' : !subtitle }">
-    <h1 class="c-page-header__title">
-      {{ title }}
-    </h1>
-    <p class="c-page-header__subtitle" v-if="subtitle">{{ subtitle }}</p>
+    <h1 class="c-page-header__title u-uppercase">{{ title }}</h1>
+    <h4 class="u-uppercase" v-if="subtitle">{{ subtitle }}</h4>
   </header>
 </template>
 

@@ -8,16 +8,16 @@
 
         <div class="o-grid o-grid--align-center u-margin-bottom-4" id="results" v-if="initiatives.length > 0">
         <div class="o-grid__col o-grid__col--fill">
-          <h4 v-if="this.query_meta.page">{{ message.message }}</h4>
-        </div>
-        <div class="o-grid__col o-grid__col--right">
+          <h2 class="u-uppercase" v-if="this.query_meta.page">{{ message.message }}</h2>
           <csv-download
             :initiatives="initiatives || []"
             :csvItems="csvItems"
             :canDownloadCSV="canDownloadCSV"
             @loadCSVItems="loadCSVItems"
           />
-          <save-alert :searchparams="data" v-show="use_alerts && this.query_meta.page" />
+        </div>
+        <div class="o-grid__col o-grid__col--right">
+          <AlertButton :searchparams="data" v-show="use_alerts && this.query_meta.page" />
         </div>
       </div>
       <results
@@ -34,7 +34,7 @@
 
 <script>
 import InitiativesForm from '@/components/InitiativesForm';
-import SaveAlert from '@/components/SaveAlert';
+import AlertButton from '@/components/AlertButton';
 import config from '@/config'
 import api from '@/api'
 import PageHeader from '@/components/PageHeader';
@@ -50,7 +50,7 @@ const VueScrollTo = require('vue-scrollto');
 export default {
   name: 'search',
   components: {
-    SaveAlert,
+    AlertButton,
     InitiativesForm,
     PageHeader,
     Results,
@@ -156,7 +156,7 @@ export default {
       api.getInitiatives(params)
          .then(response => {
            this.csvItems = response.initiatives;
-           event.target.innerText = "Descarga los datos";
+           event.target.innerText = "Descargar resultados";
           })
          .catch(error => this.errors = error);
     },

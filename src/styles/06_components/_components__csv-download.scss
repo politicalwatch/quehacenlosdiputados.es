@@ -1,0 +1,13 @@
+.c-csv-download {
+  .c-icon {
+    margin-right: 16px;
+  }
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

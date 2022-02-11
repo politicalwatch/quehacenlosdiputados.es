@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="samples" class="o-container o-section u-margin-bottom-10">
-      <page-header title="This is a page header"/>
+      <page-header title="This is a page header" subtitle="This is the page subtitle"/>
       <h1>This is a H1: 40px</h1>
       <h1 class="u-uppercase">Class u-uppercase to capitalize the content</h1>
       <h2>This is a H2: 32px</h2>

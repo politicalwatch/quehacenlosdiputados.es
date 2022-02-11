@@ -6,21 +6,11 @@
   }
 
   &__title {
-    margin-bottom: rem($spacer-unit * 4);
-    font-size: rem(40px);
-    text-transform: uppercase;
     color: $secondary-dark;
 
     a {
       color: $secondary-dark;
     }
-  }
-
-  &__subtitle {
-    @include subtitle;
-
-    color: $secondary;
-    margin: 0;
   }
 
   &--nosub {
