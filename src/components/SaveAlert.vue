@@ -15,8 +15,6 @@
 
 <script>
 import AlertButton from '@/components/AlertButton';
-import swal from 'sweetalert2';
-import api from '@/api';
 
 export default {
   name: "SaveAlert",

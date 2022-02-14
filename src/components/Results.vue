@@ -9,7 +9,7 @@
       <div class="o-grid o-grid--center" v-if="this.$listeners.loadMore && isMoreResults">
         <div class="o-grid__col">
           <a href="#" class="u-border-link" @click.prevent="loadMore">
-            Cargar más {{ nextResultsLabel }}
+            <icon icon="load-more" />Cargar más {{ nextResultsLabel }}
           </a>
         </div>
       </div>
@@ -20,11 +20,13 @@
 import InitiativeCard from './InitiativeCard';
 import Loader from './Loader';
 import Masonry from "masonry-layout";
+import Icon from './Icon';
 
 
 export default {
   name: 'Results',
   components: {
+    Icon,
     InitiativeCard,
     Loader,
   },

@@ -14,6 +14,7 @@
               <social-icon v-if="deputy.hasOwnProperty('email')" link="`mailto:${deputy.email}`" icon="mail"></social-icon>
               <social-icon v-if="deputy.hasOwnProperty('twitter')" :link="deputy.twitter" icon="twitter"></social-icon>
               <social-icon v-if="deputy.hasOwnProperty('facebook')" :link="deputy.facebook" icon="facebook"></social-icon>
+              <social-icon v-if="deputy.hasOwnProperty('website')" :link="deputy.website" icon="website"></social-icon>
             </div>
             <congress-link v-if="deputy.hasOwnProperty('url')" :url="deputy.url"></congress-link>
           </div>
