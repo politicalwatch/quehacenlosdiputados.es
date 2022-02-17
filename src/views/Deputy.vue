@@ -33,13 +33,13 @@
             <span class="c-deputy__personal">{{ getLegislatures() }}</span>
           </div>
           <info-dropdown title="Ficha personal">
-            <p class="c-info-dropdown__content__item" v-for="bio in deputy.bio" v-key="bio">{{ bio }}</p>
+            <p class="c-info-dropdown__content__item" v-for="bio in deputy.bio" v-bind:key="bio">{{ bio }}</p>
           </info-dropdown>
           <info-dropdown title="Cargos">
-            <p class="c-info-dropdown__content__item" v-for="position in deputy.public_position" v-key="position">{{ position }}</p>
+            <p class="c-info-dropdown__content__item" v-for="position in deputy.public_position" v-bind:key="position">{{ position }}</p>
           </info-dropdown>
           <info-dropdown title="Bienes y actividades">
-            <a class="c-info-dropdown__content__item" v-for="(link, declaration) in deputy.extra.declarations" v-key="declaration" :href="link">{{ declaration }}</a>
+            <a class="c-info-dropdown__content__item" v-for="(link, declaration) in deputy.extra.declarations" v-bind:key="declaration" :href="link">{{ declaration }}</a>
           </info-dropdown>
         </div>
       </div>

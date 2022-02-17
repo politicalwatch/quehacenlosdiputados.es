@@ -63,7 +63,7 @@
       Icon
     },
     methods: {
-      getLogoVersion: (event) => {
+      getLogoVersion: () => {
         const versions = ['female', 'male', 'neutral'];
           return versions[Math.floor(Math.random()*versions.length)];
         }
