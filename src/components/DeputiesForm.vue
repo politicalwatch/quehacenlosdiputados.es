@@ -1,13 +1,13 @@
 <template>
   <form id="deputies-form" class="u-margin-bottom-8" role="form" @submit.prevent="preventSubmission($event)">
     <div class="o-grid">
-      <div class="o-grid__col u-4@md">
+      <div class="o-grid__col u-12 u-4@sm">
         <div class="c-input-label u-block">
           <label for="name">Nombre</label>
           <input v-model="form.name" type="text" name="name" id="name" @input="emitFilters()" placeholder="Busca por nombre y apellidos">
         </div>
       </div>
-      <div class="o-grid__col u-4@md">
+      <div class="o-grid__col u-12 u-4@sm">
         <div class="c-select-label u-block">
           <label for="group">Grupo</label>
           <multiselect
@@ -22,7 +22,7 @@
           </multiselect>
         </div>
       </div>
-      <div class="o-grid__col u-4@md">
+      <div class="o-grid__col u-12 u-4@sm">
         <div class="c-select-label u-block">
           <label for="constituency">Provincia</label>
           <multiselect
