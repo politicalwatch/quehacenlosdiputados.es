@@ -9,7 +9,7 @@ export default {
   MENU: [
     {
       route: "deputies",
-      name: "Diputadxs",
+      name: "Diputados",
       condition: true
     },
     {
