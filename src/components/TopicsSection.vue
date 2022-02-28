@@ -1,6 +1,6 @@
 <template>
   <div class="c-topics c-topics--extended" v-if="topics.length > 0">
-    <h6 class="c-topics__label">{{ meta }}</h6>
+    <h3 class="c-topics__label u-uppercase">{{ meta }}</h3>
     <ul class="c-topics__list">
       <li v-for="(topic, i) in sortedTopics" v-bind:key="topic" class="c-topics__list-topic">
         <router-link

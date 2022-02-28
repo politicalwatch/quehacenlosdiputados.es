@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="c-initiative">
     <div v-if="loaded" id="initiative" class="o-container o-section u-margin-bottom-10">
       <div v-if="!initiative.id">
         <div class="o-grid u-padding-top-10 u-padding-bottom-10">
@@ -13,9 +13,9 @@
       <div v-else>
         <div class="o-grid o-grid--between">
           <div class="o-grid__col u-12 u-8@md">
-            <h1 class="u-text-th4 u-margin-bottom-4">{{ initiative.title }}</h1>
+            <h2>{{ initiative.title }}</h2>
             <div class="o-grid">
-              <div class="o-grid__col u-12 u-6@sm u-text-center u-text-left@sm">
+              <div class="o-grid__col u-12 u-6@sm u-text-center u-text-left@sm c-initiative__status">
                 <initiative-status :initiative="initiative" />
               </div>
               <div class="o-grid__col u-12 u-6@sm u-text-left u-text-center u-text-right@sm">
@@ -23,40 +23,37 @@
               </div>
             </div>
 
-            <div class="o-grid u-padding-top-4 u-border-top u-border-bottom u-margin-bottom-4">
+            <div class="o-grid u-padding-top-2 u-margin-bottom-4">
               <div class="o-grid__col o-grid__col--fill">
-                <custom-text meta="Tipo de acto parlamentario" :value="initiative.initiative_type_alt" />
+                <h6 class="u-uppercase">Tipo de acto parlamentario</h6>
+                <p class="c-initiative__info">{{ initiative.initiative_type_alt }}</p>
               </div>
               <div class="o-grid__col u-12 u-3@sm">
-                <custom-text meta="Referencia" :value="initiative.reference" />
+                <h6 class="u-uppercase">Referencia</h6>
+                <p class="c-initiative__info">{{ initiative.reference }}</p>
               </div>
               <div class="o-grid__col u-12 u-3@sm">
-                <custom-text meta="Registro" :value="moment(initiative.created).format('DD/MM/Y')" />
+                <h6 class="u-uppercase">Registro</h6>
+                <p class="c-initiative__info">{{ moment(initiative.created).format('DD/MM/Y') }}</p>
               </div>
             </div>
+
             <topics-section class="u-hide u-block@md" meta="Temáticas tratadas" :topics="getTopics(initiative)" :tags="getTags(initiative)" :topicsStyles="styles.topics" />
 
-              <div class="o-grid u-margin-top-4 u-padding-top-4 u-border-top u-hide u-block@md" v-if="initiative.related && initiative.related.length">
-                <div class="o-grid__col o-grid__col--fill">
-                  <h4 id="related" class="u-margin-bottom-4">Iniciativas relacionadas</h4>
-                  <results :initiatives="initiative.related" :topicsStyles="styles.topics"/>
-                </div>
-              </div>
           </div>
+
           <div class="o-grid__col u-12 u-3@md">
-            <div class="u-border-bottom u-margin-bottom-4">
-              <custom-text meta="Autor" :value="initiative.authors" type="parliamentarygroup" :source="allParliamentaryGroups" />
+            <div class="u-margin-bottom-4">
+              <ParliamentaryGroupCard v-for="author in initiative.authors" :parliamentary_group="getGroup(author)" layout="small"/>
               <deputy-card v-for="deputyName in initiative.deputies" :deputy="getDeputyByName(deputyName)" layout="medium" />
             </div>
           </div>
         </div>
+
         <div class="u-hide@md">
+
           <topics-section meta="Temáticas tratadas" :topics="initiative.topics" :tags="initiative.tags" :topicsStyles="styles.topics" />
 
-            <div class="u-margin-top-4 u-padding-top-4 u-border-top" v-if="initiative.related && initiative.related.length">
-              <h4 id="related" class="u-margin-bottom-4">Iniciativas relacionadas</h4>
-              <results :initiatives="initiative.related" :topicsStyles="styles.topics"/>
-            </div>
         </div>
       </div>
     </div>
@@ -68,7 +65,7 @@
 
 <script>
 
-import PageHeader from '@/components/PageHeader';
+import ParliamentaryGroupCard from '@/components/ParliamentaryGroupCard';
 import CongressLink from '@/components/CongressLink';
 import CustomText from '@/components/CustomText';
 import TopicsSection from '@/components/TopicsSection';
@@ -87,7 +84,7 @@ moment.locale('es');
 export default {
   name: 'initiative',
   components: {
-    PageHeader,
+    ParliamentaryGroupCard,
     CongressLink,
     CustomText,
     TopicsSection,
@@ -140,7 +137,14 @@ export default {
         tags = tags.concat(tagged['tags'])
       }
       return tags
-    }
+    },
+    getGroup: function(parliamentary_group) {
+       for (const group of this.allParliamentaryGroups) {
+         if (group.name == parliamentary_group) {
+           return group
+         }
+       }
+    },
   },
   created: function() {
     this.getInitiative();
