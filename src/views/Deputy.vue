@@ -11,7 +11,7 @@
           <div class="c-deputy__image_container">
             <img class="c-deputy__image" :src="deputy.image" :alt="'Foto de ' + deputy.name">
             <div class="c-deputy__links">
-              <social-icon v-if="deputy.hasOwnProperty('email')" link="`mailto:${deputy.email}`" icon="mail"></social-icon>
+              <social-icon v-if="deputy.hasOwnProperty('email')" :link="`mailto:${deputy.email}`" icon="mail"></social-icon>
               <social-icon v-if="deputy.hasOwnProperty('twitter')" :link="deputy.twitter" icon="twitter"></social-icon>
               <social-icon v-if="deputy.hasOwnProperty('facebook')" :link="deputy.facebook" icon="facebook"></social-icon>
               <social-icon v-if="deputy.hasOwnProperty('website')" :link="deputy.website" icon="website"></social-icon>
