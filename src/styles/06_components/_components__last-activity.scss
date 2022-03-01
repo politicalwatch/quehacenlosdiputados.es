@@ -1,0 +1,21 @@
+.c-last-activity {
+  &__stat {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__number {
+    font-size: rem(64px);
+    line-height: rem(80px);
+    width: 100px;
+  }
+
+  &__type {
+    width: 100px;
+  }
+
+  &__description {
+    width: 544px;
+  }
+}

@@ -1,0 +1,12 @@
+.c-home {
+
+  &__initiatives {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &_title {
+      margin: 0;
+    }
+  }
+}

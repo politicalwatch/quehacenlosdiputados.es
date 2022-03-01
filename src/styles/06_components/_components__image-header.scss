@@ -1,0 +1,58 @@
+.c-image-header {
+  height: 480px;
+  width: 100%;
+  position: relative;
+
+  &__date {
+    font-size: rem(48px);
+    line-height: rem(64px);
+    color: $tipi-yellow;
+    background-color: $black;
+    display: inline-block;
+    padding: 16px;
+    margin: 0;
+    position: absolute;
+    bottom: 112px;
+    left: 32px;
+
+    &_title {
+      background-color: $tipi-yellow;
+      display: inline-block;
+      padding: 16px;
+      margin: 0;
+      position: absolute;
+      left: 32px;
+      bottom: 32px;
+    }
+  }
+
+  &__author {
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+    background-color: white;
+    padding: 8px;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      .c-icon {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  figure {
+    margin: 0;
+    overflow: hidden;
+    max-height: 480px;
+    
+    img {
+      width: 100%;
+    }
+  }
+}

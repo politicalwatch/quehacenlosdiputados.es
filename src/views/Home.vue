@@ -1,31 +1,24 @@
 <template>
-  <div id="home" class="o-container o-section u-margin-top-4 u-margin-bottom-10">
-    <h3>La vigilancia ciudadana como servicio público</h3>
-    <div v-if="home" class="o-section">
-      <h4>{{ home.Date }}: {{ home.TitleDate }}</h4>
-      <figure>
-        <img :src="getHomeImage()" alt="">
-        <figcaption><a :href="home.ImageUrl" target="_blank">Unspash: Photo by {{ home.ImageAuthor }}</a></figcaption>
-      </figure>
-      <div class="o-section" v-if="relatedInitiatives.length">
-        <h4>Iniciativas relacionadas</h4>
-        <results :initiatives="relatedInitiatives" class="u-margin-bottom-4" :topicsStyles="topicsStyles"/>
-        <a :href="home.RelatedInitiativesSearch">Más iniciativas</a>
+  <div id="home" class="o-container u-margin-bottom-10 c-home">
+    <div v-if="home">
+      <ImageHeader :home="home" :image="getHomeImage()"/>
+      <div class="o-section c-home__initiatives" v-if="relatedInitiatives.length">
+        <h1 class="u-uppercase c-home__initiatives_title">Iniciativas relacionadas</h1>
+        <a class="c-home__more u-border-link u-uppercase" :href="home.RelatedInitiativesSearch">Más iniciativas</a>
       </div>
-    </div>
-    <div v-if="lastdays" class="o-section">
-      <h4>Iniciativas en los últimos 7 días</h4>
-      <ul>
-        <li>{{ lastdays.legislative.initiatives }} legislativas ({{ lastdays.legislative.trend }})</li>
-        <li>{{ lastdays.orientation.initiatives }} de orientación política ({{ lastdays.orientation.trend }})</li>
-        <li>{{ lastdays.oversight.initiatives }} de control ({{ lastdays.oversight.trend }})</li>
-      </ul>
+      <div>
+        <results v-if="relatedInitiatives.length" :initiatives="relatedInitiatives" :topicsStyles="topicsStyles"/>
+      </div>
+      <LastActivity :lastdays="lastdays" />
     </div>
   </div>
 </template>
 
 <script>
 
+  import Icon from '@/components/Icon';
+  import ImageHeader from '@/components/ImageHeader';
+  import LastActivity from '@/components/LastActivity';
   import Results from '@/components/Results';
   import config from '@/config';
   import api from '@/api';
@@ -33,6 +26,9 @@
   export default {
       name: 'home',
       components: {
+          Icon,
+          ImageHeader,
+          LastActivity,
           Results,
         },
       data: function() {
@@ -55,7 +51,7 @@
             },
           getHomeImage: function() {
               return this.home ?
-                api.getHomeResourceUrl(this.home.Image.formats.small.url) :
+                api.getHomeResourceUrl(this.home.Image.formats.large.url) :
                 null
             },
           getLastdays: function() {
