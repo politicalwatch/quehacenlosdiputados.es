@@ -96,12 +96,6 @@
             name="deputy" id="deputy" placeholder="Apellidos, Nombre">
           </multiselect>
         </div>
-        <router-link
-          class="u-text-tbody2"
-          v-if="getDeputyByName(form.deputy)"
-          :to="{ path: `/deputies/${getDeputyByName(form.deputy).id}` }">
-          ¿Quieres ver el perfil de {{ form.deputy }}?
-        </router-link>
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-select-label u-block">
@@ -116,12 +110,6 @@
             name="author" id="author" placeholder="Todos">
           </multiselect>
         </div>
-        <router-link
-          class="u-text-tbody2"
-          v-if="getParliamentaryGroupByName(form.author)"
-          :to="{ path: `/parliamentarygroups/${getParliamentaryGroupByName(form.author).id}` }">
-          ¿Quieres ver el perfil del {{ form.author }}?
-        </router-link>
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-select-label u-block">
