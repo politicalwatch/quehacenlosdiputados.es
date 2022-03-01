@@ -35,12 +35,12 @@ export default {
   },
   LOGO: "/img/logo.svg",
 
-  DEFAULT_PAGE_TITLE: "TIPI Ciudadano",
+  DEFAULT_PAGE_TITLE: "Qué hacen los diputados",
   DEFAULT_METATAGS: [
     {
       name: "description",
       content:
-        "Es un proyecto que nace desde la sociedad civil para fortalecer sus capacidades de incidencia en los procesos de toma de decisión política y en la generación de un debate público informado sobre la pobreza y la justicia social en España."
+        "Que todos los días sean de puertas abiertas en el Congreso de los Diputados"
     },
     {
       name: "keywords",
@@ -58,20 +58,20 @@ export default {
     },
     {
       name: "twitter:url",
-      content: "http://tipiciudadano.es"
+      content: "https://quehacenlosdiputados.es"
     },
     {
       name: "twitter:title",
-      content: "TIPI Ciudadano"
+      content: "Qué hacen los diputados"
     },
     {
       name: "twitter:description",
       content:
-        "Es un proyecto que nace desde la sociedad civil para fortalecer sus capacidades de incidencia en los procesos de toma de decisión política y en la generación de un debate público informado sobre la pobreza y la justicia social en España."
+        "Que todos los días sean de puertas abiertas en el Congreso de los Diputados"
     },
     {
       name: "twitter:creator",
-      content: "@ciecode"
+      content: "@QHLD_"
     },
     {
       name: "twitter:image:src",
@@ -80,7 +80,7 @@ export default {
     },
     {
       property: "og:title",
-      content: "TIPI Ciudadano"
+      content: "Qué hacen los diputados"
     },
     {
       property: "og:type",
@@ -88,7 +88,7 @@ export default {
     },
     {
       property: "og:url",
-      content: "http://www.tipiciudadano.es"
+      content: "https://quehacenlosdiputados.es"
     },
     {
       property: "og:image",
@@ -98,11 +98,11 @@ export default {
     {
       property: "og:description",
       content:
-        "Es un proyecto que nace desde la sociedad civil para fortalecer sus capacidades de incidencia en los procesos de toma de decisión política y en la generación de un debate público informado sobre la pobreza y la justicia social en España."
+        "Que todos los días sean de puertas abiertas en el Congreso de los Diputados"
     },
     {
       property: "og:site_name",
-      content: "TIPI Ciudadano"
+      content: "Qué hacen los diputados"
     }
   ],
   STYLES: {
