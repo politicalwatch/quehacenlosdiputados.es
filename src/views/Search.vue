@@ -2,7 +2,7 @@
   <div>
     <div id="search" class="o-container o-section u-margin-bottom-10">
 
-      <page-header :title="'Buscar'" subtitle="Bucea en la actividad parlamentaria relacionada con las temáticas TIPI" />
+      <page-header :title="'Buscador de iniciativas'" />
 
       <initiatives-form :formData="this.data" @getResults="getResults" @clearInitiatives="clearInitiatives" />
 
