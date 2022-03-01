@@ -8,7 +8,7 @@
 
       <div v-if="layout != 'small'" class="c-deputy-card__wrapper__info">
         <router-link :to="{name: 'deputy', params: {id: deputy.id }}">
-          <h4>{{deputy.name}}</h4>
+          <h4 v-html="getSeparatedName()"></h4>
         </router-link>
         <p>{{ deputy.parliamentarygroup }}</p>
         <h5 v-if="layout == 'large'"><icon icon="location"/>{{ deputy.constituency }}</h5>
@@ -42,5 +42,10 @@ export default {
       getDeputyByName: 'getDeputyByName',
     }),
   },
+  methods: {
+    getSeparatedName: function() {
+      return this.deputy.name.split(',').join(',<br/>');
+    }
+  }
 }
 </script>

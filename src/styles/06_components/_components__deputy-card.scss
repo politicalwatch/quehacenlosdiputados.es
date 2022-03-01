@@ -39,6 +39,8 @@
 
     &__info {
 
+      text-transform: uppercase;
+
       h4, p, h5 {
         margin-top: 0px;
         margin-bottom: rem($spacer-unit/4);
