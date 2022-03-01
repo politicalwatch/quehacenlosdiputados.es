@@ -83,7 +83,7 @@ export default {
         });
     },
     getLatestInitiatives: function() {
-      api.getInitiatives({'author': this.parliamentarygroup.name, 'per_page': 3 })
+      api.getInitiatives({'author': this.parliamentarygroup.name, 'per_page': 6 })
          .then(response => {
            if (response.initiatives) this.latestInitiatives = response.initiatives;
           })
