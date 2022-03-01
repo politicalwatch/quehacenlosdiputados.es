@@ -8,6 +8,7 @@
       <h3>This is a H3: 24px</h3>
       <h4>This is a H4: 16px</h4>
       <h5>This is a H5: 14px</h5>
+      <h6>This is a H6: 12px</h6>
       <ul>
         <li>This is a unordered list element.</li>
         <li>This is a unordered list element.</li>

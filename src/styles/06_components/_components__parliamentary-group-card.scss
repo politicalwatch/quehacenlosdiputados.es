@@ -68,7 +68,18 @@
 
   &__small {
     background-image: url('../assets/parliamentary-groups-bg-small.jpg');
+    width: 256px;
+    height: 64px;
+    position: initial;
+    margin-bottom: 64px;
+
+    .c-parliamentary_group_card__overlay {
+      position: initial;
+    }
+
     .c-parliamentary_group_card__wrapper {
+      position: relative;
+      top: -62px;
       padding: 20px 32px;
     }
   }

@@ -212,14 +212,14 @@
 @mixin th2 {
   font-family: $font-headline;
   font-size: rem(32px);
-  line-height: 1.25;
+  line-height: 1.5;
   font-weight: 500;
   margin-top: 0;
   margin-bottom: 1rem;
 
   @media (min-width: $md) {
     font-size: rem(32px);
-    line-height: 1.2;
+    line-height: rem(48px);
   }
 }
 
@@ -263,6 +263,15 @@
     font-size: rem(14px);
     line-height: 1.2;
   }
+}
+
+@mixin th6 {
+  font-family: $font-headline;
+  font-size: rem(12px);
+  line-height: rem(16px);
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: rem(8px);
 }
 
 @mixin subtitle {

@@ -4,6 +4,7 @@
 
   &__topic {
     @include overline;
+    @include th6;
 
     flex: 0 0 auto;
     color: $topic-pill-color;
@@ -22,10 +23,10 @@
   }
 
   &__label {
-    @include overline;
-
-    color: $secondary;
-    margin: 0 0 rem($spacer-unit) 0;
+    background-color: $lightgrey;
+    padding: 16px 32px;
+    display: inline-block;
+    margin-bottom: 0;
   }
 
   &--extended {
@@ -34,7 +35,8 @@
     .c-topics {
 
       &__list {
-        margin-top: rem($spacer-unit * 2);
+        background-color: $lightgrey;
+        padding: 32px;
 
         &-subtopic {
           margin-top: rem($spacer-unit);
@@ -52,12 +54,14 @@
         }
 
         &-topic {
-          margin-bottom: rem($spacer-unit * 4);
+          margin-bottom: rem(32px);
         }
       }
 
       &__subtopic {
-        @include tbody2;
+        font-size: rem(14px);
+        line-height: rem(24px);
+        font-family: $font-headline;
 
         text-decoration: none;
         font-weight: 500;
@@ -76,13 +80,13 @@
 
       &__tag {
         @include overline;
+        @include th6;
 
-        margin-right: rem($spacer-unit);
-        margin-bottom: rem($spacer-unit);
+        padding: 8px;
+        margin: 0 1px 0 0;
+        background-color: $white;
         display: inline-block;
         text-transform: none;
-        background-color: $secondary-light;
-        padding: rem($spacer-unit);
         flex: 0 auto;
 
         .c-topics__link {
