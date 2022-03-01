@@ -1,7 +1,7 @@
 <template>
   <div id="home" class="o-container u-margin-bottom-10 c-home">
     <div v-if="home">
-      <ImageHeader :home="home" :image="getHomeImage()"/>
+      <ImageHeader :home="home" :image="getHomeImage()" class="u-margin-bottom-4" />
       <div class="o-section c-home__initiatives" v-if="relatedInitiatives.length">
         <h1 class="u-uppercase c-home__initiatives_title">Iniciativas relacionadas</h1>
         <a class="c-home__more u-border-link u-uppercase" :href="home.RelatedInitiativesSearch">Más iniciativas</a>
