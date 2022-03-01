@@ -1,7 +1,7 @@
 <template>
   <div class="o-section c-last-activity">
     <h1 class="u-uppercase">Iniciativas en los últimos 7 días</h1>
-    <h4 class="u-uppercase">Últimas iniciativas presentadas en el Congreso de los Diputados</h4>
+    <h4 class="u-uppercase u-margin-bottom-4">Últimas iniciativas presentadas en el Congreso de los Diputados</h4>
     <div v-for="type in types" class="c-last-activity__stat">
       <icon :icon="lastdays[type].trend" />
       <h1 class="c-last-activity__number">{{ lastdays[type].initiatives }}</h1>
@@ -32,9 +32,9 @@
           oversight: 'de control',
         },
         descriptions: {
-          legislative: 'Sapien volutpat, vel, sit condimentum integer odio. Ut ut a tortor accumsan sagittis, nisl quam vulputate.',
-          orientation: 'Cras et neque, suspendisse magna volutpat scelerisque facilisis nec.',
-          oversight: 'A nulla morbi ultrices et ante est. Senectus sagittis, sit rutrum ullamcorper at auctor.',
+          legislative: 'Los diputados y diputadas tienen la capacidad de proponer y aprobar leyes, así como de ratificar y convalidar leyes a propuesta del Gobierno.',
+          orientation: 'Los grupos parlamentarios pueden orientar políticamente al Gobierno a través de la aprobación de iniciativas, que no son legalmente vinculantes.',
+          oversight: 'Los grupos parlamentarios controlan la labor del Gobierno a través de preguntas y de la solicitud de informes y comparecencias.',
         },
       }
     },
