@@ -163,7 +163,7 @@
     &__content-wrapper {
       border: none;
       border-radius: 0;
-      background: transparent;
+      background-color: $lightgrey;
     }
 
     &__option {
@@ -181,6 +181,7 @@
         cursor: pointer;
         font-weight: bold;
         cursor: pointer;
+        color: $black;
 
         &::after {
           background-color: $lightgrey;
@@ -188,16 +189,22 @@
       }
 
       &--selected {
-        background-color: $primary-light;
+        background-color: $secondary;
 
         &::after {
-          background-color: $primary-light;
+          background-color: $secondary;
+          color: $black;
+        }
+
+        span {
+          color: $black;
         }
       }
 
       &--selected.multiselect__option--highlight {
         background-color: $lightgrey;
         font-weight: bold;
+        color: $black;
 
         &::after {
           background-color: $lightgrey;
@@ -381,7 +388,7 @@
         &.selected {
           border: 2px solid $white;
           background-color: $secondary;
-          color: $white;
+          color: $black;
         }
       }
     }
