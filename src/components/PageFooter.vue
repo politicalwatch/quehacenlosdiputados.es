@@ -38,7 +38,7 @@
       </div>
       <div class="o-grid u-margin-top-8">
         <div class="o-grid__col u-4@sm">
-          <a href="https://politicalwatch.es"><img class="c-footer__brand-logo" src="/img/logo-politicalwatch.png" alt="Logo de Political Watch"></a>
+          <a href="https://politicalwatch.es" target="_blank"><img class="c-footer__brand-logo" src="/img/logo-politicalwatch.png" alt="Logo de Political Watch"></a>
         </div>
         <div class="o-grid__col u-8@sm">
           <p class="c-footer__credits">&copy; 2011-{{ (new Date()).getFullYear()  }} Political Watch - <router-link :to="{name: 'legalnotice'}" class="u-color-white">Aviso legal</router-link> - <router-link :to="{name: 'privacypolicy'}" class="u-color-white">Política de privacidad</router-link> - <router-link :to="{name: 'cookiepolicy'}" class="u-color-white">Política de cookies</router-link></p>
