@@ -155,8 +155,10 @@ export default {
     }
   },
   getInitiative(id) {
+    const new_params = params
+    new_params.knowledgebase += ',ods'
     return axios
-      .get(getEndpoint(id), {params})
+      .get(getEndpoint(id), {new_params})
       .then(response => response.data);
 
     function getEndpoint(id) {

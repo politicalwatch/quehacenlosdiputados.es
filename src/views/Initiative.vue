@@ -38,7 +38,7 @@
               </div>
             </div>
 
-            <topics-section class="u-hide u-block@md" meta="Temáticas tratadas" :topics="getTopics(initiative)" :tags="getTags(initiative)" :topicsStyles="styles.topics" />
+            <topics-section class="u-hide u-block@md" :topicsStyles="styles.topics" :initiative="initiative"/>
 
           </div>
 
@@ -52,7 +52,7 @@
 
         <div class="u-hide@md">
 
-          <topics-section meta="Temáticas tratadas" :topics="initiative.topics" :tags="initiative.tags" :topicsStyles="styles.topics" />
+          <topics-section class="u-hide u-block@md" :topicsStyles="styles.topics" :initiative="initiative"/>
 
         </div>
       </div>
@@ -123,20 +123,6 @@ export default {
           this.errors = error;
           this.loaded = true;
         });
-    },
-    getTopics: function(initiative) {
-      let topics = []
-      for (const tagged of initiative['tagged']) {
-        topics = topics.concat(tagged['topics'])
-      }
-      return topics
-    },
-    getTags: function(initiative) {
-      let tags = []
-      for (const tagged of initiative['tagged']) {
-        tags = tags.concat(tagged['tags'])
-      }
-      return tags
     },
     getGroup: function(parliamentary_group) {
        for (const group of this.allParliamentaryGroups) {

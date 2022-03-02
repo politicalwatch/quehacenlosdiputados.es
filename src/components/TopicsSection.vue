@@ -1,8 +1,8 @@
 <template>
-  <div class="c-topics c-topics--extended" v-if="topics.length > 0">
-    <h3 class="c-topics__label u-uppercase">{{ meta }}</h3>
+  <div class="c-topics c-topics--extended" id="tagged">
+    <h3 v-for="kb in getKnowledgebases()" :class="{ 'c-topics__label--active': kb == activeKb}" class="c-topics__label u-uppercase"><a @click="activateKb(kb)" href="#tagged"><icon icon="ods" v-if="kb == 'ods'" />{{ titles[kb] }}</a></h3>
     <ul class="c-topics__list">
-      <li v-for="(topic, i) in sortedTopics" v-bind:key="topic" class="c-topics__list-topic">
+      <li v-for="(topic, i) in getTopics(activeKb)" v-bind:key="topic" class="c-topics__list-topic">
         <router-link
           :id="`topic-${i}`"
           class="c-topics__topic"
@@ -17,8 +17,8 @@
               {{ subtopic }}
             </router-link>
 
-            <ul v-if="getTags(subtopic)" class="c-topics__list-tags">
-              <li v-for="tag in getTags(subtopic)" v-bind:key="tag+' - '+topic" class="c-topics__tag">
+            <ul v-if="getTagsBySubtopic(subtopic)" class="c-topics__list-tags">
+              <li v-for="tag in getTagsBySubtopic(subtopic)" v-bind:key="tag+' - '+topic" class="c-topics__tag">
                 <router-link
                   class="c-topics__link"
                   :to="{ name: 'results', params: { data: paramsData(topic, subtopic, tag) } }">
@@ -35,27 +35,64 @@
 
 <script>
 const qs = require('qs');
+
+import Icon from './Icon';
 import * as Utils from '@/utils';
 
 export default {
   name: 'TopicsSection',
+  components: {
+    Icon,
+  },
   props: {
-    meta: String,
-    topics: Array,
-    tags: Array,
+    initiative: Object,
     topicsStyles: Object,
   },
-  computed: {
-    sortedTopics: function() {
-      return this.$props.topics.slice().sort(Utils.naturalSort);
-    },
+  data: function() {
+    return {
+      titles: {
+        politicas: 'Políticas tratadas',
+        ods: 'ODS tratados',
+      },
+      activeKb: 'politicas',
+    }
   },
   methods: {
-    getSubtopics(topic) {
-      return [...new Set(this.$props.tags.filter(tag => tag.topic === topic).map(tag => tag.subtopic))];
+    activateKb: function(kb) {
+      this.activeKb = kb
     },
-    getTags: function(subtopic) {
-      return this.$props.tags.filter(tag => tag.subtopic === subtopic).map(tag => tag.tag);
+    getKnowledgebases: function() {
+      const kbs = []
+      for (const tagged of this.initiative['tagged']) {
+        kbs.push(tagged['knowledgebase'])
+      }
+      return kbs
+    },
+    getTopics: function(kb) {
+      let topics = []
+      for (const tagged of this.initiative['tagged']) {
+        if (tagged['knowledgebase'] == kb) {
+          topics = topics.concat(tagged['topics'])
+        }
+      }
+      return topics.slice().sort(Utils.naturalSort)
+    },
+    getTags: function(kb) {
+      let tags = []
+      for (const tagged of this.initiative['tagged']) {
+        if (tagged['knowledgebase'] == kb) {
+          tags = tags.concat(tagged['tags'])
+        }
+      }
+      return tags
+    },
+    getSubtopics(topic) {
+      const tags = this.getTags(this.activeKb)
+      return [...new Set(tags.filter(tag => tag.topic === topic).map(tag => tag.subtopic))];
+    },
+    getTagsBySubtopic: function(subtopic) {
+      const tags = this.getTags(this.activeKb)
+      return tags.filter(tag => tag.subtopic === subtopic).map(tag => tag.tag);
     },
     paramsData: function(currentTopic, currentSubtopic, currentTag) {
       return qs.stringify({
@@ -63,6 +100,9 @@ export default {
         subtopics: currentSubtopic ? currentSubtopic : undefined,
         tags: currentTag ? currentTag : undefined,
       });
+    },
+    generateP2030Link() {
+      
     },
   },
 };
