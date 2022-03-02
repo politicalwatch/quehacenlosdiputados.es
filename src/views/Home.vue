@@ -6,10 +6,15 @@
         <h1 class="u-uppercase c-home__initiatives_title">Iniciativas relacionadas</h1>
         <a class="c-home__more u-border-link u-uppercase" :href="home.RelatedInitiativesSearch">Más iniciativas</a>
       </div>
-      <div>
-        <results v-if="relatedInitiatives.length" :initiatives="relatedInitiatives" :topicsStyles="topicsStyles"/>
-      </div>
+
+      <results
+        v-if="relatedInitiatives.length"
+        :initiatives="relatedInitiatives"
+        :topicsStyles="topicsStyles"
+      />
+
       <LastActivity :lastdays="lastdays" />
+
     </div>
   </div>
 </template>
