@@ -76,6 +76,9 @@ export default {
       }
     },
   },
+  created: function() {
+    this.setupMasonry();
+  },
   mounted: function () {
     this.setupMasonry();
     window.addEventListener('resize', function() {
