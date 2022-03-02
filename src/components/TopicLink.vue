@@ -1,14 +1,15 @@
 <template>
   <div>
     <div class="c-topic-link">
-      <router-link :to="{name: 'topic', params: {id: topic.id }}" class="c-topic-link__image-link" :style="`background-color: ${color}`">
-        <img :src="topicImage" :alt="`Imagen de ${topic.name}`" class="c-topic-link__image">
-      </router-link>
-      <h4 class="c-topic-link__name">
-        <router-link :to="{name: 'topic', params: {id: topic.id }}">
-          {{ topic.name }}
+      <div :class="'c-topic-link__' + topic.id">
+        <!-- <router-link :to="{name: 'topic', params: {id: topic.id }}" :class="'c-topic-link__image-link c-topic-link__' + topic.id"> -->
+        <router-link :to="{name: 'topic', params: {id: topic.id }}" class="c-topic-link__image-link">
+          <div>
+            <h1 class="c-topic-link__name u-uppercase ">{{ topic.name }}</h1>
+            <h3 class="c-topic-link__name">{{ stat }}</h3><h4 class="c-topic-link__name u-uppercase">iniciativas vinculadas</h4>
+          </div>
         </router-link>
-      </h4>
+      </div>
     </div>
   </div>
 </template>
@@ -23,6 +24,7 @@ export default {
     },
     image: String,
     topic: Object,
+    stat: Number,
   },
   computed: {
     topicImage: function() {
