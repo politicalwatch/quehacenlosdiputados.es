@@ -1,11 +1,4 @@
 .c-deputy {
-  padding: rem($spacer-unit * 8) rem($spacer-unit * 4) rem($spacer-unit * 4);
-  background-color: $secondary-light;
-  color: $secondary-dark;
-
-  @media (min-width: $md) {
-    margin-bottom: rem($spacer-unit * 4);
-  }
 
   &__image_container {
     width: rem($spacer-unit * 16);
@@ -178,5 +171,38 @@
 
   &__personal-info {
     display: flex;
+  }
+
+  &__inactive {
+
+    .c-message {
+
+      .c-message__wrapper {
+        background-color: $tipi-yellow;
+      }
+    
+      &__wrapper {
+        width: 100%;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        display: flex;
+        justify-content: center;
+
+        h4 {
+          margin-bottom: 0;
+          line-height: 24px;
+        }
+      }
+
+      &__icon {
+        position: initial;
+        margin-top: 2px;
+        margin-right: 16px;
+
+        svg path {
+          fill: black !important;
+        }
+      }
+    }
   }
 }
