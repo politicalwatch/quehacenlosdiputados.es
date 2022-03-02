@@ -29,6 +29,7 @@
           </li>
         </ul>
       </li>
+      <a :href="'https://www.parlamento2030.es/initiatives/' + initiative.oldid" v-if="activeKb=='ods'">Ver más en Parlamento2030.es</a>
     </ul>
   </div>
 </template>
@@ -64,7 +65,9 @@ export default {
     getKnowledgebases: function() {
       const kbs = []
       for (const tagged of this.initiative['tagged']) {
-        kbs.push(tagged['knowledgebase'])
+        if (tagged['topics'].length > 0) {
+          kbs.push(tagged['knowledgebase'])
+        }
       }
       return kbs
     },
@@ -100,9 +103,6 @@ export default {
         subtopics: currentSubtopic ? currentSubtopic : undefined,
         tags: currentTag ? currentTag : undefined,
       });
-    },
-    generateP2030Link() {
-      
     },
   },
 };
