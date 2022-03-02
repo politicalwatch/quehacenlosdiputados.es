@@ -1,8 +1,8 @@
 <template>
-  <div v-if="deputy" id="deputy" class="u-margin-bottom-10">
-    <div class="o-container" v-if="!deputy.active">
+  <div v-if="deputy" id="deputy" class="u-margin-bottom-10 c-deputy">
+    <div class="o-container c-deputy__inactive" v-if="!deputy.active">
       <message type="info" icon>
-        Causó baja en el Congreso de los Diputados
+        <h4 class="u-uppercase">Causó baja en el Congreso de los Diputados</h4>
       </message>
     </div>
     <div class="o-container">
