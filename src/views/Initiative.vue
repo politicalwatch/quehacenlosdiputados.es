@@ -45,6 +45,7 @@
           <div class="o-grid__col u-12 u-3@md">
             <div class="u-margin-bottom-4">
               <ParliamentaryGroupCard v-for="author in initiative.authors" :parliamentary_group="getGroup(author)" layout="small"/>
+              <div class="u-margin-bottom-4"></div>
               <deputy-card v-for="deputyName in initiative.deputies" :deputy="getDeputyByName(deputyName)" layout="medium" />
             </div>
           </div>
