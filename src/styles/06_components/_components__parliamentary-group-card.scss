@@ -71,7 +71,7 @@
     width: 256px;
     height: 64px;
     position: initial;
-    margin-bottom: 64px;
+    margin-bottom: rem($spacer-unit);
 
     .c-parliamentary_group_card__overlay {
       position: initial;
