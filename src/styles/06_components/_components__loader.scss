@@ -2,14 +2,14 @@
   padding: rem($spacer-unit * 4) rem($spacer-unit * 2);
   color: $secondary-dark;
   text-align: center;
-  background-color: $secondary-light;
 
   &__text {
     margin-top: rem($spacer-unit * 2);
   }
 
   &__title {
-    @include th5;
+    @include th4;
+    text-transform: uppercase;
 
     margin: 0 0 rem($spacer-unit) 0;
 
