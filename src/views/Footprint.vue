@@ -180,7 +180,7 @@
             <p>Así al aplicar este primer cálculo, una diputada obtendría una Huella parlamentaria de 87 tras haber presentado las siguientes iniciativas para una misma temática:</p>
             <ul>
               <li>3 preguntas orales en el pleno.</li>
-              <li>10 preguntas al gobierno para respuesta escrita.</li>
+              <li>10 preguntas al Gobierno para respuesta escrita.</li>
               <li>2 Proposiciones no de Ley en Comisión.</li>
               <li>1 Proposición de Ley de Grupos Parlamentarios.</li>
             </ul>
