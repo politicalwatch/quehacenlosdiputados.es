@@ -14,19 +14,9 @@
       </div>
     </div>
     <div id="topic" class="o-container o-section">
-      <div class="o-grid">
-        <div class="o-grid__col u-12 u-4@sm" v-if="deputies">
-          <h2 class="u-uppercase">Diputados más activos</h2>
-          <deputy-card v-for="deputy in deputies" :deputy="deputy" layout="medium" />
-        </div>
-        <div class="o-grid__col u-12 u-4@sm" v-if="parliamentarygroups">
-          <h2 class="u-uppercase">Grupos más activos</h2>
-          <ParliamentaryGroupCard v-for="parliamentarygroup in parliamentarygroups" :parliamentary_group="parliamentarygroup" layout="small" />
-        </div>
-        <div class="o-grid__col u-12 u-4@sm" v-if="places">
-          <h2 class="u-uppercase">Dónde se trata más</h2>
-          <h4 class="u-uppercase" v-for="place in places">{{ place }}</h4>
-        </div>
+      <div class="u-padding-top-2" v-if="deputies.length > 0">
+        <h2 class="u-uppercase u-margin-bottom-4">Diputados más relevantes</h2>
+        <CardGrid :items="deputies" type="deputy" layout="large" :footprintByTopic="topic.name" />
       </div>
       <div class="u-padding-top-4" v-if="latestInitiatives">
         <div class="c-topic__initiatives__header">
@@ -52,7 +42,7 @@
   import Icon from '@/components/Icon';
   import Results from '@/components/Results';
   import ParliamentaryGroupCard from '@/components/ParliamentaryGroupCard';
-  import DeputyCard from '@/components/DeputyCard';
+  import CardGrid from '@/components/CardGrid';
   import Loader from '@/components/Loader';
   import SaveAlert from '@/components/SaveAlert';
   import api from '@/api';
@@ -65,16 +55,14 @@
       Icon,
       Results,
       ParliamentaryGroupCard,
-      DeputyCard,
+      CardGrid,
       Loader,
       SaveAlert
     },
     data: function() {
       return {
         topic: {},
-        deputies: null,
-        places: null,
-        parliamentarygroups: null,
+        deputies: [],
         latestInitiatives: null,
         use_alerts: config.USE_ALERTS,
         styles: config.STYLES.topics,
@@ -177,7 +165,7 @@
       }
     },
     computed: {
-      ...mapState(['allDeputies', 'allParliamentaryGroups']),
+      ...mapState(['allDeputies']),
       ...mapGetters({
         getDeputyByName: 'getDeputyByName',
       }),
@@ -188,9 +176,7 @@
           .then(response => {
             this.topic = response;
             this.getLatestInitiatives(this.topic.name);
-            this.getParliamentarygroupsRanking(this.topic.name);
             this.getDeputiesRanking(this.topic.name);
-            this.getPlacesRanking(this.topic.name);
           })
           .catch(error => {
             this.errors = error
@@ -198,35 +184,17 @@
           });
       },
       getDeputiesRanking: function(topic) {
-        api.getDeputiesRanking(topic, null, 3)
+        api.getDeputiesRanking(topic, 6)
           .then(response => {
-            this.deputies = response;
-            this.deputies.forEach((deputy, index) => {
-              this.deputies[index] = this.getDeputyByName(this.deputies[index]._id);
+            const deputies_ranking = response;
+            deputies_ranking.forEach((d) => {
+              let deputy = this.getDeputyByName(d.name);
+              deputy.footprint = d.score;
+              this.deputies.push(deputy);
             });
+            this.loaded = true;
           })
             .catch(error => {this.errors = error; console.log(error)});
-      },
-      getPlacesRanking: function(topic) {
-        api.getPlacesRanking(topic, null, 3)
-          .then(response => {
-            this.places = response.map(place => `${place._id}`);
-          })
-          .catch(error => this.errors = error);
-          this.loaded = true;
-      },
-      getParliamentarygroupsRanking: function(topic) {
-        api.getParliamentarygroupsRanking(topic)
-          .then(response => {
-            this.parliamentarygroups = response;
-            this.parliamentarygroups.forEach((group, index) => {
-              let foundGroup = this.allParliamentaryGroups.find(allPG => allPG.name === group._id );
-              this.parliamentarygroups[index].name = this.parliamentarygroups[index]._id;
-              this.parliamentarygroups[index].id = foundGroup.id;
-              this.parliamentarygroups[index].color = foundGroup.color;
-            });
-          })
-          .catch(error => this.errors = error);
       },
       getLatestInitiatives: function(topic) {
         api.getInitiatives({ 'topic': topic, 'per_page': 6 })
@@ -238,7 +206,7 @@
       getStats: function() {
         api.getOverallStats()
           .then(response => {
-            this.stats = response.topics.politicas
+            this.stats = response.topics.politicas;
           })
           .catch(error => {
             this.errors = error

@@ -9,15 +9,6 @@ const params = {
   knowledgebase: kb
 }
 
-function mergeResults(response) {
-  const result = response.data
-  let output = []
-  for (const item in result) {
-    output = output.concat(result[item])
-  }
-  return output
-}
-
 export default {
   getTopics() {
     return axios.get(getEndpoint(), {params}).then(response => response.data);
@@ -221,69 +212,18 @@ export default {
       ].join('');
     }
   },
-  getDeputiesRanking(topic, subtopic, limit = 5) {
+  getDeputiesRanking(topic, limit = 5) {
     let params = {'topic': topic};
-    if (subtopic) {
-      params['subtopic'] = subtopic;
-    }
-    params['knowledgebase'] = kb
     return axios
       .get(getEndpoint(), {
         params: params
       })
-      .then(response => {
-        const result = mergeResults(response)
-        return result.slice(0,limit)
-      });
+      .then(response => response.data.deputies.slice(0, limit));
 
     function getEndpoint() {
       return [
         config.BACKEND_URL,
-        '/stats/deputies'
-      ].join('');
-    }
-  },
-  getParliamentarygroupsRanking(topic, subtopic) {
-    let params = {'topic': topic};
-    params['knowledgebase'] = kb
-    if (subtopic) {
-      params['subtopic'] = subtopic;
-    }
-    return axios
-      .get(getEndpoint(), {
-        params: params
-      })
-      .then(response => {
-        const result = mergeResults(response)
-        return result.slice(0,5)
-      });
-
-    function getEndpoint() {
-      return [
-        config.BACKEND_URL,
-        '/stats/parliamentarygroups'
-      ].join('');
-    }
-  },
-  getPlacesRanking(topic, subtopic) {
-    let params = {'topic': topic};
-    params['knowledgebase'] = kb
-    if (subtopic) {
-      params['subtopic'] = subtopic;
-    }
-    return axios
-      .get(getEndpoint(), {
-        params: params
-      })
-      .then(response => {
-        const result = mergeResults(response)
-        return result.slice(0,5)
-      });
-
-    function getEndpoint() {
-      return [
-        config.BACKEND_URL,
-        '/stats/places'
+        '/footprint/by-topic'
       ].join('');
     }
   },
