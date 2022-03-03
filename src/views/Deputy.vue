@@ -48,7 +48,7 @@
 
     <div class="o-container o-section">
       <h2 class="u-margin-bottom-4 u-uppercase">Temáticas destacadas</h2>
-      <barchart :result="deputy.footprint.slice(0, 5)" />
+      <barchart :result="deputy.footprint_by_topics.slice(0, 5)" />
       <footprint-info />
     </div>
 
