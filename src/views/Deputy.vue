@@ -20,6 +20,7 @@
           </div>
         </div>
         <div class="o-grid__col u-12 u-8@sm">
+          <footprint footprint="358,7" />
           <h1 class="c-deputy__name">{{ deputy.name }}</h1>
           <h3 class="c-deputy__group" v-if="parliamentarygroup">
             <router-link :to="{ name: 'parliamentarygroup', params: {id: parliamentarygroup.id }}">
@@ -69,6 +70,7 @@
 
 <script>
 
+import Footprint from '@/components/Footprint';
 import PageHeader from '@/components/PageHeader';
 import CongressLink from '@/components/CongressLink';
 import DeputyHeader from '@/components/DeputyHeader';
@@ -89,6 +91,7 @@ import { mapState } from 'vuex';
 export default {
   name: 'deputy',
   components: {
+    Footprint,
     PageHeader,
     CongressLink,
     DeputyHeader,

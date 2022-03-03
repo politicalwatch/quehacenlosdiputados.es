@@ -1,0 +1,14 @@
+.c-footprint {
+  margin-bottom: 8px;
+
+  &__wrapper {
+    background-color: $tipi-yellow;
+    padding: 8px;
+    font-family: $font-headline;
+    font-weight: 500;
+  }
+
+  .c-icon {
+    padding-right: 8px;
+  }
+}

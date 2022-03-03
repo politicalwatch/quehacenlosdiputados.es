@@ -8,6 +8,7 @@
       </router-link>
 
       <div v-if="layout != 'small'" class="c-deputy-card__wrapper__info">
+        <footprint footprint="358,7" />
         <router-link :to="{name: 'deputy', params: {id: deputy.id }}">
           <h4 v-html="getSeparatedName()"></h4>
         </router-link>
@@ -21,12 +22,14 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import Footprint from '@/components/Footprint';
 import PartyLogoIcon from '@/components/PartyLogoIcon';
 import Icon from './Icon';
 
 export default {
   name: 'DeputyCard',
   components: {
+    Footprint,
     PartyLogoIcon,
     Icon,
   },

@@ -40,6 +40,9 @@
       <hr>
       <h3 class="u-uppercase">Alerts</h3>
       <save-alert :searchparams="{deputy: 'Ábalos Meco, José Luis'}" text="Ábalos Meco, José Luis"/>
+      <hr>
+      <h3 class="u-uppercase">Footprint</h3>
+      <footprint footprint="317,7" />
     </div>
   </div>
 </template>
@@ -49,6 +52,7 @@
 import DeputyCard from '@/components/DeputyCard';
 import PageHeader from '@/components/PageHeader';
 import SaveAlert from '@/components/SaveAlert';
+import Footprint from '@/components/Footprint';
 import { mapGetters, mapState } from  'vuex';
 
 export default {
@@ -57,6 +61,7 @@ export default {
     DeputyCard,
     PageHeader,
     SaveAlert,
+    Footprint
   },
   data: function() {
     return {
