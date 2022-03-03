@@ -1,16 +1,19 @@
 <template>
-    <transition-group tag="div" class="tipichart" name="barfade">
-      <div class="tipichart__row" v-for="d in rows" :key="d.topic" :style="rowStyle">
+    <transition-group tag="div" class="barchart" name="barfade">
+      <div class="barchart__row" v-for="d in rows" :key="d.name" :style="rowStyle">
 
-        <div class="tipichart__tooltip" :style="{bottom: `${barHeight}px`}">
-          <div class="tipichart__tip">{{ d.topic }} {{ d.percent }}%</div>
+        <div class="barchart__name u-text-th4 u-uppercase">{{d.name}}</div>
+
+        <div class="barchart__bar">
+          <div class="barchart__backbar" :style="d.backbarStyle"></div>
+          <div class="barchart__overbar" :style="d.overbarStyle"></div>
+          <div class="barchart__score u-text-th3">{{d.score}}</div>
         </div>
 
-        <div class="tipichart__name">{{d.name}}</div>
-
-        <div class="tipichart__bar">
-          <div class="tipichart__backbar" :style="d.backbarStyle"></div>
-          <div class="tipichart__overbar" :style="d.overbarStyle"></div>
+        <div class="barchart__more">
+          <!-- <router&#45;link :to="{name: 'deputy', params: {id: d.name }}" class="u&#45;border&#45;link u&#45;uppercase"> -->
+          <!--   Consultar -->
+          <!-- </router&#45;link> -->
         </div>
 
       </div>
@@ -19,10 +22,10 @@
 
 
 <script>
-import * as Utils from '../../utils';
+import * as Utils from '@/utils';
 
 export default {
-  name: 'TipiBarchart',
+  name: 'Barchart',
   data() {
     return {
       rows: [],
@@ -30,44 +33,30 @@ export default {
   },
   props: {
     result: {
-      type: Object,
+      type: Array,
       required: true,
-      default: () => ({}),
-    },
-    styles: {
-      type: Object,
-      required: true,
-      default: () => ({}),
+      default: () => ([]),
     },
     barHeight: {
       type: Number,
       required: false,
-      default: 24,
+      default: 56,
     },
     barGap: {
       type: Number,
       required: false,
-      default: 12,
+      default: 24,
     },
     barColor: {
       type: String,
       required: false,
-      default: '#fbc239',
+      default: '#efca53',
     },
     barBackgroundColor: {
       type: String,
       required: false,
-      default: '#f4f6f8',
+      default: '#f3f3f3',
     },
-    barOrder: {
-      type: String,
-      required: false,
-      default: 'desc', // Options: alphabetically, asc, desc
-    },
-    knowledgebase: {
-      type: String,
-      required: true,
-    }
   },
   mounted() {
     this.calculeRows();
@@ -82,94 +71,46 @@ export default {
   },
   methods: {
     calculeRows() {
-      const tagged = this.getTagged()
-      const tags = tagged.tags
-      const rows = [];
-      const totalTimes = tags
-        .reduce((cnt, o) => (cnt + o.times), 0);
-
-
-      tags.forEach(d => {
-        const idx = rows.map(r => r.topic).indexOf(d.topic);
-        if(idx === -1) {
-          // New topic -> construct object
-          rows.push({
-            topic: d.topic,
-            times: d.times,
-            percent: Math.ceil((d.times/totalTimes)*100),
-            iconStyle: {
-              flex: `0 0 ${this.barHeight}px`,
-              height: `${this.barHeight}px`,
-              backgroundSize: `${this.barHeight}px`,
-              backgroundImage: `url(/img/topics/${this.styles.topics[d.topic].image})`,
-            },
-            backbarStyle: {
-              height: `${this.barHeight}px`,
-              backgroundColor: this.barBackgroundColor,
-            },
-            overbarStyle: {
-              height: `${this.barHeight}px`,
-              width: `${(d.times/totalTimes)*100}%`,
-              backgroundColor: this.barColor,
-            },
-          });
-        } else {
-          // Existing topic -> update values (sum ocurrences)
-          rows[idx].times += d.times;
-          rows[idx].overbarStyle.width = `${(rows[idx].times/totalTimes)*100}%`;
-          rows[idx].percent = Math.ceil((rows[idx].times/totalTimes)*100);
-        }
+      const max = this.result[0].score;
+      this.result.forEach(d => {
+        this.rows.push({
+          name: d.name,
+          score: d.score,
+          backbarStyle: {
+            height: `${this.barHeight}px`,
+            backgroundColor: this.barBackgroundColor,
+          },
+          overbarStyle: {
+            height: `${this.barHeight}px`,
+            width: `${(d.score/max)*100}%`,
+            backgroundColor: this.barColor,
+          },
+        });
       });
-      this.rows = this.barOrder === 'alphabetically'
-        ? rows.sort((a, b) => Utils.naturalSort(a.topic, b.topic))
-        : this.barOrder === 'asc'
-          ? rows.sort((a, b) => a.times - b.times)
-          : rows.sort((a, b) => b.times - a.times);
-    },
-    getTagged() {
-      return this.result.tagged.filter(e => e.knowledgebase == this.knowledgebase).pop()
     },
   },
 };
 </script>
 
 <style lang="scss">
-.tipichart {
+.barchart {
   &__row {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 48px;
     position: relative;
-    &:hover .tipichart__tooltip {
-      display: block;
-    }
   }
-  &__tooltip {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    z-index: 99;
-    text-align: center;
-    display: none;
-    pointer-events: none;
-  }
-  &__tip {
-    background: black;
-    color: white;
-    font-size: small;
-    display: inline-block;
-    padding: 0 4px;
-    line-height: 1.5;
-    border-radius: 3px;
-  }
-  &__icon {
-    background-repeat: no-repeat;
-    background-position: center;
+  &__name {
     margin-right: 6px;
+    margin-bottom: 0px !important;
+    flex-basis: 20%;
   }
   &__bar {
     flex: 1 1 auto;
     overflow: hidden;
-    border-radius: 3px;
     position: relative;
+    flex-basis: 90%;
   }
   &__backbar {
     width: 100%;
@@ -181,6 +122,16 @@ export default {
     left: 0;
     transition: width 500ms cubic-bezier(0.59, 0.12, 0.34, 0.95) 350ms;
   }
+  &__score {
+    position: absolute;
+    z-index: 10;
+    top: 25%;
+    left: 24px;
+  }
+  &__more {
+    margin-left: 6px;
+    flex-basis: 10%;
+  }
 }
 
 /* Animation */
@@ -190,7 +141,7 @@ export default {
   &-move {
     transition: 350ms cubic-bezier(0.59, 0.12, 0.34, 0.95);
     transition-property: opacity, transform;
-    .tipichart__overbar {
+    .barchart__overbar {
       width: 0 !important;
     }
   }

@@ -44,6 +44,13 @@
         </div>
       </div>
     </div>
+
+    <div class="o-container o-section">
+      <h2 class="u-margin-bottom-4 u-uppercase">Temáticas destacadas</h2>
+      <barchart :result="deputy.footprint.slice(0, 5)" />
+      <footprint-info />
+    </div>
+
     <div v-if="latestInitiatives && latestInitiatives.length" class="o-container o-section">
       <h2 class="u-margin-bottom-4 u-uppercase">Últimas iniciativas</h2>
       <results layout="tiny" :initiatives="latestInitiatives" :topicsStyles="styles.topics"/>
@@ -73,6 +80,8 @@ import Loader from '@/components/Loader';
 import PartyLogoIcon from '@/components/PartyLogoIcon';
 import SaveAlert from '@/components/SaveAlert';
 import SocialIcon from '@/components/SocialIcon';
+import Barchart from '@/components/Barchart';
+import FootprintInfo from '@/components/FootprintInfo'
 import api from '@/api';
 import config from '@/config';
 import { mapState } from 'vuex';
@@ -91,6 +100,8 @@ export default {
     Loader,
     SaveAlert,
     SocialIcon,
+    Barchart,
+    FootprintInfo,
   },
   data: function() {
     return {
