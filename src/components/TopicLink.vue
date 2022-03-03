@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="c-topic-link">
-      <div :class="'c-topic-link__' + topic.id">
-        <!-- <router-link :to="{name: 'topic', params: {id: topic.id }}" :class="'c-topic-link__image-link c-topic-link__' + topic.id"> -->
+      <div :class="'u-topic-bg__' + topic.id">
+        <!-- <router-link :to="{name: 'topic', params: {id: topic.id }}" :class="'c-topic-link__image-link u-topic-bg__' + topic.id"> -->
         <router-link :to="{name: 'topic', params: {id: topic.id }}" class="c-topic-link__image-link">
           <div>
             <h1 class="c-topic-link__name u-uppercase ">{{ topic.name }}</h1>
