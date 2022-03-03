@@ -7,7 +7,7 @@
       <h1 class="c-last-activity__number">{{ lastdays[type].initiatives }}</h1>
       <h4 class="c-last-activity__type u-uppercase">{{ titles[type] }}</h4>
       <span class="c-last-activity__description">{{ descriptions[type] }}</span>
-      <a class="u-border-link u-uppercase" :href="getLink(type)">Consultar</a>
+      <!-- <a class="u&#45;border&#45;link u&#45;uppercase" :href="getLink(type)">Consultar</a> -->
     </div>
   </div>
 </template>
