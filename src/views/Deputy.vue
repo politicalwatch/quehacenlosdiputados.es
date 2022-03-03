@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="o-grid__col u-12 u-8@sm">
-          <footprint footprint="358,7" />
+          <footprint :footprint="deputy.footprint" />
           <h1 class="c-deputy__name">{{ deputy.name }}</h1>
           <h3 class="c-deputy__group" v-if="parliamentarygroup">
             <router-link :to="{ name: 'parliamentarygroup', params: {id: parliamentarygroup.id }}">
