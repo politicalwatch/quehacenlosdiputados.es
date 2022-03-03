@@ -1,6 +1,6 @@
 table {
   width: 100%;
-  margin-bottom: rem($spacer-unit * 4);
+  margin-bottom: rem($spacer-unit * 2);
 
   @media (min-width: $md) {
     border-collapse: collapse;
@@ -16,11 +16,12 @@ table {
       th {
         display: none;
         visibility: hidden;
+        text-align: left;
 
         @media (min-width: $md) {
           @include overline;
 
-          padding: rem($spacer-unit * 2);
+          padding: rem($spacer-unit);
           color: $white;
           display: table-cell;
           visibility: visible;
@@ -46,7 +47,7 @@ table {
 
         @media (min-width: $md) {
           display: table-cell;
-          padding: rem($spacer-unit * 2);
+          padding: rem($spacer-unit);
         }
 
         &[data-label] {
