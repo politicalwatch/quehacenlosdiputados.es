@@ -113,12 +113,12 @@ const routes = [{
     }
   },
   {
-    path: "/politicas",
+    path: "/tematicas",
     name: "topics",
     component: Topics
   },
   {
-    path: "/politicas/:id",
+    path: "/tematicas/:id",
     name: "topic",
     component: Topic
   },

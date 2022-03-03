@@ -8,9 +8,9 @@
         <div class="o-grid__col u-12 u-8@sm">
           <h3 class="u-uppercase">Es un indicador que mide la relevancia parlamentaria de un diputado o diputada en función de su volumen de actividad, la efectividad de sus propuestas y su grado de accesibilidad.</h3>
           <h2>El algoritmo</h2>
-          <p>El indicador de Huella parlamentaria está construido en base a diferentes variables que permiten medir y comparar la relevancia parlamentaria de los diputados y diputadas en las diferentes <router-link :to="{name: 'topics' }">políticas</router-link> a las que da seguimiento QHLD.</p>
-          <p>Se trata de un indicador acumulado, que se actualiza semanalmente (todos los domingos) para cada uno de los miembros del Congreso de los Diputados y para cada una de las políticas.</p>
-          <p>El indicador se calcula, para cada diputado o diputada y cada política, a partir de las siguientes variables:</p>
+          <p>El indicador de Huella parlamentaria está construido en base a diferentes variables que permiten medir y comparar la relevancia parlamentaria de los diputados y diputadas en las diferentes <router-link :to="{name: 'topics' }">temáticas</router-link> a las que da seguimiento QHLD.</p>
+          <p>Se trata de un indicador acumulado, que se actualiza semanalmente (todos los domingos) para cada uno de los miembros del Congreso de los Diputados y para cada una de las temáticas.</p>
+          <p>El indicador se calcula, para cada diputado o diputada y cada temática, a partir de las siguientes variables:</p>
           <ul>
             <li>Número de iniciativas presentadas desde el inicio de la legislatura, diferenciado por cada tipo de iniciativa.</li>
             <li>Número de Proposiciones de Ley y Proposiciones No de Ley aprobadas de entre las presentadas por cada miembro del Congreso en cada temática.</li>
@@ -177,7 +177,7 @@
 
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
-            <p>Así al aplicar este primer cálculo, una diputada obtendría una Huella parlamentaria de 87 tras haber presentado las siguientes iniciativas para una misma política:</p>
+            <p>Así al aplicar este primer cálculo, una diputada obtendría una Huella parlamentaria de 87 tras haber presentado las siguientes iniciativas para una misma temática:</p>
             <ul>
               <li>3 preguntas orales en el pleno.</li>
               <li>10 preguntas al gobierno para respuesta escrita.</li>
@@ -278,7 +278,7 @@
 
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
-            <p>Finalmente, suponiendo que la diputada llevara inactiva 7 meses en una política concreta, su Huella parlamentaria para dicha política pasaría de 192 a 144.</p>
+            <p>Finalmente, suponiendo que la diputada llevara inactiva 7 meses en una temática concreta, su Huella parlamentaria para dicha temática pasaría de 192 a 144.</p>
           </div>
 
         </div>
