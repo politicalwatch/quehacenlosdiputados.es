@@ -37,7 +37,7 @@
             Explorar todas
           </router-link>
         </div>
-        <results layout="tiny" :initiatives="latestInitiatives" :topicsStyles="styles"/>
+        <results :initiatives="latestInitiatives" :topicsStyles="styles"/>
       </div>
     </div>
     <save-alert :searchparams="{topic: topic.name}" :text="topic.name" />
@@ -229,7 +229,7 @@
           .catch(error => this.errors = error);
       },
       getLatestInitiatives: function(topic) {
-        api.getInitiatives({ 'topic': topic, 'per_page': 3 })
+        api.getInitiatives({ 'topic': topic, 'per_page': 6 })
            .then(response => {
               if (response.initiatives) this.latestInitiatives = response.initiatives;
             })
