@@ -3,7 +3,7 @@
     <h3 v-for="kb in getKnowledgebases()" :class="{ 'c-topics__label--active': kb == activeKb}" class="c-topics__label u-uppercase"><a @click="activateKb(kb)" href="#tagged"><icon icon="ods" v-if="kb == 'ods'" />{{ titles[kb] }}</a></h3>
     <ul class="c-topics__list">
       <li v-for="(topic, i) in getTopics(activeKb)" v-bind:key="topic" class="c-topics__list-topic">
-        <a v-if="activeKb == 'ods'" :href="getP2030SearchLink(paramsData(topic))" :style="`background-color:${topicsStyles[topic].color}`" target="_blank" class="c-topics__topic">{{ topic }}</a>
+        <a v-if="activeKb == 'ods'" :href="getP2030SearchLink(paramsData(topic))" :style="`background-color:${topicsStyles[topic].color}`" target="_blank" class="c-topics__topic" style="color: white;">{{ topic }}</a>
         <router-link
           v-if="activeKb != 'ods'"
           :id="`topic-${i}`"
