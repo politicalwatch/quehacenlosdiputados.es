@@ -8,7 +8,7 @@
       </router-link>
 
       <div v-if="layout != 'small'" class="c-deputy-card__wrapper__info">
-        <footprint :footprint="deputy.footprint" />
+        <footprint :footprint="getFootprint()" />
         <router-link :to="{name: 'deputy', params: {id: deputy.id }}">
           <h4 v-html="getSeparatedName()"></h4>
         </router-link>
@@ -42,6 +42,7 @@ export default {
       type: String,
       default: 'medium' // small, medium, large
     },
+    footprint: String,
   },
   computed: {
     ...mapGetters({
@@ -51,6 +52,14 @@ export default {
   methods: {
     getSeparatedName: function() {
       return this.deputy.name.split(',').join(',<br/>');
+    },
+    getFootprint: function() {
+      if (this.footprint != 'General') {
+        const filtered_footprint = this.deputy.footprint_by_topics.filter(item => item.name == this.footprint)
+        /*console.log(filtered_footprint)*/
+        return filtered_footprint[0].score
+      }
+      return this.deputy.footprint
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="o-grid c-card_grid">
     <div :class="classes" v-for="item in this.items">
       <ParliamentaryGroupCard :parliamentary_group="item" v-if="isParliamentaryGroup()" :layout="layout"/>
-      <deputy-card v-if="isDeputy()" :deputy="item" :layout="layout" />
+      <deputy-card v-if="isDeputy()" :deputy="item" :layout="layout" :footprint="getDeputyExtra()"/>
     </div>
   </div>
 </template>
@@ -22,6 +22,7 @@ export default {
     items: Array,
     type: String,
     layout: String,
+    extra: Object,
   }, 
   methods: {
     isDeputy: function() {
@@ -30,6 +31,12 @@ export default {
     isParliamentaryGroup: function() {
       return this.type == 'parliamentarygroup'
     },
+    getDeputyExtra: function() {
+      if ('footprint' in this.extra) {
+        return this.extra['footprint']
+      }
+      return 'General'
+    }
   },
   computed: {
     classes: function() {

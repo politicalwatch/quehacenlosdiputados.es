@@ -38,12 +38,29 @@
         </div>
       </div>
     </div>
-    <div class="o-grid u-margin-top-2">
-      <div class="o-grid__col u-12 u-6@xs">
+    <div class="o-grid u-margin-top-1">
+      <div class="o-grid__col u-12 u-6@sm">
+        <div class="c-select-label u-block">
+          <label for="footprint">Ordenar por tipo de huella:</label>
+          <multiselect
+            selectedLabel="Seleccionado"
+            selectLabel=""
+            deselectLabel="Pulsa para deseleccionar"
+            v-model="form.footprint"
+            :options="ranking"
+            :allow-empty="true"
+            @input="emitFilters()"
+            name="footprint" id="footprint" placeholder="Selecciona una">
+          </multiselect>
+        </div>
+      </div>
+      <div class="o-grid__col u-12 u-6@sm">
         <footprint-info :withLabel="true" />
       </div>
-      <div class="o-grid__col u-12 u-6@xs u-text-right@sm">
-        <a class="u-padding-right-0" @click.prevent="cleanForm">Limpiar búsqueda</a>
+    </div>
+    <div class="o-grid">
+      <div class="o-grid__col u-8 u-12@sm u-text-right@sm">
+        <button class="c-button u-padding-right-0" @click.prevent="cleanForm">Limpiar búsqueda</button>
       </div>
     </div>
   </form>
@@ -67,6 +84,7 @@ export default {
   props: {
     deputies: Array,
     groups: Array,
+    ranking: Array,
   },
   methods: {
     cleanForm: function() {
@@ -87,6 +105,13 @@ export default {
     },
     preventSubmission: function(e) {
       e.preventDefault()
+    },
+    getRanking: function() {
+      const ranking = {}
+      for (const option of this.ranking) {
+        ranking[option] = option
+      }
+      return ranking
     },
   }
 }
