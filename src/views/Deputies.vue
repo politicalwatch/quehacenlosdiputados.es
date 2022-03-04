@@ -1,7 +1,8 @@
 <template>
   <div id="deputies" class="o-container o-section u-margin-bottom-10">
     <page-header title="Listado de diputados" />
-    <deputies-form :deputies="deputies" :groups="getGroupsLongNames()" @setFilters="setFilters"></deputies-form>
+    <deputies-form v-if="getFilteredDeputies().length" :deputies="deputies" :groups="getGroupsLongNames()" @setFilters="setFilters"></deputies-form>
+    <!--<deputies-form v-if="getFilteredDeputies().length" :deputies="deputies" :groups="getGroupsLongNames()" @setFilters="setFilters" :ranking="getRanking()"></deputies-form>-->
     <CardGrid :items="getFilteredDeputies()" type="deputy" layout="large" />
     <not-found v-if="getFilteredDeputies().length == 0" message="No se han encontrado diputados." />
 
@@ -72,21 +73,18 @@ export default {
       }
 
       return [...filteredDeputies].sort((a, b) => {
-        if (!this.filters['sortUp']) {
-          return this.prepareForSorting(a.name) > this.prepareForSorting(b.name)
-        }
-        return this.prepareForSorting(a.name) < this.prepareForSorting(b.name)
+        return a.footprint < b.footprint
       })
     },
-    prepareForSorting: function(name) {
-      return name.toUpperCase()
-        .replace('Á', 'A')
-        .replace('É', 'E')
-        .replace('Í', 'I')
-        .replace('Ó', 'O')
-        .replace('Ú', 'U')
-        .replace('Ñ', 'NZ')
-    },
+    /*getRanking: function() {*/
+      /*const ranking = ['General']*/
+      /*const footprint = this.deputies[0].footprint_by_topics*/
+      /*for (const item of footprint) {*/
+        /*ranking.push(item.name)*/
+      /*}*/
+
+      /*return ranking*/
+    /*}*/
   },
   beforeMount() {
     this.loadDeputies()

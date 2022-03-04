@@ -24,8 +24,6 @@
 <script>
 const qs = require('qs');
 
-import * as Utils from '@/utils';
-
 export default {
   name: 'Barchart',
   data() {
