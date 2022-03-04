@@ -5,7 +5,7 @@
       </figure>
       <h1 class="u-uppercase c-image-header__date">{{ home.Date }}</h1>
       <h2 class="u-uppercase c-image-header__date_title">{{ home.TitleDate }}</h2>
-      <h6 class="u-uppercase c-image-header__author"><a :href="home.ImageUrl" target="_blank"><icon icon="camera" />Unsplash: Photo by {{ home.ImageAuthor }}</a></h6>
+      <h6 class="u-uppercase c-image-header__author u-hide u-block@sm"><a :href="home.ImageUrl" target="_blank"><icon icon="camera" />Unsplash: Photo by {{ home.ImageAuthor }}</a></h6>
   </div>
 </template>
 

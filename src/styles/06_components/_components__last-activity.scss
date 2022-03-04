@@ -1,21 +1,39 @@
 .c-last-activity {
   &__stat {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
+    gap: rem($spacer-unit);
+
+    @media (max-width: $sm) {
+      flex-direction: column;
+    }
+
+
   }
 
   &__number {
     font-size: rem(64px);
     line-height: rem(80px);
-    width: 100px;
+    width: 5%;
+    @media (max-width: $sm) {
+      width: 100%;
+    }
   }
 
   &__type {
-    width: 100px;
+    width: 10%;
+    @media (max-width: $sm) {
+      width: 100%;
+    }
   }
 
   &__description {
-    width: 544px;
+    width: 60%;
+    margin-left: rem($spacer-unit*4);
+    @media (max-width: $sm) {
+      width: 100%;
+      margin-left: 0px;
+    }
   }
 }
