@@ -11,9 +11,9 @@
         </div>
 
         <div class="barchart__more">
-          <!-- <router&#45;link :to="{name: 'deputy', params: {id: d.name }}" class="u&#45;border&#45;link u&#45;uppercase"> -->
-          <!--   Consultar -->
-          <!-- </router&#45;link> -->
+          <router-link :to="{name: 'results', params: {data: paramsData(d.name, deputy)}}" class="u-border-link u-uppercase">
+            Consultar
+          </router-link>
         </div>
 
       </div>
@@ -22,6 +22,8 @@
 
 
 <script>
+const qs = require('qs');
+
 import * as Utils from '@/utils';
 
 export default {
@@ -57,6 +59,11 @@ export default {
       required: false,
       default: '#f3f3f3',
     },
+    deputy: {
+      type: String,
+      required: true,
+      default: ''
+    }
   },
   mounted() {
     this.calculeRows();
@@ -86,6 +93,12 @@ export default {
             backgroundColor: this.barColor,
           },
         });
+      });
+    },
+    paramsData: function(topic, deputy) {
+      return qs.stringify({
+        topic: topic,
+        deputy: deputy
       });
     },
   },
