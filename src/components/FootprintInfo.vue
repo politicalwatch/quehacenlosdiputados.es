@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-link :to="{name: 'footprint' }" target="_blank" style="text-decoration:none !important;">
-      <p v-if="withLabel"><footprint v-if="withLabel" footprint="Huella" style="display: inline-block !important;" />&nbsp;&nbsp;¿Qué es esto?</p>
+      <p v-if="withLabel"><footprint v-if="withLabel" :footprint="184.8" style="display: inline-block !important;" />&nbsp;&nbsp;¿Qué es esto?</p>
       <p v-else>¿Cómo funciona el algoritmo de huella parlamentaria?</p>
     </router-link>
   </div>
