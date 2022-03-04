@@ -40,12 +40,12 @@
               <tr>
                 <td>Iniciativas de Control</td>
                 <td>Pregunta oral en Pleno</td>
-                <td>5</td>
+                <td>10</td>
               </tr>
               <tr>
                 <td>Iniciativas de Control</td>
                 <td>Pregunta oral al Gobierno en Comisión</td>
-                <td>5</td>
+                <td>10</td>
               </tr>
               <tr>
                 <td>Iniciativas de Control</td>
@@ -55,129 +55,129 @@
               <tr>
                 <td>Iniciativas de Control</td>
                 <td>Comparecencia del Gobierno en Comisión (art. 44)</td>
-                <td>2</td>
+                <td>4</td>
               </tr>
               <tr>
                 <td>Iniciativas de Control</td>
                 <td>Comparecencia del Gobierno en Comisión (arts. 202 y 203)</td>
-                <td>2</td>
+                <td>4</td>
               </tr>
               <tr>
                 <td>Iniciativas de Control</td>
                 <td>Comparecencia de autoridades y funcionarios en Comisión</td>
-                <td>2</td>
+                <td>4</td>
               </tr>
               <tr>
                 <td>Iniciativas de Control</td>
                 <td>Comparec. autoridades y funcionarios en Com. Mx. solicitada en Senado</td>
-                <td>2</td>
+                <td>4</td>
               </tr>
               <tr>
                 <td>Iniciativas de Control</td>
                 <td>Otras comparecencias en Comisión</td>
-                <td>2</td>
+                <td>4</td>
               </tr>
               <tr>
                 <td>Iniciativas de Control</td>
                 <td>Moción de censura</td>
-                <td>5</td>
+                <td>10</td>
               </tr>
               <tr>
                 <td>Iniciativas de Control</td>
                 <td>Interpelación urgente</td>
-                <td>2</td>
+                <td>4</td>
               </tr>
               <tr>
                 <td>Iniciativas de Control</td>
                 <td>Interpelación ordinaria</td>
-                <td>2</td>
+                <td>4</td>
               </tr>
               <tr>
                 <td>Iniciativas de Control</td>
                 <td>Pregunta oral a la Corporación RTVE</td>
-                <td>5</td>
+                <td>10</td>
               </tr>
               <tr>
                 <td>Iniciativas de Control</td>
                 <td>Pregunta a la Corporación RTVE con respuesta escrita</td>
-                <td>0.5</td>
+                <td>0.1</td>
               </tr>
               <tr>
                 <td>Iniciativas de Control</td>
                 <td>Solicitud de informe a la Administración del Estado (art. 7)</td>
-                <td>2</td>
+                <td>4</td>
               </tr>
               <tr>
                 <td>Iniciativas de Control</td>
                 <td>Solicitud de informe a otra Entidad Pública (art. 7)</td>
-                <td>2</td>
+                <td>4</td>
               </tr>
               <tr>
                 <td>Iniciativas de Control</td>
                 <td>Solicitud de informe a la Administración del Estado (art. 44)</td>
-                <td>2</td>
+                <td>4</td>
               </tr>
               <tr>
                 <td>Iniciativas de Control</td>
                 <td>Solicitud de informe a otra Entidad Pública (art. 44)</td>
-                <td>2</td>
+                <td>4</td>
               </tr>
               <tr>
                 <td>Iniciativas de Control</td>
                 <td>Otras solicitudes de informe (art. 44)</td>
-                <td>2</td>
+                <td>4</td>
               </tr>
               <tr>
                 <td>Iniciativas de orientación</td>
                 <td>Proposición no de Ley ante el Pleno</td>
-                <td>20</td>
+                <td>40</td>
               </tr>
               <tr>
                 <td>Iniciativas de orientación</td>
                 <td>Proposición no de Ley en Comisión</td>
-                <td>20</td>
+                <td>40</td>
               </tr>
               <tr>
                 <td>Iniciativas de orientación</td>
                 <td>Moción consecuencia de interpelación ordinaria</td>
-                <td>20</td>
+                <td>40</td>
               </tr>
               <tr>
                 <td>Iniciativas de orientación</td>
                 <td>Moción consecuencia de interpelación urgente</td>
-                <td>20</td>
+                <td>40</td>
               </tr>
               <tr>
                 <td>Iniciativas legislativas</td>
                 <td>Proposición de ley de Grupos Parlamentarios del Congreso</td>
-                <td>40</td>
+                <td>80</td>
               </tr>
               <tr>
                 <td>Iniciativas legislativas</td>
                 <td>Proposición de ley de Diputados</td>
-                <td>40</td>
+                <td>80</td>
               </tr>
               <tr>
                 <td>Iniciativas legislativas</td>
                 <td>Proyecto de reforma Constitucional</td>
-                <td>40</td>
+                <td>80</td>
               </tr>
               <tr>
                 <td>Iniciativas legislativas</td>
                 <td>Proposición de reforma Constitucional de Grupos Parlamentarios</td>
-                <td>40</td>
+                <td>80</td>
               </tr>
               <tr>
                 <td>Iniciativas legislativas</td>
                 <td>Proposición de reforma constitucional de Comunidades Autónomas</td>
-                <td>40</td>
+                <td>80</td>
               </tr>
             </tbody>
           </table>
 
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
-            <p>Así al aplicar este primer cálculo, una diputada obtendría una Huella parlamentaria de 87 tras haber presentado las siguientes iniciativas:</p>
+            <p>Así al aplicar este primer cálculo, una diputada obtendría una Huella parlamentaria de 191 tras haber presentado las siguientes iniciativas:</p>
             <ul>
               <li>3 preguntas orales en el pleno.</li>
               <li>10 preguntas al Gobierno para respuesta escrita.</li>
@@ -200,33 +200,33 @@
               <tr>
                 <td>Iniciativas de orientación</td>
                 <td>Aprobación de Proposición no de Ley ante el Pleno</td>
-                <td>5 puntos extra</td>
-                <td>25% adicional sobre el peso de la iniciativa</td>
+                <td>20 puntos extra</td>
+                <td>50% adicional sobre el peso de la iniciativa</td>
               </tr>
               <tr>
                 <td>Iniciativas de orientación</td>
                 <td>Aprobación de Proposición no de Ley en Comisión</td>
-                <td>5 puntos extra</td>
-                <td>25% adicional sobre el peso de la iniciativa</td>
+                <td>20 puntos extra</td>
+                <td>50% adicional sobre el peso de la iniciativa</td>
               </tr>
               <tr>
                 <td>Iniciativas legislativas</td>
                 <td>Aprobación de Proposición de ley de Grupos Parlamentarios del Congreso</td>
-                <td>20 puntos extra</td>
-                <td>50% adicional sobre el peso de la iniciativa</td>
+                <td>60 puntos extra</td>
+                <td>75% adicional sobre el peso de la iniciativa</td>
               </tr>
               <tr>
                 <td>Iniciativas legislativas</td>
                 <td>Aprobación de Proposición de ley de Diputados</td>
-                <td>20 puntos extra</td>
-                <td>50% adicional sobre el peso de la iniciativa</td>
+                <td>60 puntos extra</td>
+                <td>75% adicional sobre el peso de la iniciativa</td>
               </tr>
             </tbody>
           </table>
 
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
-            <p>Así, la diputada obtendría 25 puntos extra y su Huella se elevaría a 112, si tuviera:</p>
+            <p>Así, la diputada obtendría 25 puntos extra y su Huella se elevaría a 271, si tuviera:</p>
             <ul>
               <li>1 Proposición No de Ley en Comisión aprobada.</li>
               <li>1 Proposición de Ley de Grupos Parlamentarios aprobada</li>
@@ -264,7 +264,7 @@
 
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
-            <p>La huella de la diputada anterior ascendería a 192 si tuviera tanto una cuenta de Twitter como un correo electrónico público.</p>
+            <p>La huella de la diputada anterior ascendería a 351 si tuviera tanto una cuenta de Twitter como un correo electrónico público.</p>
           </div>
 
           <h3>Fase 3: Tiempo de inactividad</h3>
@@ -278,7 +278,7 @@
 
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
-            <p>Finalmente, suponiendo que la diputada llevara inactiva 7 meses, su Huella parlamentaria pasaría de 192 a 144.</p>
+            <p>Finalmente, suponiendo que la diputada llevara inactiva 7 meses, su Huella parlamentaria pasaría de 351 a 263.25.</p>
           </div>
 
         </div>
