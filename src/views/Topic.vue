@@ -15,7 +15,7 @@
     </div>
     <div id="topic" class="o-container o-section">
       <div class="u-padding-top-2" v-if="deputies.length > 0">
-        <h2 class="u-uppercase u-margin-bottom-4">Diputados más relevantes</h2>
+        <h2 class="u-uppercase u-margin-bottom-4">En esta temática destacan...</h2>
         <CardGrid :items="deputies" type="deputy" layout="large" :footprintByTopic="topic.name" />
       </div>
       <div class="u-padding-top-4" v-if="latestInitiatives">
