@@ -38,9 +38,12 @@
         </div>
       </div>
     </div>
-    <div class="o-grid">
-      <div class="o-grid__col u-8 u-12@sm u-text-right@sm">
-        <button class="c-button u-padding-right-0" @click.prevent="cleanForm">Limpiar búsqueda</button>
+    <div class="o-grid u-margin-top-2">
+      <div class="o-grid__col u-12 u-6@xs">
+        <footprint-info :withLabel="true" />
+      </div>
+      <div class="o-grid__col u-12 u-6@xs u-text-right@sm">
+        <a class="u-padding-right-0" @click.prevent="cleanForm">Limpiar búsqueda</a>
       </div>
     </div>
   </form>
@@ -48,11 +51,13 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
+import FootprintInfo from '@/components/FootprintInfo'
 
 export default {
   name: 'DeputiesForm',
   components: {
     Multiselect,
+    FootprintInfo,
   },
   data: function() {
     return {
