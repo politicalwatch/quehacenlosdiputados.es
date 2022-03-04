@@ -10,7 +10,7 @@
       <save-alert :searchparams="{author: parliamentarygroup.name}" :text="parliamentarygroup.name"/>
 
       <h2 class="u-uppercase u-margin-bottom-4">Diputados/as</h2>
-      <CardGrid :items="deputies" type="deputy" layout="medium" />
+      <CardGrid :items="deputies" type="deputy" layout="medium" :extra="undefined" />
     </div>
 
     <div v-else class="o-container o-section u-margin-bottom-10">

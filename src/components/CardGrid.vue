@@ -32,6 +32,7 @@ export default {
       return this.type == 'parliamentarygroup'
     },
     getDeputyExtra: function() {
+      if (this.extra === undefined) return 'General'
       if ('footprint' in this.extra) {
         return this.extra['footprint']
       }
