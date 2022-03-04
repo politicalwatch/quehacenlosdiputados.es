@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <div class="o-container o-section">
+    <div v-if="deputy.footprint_by_topics.length > 0" class="o-container o-section">
       <h2 class="u-margin-bottom-4 u-uppercase">Temáticas destacadas</h2>
       <barchart :deputy="deputy.name" :result="deputy.footprint_by_topics.slice(0, 5)" />
       <footprint-info />
