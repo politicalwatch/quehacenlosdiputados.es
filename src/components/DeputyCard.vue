@@ -8,7 +8,7 @@
       </router-link>
 
       <div v-if="layout != 'small'" class="c-deputy-card__wrapper__info">
-        <footprint :footprint="getFootprint()" />
+        <footprint v-if="layout == 'large'" :footprint="getFootprint()" />
         <router-link :to="{name: 'deputy', params: {id: deputy.id }}">
           <h4 v-html="getSeparatedName()"></h4>
         </router-link>
