@@ -8,9 +8,9 @@
         <div class="o-grid__col u-12 u-8@sm">
           <h3 class="u-uppercase">Es un indicador que mide la relevancia parlamentaria de un diputado o diputada en función de su volumen de actividad, la efectividad de sus propuestas y su grado de accesibilidad.</h3>
           <h2>El algoritmo</h2>
-          <p>El indicador de Huella parlamentaria está construido en base a diferentes variables que permiten medir y comparar la relevancia parlamentaria de los diputados y diputadas en las diferentes <router-link :to="{name: 'topics' }">temáticas</router-link> a las que da seguimiento QHLD.</p>
-          <p>Se trata de un indicador acumulado, que se actualiza semanalmente (todos los domingos) para cada uno de los miembros del Congreso de los Diputados y para cada una de las temáticas.</p>
-          <p>El indicador se calcula, para cada diputado o diputada y cada temática, a partir de las siguientes variables:</p>
+          <p>El indicador de Huella parlamentaria está construido en base a diferentes variables que permiten medir y comparar la relevancia parlamentaria de los diputados y diputadas tanto a nivel general como en las diferentes <router-link :to="{name: 'topics' }">temáticas</router-link> a las que da seguimiento QHLD.</p>
+          <p>Se trata de un indicador acumulado, que se actualiza semanalmente (todos los domingos) para cada uno de los miembros del Congreso de los Diputados y además para cada una de las temáticas.</p>
+          <p>El indicador se calcula, para cada diputado o diputada, a partir de las siguientes variables:</p>
           <ul>
             <li>Número de iniciativas presentadas desde el inicio de la legislatura, diferenciado por cada tipo de iniciativa.</li>
             <li>Número de Proposiciones de Ley y Proposiciones No de Ley aprobadas de entre las presentadas por cada miembro del Congreso en cada temática.</li>
@@ -27,7 +27,7 @@
           <p>Para calcular la Huella se han definido 3 fases diferenciadas:</p>
 
           <h3>Fase 1: Cálculo del volumen de actividad y efectividad parlamentaria</h3>
-          <p>En esta primera fase, se toma el total de iniciativas presentadas (menos las retiradas y las no admitidas a trámite) por cada diputado/a y temática. Esta cantidad se pondera en función de los tipos de iniciativas presentadas. Cada tipo de iniciativa tiene un peso diferente en función de su relevancia política dentro de la actividad del Congreso de los Diputados, así como a la dedicación que implica su elaboración. Los pesos, que son una adaptación de los planteados por el <a href="https://politicalwatch.es/documentos/Capacidad-Congreso-Diputados-para-impulsar-Coherencia-de-Politicas-CIECODE.pdf" target="_blank">proyecto AVIZOR</a>, van desde el 0.1 al 40.0 y son los siguientes:</p>
+          <p>En esta primera fase, se toma el total de iniciativas presentadas (menos las retiradas y las no admitidas a trámite) por cada diputado/a y además para cada una de las temáticas. Esta cantidad se pondera en función de los tipos de iniciativas presentadas. Cada tipo de iniciativa tiene un peso diferente en función de su relevancia política dentro de la actividad del Congreso de los Diputados, así como a la dedicación que implica su elaboración. Los pesos, que son una adaptación de los planteados por el <a href="https://politicalwatch.es/documentos/Capacidad-Congreso-Diputados-para-impulsar-Coherencia-de-Politicas-CIECODE.pdf" target="_blank">proyecto AVIZOR</a>, van desde el 0.1 al 40.0 y son los siguientes:</p>
           <table>
             <thead>
               <tr>
@@ -177,7 +177,7 @@
 
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
-            <p>Así al aplicar este primer cálculo, una diputada obtendría una Huella parlamentaria de 87 tras haber presentado las siguientes iniciativas para una misma temática:</p>
+            <p>Así al aplicar este primer cálculo, una diputada obtendría una Huella parlamentaria de 87 tras haber presentado las siguientes iniciativas:</p>
             <ul>
               <li>3 preguntas orales en el pleno.</li>
               <li>10 preguntas al Gobierno para respuesta escrita.</li>
@@ -186,7 +186,7 @@
             </ul>
           </div>
 
-          <p>El siguiente paso es valorar la efectividad, para lo que se revisa cuántas de las Proposiciones No de Ley y las Proposiciones de Ley presentadas por el diputado/a analizado en la temática concreta han sido aprobadas. Cada una de ellas recibe una puntuación extra en base a los siguientes cálculos:</p>
+          <p>El siguiente paso es valorar la efectividad, para lo que se revisa cuántas de las Proposiciones No de Ley y las Proposiciones de Ley presentadas por el diputado/a analizado han sido aprobadas. Cada una de ellas recibe una puntuación extra en base a los siguientes cálculos:</p>
           <table>
             <thead>
               <tr>
@@ -226,7 +226,7 @@
 
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
-            <p>Así, la diputada obtendría 25 puntos extra y su Huella se elevaría a 112, si tuviera para una temática concreta:</p>
+            <p>Así, la diputada obtendría 25 puntos extra y su Huella se elevaría a 112, si tuviera:</p>
             <ul>
               <li>1 Proposición No de Ley en Comisión aprobada.</li>
               <li>1 Proposición de Ley de Grupos Parlamentarios aprobada</li>
@@ -278,7 +278,7 @@
 
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
-            <p>Finalmente, suponiendo que la diputada llevara inactiva 7 meses en una temática concreta, su Huella parlamentaria para dicha temática pasaría de 192 a 144.</p>
+            <p>Finalmente, suponiendo que la diputada llevara inactiva 7 meses, su Huella parlamentaria pasaría de 192 a 144.</p>
           </div>
 
         </div>
