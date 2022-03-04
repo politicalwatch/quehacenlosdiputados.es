@@ -1,17 +1,20 @@
 <template>
   <div>
     <div id="legal-notice" class="o-container o-section u-margin-bottom-10">
-      <page-header title="Aviso legal"/>
       <div class="o-grid">
-        <div class="o-grid__col u-8@sm u-offset-2@sm">
-          <p>TIPI Ciudadano es un proyecto de Political Watch que a, su vez, forma parte de la Fundación Salvador Soler (en adelante FSS).</p>
-          <p>FSS cumple con los requisitos establecidos en la Ley 34/2002, de 11 de Julio, de Servicios de la Sociedad de la Información y Comercio Electrónico, en la Ley 56/2007, de 28 de diciembre de Medidas de Impulso de la Sociedad de la Información, así como en la Ley Orgánica 15/1999, de 13 de diciembre, sobre Protección de Datos de Carácter Personal y su normativa de desarrollo (RD 1720/2007, de 21 de diciembre, por el que se aprueba el Reglamento de Desarrollo de la Ley Orgánica 15/1999 de Protección de Datos de Carácter Personal) a tal fin ha creado el siguiente Aviso Legal.</p>
-          <pre class="language-text line-numbers"><code>Fundación Salvador Soler
-Avenida Cardenal Herrera Oria 63, 3º Izq. 28034. Madrid.
-Teléfono: 691 691 810
-Fax: 91 735 44 28
-Email: coordinacion@unmundosalvadorsoler.org
-          </code></pre>
+        <div class="o-grid__col u-12 u-4@sm">
+          <page-header title="Aviso legal"/>
+        </div>
+        <div class="o-grid__col u-12 u-8@sm">
+          <p><b>Qué hacen los diputados</b> es un proyecto de Political Watch que a, su vez, forma parte de la Fundación Salvador Soler (en adelante FSS).</p>
+          <p>FSS cumple con los requisitos Qué hacen los diputados la Ley 34/2002, de 11 de Julio, de Servicios de la Sociedad de la Información y Comercio Electrónico, en la Ley 56/2007, de 28 de diciembre de Medidas de Impulso de la Sociedad de la Información, así como en la Ley Orgánica 15/1999, de 13 de diciembre, sobre Protección de Datos de Carácter Personal y su normativa de desarrollo (RD 1720/2007, de 21 de diciembre, por el que se aprueba el Reglamento de Desarrollo de la Ley Orgánica 15/1999 de Protección de Datos de Carácter Personal) a tal fin ha creado el siguiente Aviso Legal.</p>
+          <pre class="language-text line-numbers">
+              Fundación Salvador Soler
+              Avenida Cardenal Herrera Oria 63, 3º Izq. 28034. Madrid.
+              Teléfono: 691 691 810
+              Fax: 91 735 44 28
+              Email: coordinacion@unmundosalvadorsoler.org
+          </pre>
           <p>El presente Aviso Legal regula el acceso y la utilización de la web, incluyendo los contenidos y los servicios puestos a disposición de los Usuarios a través de la web, bien por FSS, bien por sus Usuarios, bien por cualesquiera terceros.</p>
           <p>El uso de la web se sujetará al presente Aviso Legal, el cuál podrá ser actualizado periódicamente, no obstante FSS avisará de la modificación del Aviso Legal o de la Política de Privacidad. Si el Usuario decide no aceptar el Aviso Legal deberá abstenerse de acceder y/o utilizar los contenidos y/o servicios ofrecidos en la web. FSS se reserva el derecho de mejorar, modificar o suprimir, unilateralmente y sin previo aviso, servicios y/o contenidos de dicha web atendiendo a los más diversos criterios, si bien informará de los mismos a los usuarios.</p>
           <h3 id="obligaciones-de-hacer-un-uso-correcto-del-portal"><a href="#obligaciones-de-hacer-un-uso-correcto-del-portal" aria-hidden="true" tabindex="-1"><span class="icon icon-link"></span></a>Obligaciones de hacer un uso correcto del portal</h3>
