@@ -1,9 +1,10 @@
 <template>
   <div id="deputies" class="o-container o-section u-margin-bottom-10">
     <page-header title="Listado de diputados" />
-    <deputies-form v-if="getFilteredDeputies().length" :deputies="deputies" :groups="getGroupsLongNames()" @setFilters="setFilters" :ranking="getRanking()"></deputies-form>
+    <deputies-form :deputies="deputies" :groups="getGroupsLongNames()" @setFilters="setFilters" :ranking="getRanking()"></deputies-form>
+    <loader v-if="!this.hasLoadedDeputies" title="Cargando diputados" subtitle="Puede llevar algun tiempo" />
     <CardGrid :items="getFilteredDeputies()" type="deputy" layout="large" :extra="{footprint: getSelectedFootprint()}" />
-    <not-found v-if="getFilteredDeputies().length == 0" message="No se han encontrado diputados." />
+    <not-found v-if="this.hasLoadedDeputies && getFilteredDeputies().length == 0" message="No se han encontrado diputados." />
   </div>
 </template>
 
@@ -11,10 +12,11 @@
 import DeputiesForm from '@/components/DeputiesForm';
 import PageHeader from '@/components/PageHeader';
 import DeputyCard from '@/components/DeputyCard';
+import Loader from '@/components/Loader';
 import CardGrid from '@/components/CardGrid';
 import NotFound from '@/components/NotFound';
 import api from '@/api'
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
   name: 'deputies',
@@ -24,23 +26,27 @@ export default {
     DeputyCard,
     CardGrid,
     NotFound,
+    Loader,
   },
   data: function() {
     return {
       deputies: [],
       filters: {},
+      hasLoadedDeputies: false,
     }
   },
   computed: {
     ...mapGetters({
       groups: 'allParliamentaryGroups',
     }),
+    ...mapState(['allTopics'])
   },
   methods: {
     loadDeputies: function() {
       api.getDeputies()
         .then(response => {
           this.deputies = response.filter(d => d.active)
+          this.hasLoadedDeputies = true
         })
         .catch(error => console.log(error))
     },
@@ -85,8 +91,7 @@ export default {
     },
     getRanking: function() {
       const ranking = []
-      const footprint = this.deputies[0].footprint_by_topics
-      for (const item of footprint) {
+      for (const item of this.allTopics) {
         ranking.push(item.name)
       }
 

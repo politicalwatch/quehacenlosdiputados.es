@@ -15,7 +15,7 @@
       Icon,
     },
     props: {
-      footprint: Number,
+      footprint: [Number, String],
     }
   }
 </script>

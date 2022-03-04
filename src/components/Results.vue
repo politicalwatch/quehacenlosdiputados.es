@@ -1,18 +1,18 @@
 <template>
   <div>
     <loader v-if="this.loadingResults" title="Cargando resultados" subtitle="Puede llevar algun tiempo" />
-      <section class="o-masonry o-grid" v-if="this.initiatives && this.initiatives.length && !this.loadingResults">
-        <div class="o-grid__col u-12 u-4@sm o-masonry__item" v-for="(initiative, index) in this.initiatives" :key="index">
-          <initiative-card :initiative="initiative" :extendedLayout="extendedLayout" :topicsStyles="topicsStyles" />
-        </div>
-      </section>
-      <div class="o-grid o-grid--center" v-if="this.$listeners.loadMore && isMoreResults">
-        <div class="o-grid__col">
-          <a href="#" class="u-border-link" @click.prevent="loadMore">
-            <icon icon="load-more" />Cargar más {{ nextResultsLabel }}
-          </a>
-        </div>
+    <section class="o-masonry o-grid" v-if="this.initiatives && this.initiatives.length && !this.loadingResults">
+      <div class="o-grid__col u-12 u-4@sm o-masonry__item" v-for="(initiative, index) in this.initiatives" :key="index">
+        <initiative-card :initiative="initiative" :extendedLayout="extendedLayout" :topicsStyles="topicsStyles" />
       </div>
+    </section>
+    <div class="o-grid o-grid--center" v-if="this.$listeners.loadMore && isMoreResults">
+      <div class="o-grid__col">
+        <a href="#" class="u-border-link" @click.prevent="loadMore">
+          <icon icon="load-more" />Cargar más {{ nextResultsLabel }}
+        </a>
+      </div>
+    </div>
   </div>
 </template>
 
