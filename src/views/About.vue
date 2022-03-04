@@ -25,10 +25,9 @@
           </ul>
           <h2>Objetivos</h2>
           <ul>
-            <li>Potenciar la relación existente entre los representados y sus representantes a través del control ciudadano y la rendición de cuentas.</li>
-            <li>Ofrecer una herramienta de acceso libre y gratuito que ofrezca información relativa a la actividad parlamentaria y a la labor de las y los diputados del Congreso para realizar el seguimiento de su actividad de manera fácil e intuitiva.</li>
-            <li>Recopilar datos acerca de la labor de los y las diputadas del Congreso y ofrecerlos para su reutilización por parte de las organizaciones de la sociedad civil, medios de comunicación, centros de investigación, ciudadanía, etc.</li>
-            <li>Procesar la información recopilada y elaborar análisis, informes y artículos de actualidad parlamentaria, respondiendo al qué se hace, cómo se hace y por qué se hace.</li>
+            <li>Ofrecer información a la ciudadanía acerca de lo que se hace en el Congreso para generar un incentivo para que los representantes públicos se comprometan con el desarrollo sostenible, la justicia social y la calidad democrática.</li>
+            <li>Ofrecer a todos los stakeholders la mejor información sobre la actividad parlamentaria, para facilitar su participación e influencia en los procesos de decisión política.</li>
+            <li>Acercar a representantes y representados mostrando todo lo que en el Congreso se hace para responder a las necesidades y preocupaciones de la población.</li>
           </ul>
           <h2>Tecnología</h2>
           <p>La tecnología de QHLD escanea toda la actividad parlamentaria del Congreso de España y la clasifica automáticamente según su relación con alguna de las {{ allTopics.length }} temáticas prioritarias para la pobreza, la justicia social y el desarrollo sostenible y con alguno de los 17 Objetivos de Desarrollo Sostenible de las Naciones Unidas. Todas estas <router-link :to="{name: 'topics' }">áreas temáticas</router-link> han sido diseñadas junto con personas y organizaciones expertas en cada una de ellas.</p>
