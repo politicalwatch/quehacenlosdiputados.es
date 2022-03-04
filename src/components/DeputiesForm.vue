@@ -41,7 +41,7 @@
     <div class="o-grid u-margin-top-1">
       <div class="o-grid__col u-12 u-6@sm">
         <div class="c-select-label u-block">
-          <label for="footprint">Ordenar por tipo de huella:</label>
+          <label for="footprint">Ordenar por huella de</label>
           <multiselect
             selectedLabel="Seleccionado"
             selectLabel=""

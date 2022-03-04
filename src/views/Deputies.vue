@@ -71,7 +71,6 @@ export default {
       }
 
       if ('footprint' in this.filters && this.filters['footprint'] != undefined) {
-        console.log(this.filters['footprint'])
         const footprint_sort = this.getSelectedFootprint()
 
         return [...filteredDeputies].sort((a, b) => {
