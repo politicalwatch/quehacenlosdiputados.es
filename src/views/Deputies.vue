@@ -3,7 +3,7 @@
     <page-header title="Listado de diputados" />
     <deputies-form :deputies="deputies" :groups="getGroupsLongNames()" @setFilters="setFilters" :ranking="getRanking()"></deputies-form>
     <loader v-if="!this.hasLoadedDeputies" title="Cargando diputados" subtitle="Puede llevar algun tiempo" />
-    <CardGrid :items="getFilteredDeputies()" type="deputy" layout="large" :extra="{footprint: getSelectedFootprint()}" />
+    <CardGrid v-bind:key="this.filters['footprint']" :items="getFilteredDeputies()" type="deputy" layout="large" :extra="{footprint: getSelectedFootprint()}" />
     <not-found v-if="this.hasLoadedDeputies && getFilteredDeputies().length == 0" message="No se han encontrado diputados." />
   </div>
 </template>
@@ -79,12 +79,14 @@ export default {
       if ('footprint' in this.filters && this.filters['footprint'] != undefined) {
         const footprint_sort = this.getSelectedFootprint()
 
-        return [...filteredDeputies].sort((a, b) => {
+        const updated_list = [...filteredDeputies].sort((a, b) => {
           const a_footprint = a.footprint_by_topics.filter(item => item.name == footprint_sort)[0].score
           const b_footprint = b.footprint_by_topics.filter(item => item.name == footprint_sort)[0].score
 
-          return a_footprint < b_footprint
+          return b_footprint - a_footprint
         })
+
+        return updated_list
       }
       return [...filteredDeputies].sort((a, b) => {
         const a_name = this.prepareForSorting(a.name)
