@@ -23,6 +23,9 @@
       position: absolute;
       left: 32px;
       bottom: 32px;
+      @media (max-width: $xs) {
+        bottom: 0;
+      }
     }
   }
 
