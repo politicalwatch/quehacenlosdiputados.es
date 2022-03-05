@@ -82,11 +82,15 @@ export default {
         return [...filteredDeputies].sort((a, b) => {
           const a_footprint = a.footprint_by_topics.filter(item => item.name == footprint_sort)[0].score
           const b_footprint = b.footprint_by_topics.filter(item => item.name == footprint_sort)[0].score
+
           return a_footprint < b_footprint
         })
       }
       return [...filteredDeputies].sort((a, b) => {
-        return this.prepareForSorting(a.name) > this.prepareForSorting(b.name)
+        const a_name = this.prepareForSorting(a.name)
+        const b_name = this.prepareForSorting(b.name)
+
+        return a_name.localeCompare(b_name)
       })
     },
     getRanking: function() {
@@ -105,13 +109,15 @@ export default {
       return footprint_sort
     },
     prepareForSorting: function(name) {
-      return name.toUpperCase()
+      const clean_name = name.toUpperCase()
         .replace('Á', 'A')
         .replace('É', 'E')
         .replace('Í', 'I')
         .replace('Ó', 'O')
         .replace('Ú', 'U')
         .replace('Ñ', 'NZ')
+
+      return clean_name
     },
   },
   beforeMount() {

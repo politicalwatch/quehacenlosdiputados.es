@@ -1,6 +1,6 @@
 <template>
   <div class="o-grid c-card_grid">
-    <div :class="classes" v-for="item in this.items">
+    <div :class="classes" v-for="item in this.items" v-bind:key="item.id">
       <ParliamentaryGroupCard :parliamentary_group="item" v-if="isParliamentaryGroup()" :layout="layout"/>
       <deputy-card v-if="isDeputy()" :deputy="item" :layout="layout" :footprint="getDeputyExtra()"/>
     </div>
