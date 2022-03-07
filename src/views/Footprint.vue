@@ -6,9 +6,9 @@
           <page-header title="Huella parlamentaria"/>
         </div>
         <div class="o-grid__col u-12 u-8@sm">
-          <h3 class="u-uppercase">Es un indicador que mide la relevancia parlamentaria de un diputado o diputada en función de su volumen de actividad, la efectividad de sus propuestas y su grado de accesibilidad.</h3>
+          <h3 class="u-uppercase">Es un indicador  basado en la información sobre el volumen de actividad de un diputado o diputada y su capacidad para sacar adelante sus propuestas. Además, se  basa en el  grado de accesibilidad de la ciudadanía al representante.</h3>
           <h2>El algoritmo</h2>
-          <p>El indicador de Huella parlamentaria está construido en base a diferentes variables que permiten medir y comparar la relevancia parlamentaria de los diputados y diputadas tanto a nivel general como en las diferentes <router-link :to="{name: 'topics' }">temáticas</router-link> a las que da seguimiento QHLD.</p>
+          <p>El indicador de Huella parlamentaria está construido en base a diferentes variables que permiten medir y comparar la actividad e influencia de los diputados y diputadas tanto a nivel general como en las diferentes <router-link :to="{name: 'topics' }">temáticas</router-link> a las que da seguimiento QHLD.</p>
           <p>Se trata de un indicador acumulado, que se actualiza semanalmente (todos los domingos) para cada uno de los miembros del Congreso de los Diputados y además para cada una de las temáticas.</p>
           <p>El indicador se calcula, para cada diputado o diputada, a partir de las siguientes variables:</p>
           <ul>
