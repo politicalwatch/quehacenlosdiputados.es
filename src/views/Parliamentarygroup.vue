@@ -12,7 +12,7 @@
             <gender gender="male" :percentage="calculatePercentage(parliamentarygroup.composition.gender.male)" />
           </div>
           <div class="o-grid__col u-12 u-8@md">
-            <h3>Distribución por edades</h3>
+            <h3 class="u-uppercase">Distribución por edades</h3>
             <div><span class="u-text-th3">{{ calculatePercentage(parliamentarygroup.composition.ages.under35) }}%</span> con menos de 35 años</div>
             <div><span class="u-text-th3">{{ calculatePercentage(parliamentarygroup.composition.ages.between35and49) }}%</span> entre 35 y 49 años</div>
             <div><span class="u-text-th3">{{ calculatePercentage(parliamentarygroup.composition.ages.between50and65) }}%</span> entre 50 y 65 años</div>
