@@ -54,7 +54,7 @@
 
     <div v-if="latestInitiatives && latestInitiatives.length" class="o-container o-section">
       <h2 class="u-margin-bottom-4 u-uppercase">Últimas iniciativas</h2>
-      <results layout="tiny" :initiatives="latestInitiatives" :topicsStyles="styles.topics"/>
+      <results layout="extended" :initiatives="latestInitiatives" :topicsStyles="styles.topics"/>
     </div>
     <div class="o-container" v-else>
       <message type="info" icon>
