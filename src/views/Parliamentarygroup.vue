@@ -22,7 +22,7 @@
       </div>
 
       <h2 class="u-uppercase u-margin-top-8 u-margin-bottom-4" v-if="latestInitiatives && latestInitiatives.length">Últimas iniciativas</h2>
-      <results layout="tiny" :initiatives="latestInitiatives" class="u-margin-bottom-4" :topicsStyles="topicsStyles"/>
+      <results layout="extended" :initiatives="latestInitiatives" class="u-margin-bottom-4" :topicsStyles="topicsStyles"/>
 
       <save-alert :searchparams="{author: parliamentarygroup.name}" :text="parliamentarygroup.name"/>
 
