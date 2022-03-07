@@ -102,8 +102,8 @@
             url: 'https://unsplash.com/photos/Q1p7bh3SHj8',
           },
           dependencia: {
-            name: 'Elizabeth Woolner',
-            url: 'https://unsplash.com/photos/9xxNZCJZ8bA',
+            name: 'Jack Finnigan',
+            url: 'https://unsplash.com/photos/M9EctVUPrp4',
           },
           educacion: {
             name: 'NeONBRAND',
@@ -126,8 +126,8 @@
             url: 'https://unsplash.com/photos/4EFeD-VTgu4',
           },
           migraciones: {
-            name: 'Max Böhme',
-            url: 'https://unsplash.com/photos/0NWnW2jgY6k',
+            name: 'Brad Neathery',
+            url: 'https://unsplash.com/photos/XrSzacdYbtQ',
           },
           discapacidad: {
             name: 'Josh Appel',
