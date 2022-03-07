@@ -22,11 +22,11 @@
       </div>
 
       <h2 class="u-uppercase u-margin-top-8 u-margin-bottom-4" v-if="latestInitiatives && latestInitiatives.length">Últimas iniciativas</h2>
-      <results layout="extended" :initiatives="latestInitiatives" class="u-margin-bottom-4" :topicsStyles="topicsStyles"/>
+      <results layout="extended" :initiatives="latestInitiatives" class="u-margin-bottom-8" :topicsStyles="topicsStyles"/>
 
       <save-alert :searchparams="{author: parliamentarygroup.name}" :text="parliamentarygroup.name"/>
 
-      <h2 class="u-uppercase u-margin-bottom-4">Diputados/as</h2>
+      <h2 class="u-uppercase u-margin-top-6 u-margin-bottom-4">Diputados/as</h2>
       <CardGrid :items="deputies" type="deputy" layout="medium" :extra="undefined" />
     </div>
 
