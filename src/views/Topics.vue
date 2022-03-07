@@ -2,8 +2,8 @@
   <div class="o-container o-section u-padding-bottom-10 u-margin-bottom-10">
     <page-header title="Temáticas"/>
     <div class="o-grid" v-if="stats">
-      <div class="o-grid__col u-12 u-4@sm" v-for="topic in allTopics" :key="topic.id">
-        <topic-link path="topics" :topic="topic" :image="topicsStyles[topic.name].image" :color="topicsStyles[topic.name].color" :stat="getTopicStat(topic)"/>
+      <div class="o-grid__col u-12 u-4@sm" v-for="topic in getTopics()" :key="topic.id">
+        <topic-link path="topics" :topic="topic" :image="topicsStyles[topic.name].image" :color="topicsStyles[topic.name].color" :stat="topic.initiatives"/>
       </div>
     </div>
   </div>
@@ -43,9 +43,17 @@ export default {
       });
   },
   methods: {
+    getTopics: function() {
+      let topics = []
+      for (const topic of this.allTopics) {
+        topic.initiatives = this.getTopicStat(topic)
+        topics.push(topic)
+      }
+      return topics.sort(function(a, b){return b.initiatives-a.initiatives})
+    },
     getTopicStat: function(topic) {
       for (const stat of this.stats) {
-        if (stat['_id'] == topic['name']) {
+        if (stat['_id'] == topic.name) {
           return stat['initiatives']
         }
       }
