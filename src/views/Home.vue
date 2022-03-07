@@ -6,7 +6,7 @@
 
       <div class="o-section c-home__initiatives" v-if="relatedInitiatives.length">
         <h1 class="u-uppercase c-home__initiatives_title">Iniciativas relacionadas</h1>
-        <a class="c-home__more u-border-link u-uppercase" :href="home.RelatedInitiativesSearch">Más iniciativas</a>
+        <a class="c-home__more u-border-link u-hide u-block@sm u-uppercase" :href="home.RelatedInitiativesSearch">Más iniciativas</a>
       </div>
 
       <results
@@ -14,6 +14,8 @@
         :initiatives="relatedInitiatives"
         :topicsStyles="topicsStyles"
       />
+
+      <a v-if="relatedInitiatives.length" class="c-home__more u-hide@sm u-border-link u-uppercase" :href="home.RelatedInitiativesSearch">Más iniciativas</a>
 
       <LastActivity :lastdays="lastdays" />
 

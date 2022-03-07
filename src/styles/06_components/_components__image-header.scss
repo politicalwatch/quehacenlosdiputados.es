@@ -1,19 +1,26 @@
 .c-image-header {
-  height: 480px;
   width: 100%;
   position: relative;
 
+  @media (min-width: $sm) {
+    height: 480px;
+  }
+
   &__date {
-    font-size: rem(48px);
-    line-height: rem(64px);
     color: $tipi-yellow;
     background-color: $black;
     display: inline-block;
     padding: 16px;
     margin: 0;
     position: absolute;
-    bottom: 112px;
+    bottom: 100px;
     left: 32px;
+
+    @media (min-width: $sm) {
+      bottom: 112px;
+      font-size: rem(48px);
+      line-height: rem(64px);
+    }
 
     &_title {
       background-color: $tipi-yellow;
@@ -23,6 +30,7 @@
       position: absolute;
       left: 32px;
       bottom: 32px;
+
       @media (max-width: $xs) {
         bottom: 0;
       }

@@ -3,8 +3,10 @@
       <figure>
         <img :src="image" alt="">
       </figure>
-      <h1 class="u-uppercase c-image-header__date">{{ home.Date }}</h1>
-      <h2 class="u-uppercase c-image-header__date_title">{{ home.TitleDate }}</h2>
+      <h1 class="u-uppercase u-hide u-block@sm c-image-header__date">{{ home.Date }}</h1>
+      <h2 class="u-uppercase u-hide u-block@sm c-image-header__date_title">{{ home.TitleDate }}</h2>
+      <h2 class="u-uppercase u-hide@sm c-image-header__date">{{ home.Date }}</h2>
+      <h3 class="u-uppercase u-hide@sm c-image-header__date_title">{{ home.TitleDate }}</h3>
       <h6 class="u-uppercase c-image-header__author u-hide u-block@sm"><a :href="home.ImageUrl" target="_blank"><icon icon="camera" />Unsplash: Photo by {{ home.ImageAuthor }}</a></h6>
   </div>
 </template>
