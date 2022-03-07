@@ -1,39 +1,56 @@
 .c-last-activity {
+  h1 {
+    text-align: center;
+
+    @media (min-width: $sm) {
+      text-align: left;
+    }
+  }
+
   &__stat {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    gap: rem($spacer-unit);
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 4rem;
 
-    @media (max-width: $sm) {
-      flex-direction: column;
+    @media (min-width: $sm) {
+      flex-wrap: nowrap;
     }
-
-
   }
 
   &__number {
     font-size: rem(64px);
     line-height: rem(80px);
-    width: 5%;
-    @media (max-width: $sm) {
-      width: 100%;
+    width: 100%;
+
+    @media (min-width: $sm) {
+      width: auto;
+    }
+
+    .c-icon svg {
+      margin-bottom: 14px;
     }
   }
 
   &__type {
-    width: 10%;
-    @media (max-width: $sm) {
-      width: 100%;
+    width: 100%;
+    text-align: center;
+
+    @media (min-width: $sm) {
+      text-align: left;
+      width: auto;
     }
   }
 
   &__description {
-    width: 60%;
-    margin-left: rem($spacer-unit*4);
-    @media (max-width: $sm) {
-      width: 100%;
-      margin-left: 0px;
+    width: 100%;
+    text-align: center;
+
+    @media (min-width: $sm) {
+      text-align: left;
+      max-width: 544px;
+      width: auto;
     }
   }
 }
