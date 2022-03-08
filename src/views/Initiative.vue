@@ -44,9 +44,14 @@
 
           <div class="o-grid__col u-12 u-3@md">
             <div class="u-margin-bottom-4">
-              <ParliamentaryGroupCard v-for="author in initiative.authors" :parliamentary_group="getGroup(author)" layout="small"/>
+
+              <GovernmentCard v-if="isAGovernmentInitiative()" />
+              <ParliamentaryGroupCard v-else v-for="author in initiative.authors" :parliamentary_group="getGroup(author)" layout="small"/>
+
               <div class="u-margin-bottom-4"></div>
+
               <deputy-card v-for="deputyName in initiative.deputies" :deputy="getDeputyByName(deputyName)" layout="medium" />
+
             </div>
           </div>
         </div>
@@ -67,6 +72,7 @@
 <script>
 
 import ParliamentaryGroupCard from '@/components/ParliamentaryGroupCard';
+import GovernmentCard from '@/components/GovernmentCard';
 import CongressLink from '@/components/CongressLink';
 import CustomText from '@/components/CustomText';
 import TopicsSection from '@/components/TopicsSection';
@@ -86,6 +92,7 @@ export default {
   name: 'initiative',
   components: {
     ParliamentaryGroupCard,
+    GovernmentCard,
     CongressLink,
     CustomText,
     TopicsSection,
@@ -131,6 +138,9 @@ export default {
            return group
          }
        }
+    },
+    isAGovernmentInitiative: function() {
+      return this.initiative.authors.includes('Gobierno')
     },
   },
   created: function() {
