@@ -4,6 +4,10 @@
 	 viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#1D1D1B;}
+        path { fill: black;  }
+        @media (prefers-color-scheme: dark) {
+          path { fill: efca53;  }
+        }
 </style>
 <g>
 	<path class="st0" d="M10.7,10.3l1.4-0.1l0,3.7l1.7-0.1l0-3.7l1.4-0.1l0,8.9l-1.4,0.1l0-4.1L12.1,15l0,4.1l-1.4,0.1L10.7,10.3z"/>
