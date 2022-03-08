@@ -1,5 +1,5 @@
 <template>
-  <div class="c-gender">
+  <div class="c-gender u-justify-center u-justify-normal@md">
     <div class="c-gender__icon">
       <icon :icon="gender"></icon>
     </div>

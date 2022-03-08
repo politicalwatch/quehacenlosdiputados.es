@@ -318,3 +318,21 @@
     text-decoration: underline;
   }
 }
+
+@mixin justifies() {
+  @each $setting in (left, normal, right, center, end, start) {
+    .u-justify-#{$setting} {
+      justify-content: $setting;
+    }
+  }
+
+  @each $setting in (left, normal, right, center, end, start) {
+    @each $bp-key, $bp-value in $breakpoints {
+      @media (min-width: $bp-value) {
+        .u-justify-#{$setting}#{$breakpoint-class}#{$bp-key} {
+          justify-content: $setting;
+        }
+      }
+    }
+  }
+}
