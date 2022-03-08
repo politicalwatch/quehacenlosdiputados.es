@@ -57,7 +57,7 @@ export default {
   data: function() {
     return {
       titles: {
-        politicas: 'Políticas',
+        politicas: 'Temáticas',
         ods: 'Agenda 2030',
       },
       activeKb: 'politicas',
