@@ -5,7 +5,7 @@
         <div class="c-save-alert__image">
           <img src="/img/alerts.png" />
         </div>
-        <h4 class="u-uppercase">No te pierdas nada con la actividad parlamentaria relacionada con</h4>
+        <h4 class="u-uppercase">No te pierdas nada de la actividad parlamentaria relacionada con</h4>
         <h1 class="u-uppercase">{{ text }}</h1>
         <AlertButton :searchparams="searchparams" />
       </div>
