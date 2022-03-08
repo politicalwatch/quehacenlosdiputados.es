@@ -21,6 +21,12 @@
         </div>
       </div>
 
+      <div v-if="parliamentarygroup.footprint_by_topics.length > 0" class="o-container o-section">
+        <h2 class="u-margin-bottom-4 u-uppercase">Temáticas destacadas</h2>
+        <barchart :entity="parliamentarygroup" entityType="parliamentarygroup" :result="parliamentarygroup.footprint_by_topics.slice(0, 5)" />
+        <footprint-info />
+      </div>
+
       <h2 class="u-uppercase u-margin-top-8 u-margin-bottom-4" v-if="latestInitiatives && latestInitiatives.length">Últimas iniciativas</h2>
       <results layout="extended" :initiatives="latestInitiatives" class="u-margin-bottom-8" :topicsStyles="topicsStyles"/>
 
@@ -44,8 +50,10 @@ import ParliamentaryGroupCard from '@/components/ParliamentaryGroupCard';
 import Results from '@/components/Results'
 import CustomText from '@/components/CustomText';
 import Gender from '@/components/Gender';
+import Barchart from '@/components/Barchart';
 import Loader from '@/components/Loader';
 import SaveAlert from '@/components/SaveAlert';
+import FootprintInfo from '@/components/FootprintInfo'
 import api from '@/api';
 import config from '@/config'
 import { mapGetters, mapState } from  'vuex';
@@ -57,8 +65,10 @@ export default {
     Results,
     CustomText,
     Gender,
+    Barchart,
     Loader,
     SaveAlert,
+    FootprintInfo,
     ParliamentaryGroupCard,
   },
   data: function() {

@@ -11,7 +11,7 @@
         </div>
 
         <div class="barchart__more">
-          <router-link :to="{name: 'results', params: {data: paramsData(d.name, deputy)}}" class="u-border-link u-uppercase">
+          <router-link :to="{name: 'results', params: {data: paramsData(d.name, entity)}}" class="u-border-link u-uppercase">
             Consultar
           </router-link>
         </div>
@@ -57,10 +57,13 @@ export default {
       required: false,
       default: '#f3f3f3',
     },
-    deputy: {
+    entity: {
       type: String,
       required: true,
-      default: ''
+    },
+    entityType: {
+      type: String,
+      requred: true,
     }
   },
   mounted() {
@@ -93,10 +96,15 @@ export default {
         });
       });
     },
-    paramsData: function(topic, deputy) {
+    getFieldToSearch: function() {
+      if (this.entityType == 'deputy') return 'deputy'
+      if (this.entityType == 'parliamentarygroup') return 'author'
+      return ''
+    },
+    paramsData: function(topic, entity) {
       return qs.stringify({
         topic: topic,
-        deputy: deputy
+        [this.getFieldToSearch()]: entity['name']
       });
     },
   },
