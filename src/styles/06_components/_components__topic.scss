@@ -63,6 +63,16 @@
     }
   }
 
+  &__title {
+    text-align: center;
+    width: 100%;
+
+    @media (min-width: $sm) {
+      text-align: left;
+      width: auto;
+    }
+  }
+
   &__initiatives {
     &__header {
       display: flex;

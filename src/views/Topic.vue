@@ -7,7 +7,7 @@
           <h3 class="c-topic__header__stat">{{ getTopicStat(topic) }}</h3>
           <h4 class="c-topic__header__stat u-uppercase">iniciativas vinculadas</h4>
         </div>
-        <div class="c-topic__header__column">
+        <div class="c-topic__header__column u-hide u-block@sm">
           <p class="c-topic__header__description">{{ topic.description[0] }}</p>
           <h6 class="u-uppercase c-topic__header__author"><a :href="this.credits[topic.id].url" target="_blank"><icon icon="camera" />Unsplash: {{ this.credits[topic.id].name }}</a></h6>
         </div>
@@ -15,19 +15,24 @@
     </div>
     <div id="topic" class="o-container o-section">
       <div class="u-padding-top-2" v-if="deputies.length > 0">
-        <h2 class="u-uppercase u-margin-bottom-4">En esta temática destacan...</h2>
+        <h2 class="u-uppercase u-margin-bottom-4 c-topic__title">En esta temática destacan...</h2>
         <CardGrid :items="deputies" type="deputy" layout="large" :footprintByTopic="topic.name" />
       </div>
       <div class="u-padding-top-4" v-if="latestInitiatives">
         <div class="c-topic__initiatives__header">
-          <h2 class="u-uppercase">Últimas iniciativas</h2>
+          <h2 class="u-uppercase c-topic__title">Últimas iniciativas</h2>
           <router-link
-            class="u-border-link u-uppercase"
+            class="u-border-link u-uppercase u-hide u-inline@sm"
             :to="{ name: 'results', params: { data: 'topic=' + topic.name } }">
             Explorar todas
           </router-link>
         </div>
         <results :initiatives="latestInitiatives" :topicsStyles="styles"/>
+        <router-link
+          class="u-border-link u-uppercase u-hide@sm"
+          :to="{ name: 'results', params: { data: 'topic=' + topic.name } }">
+          Explorar todas
+        </router-link>
       </div>
     </div>
     <save-alert :searchparams="{topic: topic.name}" :text="topic.name" />
