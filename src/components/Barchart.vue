@@ -58,7 +58,7 @@ export default {
       default: '#f3f3f3',
     },
     entity: {
-      type: String,
+      type: Object,
       required: true,
     },
     entityType: {
