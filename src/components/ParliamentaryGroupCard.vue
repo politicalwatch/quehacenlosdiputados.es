@@ -51,10 +51,10 @@ export default {
     getGroupName: function () {
       if (this.layout == 'small') {
         const short_name = this.parliamentary_group.name.replace('Grupo Parlamentario', 'GP')
-        if (short_name.length < 30) {
+        if (short_name.length < 23) {
           return short_name
         }
-        return short_name.substring(0, 31) + '...'
+        return short_name.substring(0, 24) + '...'
       }
 
       return this.parliamentary_group.name
