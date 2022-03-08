@@ -1,10 +1,9 @@
 <template>
-  <div id="page404" class="o-container o-section u-margin-bottom-10">
-    <div class="o-grid u-padding-top-10 u-padding-bottom-10">
-      <div class="o-grid__col u-12 u-6@sm u-offset-3@sm u-text-center u-padding-top-10 u-padding-bottom-10">
-        <h1>¿Te has perdido?</h1>
-        <p>Regresa a la página de inicio para encontrar lo que realmente estás buscando</p>
-        <router-link :to="{name:'search'}" class="btn btn-custom">Volver al inicio</router-link>
+  <div id="page404" class="o-container o-section u-margin-bottom-6">
+    <div class="o-grid">
+      <div class="o-grid__col u-12 u-6@sm u-offset-3@sm u-text-center u-padding-top-4 u-padding-bottom-4">
+        <not-found message="El Congreso es muy grande y todos alguna vez nos perdemos." class="u-margin-bottom-2"/>
+        <router-link :to="{name:'search'}" class="u-border-link u-uppercase">Volver al inicio</router-link>
       </div>
     </div>
   </div>
@@ -12,8 +11,13 @@
 </template>
 
 <script>
+import NotFound from '@/components/NotFound';
+
 export default {
   name: 'Page404',
+  components: {
+    NotFound,
+  }
 }
 </script>
 
