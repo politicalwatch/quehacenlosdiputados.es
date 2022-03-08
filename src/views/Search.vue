@@ -30,7 +30,7 @@
         />
       </div>
 
-      <div v-else id="results" class="u-padding-top-6 u-text-center">
+      <div v-if="initiatives.length == 0 && !cleanedForm" id="results" class="u-padding-top-6 u-text-center">
         <not-found message="No se han encontrado resultados. Crea una alerta y te avisaremos."/>
         <AlertButton :searchparams="data" v-show="use_alerts && this.query_meta.page" />
       </div>
@@ -88,7 +88,8 @@ export default {
       LIMITCSV: 1000,
       use_alerts: config.USE_ALERTS,
       topicsStyles: config.STYLES.topics,
-      scrollToID: '#results'
+      scrollToID: '#results',
+      cleanedForm: true,
     }
   },
   computed: {
@@ -109,6 +110,7 @@ export default {
   methods: {
     getResults: function(event, formData) {
       this.loadingResults = true;
+      this.cleanedForm = false;
       this.csvItems = [];
       const isNewSearch = event && event.type === 'submit';
       const params = this.$route.params.data && !isNewSearch ?
@@ -150,6 +152,7 @@ export default {
     },
     clearInitiatives: function(event) {
       this.initiatives = [];
+      this.cleanedForm = true;
     },
     loadMore: function() {
       let node = document.querySelectorAll('.c-initiative-card');
