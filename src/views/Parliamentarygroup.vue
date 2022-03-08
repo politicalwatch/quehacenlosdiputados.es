@@ -5,34 +5,34 @@
       <ParliamentaryGroupCard :parliamentary_group="parliamentarygroup" layout="large"/>
 
       <div class="o-container" v-if="parliamentarygroup">
-        <h2 class="u-uppercase u-margin-bottom-4">Radiografía</h2>
+        <h2 class="u-uppercase u-margin-bottom-4 u-text-center u-text-left@md">Radiografía</h2>
         <div class="o-grid">
           <div class="o-grid__col u-12 u-4@md">
             <gender gender="female" :percentage="calculatePercentage(parliamentarygroup.composition.gender.female)" />
             <gender gender="male" :percentage="calculatePercentage(parliamentarygroup.composition.gender.male)" />
           </div>
           <div class="o-grid__col u-12 u-8@md">
-            <h3 class="u-uppercase">Distribución por edades</h3>
-            <div><span class="u-text-th3">{{ calculatePercentage(parliamentarygroup.composition.ages.under35) }}%</span> con menos de 35 años</div>
-            <div><span class="u-text-th3">{{ calculatePercentage(parliamentarygroup.composition.ages.between35and49) }}%</span> entre 35 y 49 años</div>
-            <div><span class="u-text-th3">{{ calculatePercentage(parliamentarygroup.composition.ages.between50and65) }}%</span> entre 50 y 65 años</div>
-            <div><span class="u-text-th3">{{ calculatePercentage(parliamentarygroup.composition.ages.over65) }}%</span> con más de 65 años</div>
+            <h3 class="u-uppercase u-text-center u-text-left@md">Distribución por edades</h3>
+            <div class="u-text-center u-text-left@md"><span class="u-text-th3">{{ calculatePercentage(parliamentarygroup.composition.ages.under35) }}%</span> con menos de 35 años</div>
+            <div class="u-text-center u-text-left@md"><span class="u-text-th3">{{ calculatePercentage(parliamentarygroup.composition.ages.between35and49) }}%</span> entre 35 y 49 años</div>
+            <div class="u-text-center u-text-left@md"><span class="u-text-th3">{{ calculatePercentage(parliamentarygroup.composition.ages.between50and65) }}%</span> entre 50 y 65 años</div>
+            <div class="u-text-center u-text-left@md"><span class="u-text-th3">{{ calculatePercentage(parliamentarygroup.composition.ages.over65) }}%</span> con más de 65 años</div>
           </div>
         </div>
       </div>
 
       <div v-if="parliamentarygroup.footprint_by_topics.length > 0" class="o-container o-section">
-        <h2 class="u-margin-bottom-4 u-uppercase">Temáticas destacadas</h2>
+        <h2 class="u-margin-bottom-4 u-uppercase u-text-center u-text-left@md">Temáticas destacadas</h2>
         <barchart :entity="parliamentarygroup" entityType="parliamentarygroup" :result="parliamentarygroup.footprint_by_topics.slice(0, 5)" />
         <footprint-info />
       </div>
 
-      <h2 class="u-uppercase u-margin-top-8 u-margin-bottom-4" v-if="latestInitiatives && latestInitiatives.length">Últimas iniciativas</h2>
+      <h2 class="u-uppercase u-margin-top-8 u-margin-bottom-4 u-text-center u-text-left@sm" v-if="latestInitiatives && latestInitiatives.length">Últimas iniciativas</h2>
       <results layout="extended" :initiatives="latestInitiatives" class="u-margin-bottom-8" :topicsStyles="topicsStyles"/>
 
       <save-alert :searchparams="{author: parliamentarygroup.name}" :text="parliamentarygroup.name"/>
 
-      <h2 class="u-uppercase u-margin-top-6 u-margin-bottom-4">Diputados/as</h2>
+      <h2 class="u-uppercase u-margin-top-6 u-margin-bottom-4 u-text-center u-text-left@sm">Diputados/as</h2>
       <CardGrid :items="deputies" type="deputy" layout="medium" :extra="undefined" />
     </div>
 
