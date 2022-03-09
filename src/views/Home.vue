@@ -4,6 +4,8 @@
 
       <ImageHeader :home="home" :image="getHomeImage()" class="u-margin-bottom-4" />
 
+      <loader v-if="!isLoaded" title="Cargando datos" subtitle="Puede llevar algun tiempo" />
+
       <div class="o-section c-home__initiatives" v-if="relatedInitiatives.length">
         <h1 class="u-uppercase c-home__initiatives_title">Iniciativas relacionadas</h1>
         <a class="c-home__more u-border-link u-hide u-block@sm u-uppercase" :href="home.RelatedInitiativesSearch">Más iniciativas</a>
@@ -28,6 +30,7 @@
   import Icon from '@/components/Icon';
   import ImageHeader from '@/components/ImageHeader';
   import LastActivity from '@/components/LastActivity';
+  import Loader from '@/components/Loader';
   import Results from '@/components/Results';
   import config from '@/config';
   import api from '@/api';
@@ -38,10 +41,12 @@
           Icon,
           ImageHeader,
           LastActivity,
+          Loader,
           Results,
         },
       data: function() {
           return {
+              isLoaded: false,
               home: null,
               relatedInitiatives: [],
               lastdays: null,
@@ -73,6 +78,7 @@
                   api.getInitiative(id)
                     .then(initiative => {
                         this.relatedInitiatives.push(initiative)
+                        this.isLoaded = true
                       })
                     .catch(error => this.errors = error);
                 });
