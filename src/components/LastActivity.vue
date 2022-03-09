@@ -1,7 +1,7 @@
 <template>
   <div class="o-section c-last-activity">
     <h1 class="u-uppercase">Iniciativas en los últimos 15 días</h1>
-    <h4 class="u-uppercase u-hide u-inline@sm u-margin-bottom-4">Últimas iniciativas presentadas en el Congreso de los Diputados</h4>
+    <h4 class="u-uppercase u-hide u-inline@sm">Últimas iniciativas presentadas en el Congreso de los Diputados</h4>
     <div v-for="type in types" class="c-last-activity__stat">
       <h1 class="c-last-activity__number"><icon :icon="lastdays[type].trend" />{{ lastdays[type].initiatives }}</h1>
       <h4 class="c-last-activity__type u-uppercase">{{ titles[type] }}</h4>

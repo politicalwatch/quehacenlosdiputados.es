@@ -127,7 +127,7 @@ export default {
           ['Iniciativas de Control', 'Pregunta oral en Pleno', '10'],
           ['Iniciativas de Control', 'Pregunta oral al Gobierno en Comisión', '10'],
           ['Iniciativas de Control', 'Pregunta al Gobierno con respuesta escrita', '0.1'],
-          ['Iniciativas de Control', 'Comparecencia del Gobierno en Comisión (art. 44)', ''],
+          ['Iniciativas de Control', 'Comparecencia del Gobierno en Comisión (art. 44)', '4'],
           ['Iniciativas de Control', 'Comparecendia del Gobierno en Comisión (arts. 202 y 203)', '4'],
           ['Iniciativas de Control', 'Comparecencia de autoridades y funcionarios en Comisión', '4'],
           ['Iniciativas de Control', 'Comparec. autoridades y funcionarios en Com. Mx. solicitada en Senado', '4'],

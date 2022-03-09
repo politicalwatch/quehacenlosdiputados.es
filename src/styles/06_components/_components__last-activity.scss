@@ -17,6 +17,10 @@
     @media (min-width: $sm) {
       flex-wrap: nowrap;
     }
+
+    &:first-child {
+      margin-top: 4rem;
+    }
   }
 
   &__number {
