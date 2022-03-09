@@ -46,11 +46,11 @@
             <div class="u-margin-bottom-4">
 
               <GovernmentCard v-if="isAGovernmentInitiative()" />
-              <ParliamentaryGroupCard v-else v-for="author in initiative.authors" :parliamentary_group="getGroup(author)" layout="small"/>
+              <ParliamentaryGroupCard v-else v-for="author in initiative.authors" v-bind:key="author" :parliamentary_group="getGroup(author)" layout="small"/>
 
               <div class="u-margin-bottom-4"></div>
 
-              <deputy-card v-for="deputyName in initiative.deputies" :deputy="getDeputyByName(deputyName)" layout="medium" />
+              <deputy-card v-for="deputyName in initiative.deputies" v-bind:key="deputyName" :deputy="getDeputyByName(deputyName)" layout="medium" />
 
             </div>
           </div>

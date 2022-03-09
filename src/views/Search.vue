@@ -150,7 +150,7 @@ export default {
             })
             .catch(error => this.errors = error);
     },
-    clearInitiatives: function(event) {
+    clearInitiatives: function() {
       this.initiatives = [];
       this.cleanedForm = true;
     },
