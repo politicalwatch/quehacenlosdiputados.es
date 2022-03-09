@@ -9,7 +9,8 @@
         <h5 v-if="hasAuthors(initiative)" v-html="getAuthors(initiative)"></h5>
       </div>
       <div class="c-initiative-card__deputies" v-if="initiative.deputies.length > 0 && extendedLayout">
-        <deputy-card v-for="deputyName in initiative.deputies" :deputy="getDeputyByName(deputyName)" layout="small" />
+        <deputy-card v-for="deputyName in getDeputies(initiative)" :deputy="getDeputyByName(deputyName)" layout="small" />
+        <icon v-if="initiative.deputies.length > 10" icon="more" />
       </div>
       <router-link v-if="initiative.id" :to="{name: 'initiative', params: { id: initiative.id }}" v-slot="{ href }">
         <a :href="href" target="_blank">
@@ -79,6 +80,13 @@ export default {
       if (initiative['tagged'].length == 0) return false;
       if (initiative['tagged'][0].topics.length == 0) return false;
       return true;
+    },
+    getDeputies: function(initiative) {
+      if (initiative.deputies.length < 10) {
+        return initiative.deputies
+      }
+
+      return initiative.deputies.slice(0, 10)
     },
   },
 };
