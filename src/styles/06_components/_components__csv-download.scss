@@ -10,4 +10,13 @@
       text-decoration: underline;
     }
   }
+
+  .disabled {
+    color: $neutral;
+    cursor: not-allowed;
+
+    svg path {
+      fill: $neutral;
+    }
+  }
 }
