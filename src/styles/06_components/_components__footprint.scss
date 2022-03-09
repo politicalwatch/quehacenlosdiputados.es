@@ -1,6 +1,25 @@
 .c-footprint {
   margin-bottom: 8px;
 
+  &--small {
+
+    .c-footprint {
+      &__wrapper {
+        font-size: 12px;
+        padding: 4px;
+
+        .c-icon {
+          padding-right: 4px;
+
+          svg {
+            width: 12px;
+            height: 12px;
+          }
+        }
+      }
+    }
+  }
+
   &__wrapper {
     background-color: $tipi-yellow;
     padding: 8px;

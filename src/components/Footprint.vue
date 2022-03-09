@@ -1,5 +1,5 @@
 <template>
-  <div class="c-footprint">
+  <div class="c-footprint" :class="{'c-footprint--small': isSmall()}">
     <span class="c-footprint__wrapper">
       <icon icon="footprint" /><span>{{ footprint }}</span>
     </span>
@@ -16,6 +16,15 @@
     },
     props: {
       footprint: [Number, String],
-    }
+      small: Boolean,
+    },
+    methods: {
+      isSmall: function() {
+        if (this.small) {
+          return this.small
+        }
+        return false
+      }
+    },
   }
 </script>
