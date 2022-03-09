@@ -33,7 +33,7 @@ export default {
           logo: 'pp',
           color: '#0056a3',
         },
-        "PP - Foro": {
+        "PP - FORO": {
           name: 'Partido Popular',
           logo: 'pp',
           color: '#0056a3',
