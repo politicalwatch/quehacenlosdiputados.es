@@ -28,152 +28,7 @@
 
           <h3>Fase 1: Cálculo del volumen de actividad y efectividad parlamentaria</h3>
           <p>En esta primera fase, se toma el total de iniciativas presentadas (menos las retiradas y las no admitidas a trámite) por cada diputado/a y además para cada una de las temáticas. Esta cantidad se pondera en función de los tipos de iniciativas presentadas. Cada tipo de iniciativa tiene un peso diferente en función de su relevancia política dentro de la actividad del Congreso de los Diputados, así como a la dedicación que implica su elaboración. Los pesos, que son una adaptación de los planteados por el <a href="https://politicalwatch.es/documentos/Capacidad-Congreso-Diputados-para-impulsar-Coherencia-de-Politicas-CIECODE.pdf" target="_blank">proyecto AVIZOR</a>, van desde el 0.1 al 40.0 y son los siguientes:</p>
-          <table>
-            <thead>
-              <tr>
-                <th>Categoría</th>
-                <th>Subcategoría</th>
-                <th>Peso</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Iniciativas de Control</td>
-                <td>Pregunta oral en Pleno</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de Control</td>
-                <td>Pregunta oral al Gobierno en Comisión</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de Control</td>
-                <td>Pregunta al Gobierno con respuesta escrita</td>
-                <td>0.1</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de Control</td>
-                <td>Comparecencia del Gobierno en Comisión (art. 44)</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de Control</td>
-                <td>Comparecencia del Gobierno en Comisión (arts. 202 y 203)</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de Control</td>
-                <td>Comparecencia de autoridades y funcionarios en Comisión</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de Control</td>
-                <td>Comparec. autoridades y funcionarios en Com. Mx. solicitada en Senado</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de Control</td>
-                <td>Otras comparecencias en Comisión</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de Control</td>
-                <td>Moción de censura</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de Control</td>
-                <td>Interpelación urgente</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de Control</td>
-                <td>Interpelación ordinaria</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de Control</td>
-                <td>Pregunta oral a la Corporación RTVE</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de Control</td>
-                <td>Pregunta a la Corporación RTVE con respuesta escrita</td>
-                <td>0.1</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de Control</td>
-                <td>Solicitud de informe a la Administración del Estado (art. 7)</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de Control</td>
-                <td>Solicitud de informe a otra Entidad Pública (art. 7)</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de Control</td>
-                <td>Solicitud de informe a la Administración del Estado (art. 44)</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de Control</td>
-                <td>Solicitud de informe a otra Entidad Pública (art. 44)</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de Control</td>
-                <td>Otras solicitudes de informe (art. 44)</td>
-                <td>4</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de orientación</td>
-                <td>Proposición no de Ley ante el Pleno</td>
-                <td>40</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de orientación</td>
-                <td>Proposición no de Ley en Comisión</td>
-                <td>40</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de orientación</td>
-                <td>Moción consecuencia de interpelación ordinaria</td>
-                <td>40</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de orientación</td>
-                <td>Moción consecuencia de interpelación urgente</td>
-                <td>40</td>
-              </tr>
-              <tr>
-                <td>Iniciativas legislativas</td>
-                <td>Proposición de ley de Grupos Parlamentarios del Congreso</td>
-                <td>80</td>
-              </tr>
-              <tr>
-                <td>Iniciativas legislativas</td>
-                <td>Proposición de ley de Diputados</td>
-                <td>80</td>
-              </tr>
-              <tr>
-                <td>Iniciativas legislativas</td>
-                <td>Proyecto de reforma Constitucional</td>
-                <td>80</td>
-              </tr>
-              <tr>
-                <td>Iniciativas legislativas</td>
-                <td>Proposición de reforma Constitucional de Grupos Parlamentarios</td>
-                <td>80</td>
-              </tr>
-              <tr>
-                <td>Iniciativas legislativas</td>
-                <td>Proposición de reforma constitucional de Comunidades Autónomas</td>
-                <td>80</td>
-              </tr>
-            </tbody>
-          </table>
+          <responsive-table :columns="weights.columns" :rows="weights.rows" />
 
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
@@ -187,42 +42,8 @@
           </div>
 
           <p>El siguiente paso es valorar la efectividad, para lo que se revisa cuántas de las Proposiciones No de Ley y las Proposiciones de Ley presentadas por el diputado/a analizado han sido aprobadas. Cada una de ellas recibe una puntuación extra en base a los siguientes cálculos:</p>
-          <table>
-            <thead>
-              <tr>
-                <th>Categoría</th>
-                <th>Tipo de iniciativa</th>
-                <th>Peso</th>
-                <th>Detalle</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Iniciativas de orientación</td>
-                <td>Aprobación de Proposición no de Ley ante el Pleno</td>
-                <td>20 puntos extra</td>
-                <td>50% adicional sobre el peso de la iniciativa</td>
-              </tr>
-              <tr>
-                <td>Iniciativas de orientación</td>
-                <td>Aprobación de Proposición no de Ley en Comisión</td>
-                <td>20 puntos extra</td>
-                <td>50% adicional sobre el peso de la iniciativa</td>
-              </tr>
-              <tr>
-                <td>Iniciativas legislativas</td>
-                <td>Aprobación de Proposición de ley de Grupos Parlamentarios del Congreso</td>
-                <td>60 puntos extra</td>
-                <td>75% adicional sobre el peso de la iniciativa</td>
-              </tr>
-              <tr>
-                <td>Iniciativas legislativas</td>
-                <td>Aprobación de Proposición de ley de Diputados</td>
-                <td>60 puntos extra</td>
-                <td>75% adicional sobre el peso de la iniciativa</td>
-              </tr>
-            </tbody>
-          </table>
+
+          <responsive-table :columns="details.columns" :rows="details.rows" />
 
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
@@ -290,12 +111,59 @@
 <script>
 
 import PageHeader from '@/components/PageHeader';
+import ResponsiveTable from '@/components/ResponsiveTable';
 
 export default {
   name: 'footprint',
   components: {
     PageHeader,
+    ResponsiveTable,
   },
+  data: function() {
+    return {
+      weights: {
+        columns: ['Categoría', 'Subcategoría', 'Peso'],
+        rows: [
+          ['Iniciativas de Control', 'Pregunta oral en Pleno', '10'],
+          ['Iniciativas de Control', 'Pregunta oral al Gobierno en Comisión', '10'],
+          ['Iniciativas de Control', 'Pregunta al Gobierno con respuesta escrita', '0.1'],
+          ['Iniciativas de Control', 'Comparecencia del Gobierno en Comisión (art. 44)', ''],
+          ['Iniciativas de Control', 'Comparecendia del Gobierno en Comisión (arts. 202 y 203)', '4'],
+          ['Iniciativas de Control', 'Comparecencia de autoridades y funcionarios en Comisión', '4'],
+          ['Iniciativas de Control', 'Comparec. autoridades y funcionarios en Com. Mx. solicitada en Senado', '4'],
+          ['Iniciativas de Control', 'Otras comparecencias en Comisión', '4'],
+          ['Iniciativas de Control', 'Moción de censura', '10'],
+          ['Iniciativas de Control', 'Interpelación urgente', '4'],
+          ['Iniciativas de Control', 'Interpelación ordinaria', '4'],
+          ['Iniciativas de Control', 'Pregunta oral a la Corporación RTVE', '10'],
+          ['Iniciativas de Control', 'Pregunta a la Corporación RTVE con respuesta escrita', '0.1'],
+          ['Iniciativas de Control', 'Solicitud de informe a la Administración del Estado (art. 7)', '4'],
+          ['Iniciativas de Control', 'Solicitud de informe a otra Entidad Pública (art. 7)', '4'],
+          ['Iniciativas de Control', 'Solicitud de informe a la Administración del Estado (art. 44)', '4'],
+          ['Iniciativas de Control', 'Solicitud de informe a otra Entidad Pública (art. 44)', '4'],
+          ['Iniciativas de Control', 'Otras solicitudes de informe (art. 44)', '4'],
+          ['Iniciativas de orientación', 'Proposición no de Ley ante el Pleno', '40'],
+          ['Iniciativas de orientación', 'Proposición no de Ley en Comisión', '40'],
+          ['Iniciativas de orientación', 'Moción consecuencia de interpelación ordinaria', '40'],
+          ['Iniciativas de orientación', 'Moción consecuencia de interpelación urgente', '40'],
+          ['Iniciativas de legislativas', 'Proposición de ley de Grupos Parlamentarios del Congreso', '80'],
+          ['Iniciativas de legislativas', 'Proposición de ley de Diputados', '80'],
+          ['Iniciativas de legislativas', 'Proyecto de reforma Constitucional', '80'],
+          ['Iniciativas de legislativas', 'Proposición de reforma Constitucional de Grupos Parlamentarios', '80'],
+          ['Iniciativas de legislativas', 'Proposición de reforma constitucional de Comunidades Autónomas', '80'],
+        ],
+      },
+      details: {
+        columns: ['Categoría', 'Tipo de iniciativa', 'Peso', 'Detalle'],
+        rows: [
+          ['Iniciativas de orientación', 'Aprobación de Proposición no de Ley ante el Pleno', '20 puntos extra', '50% adicional sobre el peso de la iniciativa'],
+          ['Iniciativas de orientación', 'Aprobación de Proposición no de Ley en Comisión', '20 puntos extra', '50% adicional sobre el peso de la iniciativa'],
+          ['Iniciativas legislativas', 'Aprobación de Proposición de ley de Grupos Parlamentarios del Congreso', '60 puntos extra', '75% adicional sobre el peso de la iniciativa'],
+          ['Iniciativas legislativaS', 'Aprobación de Proposición de ley de Diputados', '60 puntos extra', '75% adicional sobre el peso de la iniciativa'],
+        ],
+      }
+    }
+  }
 }
 </script>
 

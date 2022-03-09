@@ -1,0 +1,43 @@
+.c-responsive-table {
+  @media (max-width: $md) {
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+    }
+
+    thead {
+      tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+    }
+
+    tbody {
+      tr {
+        padding: 8px;
+        border: 1px solid $black;
+        margin-top: -2px;
+
+        td {
+          padding: 0.5rem 0 0 0;
+        }
+      }
+    }
+    
+    td {
+      text-align:left;
+
+      &:before {
+        font-weight: bold;
+        content: attr(data-title) ':';
+        display: inline-block;
+        margin-right: 8px;
+      }
+    }
+  }
+}
