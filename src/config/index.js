@@ -1,5 +1,5 @@
 export default {
-  SHORTNAME: process.env.VUE_APP_SHORTNAME || "tipi",
+  SHORTNAME: process.env.VUE_APP_SHORTNAME || "qhld",
   BACKEND_URL: process.env.VUE_APP_BACKEND_URL || "http://localhost:5000",
   HOMEBUILDER_URL: process.env.VUE_APP_HOMEBUILDER_URL || "https://homebuilder.quehacenlosdiputados.es",
   GOOGLE_ANALYTICS: process.env.VUE_APP_GOOGLE_ANALYTICS || "XXXXXXXXXXXX",
@@ -29,8 +29,8 @@ export default {
     }
   ],
   DISCLAIMER: {
-    route: "https://www.parlamento2030.es?utm_source=tipiciudadano&utm_medium=direct&utm_campaign=engagement",
-    name: "<img src='/img/sdg.png' alt='Logo de los ODS'> Descubre la actividad parlamentaria en clave Agenda 2030",
+    route: "",
+    name: "",
     external: true
   },
   LOGO: "/img/logo.svg",
@@ -50,7 +50,7 @@ export default {
     {
       itemprop: "image",
       content:
-        "https://ciecode.es/assets/images/projects/tipi-ciudadano/tipi-ciudadano.png"
+        "https://ciecode.es/assets/images/projects/qhld/qhld.png"
     },
     {
       name: "twitter:card",
@@ -76,7 +76,7 @@ export default {
     {
       name: "twitter:image:src",
       content:
-        "https://ciecode.es/assets/images/projects/tipi-ciudadano/tipi-ciudadano.png"
+        "https://ciecode.es/assets/images/projects/qhld/qhld.png"
     },
     {
       property: "og:title",
@@ -93,7 +93,7 @@ export default {
     {
       property: "og:image",
       content:
-        "https://ciecode.es/assets/images/projects/tipi-ciudadano/tipi-ciudadano.png"
+        "https://ciecode.es/assets/images/projects/qhld/qhld.png"
     },
     {
       property: "og:description",

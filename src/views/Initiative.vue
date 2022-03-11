@@ -1,58 +1,47 @@
 <template>
   <div class="c-initiative">
     <div v-if="loaded" id="initiative" class="o-container o-section u-margin-bottom-10">
-      <div v-if="!initiative.id">
-        <div class="o-grid u-padding-top-10 u-padding-bottom-10">
-          <div class="o-grid__col u-12 u-10@sm u-offset-1@sm u-text-center u-padding-top-4 u-padding-bottom-4">
-            <h1>Iniciativa no encontrada</h1>
-            <p class="u-padding-top-4">Esto puede deberse a que la iniciativa no tiene relación directa con las temáticas TiPi o que aún no han sido procesados los últimos datos del Congreso de los Diputados. Accede nuevamente en unos días para comprobar si ya se ha actualizado o suscríbete a una alerta personalizada para recibir en tu mail todas las actualizaciones del Congreso.</p>
-            <p>Encuentra <router-link :to="{name: 'about'}">más información</router-link> sobre la herramienta o utiliza el <router-link :to="{name:'search'}">buscador</router-link> para encontrar iniciativas similares.</p>
+      <div class="o-grid o-grid--between">
+        <div class="o-grid__col u-12 u-8@md">
+          <h2>{{ initiative.title }}</h2>
+          <div class="o-grid">
+            <div class="o-grid__col u-12 u-6@sm u-text-center u-text-left@sm c-initiative__status">
+              <initiative-status :initiative="initiative" />
+            </div>
+            <div class="o-grid__col u-12 u-6@sm u-text-left u-text-center u-text-right@sm">
+              <congress-link :url="initiative.url"></congress-link>
+            </div>
           </div>
+
+          <div class="o-grid u-padding-top-2 u-margin-bottom-4">
+            <div class="o-grid__col o-grid__col--fill">
+              <h6 class="u-uppercase">Tipo de acto parlamentario</h6>
+              <p class="c-initiative__info">{{ initiative.initiative_type_alt }}</p>
+            </div>
+            <div class="o-grid__col u-12 u-3@sm">
+              <h6 class="u-uppercase">Referencia</h6>
+              <p class="c-initiative__info">{{ initiative.reference }}</p>
+            </div>
+            <div class="o-grid__col u-12 u-3@sm">
+              <h6 class="u-uppercase">Registro</h6>
+              <p class="c-initiative__info">{{ moment(initiative.created).format('DD/MM/Y') }}</p>
+            </div>
+          </div>
+
+          <topics-section class="u-hide u-block@md" :topicsStyles="styles.topics" :initiative="initiative"/>
+
         </div>
-      </div>
-      <div v-else>
-        <div class="o-grid o-grid--between">
-          <div class="o-grid__col u-12 u-8@md">
-            <h2>{{ initiative.title }}</h2>
-            <div class="o-grid">
-              <div class="o-grid__col u-12 u-6@sm u-text-center u-text-left@sm c-initiative__status">
-                <initiative-status :initiative="initiative" />
-              </div>
-              <div class="o-grid__col u-12 u-6@sm u-text-left u-text-center u-text-right@sm">
-                <congress-link :url="initiative.url"></congress-link>
-              </div>
-            </div>
 
-            <div class="o-grid u-padding-top-2 u-margin-bottom-4">
-              <div class="o-grid__col o-grid__col--fill">
-                <h6 class="u-uppercase">Tipo de acto parlamentario</h6>
-                <p class="c-initiative__info">{{ initiative.initiative_type_alt }}</p>
-              </div>
-              <div class="o-grid__col u-12 u-3@sm">
-                <h6 class="u-uppercase">Referencia</h6>
-                <p class="c-initiative__info">{{ initiative.reference }}</p>
-              </div>
-              <div class="o-grid__col u-12 u-3@sm">
-                <h6 class="u-uppercase">Registro</h6>
-                <p class="c-initiative__info">{{ moment(initiative.created).format('DD/MM/Y') }}</p>
-              </div>
-            </div>
+        <div class="o-grid__col u-12 u-3@md">
+          <div class="u-margin-bottom-4">
 
-            <topics-section class="u-hide u-block@md" :topicsStyles="styles.topics" :initiative="initiative"/>
+            <GovernmentCard v-if="isAGovernmentInitiative()" />
+            <ParliamentaryGroupCard v-else v-for="author in initiative.authors" v-bind:key="author" :parliamentary_group="getGroup(author)" layout="small"/>
 
-          </div>
+            <div class="u-margin-bottom-4"></div>
 
-          <div class="o-grid__col u-12 u-3@md">
-            <div class="u-margin-bottom-4">
+            <deputy-card v-for="deputyName in initiative.deputies" v-bind:key="deputyName" :deputy="getDeputyByName(deputyName)" layout="medium" />
 
-              <GovernmentCard v-if="isAGovernmentInitiative()" />
-              <ParliamentaryGroupCard v-else v-for="author in initiative.authors" v-bind:key="author" :parliamentary_group="getGroup(author)" layout="small"/>
-
-              <div class="u-margin-bottom-4"></div>
-
-              <deputy-card v-for="deputyName in initiative.deputies" v-bind:key="deputyName" :deputy="getDeputyByName(deputyName)" layout="medium" />
-
-            </div>
           </div>
         </div>
 
@@ -133,11 +122,11 @@ export default {
         });
     },
     getGroup: function(parliamentary_group) {
-       for (const group of this.allParliamentaryGroups) {
-         if (group.name == parliamentary_group) {
-           return group
-         }
-       }
+      for (const group of this.allParliamentaryGroups) {
+        if (group.name == parliamentary_group) {
+          return group
+        }
+      }
     },
     isAGovernmentInitiative: function() {
       return this.initiative.authors.includes('Gobierno')
