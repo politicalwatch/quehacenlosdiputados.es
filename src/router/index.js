@@ -113,6 +113,12 @@ const routes = [{
     }
   },
   {
+    path: '/initiatives/:id',
+    redirect: to => {
+      return {name: 'initiative', params: { id: to.params.id }}
+    }
+  },
+  {
     path: "/tematicas",
     name: "topics",
     component: Topics
