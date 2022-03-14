@@ -75,7 +75,7 @@
             },
           getRelatedInitiatives: function() {
               this.home.RelatedInitiativesIds.forEach(id => {
-                  api.getInitiative(id)
+                  api.getInitiative(id, false)
                     .then(initiative => {
                         this.relatedInitiatives.push(initiative)
                         this.isLoaded = true

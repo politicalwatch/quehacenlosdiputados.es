@@ -145,11 +145,11 @@ export default {
       ].join('');
     }
   },
-  getInitiative(id) {
+  getInitiative(id, allkbs=true) {
     const new_params = params
-    new_params.knowledgebase += ',ods'
+    if (allkbs) new_params.knowledgebase += ',ods'
     return axios
-      .get(getEndpoint(id), {new_params})
+      .get(getEndpoint(id), {params: new_params})
       .then(response => response.data);
 
     function getEndpoint(id) {
