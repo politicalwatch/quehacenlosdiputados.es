@@ -76,6 +76,9 @@ export default {
       }
     },
   },
+  updated: function() {
+    this.setupMasonry();
+  },
   created: function() {
     this.setupMasonry();
   },
