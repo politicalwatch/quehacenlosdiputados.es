@@ -74,7 +74,7 @@ export default {
           kbs.push(tagged['knowledgebase'])
         }
       }
-      return kbs
+      return kbs.sort().reverse()
     },
     getTopics: function(kb) {
       let topics = []
