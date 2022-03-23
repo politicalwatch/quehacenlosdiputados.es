@@ -140,7 +140,6 @@ export default {
       api.getDeputy(this.$route.params.id)
         .then(response => {
           this.deputy = response;
-          this.deputy.image = api.proxy(this.deputy.image);
           this.parliamentarygroup = this.allParliamentaryGroups.find(allPG => allPG.shortname === this.deputy.parliamentarygroup);
           this.getLatestInitiatives();
         })

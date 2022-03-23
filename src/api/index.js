@@ -259,12 +259,6 @@ export default {
       ].join('');
     }
   },
-  proxy(url) {
-    return [
-      config.BACKEND_URL,
-      '/proxy?url=' + url
-    ].join('');
-  },
   getHome() {
     return axios.get(
       getEndpoint()
