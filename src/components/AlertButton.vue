@@ -21,6 +21,8 @@ export default {
       let search_params = Object.assign({}, this.searchparams);
       if (search_params.hasOwnProperty('page')) delete search_params.page;
 
+      if (!search_params.hasOwnProperty('knowledgebase')) search_params['knowledgebase'] = 'politicas';
+
       // ensure some params are array
       if (search_params.hasOwnProperty('subtopic'))
         search_params.subtopics = search_params.subtopics.constructor !== Array ?
