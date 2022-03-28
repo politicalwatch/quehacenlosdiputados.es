@@ -30,7 +30,7 @@
       <h2 class="u-uppercase u-margin-top-4 u-margin-bottom-4 u-text-center u-text-left@sm" v-if="latestInitiatives && latestInitiatives.length">Últimas iniciativas</h2>
       <results layout="extended" :initiatives="latestInitiatives" class="u-margin-bottom-8" :topicsStyles="topicsStyles"/>
 
-      <save-alert :searchparams="{author: parliamentarygroup.name}" :text="parliamentarygroup.name"/>
+      <save-alert v-show="use_alerts" :searchparams="{author: parliamentarygroup.name}" :text="parliamentarygroup.name"/>
 
       <h2 class="u-uppercase u-margin-top-6 u-margin-bottom-4 u-text-center u-text-left@sm">Diputados/as</h2>
       <CardGrid :items="deputies" type="deputy" layout="medium" :extra="undefined" />
@@ -123,6 +123,7 @@ export default {
     },
   },
   created: function() {
+    console.log(typeof this.use_alerts)
     this.getParliamentaryGroup()
   }
 }

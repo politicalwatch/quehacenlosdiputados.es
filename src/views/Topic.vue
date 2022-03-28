@@ -35,7 +35,7 @@
         </router-link>
       </div>
     </div>
-    <save-alert :searchparams="{topic: topic.name}" :text="topic.name" />
+    <save-alert v-show="use_alerts" :searchparams="{topic: topic.name}" :text="topic.name" />
   </div>
   <div v-else class="o-container o-section u-margin-bottom-10">
     <loader title="Cargando datos" subtitle="Puede llevar unos segundos"/>
