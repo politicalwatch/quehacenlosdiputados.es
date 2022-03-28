@@ -3,7 +3,7 @@ export default {
   BACKEND_URL: process.env.VUE_APP_BACKEND_URL || "http://localhost:5000",
   HOMEBUILDER_URL: process.env.VUE_APP_HOMEBUILDER_URL || "https://homebuilder.quehacenlosdiputados.es",
   GOOGLE_ANALYTICS: process.env.VUE_APP_GOOGLE_ANALYTICS || "XXXXXXXXXXXX",
-  USE_ALERTS: process.env.VUE_APP_USE_ALERTS || false,
+  USE_ALERTS: Boolean(process.env.VUE_APP_USE_ALERTS) || false,
   KNOWLEDGEBASE: process.env.KNOWLEDGEBASE || 'politicas',
   SCANNER_HELPTEXT: process.env.VUE_APP_SCANNER_HELPTEXT || "",
   MENU: [
