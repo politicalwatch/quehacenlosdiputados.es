@@ -123,7 +123,6 @@ export default {
     },
   },
   created: function() {
-    console.log(typeof this.use_alerts)
     this.getParliamentaryGroup()
   }
 }
