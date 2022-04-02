@@ -47,7 +47,7 @@
 
         <div class="u-hide@md">
 
-          <topics-section class="u-hide u-block@md" :topicsStyles="styles.topics" :initiative="initiative"/>
+          <topics-section :topicsStyles="styles.topics" :initiative="initiative"/>
 
         </div>
       </div>
