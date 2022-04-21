@@ -30,7 +30,7 @@
         />
       </div>
 
-      <div v-if="initiatives.length == 0 && !cleanedForm" id="results" class="u-padding-top-6 u-text-center">
+      <div v-if="initiatives.length == 0 && !cleanedForm && !loadingResults" id="results" class="u-padding-top-6 u-text-center">
         <not-found message="No se han encontrado resultados. Crea una alerta y te avisaremos."/>
         <AlertButton :searchparams="data" v-show="use_alerts && this.query_meta.page" />
       </div>
