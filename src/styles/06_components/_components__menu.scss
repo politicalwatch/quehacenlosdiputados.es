@@ -48,8 +48,8 @@
     text-transform: uppercase;
 
     &:hover {
-      color: $primary;
-      text-decoration: none;
+      color: $black;
+      text-decoration: underline;
     }
   }
 
