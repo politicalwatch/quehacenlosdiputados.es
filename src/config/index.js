@@ -197,6 +197,11 @@ export default {
         color: "#A3D5C8",
         image: "empleo-01.svg"
       },
+      "España vaciada": {
+        shortname: "España vaciada",
+        color: "#A3D5C8",
+        image: ""
+      },
       "Personas con discapacidad": {
         shortname: "Discapacidad",
         color: "#A3D5C8",
