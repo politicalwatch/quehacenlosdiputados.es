@@ -85,7 +85,7 @@ export default {
       },
       loadingResults: false,
       csvItems: [],
-      LIMITCSV: 1000,
+      LIMITCSV: 20000,
       use_alerts: config.USE_ALERTS,
       topicsStyles: config.STYLES.topics,
       scrollToID: '#results',
