@@ -119,8 +119,8 @@
             url: 'https://unsplash.com/photos/sggw4-qDD54',
           },
           'espana-vaciada': {
-            name: 'Manuel Torres Garcia',
-            url: 'https://unsplash.com/photos/WhoPQhc8fc4',
+            name: 'Marita Mones',
+            url: 'https://unsplash.com/photos/SLoYKtf9fdI',
           },
           fiscalidad: {
             name: 'Ibrahim Boran',
