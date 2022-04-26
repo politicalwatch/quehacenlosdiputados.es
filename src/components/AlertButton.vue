@@ -36,6 +36,7 @@ export default {
       const {value: email} = await swal({
         title: 'Crea una alerta personalizada',
         text: 'Te enviaremos un correo electrónico cada vez que haya alguna novedad en el Congreso de los Diputados relacionada con los criterios seleccionados',
+        footer: 'Al crear una alerta manifiestas estar conforme con la Política de privacidad de QHLD.',
         input: 'email',
         inputPlaceholder: 'nombre@dominio.com',
         imageUrl: '/img/email-alert-icon.svg',

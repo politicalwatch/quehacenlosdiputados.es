@@ -3,19 +3,24 @@
     <div id="legal-notice" class="o-container o-section u-margin-bottom-10">
       <div class="o-grid">
         <div class="o-grid__col u-12 u-4@sm">
-          <page-header title="Aviso legal"/>
+          <page-header title="Política de privacidad"/>
         </div>
         <div class="o-grid__col u-12 u-8@sm">
           <p><b>Qué hacen los diputados</b> es un proyecto de Political Watch que, a su vez, forma parte de la Fundación Salvador Soler (en adelante FSS).</p>
           <p>Conforme a la a Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales (en adelante LOPDGDD), y al Reglamento (UE) 2016/679, del Parlamento Europeo y del Consejo, de 27 de abril (“Reglamento General de Protección de Datos” o "RGPD"), esta Política de Privacidad se aplica a los tratamientos de datos de carácter personal que FSS realiza como Responsable, en relación con los datos de los usuarios/as (personas físicas) recabados en cualquiera de la secciones del sitio web.</p>
           <p>Si no está usted de acuerdo con los términos de esta Política, no acceda ni utilice los Servicios. Esta Política de privacidad no es aplicable a ningún otro producto, servicio o actividad de terceros.</p>
           <h3 id="responsable-del-tratamiento-de-sus-datos"><a href="#responsable-del-tratamiento-de-sus-datos" aria-hidden="true" tabindex="-1"><span class="icon icon-link"></span></a>Responsable del tratamiento de sus datos</h3>
-          <div class="nuxt-content-highlight"><pre class="language-text line-numbers"><code>Fundación Salvador Soler
-                Avenida Cardenal Herrera Oria 63, 3º Izq. 28034. Madrid.
-                Teléfono: 691 691 810
-                Fax: 91 735 44 28
-                Email: coordinacion@unmundosalvadorsoler.org
-          </code></pre></div>
+          <div class="nuxt-content-highlight">
+            <pre>
+              Fundación Salvador Soler
+              Avenida Cardenal Herrera Oria 63, 3º Izq. 28034. Madrid.
+              Teléfono: 691 691 810
+              Fax: 91 735 44 28
+              Email: coordinacion@unmundosalvadorsoler.org
+              Datos del DPO: GRUPO ADAPTALIA – LEGAL FORMATIVO S.L.
+              legal@grupoadaptalia.es 91 553 34 08
+            </pre>
+          </div>
           <h3 id="finalidades-del-tratamiento-de-datos"><a href="#finalidades-del-tratamiento-de-datos" aria-hidden="true" tabindex="-1"><span class="icon icon-link"></span></a>Finalidades del tratamiento de datos</h3>
           <p>Sus datos personales se utilizarán con la finalidad genérica de la gestión y administración de la web y, específicamente para:</p>
           <ul>
