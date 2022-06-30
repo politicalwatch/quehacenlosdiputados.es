@@ -110,7 +110,7 @@ export default {
       });
     },
     getP2030SearchLink: function(params) {
-      const baseUrl = 'https://www.parlamento2030.es/results/'
+      const baseUrl = 'https://www.parlamento2030.es/resultados/'
       return baseUrl + params
     },
   },
