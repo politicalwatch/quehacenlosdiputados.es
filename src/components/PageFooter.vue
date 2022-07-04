@@ -32,7 +32,7 @@
                 <a href="https://twitter.com/qhld_" target="_blank"><icon icon="twitter" class="c-icon--white" /></a>
                 <a href="https://www.instagram.com/_PoliticalWatch/" target="_blank"><icon icon="instagram" class="c-icon--white" /></a>
                 <a href="https://t.me/quehacenlosdiputados" target="_blank"><icon icon="telegram" class="c-icon--white" /></a>
-                <a href="#" target="_blank"><icon icon="github" class="c-icon--white" /></a>
+                <a href="https://github.com/politicalwatch/quehacenlosdiputados.es" target="_blank"><icon icon="github" class="c-icon--white" /></a>
               </div>
             </div>
           </div>
