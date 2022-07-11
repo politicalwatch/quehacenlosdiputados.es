@@ -52,3 +52,13 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.c-icon--type-more {
+  svg {
+    rect {
+      fill: $secondary-dark;
+    }
+  }
+}
+</style>
