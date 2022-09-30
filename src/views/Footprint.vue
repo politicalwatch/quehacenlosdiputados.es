@@ -12,7 +12,7 @@
           <p>Se trata de un indicador acumulado, que se actualiza semanalmente (todos los domingos) para cada uno de los miembros del Congreso de los Diputados y además para cada una de las temáticas.</p>
           <p>El indicador se calcula, para cada diputado o diputada, a partir de las siguientes variables:</p>
           <ul>
-            <li>Número de iniciativas presentadas desde el inicio de la legislatura, diferenciado por cada tipo de iniciativa.</li>
+            <li>Número de iniciativas presentadas desde el inicio de la legislatura, ponderado por cada tipo de iniciativa.</li>
             <li>Número de Proposiciones de Ley y Proposiciones No de Ley aprobadas de entre las presentadas por cada miembro del Congreso en cada temática.</li>
             <li>Existencia o no de una cuenta de correo electrónico pública.</li>
             <li>Existencia o no de redes sociales públicas.</li>
@@ -22,7 +22,7 @@
           <ul>
             <li>El volumen de actividad de cada diputado o diputada y su efectividad en cuanto a la aprobación de las iniciativas.</li>
             <li>La accesibilidad de los y las diputadas ante la ciudadanía.</li>
-            <li>La presencia del diputado o diputada en el debate parlamentario.</li>
+            <li>La constancia del diputado o diputada en el debate parlamentario.</li>
           </ul>
           <p>Para calcular la Huella se han definido 3 fases diferenciadas:</p>
 
