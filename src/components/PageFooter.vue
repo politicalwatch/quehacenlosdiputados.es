@@ -11,6 +11,7 @@
               <h5 class="c-footer__section-title">Proyecto</h5>
               <div class="c-footer__section-links">
                 <router-link :to="{name: 'about' }" class="c-footer__menu-link">Acerca</router-link>
+                <router-link :to="{name: 'manifest' }" class="c-footer__menu-link">Manifiesto</router-link>
                 <router-link :to="{name: 'topics' }" class="c-footer__menu-link">Temáticas</router-link>
                 <router-link :to="{name: 'footprint' }" class="c-footer__menu-link">Huella</router-link>
                 <a href="https://www.parlamento2030.es/" target="_blank">Agenda 2030</a>
@@ -22,7 +23,7 @@
               <div class="c-footer__section-links">
                 <a href="https://api.quehacenlosdiputados.es/" target="_blank">API Docs</a>
                 <a href="https://github.com/politicalwatch/" target="_blank">Código fuente</a>
-                <a href="https://politicalwatch.es/participa" target="_blank">Donaciones</a>
+                <router-link :to="{name: 'collaborate', hash: '#dona'}">Haz una donación</router-link>
                 <a href="mailto:qhld@politicalwatch.es?subject=Contacto+a+través+de+qhld.es" target="_blank">Escríbenos</a>
               </div>
             </div>

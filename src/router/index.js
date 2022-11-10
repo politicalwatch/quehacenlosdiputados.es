@@ -11,6 +11,7 @@ import Parliamentarygroups from '@/views/Parliamentarygroups.vue'
 import Parliamentarygroup from '@/views/Parliamentarygroup.vue'
 import About from '@/views/About.vue'
 import Manifest from '@/views/Manifest.vue'
+import Collaborate from '@/views/Collaborate.vue'
 import Footprint from '@/views/Footprint.vue'
 import LegalNotice from '@/views/LegalNotice.vue'
 import PrivacyPolicy from '@/views/PrivacyPolicy.vue'
@@ -151,6 +152,11 @@ const routes = [{
     path: "/manifiesto",
     name: "manifest",
     component: Manifest
+  },
+  {
+    path: "/colabora",
+    name: "collaborate",
+    component: Collaborate
   },
   {
     path: "/huella",

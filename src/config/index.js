@@ -23,8 +23,8 @@ export default {
       condition: true
     },
     {
-      route: "manifest",
-      name: "Manifiesto",
+      route: "collaborate",
+      name: "Colabora",
       condition: true
     }
   ],
