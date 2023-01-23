@@ -25,7 +25,7 @@ export default {
       type: Object,
       default: function() {
         return {
-          'completed': ['Aprobada', 'Respondida', 'Celebrada', 'Convertida en otra', 'Acumulada en otra'],
+          'completed': ['Aprobada', 'Respondida', 'Celebrada',  'Convalidada', 'Convertida en otra', 'Acumulada en otra'],
           'neutral': ['En tramitación', 'Desconocida'],
           'error': ['No admitida a trámite', 'No debatida', 'Rechazada', 'Retirada', 'Derogada', 'No celebrada'],
         };
