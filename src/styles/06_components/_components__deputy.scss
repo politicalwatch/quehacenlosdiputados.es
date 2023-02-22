@@ -20,7 +20,7 @@
   }
 
   &__name {
-    font-size: rem(56px); 
+    font-size: rem(56px);
     line-height: 72px;
     text-align: center;
     margin-top: 16px;
@@ -62,7 +62,7 @@
   &__links {
     margin-top: 32px;
     margin-bottom: 32px;
-    
+
     a {
       margin-left: 4px;
       margin-right: 4px;
@@ -178,9 +178,9 @@
     .c-message {
 
       .c-message__wrapper {
-        background-color: $tipi-yellow;
+        background-color: $lightgrey;
       }
-    
+
       &__wrapper {
         width: 100%;
         padding-top: 16px;
