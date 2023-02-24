@@ -66,11 +66,15 @@ export default {
       requred: true,
     }
   },
-  mounted() {
+  created() {
     this.calculeRows();
+  },
+  watch: {
+    result: 'calculeRows'
   },
   methods: {
     calculeRows() {
+      this.rows = [];
       const max = this.result[0].score;
       this.result.forEach(d => {
         this.rows.push({
