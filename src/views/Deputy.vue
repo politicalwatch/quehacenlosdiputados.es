@@ -40,7 +40,7 @@
             <p class="c-info-dropdown__content__item" v-for="position in deputy.public_position" v-bind:key="position">{{ position }}</p>
           </info-dropdown>
           <info-dropdown title="Bienes y actividades">
-            <a class="c-info-dropdown__content__item" v-for="(link, declaration) in deputy.extra.declarations" v-bind:key="declaration" :href="link">{{ declaration }}</a>
+            <a class="c-info-dropdown__content__item" v-for="(link, declaration) in deputy.extra.declarations" v-bind:key="declaration" :href="link" target="_blank">{{ declaration }}</a>
           </info-dropdown>
         </div>
       </div>
