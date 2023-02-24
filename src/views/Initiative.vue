@@ -36,7 +36,12 @@
           <div class="u-margin-bottom-4">
 
             <GovernmentCard v-if="isAGovernmentInitiative()" />
-            <ParliamentaryGroupCard v-else v-for="author in initiative.authors" v-bind:key="author" :parliamentary_group="getGroup(author)" layout="small"/>
+            <div v-else-if="isAGroupInitiative()">
+              <ParliamentaryGroupCard v-for="author in initiative.authors" v-bind:key="author" :parliamentary_group="getGroup(author)" layout="small"/>
+            </div>
+            <div v-else>
+              <OtherAuthorCard v-for="author in initiative.authors" v-bind:key="author" :name="author"></OtherAuthorCard>
+            </div>
 
             <div class="u-margin-bottom-4"></div>
 
@@ -62,6 +67,7 @@
 
 import ParliamentaryGroupCard from '@/components/ParliamentaryGroupCard';
 import GovernmentCard from '@/components/GovernmentCard';
+import OtherAuthorCard from '@/components/OtherAuthorCard';
 import CongressLink from '@/components/CongressLink';
 import CustomText from '@/components/CustomText';
 import TopicsSection from '@/components/TopicsSection';
@@ -82,6 +88,7 @@ export default {
   components: {
     ParliamentaryGroupCard,
     GovernmentCard,
+    OtherAuthorCard,
     CongressLink,
     CustomText,
     TopicsSection,
@@ -131,6 +138,16 @@ export default {
     isAGovernmentInitiative: function() {
       return this.initiative.authors.includes('Gobierno')
     },
+    isAGroupInitiative: function() {
+      if (this.initiative.authors.length == 0) return false
+      else {
+        const aPossibleGroup = this.initiative.authors[0]
+        for (const group of this.allParliamentaryGroups) {
+          if (group.name == aPossibleGroup) return true
+        }
+        return false
+      }
+    }
   },
   created: function() {
     this.getInitiative();
