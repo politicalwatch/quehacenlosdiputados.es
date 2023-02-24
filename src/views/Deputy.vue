@@ -161,6 +161,9 @@ export default {
   },
   created: function() {
     this.getDeputy()
+  },
+  watch: {
+    '$route': 'getDeputy'
   }
 }
 </script>

@@ -124,6 +124,9 @@ export default {
   },
   created: function() {
     this.getParliamentaryGroup()
+  },
+  watch: {
+    '$route': 'getParliamentaryGroup'
   }
 }
 </script>
