@@ -21,6 +21,7 @@
   &__item {
     margin-bottom: rem($spacer-unit * 2);
     padding: 16px 32px;
+    font-family: $font-headline;
 
     @media (min-width: $md) {
       margin-bottom: 0;
