@@ -5,10 +5,13 @@
         <div class="o-grid__col u-12 u-8@md">
           <h2>{{ initiative.title }}</h2>
           <div class="o-grid">
-            <div class="o-grid__col u-12 u-6@sm u-text-center u-text-left@sm c-initiative__status">
+            <div class="o-grid__col u-12 u-4@sm u-text-center u-text-left@sm c-initiative__status">
               <initiative-status :initiative="initiative" />
             </div>
-            <div class="o-grid__col u-12 u-6@sm u-text-left u-text-center u-text-right@sm">
+            <div class="o-grid__col u-12 u-8@sm u-text-left u-text-center u-text-right@sm">
+              <conversation-link v-if="initiative.status == 'Respondida'" :id="initiative.id" :isAnswer="initiative.initiative_type_alt == 'Respuesta'"></conversation-link>
+              &nbsp;
+              &nbsp;
               <congress-link :url="initiative.url"></congress-link>
             </div>
           </div>
@@ -69,6 +72,7 @@ import ParliamentaryGroupCard from '@/components/ParliamentaryGroupCard';
 import GovernmentCard from '@/components/GovernmentCard';
 import OtherAuthorCard from '@/components/OtherAuthorCard';
 import CongressLink from '@/components/CongressLink';
+import ConversationLink from '@/components/ConversationLink';
 import CustomText from '@/components/CustomText';
 import TopicsSection from '@/components/TopicsSection';
 import InitiativeStatus from '@/components/InitiativeStatus';
@@ -90,6 +94,7 @@ export default {
     GovernmentCard,
     OtherAuthorCard,
     CongressLink,
+    ConversationLink,
     CustomText,
     TopicsSection,
     InitiativeStatus,
