@@ -9,7 +9,7 @@
               <initiative-status :initiative="initiative" />
             </div>
             <div class="o-grid__col u-12 u-8@sm u-text-left u-text-center u-text-right@sm">
-              <conversation-link v-if="initiative.status == 'Respondida'" :id="initiative.id" :isAnswer="initiative.initiative_type_alt == 'Respuesta'"></conversation-link>
+              <conversation-link v-if="showConversation()" :id="initiative.id" :isAnswer="isAnswer()"></conversation-link>
               &nbsp;
               &nbsp;
               <congress-link :url="initiative.url"></congress-link>
@@ -152,6 +152,12 @@ export default {
         }
         return false
       }
+    },
+    showConversation: function() {
+      return this.initiative.status == 'Respondida' && ['179', '184'].includes(this.initiative.initiative_type)
+    },
+    isAnswer: function() {
+      return this.initiative.initiative_type_alt == 'Respuesta'
     }
   },
   created: function() {
