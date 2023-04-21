@@ -58,6 +58,7 @@ export default {
       return group['shortname'].toUpperCase()
     },
     setFilters: function(filters) {
+      console.log(filters)
       this.filters = filters
     },
     getFilteredDeputies: function() {
@@ -80,8 +81,14 @@ export default {
         const footprint_sort = this.getSelectedFootprint()
 
         const updated_list = [...filteredDeputies].sort((a, b) => {
-          const a_footprint = a.footprint_by_topics.filter(item => item.name == footprint_sort)[0].score
-          const b_footprint = b.footprint_by_topics.filter(item => item.name == footprint_sort)[0].score
+          const a_footprint_filter = a.footprint_by_topics.filter(item => item.name == footprint_sort)
+          const a_footprint = a_footprint_filter.length > 0 ?
+            a_footprint_filter[0].score
+            : 0
+          const b_footprint_filter = b.footprint_by_topics.filter(item => item.name == footprint_sort)
+          const b_footprint = b_footprint_filter.length > 0 ?
+            b_footprint_filter[0].score
+            : 0
 
           return b_footprint - a_footprint
         })
