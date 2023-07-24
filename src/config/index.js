@@ -29,8 +29,8 @@ export default {
     }
   ],
   DISCLAIMER: {
-    route: "",
-    name: "",
+    route: "#",
+    name: "Hasta la constitución de las nuevas Cortes el 17/08 en QHLD podrás visualizar a los miembros de la Diputación Permanente",
     external: true
   },
   LOGO: "/img/logo.svg",

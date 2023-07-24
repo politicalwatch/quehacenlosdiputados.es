@@ -2,7 +2,7 @@
   <div id="app">
     <transition name="fade" mode="out-in">
       <div>
-        <navbar pre-image="/img/yellow.png" :links="MENU" :logo="LOGO" />
+        <navbar pre-image="/img/yellow.png" :links="MENU" :logo="LOGO" :disclaimerLink="DISCLAIMER" />
           <router-view/>
         <page-footer />
       </div>
@@ -52,13 +52,16 @@
 
 <style lang="scss">
 .c-disclaimer {
-  background-color: #f8f8f8 !important;
+  background-color: $yellow !important;
+  color: $secondary-dark !important;
+  align-items: center;
+  justify-content: center;
   a {
-    color: #000 !important;
+    color: $secondary-dark !important;
   }
   svg {
     path {
-      fill: #000;
+      fill: $secondary-dark;
     }
   }
 }
