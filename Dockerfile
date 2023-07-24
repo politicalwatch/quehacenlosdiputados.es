@@ -5,7 +5,7 @@ RUN apk update && apk add git
 
 WORKDIR /app
 COPY package.json ./
-RUN yarn install
+RUN yarn install --ignore-engines
 COPY . .
 RUN yarn build
 

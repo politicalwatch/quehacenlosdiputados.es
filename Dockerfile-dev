@@ -2,7 +2,7 @@ FROM node:lts-stretch as build-stage
 
 WORKDIR /app
 COPY package.json /app
-RUN yarn install
+RUN yarn install --ignore-engines
 COPY . .
 
 CMD yarn serve
