@@ -1,8 +1,13 @@
 <template>
   <header class="c-navbar">
 
-    <div class="c-disclaimer">
-      {{ disclaimerLink.name }}
+    <div class="c-disclaimer" v-if="!closedDisclaimer && disclaimer.hasOwnProperty('name')">
+
+      <a v-if="disclaimer.external" :href="disclaimer.route" target="_blank" v-html="disclaimer.name"></a>
+      <router-link v-else :to="{name: disclaimer.route}" v-html="disclaimer.name"></router-link>
+
+      <a class="c-disclaimer__close" href="#" @click="closeDisclaimer"><icon icon="close" color="#fff" /></a>
+
     </div>
 
     <div class="c-navbar__wrapper o-container">
@@ -46,7 +51,7 @@ export default {
   },
   props: {
     links: Array,
-    disclaimerLink: {
+    disclaimer: {
       type: Object,
       default: function() { return {}; },
     },

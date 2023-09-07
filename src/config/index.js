@@ -29,8 +29,8 @@ export default {
     }
   ],
   DISCLAIMER: {
-    route: "#",
-    name: "Hasta la constitución de las nuevas Cortes el 17/08 en QHLD podrás visualizar a los miembros de la Diputación Permanente",
+    route: "mailto:info@politicalwatch.es?subject=[QHLD.es] Necesitaría datos de otras legislaturas",
+    name: "Si necesitas datos de otras legislaturas, escríbenos a info@politicalwatch.es",
     external: true
   },
   LOGO: "/img/logo.svg",
