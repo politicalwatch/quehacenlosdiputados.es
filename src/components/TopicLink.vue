@@ -24,7 +24,10 @@ export default {
     },
     image: String,
     topic: Object,
-    stat: Number,
+    stat: {
+      type: Number,
+      default: 0
+    },
   },
   computed: {
     topicImage: function() {
