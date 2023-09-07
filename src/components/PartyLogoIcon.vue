@@ -18,10 +18,15 @@ export default {
           logo: 'cs',
           color: '#ff4f00',
         },
-        Vox: {
+        VOX: {
           name: 'VOX',
           logo: 'vox',
           color: '#5ac035',
+        },
+        "ERC": {
+          name: 'Esquerra Republicana',
+          logo: 'erc',
+          color: '#ffbf41',
         },
         "ERC-S": {
           name: 'Esquerra Republicana',
@@ -53,7 +58,7 @@ export default {
           logo: 'pdecat',
           color: '#114488',
         },
-        "JxCat-JUNTS": {
+        "JxCAT-JUNTS": {
           name: "Junts per Catalunya",
           logo: "jxcat",
           color: "#40e0d0",
@@ -67,6 +72,11 @@ export default {
           name: "Bloque Nacionalista Galego",
           logo: "bng",
           color: "#76b3dd"
+        },
+        SUMAR: {
+          name: "SUMAR",
+          logo: "sumar",
+          color: "#e51c55"
         },
         UP: {
           name: "Unidas Podemos",
@@ -87,6 +97,11 @@ export default {
           name: "En Comú Podem",
           logo: "encomu",
           color: "linear-gradient(135deg, #dc2a15 15%, #6d2d5c 85%)"
+        },
+        "CCa": {
+          name: "Coalición Canaria",
+          logo: "coalicioncanaria",
+          color: "#02abd6"
         },
         "CCa-NC": {
           name: "Coalición Canaria",
