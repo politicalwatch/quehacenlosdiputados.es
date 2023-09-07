@@ -11,6 +11,7 @@ $completed: #4dca7f !default;
 $neutral: #ddd !default;
 $error: #e81c1c !default;
 $tipi-yellow: #efca53 !default;
+$yellow: $tipi-yellow;
 
 $colors: (
   "primary": $primary,
@@ -19,6 +20,7 @@ $colors: (
   "secondary": $secondary,
   "secondary-dark": $secondary-dark,
   "secondary-light": $secondary-light,
+  "yellow": $yellow,
   "error": $error,
   "white": $white,
   "black": $black,
