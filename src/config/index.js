@@ -29,8 +29,8 @@ export default {
     }
   ],
   DISCLAIMER: {
-    route: "mailto:info@politicalwatch.es?subject=[QHLD.es] Necesitaría datos de otras legislaturas",
-    name: "Si necesitas datos de otras legislaturas, escríbenos a info@politicalwatch.es",
+    route: "mailto:qhld@politicalwatch.es?subject=[QHLD.es] Necesitaría datos de otras legislaturas",
+    name: "Si necesitas datos de otras legislaturas, escríbenos a qhld@politicalwatch.es",
     external: true
   },
   LOGO: "/img/logo.svg",

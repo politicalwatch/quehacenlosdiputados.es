@@ -31,7 +31,7 @@
 
           <div class="o-grid o-grid--center o-grid--no-gutters u-margin-top-4">
             <div class="o-grid__col u-12 u-8@sm">
-              <span class="u-bg-yellow u-padding-1 u-block u-text-center u-text-th3">Contacta con nosotras en <a href="mailto:info@politicalwatch.es?subject=Contacto desde QHLD.es" target="_blank">info@politicalwatch.es</a></span>
+              <span class="u-bg-yellow u-padding-1 u-block u-text-center u-text-th3">Contacta con nosotras en <a href="mailto:qhld@politicalwatch.es?subject=Contacto desde QHLD.es" target="_blank">qhld@politicalwatch.es</a></span>
             </div>
           </div>
 
