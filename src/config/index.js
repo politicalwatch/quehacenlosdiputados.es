@@ -30,7 +30,7 @@ export default {
   ],
   DISCLAIMER: {
     route: "mailto:qhld@politicalwatch.es?subject=[QHLD.es] Necesitaría datos de otras legislaturas",
-    name: "Si necesitas datos de otras legislaturas, escríbenos a qhld@politicalwatch.es",
+    name: "Si necesitas datos de legislaturas anteriores, escríbenos a qhld@politicalwatch.es",
     external: true
   },
   LOGO: "/img/logo.svg",
