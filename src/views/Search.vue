@@ -51,9 +51,8 @@ import Results from '@/components/Results';
 import NotFound from '@/components/NotFound';
 import { mapGetters } from 'vuex';
 import Vue from 'vue'
-
-const qs = require('qs');
-const VueScrollTo = require('vue-scrollto');
+import qs from 'qs';
+import VueScrollTo from 'vue-scrollto'
 
 export default {
   name: 'search',
