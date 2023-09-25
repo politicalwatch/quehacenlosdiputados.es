@@ -52,7 +52,7 @@
           <datepicker
             :value="moment(this.form.startdate, 'YYYY-MM-DD').format('DD/MMM/YYYY')" @selected="selectStartDate"
             @cleared="clearStartDate"
-            monday-first="true"
+            :monday-first="true"
             :language="es"
             placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="startdate">
           </datepicker>
@@ -65,7 +65,7 @@
             :value="moment(this.form.enddate, 'YYYY-MM-DD').format('DD/MMM/YYYY')"
             @selected="selectEndDate"
             @cleared="clearEndDate"
-            monday-first="true"
+            :monday-first="true"
             :language="es"
             :disabledDates="disabled_dates"
             placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="enddate">
