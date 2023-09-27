@@ -70,20 +70,20 @@
 
 <script>
 
-import Footprint from '@/components/Footprint';
-import PageHeader from '@/components/PageHeader';
-import CongressLink from '@/components/CongressLink';
-import DeputyHeader from '@/components/DeputyHeader';
-import Message from '@/components/Message';
-import Results from '@/components/Results';
-import Icon from '@/components/Icon';
-import InfoDropdown from '@/components/InfoDropdown';
-import Loader from '@/components/Loader';
-import PartyLogoIcon from '@/components/PartyLogoIcon';
-import SaveAlert from '@/components/SaveAlert';
-import SocialIcon from '@/components/SocialIcon';
-import Barchart from '@/components/Barchart';
-import FootprintInfo from '@/components/FootprintInfo'
+import Footprint from '@/components/Footprint.vue';
+import PageHeader from '@/components/PageHeader.vue';
+import CongressLink from '@/components/CongressLink.vue';
+import DeputyHeader from '@/components/DeputyHeader.vue';
+import Message from '@/components/Message.vue';
+import Results from '@/components/Results.vue';
+import Icon from '@/components/Icon.vue';
+import InfoDropdown from '@/components/InfoDropdown.vue';
+import Loader from '@/components/Loader.vue';
+import PartyLogoIcon from '@/components/PartyLogoIcon.vue';
+import SaveAlert from '@/components/SaveAlert.vue';
+import SocialIcon from '@/components/SocialIcon.vue';
+import Barchart from '@/components/Barchart.vue';
+import FootprintInfo from '@/components/FootprintInfo.vue'
 import api from '@/api';
 import config from '@/config';
 import { mapState } from 'vuex';

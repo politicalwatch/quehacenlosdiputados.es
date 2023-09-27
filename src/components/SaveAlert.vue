@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import AlertButton from '@/components/AlertButton';
+import AlertButton from '@/components/AlertButton.vue';
 
 export default {
   name: "SaveAlert",

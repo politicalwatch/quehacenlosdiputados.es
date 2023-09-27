@@ -13,29 +13,33 @@
         </span>
         {{ label }}
     </a>
-    <vue-csv-downloader
+    <json-excel
       v-else
       :data="csvItems"
       :fields="csvFields"
-      :downloadName="getNameFromCSV()"
-      id="downloadCSV">
-        <span class="c-icon c-icon--type-download">
+      :type="csv"
+      :name="getNameFromCSV()"
+      id="download"
+    >
+      <span class="c-icon c-icon--type-download">
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" fill="none" viewBox="0 0 12 16">
             <path fill="#2D4252" d="M12 5.647H8.571V0H3.43v5.647H0l6 6.588 6-6.588zm-12 8.47V16h12v-1.882H0z"></path>
           </svg>
         </span>
         {{ label }}
-    </vue-csv-downloader>
+    </json-excel>
   </h5>
 </template>
 
 <script>
-import VueCsvDownloader from 'vue-csv-downloader';
+// import VueCsvDownloader from 'vue-csv-downloader';
+import JsonExcel from "vue-json-excel";
 
 export default {
   name: 'CsvDownload',
   components: {
-    VueCsvDownloader,
+    // VueCsvDownloader,
+    JsonExcel,
   },
   props: {
     initiatives: {

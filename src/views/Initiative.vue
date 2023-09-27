@@ -68,23 +68,23 @@
 
 <script>
 
-import ParliamentaryGroupCard from '@/components/ParliamentaryGroupCard';
-import GovernmentCard from '@/components/GovernmentCard';
-import OtherAuthorCard from '@/components/OtherAuthorCard';
-import CongressLink from '@/components/CongressLink';
-import ConversationLink from '@/components/ConversationLink';
-import CustomText from '@/components/CustomText';
-import TopicsSection from '@/components/TopicsSection';
-import InitiativeStatus from '@/components/InitiativeStatus';
-import DeputyCard from '@/components/DeputyCard';
-import TopicPill from '@/components/TopicPill';
-import Results from '@/components/Results';
-import Loader from '@/components/Loader';
+import ParliamentaryGroupCard from '@/components/ParliamentaryGroupCard.vue';
+import GovernmentCard from '@/components/GovernmentCard.vue';
+import OtherAuthorCard from '@/components/OtherAuthorCard.vue';
+import CongressLink from '@/components/CongressLink.vue';
+import ConversationLink from '@/components/ConversationLink.vue';
+import CustomText from '@/components/CustomText.vue';
+import TopicsSection from '@/components/TopicsSection.vue';
+import InitiativeStatus from '@/components/InitiativeStatus.vue';
+import DeputyCard from '@/components/DeputyCard.vue';
+import TopicPill from '@/components/TopicPill.vue';
+import Results from '@/components/Results.vue';
+import Loader from '@/components/Loader.vue';
 import api from '@/api';
 import config from '@/config';
 import { mapGetters, mapState } from 'vuex';
 
-const moment = require('moment');
+import moment from 'moment';
 moment.locale('es');
 
 export default {

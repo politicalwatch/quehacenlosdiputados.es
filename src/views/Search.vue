@@ -40,15 +40,15 @@
 </template>
 
 <script>
-import InitiativesForm from '@/components/InitiativesForm';
-import AlertButton from '@/components/AlertButton';
+import InitiativesForm from '@/components/InitiativesForm.vue';
+import AlertButton from '@/components/AlertButton.vue';
 import config from '@/config'
 import api from '@/api'
-import PageHeader from '@/components/PageHeader';
-import CsvDownload from '@/components/CsvDownload';
-import Message from '@/components/Message';
-import Results from '@/components/Results';
-import NotFound from '@/components/NotFound';
+import PageHeader from '@/components/PageHeader.vue';
+import CsvDownload from '@/components/CsvDownload.vue';
+import Message from '@/components/Message.vue';
+import Results from '@/components/Results.vue';
+import NotFound from '@/components/NotFound.vue';
 import { mapGetters } from 'vuex';
 import Vue from 'vue'
 import qs from 'qs';

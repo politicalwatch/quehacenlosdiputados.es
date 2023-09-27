@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import InitiativeCard from './InitiativeCard';
-import Loader from './Loader';
 import Masonry from "masonry-layout";
-import Icon from './Icon';
+import InitiativeCard from '@/components/InitiativeCard.vue';
+import Loader from '@/components/Loader.vue';
+import Icon from '@/components/Icon.vue';
 
 
 export default {

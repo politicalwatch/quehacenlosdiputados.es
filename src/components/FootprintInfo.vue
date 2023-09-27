@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Footprint from '@/components/Footprint';
+import Footprint from '@/components/Footprint.vue';
 
 export default {
   name: 'FootprintInfo',

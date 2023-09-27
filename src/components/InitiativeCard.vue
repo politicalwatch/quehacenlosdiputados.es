@@ -23,13 +23,13 @@
 </template>
 
 <script>
-const moment = require('moment');
+import moment from 'moment';
 moment.locale('es');
 
-import Icon from './Icon';
-import TopicPill from './TopicPill';
-import InitiativeStatus from './InitiativeStatus';
-import DeputyCard from '@/components/DeputyCard';
+import Icon from '@/components/Icon.vue';
+import TopicPill from '@/components/TopicPill.vue';
+import InitiativeStatus from '@/components/InitiativeStatus.vue';
+import DeputyCard from '@/components/DeputyCard.vue';
 import { mapGetters } from 'vuex';
 
 export default {

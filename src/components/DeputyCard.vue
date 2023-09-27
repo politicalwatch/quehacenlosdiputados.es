@@ -22,9 +22,9 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import Footprint from '@/components/Footprint';
-import PartyLogoIcon from '@/components/PartyLogoIcon';
-import Icon from './Icon';
+import Footprint from '@/components/Footprint.vue';
+import PartyLogoIcon from '@/components/PartyLogoIcon.vue';
+import Icon from '@/components/Icon.vue';
 
 export default {
   name: 'DeputyCard',

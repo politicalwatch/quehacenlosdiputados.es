@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import DeputiesForm from '@/components/DeputiesForm';
-import PageHeader from '@/components/PageHeader';
-import DeputyCard from '@/components/DeputyCard';
-import Loader from '@/components/Loader';
-import CardGrid from '@/components/CardGrid';
-import NotFound from '@/components/NotFound';
+import DeputiesForm from '@/components/DeputiesForm.vue';
+import PageHeader from '@/components/PageHeader.vue';
+import DeputyCard from '@/components/DeputyCard.vue';
+import Loader from '@/components/Loader.vue';
+import CardGrid from '@/components/CardGrid.vue';
+import NotFound from '@/components/NotFound.vue';
 import api from '@/api'
 import { mapGetters, mapState } from 'vuex';
 

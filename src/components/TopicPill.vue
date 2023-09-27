@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Icon from './Icon';
+import Icon from '@/components/Icon.vue';
 import * as Utils from '@/utils';
 
 export default {

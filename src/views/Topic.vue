@@ -44,12 +44,12 @@
 
 <script>
 
-  import Icon from '@/components/Icon';
-  import Results from '@/components/Results';
-  import ParliamentaryGroupCard from '@/components/ParliamentaryGroupCard';
-  import CardGrid from '@/components/CardGrid';
-  import Loader from '@/components/Loader';
-  import SaveAlert from '@/components/SaveAlert';
+  import Icon from '@/components/Icon.vue';
+  import Results from '@/components/Results.vue';
+  import ParliamentaryGroupCard from '@/components/ParliamentaryGroupCard.vue';
+  import CardGrid from '@/components/CardGrid.vue';
+  import Loader from '@/components/Loader.vue';
+  import SaveAlert from '@/components/SaveAlert.vue';
   import api from '@/api';
   import config from '@/config';
   import { mapGetters, mapState } from 'vuex';

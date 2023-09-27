@@ -43,8 +43,8 @@
 </template>
 
 <script>
-import Icon from './Icon';
-import PartyLogo from './PartyLogo';
+import Icon from '@/components/Icon.vue';
+import PartyLogo from '@/components/PartyLogo.vue';
 
 export default {
   name: 'DeputyHeader',

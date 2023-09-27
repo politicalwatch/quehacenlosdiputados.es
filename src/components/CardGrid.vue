@@ -9,8 +9,8 @@
 
 <script>
 
-import ParliamentaryGroupCard from '@/components/ParliamentaryGroupCard';
-import DeputyCard from '@/components/DeputyCard';
+import ParliamentaryGroupCard from '@/components/ParliamentaryGroupCard.vue';
+import DeputyCard from '@/components/DeputyCard.vue';
 
 export default {
   name: 'CardGrid',

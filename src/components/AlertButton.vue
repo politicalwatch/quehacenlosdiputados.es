@@ -5,7 +5,7 @@
 <script>
 import swal from 'sweetalert2';
 import api from '@/api';
-import Icon from './Icon';
+import Icon from '@/components/Icon.vue';
 
 
 export default {

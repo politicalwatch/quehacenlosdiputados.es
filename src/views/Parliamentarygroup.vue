@@ -45,15 +45,15 @@
 
 <script>
 
-import CardGrid from '@/components/CardGrid';
-import ParliamentaryGroupCard from '@/components/ParliamentaryGroupCard';
-import Results from '@/components/Results'
-import CustomText from '@/components/CustomText';
-import Gender from '@/components/Gender';
-import Barchart from '@/components/Barchart';
-import Loader from '@/components/Loader';
-import SaveAlert from '@/components/SaveAlert';
-import FootprintInfo from '@/components/FootprintInfo'
+import CardGrid from '@/components/CardGrid.vue';
+import ParliamentaryGroupCard from '@/components/ParliamentaryGroupCard.vue';
+import Results from '@/components/Results.vue'
+import CustomText from '@/components/CustomText.vue';
+import Gender from '@/components/Gender.vue';
+import Barchart from '@/components/Barchart.vue';
+import Loader from '@/components/Loader.vue';
+import SaveAlert from '@/components/SaveAlert.vue';
+import FootprintInfo from '@/components/FootprintInfo.vue'
 import api from '@/api';
 import config from '@/config'
 import { mapGetters, mapState } from  'vuex';

@@ -166,14 +166,14 @@
 import Datepicker from 'vuejs-datepicker';
 import { es } from 'vuejs-datepicker/dist/locale';
 import Multiselect from 'vue-multiselect'
-import Icon from './Icon';
+import Icon from '@/components/Icon.vue';
 import * as Utils from '@/utils';
 import api from '@/api'
 import { mapGetters, mapState } from 'vuex';
 // eslint-disable-next-line no-unused-vars
 import assign from "core-js/features/object/assign";
 
-const moment = require('moment');
+import moment from 'moment';
 
 export default {
   name: 'InitiativesForm',

@@ -110,8 +110,8 @@
 
 <script>
 
-import PageHeader from '@/components/PageHeader';
-import ResponsiveTable from '@/components/ResponsiveTable';
+import PageHeader from '@/components/PageHeader.vue';
+import ResponsiveTable from '@/components/ResponsiveTable.vue';
 
 export default {
   name: 'footprint',

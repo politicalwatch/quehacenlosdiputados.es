@@ -38,7 +38,7 @@
 
 <script>
 
-import PageHeader from '@/components/PageHeader';
+import PageHeader from '@/components/PageHeader.vue';
 
 export default {
   name: 'collaborate',

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import NotFound from '@/components/NotFound';
+import NotFound from '@/components/NotFound.vue';
 
 export default {
   name: 'Page404',

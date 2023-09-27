@@ -1,8 +1,12 @@
 <template>
-  <span class="c-icon" :class="`c-icon--type-${icon}`" v-html="svg"></span>
+  <span class="c-icon" :class="`c-icon--type-${icon}`">
+    <component :is="svg" />
+  </span>
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue';
+
 export default {
   name: 'Icon',
   props: {
@@ -13,7 +17,7 @@ export default {
     svg() {
       let svg = '';
       try {
-        svg = require(`!html-loader!../assets/svg/icon-${this.icon}.svg`);
+        svg = defineAsyncComponent(() => import(`@/assets/svg/icon-${this.icon}.svg`));
       } catch (error) {
         svg = this.icon;
       }

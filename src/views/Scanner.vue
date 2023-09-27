@@ -57,11 +57,11 @@
 </template>
 
 <script>
-import PageHeader from '@/components/PageHeader';
-import Message from '@/components/Message';
-import Loader from '@/components/Loader';
-import TopicsSection from '@/components/TopicsSection';
-import CsvDownload from  '@/components/CsvDownload';
+import PageHeader from '@/components/PageHeader.vue';
+import Message from '@/components/Message.vue';
+import Loader from '@/components/Loader.vue';
+import TopicsSection from '@/components/TopicsSection.vue';
+import CsvDownload from  '@/components/CsvDownload.vue';
 import config from '@/config';
 import api from '@/api';
 import { mapState } from 'vuex';

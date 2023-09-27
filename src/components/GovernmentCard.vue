@@ -9,7 +9,7 @@
 </template>
 
 <script>
-const qs = require('qs');
+import qs from 'qs';
 
 export default {
   name: 'GovernmentCard',

@@ -18,8 +18,6 @@ import PrivacyPolicy from '@/views/PrivacyPolicy.vue'
 import CookiePolicy from '@/views/CookiePolicy.vue'
 import Page404 from '@/views/Page404.vue'
 import config from '@/config';
-// eslint-disable-next-line no-unused-vars
-import from from "core-js/features/array/from";
 
 Vue.use(VueRouter);
 

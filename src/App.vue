@@ -2,7 +2,7 @@
   <div id="app">
     <transition name="fade" mode="out-in">
       <div>
-        <navbar pre-image="/img/yellow.png" :links="MENU" :logo="LOGO" :disclaimer="DISCLAIMER" />
+        <page-navbar pre-image="/img/yellow.png" :links="MENU" :logo="LOGO" :disclaimer="DISCLAIMER" />
           <router-view/>
         <page-footer />
       </div>
@@ -11,15 +11,15 @@
 </template>
 
 <script>
-  import Navbar from '@/components/Navbar'
-  import PageFooter from '@/components/PageFooter';
+  import PageNavbar from '@/components//Navbar.vue'
+  import PageFooter from '@/components/PageFooter.vue';
   import config from '@/config';
   import { mapActions } from 'vuex';
 
   export default {
     name: 'app',
     components: {
-      Navbar,
+      PageNavbar,
       PageFooter,
     },
     data: function() {

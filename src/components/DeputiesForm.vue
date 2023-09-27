@@ -68,7 +68,7 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
-import FootprintInfo from '@/components/FootprintInfo'
+import FootprintInfo from '@/components/FootprintInfo.vue'
 
 export default {
   name: 'DeputiesForm',

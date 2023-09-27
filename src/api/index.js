@@ -1,7 +1,7 @@
 import config from '@/config';
 import axios from 'axios';
 
-const qs = require("qs");
+import qs from 'qs';
 
 
 const kb = config.KNOWLEDGEBASE;

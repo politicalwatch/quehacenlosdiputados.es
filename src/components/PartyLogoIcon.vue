@@ -1,10 +1,14 @@
 <template>
   <div class="c-party_logo_icon" :style="getBackground()">
-    <img class="c-party_logo_icon__image" :src="getLogoSrc()" :alt="'Logo de ' + getName()"/>
+    <figure class="c-party_logo_icon__image" :alt="'Logo de ' + getName()">
+      <component :is="svg"></component>
+    </figure>
   </div>
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue';
+
 export default {
   name: 'PartyLogoIcon',
   props: {
@@ -171,6 +175,17 @@ export default {
       },
     }
   },
+  computed: {
+    svg() {
+      let svg = '';
+      try {
+        svg = defineAsyncComponent(() => import(`@/assets/party_logos/icon/${this.parties[this.party].logo}.svg`));
+      } catch (error) {
+        svg = this.icon;
+      }
+      return svg;
+    },
+  },
   methods: {
     getBackground: function() {
       const bg = this.parties[this.party].color
@@ -180,7 +195,7 @@ export default {
       return "background-image:" + bg
     },
     getLogoSrc: function() {
-      return require(`../assets/party_logos/icon/${this.parties[this.party].logo}.svg`);
+      return defineAsyncComponent(() => import(`@/assets/party_logos/icon/${this.parties[this.party].logo}.svg`));
     },
     getName: function() {
       return this.parties[this.party].name
@@ -190,4 +205,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.c-party_logo_icon__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    width: 65%;
+  }
+}
 </style>

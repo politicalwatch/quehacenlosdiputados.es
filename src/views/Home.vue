@@ -63,11 +63,11 @@
 
 <script>
 
-  import Icon from '@/components/Icon';
-  import ImageHeader from '@/components/ImageHeader';
-  import LastActivity from '@/components/LastActivity';
-  import Loader from '@/components/Loader';
-  import Results from '@/components/Results';
+  import Icon from '@/components/Icon.vue';
+  import ImageHeader from '@/components/ImageHeader.vue';
+  import LastActivity from '@/components/LastActivity.vue';
+  import Loader from '@/components/Loader.vue';
+  import Results from '@/components/Results.vue';
   import config from '@/config';
   import api from '@/api';
 

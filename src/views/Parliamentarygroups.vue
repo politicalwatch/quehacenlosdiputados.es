@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import CardGrid from '@/components/CardGrid';
-import Loader from '@/components/Loader';
-import PageHeader from '@/components/PageHeader';
+import CardGrid from '@/components/CardGrid.vue';
+import Loader from '@/components/Loader.vue';
+import PageHeader from '@/components/PageHeader.vue';
 import { mapState } from 'vuex';
 
 export default {

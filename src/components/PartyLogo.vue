@@ -5,6 +5,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'PartyLogo',
   data: function () {
@@ -49,7 +50,7 @@ export default {
     getLogoSrc: function () {
       let logo = '';
       if (this.party in this.logos) {
-        logo = require(`../assets/party_logos/${this.logos[this.party]}`);
+        logo = new URL(`@/assets/party_logos/${this.logos[this.party]}`, import.meta.url).href;
       }
       return logo;
     },

@@ -10,9 +10,9 @@
 </template>
 
 <script>
-const moment = require('moment');
+import moment from 'moment';
 moment.locale('es');
-import Icon from './Icon';
+import Icon from '@/components/Icon.vue';
 
 export default {
   name: 'InitiativeMeta',

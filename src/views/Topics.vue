@@ -17,9 +17,9 @@
 import { mapState } from 'vuex';
 import api from '@/api';
 import config from '@/config'
-import PageHeader from '@/components/PageHeader';
-import TopicLink from '@/components/TopicLink'
-import Loader from '@/components/Loader';
+import PageHeader from '@/components/PageHeader.vue';
+import TopicLink from '@/components/TopicLink.vue'
+import Loader from '@/components/Loader.vue';
 
 export default {
   name: 'topics',

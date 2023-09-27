@@ -2,7 +2,7 @@
   <div class="c-not-found o-container">
     <div class="o-grid u-text-center">
       <div class="o-grid__col u-12@sm">
-        <span v-html="svg"></span>
+        <Icon404 />
       </div>
       <div class="o-grid__col u-12@sm">
         <h5>{{ message }}</h5>
@@ -12,21 +12,15 @@
 </template>
 
 <script>
+import Icon404 from "@/assets/svg/not-found.svg";
+
 export default {
   name: 'NotFound',
+  components: {
+    Icon404,
+  },
   props: {
     message: String,
-  },
-  computed: {
-    svg() {
-      let svg = '';
-      try {
-        svg = require(`!html-loader!../assets/svg/not-found.svg`);
-      } catch (error) {
-        svg = '';
-      }
-      return svg;
-    },
   },
 };
 </script>

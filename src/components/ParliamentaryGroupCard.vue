@@ -27,8 +27,8 @@
 
 <script>
 
-import Icon from './Icon';
-import PartyLogoIcon from './PartyLogoIcon';
+import Icon from '@/components/Icon.vue';
+import PartyLogoIcon from '@/components/PartyLogoIcon.vue';
 
 export default {
   name: 'ParliamentaryGroupCard',

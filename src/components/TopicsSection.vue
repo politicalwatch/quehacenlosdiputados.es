@@ -40,9 +40,9 @@
 </template>
 
 <script>
-const qs = require('qs');
+import qs from 'qs';
 
-import Icon from './Icon';
+import Icon from '@/components/Icon.vue';
 import * as Utils from '@/utils';
 
 export default {

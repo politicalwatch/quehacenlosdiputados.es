@@ -57,7 +57,7 @@
 
 <script>
   import CookieLaw from 'vue-cookie-law';
-  import Icon from './Icon';
+  import Icon from '@/components/Icon.vue';
 
   export default {
     name: "PageFooter",
