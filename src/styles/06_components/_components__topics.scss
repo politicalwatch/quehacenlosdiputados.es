@@ -8,7 +8,7 @@
 
     flex: 0 0 auto;
     color: $topic-pill-color;
-    padding: rem($spacer-unit/2);
+    padding: rem(calc($spacer-unit / 2));
     text-decoration: none;
     margin: 0 $topic-pill-separator $topic-pill-separator 0;
 
@@ -48,7 +48,6 @@
     display: block;
 
     .c-topics {
-
       &__list {
         background-color: $lightgrey;
         padding: 32px;
@@ -116,7 +115,6 @@
       padding: 0;
 
       li {
-
         &::before {
           display: none;
         }

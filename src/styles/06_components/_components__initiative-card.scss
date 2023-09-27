@@ -33,7 +33,7 @@
       flex-direction: column;
 
       span {
-        padding-bottom: rem($spacer-unit/2);
+        padding-bottom: rem(calc($spacer-unit / 2));
       }
     }
   }
@@ -47,5 +47,4 @@
 
     margin: 0;
   }
-
 }

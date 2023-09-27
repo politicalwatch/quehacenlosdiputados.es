@@ -17,15 +17,15 @@
     }
 
     &__image-small {
-      width: rem($spacer-unit*2);
-      height: rem($spacer-unit*2);
-      margin-right: rem($spacer-unit/2);
+      width: rem($spacer-unit * 2);
+      height: rem($spacer-unit * 2);
+      margin-right: rem(calc($spacer-unit / 2));
       border: 2px solid $primary;
     }
 
     &__image-medium {
-      width: rem($spacer-unit*4);
-      height: rem($spacer-unit*4);
+      width: rem($spacer-unit * 4);
+      height: rem($spacer-unit * 4);
       margin-right: rem($spacer-unit);
       border: 2px solid $primary;
     }
@@ -33,24 +33,24 @@
     &__image-large {
       width: rem(160px);
       height: rem(160px);
-      margin-right: rem($spacer-unit*2);
+      margin-right: rem($spacer-unit * 2);
       border: 4px solid $primary;
     }
 
     &__info {
-
       text-transform: uppercase;
 
-      h4, p, h5 {
+      h4,
+      p,
+      h5 {
         margin-top: 0px;
-        margin-bottom: rem($spacer-unit/4);
+        margin-bottom: rem(calc($spacer-unit / 4));
       }
-
     }
-
   }
 
-  &__small-layout { }
+  &__small-layout {
+  }
 
   &__medium-layout {
     display: flex;
@@ -73,7 +73,6 @@
         @include tbody2;
       }
     }
-
   }
 
   &__large-layout {
@@ -105,7 +104,6 @@
         }
       }
     }
-
   }
 
   a {
@@ -114,7 +112,6 @@
       text-decoration: underline;
     }
   }
-
 }
 
 .c-deputy-card.small-layout {
