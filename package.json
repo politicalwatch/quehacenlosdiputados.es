@@ -20,7 +20,6 @@
     "js-sha1": "^0.6.0",
     "live-server": "^1.2.1",
     "masonry-layout": "^4.2.2",
-    "moment": "2.24.0",
     "pluralize": "^8.0.0",
     "qs": "^6.11.2",
     "register-service-worker": "^1.3.0",

@@ -1,5 +1,10 @@
 <template>
-  <form id="initiatives-form" class="u-margin-bottom-4 u-border-bottom" role="form" @submit.prevent="getResults($event)">
+  <form
+    id="initiatives-form"
+    class="u-margin-bottom-4 u-border-bottom"
+    role="form"
+    @submit.prevent="getResults($event)"
+  >
     <div class="o-grid">
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-select-label u-block">
@@ -11,50 +16,78 @@
             @select="fillSubtopicsAndTags"
             @remove="clearSubtopicsAndTags"
             v-model="form.topic"
-            :options="topics.map(topic => topic.name)"
+            :options="topics.map((topic) => topic.name)"
             :allow-empty="true"
-            name="topic" id="topic" placeholder="Todas">
+            name="topic"
+            id="topic"
+            placeholder="Todas"
+          >
           </multiselect>
         </div>
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
-        <div class="c-select-label u-block" :class="{ 'c-select-label--disabled' : !this.filteredTags.length }">
+        <div
+          class="c-select-label u-block"
+          :class="{ 'c-select-label--disabled': !this.filteredTags.length }"
+        >
           <label for="tags">Etiquetas</label>
           <multiselect
-          selectedLabel="Seleccionada"
-          selectLabel=""
-          deselectLabel="Pulsa para deseleccionar"
-          v-model="form.tags"
-          :multiple="true"
-          :options="filteredTags"
-          :allow-empty="true"
-          :disabled="!this.filteredTags.length"
-          :placeholder="this.filteredTags.length ? 'Todas' : 'Selecciona previamente una temática'"
-          name="tags" id="tags" >
-        </multiselect>
+            selectedLabel="Seleccionada"
+            selectLabel=""
+            deselectLabel="Pulsa para deseleccionar"
+            v-model="form.tags"
+            :multiple="true"
+            :options="filteredTags"
+            :allow-empty="true"
+            :disabled="!this.filteredTags.length"
+            :placeholder="
+              this.filteredTags.length
+                ? 'Todas'
+                : 'Selecciona previamente una temática'
+            "
+            name="tags"
+            id="tags"
+          >
+          </multiselect>
         </div>
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-input-label u-block">
           <label for="text">Título y Contenido</label>
-          <input v-model="form.text" type="text" id="text" name="text" placeholder="Texto libre">
+          <input
+            v-model="form.text"
+            type="text"
+            id="text"
+            name="text"
+            placeholder="Texto libre"
+          />
         </div>
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-input-label u-block">
           <label for="reference">Referencia</label>
-          <input v-model="form.reference" type="text" id="reference" name="reference" placeholder="Ej.: 121/000001">
+          <input
+            v-model="form.reference"
+            type="text"
+            id="reference"
+            name="reference"
+            placeholder="Ej.: 121/000001"
+          />
         </div>
       </div>
       <div class="o-grid__col u-12 u-4@sm u-padding-bottom-4">
         <div class="c-datepicker-label u-block">
           <label for="startdate">Desde</label>
           <datepicker
-            :value="moment(this.form.startdate, 'YYYY-MM-DD').format('DD/MMM/YYYY')" @selected="selectStartDate"
+            :value="formattedStartDate"
+            @selected="selectStartDate"
             @cleared="clearStartDate"
             :monday-first="true"
             :language="es"
-            placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="startdate">
+            placeholder="dd/mm/YYYY"
+            format="dd/MM/yyyy"
+            name="startdate"
+          >
           </datepicker>
         </div>
       </div>
@@ -62,13 +95,16 @@
         <div class="c-datepicker-label u-block">
           <label for="enddate">Hasta</label>
           <datepicker
-            :value="moment(this.form.enddate, 'YYYY-MM-DD').format('DD/MMM/YYYY')"
+            :value="formattedEndDate"
             @selected="selectEndDate"
             @cleared="clearEndDate"
             :monday-first="true"
             :language="es"
             :disabledDates="disabled_dates"
-            placeholder="dd/mm/YYYY" format="dd/MM/yyyy" name="enddate">
+            placeholder="dd/mm/YYYY"
+            format="dd/MM/yyyy"
+            name="enddate"
+          >
           </datepicker>
         </div>
       </div>
@@ -82,11 +118,15 @@
             v-model="form.status"
             :options="status"
             :allow-empty="true"
-            name="status" id="status" placeholder="Cualquiera">
+            name="status"
+            id="status"
+            placeholder="Cualquiera"
+          >
           </multiselect>
         </div>
       </div>
-    </div> <!-- /.o-grid -->
+    </div>
+    <!-- /.o-grid -->
     <div class="o-grid" v-show="advanced">
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <div class="c-select-label u-block">
@@ -98,7 +138,10 @@
             v-model="form.deputy"
             :options="getDeputies()"
             :allow-empty="true"
-            name="deputy" id="deputy" placeholder="Apellidos, Nombre">
+            name="deputy"
+            id="deputy"
+            placeholder="Apellidos, Nombre"
+          >
           </multiselect>
         </div>
       </div>
@@ -110,9 +153,12 @@
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
             v-model="form.author"
-            :options="groups.map(group => group.name || group)"
+            :options="groups.map((group) => group.name || group)"
             :allow-empty="true"
-            name="author" id="author" placeholder="Todos">
+            name="author"
+            id="author"
+            placeholder="Todos"
+          >
           </multiselect>
         </div>
       </div>
@@ -127,7 +173,10 @@
             :options="getTypes()"
             :allow-empty="true"
             :multiple="true"
-            name="type" id="type" placeholder="Cualquiera">
+            name="type"
+            id="type"
+            placeholder="Cualquiera"
+          >
           </multiselect>
         </div>
       </div>
@@ -141,21 +190,34 @@
             v-model="form.place"
             :options="places"
             :allow-empty="true"
-            name="place" id="place" placeholder="Cualquiera">
+            name="place"
+            id="place"
+            placeholder="Cualquiera"
+          >
           </multiselect>
         </div>
       </div>
-    </div> <!-- /.o-grid -->
+    </div>
+    <!-- /.o-grid -->
     <div class="o-grid">
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
-        <a href="#" class="c-button u-padding-left-0" @click.prevent="toggleAdvanced">
+        <a
+          href="#"
+          class="c-button u-padding-left-0"
+          @click.prevent="toggleAdvanced"
+        >
           <icon icon="advanced" />
           <span v-if="!advanced">Mostrar búsqueda avanzada</span>
           <span v-else>Ocultar búsqueda avanzada</span>
         </a>
       </div>
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4 u-text-right@sm">
-        <button class="c-button u-padding-left-0 u-margin-right-2" @click.prevent="clearInitiatives">Limpiar búsqueda</button>
+        <button
+          class="c-button u-padding-left-0 u-margin-right-2"
+          @click.prevent="clearInitiatives"
+        >
+          Limpiar búsqueda
+        </button>
         <button class="u-border-link u-uppercase" type="submit">Buscar</button>
       </div>
     </div>
@@ -163,20 +225,18 @@
 </template>
 
 <script>
-import Datepicker from 'vuejs-datepicker';
-import { es } from 'vuejs-datepicker/dist/locale';
-import Multiselect from 'vue-multiselect'
-import Icon from '@/components/Icon.vue';
-import * as Utils from '@/utils';
-import api from '@/api'
-import { mapGetters, mapState } from 'vuex';
-// eslint-disable-next-line no-unused-vars
-import assign from "core-js/features/object/assign";
+import Datepicker from "vuejs-datepicker";
+import { es } from "vuejs-datepicker/dist/locale";
+import Multiselect from "vue-multiselect";
+import Icon from "@/components/Icon.vue";
+import * as Utils from "@/utils";
+import api from "@/api";
+import { mapGetters, mapState } from "vuex";
 
-import moment from 'moment';
+import format from "date-fns/format";
 
 export default {
-  name: 'InitiativesForm',
+  name: "InitiativesForm",
   components: {
     Datepicker,
     Multiselect,
@@ -185,85 +245,107 @@ export default {
   props: {
     formData: Object,
   },
-  data: function() {
+  data: function () {
     return {
       subtopics: [],
       tags: [],
       form: {},
       errors: null,
-      moment: moment,
       es: es,
       disabled_dates: {
-        from: new Date()
+        from: new Date(),
       },
       selectedSubtopics: [],
       filteredTags: [],
-      advanced: this.formData && (this.formData.startdate || this.formData.enddate || this.formData.status || this.formData.place || this.formData.type || this.formData.reference || this.formData.text),
-    }
+      advanced:
+        this.formData &&
+        (this.formData.startdate ||
+          this.formData.enddate ||
+          this.formData.status ||
+          this.formData.place ||
+          this.formData.type ||
+          this.formData.reference ||
+          this.formData.text),
+    };
   },
   computed: {
     ...mapGetters({
-      deputies: 'allDeputiesName',
-      places: 'allPlacesName',
-      groups: 'allParliamentaryGroupsWithGoverment',
-      types: 'allTypesName',
-      getDeputyByName: 'getDeputyByName',
-      getParliamentaryGroupByName: 'getParliamentaryGroupByName',
-      getDeputiesByParliamentaryGroup: 'getDeputiesByParliamentaryGroup',
+      deputies: "allDeputiesName",
+      places: "allPlacesName",
+      groups: "allParliamentaryGroupsWithGoverment",
+      types: "allTypesName",
+      getDeputyByName: "getDeputyByName",
+      getParliamentaryGroupByName: "getParliamentaryGroupByName",
+      getDeputiesByParliamentaryGroup: "getDeputiesByParliamentaryGroup",
     }),
     ...mapState({
-      topics: 'allTopics',
-      status: 'allStatus',
+      topics: "allTopics",
+      status: "allStatus",
     }),
+    formattedStartDate: function () {
+      return this.form.startdate
+        ? format(new Date(this.form.startdate), "dd/MMM/yyyy")
+        : undefined;
+    },
+
+    formattedEndDate: function () {
+      return this.form.enddate
+        ? format(new Date(this.form.enddate), "dd/MMM/yyyy")
+        : undefined;
+    },
   },
   methods: {
-    cleanForm: function() {
-      this.form.topic = '';
+    cleanForm: function () {
+      this.form.topic = "";
       this.form.subtopics = [];
       this.form.tags = [];
-      this.form.author = '';
-      this.form.deputy = '';
-      this.form.status = '';
-      this.form.place = '';
-      this.form.type = '';
-      this.form.reference = '';
-      this.form.enddate = '';
-      this.form.startdate = '';
-      this.form.text = '';
+      this.form.author = "";
+      this.form.deputy = "";
+      this.form.status = "";
+      this.form.place = "";
+      this.form.type = "";
+      this.form.reference = "";
+      this.form.enddate = "";
+      this.form.startdate = "";
+      this.form.text = "";
       this.clearSubtopicsAndTags();
       // //clear url
-      this.$router.push({name: 'search'});
+      this.$router.push({ name: "search" });
     },
-    getTypes: function() {
-      const options = []
+    getTypes: function () {
+      const options = [];
       for (const type of this.types) {
-        options.push("'" + type + "'")
+        options.push("'" + type + "'");
       }
-      return options
+      return options;
     },
-    getDeputies: function() {
-      const { author } = this.form
-      if (author == 'Gobierno') {
-        return []
+    getDeputies: function () {
+      const { author } = this.form;
+      if (author == "Gobierno") {
+        return [];
       }
 
       if (author) {
-        const parliamentaryGroup = this.getParliamentaryGroupByName(author)
-        const deputies = this.getDeputiesByParliamentaryGroup(parliamentaryGroup.shortname)
-        return deputies.map(deputy => deputy.name)
+        const parliamentaryGroup = this.getParliamentaryGroupByName(author);
+        const deputies = this.getDeputiesByParliamentaryGroup(
+          parliamentaryGroup.shortname
+        );
+        return deputies.map((deputy) => deputy.name);
       }
 
-      return this.deputies
+      return this.deputies;
     },
-    fillSubtopicsAndTags: function(selectedTopic, clearValues) {
+    fillSubtopicsAndTags: function (selectedTopic, clearValues) {
       if (clearValues) {
         this.form.subtopics = [];
         this.form.tags = [];
       }
-      const currentTopic = this.topics.find(topic => topic.name === selectedTopic);
+      const currentTopic = this.topics.find(
+        (topic) => topic.name === selectedTopic
+      );
       this.getSubtopicsAndTags(currentTopic.id);
     },
-    clearSubtopicsAndTags: function() {
+    clearSubtopicsAndTags: function () {
       this.subtopics = [];
       this.selectedSubtopics = [];
       this.tags = [];
@@ -271,66 +353,77 @@ export default {
       this.form.subtopics = [];
       this.form.tags = [];
     },
-    clearStartDate: function() {
-      this.form.startdate = '';
+    clearStartDate: function () {
+      this.form.startdate = "";
     },
-    clearEndDate: function() {
-      this.form.enddate = '';
+    clearEndDate: function () {
+      this.form.enddate = "";
     },
-    selectStartDate: function(date) {
-      this.form.startdate = moment(date).format('YYYY-MM-DD');
+    selectStartDate: function (date) {
+      this.form.startdate = format(new Date(date), "yyyy-MM-dd");
     },
-    selectEndDate: function(date) {
-      this.form.enddate = moment(date).format('YYYY-MM-DD');
+    selectEndDate: function (date) {
+      this.form.enddate = format(new Date(date), "yyyy-MM-dd");
     },
-    getSubtopicsAndTags: function(topicID) {
-      api.getTags(topicID)
-        .then(tags => {
-          this.subtopics = [...new Set(tags.map(tag => tag.subtopic))].sort(Utils.naturalSort);
+    getSubtopicsAndTags: function (topicID) {
+      api
+        .getTags(topicID)
+        .then((tags) => {
+          this.subtopics = [...new Set(tags.map((tag) => tag.subtopic))].sort(
+            Utils.naturalSort
+          );
           this.tags = tags;
-          this.filteredTags = this.tags.map(tag => tag.tag).sort(Utils.naturalSort);
+          this.filteredTags = this.tags
+            .map((tag) => tag.tag)
+            .sort(Utils.naturalSort);
         })
-        .catch(error => this.errors = error);
+        .catch((error) => (this.errors = error));
     },
-    filterTags: function() {
-      let filtered = (this.selectedSubtopics.length) ?
-        (tag => this.selectedSubtopics.indexOf(tag.subtopic) !== -1)
-        : (() => true);
-      this.filteredTags = this.tags.filter(filtered).map(tag => tag.tag).sort(Utils.naturalSort);
+    filterTags: function () {
+      let filtered = this.selectedSubtopics.length
+        ? (tag) => this.selectedSubtopics.indexOf(tag.subtopic) !== -1
+        : () => true;
+      this.filteredTags = this.tags
+        .filter(filtered)
+        .map((tag) => tag.tag)
+        .sort(Utils.naturalSort);
     },
-    addSubtopicToTagsFilter: function(selectedSubtopic) {
+    addSubtopicToTagsFilter: function (selectedSubtopic) {
       this.form.tags = [];
       this.selectedSubtopics.push(selectedSubtopic);
       this.filterTags();
     },
-    removeSubtopicToTagsFilter: function(removedSubtopic) {
+    removeSubtopicToTagsFilter: function (removedSubtopic) {
       this.form.tags = [];
-      this.selectedSubtopics.splice(this.selectedSubtopics.indexOf(removedSubtopic), 1);
+      this.selectedSubtopics.splice(
+        this.selectedSubtopics.indexOf(removedSubtopic),
+        1
+      );
       this.filterTags();
     },
-    getResults: function(event) {
-      this.$emit('getResults', event, this.form);
+    getResults: function (event) {
+      this.$emit("getResults", event, this.form);
     },
-    clearInitiatives: function(event) {
+    clearInitiatives: function (event) {
       this.cleanForm();
-      this.$emit('clearInitiatives', event);
+      this.$emit("clearInitiatives", event);
     },
-    prepareForm: function() {
+    prepareForm: function () {
       if (this.form.topic) {
         this.fillSubtopicsAndTags(this.form.topic, false);
       }
     },
-    toggleAdvanced: function() {
+    toggleAdvanced: function () {
       this.advanced = !this.advanced;
-    }
+    },
   },
-  created: function() {
+  created: function () {
     this.form = Object.assign({}, this.formData);
     if (this.topics.length) {
       this.prepareForm();
     }
   },
-}
+};
 </script>
 
 <style lang="scss">
