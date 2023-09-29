@@ -21,6 +21,7 @@
       >
         <deputy-card
           v-for="deputyName in getDeputies(initiative)"
+          v-bind:key="deputyName"
           :deputy="getDeputyByName(deputyName)"
           layout="small"
         />
