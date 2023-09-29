@@ -5,28 +5,30 @@
 </template>
 
 <script>
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent } from "vue";
 
 export default {
-  name: 'Icon',
+  name: "Icon",
   props: {
     icon: String,
     color: String,
   },
   computed: {
     svg() {
-      let svg = '';
+      let svg = "";
       try {
-        svg = defineAsyncComponent(() => import(`@/assets/svg/icon-${this.icon}.svg`));
+        svg = defineAsyncComponent(() =>
+          import(`@/assets/svg/icon-${this.icon}.svg`)
+        );
       } catch (error) {
         svg = this.icon;
       }
       return svg;
     },
   },
-  mounted() {
-    if (this.color && this.$el.firstChild.querySelector('path')) {
-      this.$el.firstChild.querySelector('path').setAttribute('fill', this.color);
+  updated() {
+    if (this.color && this.$el.querySelector("svg path")) {
+      this.$el.querySelector("svg path").style.fill = this.color;
     }
   },
 };
