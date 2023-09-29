@@ -158,14 +158,6 @@ export default {
         .then((response) => {
           this.initiative = response;
           this.loaded = true;
-          window.document.title =
-            window.document.head.querySelector(
-              'meta[property="og:title"]'
-            ).content =
-            window.document.head.querySelector(
-              'meta[name="twitter:title"]'
-            ).content =
-              `${this.initiative.title} - ${config.DEFAULT_PAGE_TITLE}`;
         })
         .catch((error) => {
           this.errors = error;
@@ -201,6 +193,27 @@ export default {
     isAnswer: function () {
       return this.initiative.initiative_type_alt == "Respuesta";
     },
+  },
+  metaInfo() {
+    const title = this.initiative?.title
+      ? `${this.initiative.title} - Qué hacen los diputados`
+      : "- Qué hacen los diputados";
+
+    return {
+      title,
+      meta: [
+        {
+          property: "og:title",
+          content: title,
+          vmid: "og:title",
+        },
+        {
+          property: "twitter:title",
+          content: title,
+          vmid: "twitter:title",
+        },
+      ],
+    };
   },
   created: function () {
     this.getInitiative();
