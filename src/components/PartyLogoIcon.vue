@@ -1,66 +1,71 @@
 <template>
-  <div class="c-party_logo_icon" :style="getBackground()">
-    <figure class="c-party_logo_icon__image" :alt="'Logo de ' + getName()">
+  <div
+    v-if="this.parties[this.party]"
+    class="c-party_logo_icon"
+    :style="getBackground"
+  >
+    <figure class="c-party_logo_icon__image" :alt="'Logo de ' + getName">
       <component :is="svg"></component>
     </figure>
   </div>
 </template>
 
 <script>
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent } from "vue";
 
 export default {
-  name: 'PartyLogoIcon',
+  name: "PartyLogoIcon",
   props: {
     party: String,
   },
-  data: function() {
+  data: function () {
     return {
       parties: {
         Cs: {
-          name: 'Ciudadanos',
-          logo: 'cs',
-          color: '#ff4f00',
+          name: "Ciudadanos",
+          logo: "cs",
+          color: "#ff4f00",
         },
         VOX: {
-          name: 'VOX',
-          logo: 'vox',
-          color: '#5ac035',
+          name: "VOX",
+          logo: "vox",
+          color: "#5ac035",
         },
-        "ERC": {
-          name: 'Esquerra Republicana',
-          logo: 'erc',
-          color: '#ffbf41',
+        ERC: {
+          name: "Esquerra Republicana",
+          logo: "erc",
+          color: "#ffbf41",
         },
         "ERC-S": {
-          name: 'Esquerra Republicana',
-          logo: 'erc',
-          color: '#ffbf41',
+          name: "Esquerra Republicana",
+          logo: "erc",
+          color: "#ffbf41",
         },
         PP: {
-          name: 'Partido Popular',
-          logo: 'pp',
-          color: '#0056a3',
+          name: "Partido Popular",
+          logo: "pp",
+          color: "#0056a3",
         },
         "PP - FORO": {
-          name: 'Partido Popular',
-          logo: 'pp',
-          color: '#0056a3',
+          name: "Partido Popular",
+          logo: "pp",
+          color: "#0056a3",
         },
         "MÉS COMPROMÍS": {
-          name: 'Compromís',
-          logo: 'compromis',
-          color: 'linear-gradient(204deg, #f29127 100%, #ec8427 80%, #de6527 42%, #d13b27 3%)',
+          name: "Compromís",
+          logo: "compromis",
+          color:
+            "linear-gradient(204deg, #f29127 100%, #ec8427 80%, #de6527 42%, #d13b27 3%)",
         },
         "MÁS PAÍS-EQUO": {
-          name: 'Más País',
-          logo: 'maspais',
-          color: '#0a7565',
+          name: "Más País",
+          logo: "maspais",
+          color: "#0a7565",
         },
-        "PDeCAT": {
-          name: 'Partit Demòcrata',
-          logo: 'pdecat',
-          color: '#114488',
+        PDeCAT: {
+          name: "Partit Demòcrata",
+          logo: "pdecat",
+          color: "#114488",
         },
         "JxCAT-JUNTS": {
           name: "Junts per Catalunya",
@@ -75,130 +80,133 @@ export default {
         BNG: {
           name: "Bloque Nacionalista Galego",
           logo: "bng",
-          color: "#76b3dd"
+          color: "#76b3dd",
         },
         SUMAR: {
           name: "SUMAR",
           logo: "sumar",
-          color: "#e51c55"
+          color: "#e51c55",
         },
         UP: {
           name: "Unidas Podemos",
           logo: "unidaspodemos",
-          color: "#ffffff"
+          color: "#ffffff",
         },
         "EC-UP": {
           name: "Podemos",
           logo: "podemos",
-          color: "#6b1f5f"
+          color: "#6b1f5f",
         },
         IU: {
           name: "Izquierda Unida",
           logo: "iu",
-          color: "#b1132f"
+          color: "#b1132f",
         },
         "ECP-GUAYEM EL CANVI": {
           name: "En Comú Podem",
           logo: "encomu",
-          color: "linear-gradient(135deg, #dc2a15 15%, #6d2d5c 85%)"
+          color: "linear-gradient(135deg, #dc2a15 15%, #6d2d5c 85%)",
         },
-        "CCa": {
+        CCa: {
           name: "Coalición Canaria",
           logo: "coalicioncanaria",
-          color: "#02abd6"
+          color: "#02abd6",
         },
         "CCa-NC": {
           name: "Coalición Canaria",
           logo: "coalicioncanaria",
-          color: "#02abd6"
+          color: "#02abd6",
         },
         "NC-CCa-PNC": {
           name: "Nueva Canaria",
           logo: "nuevacanaria",
-          color: "#81c045"
+          color: "#81c045",
         },
         "CUP-PR": {
           name: "Candidatura d'Unitat Popular",
           logo: "cup",
-          color: "#fff200"
+          color: "#fff200",
         },
-        "UPN": {
+        UPN: {
           name: "Unión del Pueblo Navarro",
           logo: "upn",
-          color: "#0856b3"
+          color: "#0856b3",
         },
         "¡Teruel Existe!": {
           name: "Teruel Existe",
           logo: "teruelexiste",
-          color: "#227e57"
+          color: "#227e57",
         },
-        "FAC": {
+        FAC: {
           name: "Foro Asturias",
           logo: "foroasturias",
-          color: "#19375b"
+          color: "#19375b",
         },
-        "PRC": {
+        PRC: {
           name: "Partido Regionalista de Cantabria",
           logo: "prc",
-          color: "#bfcd16"
+          color: "#bfcd16",
         },
         PSOE: {
           name: "Partido Socialista Obrero Español",
           logo: "psoe",
-          color: "#e30613"
+          color: "#e30613",
         },
         "PSC-PSOE": {
           name: "Partido Socialista Obrero Español",
           logo: "psoe",
-          color: "#e30613"
+          color: "#e30613",
         },
         "PSE-EE-PSOE": {
           name: "Partido Socialista Obrero Español",
           logo: "psoe",
-          color: "#e30613"
+          color: "#e30613",
         },
         "PsdeG-PSOE": {
           name: "Partido Socialista Obrero Español",
           logo: "psoe",
-          color: "#e30613"
+          color: "#e30613",
         },
         "EAJ-PNV": {
           name: "Partido Nacionalista Vasco",
           logo: "pnv",
-          color: "linear-gradient(135deg, #dc2a15 15%, #6d2d5c 85%)"
+          color: "linear-gradient(135deg, #dc2a15 15%, #6d2d5c 85%)",
         },
         "EH Bildu": {
           name: "Euskal Herria Bildu",
           logo: "ehbildu",
-          color: "#b4cc16"
+          color: "#b4cc16",
         },
       },
-    }
+    };
   },
   computed: {
     svg() {
-      let svg = '';
+      let svg = "";
       try {
-        svg = defineAsyncComponent(() => import(`@/assets/party_logos/icon/${this.parties[this.party].logo}.svg`));
+        svg = defineAsyncComponent(() =>
+          import(
+            `@/assets/party_logos/icon/${this.parties[this.party].logo}.svg`
+          )
+        );
       } catch (error) {
         svg = this.icon;
       }
       return svg;
     },
-  },
-  methods: {
-    getBackground: function() {
-      const bg = this.parties[this.party].color
+    getBackground: function () {
+      const bg = this.parties[this.party]?.color
+        ? this.parties[this.party].color
+        : "";
       if (bg.length == 7) {
-        return "background-color:" + bg
+        return "background-color:" + bg;
       }
-      return "background-image:" + bg
+      return "background-image:" + bg;
     },
-    getLogoSrc: function() {
-      return defineAsyncComponent(() => import(`@/assets/party_logos/icon/${this.parties[this.party].logo}.svg`));
-    },
-    getName: function() {
-      return this.parties[this.party].name
+    getName: function () {
+      return this.parties[this.party]?.name
+        ? this.parties[this.party].name
+        : "";
     },
   },
 };
