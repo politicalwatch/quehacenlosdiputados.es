@@ -5,9 +5,9 @@ RUN apk update && apk add git
 
 WORKDIR /app
 COPY package.json ./
-RUN yarn install --ignore-engines
+RUN npm install
 COPY . .
-RUN yarn build
+RUN npm run build
 
 # production stage
 FROM nginx:stable-alpine as production-stage
