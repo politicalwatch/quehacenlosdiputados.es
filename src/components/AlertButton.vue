@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import api from '@/api';
 import Icon from '@/components/Icon.vue';
 
@@ -33,7 +33,7 @@ export default {
           [search_params.tags] :
           search_params.tags;
 
-      const {value: email} = await swal({
+      const {value: email} = Swal.fire({
         title: 'Crea una alerta personalizada',
         text: 'Te enviaremos un correo electrónico cada vez que haya alguna novedad en el Congreso de los Diputados relacionada con los criterios seleccionados',
         footer: 'Al crear una alerta manifiestas estar conforme con la Política de privacidad de QHLD.',

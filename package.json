@@ -23,7 +23,7 @@
     "qs": "^6.11.2",
     "save-svg-as-png": "^1.4.17",
     "stylelint-config-standard": "^34.0.0",
-    "sweetalert2": "^7.29.1",
+    "sweetalert2": "^11.7.31",
     "vite-svg-loader": "^4.0.0",
     "vue": "^3.3.4",
     "vue-cookie-accept-decline": "^6.1.0",
