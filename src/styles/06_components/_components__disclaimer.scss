@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
 
-  a {
+  a, button {
     color: $white;
     text-decoration: none;
     margin-left: auto;
@@ -20,5 +20,10 @@
       vertical-align: middle;
     }
 
+  }
+
+  button {
+    background: none;
+    border: none;
   }
 }

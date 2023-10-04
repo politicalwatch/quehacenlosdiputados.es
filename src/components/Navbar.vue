@@ -6,17 +6,19 @@
       <a v-if="disclaimer.external" :href="disclaimer.route" target="_blank" v-html="disclaimer.name"></a>
       <router-link v-else :to="{name: disclaimer.route}" v-html="disclaimer.name"></router-link>
 
-      <a class="c-disclaimer__close" href="#" @click="closeDisclaimer"><icon icon="close" color="#fff" /></a>
+      <button class="c-disclaimer__close" id="disclaimer-close" aria-label="Close Disclaimer" @click="closeDisclaimer"><icon icon="close" color="#ffffff" /></button>
 
     </div>
 
     <div class="c-navbar__wrapper o-container">
       <div class="c-navbar__brand">
-        <a class="c-navbar__brand-link" href="/"><img class="c-navbar__brand-logo" :src="logo"></a>
+        <a class="c-navbar__brand-link" href="/"><img class="c-navbar__brand-logo" :src="logo" alt="Logo Qué hacen los diputados"></a>
       </div>
       <button
         type="button"
         class="c-navbar__menu-toggle"
+        id="menu-toggle"
+        aria-label="Menu Toggle"
         :class="{ 'is-active' : menuVisible }"
         v-on:click="toggleMenu">
         <span class="bar"></span>

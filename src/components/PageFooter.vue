@@ -65,22 +65,26 @@
             <div class="o-grid__col u-4@sm c-footer__section">
               <h5 class="c-footer__section-title">Síguenos</h5>
               <div class="c-footer__section-icons">
-                <a href="https://twitter.com/qhld_" target="_blank"
-                  ><icon icon="twitter" class="c-icon--white"
-                /></a>
+                <a href="https://twitter.com/qhld_" aria-label="Go to Twitter" target="_blank"
+                  >
+                  <icon icon="twitter" class="c-icon--white"/>
+                </a>
                 <a
                   href="https://www.instagram.com/_PoliticalWatch/"
+                  aria-label="Go to Instagram"
                   target="_blank"
                   ><icon icon="instagram" class="c-icon--white"
                 /></a>
-                <a href="https://t.me/quehacenlosdiputados" target="_blank"
-                  ><icon icon="telegram" class="c-icon--white"
-                /></a>
+                <a href="https://t.me/quehacenlosdiputados" aria-label="Go to Telegram" target="_blank">
+                  <icon icon="telegram" class="c-icon--white"/>
+                </a>
                 <a
                   href="https://github.com/politicalwatch/quehacenlosdiputados.es"
+                  aria-label="Go to Github"
                   target="_blank"
-                  ><icon icon="github" class="c-icon--white"
-                /></a>
+                  >
+                  <icon icon="github" class="c-icon--white"/>
+                </a>
               </div>
             </div>
           </div>

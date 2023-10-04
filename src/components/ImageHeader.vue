@@ -1,7 +1,7 @@
 <template>
   <div class="c-image-header">
       <figure>
-        <img :src="image" alt="">
+        <img :src="image" :alt="alt">
       </figure>
       <h1 class="u-uppercase u-hide u-block@sm c-image-header__date">{{ home.Date }}</h1>
       <h2 class="u-uppercase u-hide u-block@sm c-image-header__date_title">{{ home.TitleDate }}</h2>
@@ -21,6 +21,7 @@
     },
     props: {
       home: Object,
+      alt: String,
       image: String,
     },
     methods: {

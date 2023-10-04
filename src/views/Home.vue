@@ -2,7 +2,7 @@
   <div id="home" class="o-container u-margin-bottom-10 c-home">
     <div v-if="home">
 
-      <ImageHeader :home="home" image="/img/home.jpg" class="u-margin-bottom-4" />
+      <ImageHeader :home="home" image="/img/home.jpg" alt="Inicio de la XV legislatura" class="u-margin-bottom-4" />
 
       <div class="o-grid o-grid--center o-grid--no-gutters">
         <div class="o-grid__col u-12 u-9@sm">
