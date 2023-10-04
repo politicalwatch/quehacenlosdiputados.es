@@ -1,40 +1,58 @@
 <template>
-  <form id="deputies-form" class="u-margin-bottom-8" role="form" @submit.prevent="preventSubmission($event)">
+  <form
+    id="deputies-form"
+    class="u-margin-bottom-8"
+    role="form"
+    @submit.prevent="preventSubmission($event)"
+  >
     <div class="o-grid">
       <div class="o-grid__col u-12 u-4@sm">
         <div class="c-input-label u-block">
           <label for="name">Nombre</label>
-          <input v-model="form.name" type="text" name="name" id="name" @input="emitFilters()" placeholder="Busca por nombre y apellidos">
+          <input
+            v-model="form.name"
+            type="text"
+            name="name"
+            id="name"
+            @update:model-value="emitFilters()"
+            placeholder="Busca por nombre y apellidos"
+          />
         </div>
       </div>
       <div class="o-grid__col u-12 u-4@sm">
         <div class="c-select-label u-block">
           <label for="group">Grupo</label>
-          <multiselect
+          <VueMultiselect
             selectedLabel="Seleccionado"
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
             v-model="form.group"
             :options="groups"
             :allow-empty="true"
-            @input="emitFilters()"
-            name="group" id="group" placeholder="Selecciona uno">
-          </multiselect>
+            @update:model-value="emitFilters()"
+            name="group"
+            id="group"
+            placeholder="Selecciona uno"
+          >
+          </VueMultiselect>
         </div>
       </div>
       <div class="o-grid__col u-12 u-4@sm">
         <div class="c-select-label u-block">
           <label for="constituency">Provincia</label>
-          <multiselect
+          <VueMultiselect
             selectedLabel="Seleccionado"
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
             v-model="form.constituency"
             :options="getConstituencies()"
             :allow-empty="true"
-            @input="emitFilters()"
-            name="constituency" id="constituency" placeholder="Selecciona una">
-          </multiselect>
+            @update:model-value="emitFilters()"
+            name="constituency"
+            id="constituency"
+            placeholder="Selecciona una"
+          >
+          </VueMultiselect>
         </div>
       </div>
     </div>
@@ -42,16 +60,19 @@
       <div class="o-grid__col u-12 u-6@sm">
         <div class="c-select-label u-block">
           <label for="footprint">Ordenar por huella de</label>
-          <multiselect
+          <VueMultiselect
             selectedLabel="Seleccionado"
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
             v-model="form.footprint"
             :options="ranking"
             :allow-empty="true"
-            @input="emitFilters()"
-            name="footprint" id="footprint" placeholder="Selecciona una">
-          </multiselect>
+            @update:model-value="emitFilters()"
+            name="footprint"
+            id="footprint"
+            placeholder="Selecciona una"
+          >
+          </VueMultiselect>
         </div>
       </div>
       <div class="o-grid__col u-12 u-6@sm">
@@ -60,26 +81,28 @@
     </div>
     <div class="o-grid">
       <div class="o-grid__col u-8 u-12@sm u-text-right@sm">
-        <button class="c-button u-padding-right-0" @click.prevent="cleanForm">Limpiar búsqueda</button>
+        <button class="c-button u-padding-right-0" @click.prevent="cleanForm">
+          Limpiar búsqueda
+        </button>
       </div>
     </div>
   </form>
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
-import FootprintInfo from '@/components/FootprintInfo.vue'
+import VueMultiselect from "vue-multiselect";
+import FootprintInfo from "@/components/FootprintInfo.vue";
 
 export default {
-  name: 'DeputiesForm',
+  name: "DeputiesForm",
   components: {
-    Multiselect,
+    VueMultiselect,
     FootprintInfo,
   },
-  data: function() {
+  data: function () {
     return {
       form: {},
-    }
+    };
   },
   props: {
     deputies: Array,
@@ -87,32 +110,32 @@ export default {
     ranking: Array,
   },
   methods: {
-    cleanForm: function() {
-      this.form.group = null
-      this.form.constituency = null
-      this.form.name = ''
-      this.emitFilters()
+    cleanForm: function () {
+      this.form.group = null;
+      this.form.constituency = null;
+      this.form.name = "";
+      this.emitFilters();
     },
-    emitFilters: function() {
-      this.$emit('setFilters', this.form);
+    emitFilters: function () {
+      this.$emit("setFilters", this.form);
     },
-    getConstituencies: function() {
-      const constituencies = {}
+    getConstituencies: function () {
+      const constituencies = {};
       for (const deputy of this.deputies) {
-        constituencies[deputy['constituency']] = deputy['constituency']
+        constituencies[deputy["constituency"]] = deputy["constituency"];
       }
       return Object.keys(constituencies).sort(Intl.Collator().compare);
     },
-    preventSubmission: function(e) {
-      e.preventDefault()
+    preventSubmission: function (e) {
+      e.preventDefault();
     },
-    getRanking: function() {
-      const ranking = {}
+    getRanking: function () {
+      const ranking = {};
       for (const option of this.ranking) {
-        ranking[option] = option
+        ranking[option] = option;
       }
-      return ranking
+      return ranking;
     },
-  }
-}
+  },
+};
 </script>

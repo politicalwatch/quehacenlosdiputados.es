@@ -1,16 +1,13 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import api from '@/api';
-
-Vue.use(Vuex);
+import { createStore } from "vuex";
+import api from "@/api";
 
 const types = {
-  GET_DEPUTIES: 'GET_DEPUTIES',
-  GET_TOPICS: 'GET_TOPICS',
-  GET_PARLIAMENTARY_GROUPS: 'GET_PARLIAMENTARY_GROUPS',
-  GET_PLACES: 'GET_PLACES',
-  GET_STATUS: 'GET_STATUS',
-  GET_TYPES: 'GET_TYPES',
+  GET_DEPUTIES: "GET_DEPUTIES",
+  GET_TOPICS: "GET_TOPICS",
+  GET_PARLIAMENTARY_GROUPS: "GET_PARLIAMENTARY_GROUPS",
+  GET_PLACES: "GET_PLACES",
+  GET_STATUS: "GET_STATUS",
+  GET_TYPES: "GET_TYPES",
 };
 
 const state = {
@@ -24,79 +21,88 @@ const state = {
 
 const getters = {
   allDeputiesName(state) {
-    return state.allDeputies.map(deputy => deputy.name)
+    return state.allDeputies.map((deputy) => deputy.name);
   },
   allPlacesName(state) {
-    return state.allPlaces.map(place => place.name)
+    return state.allPlaces.map((place) => place.name);
   },
   allParliamentaryGroups(state) {
-    return state.allParliamentaryGroups
+    return state.allParliamentaryGroups;
   },
   allParliamentaryGroupsWithGoverment(state) {
-    return ['Gobierno'].concat(state.allParliamentaryGroups)
+    return ["Gobierno"].concat(state.allParliamentaryGroups);
   },
   getDeputyByName(state) {
-    return name => state.allDeputies.find(deputy =>{
-      return deputy.name === name
-    });
+    return (name) =>
+      state.allDeputies.find((deputy) => {
+        return deputy.name === name;
+      });
   },
   getDeputiesByParliamentaryGroup(state) {
-    return parliamentarygroup => state.allDeputies.filter(deputy =>{
-      return deputy.parliamentarygroup === parliamentarygroup
-    });
+    return (parliamentarygroup) =>
+      state.allDeputies.filter((deputy) => {
+        return deputy.parliamentarygroup === parliamentarygroup;
+      });
   },
   getParliamentaryGroupByName(state) {
-    return name => state.allParliamentaryGroups.find(group =>{
-      return group.name === name
-    });
+    return (name) =>
+      state.allParliamentaryGroups.find((group) => {
+        return group.name === name;
+      });
   },
   allTypesName(state) {
-    return state.allTypes.map(type => type.name)
-  }
+    return state.allTypes.map((type) => type.name);
+  },
 };
 
 const actions = {
   getDeputies(context) {
-    api.getDeputies()
-      .then(response => {
+    api
+      .getDeputies()
+      .then((response) => {
         context.commit(types.GET_DEPUTIES, response);
       })
-      .catch(error => this.errors = error);
+      .catch((error) => (this.errors = error));
   },
   getTopics(context) {
-    api.getTopics()
-      .then(response => {
+    api
+      .getTopics()
+      .then((response) => {
         context.commit(types.GET_TOPICS, response);
       })
-      .catch(error => this.errors = error);
+      .catch((error) => (this.errors = error));
   },
   getParliamentaryGroups(context) {
-    api.getGroups()
-      .then(response => {
+    api
+      .getGroups()
+      .then((response) => {
         context.commit(types.GET_PARLIAMENTARY_GROUPS, response);
       })
-      .catch(error => this.errors = error);
+      .catch((error) => (this.errors = error));
   },
   getPlaces(context) {
-    api.getPlaces()
-      .then(response => {
+    api
+      .getPlaces()
+      .then((response) => {
         context.commit(types.GET_PLACES, response);
       })
-      .catch(error => this.errors = error);
+      .catch((error) => (this.errors = error));
   },
   getStatus(context) {
-    api.getStatus()
-      .then(response => {
+    api
+      .getStatus()
+      .then((response) => {
         context.commit(types.GET_STATUS, response);
       })
-      .catch(error => this.errors = error);
+      .catch((error) => (this.errors = error));
   },
   getTypes(context) {
-    api.getTypes()
-      .then(response => {
+    api
+      .getTypes()
+      .then((response) => {
         context.commit(types.GET_TYPES, response);
       })
-      .catch(error => this.errors = error);
+      .catch((error) => (this.errors = error));
   },
 };
 
@@ -121,7 +127,7 @@ const mutations = {
   },
 };
 
-export default new Vuex.Store({
+export default createStore({
   state,
   getters,
   actions,

@@ -1,17 +1,17 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from "node:url";
 
-import { defineConfig } from 'vite';
-import vue2 from '@vitejs/plugin-vue2';
-import legacy from '@vitejs/plugin-legacy';
-import { createSvgPlugin } from "vite-plugin-vue2-svg";
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import legacy from "@vitejs/plugin-legacy";
+import svgLoader from "vite-svg-loader";
 
 const svgoConfig = {
   plugins: [
     {
-      name: 'preset-default',
+      name: "preset-default",
       params: {
         overrides: {
-          removeViewBox: false
+          removeViewBox: false,
         },
       },
     },
@@ -21,25 +21,25 @@ const svgoConfig = {
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue2(),
+    vue(),
     legacy({
-      targets: ['ie >= 11'],
-      additionalLegacyPolyfills: ['regenerator-runtime/runtime']
+      targets: ["ie >= 11"],
+      additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
     }),
-    createSvgPlugin({
-      svgoConfig
-    })
+    svgLoader({
+      svgoConfig,
+    }),
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+    },
   },
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "@/styles/_variables.scss";`
-      }
-    }
+        additionalData: `@import "@/styles/_variables.scss";`,
+      },
+    },
   },
-})
+});

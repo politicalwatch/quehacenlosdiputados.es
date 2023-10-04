@@ -78,34 +78,32 @@
       <div class="o-grid__col u-12 u-4@sm u-padding-bottom-4">
         <div class="c-datepicker-label u-block">
           <label for="startdate">Desde</label>
-          <datepicker
-            :value="formattedStartDate"
-            @selected="selectStartDate"
+          <VueDatePicker
+            v-model="form.startdate"
+            locale="es"
+            :format="formatDatepickerDate"
+            placeholder="dd-mm-yyyy"
+            hide-input-icon
+            @update:model-value="selectStartDate"
             @cleared="clearStartDate"
-            :monday-first="true"
-            :language="es"
-            placeholder="dd/mm/YYYY"
-            format="dd/MM/yyyy"
             name="startdate"
-          >
-          </datepicker>
+          />
         </div>
       </div>
       <div class="o-grid__col u-12 u-4@sm u-padding-bottom-4">
         <div class="c-datepicker-label u-block">
           <label for="enddate">Hasta</label>
-          <datepicker
-            :value="formattedEndDate"
-            @selected="selectEndDate"
+          <VueDatePicker
+            v-model="form.enddate"
+            locale="es"
+            :format="formatDatepickerDate"
+            placeholder="dd-mm-yyyy"
+            :max-date="new Date()"
+            hide-input-icon
+            @update:model-value="selectEndDate"
             @cleared="clearEndDate"
-            :monday-first="true"
-            :language="es"
-            :disabledDates="disabled_dates"
-            placeholder="dd/mm/YYYY"
-            format="dd/MM/yyyy"
             name="enddate"
-          >
-          </datepicker>
+          />
         </div>
       </div>
       <div class="o-grid__col u-12 u-4@sm u-padding-bottom-4">
@@ -225,8 +223,8 @@
 </template>
 
 <script>
-import Datepicker from "vuejs-datepicker";
-import { es } from "vuejs-datepicker/dist/locale";
+import VueDatePicker from "@vuepic/vue-datepicker";
+import "@vuepic/vue-datepicker/dist/main.css";
 import Multiselect from "vue-multiselect";
 import Icon from "@/components/Icon.vue";
 import * as Utils from "@/utils";
@@ -238,7 +236,7 @@ import format from "date-fns/format";
 export default {
   name: "InitiativesForm",
   components: {
-    Datepicker,
+    VueDatePicker,
     Multiselect,
     Icon,
   },
@@ -251,10 +249,6 @@ export default {
       tags: [],
       form: {},
       errors: null,
-      es: es,
-      disabled_dates: {
-        from: new Date(),
-      },
       selectedSubtopics: [],
       filteredTags: [],
       advanced:
@@ -365,6 +359,9 @@ export default {
     selectEndDate: function (date) {
       this.form.enddate = format(new Date(date), "yyyy-MM-dd");
     },
+    formatDatepickerDate: function (date) {
+      return format(new Date(date), "dd-MM-yyyy");
+    },
     getSubtopicsAndTags: function (topicID) {
       api
         .getTags(topicID)
@@ -427,6 +424,27 @@ export default {
 </script>
 
 <style lang="scss">
+.dp__theme_light {
+  --dp-background-color: #ffffff;
+  --dp-text-color: #212121;
+  --dp-hover-color: #f3f3f3;
+  --dp-hover-text-color: #212121;
+  --dp-hover-icon-color: #959595;
+  --dp-primary-color: #1976d2;
+  --dp-primary-text-color: #f8f5f5;
+  --dp-secondary-color: #c0c4cc;
+  --dp-border-color: #ddd;
+  --dp-menu-border-color: #ddd;
+  --dp-border-color-hover: #aaaeb7;
+  --dp-disabled-color: #f6f6f6;
+  --dp-scroll-bar-background: #f3f3f3;
+  --dp-scroll-bar-color: #959595;
+  --dp-success-color: #76d275;
+  --dp-success-color-disabled: #a3d9b1;
+  --dp-icon-color: #959595;
+  --dp-danger-color: #ff6f60;
+  --dp-highlight-color: rgba(25, 118, 210, 0.1);
+}
 span.multiselect__option--selected {
   span {
     color: white;
