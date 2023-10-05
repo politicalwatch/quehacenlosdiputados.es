@@ -360,7 +360,7 @@ export default {
       this.form.enddate = format(new Date(date), "yyyy-MM-dd");
     },
     formatDatepickerDate: function (date) {
-      return format(new Date(date), "dd-MM-yyyy");
+      return format(new Date(date), "dd/MM/yyyy");
     },
     getSubtopicsAndTags: function (topicID) {
       api
