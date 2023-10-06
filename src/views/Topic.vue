@@ -71,7 +71,7 @@ import Loader from "@/components/Loader.vue";
 import SaveAlert from "@/components/SaveAlert.vue";
 import api from "@/api";
 import config from "@/config";
-import { mapGetters, mapState } from "vuex";
+import { useParliamentStore } from "@/stores/parliament";
 
 export default {
   name: "topic",
@@ -82,6 +82,10 @@ export default {
     CardGrid,
     Loader,
     SaveAlert,
+  },
+  setup() {
+    const store = useParliamentStore();
+    return { store };
   },
   data: function () {
     return {
@@ -192,12 +196,12 @@ export default {
       },
     };
   },
-  computed: {
-    ...mapState(["allDeputies"]),
-    ...mapGetters({
-      getDeputyByName: "getDeputyByName",
-    }),
-  },
+  // computed: {
+  //   ...mapState(["allDeputies"]),
+  //   ...mapGetters({
+  //     getDeputyByName: "getDeputyByName",
+  //   }),
+  // },
   methods: {
     getTopic: function () {
       api
@@ -218,7 +222,7 @@ export default {
         .then((response) => {
           const deputies_ranking = response;
           deputies_ranking.forEach((d) => {
-            let deputy = this.getDeputyByName(d.name);
+            let deputy = this.store.getDeputyByName(d.name);
             deputy.footprint = d.score;
             this.deputies.push(deputy);
           });

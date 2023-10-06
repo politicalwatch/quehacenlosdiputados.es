@@ -19,6 +19,7 @@
     "date-fns": "^2.30.0",
     "js-sha1": "^0.6.0",
     "masonry-layout": "^4.2.2",
+    "pinia": "^2.1.6",
     "pluralize": "^8.0.0",
     "qs": "^6.11.2",
     "save-svg-as-png": "^1.4.17",
@@ -33,8 +34,7 @@
     "vue-meta": "^3.0.0-alpha.10",
     "vue-multiselect": "^3.0.0-beta.2",
     "vue-router": "^4.2.5",
-    "vue-scrollto": "^2.15.0",
-    "vuex": "^4.1.0"
+    "vue-scrollto": "^2.15.0"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",

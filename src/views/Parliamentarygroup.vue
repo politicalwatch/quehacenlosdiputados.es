@@ -144,7 +144,7 @@ import SaveAlert from "@/components/SaveAlert.vue";
 import FootprintInfo from "@/components/FootprintInfo.vue";
 import api from "@/api";
 import config from "@/config";
-import { mapGetters, mapState } from "vuex";
+import { useParliamentStore } from "@/stores/parliament";
 
 export default {
   name: "parliamentarygroup",
@@ -159,6 +159,10 @@ export default {
     FootprintInfo,
     ParliamentaryGroupCard,
   },
+  setup() {
+    const store = useParliamentStore();
+    return { store };
+  },
   data: function () {
     return {
       parliamentarygroup: null,
@@ -168,13 +172,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(["allDeputies"]),
-    ...mapGetters(["getDeputiesByParliamentaryGroup"]),
     deputies: function () {
       if (this.parliamentarygroup) {
-        return this.getDeputiesByParliamentaryGroup(
-          this.parliamentarygroup.shortname
-        )
+        return this.store
+          .getDeputiesByParliamentaryGroup(this.parliamentarygroup.shortname)
           .filter((deputy) => deputy.active)
           .map((deputy) => deputy);
       }

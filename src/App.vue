@@ -19,13 +19,17 @@
 import PageNavbar from "@/components//Navbar.vue";
 import PageFooter from "@/components/PageFooter.vue";
 import config from "@/config";
-import { mapActions } from "vuex";
+import { useParliamentStore } from "@/stores/parliament";
 
 export default {
   name: "app",
   components: {
     PageNavbar,
     PageFooter,
+  },
+  setup() {
+    const store = useParliamentStore();
+    return { store };
   },
   data: function () {
     return {
@@ -34,23 +38,13 @@ export default {
       LOGO: config.LOGO,
     };
   },
-  methods: {
-    ...mapActions([
-      "getDeputies",
-      "getTopics",
-      "getParliamentaryGroups",
-      "getPlaces",
-      "getStatus",
-      "getTypes",
-    ]),
-  },
   created: function () {
-    this.getDeputies();
-    this.getTopics();
-    this.getStatus();
-    this.getPlaces();
-    this.getTypes();
-    this.getParliamentaryGroups();
+    this.store.getDeputies();
+    this.store.getTopics();
+    this.store.getStatus();
+    this.store.getPlaces();
+    this.store.getTypes();
+    this.store.getParliamentaryGroups();
   },
 };
 </script>

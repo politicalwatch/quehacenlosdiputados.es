@@ -161,7 +161,7 @@ import Barchart from "@/components/Barchart.vue";
 import FootprintInfo from "@/components/FootprintInfo.vue";
 import api from "@/api";
 import config from "@/config";
-import { mapState } from "vuex";
+import { useParliamentStore } from "@/stores/parliament";
 
 export default {
   name: "deputy",
@@ -181,6 +181,10 @@ export default {
     Barchart,
     FootprintInfo,
   },
+  setup() {
+    const store = useParliamentStore();
+    return { store };
+  },
   data: function () {
     return {
       deputy: null,
@@ -189,9 +193,6 @@ export default {
       use_alerts: config.USE_ALERTS,
       styles: config.STYLES,
     };
-  },
-  computed: {
-    ...mapState(["allParliamentaryGroups"]),
   },
   methods: {
     addBirthdayClass: function () {
@@ -219,7 +220,7 @@ export default {
         .getDeputy(this.$route.params.id)
         .then((response) => {
           this.deputy = response;
-          this.parliamentarygroup = this.allParliamentaryGroups.find(
+          this.parliamentarygroup = this.store.allParliamentaryGroups.find(
             (allPG) => allPG.shortname === this.deputy.parliamentarygroup
           );
           this.getLatestInitiatives();

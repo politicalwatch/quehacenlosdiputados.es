@@ -16,7 +16,7 @@
             @select="fillSubtopicsAndTags"
             @remove="clearSubtopicsAndTags"
             v-model="form.topic"
-            :options="topics.map((topic) => topic.name)"
+            :options="this.store.allTopics.map((topic) => topic.name)"
             :allow-empty="true"
             name="topic"
             id="topic"
@@ -114,7 +114,7 @@
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
             v-model="form.status"
-            :options="status"
+            :options="this.store.allStatus"
             :allow-empty="true"
             name="status"
             id="status"
@@ -151,7 +151,11 @@
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
             v-model="form.author"
-            :options="groups.map((group) => group.name || group)"
+            :options="
+              this.store.getAllParliamentaryGroupsWithGoverment.map(
+                (group) => group.name || group
+              )
+            "
             :allow-empty="true"
             name="author"
             id="author"
@@ -186,7 +190,7 @@
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
             v-model="form.place"
-            :options="places"
+            :options="this.store.getAllPlacesName"
             :allow-empty="true"
             name="place"
             id="place"
@@ -229,7 +233,7 @@ import Multiselect from "vue-multiselect";
 import Icon from "@/components/Icon.vue";
 import * as Utils from "@/utils";
 import api from "@/api";
-import { mapGetters, mapState } from "vuex";
+import { useParliamentStore } from "@/stores/parliament";
 
 import format from "date-fns/format";
 
@@ -242,6 +246,10 @@ export default {
   },
   props: {
     formData: Object,
+  },
+  setup() {
+    const store = useParliamentStore();
+    return { store };
   },
   data: function () {
     return {
@@ -263,19 +271,6 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({
-      deputies: "allDeputiesName",
-      places: "allPlacesName",
-      groups: "allParliamentaryGroupsWithGoverment",
-      types: "allTypesName",
-      getDeputyByName: "getDeputyByName",
-      getParliamentaryGroupByName: "getParliamentaryGroupByName",
-      getDeputiesByParliamentaryGroup: "getDeputiesByParliamentaryGroup",
-    }),
-    ...mapState({
-      topics: "allTopics",
-      status: "allStatus",
-    }),
     formattedStartDate: function () {
       return this.form.startdate
         ? format(new Date(this.form.startdate), "dd/MMM/yyyy")
@@ -308,7 +303,7 @@ export default {
     },
     getTypes: function () {
       const options = [];
-      for (const type of this.types) {
+      for (const type of this.store.getAllTypesName) {
         options.push("'" + type + "'");
       }
       return options;
@@ -320,21 +315,22 @@ export default {
       }
 
       if (author) {
-        const parliamentaryGroup = this.getParliamentaryGroupByName(author);
-        const deputies = this.getDeputiesByParliamentaryGroup(
+        const parliamentaryGroup =
+          this.store.getParliamentaryGroupByName(author);
+        const deputies = this.store.getDeputiesByParliamentaryGroup(
           parliamentaryGroup.shortname
         );
         return deputies.map((deputy) => deputy.name);
       }
 
-      return this.deputies;
+      return this.store.getAllDeputiesName;
     },
     fillSubtopicsAndTags: function (selectedTopic, clearValues) {
       if (clearValues) {
         this.form.subtopics = [];
         this.form.tags = [];
       }
-      const currentTopic = this.topics.find(
+      const currentTopic = this.store.allTopics.find(
         (topic) => topic.name === selectedTopic
       );
       this.getSubtopicsAndTags(currentTopic.id);
@@ -416,7 +412,7 @@ export default {
   },
   created: function () {
     this.form = Object.assign({}, this.formData);
-    if (this.topics.length) {
+    if (this.store.allTopics.length) {
       this.prepareForm();
     }
   },

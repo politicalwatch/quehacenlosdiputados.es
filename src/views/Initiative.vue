@@ -77,7 +77,7 @@
             <deputy-card
               v-for="deputyName in initiative.deputies"
               v-bind:key="deputyName"
-              :deputy="getDeputyByName(deputyName)"
+              :deputy="this.store.getDeputyByName(deputyName)"
               layout="medium"
             />
           </div>
@@ -112,7 +112,7 @@ import Results from "@/components/Results.vue";
 import Loader from "@/components/Loader.vue";
 import api from "@/api";
 import config from "@/config";
-import { mapGetters, mapState } from "vuex";
+import { useParliamentStore } from "@/stores/parliament";
 
 import format from "date-fns/format";
 
@@ -132,6 +132,10 @@ export default {
     Results,
     Loader,
   },
+  setup() {
+    const store = useParliamentStore();
+    return { store };
+  },
   data: function () {
     return {
       initiative: {},
@@ -140,12 +144,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({
-      getDeputyByName: "getDeputyByName",
-    }),
-    ...mapState(["allDeputies", "allTopics", "allParliamentaryGroups"]),
     dataLoaded: function () {
-      return Object.keys(this.initiative).length && this.allTopics.length > 0;
+      return (
+        Object.keys(this.initiative).length && this.store.allTopics.length > 0
+      );
     },
     formattedDate: function () {
       return format(new Date(this.initiative.created), "dd/MM/Y");
@@ -165,7 +167,7 @@ export default {
         });
     },
     getGroup: function (parliamentary_group) {
-      for (const group of this.allParliamentaryGroups) {
+      for (const group of this.store.allParliamentaryGroups) {
         if (group.name == parliamentary_group) {
           return group;
         }
@@ -178,7 +180,7 @@ export default {
       if (this.initiative.authors.length == 0) return false;
       else {
         const aPossibleGroup = this.initiative.authors[0];
-        for (const group of this.allParliamentaryGroups) {
+        for (const group of this.store.allParliamentaryGroups) {
           if (group.name == aPossibleGroup) return true;
         }
         return false;

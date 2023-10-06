@@ -1,8 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+import { createPinia } from "pinia";
 import { createMetaManager } from "vue-meta";
 import router from "@/router";
-import store from "@/store";
 import VueScrollTo from "vue-scrollto";
 
 import * as Sentry from "@sentry/browser";
@@ -19,9 +19,8 @@ if (SENTRY_DSN) {
 }
 
 const app = createApp(App);
-// Vue.config.productionTip = false;
 app.use(router);
-app.use(store);
+app.use(createPinia());
 app.use(createMetaManager());
 
 app.directive("scroll-to", VueScrollTo);

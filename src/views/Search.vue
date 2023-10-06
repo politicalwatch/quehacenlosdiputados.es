@@ -65,10 +65,10 @@ import CsvDownload from "@/components/CsvDownload.vue";
 import Message from "@/components/Message.vue";
 import Results from "@/components/Results.vue";
 import NotFound from "@/components/NotFound.vue";
-import { mapGetters } from "vuex";
 import { nextTick } from "vue";
 import qs from "qs";
 import VueScrollTo from "vue-scrollto";
+import { useParliamentStore } from "@/stores/parliament";
 
 export default {
   name: "search",
@@ -80,6 +80,10 @@ export default {
     NotFound,
     Message,
     CsvDownload,
+  },
+  setup() {
+    const store = useParliamentStore();
+    return { store };
   },
   data: function () {
     return {
@@ -111,7 +115,6 @@ export default {
     canDownloadCSV: function () {
       return this.query_meta.total < this.LIMITCSV;
     },
-    ...mapGetters(["getDeputyByName", "getParliamentaryGroupByName"]),
     message: function () {
       if (this.errors) {
         return { icon: true, type: "error", message: this.errors };
@@ -172,7 +175,7 @@ export default {
           this.query_meta = response.query_meta;
           this.loadingResults = false;
           nextTick().then(() => {
-            VueScrollTo(this.scrollToID, 1500);
+            VueScrollTo.scrollTo(this.scrollToID, 1500);
           });
         })
         .catch((error) => (this.errors = error));

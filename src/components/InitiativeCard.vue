@@ -22,7 +22,7 @@
         <deputy-card
           v-for="deputyName in getDeputies(initiative)"
           v-bind:key="deputyName"
-          :deputy="getDeputyByName(deputyName)"
+          :deputy="this.store.getDeputyByName(deputyName)"
           layout="small"
         />
         <icon v-if="initiative.deputies.length > 10" icon="more" />
@@ -52,7 +52,7 @@ import Icon from "@/components/Icon.vue";
 import TopicPill from "@/components/TopicPill.vue";
 import InitiativeStatus from "@/components/InitiativeStatus.vue";
 import DeputyCard from "@/components/DeputyCard.vue";
-import { mapGetters } from "vuex";
+import { useParliamentStore } from "@/stores/parliament";
 
 export default {
   name: "InitiativeCard",
@@ -67,10 +67,9 @@ export default {
     topicsStyles: Object,
     extendedLayout: Boolean,
   },
-  computed: {
-    ...mapGetters({
-      getDeputyByName: "getDeputyByName",
-    }),
+  setup() {
+    const store = useParliamentStore();
+    return { store };
   },
   methods: {
     __cleansIfItsAGroup: function (value) {

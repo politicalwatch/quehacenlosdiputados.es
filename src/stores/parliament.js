@@ -1,35 +1,28 @@
-import { createStore } from "vuex";
+import { defineStore } from "pinia";
 import api from "@/api";
 
-const types = {
-  GET_DEPUTIES: "GET_DEPUTIES",
-  GET_TOPICS: "GET_TOPICS",
-  GET_PARLIAMENTARY_GROUPS: "GET_PARLIAMENTARY_GROUPS",
-  GET_PLACES: "GET_PLACES",
-  GET_STATUS: "GET_STATUS",
-  GET_TYPES: "GET_TYPES",
-};
-
-const state = {
-  allTopics: [],
-  allDeputies: [],
-  allParliamentaryGroups: [],
-  allTypes: [],
-  allStatus: [],
-  allPlaces: [],
+const state = () => {
+  return {
+    allTopics: [],
+    allDeputies: [],
+    allParliamentaryGroups: [],
+    allTypes: [],
+    allStatus: [],
+    allPlaces: [],
+  };
 };
 
 const getters = {
-  allDeputiesName(state) {
+  getAllDeputiesName(state) {
     return state.allDeputies.map((deputy) => deputy.name);
   },
-  allPlacesName(state) {
+  getAllPlacesName(state) {
     return state.allPlaces.map((place) => place.name);
   },
-  allParliamentaryGroups(state) {
+  getAllParliamentaryGroups(state) {
     return state.allParliamentaryGroups;
   },
-  allParliamentaryGroupsWithGoverment(state) {
+  getAllParliamentaryGroupsWithGoverment(state) {
     return ["Gobierno"].concat(state.allParliamentaryGroups);
   },
   getDeputyByName(state) {
@@ -50,33 +43,33 @@ const getters = {
         return group.name === name;
       });
   },
-  allTypesName(state) {
+  getAllTypesName(state) {
     return state.allTypes.map((type) => type.name);
   },
 };
 
 const actions = {
-  getDeputies(context) {
+  getDeputies() {
     api
       .getDeputies()
       .then((response) => {
-        context.commit(types.GET_DEPUTIES, response);
+        this.allDeputies = response;
       })
       .catch((error) => (this.errors = error));
   },
-  getTopics(context) {
+  getTopics() {
     api
       .getTopics()
       .then((response) => {
-        context.commit(types.GET_TOPICS, response);
+        this.allTopics = response;
       })
       .catch((error) => (this.errors = error));
   },
-  getParliamentaryGroups(context) {
+  getParliamentaryGroups() {
     api
       .getGroups()
       .then((response) => {
-        context.commit(types.GET_PARLIAMENTARY_GROUPS, response);
+        this.allParliamentaryGroups = response;
       })
       .catch((error) => (this.errors = error));
   },
@@ -84,52 +77,30 @@ const actions = {
     api
       .getPlaces()
       .then((response) => {
-        context.commit(types.GET_PLACES, response);
+        this.allPlaces = response;
       })
       .catch((error) => (this.errors = error));
   },
-  getStatus(context) {
+  getStatus() {
     api
       .getStatus()
       .then((response) => {
-        context.commit(types.GET_STATUS, response);
+        this.allStatus = response;
       })
       .catch((error) => (this.errors = error));
   },
-  getTypes(context) {
+  getTypes() {
     api
       .getTypes()
       .then((response) => {
-        context.commit(types.GET_TYPES, response);
+        this.allTypes = response;
       })
       .catch((error) => (this.errors = error));
   },
 };
 
-const mutations = {
-  [types.GET_DEPUTIES](state, deputies) {
-    state.allDeputies = deputies;
-  },
-  [types.GET_TOPICS](state, topics) {
-    state.allTopics = topics;
-  },
-  [types.GET_PARLIAMENTARY_GROUPS](state, parliamentaryGroups) {
-    state.allParliamentaryGroups = parliamentaryGroups;
-  },
-  [types.GET_PLACES](state, places) {
-    state.allPlaces = places;
-  },
-  [types.GET_STATUS](state, status) {
-    state.allStatus = status;
-  },
-  [types.GET_TYPES](state, types) {
-    state.allTypes = types;
-  },
-};
-
-export default createStore({
+export const useParliamentStore = defineStore("parliament", {
   state,
   getters,
   actions,
-  mutations,
 });
