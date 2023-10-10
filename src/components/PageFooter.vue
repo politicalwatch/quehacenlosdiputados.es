@@ -150,7 +150,6 @@
 <script>
 import VueCookieAcceptDecline from "vue-cookie-accept-decline";
 import "vue-cookie-accept-decline/dist/vue-cookie-accept-decline.css";
-import { VueCookieNext } from "vue-cookie-next";
 import Icon from "@/components/Icon.vue";
 
 export default {
