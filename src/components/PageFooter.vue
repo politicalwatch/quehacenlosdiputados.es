@@ -65,9 +65,12 @@
             <div class="o-grid__col u-4@sm c-footer__section">
               <h5 class="c-footer__section-title">Síguenos</h5>
               <div class="c-footer__section-icons">
-                <a href="https://twitter.com/qhld_" aria-label="Go to Twitter" target="_blank"
-                  >
-                  <icon icon="twitter" class="c-icon--white"/>
+                <a
+                  href="https://twitter.com/qhld_"
+                  aria-label="Go to Twitter"
+                  target="_blank"
+                >
+                  <icon icon="twitter" class="c-icon--white" />
                 </a>
                 <a
                   href="https://www.instagram.com/_PoliticalWatch/"
@@ -75,15 +78,19 @@
                   target="_blank"
                   ><icon icon="instagram" class="c-icon--white"
                 /></a>
-                <a href="https://t.me/quehacenlosdiputados" aria-label="Go to Telegram" target="_blank">
-                  <icon icon="telegram" class="c-icon--white"/>
+                <a
+                  href="https://t.me/quehacenlosdiputados"
+                  aria-label="Go to Telegram"
+                  target="_blank"
+                >
+                  <icon icon="telegram" class="c-icon--white" />
                 </a>
                 <a
                   href="https://github.com/politicalwatch/quehacenlosdiputados.es"
                   aria-label="Go to Github"
                   target="_blank"
-                  >
-                  <icon icon="github" class="c-icon--white"/>
+                >
+                  <icon icon="github" class="c-icon--white" />
                 </a>
               </div>
             </div>
@@ -119,9 +126,12 @@
     </div>
 
     <vue-cookie-accept-decline
-      :debug="false"
-      :disableDecline="true"
+      :debug="true"
+      :disableDecline="false"
       :showPostponeButton="false"
+      @clicked-accept="cookieClickedAccept"
+      @clicked-decline="cookieClickedDecline"
+      @status="cookieStatus"
       elementId="cookiePanel"
       ref="cookiePanel"
       transitionName="slideFromBottom"
@@ -130,13 +140,17 @@
       <template #message>
         Este sitio usa cookies para asegurarte la mejor experiencia web.
       </template>
-      <template #acceptContent>Entendido</template>
+
+      <template #declineContent>Rechazar</template>
+      <template #acceptContent>Aceptar</template>
     </vue-cookie-accept-decline>
   </footer>
 </template>
 
 <script>
 import VueCookieAcceptDecline from "vue-cookie-accept-decline";
+import "vue-cookie-accept-decline/dist/vue-cookie-accept-decline.css";
+import { VueCookieNext } from "vue-cookie-next";
 import Icon from "@/components/Icon.vue";
 
 export default {
@@ -150,29 +164,38 @@ export default {
       const versions = ["female", "male", "neutral"];
       return versions[Math.floor(Math.random() * versions.length)];
     },
+    cookieStatus: (val) => {
+      if (val === "decline" || val == null) {
+        gtag("consent", "default", {
+          ad_storage: "denied",
+          analytics_storage: "denied",
+        });
+      } else if (val === "accept") {
+        gtag("consent", "update", {
+          ad_storage: "granted",
+          analytics_storage: "granted",
+        });
+      }
+    },
+    cookieClickedAccept: () => {
+      gtag("consent", "update", {
+        ad_storage: "granted",
+        analytics_storage: "granted",
+      });
+    },
+    cookieClickedDecline: () => {
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        analytics_storage: "denied",
+      });
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
-.cookie {
-  position: fixed;
-  overflow: hidden;
-  box-sizing: border-box;
-  z-index: 9999;
-  background: #f1f1f1;
-  color: #232323;
-  padding: 1.25em;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-.cookie__floating__wrap {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-direction: row;
+.c-footer .cookie {
+  color: #1d1d1b;
 }
 
 #footer {
