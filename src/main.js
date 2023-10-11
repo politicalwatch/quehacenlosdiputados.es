@@ -23,10 +23,14 @@ const app = createApp(App);
 app.use(router);
 app.use(createPinia());
 app.use(createMetaManager());
-app.use(VueGtag, {
-  config: { id: import.meta.env.VITE_GA_ID },
-  enabled: false,
-}, router);
+app.use(
+  VueGtag,
+  {
+    config: { id: import.meta.env.VITE_GA_ID },
+    boootstrap: false,
+  },
+  router
+);
 
 app.directive("scroll-to", VueScrollTo);
 

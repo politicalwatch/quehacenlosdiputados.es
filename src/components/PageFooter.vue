@@ -126,7 +126,7 @@
     </div>
 
     <vue-cookie-accept-decline
-      :debug="true"
+      :debug="false"
       :disableDecline="false"
       :showPostponeButton="false"
       @clicked-accept="cookieClickedAccept"
@@ -159,17 +159,17 @@ export default {
     VueCookieAcceptDecline,
     Icon,
   },
+  mounted() {
+    // this.$refs.cookiePanel.removeCookie();
+    // this.$refs.cookiePanel.init();
+  },
   methods: {
     getLogoVersion: () => {
       const versions = ["female", "male", "neutral"];
       return versions[Math.floor(Math.random() * versions.length)];
     },
-    mounted() {
-      // this.$refs.cookiePanel.removeCookie();
-      // this.$refs.cookiePanel.init();
-    },
     cookieStatus: (val) => {
-      // console.log("Cookie status: " + val);
+      // console.log('Cookie status: ' + val);
       if (val === "decline" || val == null) {
         if (gtag) {
           gtag("consent", "default", {
