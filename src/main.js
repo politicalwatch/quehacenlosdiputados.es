@@ -26,7 +26,7 @@ app.use(createMetaManager());
 app.use(VueGtag, {
   config: { id: import.meta.env.VITE_GA_ID },
   enabled: false,
-});
+}, router);
 
 app.directive("scroll-to", VueScrollTo);
 

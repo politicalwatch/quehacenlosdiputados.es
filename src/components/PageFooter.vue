@@ -150,6 +150,7 @@
 <script>
 import VueCookieAcceptDecline from "vue-cookie-accept-decline";
 import "vue-cookie-accept-decline/dist/vue-cookie-accept-decline.css";
+import { bootstrap } from "vue-gtag";
 import Icon from "@/components/Icon.vue";
 
 export default {
@@ -164,22 +165,29 @@ export default {
       return versions[Math.floor(Math.random() * versions.length)];
     },
     cookieStatus: (val) => {
+      console.log("Cookie status: " + val);
       if (val === "decline" || val == null) {
-        gtag("consent", "default", {
-          ad_storage: "denied",
-          analytics_storage: "denied",
-        });
+        if (gtag) {
+          gtag("consent", "default", {
+            ad_storage: "denied",
+            analytics_storage: "denied",
+          });
+        }
       } else if (val === "accept") {
-        gtag("consent", "update", {
-          ad_storage: "granted",
-          analytics_storage: "granted",
+        bootstrap().then(() => {
+          gtag("consent", "update", {
+            ad_storage: "granted",
+            analytics_storage: "granted",
+          });
         });
       }
     },
     cookieClickedAccept: () => {
-      gtag("consent", "update", {
-        ad_storage: "granted",
-        analytics_storage: "granted",
+      bootstrap().then(() => {
+        gtag("consent", "update", {
+          ad_storage: "granted",
+          analytics_storage: "granted",
+        });
       });
     },
     cookieClickedDecline: () => {
