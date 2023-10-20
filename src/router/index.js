@@ -1,21 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/views/Home.vue";
-import Search from "@/views/Search.vue";
-import Initiative from "@/views/Initiative.vue";
-import Topics from "@/views/Topics.vue";
-import Topic from "@/views/Topic.vue";
-import Deputy from "@/views/Deputy.vue";
-import Deputies from "@/views/Deputies.vue";
-import Parliamentarygroups from "@/views/Parliamentarygroups.vue";
-import Parliamentarygroup from "@/views/Parliamentarygroup.vue";
-import About from "@/views/About.vue";
-import Manifest from "@/views/Manifest.vue";
-import Collaborate from "@/views/Collaborate.vue";
-import Footprint from "@/views/Footprint.vue";
-import LegalNotice from "@/views/LegalNotice.vue";
-import PrivacyPolicy from "@/views/PrivacyPolicy.vue";
-import CookiePolicy from "@/views/CookiePolicy.vue";
-import Page404 from "@/views/Page404.vue";
 import config from "@/config";
 
 const routes = [
@@ -45,7 +29,7 @@ const routes = [
   {
     path: "/buscar",
     name: "search",
-    component: Search,
+    component: () => import("@/views/Search.vue"),
     meta: {
       title: "Buscar - Qué hacen los diputados",
       metaTags: [
@@ -68,7 +52,7 @@ const routes = [
   {
     path: "/resultados/:data?",
     name: "results",
-    component: Search,
+    component: () => import("@/views/Search.vue"),
     meta: {
       title: "Iniciativas - Qué hacen los diputados",
       metaTags: [
@@ -87,7 +71,7 @@ const routes = [
   {
     path: "/iniciativas/:id",
     name: "initiative",
-    component: Initiative,
+    component: () => import("@/views/Initiative.vue"),
     meta: {
       title: "Iniciativa - Qué hacen los diputados",
       metaTags: [
@@ -116,72 +100,72 @@ const routes = [
   {
     path: "/tematicas",
     name: "topics",
-    component: Topics,
+    component: () => import("@/views/Topics.vue"),
   },
   {
     path: "/tematicas/:id",
     name: "topic",
-    component: Topic,
+    component: () => import("@/views/Topic.vue"),
   },
   {
     path: "/diputados",
     name: "deputies",
-    component: Deputies,
+    component: () => import("@/views/Deputies.vue"),
   },
   {
     path: "/diputados/:id",
     name: "deputy",
-    component: Deputy,
+    component: () => import("@/views/Deputy.vue"),
   },
   {
     path: "/grupos",
     name: "parliamentarygroups",
-    component: Parliamentarygroups,
+    component: () => import("@/views/Parliamentarygroups.vue"),
   },
   {
     path: "/grupos/:id",
     name: "parliamentarygroup",
-    component: Parliamentarygroup,
+    component: () => import("@/views/Parliamentarygroup.vue"),
   },
   {
     path: "/acerca",
     name: "about",
-    component: About,
+    component: () => import("@/views/About.vue"),
   },
   {
     path: "/manifiesto",
     name: "manifest",
-    component: Manifest,
+    component: () => import("@/views/Manifest.vue"),
   },
   {
     path: "/colabora",
     name: "collaborate",
-    component: Collaborate,
+    component: () => import("@/views/Collaborate.vue"),
   },
   {
     path: "/huella",
     name: "footprint",
-    component: Footprint,
+    component: () => import("@/views/Footprint.vue"),
   },
   {
     path: "/aviso-legal",
     name: "legalnotice",
-    component: LegalNotice,
+    component: () => import("@/views/LegalNotice.vue"),
   },
   {
     path: "/politica-de-privacidad",
     name: "privacypolicy",
-    component: PrivacyPolicy,
+    component: () => import("@/views/PrivacyPolicy.vue"),
   },
   {
     path: "/politica-de-cookies",
     name: "cookiepolicy",
-    component: CookiePolicy,
+    component: () => import("@/views/CookiePolicy.vue"),
   },
   {
-    path: "/*",
+    path: "/:pathMatch(.*)*",
     name: "Page404",
-    component: Page404,
+    component: () => import("@/views/Page404.vue"),
   },
 ];
 
