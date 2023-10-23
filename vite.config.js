@@ -23,8 +23,7 @@ export default defineConfig({
   plugins: [
     vue(),
     legacy({
-      targets: ["ie >= 11"],
-      additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
+      targets: ["defaults", "not IE 11"],
     }),
     svgLoader({
       svgoConfig,

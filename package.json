@@ -10,8 +10,6 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "@sentry/browser": "^5.12.1",
-    "@sentry/integrations": "^5.12.0",
     "@vuepic/vue-datepicker": "^7.0.0",
     "axios": "^1.5.1",
     "core-js": "^3.32.2",
