@@ -26,7 +26,7 @@ export default {
           logo: "cs",
           color: "#ff4f00",
         },
-        VOX: {
+        Vox: {
           name: "VOX",
           logo: "vox",
           color: "#5ac035",
