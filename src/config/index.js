@@ -33,8 +33,8 @@ export default {
   ],
   DISCLAIMER: {
     route:
-      "mailto:qhld@politicalwatch.es?subject=[QHLD.es] Necesitaría datos de otras legislaturas",
-    name: "Si necesitas datos de legislaturas anteriores, escríbenos a qhld@politicalwatch.es",
+      "https://qhld.es",
+      name: "Estás viendo las iniciativas de la XIV legislatura (2019-2023). Para consultar la legislatura actual, pincha aquí.",
     external: true,
   },
   LOGO: "/img/logo.svg",

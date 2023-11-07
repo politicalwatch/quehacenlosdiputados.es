@@ -1,12 +1,12 @@
 <template>
   <header class="c-navbar">
 
-    <div class="c-disclaimer" v-if="!closedDisclaimer && disclaimer.hasOwnProperty('name')">
+    <div class="c-disclaimer">
 
       <a v-if="disclaimer.external" :href="disclaimer.route" target="_blank" v-html="disclaimer.name"></a>
       <router-link v-else :to="{name: disclaimer.route}" v-html="disclaimer.name"></router-link>
 
-      <button class="c-disclaimer__close" id="disclaimer-close" aria-label="Close Disclaimer" @click="closeDisclaimer"><icon icon="close" color="#ffffff" /></button>
+      <button class="c-disclaimer__close" id="disclaimer-close" aria-label="Close Disclaimer" @click="closeDisclaimer"><icon icon="close" color="#EFCA53" /></button>
 
     </div>
 
@@ -87,3 +87,13 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.c-disclaimer {
+  svg{
+    path {
+      fill: #EFCA53 !important;
+    }
+  }
+}
+</style>

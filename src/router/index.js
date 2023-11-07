@@ -5,29 +5,6 @@ import config from "@/config";
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: Home,
-    meta: {
-      title: "Home - Qué hacen los diputados",
-      metaTags: [
-        {
-          name: "description",
-          content: "Test Home",
-        },
-        {
-          property: "og:description",
-          content: "Test Home",
-        },
-        {
-          property: "og:title",
-          content: "Test Home",
-        },
-        ...config.DEFAULT_METATAGS,
-      ],
-    },
-  },
-  {
-    path: "/buscar",
     name: "search",
     component: () => import("@/views/Search.vue"),
     meta: {
