@@ -79,17 +79,14 @@
         </div>
       </div>
 
-      <div
-        v-if="parliamentarygroup.footprint_by_topics.length > 0"
-        class="o-container o-section"
-      >
+      <div v-if="footprintByTopics.length > 0" class="o-container o-section">
         <h2 class="u-margin-bottom-4 u-uppercase u-text-center u-text-left@md">
           Temáticas destacadas
         </h2>
         <barchart
           :entity="parliamentarygroup"
           entityType="parliamentarygroup"
-          :result="parliamentarygroup.footprint_by_topics.slice(0, 5)"
+          :result="footprintByTopics"
         />
         <footprint-info />
       </div>
@@ -190,6 +187,17 @@ export default {
       }
 
       return results;
+    },
+    footprintByTopics: function () {
+      if (this.parliamentarygroup) {
+        return this.parliamentarygroup.footprint_by_topics
+          .filter((item) =>
+            this.store.allTopics.some((topic) => topic.name === item.name)
+          )
+          .filter((item) => item.score > 0)
+          .slice(0, 5);
+      }
+      return [];
     },
   },
   methods: {
