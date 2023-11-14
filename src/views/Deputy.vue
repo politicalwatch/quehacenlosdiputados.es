@@ -193,8 +193,8 @@ export default {
   },
   computed: {
     footprintByTopics: function () {
-      if (this.parliamentarygroup) {
-        return this.parliamentarygroup.footprint_by_topics
+      if (this.deputy) {
+        return this.deputy.footprint_by_topics
           .filter((item) =>
             this.store.allTopics.some((topic) => topic.name === item.name)
           )
