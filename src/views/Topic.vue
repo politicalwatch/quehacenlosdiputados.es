@@ -52,7 +52,7 @@
       </div>
     </div>
     <save-alert
-      v-show="use_alerts"
+      v-if="use_alerts"
       :searchparams="{ topic: topic.name }"
       :text="topic.name"
     />

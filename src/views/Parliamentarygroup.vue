@@ -105,7 +105,7 @@
       />
 
       <save-alert
-        v-show="use_alerts"
+        v-if="use_alerts"
         :searchparams="{ author: parliamentarygroup.name }"
         :text="parliamentarygroup.name"
       />
