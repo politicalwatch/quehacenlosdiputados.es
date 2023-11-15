@@ -48,7 +48,7 @@
         />
         <AlertButton
           :searchparams="data"
-          v-show="use_alerts && this.query_meta.page"
+          v-if="use_alerts && this.query_meta.page"
         />
       </div>
     </div>
