@@ -6,7 +6,7 @@ export default {
     import.meta.env.VITE_VUE_APP_HOMEBUILDER_URL ||
     "https://homebuilder.quehacenlosdiputados.es",
   GOOGLE_ANALYTICS: import.meta.env.VUE_APP_GOOGLE_ANALYTICS || "XXXXXXXXXXXX",
-  USE_ALERTS: Boolean(import.meta.env.VITE_VUE_APP_USE_ALERTS) || false,
+  USE_ALERTS: import.meta.env.VITE_VUE_APP_USE_ALERTS === "true",
   KNOWLEDGEBASE: import.meta.env.VITE_KNOWLEDGEBASE || "politicas",
   SCANNER_HELPTEXT: import.meta.env.VUE_APP_SCANNER_HELPTEXT || "",
   MENU: [
