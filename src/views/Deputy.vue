@@ -134,7 +134,7 @@
       </message>
     </div>
     <save-alert
-      v-show="use_alerts"
+      v-if="use_alerts"
       :searchparams="{ deputy: deputy.name }"
       :text="deputy.name"
     />
