@@ -11,16 +11,6 @@ export default {
   SCANNER_HELPTEXT: import.meta.env.VUE_APP_SCANNER_HELPTEXT || "",
   MENU: [
     {
-      route: "deputies",
-      name: "Diputados",
-      condition: true,
-    },
-    {
-      route: "parliamentarygroups",
-      name: "Grupos",
-      condition: true,
-    },
-    {
       route: "search",
       name: "Iniciativas",
       condition: true,
