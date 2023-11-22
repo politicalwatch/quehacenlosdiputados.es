@@ -26,7 +26,7 @@ export default {
           logo: "cs",
           color: "#ff4f00",
         },
-        Vox: {
+        VOX: {
           name: "VOX",
           logo: "vox",
           color: "#5ac035",
@@ -184,10 +184,11 @@ export default {
     svg() {
       let svg = "";
       try {
-        svg = defineAsyncComponent(() =>
-          import(
-            `@/assets/party_logos/icon/${this.parties[this.party].logo}.svg`
-          )
+        svg = defineAsyncComponent(
+          () =>
+            import(
+              `@/assets/party_logos/icon/${this.parties[this.party].logo}.svg`
+            )
         );
       } catch (error) {
         svg = this.icon;
