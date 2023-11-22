@@ -1,20 +1,24 @@
 <template>
   <div class="c-topics">
     <span v-html="getTopics()" />
-    <div v-if="limit && (limit < topics.length)" class="c-topics__topic c-topics__topic__small" style="background-color:#A3D5C8;">
+    <div
+      v-if="limit && limit < topics.length"
+      class="c-topics__topic c-topics__topic__small"
+      style="background-color: #a3d5c8"
+    >
       <icon icon="more" />
     </div>
   </div>
 </template>
 
 <script>
-import Icon from '@/components/Icon.vue';
-import * as Utils from '@/utils';
+import Icon from "@/components/Icon.vue";
+import * as Utils from "@/utils";
 
 export default {
-  name: 'TopicPill',
+  name: "TopicPill",
   components: {
-    Icon
+    Icon,
   },
   props: {
     topics: Array,
@@ -23,31 +27,33 @@ export default {
     limit: Number,
   },
   methods: {
-    getTopics: function() {
-      let topics = this.topics
+    getTopics: function () {
+      let topics = this.topics;
       if (this.limit) {
-        topics = topics.slice(0, this.limit)
+        topics = topics.slice(0, this.limit);
       }
       if (this.topicsStyles && topics.length) {
-        return topics.slice().sort(Utils.naturalSort).map((element, i)=> {
-          if (this.withLinks) {
-            return `
-              <a href="#topic-${i}" class="c-topics__topic c-topics__topic__small" style="background-color:${this.topicsStyles[element].color}">
-                ${this.topicsStyles[element].shortname}
+        return topics
+          .slice()
+          .sort(Utils.naturalSort)
+          .map((element, i) => {
+            if (this.withLinks) {
+              return `
+              <a href="#topic-${i}" class="c-topics__topic c-topics__topic__small" style="background-color:${this.topicsStyles[element]?.color}">
+                ${this.topicsStyles[element]?.shortname}
               </a>
             `;
-          } else {
-            return `
-              <div class="c-topics__topic c-topics__topic__small" style="background-color:${this.topicsStyles[element].color}">
-                ${this.topicsStyles[element].shortname}
+            } else {
+              return `
+              <div class="c-topics__topic c-topics__topic__small" style="background-color:${this.topicsStyles[element]?.color}">
+                ${this.topicsStyles[element]?.shortname}
               </div>
             `;
-          }
-        }).join('');
+            }
+          })
+          .join("");
       }
-      return topics.length ?
-        topics.join('<br/>') :
-        '';
+      return topics.length ? topics.join("<br/>") : "";
     },
   },
 };
