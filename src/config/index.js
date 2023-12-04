@@ -32,9 +32,8 @@ export default {
     },
   ],
   DISCLAIMER: {
-    route:
-      "mailto:qhld@politicalwatch.es?subject=[QHLD.es] Necesitaría datos de otras legislaturas",
-    name: "Si necesitas datos de legislaturas anteriores, escríbenos a qhld@politicalwatch.es",
+    route: "https://xiv.quehacenlosdiputados.es/",
+    name: "También tienes disponibles los datos de la XIV legislatura.",
     external: true,
   },
   LOGO: "/img/logo.svg",
