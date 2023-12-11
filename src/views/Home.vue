@@ -84,8 +84,8 @@
           return {
               isLoaded: false,
               home: {
-                Date: 'Verano 2023',
-                TitleDate: 'Inicio de la XV legislatura',
+                Date: 'Diciembre 2023',
+                TitleDate: 'Ya tenemos comisiones',
                 ImageUrl: 'https://www.congreso.es/es/fotonoticias?p_p_id=fotonoticias&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_fotonoticias_mvcPath=detalle&_fotonoticias_fotonId=4406',
                 ImageAuthor: 'Congreso.es'
               },
