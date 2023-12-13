@@ -82,10 +82,11 @@
             v-model="form.startdate"
             locale="es"
             :format="formatDatepickerDate"
-            placeholder="dd-mm-yyyy"
+            placeholder="dd/mm/yyyy"
             hide-input-icon
             @update:model-value="selectStartDate"
             @cleared="clearStartDate"
+            :text-input="textInputOptions"
             name="startdate"
           />
         </div>
@@ -97,11 +98,12 @@
             v-model="form.enddate"
             locale="es"
             :format="formatDatepickerDate"
-            placeholder="dd-mm-yyyy"
+            placeholder="dd/mm/yyyy"
             :max-date="new Date()"
             hide-input-icon
             @update:model-value="selectEndDate"
             @cleared="clearEndDate"
+            :text-input="textInputOptions"
             name="enddate"
           />
         </div>
@@ -249,7 +251,13 @@ export default {
   },
   setup() {
     const store = useParliamentStore();
-    return { store };
+    const textInputOptions = {
+      enterSubmit: true,
+      tabSubmit: true,
+      selectOnFocus: true,
+      format: "dd/MM/yyyy",
+    };
+    return { store, textInputOptions };
   },
   data: function () {
     return {
