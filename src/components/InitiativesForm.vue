@@ -312,7 +312,7 @@ export default {
     getTypes: function () {
       const options = [];
       for (const type of this.store.getAllTypesName) {
-        options.push("'" + type + "'");
+        options.push(type);
       }
       return options;
     },
