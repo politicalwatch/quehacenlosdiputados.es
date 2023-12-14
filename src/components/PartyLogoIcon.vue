@@ -167,6 +167,11 @@ export default {
           logo: "psoe",
           color: "#e30613",
         },
+        "PSIB-PSOE": {
+          name: "Partido Socialista Obrero Español",
+          logo: "psoe",
+          color: "#e30613",
+        },
         "EAJ-PNV": {
           name: "Partido Nacionalista Vasco",
           logo: "pnv",
