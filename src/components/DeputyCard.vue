@@ -76,7 +76,7 @@ export default {
           (item) => item.name == this.footprint
         );
         /*console.log(filtered_footprint)*/
-        return filtered_footprint[0]?.score;
+        return filtered_footprint[0]?.score ?? 0;
       }
       return this.deputy.footprint;
     },
