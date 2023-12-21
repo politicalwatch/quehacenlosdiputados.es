@@ -34,6 +34,7 @@ export default {
         'EH Bildu': 'bildu.png',
         'ECP-GUAYEM EL CANVI': 'encomupodem.jpg',
         'EC-UP': 'podemos.jpg',
+        'PODEMOS': 'podemos.jpg',
         'EAJ-PNV': 'eajpnv.png',
         'Cs': 'ciudadanos.png',
         'CUP-PR': 'cup.png',
