@@ -5,18 +5,21 @@
     :style="getBackground"
   >
     <figure class="c-party_logo_icon__image" :alt="'Logo de ' + getName">
-      <component :is="svg"></component>
+      <inline-svg :src="svg" />
     </figure>
   </div>
 </template>
 
 <script>
-import { defineAsyncComponent } from "vue";
+import InlineSvg from "vue-inline-svg";
 
 export default {
   name: "PartyLogoIcon",
   props: {
     party: String,
+  },
+  components: {
+    InlineSvg,
   },
   data: function () {
     return {
@@ -27,6 +30,11 @@ export default {
           color: "#ff4f00",
         },
         VOX: {
+          name: "VOX",
+          logo: "vox",
+          color: "#5ac035",
+        },
+        Vox: {
           name: "VOX",
           logo: "vox",
           color: "#5ac035",
@@ -167,6 +175,11 @@ export default {
           logo: "psoe",
           color: "#e30613",
         },
+        "PSIB-PSOE": {
+          name: "Partido Socialista Obrero Español",
+          logo: "psoe",
+          color: "#e30613",
+        },
         "EAJ-PNV": {
           name: "Partido Nacionalista Vasco",
           logo: "pnv",
@@ -184,12 +197,13 @@ export default {
     svg() {
       let svg = "";
       try {
-        svg = defineAsyncComponent(
-          () =>
-            import(
-              `@/assets/party_logos/icon/${this.parties[this.party].logo}.svg`
-            )
-        );
+        if (this.party in this.parties) {
+          svg = `../assets/party_logos/icon/${
+            this.parties[this.party].logo
+          }.svg`;
+        } else {
+          svg = "../assets/svg/icon-error.svg";
+        }
       } catch (error) {
         svg = this.icon;
       }
