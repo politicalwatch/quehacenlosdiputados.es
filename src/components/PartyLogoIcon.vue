@@ -105,6 +105,11 @@ export default {
           logo: "podemos",
           color: "#6b1f5f",
         },
+        "PODEMOS": {
+          name: "Podemos",
+          logo: "podemos",
+          color: "#6b1f5f",
+        },
         IU: {
           name: "Izquierda Unida",
           logo: "iu",
