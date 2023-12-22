@@ -1,4 +1,4 @@
-FROM node:lts-stretch as build-stage
+FROM node:lts-bookworm as build-stage
 
 WORKDIR /app
 COPY package*.json /app
