@@ -32,10 +32,9 @@
 
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
-            <p>Así al aplicar este primer cálculo, una diputada obtendría una Huella parlamentaria de 191 tras haber presentado las siguientes iniciativas:</p>
+            <p>Así al aplicar este primer cálculo, una diputada obtendría una Huella parlamentaria de 190 tras haber presentado las siguientes iniciativas:</p>
             <ul>
               <li>3 preguntas orales en el pleno.</li>
-              <li>10 preguntas al Gobierno para respuesta escrita.</li>
               <li>2 Proposiciones no de Ley en Comisión.</li>
               <li>1 Proposición de Ley de Grupos Parlamentarios.</li>
             </ul>
@@ -47,7 +46,7 @@
 
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
-            <p>Así, la diputada obtendría 25 puntos extra y su Huella se elevaría a 271, si tuviera:</p>
+            <p>Así, la diputada obtendría 25 puntos extra y su Huella se elevaría a 270, si tuviera:</p>
             <ul>
               <li>1 Proposición No de Ley en Comisión aprobada.</li>
               <li>1 Proposición de Ley de Grupos Parlamentarios aprobada</li>
@@ -85,7 +84,7 @@
 
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
-            <p>La huella de la diputada anterior ascendería a 351 si tuviera tanto una cuenta de Twitter como un correo electrónico público.</p>
+            <p>La huella de la diputada anterior ascendería a 350 si tuviera tanto una cuenta de Twitter como un correo electrónico público.</p>
           </div>
 
           <h3>Fase 3: Tiempo de inactividad</h3>
@@ -99,7 +98,7 @@
 
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
-            <p>Finalmente, suponiendo que la diputada llevara inactiva 7 meses, su Huella parlamentaria pasaría de 351 a 263.25.</p>
+            <p>Finalmente, suponiendo que la diputada llevara inactiva 7 meses, su Huella parlamentaria pasaría de 351 a 262.5.</p>
           </div>
 
         </div>
@@ -126,7 +125,6 @@ export default {
         rows: [
           ['Iniciativas de Control', 'Pregunta oral en Pleno', '10'],
           ['Iniciativas de Control', 'Pregunta oral al Gobierno en Comisión', '10'],
-          ['Iniciativas de Control', 'Pregunta al Gobierno con respuesta escrita', '0.1'],
           ['Iniciativas de Control', 'Comparecencia del Gobierno en Comisión (art. 44)', '4'],
           ['Iniciativas de Control', 'Comparecendia del Gobierno en Comisión (arts. 202 y 203)', '4'],
           ['Iniciativas de Control', 'Comparecencia de autoridades y funcionarios en Comisión', '4'],
@@ -136,7 +134,6 @@ export default {
           ['Iniciativas de Control', 'Interpelación urgente', '4'],
           ['Iniciativas de Control', 'Interpelación ordinaria', '4'],
           ['Iniciativas de Control', 'Pregunta oral a la Corporación RTVE', '10'],
-          ['Iniciativas de Control', 'Pregunta a la Corporación RTVE con respuesta escrita', '0.1'],
           ['Iniciativas de Control', 'Solicitud de informe a la Administración del Estado (art. 7)', '4'],
           ['Iniciativas de Control', 'Solicitud de informe a otra Entidad Pública (art. 7)', '4'],
           ['Iniciativas de Control', 'Solicitud de informe a la Administración del Estado (art. 44)', '4'],
