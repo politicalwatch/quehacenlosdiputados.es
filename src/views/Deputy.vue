@@ -62,11 +62,11 @@
               }}</span
             >
             <span class="c-deputy__personal"
-              ><icon icon="location" />{{ getConstituency() }}</span
+              ><icon icon="location" />{{ deputy.constituency }}</span
             >
             <span class="c-deputy__personal"
               ><icon v-if="addBirthdayClass()" icon="birthday" />{{
-                getAge()
+                deputy.age
               }}
               años</span
             >
@@ -214,16 +214,6 @@ export default {
       ) {
         return "c-deputy__birthday";
       }
-    },
-    getAge: function () {
-      const date = new Date(this.deputy.birthdate);
-      const today = new Date();
-      const age = today.getFullYear() - date.getFullYear();
-      return age;
-    },
-    getConstituency: function () {
-      const constituency = this.deputy.constituency;
-      return constituency;
     },
     getDeputy: function () {
       api
