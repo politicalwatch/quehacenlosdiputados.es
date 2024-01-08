@@ -64,6 +64,9 @@ export default {
     }
   }
 }
+input[type="email"].swal2-input {
+  width: auto;
+}
 .swal2-confirm {
   background-color: $primary !important;
 }
