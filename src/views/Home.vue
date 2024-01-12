@@ -19,7 +19,7 @@
 
       <a v-if="relatedInitiatives.length" class="c-home__more u-hide@sm u-border-link u-uppercase" :href="home.RelatedInitiativesSearch">Más iniciativas</a>
 
-      <LastActivity :lastdays="lastdays" />
+      <LastActivity :lastdays="lastdays" v-if="lastdays" />
 
     </div>
   </div>
@@ -101,8 +101,8 @@
             },
         },
       created: function() {
-          // this.getHome();
-          // this.getLastdays();
+          this.getHome();
+          this.getLastdays();
         }
     }
 </script>
