@@ -10,12 +10,12 @@
           <h2>{{ initiative.title }}</h2>
           <div class="o-grid">
             <div
-              class="o-grid__col u-12 u-4@sm u-text-center u-text-left@sm c-initiative__status"
+              class="o-grid__col u-12 u-7@sm u-text-center u-text-left@sm c-initiative__status"
             >
               <initiative-status :initiative="initiative" />
             </div>
             <div
-              class="o-grid__col u-12 u-8@sm u-text-left u-text-center u-text-right@sm"
+              class="o-grid__col u-12 u-5@sm u-text-left u-text-center u-text-right@sm"
             >
               <conversation-link
                 v-if="showConversation()"

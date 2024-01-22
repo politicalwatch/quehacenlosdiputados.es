@@ -41,7 +41,7 @@ export default {
           error: [
             "No admitida a trámite",
             "No debatida",
-            'Caducada',
+            "Caducada",
             "Rechazada",
             "Retirada",
             "Derogada",
@@ -77,7 +77,7 @@ export default {
       const formattedDate = formatDistanceToNow(new Date(date), {
         locale: es,
         addSuffix: true,
-      });
+      }).replace("alrededor de ", "");
       return `${initiative["status"]} ${formattedDate}`;
     },
   },
