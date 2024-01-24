@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import { createPinia } from "pinia";
-import { createMetaManager } from "vue-meta";
+import { createHead, VueHeadMixin } from "@unhead/vue";
 import router from "@/router";
 import VueGtag from "vue-gtag";
 import VueScrollTo from "vue-scrollto";
@@ -11,7 +11,7 @@ import "./styles/App.scss";
 const app = createApp(App);
 app.use(router);
 app.use(createPinia());
-app.use(createMetaManager());
+app.use(createHead());
 app.use(
   VueGtag,
   {
@@ -20,6 +20,8 @@ app.use(
   },
   router
 );
+
+app.mixin(VueHeadMixin);
 
 app.directive("scroll-to", VueScrollTo);
 

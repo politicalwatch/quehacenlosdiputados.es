@@ -214,12 +214,18 @@ export default {
       },
     };
   },
-  // computed: {
-  //   ...mapState(["allDeputies"]),
-  //   ...mapGetters({
-  //     getDeputyByName: "getDeputyByName",
-  //   }),
-  // },
+  head() {
+    return {
+      title: () => this.headTitle,
+    };
+  },
+  computed: {
+    headTitle: function () {
+      return this.topic?.name
+        ? `${this.topic.name} - Qué hacen los diputados`
+        : "Qué hacen los diputados";
+    },
+  },
   methods: {
     getTopic: function () {
       api
@@ -296,41 +302,6 @@ export default {
         })
         .catch((error) => (this.errors = error));
     },
-  },
-  metaInfo() {
-    const title = this.topic?.name
-      ? `${this.topic.name} - Qué hacen los diputados`
-      : "- Qué hacen los diputados";
-
-    const description = this.topic?.description
-      ? this.topic.description
-      : "Que todos los días sean de puertas abiertas en el Congreso de los Diputados";
-
-    return {
-      title,
-      meta: [
-        {
-          property: "og:title",
-          content: title,
-          vmid: "og:title",
-        },
-        {
-          property: "twitter:title",
-          content: title,
-          vmid: "twitter:title",
-        },
-        {
-          vmid: "description",
-          name: "description",
-          content: description,
-        },
-        {
-          property: "og:description",
-          content: description,
-          vmid: "og:description",
-        },
-      ],
-    };
   },
   created: function () {
     this.getTopic();

@@ -143,14 +143,24 @@ export default {
       loaded: false,
     };
   },
+  head() {
+    return {
+      title: () => this.headTitle,
+    };
+  },
   computed: {
+    headTitle: function () {
+      return this.initiative?.title
+        ? `${this.initiative.title} - Qué hacen los diputados`
+        : "Qué hacen los diputados";
+    },
     dataLoaded: function () {
       return (
         Object.keys(this.initiative).length && this.store.allTopics.length > 0
       );
     },
     formattedDate: function () {
-      return format(new Date(this.initiative.created), "dd/MM/Y");
+      return format(new Date(this.initiative.created), "dd/MM/y");
     },
   },
   methods: {
@@ -195,27 +205,6 @@ export default {
     isAnswer: function () {
       return this.initiative.initiative_type_alt == "Respuesta";
     },
-  },
-  metaInfo() {
-    const title = this.initiative?.title
-      ? `${this.initiative.title} - Qué hacen los diputados`
-      : "- Qué hacen los diputados";
-
-    return {
-      title,
-      meta: [
-        {
-          property: "og:title",
-          content: title,
-          vmid: "og:title",
-        },
-        {
-          property: "twitter:title",
-          content: title,
-          vmid: "twitter:title",
-        },
-      ],
-    };
   },
   created: function () {
     this.getInitiative();

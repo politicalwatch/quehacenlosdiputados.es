@@ -168,7 +168,17 @@ export default {
       topicsStyles: config.STYLES.topics,
     };
   },
+  head() {
+    return {
+      title: () => this.headTitle,
+    };
+  },
   computed: {
+    headTitle: function () {
+      return this.parliamentarygroup?.name
+        ? `${this.parliamentarygroup.name} - Qué hacen los diputados`
+        : "Qué hacen los diputados";
+    },
     deputies: function () {
       if (this.parliamentarygroup) {
         return this.store
@@ -227,22 +237,6 @@ export default {
         (value / this.parliamentarygroup.composition.deputies) * 100
       );
     },
-  },
-  metaInfo() {
-    const title = this.parliamentarygroup?.name
-      ? `${this.parliamentarygroup.name} - Qué hacen los diputados`
-      : "- Qué hacen los diputados";
-
-    return {
-      title,
-      meta: [
-        {
-          property: "og:title",
-          content: title,
-          vmid: "og:title",
-        },
-      ],
-    };
   },
   created: function () {
     this.getParliamentaryGroup();
