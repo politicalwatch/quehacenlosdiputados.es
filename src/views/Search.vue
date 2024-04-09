@@ -4,7 +4,7 @@
       <page-header :title="'Buscador de iniciativas'" />
 
       <initiatives-form
-        :formData="this.data"
+        v-model:formData="this.formData"
         @getResults="getResults"
         @clearInitiatives="clearInitiatives"
       />
@@ -24,7 +24,7 @@
           </div>
           <div class="o-grid__col o-grid__col--right">
             <AlertButton
-              :searchparams="data"
+              :searchparams="formData"
               v-if="use_alerts && this.query_meta.page"
             />
           </div>
@@ -47,7 +47,7 @@
           message="No se han encontrado resultados. Crea una alerta y te avisaremos."
         />
         <AlertButton
-          :searchparams="data"
+          :searchparams="formData"
           v-if="use_alerts && this.query_meta.page"
         />
       </div>
@@ -90,7 +90,7 @@ export default {
       errors: null,
       initiatives: [],
       query_meta: {},
-      data: {
+      formData: {
         topic: "",
         author: "",
         deputy: "",
@@ -134,17 +134,17 @@ export default {
     },
   },
   methods: {
-    getResults: function (event, formData) {
+    getResults: function (event) {
       this.loadingResults = true;
       this.cleanedForm = false;
       this.csvItems = [];
-      const isNewSearch = event && event.type === "submit";
+      const isNewSearch = event?.type === "submit";
       const params =
         this.$route.params.data && !isNewSearch
           ? qs.parse(this.$route.params.data)
-          : formData;
-      this.data = Object.assign(this.data, params);
-      const urlParams = Object.assign({}, this.data);
+          : this.formData;
+      this.formData = Object.assign(this.formData, params);
+      const urlParams = Object.assign({}, this.formData);
 
       if (isNewSearch) {
         this.scrollToID = "#results";
@@ -165,7 +165,7 @@ export default {
         .catch((e) => e);
 
       api
-        .getInitiatives(this.data)
+        .getInitiatives(this.formData)
         .then((response) => {
           if (!isNewSearch) {
             this.initiatives.push.apply(this.initiatives, response.initiatives);
@@ -188,13 +188,13 @@ export default {
       let node = document.querySelectorAll(".c-initiative-card");
       node = node[node.length - 1];
       this.scrollToID = `#${node.id}`;
-      this.data.page++;
+      this.formData.page++;
       this.getResults();
     },
     loadCSVItems: function (event) {
       if (!this.canDownloadCSV) return false;
       event.target.innerText = "Procesando descarga...";
-      let params = Object.assign({ per_page: this.LIMITCSV }, this.data);
+      let params = Object.assign({ per_page: this.LIMITCSV }, this.formData);
       api
         .getInitiatives(params)
         .then((response) => {
