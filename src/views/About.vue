@@ -107,7 +107,7 @@
             persona usuaria estar al día sobre las novedades parlamentarias de
             sus temáticas de interés.
           </p>
-          <h2>Reutlización</h2>
+          <h2>Reutilización</h2>
           <p>
             QHLD permite el acceso y descarga libre de toda la información
             disponible a través de la misma web en formato reutilizable
