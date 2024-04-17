@@ -15,7 +15,7 @@
             deselectLabel="Pulsa para deseleccionar"
             @select="fillSubtopicsAndTags"
             @remove="clearSubtopicsAndTags"
-            v-model="form.topic"
+            v-model="formData.topic"
             :options="this.store.allTopics.map((topic) => topic.name)"
             :allow-empty="true"
             name="topic"
@@ -35,7 +35,7 @@
             selectedLabel="Seleccionada"
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
-            v-model="form.tags"
+            v-model="formData.tags"
             :multiple="true"
             :options="filteredTags"
             :allow-empty="true"
@@ -55,7 +55,7 @@
         <div class="c-input-label u-block">
           <label for="text">Título y Contenido</label>
           <input
-            v-model="form.text"
+            v-model="formData.text"
             type="text"
             id="text"
             name="text"
@@ -67,7 +67,7 @@
         <div class="c-input-label u-block">
           <label for="reference">Referencia</label>
           <input
-            v-model="form.reference"
+            v-model="formData.reference"
             type="text"
             id="reference"
             name="reference"
@@ -79,7 +79,7 @@
         <div class="c-datepicker-label u-block">
           <label for="startdate">Desde</label>
           <VueDatePicker
-            v-model="form.startdate"
+            v-model="formData.startdate"
             locale="es"
             :format="formatDatepickerDate"
             placeholder="dd/mm/yyyy"
@@ -95,7 +95,7 @@
         <div class="c-datepicker-label u-block">
           <label for="enddate">Hasta</label>
           <VueDatePicker
-            v-model="form.enddate"
+            v-model="formData.enddate"
             locale="es"
             :format="formatDatepickerDate"
             placeholder="dd/mm/yyyy"
@@ -115,7 +115,7 @@
             selectedLabel="Seleccionado"
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
-            v-model="form.status"
+            v-model="formData.status"
             :options="this.store.allStatus"
             :allow-empty="true"
             name="status"
@@ -135,7 +135,7 @@
             selectedLabel="Seleccionado"
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
-            v-model="form.deputy"
+            v-model="formData.deputy"
             :options="getDeputies()"
             :allow-empty="true"
             name="deputy"
@@ -152,7 +152,7 @@
             selectedLabel="Seleccionado"
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
-            v-model="form.author"
+            v-model="formData.author"
             :options="
               this.store.getAllParliamentaryGroupsWithGoverment.map(
                 (group) => group.name || group
@@ -173,7 +173,7 @@
             selectedLabel="Seleccionado"
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
-            v-model="form.type"
+            v-model="formData.type"
             :options="getTypes()"
             :allow-empty="true"
             :multiple="true"
@@ -191,7 +191,7 @@
             selectedLabel="Seleccionado"
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
-            v-model="form.place"
+            v-model="formData.place"
             :options="this.store.getAllPlacesName"
             :allow-empty="true"
             name="place"
@@ -263,7 +263,6 @@ export default {
     return {
       subtopics: [],
       tags: [],
-      form: {},
       errors: null,
       selectedSubtopics: [],
       filteredTags: [],
@@ -280,31 +279,31 @@ export default {
   },
   computed: {
     formattedStartDate: function () {
-      return this.form.startdate
-        ? format(new Date(this.form.startdate), "dd/MMM/yyyy")
+      return this.formData.startdate
+        ? format(new Date(this.formData.startdate), "dd/MMM/yyyy")
         : undefined;
     },
 
     formattedEndDate: function () {
-      return this.form.enddate
-        ? format(new Date(this.form.enddate), "dd/MMM/yyyy")
+      return this.formData.enddate
+        ? format(new Date(this.formData.enddate), "dd/MMM/yyyy")
         : undefined;
     },
   },
   methods: {
     cleanForm: function () {
-      this.form.topic = "";
-      this.form.subtopics = [];
-      this.form.tags = [];
-      this.form.author = "";
-      this.form.deputy = "";
-      this.form.status = "";
-      this.form.place = "";
-      this.form.type = "";
-      this.form.reference = "";
-      this.form.enddate = "";
-      this.form.startdate = "";
-      this.form.text = "";
+      this.formData.topic = "";
+      this.formData.subtopics = [];
+      this.formData.tags = [];
+      this.formData.author = "";
+      this.formData.deputy = "";
+      this.formData.status = "";
+      this.formData.place = "";
+      this.formData.type = "";
+      this.formData.reference = "";
+      this.formData.enddate = "";
+      this.formData.startdate = "";
+      this.formData.text = "";
       this.clearSubtopicsAndTags();
       // //clear url
       this.$router.push({ name: "search" });
@@ -317,7 +316,7 @@ export default {
       return options;
     },
     getDeputies: function () {
-      const { author } = this.form;
+      const { author } = this.formData;
       if (author == "Gobierno") {
         return [];
       }
@@ -335,8 +334,8 @@ export default {
     },
     fillSubtopicsAndTags: function (selectedTopic, clearValues) {
       if (clearValues) {
-        this.form.subtopics = [];
-        this.form.tags = [];
+        this.formData.subtopics = [];
+        this.formData.tags = [];
       }
       const currentTopic = this.store.allTopics.find(
         (topic) => topic.name === selectedTopic
@@ -348,20 +347,20 @@ export default {
       this.selectedSubtopics = [];
       this.tags = [];
       this.filteredTags = [];
-      this.form.subtopics = [];
-      this.form.tags = [];
+      this.formData.subtopics = [];
+      this.formData.tags = [];
     },
     clearStartDate: function () {
-      this.form.startdate = "";
+      this.formData.startdate = "";
     },
     clearEndDate: function () {
-      this.form.enddate = "";
+      this.formData.enddate = "";
     },
     selectStartDate: function (date) {
-      this.form.startdate = format(new Date(date), "yyyy-MM-dd");
+      this.formData.startdate = format(new Date(date), "yyyy-MM-dd");
     },
     selectEndDate: function (date) {
-      this.form.enddate = format(new Date(date), "yyyy-MM-dd");
+      this.formData.enddate = format(new Date(date), "yyyy-MM-dd");
     },
     formatDatepickerDate: function (date) {
       return format(new Date(date), "dd/MM/yyyy");
@@ -390,12 +389,12 @@ export default {
         .sort(Utils.naturalSort);
     },
     addSubtopicToTagsFilter: function (selectedSubtopic) {
-      this.form.tags = [];
+      this.formData.tags = [];
       this.selectedSubtopics.push(selectedSubtopic);
       this.filterTags();
     },
     removeSubtopicToTagsFilter: function (removedSubtopic) {
-      this.form.tags = [];
+      this.formData.tags = [];
       this.selectedSubtopics.splice(
         this.selectedSubtopics.indexOf(removedSubtopic),
         1
@@ -403,15 +402,15 @@ export default {
       this.filterTags();
     },
     getResults: function (event) {
-      this.$emit("getResults", event, this.form);
+      this.$emit("getResults", event);
     },
     clearInitiatives: function (event) {
       this.cleanForm();
       this.$emit("clearInitiatives", event);
     },
     prepareForm: function () {
-      if (this.form.topic) {
-        this.fillSubtopicsAndTags(this.form.topic, false);
+      if (this.formData.topic) {
+        this.fillSubtopicsAndTags(this.formData.topic, false);
       }
     },
     toggleAdvanced: function () {
@@ -419,7 +418,6 @@ export default {
     },
   },
   created: function () {
-    this.form = Object.assign({}, this.formData);
     if (this.store.allTopics.length) {
       this.prepareForm();
     }

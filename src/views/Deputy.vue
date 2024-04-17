@@ -141,11 +141,14 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, computed, onBeforeMount } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { useParliamentStore } from "@/stores/parliament";
+import { useSeoMeta } from "@unhead/vue";
+
 import Footprint from "@/components/Footprint.vue";
-import PageHeader from "@/components/PageHeader.vue";
 import CongressLink from "@/components/CongressLink.vue";
-import DeputyHeader from "@/components/DeputyHeader.vue";
 import Message from "@/components/Message.vue";
 import Results from "@/components/Results.vue";
 import Icon from "@/components/Icon.vue";
@@ -158,114 +161,81 @@ import Barchart from "@/components/Barchart.vue";
 import FootprintInfo from "@/components/FootprintInfo.vue";
 import api from "@/api";
 import config from "@/config";
-import { useParliamentStore } from "@/stores/parliament";
 
-export default {
-  name: "deputy",
-  components: {
-    Footprint,
-    PageHeader,
-    CongressLink,
-    DeputyHeader,
-    Message,
-    Results,
-    Icon,
-    InfoDropdown,
-    PartyLogoIcon,
-    Loader,
-    SaveAlert,
-    SocialIcon,
-    Barchart,
-    FootprintInfo,
-  },
-  setup() {
-    const store = useParliamentStore();
-    return { store };
-  },
-  data: function () {
-    return {
-      deputy: null,
-      parliamentarygroup: null,
-      latestInitiatives: null,
-      use_alerts: config.USE_ALERTS,
-      styles: config.STYLES,
-    };
-  },
-  computed: {
-    footprintByTopics: function () {
-      if (this.deputy) {
-        return this.deputy.footprint_by_topics
-          .filter((item) =>
-            this.store.allTopics.some((topic) => topic.name === item.name)
-          )
-          .filter((item) => item.score > 0)
-          .slice(0, 5);
-      }
-      return [];
-    },
-  },
-  methods: {
-    addBirthdayClass: function () {
-      const date = new Date(this.deputy.birthdate);
-      const today = new Date();
-      if (
-        date.getDate() == today.getDate() &&
-        date.getMonth() == today.getMonth()
-      ) {
-        return "c-deputy__birthday";
-      }
-    },
-    getDeputy: function () {
-      api
-        .getDeputy(this.$route.params.id)
-        .then((response) => {
-          this.deputy = response;
-          this.parliamentarygroup = this.store.allParliamentaryGroups.find(
-            (allPG) => allPG.shortname === this.deputy.parliamentarygroup
-          );
-          this.getLatestInitiatives();
-        })
-        .catch((error) => {
-          this.errors = error;
-          this.$router.push({ name: "Page404", params: { 0: "404" } });
-        });
-    },
-    getLatestInitiatives: function () {
-      api
-        .getInitiatives({ deputy: this.deputy.name, per_page: 6 })
-        .then((response) => {
-          if (response.initiatives)
-            this.latestInitiatives = response.initiatives;
-        })
-        .catch((error) => (this.errors = error));
-    },
-    getLegislatures: function () {
-      return "Legislaturas " + this.deputy.legislatures;
-    },
-  },
-  metaInfo() {
-    const title = this.deputy?.name
-      ? `${this.deputy.name} - Qué hacen los diputados`
-      : "- Qué hacen los diputados";
+const route = useRoute();
+const router = useRouter();
+const store = useParliamentStore();
 
-    return {
-      title,
-      meta: [
-        {
-          property: "og:title",
-          content: title,
-          vmid: "og:title",
-        },
-      ],
-    };
-  },
-  created: function () {
-    this.getDeputy();
-  },
-  watch: {
-    $route: "getDeputy",
-  },
+const deputy = ref(null);
+const parliamentarygroup = ref(null);
+const latestInitiatives = ref(null);
+const errors = ref(null);
+const use_alerts = config.USE_ALERTS;
+const styles = config.STYLES;
+
+const headTitle = computed(() => {
+  return deputy.value
+    ? `${deputy.value.name} - Qué hacen los diputados`
+    : "Qué hacen los diputados";
+});
+
+const footprintByTopics = computed(() => {
+  if (deputy.value) {
+    return deputy.value.footprint_by_topics
+      .filter((item) =>
+        store.allTopics.some((topic) => topic.name === item.name)
+      )
+      .filter((item) => item.score > 0)
+      .slice(0, 5);
+  }
+  return [];
+});
+
+useSeoMeta({
+  title: () => headTitle.value,
+  ogTitle: () => headTitle.value,
+  ogImage: () => (deputy.value ? deputy.value.image : null),
+});
+
+const addBirthdayClass = () => {
+  const date = new Date(deputy.value.birthdate);
+  const today = new Date();
+  if (
+    date.getDate() == today.getDate() &&
+    date.getMonth() == today.getMonth()
+  ) {
+    return "c-deputy__birthday";
+  }
 };
+
+const getDeputy = async () => {
+  api
+    .getDeputy(route.params.id)
+    .then((response) => {
+      deputy.value = response;
+      parliamentarygroup.value = store.allParliamentaryGroups.find(
+        (allPG) => allPG.shortname === deputy.value.parliamentarygroup
+      );
+      getLatestInitiatives();
+    })
+    .catch((error) => {
+      errors.value = error;
+      router.push({ name: "Page404" });
+    });
+};
+const getLatestInitiatives = () => {
+  api
+    .getInitiatives({ deputy: deputy.value.name, per_page: 6 })
+    .then((response) => {
+      if (response.initiatives) latestInitiatives.value = response.initiatives;
+    })
+    .catch((error) => (errors.value = error));
+};
+const getLegislatures = () => {
+  return "Legislaturas " + deputy.value.legislatures;
+};
+
+onBeforeMount(getDeputy);
 </script>
 
 <style lang="scss" scoped>

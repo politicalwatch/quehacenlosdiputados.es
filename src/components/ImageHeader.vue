@@ -43,3 +43,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.c-image-header figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>

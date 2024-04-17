@@ -72,22 +72,22 @@ export default {
     csvItems: Array,
     canDownloadCSV: Boolean,
     csvFields: {
-      type: Array,
+      type: Object,
       default: function () {
-        return [
-          "title",
-          "reference",
-          "initiative_type_alt",
-          "authors",
-          "deputies",
-          "tagged.0.topics",
-          "tagged.0.tags",
-          "place",
-          "status",
-          "created",
-          "updated",
-          "url",
-        ];
+        return {
+          title: "title",
+          reference: "reference",
+          initiative_type_alt: "initiative_type_alt",
+          authors: "authors",
+          deputies: "deputies",
+          topics: "topics",
+          tags: "tags",
+          place: "place",
+          status: "status",
+          created: "created",
+          updated: "updated",
+          url: "url",
+        };
       },
     },
     label: {

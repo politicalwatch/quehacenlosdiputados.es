@@ -20,7 +20,21 @@
         </div>
       </div>
     </div>
+
     <div id="topic" class="o-container o-section">
+      <div class="u-padding-top-2" v-if="deputies.length > 0">
+        <h2 class="u-uppercase u-margin-bottom-2 c-topic__title">
+          Frecuencia de las iniciativas
+        </h2>
+        <FrequencyChart
+          :topicsStyles="styles"
+          :topic="topic"
+          :dataset="topicsByWeek"
+          :aggreagatedDataset="allTopicsByWeek"
+          @update:showComparativeMode="getAllTopicsByWeek()"
+          v-if="topicsByWeek != null"
+        />
+      </div>
       <div class="u-padding-top-2" v-if="deputies.length > 0">
         <h2 class="u-uppercase u-margin-bottom-4 c-topic__title">
           En esta temática destacan...
@@ -69,6 +83,7 @@ import ParliamentaryGroupCard from "@/components/ParliamentaryGroupCard.vue";
 import CardGrid from "@/components/CardGrid.vue";
 import Loader from "@/components/Loader.vue";
 import SaveAlert from "@/components/SaveAlert.vue";
+import FrequencyChart from "@/components/FrequencyChart.vue";
 import api from "@/api";
 import config from "@/config";
 import { useParliamentStore } from "@/stores/parliament";
@@ -82,6 +97,7 @@ export default {
     CardGrid,
     Loader,
     SaveAlert,
+    FrequencyChart,
   },
   setup() {
     const store = useParliamentStore();
@@ -92,6 +108,8 @@ export default {
       topic: {},
       deputies: [],
       latestInitiatives: null,
+      topicsByWeek: null,
+      allTopicsByWeek: null,
       use_alerts: config.USE_ALERTS,
       styles: config.STYLES.topics,
       loaded: false,
@@ -196,12 +214,18 @@ export default {
       },
     };
   },
-  // computed: {
-  //   ...mapState(["allDeputies"]),
-  //   ...mapGetters({
-  //     getDeputyByName: "getDeputyByName",
-  //   }),
-  // },
+  head() {
+    return {
+      title: () => this.headTitle,
+    };
+  },
+  computed: {
+    headTitle: function () {
+      return this.topic?.name
+        ? `${this.topic.name} - Qué hacen los diputados`
+        : "Qué hacen los diputados";
+    },
+  },
   methods: {
     getTopic: function () {
       api
@@ -210,6 +234,7 @@ export default {
           this.topic = response;
           this.getLatestInitiatives(this.topic.name);
           this.getDeputiesRanking(this.topic.name);
+          this.getTopicsByWeek(this.topic.name);
         })
         .catch((error) => {
           this.errors = error;
@@ -260,41 +285,23 @@ export default {
         }
       }
     },
-  },
-  metaInfo() {
-    const title = this.topic?.name
-      ? `${this.topic.name} - Qué hacen los diputados`
-      : "- Qué hacen los diputados";
+    getTopicsByWeek: function (topic) {
+      api
+        .getTopicsByWeek(topic)
+        .then((response) => {
+          this.topicsByWeek = response.data;
+        })
+        .catch((error) => (this.errors = error));
+    },
 
-    const description = this.topic?.description
-      ? this.topic.description
-      : "Que todos los días sean de puertas abiertas en el Congreso de los Diputados";
-
-    return {
-      title,
-      meta: [
-        {
-          property: "og:title",
-          content: title,
-          vmid: "og:title",
-        },
-        {
-          property: "twitter:title",
-          content: title,
-          vmid: "twitter:title",
-        },
-        {
-          vmid: "description",
-          name: "description",
-          content: description,
-        },
-        {
-          property: "og:description",
-          content: description,
-          vmid: "og:description",
-        },
-      ],
-    };
+    getAllTopicsByWeek: function () {
+      api
+        .getAllTopicsByWeek(topic)
+        .then((response) => {
+          this.allTopicsByWeek = response.data;
+        })
+        .catch((error) => (this.errors = error));
+    },
   },
   created: function () {
     this.getTopic();
