@@ -1,5 +1,5 @@
 <template>
-  <div :class="'c-deputy-card ' + layout + '-layout'">
+  <div v-if="deputy" :class="'c-deputy-card ' + layout + '-layout'">
     <div class="c-deputy-card__wrapper">
       <router-link
         :to="{ name: 'deputy', params: { id: deputy.id } }"

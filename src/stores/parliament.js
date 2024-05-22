@@ -49,6 +49,7 @@ export const useParliamentStore = defineStore("parliament", {
   },
   actions: {
     getDeputies() {
+      if (this.allDeputies.length > 0) return;
       api
         .getDeputies()
         .then((response) => {

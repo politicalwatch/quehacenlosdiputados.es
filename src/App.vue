@@ -15,38 +15,28 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { onMounted } from "vue";
+
 import PageNavbar from "@/components//Navbar.vue";
 import PageFooter from "@/components/PageFooter.vue";
 import config from "@/config";
 import { useParliamentStore } from "@/stores/parliament";
 
-export default {
-  name: "app",
-  components: {
-    PageNavbar,
-    PageFooter,
-  },
-  setup() {
-    const store = useParliamentStore();
-    return { store };
-  },
-  data: function () {
-    return {
-      MENU: config.MENU,
-      DISCLAIMER: config.DISCLAIMER,
-      LOGO: config.LOGO,
-    };
-  },
-  created: function () {
-    this.store.getDeputies();
-    this.store.getTopics();
-    this.store.getStatus();
-    this.store.getPlaces();
-    this.store.getTypes();
-    this.store.getParliamentaryGroups();
-  },
-};
+const store = useParliamentStore();
+
+const MENU = config.MENU;
+const DISCLAIMER = config.DISCLAIMER;
+const LOGO = config.LOGO;
+
+onMounted(() => {
+  store.getStatus();
+  store.getPlaces();
+  store.getTypes();
+  store.getTopics();
+  store.getParliamentaryGroups();
+  store.getDeputies();
+});
 </script>
 
 <style lang="scss">
