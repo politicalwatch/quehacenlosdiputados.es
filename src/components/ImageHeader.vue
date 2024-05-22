@@ -1,7 +1,12 @@
 <template>
   <div class="c-image-header">
     <figure>
-      <img fetchpriority="high" :src="image" :alt="alt" />
+      <img
+        :srcset="imageSrcset"
+        :sizes="imageSizes"
+        :src="imageSrc"
+        :alt="alt"
+      />
     </figure>
     <h1 class="u-uppercase u-hide u-block@sm c-image-header__date">
       {{ home.Date }}
@@ -33,7 +38,9 @@ export default {
   props: {
     home: Object,
     alt: String,
-    image: String,
+    imageSrcset: String,
+    imageSizes: String,
+    imageSrc: String,
   },
   methods: {
     isUnsplashPhoto: function () {

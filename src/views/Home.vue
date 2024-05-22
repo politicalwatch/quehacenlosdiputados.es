@@ -3,7 +3,9 @@
     <div v-if="home">
       <ImageHeader
         :home="home"
-        :image="getHomeImage()"
+        :imageSrcset="getHomeImageSrcset()"
+        imageSizes="(min-width: 1000px) 1000px, (min-width: 750px) 750px, 500px"
+        :imageSrc="getHomeImage()"
         class="u-margin-bottom-4"
       />
 
@@ -88,6 +90,11 @@ export default {
           this.getRelatedInitiatives();
         })
         .catch((error) => (this.errors = error));
+    },
+    getHomeImageSrcset: function () {
+      return this.home.Image
+        ? `${api.getHomeResourceUrl(this.home.Image.formats.small.url)} 500w, ${api.getHomeResourceUrl(this.home.Image.formats.medium.url)} 750w, ${api.getHomeResourceUrl(this.home.Image.formats.large.url)} 1000w`
+        : null;
     },
     getHomeImage: function () {
       return this.home.Image
