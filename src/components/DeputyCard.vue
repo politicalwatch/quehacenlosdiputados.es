@@ -78,7 +78,7 @@ const groupColor = config.STYLES.parties[deputy.party_name]?.color ?? "#A3D5C8";
   &__wrapper {
     &__image,
     &__image-large {
-      border: 4px solid v-bind(groupColor);
+      border-color: v-bind(groupColor);
     }
   }
 }
