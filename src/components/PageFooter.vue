@@ -3,12 +3,13 @@
     <div class="o-container o-container-fluid">
       <div class="o-grid">
         <div class="o-grid__col u-3@sm c-footer__brand">
-          <a href="/" class="c-footer__brand-link"
-            ><img
+          <a href="/" class="c-footer__brand-link">
+            <component
               class="c-footer__brand-logo"
-              :src="'/img/logo-white-' + getLogoVersion() + '.png'"
               alt="Logo de Qué hacen las diputadas"
-          /></a>
+              :is="DynamicLogo"
+            ></component>
+          </a>
         </div>
         <div class="o-grid__col u-6@sm u-offset-3@sm">
           <div class="o-grid">
@@ -99,12 +100,12 @@
       </div>
       <div class="o-grid u-margin-top-8">
         <div class="o-grid__col u-4@sm">
-          <a href="https://politicalwatch.es" target="_blank"
-            ><img
+          <a href="https://politicalwatch.es" target="_blank">
+            <LogoPW
               class="c-footer__brand-logo"
-              src="/img/logo-politicalwatch.png"
               alt="Logo de Political Watch"
-          /></a>
+            />
+          </a>
         </div>
         <div class="o-grid__col u-8@sm">
           <p class="c-footer__credits">
@@ -147,60 +148,57 @@
   </footer>
 </template>
 
-<script>
+<script setup>
+import { defineAsyncComponent } from "vue";
 import VueCookieAcceptDecline from "vue-cookie-accept-decline";
 import "vue-cookie-accept-decline/dist/vue-cookie-accept-decline.css";
 import { bootstrap } from "vue-gtag";
-import Icon from "@/components/Icon.vue";
 
-export default {
-  name: "PageFooter",
-  components: {
-    VueCookieAcceptDecline,
-    Icon,
-  },
-  mounted() {
-    // this.$refs.cookiePanel.removeCookie();
-    // this.$refs.cookiePanel.init();
-  },
-  methods: {
-    getLogoVersion: () => {
-      const versions = ["female", "male", "neutral"];
-      return versions[Math.floor(Math.random() * versions.length)];
-    },
-    cookieStatus: (val) => {
-      // console.log('Cookie status: ' + val);
-      if (val === "decline" || val == null) {
-        if (gtag) {
-          gtag("consent", "default", {
-            ad_storage: "denied",
-            analytics_storage: "denied",
-          });
-        }
-      } else if (val === "accept") {
-        bootstrap().then(() => {
-          gtag("consent", "update", {
-            ad_storage: "granted",
-            analytics_storage: "granted",
-          });
-        });
-      }
-    },
-    cookieClickedAccept: () => {
-      bootstrap().then(() => {
-        gtag("consent", "update", {
-          ad_storage: "granted",
-          analytics_storage: "granted",
-        });
-      });
-    },
-    cookieClickedDecline: () => {
+import Icon from "@/components/Icon.vue";
+import LogoPW from "@/assets/logo-political-watch.svg";
+
+const getLogoVersion = () => {
+  const versions = ["male", "female", "neutral"];
+  return versions[Math.floor(Math.random() * versions.length)];
+};
+
+const DynamicLogo = defineAsyncComponent(
+  () => import(`@/assets/logo-white-${getLogoVersion()}.svg`)
+);
+
+const cookieStatus = (val) => {
+  // console.log('Cookie status: ' + val);
+  if (val === "decline" || val == null) {
+    if (gtag) {
       gtag("consent", "default", {
         ad_storage: "denied",
         analytics_storage: "denied",
       });
-    },
-  },
+    }
+  } else if (val === "accept") {
+    bootstrap().then(() => {
+      gtag("consent", "update", {
+        ad_storage: "granted",
+        analytics_storage: "granted",
+      });
+    });
+  }
+};
+
+const cookieClickedAccept = () => {
+  bootstrap().then(() => {
+    gtag("consent", "update", {
+      ad_storage: "granted",
+      analytics_storage: "granted",
+    });
+  });
+};
+
+const cookieClickedDecline = () => {
+  gtag("consent", "default", {
+    ad_storage: "denied",
+    analytics_storage: "denied",
+  });
 };
 </script>
 
