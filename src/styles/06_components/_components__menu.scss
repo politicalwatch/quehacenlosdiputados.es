@@ -2,6 +2,9 @@
   @include th2;
 
   color: $menu-link-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   list-style: none;
   text-align: center;
   padding-top: rem($spacer-unit * 4);
@@ -9,7 +12,7 @@
   @media (min-width: $md) {
     @include tbody;
 
-    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     flex: 1;
     text-align: left;
@@ -30,18 +33,6 @@
     &::before {
       display: none;
     }
-
-    &:last-child {
-      @include border-link;
-
-      .c-menu__link {
-        background-image: url('../assets/svg/icon-support.svg');
-        background-position: left center;
-        background-repeat: no-repeat;
-        padding-left: 24px;
-      }
-
-    }
   }
 
   &__link {
@@ -53,14 +44,32 @@
       color: $black;
       text-decoration: underline;
     }
+
+    &--icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include border-link;
+      padding: rem($spacer-unit * 2);
+
+      @media (min-width: $md) {
+        padding: rem($spacer-unit) rem($spacer-unit * 2);
+      }
+    }
   }
 
   &__icon {
-    margin-left: 5px;
+    margin-right: rem($spacer-unit);
+    display: block;
+    width: 20px;
+    height: 20px;
 
-    & svg {
-      width: 10px;
-      height: 10px;
+    svg {
+      transform: translateY(-16px);
+
+      @media (min-width: $md) {
+        transform: translateY(0);
+      }
     }
   }
 }

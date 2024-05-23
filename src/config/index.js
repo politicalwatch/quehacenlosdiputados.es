@@ -28,6 +28,7 @@ export default {
     {
       route: "collaborate",
       name: "Colabora",
+      icon: "support",
       condition: true,
     },
   ],

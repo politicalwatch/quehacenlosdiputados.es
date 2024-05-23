@@ -62,13 +62,25 @@
               :href="link.route"
               class="c-menu__link"
               target="_blank"
-              >{{ link.name
-              }}<icon :icon="link.icon" class="c-menu__icon" v-if="link.icon"
-            /></a>
-            <router-link v-else :to="{ name: link.route }" class="c-menu__link"
-              >{{ link.name
-              }}<icon :icon="link.icon" class="c-menu__icon" v-if="link.icon"
-            /></router-link>
+            >
+              {{ link.name }}
+              <icon
+                :icon="link.icon"
+                :class="{
+                  'c-menu__link': true,
+                  'c-menu__link--icon': link.icon,
+                }"
+                v-if="link.icon"
+              />
+            </a>
+            <router-link
+              v-else
+              :to="{ name: link.route }"
+              :class="{ 'c-menu__link': true, 'c-menu__link--icon': link.icon }"
+            >
+              <icon :icon="link.icon" class="c-menu__icon" v-if="link.icon" />
+              <span>{{ link.name }}</span>
+            </router-link>
           </li>
         </ul>
       </nav>
@@ -76,54 +88,44 @@
   </header>
 </template>
 
-<script>
+<script setup>
+import { ref, computed } from "vue";
+
 import Logo from "@/assets/logo.svg";
 import Icon from "@/components/Icon.vue";
 
-export default {
-  name: "PageNavbar",
-  components: {
-    Icon,
-    Logo,
+const { links, disclaimer, preImage, logo } = defineProps({
+  links: { type: Array },
+  disclaimer: {
+    type: Object,
+    default: () => {},
   },
-  props: {
-    links: Array,
-    disclaimer: {
-      type: Object,
-      default: function () {
-        return {};
-      },
-    },
-    preImage: String,
-    logo: String,
-  },
-  data: function () {
-    return {
-      closedMessage: false,
-      menuVisible: false,
-    };
-  },
-  computed: {
-    closedDisclaimer: function () {
-      return window.sessionStorage.getItem("closedDisclaimer") ||
-        this.closedMessage
-        ? true
-        : false;
-    },
-  },
-  methods: {
-    closeDisclaimer: function () {
-      window.sessionStorage.setItem("closedDisclaimer", true);
-      this.closedMessage = true;
-    },
-    toggleMenu: function () {
-      this.menuVisible = !this.menuVisible;
-    },
-    closeMenuMobile: function () {
-      if (this.menuVisible) {
-        this.menuVisible = false;
-      }
-    },
-  },
+  preImage: { type: String },
+  logo: { type: String },
+});
+
+const closedMessage = ref(false);
+const menuVisible = ref(false);
+
+const closedDisclaimer = computed(() => {
+  return window.sessionStorage.getItem("closedDisclaimer") ||
+    closedMessage.value
+    ? true
+    : false;
+});
+
+const closeDisclaimer = () => {
+  window.sessionStorage.setItem("closedDisclaimer", true);
+  closedMessage.value = true;
+};
+
+const toggleMenu = () => {
+  menuVisible.value = !menuVisible.value;
+};
+
+const closeMenuMobile = () => {
+  if (menuVisible.value) {
+    menuVisible.value = false;
+  }
 };
 </script>
