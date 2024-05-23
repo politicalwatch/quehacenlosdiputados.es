@@ -1,22 +1,28 @@
 <template>
-  <a class="c-social-icon" :href="link" target="_blank"><img :src="`/img/${icon}.svg`"/></a>
+  <a class="c-social-icon" :href="link" target="_blank"
+    ><img :src="`/img/${icon}.svg`"
+  /></a>
 </template>
 
-<script>
+<script setup>
+import Icon from "@/components/Icon.vue";
 
-import Icon from '@/components/Icon.vue';
-
-export default {
-  name: 'social-icon',
-  components: {
-    Icon,
+const { link, icon } = defineProps({
+  link: {
+    type: String,
+    required: true,
   },
-  props: {
-    link: String,
-    icon: String,
+  icon: {
+    type: String,
+    required: true,
   },
-}
+});
 </script>
 
 <style lang="scss" scoped>
+.c-social-icon {
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+}
 </style>

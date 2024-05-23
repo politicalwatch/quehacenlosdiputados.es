@@ -11,18 +11,15 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Icon404 from "@/assets/svg/not-found.svg";
 
-export default {
-  name: 'NotFound',
-  components: {
-    Icon404,
+const { message } = defineProps({
+  message: {
+    type: String,
+    default: "Página no encontrada",
   },
-  props: {
-    message: String,
-  },
-};
+});
 </script>
 
 <style scoped lang="scss">

@@ -11,51 +11,54 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Icon from "@/components/Icon.vue";
 import * as Utils from "@/utils";
 
-export default {
-  name: "TopicPill",
-  components: {
-    Icon,
+const { topics, topicsStyles, withLinks, limit } = defineProps({
+  topics: {
+    type: Array,
+    default: () => [],
   },
-  props: {
-    topics: Array,
-    topicsStyles: Object,
-    withLinks: Boolean,
-    limit: Number,
+  topicsStyles: {
+    type: Object,
   },
-  methods: {
-    getTopics: function () {
-      let topics = this.topics;
-      if (this.limit) {
-        topics = topics.slice(0, this.limit);
-      }
-      if (this.topicsStyles && topics.length) {
-        return topics
-          .slice()
-          .sort(Utils.naturalSort)
-          .map((element, i) => {
-            if (this.withLinks) {
-              return `
-              <a href="#topic-${i}" class="c-topics__topic c-topics__topic__small" style="background-color:${this.topicsStyles[element]?.color}">
-                ${this.topicsStyles[element]?.shortname}
-              </a>
-            `;
-            } else {
-              return `
-              <div class="c-topics__topic c-topics__topic__small" style="background-color:${this.topicsStyles[element]?.color}">
-                ${this.topicsStyles[element]?.shortname}
-              </div>
-            `;
-            }
-          })
-          .join("");
-      }
-      return topics.length ? topics.join("<br/>") : "";
-    },
+  withLinks: {
+    type: Boolean,
+    default: false,
   },
+  limit: {
+    type: Number,
+  },
+});
+
+const getTopics = () => {
+  let topicsArray = topics;
+  if (limit) {
+    topicsArray = topicsArray.slice(0, limit);
+  }
+  if (topicsStyles && topicsArray.length) {
+    return topicsArray
+      .slice()
+      .sort(Utils.naturalSort)
+      .map((element, i) => {
+        if (withLinks) {
+          return `
+          <a href="#topic-${i}" class="c-topics__topic c-topics__topic__small" style="background-color:${topicsStyles[element]?.color}">
+            ${topicsStyles[element]?.shortname}
+          </a>
+        `;
+        } else {
+          return `
+          <div class="c-topics__topic c-topics__topic__small" style="background-color:${topicsStyles[element]?.color}">
+            ${topicsStyles[element]?.shortname}
+          </div>
+        `;
+        }
+      })
+      .join("");
+  }
+  return topicsArray.length ? topicsArray.join("<br/>") : "";
 };
 </script>
 

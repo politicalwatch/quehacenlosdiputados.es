@@ -98,7 +98,7 @@ const { links, disclaimer, preImage, logo } = defineProps({
   links: { type: Array },
   disclaimer: {
     type: Object,
-    default: () => {},
+    default: () => ({}),
   },
   preImage: { type: String },
   logo: { type: String },

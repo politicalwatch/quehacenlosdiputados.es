@@ -5,7 +5,9 @@
         <div class="c-save-alert__image">
           <img src="/img/alerts.png" />
         </div>
-        <h4 class="u-uppercase">No te pierdas nada de la actividad parlamentaria relacionada con</h4>
+        <h4 class="u-uppercase">
+          No te pierdas nada de la actividad parlamentaria relacionada con
+        </h4>
         <h1 class="u-uppercase">{{ text }}</h1>
         <AlertButton :searchparams="searchparams" />
       </div>
@@ -13,21 +15,36 @@
   </div>
 </template>
 
-<script>
-import AlertButton from '@/components/AlertButton.vue';
+<script setup>
+import AlertButton from "@/components/AlertButton.vue";
 
-export default {
-  name: "SaveAlert",
-  props: {
-    searchparams: Object,
-    text: String,
+const { searchparams, text } = defineProps({
+  searchparams: {
+    type: Object,
+    required: true,
   },
-  components: {
-    AlertButton,
+  text: {
+    type: String,
+    required: true,
   },
-}
+});
 </script>
 
 <style scoped lang="scss">
-</style>
+.c-save-alert {
+  margin-bottom: 32px;
 
+  &__image {
+    margin-bottom: 32px;
+  }
+
+  &__wrapper {
+    text-align: center;
+  }
+
+  &__button {
+    display: inline-block;
+    margin-top: 8px;
+  }
+}
+</style>

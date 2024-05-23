@@ -249,8 +249,8 @@ import {
   scaleLinear,
   scaleTime,
 } from "d3";
-import vTr3nsition from "./vTr3nsition.js";
-import UiSwitch from "./UiSwitch.vue";
+import vTr3nsition from "@/components/vTr3nsition.js";
+import UiSwitch from "@/components/UiSwitch.vue";
 const props = defineProps({
   defaultHeight: {
     type: Number,

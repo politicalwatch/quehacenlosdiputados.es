@@ -7,23 +7,31 @@
     </thead>
     <tbody>
       <tr v-for="(row, index) in rows" v-bind:key="index">
-        <td v-for="(item, item_index) in row" v-bind:key="index + '-' + item_index" :data-title="getColumn(item_index)">{{ item }}</td>
+        <td
+          v-for="(item, item_index) in row"
+          v-bind:key="index + '-' + item_index"
+          :data-title="getColumn(item_index)"
+        >
+          {{ item }}
+        </td>
       </tr>
     </tbody>
   </table>
 </template>
 
-<script>
-  export default {
-    name: 'ResponsiveTable',
-    props: {
-      columns: Array,
-      rows: Array,
-    },
-    methods: {
-      getColumn: function(index) {
-        return this.columns[index]
-      } 
-    }
-  }
+<script setup>
+const { columns, rows } = defineProps({
+  columns: {
+    type: Array,
+    required: true,
+  },
+  rows: {
+    type: Array,
+    required: true,
+  },
+});
+
+const getColumn = (index) => {
+  return columns[index];
+};
 </script>

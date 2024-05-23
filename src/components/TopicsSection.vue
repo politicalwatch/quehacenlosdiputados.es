@@ -97,94 +97,93 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from "vue";
 import qs from "qs";
 
 import Icon from "@/components/Icon.vue";
 import * as Utils from "@/utils";
 
-export default {
-  name: "TopicsSection",
-  components: {
-    Icon,
+const { initiative, topicsStyles } = defineProps({
+  initiative: {
+    type: Object,
+    required: true,
   },
-  props: {
-    initiative: Object,
-    topicsStyles: Object,
+  topicsStyles: {
+    type: Object,
   },
-  setup() {
-    return { Utils };
-  },
-  data: function () {
-    return {
-      titles: {
-        politicas: "Temáticas",
-        ods: "Agenda 2030",
-      },
-      activeKb: "politicas",
-    };
-  },
-  methods: {
-    activateKb: function (kb) {
-      this.activeKb = kb;
-    },
-    isTagged: function () {
-      return this.initiative.tagged.some(
-        (item) => item.topics.length > 0 || item.tags.length > 0
-      );
-    },
-    getKnowledgebases: function () {
-      const kbs = [];
-      for (const tagged of this.initiative["tagged"]) {
-        if (tagged["topics"].length > 0) {
-          kbs.push(tagged["knowledgebase"]);
-        }
-      }
-      return kbs.sort().reverse();
-    },
-    getTopics: function (kb) {
-      let topics = [];
-      for (const tagged of this.initiative["tagged"]) {
-        if (tagged["knowledgebase"] == kb) {
-          topics = topics.concat(tagged["topics"]);
-        }
-      }
-      return topics.slice().sort(Utils.naturalSort);
-    },
-    getTags: function (kb) {
-      let tags = [];
-      for (const tagged of this.initiative["tagged"]) {
-        if (tagged["knowledgebase"] == kb) {
-          tags = tags.concat(tagged["tags"]);
-        }
-      }
-      return tags;
-    },
-    getSubtopics(topic) {
-      const tags = this.getTags(this.activeKb);
-      return [
-        ...new Set(
-          tags.filter((tag) => tag.topic === topic).map((tag) => tag.subtopic)
-        ),
-      ];
-    },
-    getTagsBySubtopic: function (subtopic) {
-      const tags = this.getTags(this.activeKb);
-      return tags
-        .filter((tag) => tag.subtopic === subtopic)
-        .map((tag) => tag.tag);
-    },
-    paramsData: function (currentTopic, currentSubtopic, currentTag) {
-      return qs.stringify({
-        topic: currentTopic,
-        subtopics: currentSubtopic ? currentSubtopic : undefined,
-        tags: currentTag ? currentTag : undefined,
-      });
-    },
-    getP2030SearchLink: function (params) {
-      const baseUrl = "https://www.parlamento2030.es/resultados/";
-      return baseUrl + params;
-    },
-  },
+});
+
+const titles = {
+  politicas: "Temáticas",
+  ods: "Agenda 2030",
+};
+const activeKb = ref("politicas");
+
+const activateKb = (kb) => {
+  activeKb.value = kb;
+};
+
+const isTagged = () => {
+  return initiative.tagged.some(
+    (item) => item.topics.length > 0 || item.tags.length > 0
+  );
+};
+
+const getKnowledgebases = () => {
+  const kbs = [];
+  for (const tagged of initiative["tagged"]) {
+    if (tagged["topics"].length > 0) {
+      kbs.push(tagged["knowledgebase"]);
+    }
+  }
+  return kbs.sort().reverse();
+};
+
+const getTopics = (kb) => {
+  let topics = [];
+  for (const tagged of initiative["tagged"]) {
+    if (tagged["knowledgebase"] == kb) {
+      topics = topics.concat(tagged["topics"]);
+    }
+  }
+  return topics.slice().sort(Utils.naturalSort);
+};
+
+const getTags = (kb) => {
+  let tags = [];
+  for (const tagged of initiative["tagged"]) {
+    if (tagged["knowledgebase"] == kb) {
+      tags = tags.concat(tagged["tags"]);
+    }
+  }
+  return tags;
+};
+
+const getSubtopics = (topic) => {
+  const tags = getTags(activeKb.value);
+  return [
+    ...new Set(
+      tags.filter((tag) => tag.topic === topic).map((tag) => tag.subtopic)
+    ),
+  ];
+};
+
+const getTagsBySubtopic = (subtopic) => {
+  const tags = getTags(activeKb.value);
+  return tags.filter((tag) => tag.subtopic === subtopic).map((tag) => tag.tag);
+};
+
+const paramsData = (currentTopic, currentSubtopic, currentTag) => {
+  return qs.stringify({
+    topic: currentTopic,
+    subtopics: currentSubtopic ? currentSubtopic : undefined,
+    tags: currentTag ? currentTag : undefined,
+  });
+};
+
+const getP2030SearchLink = (params) => {
+  const baseUrl = "https://www.parlamento2030.es/resultados/";
+  return baseUrl + params;
 };
 </script>
