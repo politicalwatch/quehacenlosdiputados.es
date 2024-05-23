@@ -62,7 +62,7 @@ export default {
 <style lang="scss">
 .c-icon--type-more {
   svg {
-    rect {
+    path {
       fill: $secondary-dark;
     }
   }
