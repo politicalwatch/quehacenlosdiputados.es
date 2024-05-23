@@ -11,4 +11,16 @@ a {
 
 .u-border-link {
   @include border-link;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background: $black;
+    color: $white;
+    text-decoration: none;
+
+    svg path {
+      fill: $white;
+    }
+  }
 }

@@ -8,9 +8,11 @@
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
+  transition: all 0.15s ease-in-out;
 
   .c-icon {
     position: relative;
+    margin-right: 8px;
     top: 2px;
 
     path {
@@ -19,13 +21,12 @@
   }
 
   &:hover {
-    color: $primary;
+    color: $secondary-medium;
     text-decoration: none;
 
     .c-icon {
-
       path {
-        fill: $primary;
+        fill: $secondary-medium;
       }
     }
   }
@@ -36,7 +37,6 @@
     pointer-events: none;
 
     .c-icon {
-
       path {
         fill: $secondary;
       }
@@ -54,7 +54,6 @@
       text-decoration: none;
 
       .c-icon {
-
         path {
           fill: $white;
         }
@@ -67,7 +66,6 @@
       background-color: $secondary-light;
 
       .c-icon {
-
         path {
           fill: $secondary;
         }
@@ -75,7 +73,6 @@
     }
 
     .c-icon {
-
       path {
         fill: $white;
       }
@@ -92,7 +89,6 @@
       text-decoration: none;
 
       .c-icon {
-
         path {
           fill: $secondary;
         }
@@ -105,7 +101,6 @@
       background-color: $secondary-light;
 
       .c-icon {
-
         path {
           fill: $secondary;
         }
@@ -126,7 +121,6 @@
     color: $white;
 
     .c-icon {
-
       path {
         fill: $white;
       }
@@ -138,7 +132,6 @@
       text-decoration: none;
 
       .c-icon {
-
         path {
           fill: $secondary-dark;
         }
@@ -151,7 +144,6 @@
       border-color: $secondary;
 
       .c-icon {
-
         path {
           fill: $secondary;
         }
@@ -160,16 +152,13 @@
   }
 
   &--icon {
-
     &-left {
-
       .c-icon {
         margin-right: rem($spacer-unit);
       }
     }
 
     &-right {
-
       .c-icon {
         margin-left: rem($spacer-unit);
       }
