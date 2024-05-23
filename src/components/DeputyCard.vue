@@ -38,48 +38,48 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Footprint from "@/components/Footprint.vue";
 import PartyLogoIcon from "@/components/PartyLogoIcon.vue";
 import Icon from "@/components/Icon.vue";
-import { useParliamentStore } from "@/stores/parliament";
+import config from "@/config";
 
-export default {
-  name: "DeputyCard",
-  components: {
-    Footprint,
-    PartyLogoIcon,
-    Icon,
+const { deputy, layout, footprint } = defineProps({
+  deputy: {
+    type: Object,
+    required: true,
   },
-  props: {
-    deputy: {
-      type: Object,
-      required: true,
-    },
-    layout: {
-      type: String,
-      default: "medium", // small, medium, large
-    },
-    footprint: String,
+  layout: {
+    type: String,
+    default: "medium", // small, medium, large
   },
-  setup() {
-    const store = useParliamentStore();
-    return { store };
-  },
-  methods: {
-    getSeparatedName: function () {
-      return this.deputy.name.split(",").join(",<br/>");
-    },
-    getFootprint: function () {
-      if (this.footprint != "General") {
-        const filtered_footprint = this.deputy.footprint_by_topics.filter(
-          (item) => item.name == this.footprint
-        );
-        /*console.log(filtered_footprint)*/
-        return filtered_footprint[0]?.score ?? 0;
-      }
-      return this.deputy.footprint;
-    },
-  },
+  footprint: String,
+});
+
+const getSeparatedName = () => {
+  return deputy.name.split(",").join(",<br/>");
 };
+
+const getFootprint = () => {
+  if (footprint != "General") {
+    const filtered_footprint = deputy.footprint_by_topics.filter(
+      (item) => item.name == footprint
+    );
+    return filtered_footprint[0]?.score ?? 0;
+  }
+  return deputy.footprint;
+};
+
+const groupColor = config.STYLES.parties[deputy.party_name]?.color ?? "#A3D5C8";
 </script>
+
+<style lang="scss" scoped>
+.c-deputy-card {
+  &__wrapper {
+    &__image,
+    &__image-large {
+      border: 4px solid v-bind(groupColor);
+    }
+  }
+}
+</style>
