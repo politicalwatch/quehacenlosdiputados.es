@@ -1,7 +1,7 @@
 <template>
   <form
     id="initiatives-form"
-    class="u-margin-bottom-4 u-border-bottom"
+    class="c-initiatives-form u-margin-bottom-4 u-border-bottom"
     role="form"
     @submit.prevent="getResults($event)"
   >
@@ -39,6 +39,7 @@
             :multiple="true"
             :options="filteredTags"
             :allow-empty="true"
+            :hide-selected="true"
             :disabled="!this.filteredTags.length"
             :placeholder="
               this.filteredTags.length
@@ -84,6 +85,7 @@
             :format="formatDatepickerDate"
             placeholder="dd/mm/yyyy"
             hide-input-icon
+            auto-apply
             @update:model-value="selectStartDate"
             @cleared="clearStartDate"
             :text-input="textInputOptions"
@@ -101,6 +103,7 @@
             placeholder="dd/mm/yyyy"
             :max-date="new Date()"
             hide-input-icon
+            auto-apply
             @update:model-value="selectEndDate"
             @cleared="clearEndDate"
             :text-input="textInputOptions"
@@ -426,6 +429,12 @@ export default {
 </script>
 
 <style lang="scss">
+.c-initiatives-form {
+  .o-grid {
+    align-items: start;
+  }
+}
+
 .dp__theme_light {
   --dp-background-color: #ffffff;
   --dp-text-color: #212121;

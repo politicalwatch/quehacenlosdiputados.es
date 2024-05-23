@@ -101,13 +101,14 @@
     @include overline;
     font-size: rem(12px);
     display: block;
+    margin-bottom: rem($spacer-unit);
   }
 
   &::after {
     position: absolute;
     content: "";
+    top: 0;
     right: rem($spacer-unit * 2);
-    bottom: rem($spacer-unit * 2);
     pointer-events: none;
     width: rem($spacer-unit * 4);
     height: rem($spacer-unit * 3);
@@ -137,6 +138,7 @@
 
     &__single {
       color: $secondary-dark;
+      padding: rem($spacer-unit / 2) rem($spacer-unit);
     }
 
     &__tags {
@@ -232,8 +234,8 @@
 
     &__tag {
       border-radius: 0;
-      background-color: $secondary-light;
-      padding: rem($spacer-unit) rem($spacer-unit * 4) rem($spacer-unit)
+      background-color: $white;
+      padding: rem($spacer-unit) rem($spacer-unit * 2) rem($spacer-unit)
         rem($spacer-unit);
       color: $secondary-dark;
       margin-top: rem(calc($spacer-unit / 2));
@@ -244,8 +246,16 @@
         border-radius: 0;
 
         &:hover {
-          background-color: $lightgrey;
+          background-color: $secondary-medium;
           font-weight: bold;
+
+          &::after {
+            color: $white;
+          }
+        }
+
+        &::after {
+          color: $secondary-medium;
         }
       }
     }
@@ -275,7 +285,7 @@
 .c-datepicker-label {
   display: inline-block;
   background-color: $lightgrey;
-  padding: rem($spacer-unit * 2);
+  padding: rem($spacer-unit * 2) rem($spacer-unit * 2) rem($spacer-unit);
   position: relative;
 
   input {
@@ -300,13 +310,14 @@
     @include overline;
     font-size: rem(12px);
     display: block;
+    margin-bottom: rem($spacer-unit);
   }
 
   &::after {
     position: absolute;
     content: "";
-    right: rem($spacer-unit * 2);
-    bottom: rem($spacer-unit * 2);
+    top: rem($spacer-unit);
+    right: rem($spacer-unit + 4px);
     pointer-events: none;
     width: rem($spacer-unit * 4);
     height: rem($spacer-unit * 3);
