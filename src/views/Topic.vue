@@ -12,9 +12,8 @@
         <div class="c-topic__header__column u-hide u-block@sm">
           <p class="c-topic__header__description">{{ topic.description[0] }}</p>
           <h6 class="u-uppercase c-topic__header__author">
-            <a :href="this.credits[topic.id].url" target="_blank"
-              ><icon icon="camera" />Unsplash:
-              {{ this.credits[topic.id].name }}</a
+            <a :href="credits[topic.id].url" target="_blank"
+              ><icon icon="camera" />Unsplash: {{ credits[topic.id].name }}</a
             >
           </h6>
         </div>
@@ -76,10 +75,13 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, computed, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { useHead } from "@unhead/vue";
+
 import Icon from "@/components/Icon.vue";
 import Results from "@/components/Results.vue";
-import ParliamentaryGroupCard from "@/components/ParliamentaryGroupCard.vue";
 import CardGrid from "@/components/CardGrid.vue";
 import Loader from "@/components/Loader.vue";
 import SaveAlert from "@/components/SaveAlert.vue";
@@ -88,226 +90,214 @@ import api from "@/api";
 import config from "@/config";
 import { useParliamentStore } from "@/stores/parliament";
 
-export default {
-  name: "topic",
-  components: {
-    Icon,
-    Results,
-    ParliamentaryGroupCard,
-    CardGrid,
-    Loader,
-    SaveAlert,
-    FrequencyChart,
-  },
-  setup() {
-    const store = useParliamentStore();
-    return { store };
-  },
-  data: function () {
-    return {
-      topic: {},
-      deputies: [],
-      latestInitiatives: null,
-      topicsByWeek: null,
-      allTopicsByWeek: null,
-      use_alerts: config.USE_ALERTS,
-      styles: config.STYLES.topics,
-      loaded: false,
-      stats: null,
-      credits: {
-        democracia: {
-          name: "Arnaud Jaegers",
-          url: "https://unsplash.com/photos/IBWJsMObnnU",
-        },
-        lgtbi: {
-          name: "Stavrielana Gontzou",
-          url: "https://unsplash.com/photos/u1AYyQzwJ90",
-        },
-        "energia-y-clima": {
-          name: "Kelly Sikkema",
-          url: "https://unsplash.com/photos/_whs7FPfkwQ",
-        },
-        "comercio-internacional": {
-          name: "Maxim Hopman",
-          url: "https://unsplash.com/photos/fiXLQXAhCfk",
-        },
-        adicciones: {
-          name: "Nastya Dullhiier",
-          url: "https://unsplash.com/photos/V8U4zraWnbg",
-        },
-        "conflictos-y-paz": {
-          name: "Антон Дмитриев",
-          url: "https://unsplash.com/photos/WcG7DOyrSoM",
-        },
-        "cooperacion-al-desarrollo": {
-          name: "Mathias P.R. Reding",
-          url: "https://unsplash.com/photos/yfXhqAW5X0c",
-        },
-        "derechos-digitales": {
-          name: "NASA",
-          url: "https://unsplash.com/photos/Q1p7bh3SHj8",
-        },
-        dependencia: {
-          name: "Jack Finnigan",
-          url: "https://unsplash.com/photos/M9EctVUPrp4",
-        },
-        educacion: {
-          name: "NeONBRAND",
-          url: "https://unsplash.com/photos/zFSo6bnZJTw",
-        },
-        empleo: {
-          name: "Annie Spratt",
-          url: "https://unsplash.com/photos/sggw4-qDD54",
-        },
-        "espana-vaciada": {
-          name: "Marita Mones",
-          url: "https://unsplash.com/photos/SLoYKtf9fdI",
-        },
-        fiscalidad: {
-          name: "Ibrahim Boran",
-          url: "https://unsplash.com/photos/PXnJeZxMuRY",
-        },
-        "igualdad-de-genero": {
-          name: "Katherine Hanlon",
-          url: "https://unsplash.com/photos/bHhEJAXyFOg",
-        },
-        infancia: {
-          name: "Erika Giraud",
-          url: "https://unsplash.com/photos/4EFeD-VTgu4",
-        },
-        migraciones: {
-          name: "Brad Neathery",
-          url: "https://unsplash.com/photos/XrSzacdYbtQ",
-        },
-        discapacidad: {
-          name: "Josh Appel",
-          url: "https://unsplash.com/photos/0nkFvdcM-X4",
-        },
-        mayores: {
-          name: "WJ",
-          url: "https://unsplash.com/photos/zmMtb3PtsrE",
-        },
-        "personas-sin-hogar": {
-          name: "Clay LeConey",
-          url: "https://unsplash.com/photos/Za9K8pNVepw",
-        },
-        "poblacion-gitana": {
-          name: "Quino Al",
-          url: "https://unsplash.com/photos/eE-L2twz0Rg",
-        },
-        "poblacion-reclusa": {
-          name: "Emiliano Bar",
-          url: "https://unsplash.com/photos/PaKHbtTDqt0",
-        },
-        "proteccion-social": {
-          name: "Ryoji Iwata",
-          url: "ihttps://unsplash.com/photos/IBaVuZsJJTo",
-        },
-        sanidad: {
-          name: "Nguyễn Hiệp",
-          url: "https://unsplash.com/photos/sTTeaN4wwrU",
-        },
-        vivienda: {
-          name: "Tom Rumble",
-          url: "https://unsplash.com/photos/7lvzopTxjOU",
-        },
-      },
-    };
-  },
-  head() {
-    return {
-      title: () => this.headTitle,
-    };
-  },
-  computed: {
-    headTitle: function () {
-      return this.topic?.name
-        ? `${this.topic.name} - Qué hacen los diputados`
-        : "Qué hacen los diputados";
-    },
-  },
-  methods: {
-    getTopic: function () {
-      api
-        .getTopic(this.$route.params.id)
-        .then((response) => {
-          this.topic = response;
-          this.getLatestInitiatives(this.topic.name);
-          this.getDeputiesRanking(this.topic.name);
-          this.getTopicsByWeek(this.topic.name);
-        })
-        .catch((error) => {
-          this.errors = error;
-          this.$router.push({ name: "Page404", params: { 0: "404" } });
-        });
-    },
-    getDeputiesRanking: function (topic) {
-      api
-        .getDeputiesRanking(topic, 6)
-        .then((response) => {
-          const deputies_ranking = response;
-          deputies_ranking.forEach((d) => {
-            let deputy = this.store.getDeputyByName(d.name);
-            deputy.footprint = d.score;
-            this.deputies.push(deputy);
-          });
-          this.loaded = true;
-        })
-        .catch((error) => {
-          this.errors = error;
-          console.log(error);
-        });
-    },
-    getLatestInitiatives: function (topic) {
-      api
-        .getInitiatives({ topic: topic, per_page: 6 })
-        .then((response) => {
-          if (response.initiatives)
-            this.latestInitiatives = response.initiatives;
-        })
-        .catch((error) => (this.errors = error));
-    },
-    getStats: function () {
-      api
-        .getOverallStats()
-        .then((response) => {
-          this.stats = response.topics.politicas;
-        })
-        .catch((error) => {
-          this.errors = error;
-          this.$router.push({ name: "Page404", params: { 0: "404" } });
-        });
-    },
-    getTopicStat: function (topic) {
-      for (const stat of this.stats) {
-        if (stat["_id"] == topic["name"]) {
-          return stat["initiatives"];
-        }
-      }
-    },
-    getTopicsByWeek: function (topic) {
-      api
-        .getTopicsByWeek(topic)
-        .then((response) => {
-          this.topicsByWeek = response.data;
-        })
-        .catch((error) => (this.errors = error));
-    },
+const router = useRouter();
+const route = useRoute();
+const store = useParliamentStore();
 
-    getAllTopicsByWeek: function () {
-      api
-        .getAllTopicsByWeek(topic)
-        .then((response) => {
-          this.allTopicsByWeek = response.data;
-        })
-        .catch((error) => (this.errors = error));
-    },
+const use_alerts = config.USE_ALERTS;
+const styles = config.STYLES.topics;
+const credits = {
+  democracia: {
+    name: "Arnaud Jaegers",
+    url: "https://unsplash.com/photos/IBWJsMObnnU",
   },
-  created: function () {
-    this.getTopic();
-    this.getStats();
+  lgtbi: {
+    name: "Stavrielana Gontzou",
+    url: "https://unsplash.com/photos/u1AYyQzwJ90",
+  },
+  "energia-y-clima": {
+    name: "Kelly Sikkema",
+    url: "https://unsplash.com/photos/_whs7FPfkwQ",
+  },
+  "comercio-internacional": {
+    name: "Maxim Hopman",
+    url: "https://unsplash.com/photos/fiXLQXAhCfk",
+  },
+  adicciones: {
+    name: "Nastya Dullhiier",
+    url: "https://unsplash.com/photos/V8U4zraWnbg",
+  },
+  "conflictos-y-paz": {
+    name: "Антон Дмитриев",
+    url: "https://unsplash.com/photos/WcG7DOyrSoM",
+  },
+  "cooperacion-al-desarrollo": {
+    name: "Mathias P.R. Reding",
+    url: "https://unsplash.com/photos/yfXhqAW5X0c",
+  },
+  "derechos-digitales": {
+    name: "NASA",
+    url: "https://unsplash.com/photos/Q1p7bh3SHj8",
+  },
+  dependencia: {
+    name: "Jack Finnigan",
+    url: "https://unsplash.com/photos/M9EctVUPrp4",
+  },
+  educacion: {
+    name: "NeONBRAND",
+    url: "https://unsplash.com/photos/zFSo6bnZJTw",
+  },
+  empleo: {
+    name: "Annie Spratt",
+    url: "https://unsplash.com/photos/sggw4-qDD54",
+  },
+  "espana-vaciada": {
+    name: "Marita Mones",
+    url: "https://unsplash.com/photos/SLoYKtf9fdI",
+  },
+  fiscalidad: {
+    name: "Ibrahim Boran",
+    url: "https://unsplash.com/photos/PXnJeZxMuRY",
+  },
+  "igualdad-de-genero": {
+    name: "Katherine Hanlon",
+    url: "https://unsplash.com/photos/bHhEJAXyFOg",
+  },
+  infancia: {
+    name: "Erika Giraud",
+    url: "https://unsplash.com/photos/4EFeD-VTgu4",
+  },
+  migraciones: {
+    name: "Brad Neathery",
+    url: "https://unsplash.com/photos/XrSzacdYbtQ",
+  },
+  discapacidad: {
+    name: "Josh Appel",
+    url: "https://unsplash.com/photos/0nkFvdcM-X4",
+  },
+  mayores: {
+    name: "WJ",
+    url: "https://unsplash.com/photos/zmMtb3PtsrE",
+  },
+  "personas-sin-hogar": {
+    name: "Clay LeConey",
+    url: "https://unsplash.com/photos/Za9K8pNVepw",
+  },
+  "poblacion-gitana": {
+    name: "Quino Al",
+    url: "https://unsplash.com/photos/eE-L2twz0Rg",
+  },
+  "poblacion-reclusa": {
+    name: "Emiliano Bar",
+    url: "https://unsplash.com/photos/PaKHbtTDqt0",
+  },
+  "proteccion-social": {
+    name: "Ryoji Iwata",
+    url: "ihttps://unsplash.com/photos/IBaVuZsJJTo",
+  },
+  sanidad: {
+    name: "Nguyễn Hiệp",
+    url: "https://unsplash.com/photos/sTTeaN4wwrU",
+  },
+  vivienda: {
+    name: "Tom Rumble",
+    url: "https://unsplash.com/photos/7lvzopTxjOU",
   },
 };
+
+const topic = ref(null);
+const deputies = ref([]);
+const latestInitiatives = ref(null);
+const topicsByWeek = ref(null);
+const allTopicsByWeek = ref(null);
+const loaded = ref(false);
+const errors = ref([]);
+const stats = ref(null);
+
+const headTitle = computed(() => {
+  return topic.value?.name
+    ? `${topic.value.name} - Qué hacen los diputados`
+    : "Qué hacen los diputados";
+});
+
+useHead({
+  title: headTitle,
+});
+
+const getTopic = () => {
+  api
+    .getTopic(route.params.id)
+    .then((response) => {
+      topic.value = response;
+      getLatestInitiatives(topic.value.name);
+      getDeputiesRanking(topic.value.name);
+      getTopicsByWeek(topic.value.name);
+    })
+    .catch((error) => {
+      errors.value = error;
+      router.push({ name: "Page404", params: { 0: "404" } });
+    });
+};
+
+const getDeputiesRanking = (topic) => {
+  api
+    .getDeputiesRanking(topic, 6)
+    .then((response) => {
+      const deputies_ranking = response;
+      deputies_ranking.forEach((d) => {
+        let deputy = store.getDeputyByName(d.name);
+        deputy.footprint = d.score;
+        deputies.value.push(deputy);
+      });
+      loaded.value = true;
+    })
+    .catch((error) => {
+      errors.value.push(error);
+      console.log(error);
+    });
+};
+
+const getLatestInitiatives = (topic) => {
+  api
+    .getInitiatives({ topic: topic, per_page: 6 })
+    .then((response) => {
+      if (response.initiatives) latestInitiatives.value = response.initiatives;
+    })
+    .catch((error) => errors.value.push(error));
+};
+
+const getStats = () => {
+  api
+    .getOverallStats()
+    .then((response) => {
+      stats.value = response.topics.politicas;
+    })
+    .catch((error) => {
+      errors.value.push(error);
+      router.push({ name: "Page404", params: { 0: "404" } });
+    });
+};
+
+const getTopicStat = (topic) => {
+  for (const stat of stats.value) {
+    if (stat["_id"] == topic["name"]) {
+      return stat["initiatives"];
+    }
+  }
+};
+
+const getTopicsByWeek = (topic) => {
+  api
+    .getTopicsByWeek(topic)
+    .then((response) => {
+      topicsByWeek.value = response.data;
+    })
+    .catch((error) => errors.value.push(error));
+};
+
+const getAllTopicsByWeek = () => {
+  api
+    .getAllTopicsByWeek(topic)
+    .then((response) => {
+      allTopicsByWeek.value = response.data;
+    })
+    .catch((error) => errors.value.push(error));
+};
+
+onMounted(() => {
+  getTopic();
+  getStats();
+});
 </script>
 
 <style lang="scss">
@@ -323,7 +313,6 @@ export default {
   &:hover {
     color: $yellow !important;
     background: $secondary-dark !important;
-    //
   }
 }
 .alerts-block {

@@ -12,18 +12,18 @@
             <div
               class="o-grid__col u-12 u-7@sm u-text-center u-text-left@sm c-initiative__status"
             >
-              <initiative-status :initiative="initiative" />
+              <InitiativeStatus :initiative="initiative" />
             </div>
             <div
               class="o-grid__col u-12 u-5@sm u-text-left u-text-center u-text-right@sm"
             >
-              <conversation-link
+              <ConversationLink
                 v-if="showConversation()"
                 :id="initiative.id"
                 :isAnswer="isAnswer()"
-              ></conversation-link>
+              ></ConversationLink>
               &nbsp; &nbsp;
-              <congress-link :url="initiative.url"></congress-link>
+              <CongressLink :url="initiative.url"></CongressLink>
             </div>
           </div>
 
@@ -46,7 +46,7 @@
             </div>
           </div>
 
-          <topics-section
+          <TopicsSection
             class="u-hide u-block@md"
             :topicsStyles="styles.topics"
             :initiative="initiative"
@@ -74,17 +74,17 @@
 
             <div class="u-margin-bottom-4"></div>
 
-            <deputy-card
+            <DeputyCard
               v-for="deputyName in initiative.deputies"
               v-bind:key="deputyName"
-              :deputy="this.store.getDeputyByName(deputyName)"
+              :deputy="store.getDeputyByName(deputyName)"
               layout="medium"
             />
           </div>
         </div>
 
         <div class="u-hide@md">
-          <topics-section
+          <TopicsSection
             :topicsStyles="styles.topics"
             :initiative="initiative"
           />
@@ -92,23 +92,24 @@
       </div>
     </div>
     <div v-else class="o-container o-section u-margin-bottom-10">
-      <loader title="Cargando datos" subtitle="Puede llevar unos segundos" />
+      <Loader title="Cargando datos" subtitle="Puede llevar unos segundos" />
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, computed, onMounted, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { useHead } from "@unhead/vue";
+
 import ParliamentaryGroupCard from "@/components/ParliamentaryGroupCard.vue";
 import GovernmentCard from "@/components/GovernmentCard.vue";
 import OtherAuthorCard from "@/components/OtherAuthorCard.vue";
 import CongressLink from "@/components/CongressLink.vue";
 import ConversationLink from "@/components/ConversationLink.vue";
-import CustomText from "@/components/CustomText.vue";
 import TopicsSection from "@/components/TopicsSection.vue";
 import InitiativeStatus from "@/components/InitiativeStatus.vue";
 import DeputyCard from "@/components/DeputyCard.vue";
-import TopicPill from "@/components/TopicPill.vue";
-import Results from "@/components/Results.vue";
 import Loader from "@/components/Loader.vue";
 import api from "@/api";
 import config from "@/config";
@@ -116,103 +117,87 @@ import { useParliamentStore } from "@/stores/parliament";
 
 import format from "date-fns/format";
 
-export default {
-  name: "initiative",
-  components: {
-    ParliamentaryGroupCard,
-    GovernmentCard,
-    OtherAuthorCard,
-    CongressLink,
-    ConversationLink,
-    CustomText,
-    TopicsSection,
-    InitiativeStatus,
-    DeputyCard,
-    TopicPill,
-    Results,
-    Loader,
-  },
-  setup() {
-    const store = useParliamentStore();
-    return { store };
-  },
-  data: function () {
-    return {
-      initiative: {},
-      styles: config.STYLES,
-      loaded: false,
-    };
-  },
-  head() {
-    return {
-      title: () => this.headTitle,
-    };
-  },
-  computed: {
-    headTitle: function () {
-      return this.initiative?.title
-        ? `${this.initiative.title} - Qué hacen los diputados`
-        : "Qué hacen los diputados";
-    },
-    dataLoaded: function () {
-      return (
-        Object.keys(this.initiative).length && this.store.allTopics.length > 0
-      );
-    },
-    formattedDate: function () {
-      return format(new Date(this.initiative.created), "dd/MM/y");
-    },
-  },
-  methods: {
-    getInitiative: function () {
-      api
-        .getInitiative(this.$route.params.id)
-        .then((response) => {
-          this.initiative = response;
-          this.loaded = true;
-        })
-        .catch((error) => {
-          this.errors = error;
-          this.loaded = true;
-        });
-    },
-    getGroup: function (parliamentary_group) {
-      for (const group of this.store.allParliamentaryGroups) {
-        if (group.name == parliamentary_group) {
-          return group;
-        }
-      }
-    },
-    isAGovernmentInitiative: function () {
-      return this.initiative.authors.includes("Gobierno");
-    },
-    isAGroupInitiative: function () {
-      if (this.initiative.authors.length == 0) return false;
-      else {
-        const aPossibleGroup = this.initiative.authors[0];
-        for (const group of this.store.allParliamentaryGroups) {
-          if (group.name == aPossibleGroup) return true;
-        }
-        return false;
-      }
-    },
-    showConversation: function () {
-      return (
-        this.initiative.status == "Respondida" &&
-        ["179", "184"].includes(this.initiative.initiative_type)
-      );
-    },
-    isAnswer: function () {
-      return this.initiative.initiative_type_alt == "Respuesta";
-    },
-  },
-  created: function () {
-    this.getInitiative();
-  },
-  watch: {
-    $route: "getInitiative",
-  },
+const route = useRoute();
+const store = useParliamentStore();
+
+const styles = config.STYLES;
+
+const initiative = ref({});
+const loaded = ref(false);
+const errors = ref([]);
+
+const headTitle = computed(() => {
+  return initiative.value?.title
+    ? `${initiative.value.title} - Qué hacen los diputados`
+    : "Qué hacen los diputados";
+});
+
+useHead({
+  title: headTitle,
+});
+
+const dataLoaded = computed(() => {
+  return Object.keys(initiative.value).length && store.allTopics.length > 0;
+});
+
+const formattedDate = computed(() => {
+  return format(new Date(initiative.value.created), "dd/MM/y");
+});
+
+const getInitiative = () => {
+  api
+    .getInitiative(route.params.id)
+    .then((response) => {
+      initiative.value = response;
+      loaded.value = true;
+    })
+    .catch((error) => {
+      errors.value.push(error);
+      loaded.value = true;
+    });
 };
+
+const getGroup = (parliamentary_group) => {
+  for (const group of store.allParliamentaryGroups) {
+    if (group.name == parliamentary_group) {
+      return group;
+    }
+  }
+};
+
+const isAGovernmentInitiative = () => {
+  return initiative.value.authors.includes("Gobierno");
+};
+
+const isAGroupInitiative = () => {
+  if (initiative.value.authors.length == 0) return false;
+  else {
+    const aPossibleGroup = initiative.value.authors[0];
+    for (const group of store.allParliamentaryGroups) {
+      if (group.name == aPossibleGroup) return true;
+    }
+    return false;
+  }
+};
+
+const showConversation = () => {
+  return (
+    initiative.value.status == "Respondida" &&
+    ["179", "184"].includes(initiative.value.initiative_type)
+  );
+};
+
+const isAnswer = () => {
+  return initiative.value.initiative_type_alt == "Respuesta";
+};
+
+onMounted(() => {
+  getInitiative();
+});
+
+watch(route, () => {
+  getInitiative();
+});
 </script>
 
 <style lang="scss">

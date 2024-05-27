@@ -25,7 +25,10 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
+
 import api from "@/api";
 import config from "@/config";
 import PageHeader from "@/components/PageHeader.vue";
@@ -33,54 +36,42 @@ import TopicLink from "@/components/TopicLink.vue";
 import Loader from "@/components/Loader.vue";
 import { useParliamentStore } from "@/stores/parliament";
 
-export default {
-  name: "topics",
-  components: {
-    PageHeader,
-    TopicLink,
-    Loader,
-  },
-  setup() {
-    const store = useParliamentStore();
-    return { store };
-  },
-  data: function () {
-    return {
-      topicsStyles: config.STYLES.topics,
-      stats: null,
-      loaded: false,
-    };
-  },
-  created: function () {
-    api
-      .getOverallStats()
-      .then((response) => {
-        this.stats = response.topics.politicas;
-        this.loaded = true;
-      })
-      .catch((error) => {
-        this.errors = error;
-        this.$router.push({ name: "Page404", params: { 0: "404" } });
-      });
-  },
-  methods: {
-    getTopics: function () {
-      let topics = [];
-      for (const topic of this.store.allTopics) {
-        topic.initiatives = this.getTopicStat(topic);
-        topics.push(topic);
-      }
-      return topics.sort(function (a, b) {
-        return b.initiatives - a.initiatives;
-      });
-    },
-    getTopicStat: function (topic) {
-      for (const stat of this.stats) {
-        if (stat["_id"] == topic.name) {
-          return stat["initiatives"];
-        }
-      }
-    },
-  },
+const router = useRouter();
+const store = useParliamentStore();
+
+const topicsStyles = config.STYLES.topics;
+const stats = ref(null);
+const loaded = ref(false);
+
+const getTopics = () => {
+  let topics = [];
+  for (const topic of store.allTopics) {
+    topic.initiatives = getTopicStat(topic);
+    topics.push(topic);
+  }
+  return topics.sort(function (a, b) {
+    return b.initiatives - a.initiatives;
+  });
 };
+
+const getTopicStat = (topic) => {
+  for (const stat of stats.value) {
+    if (stat["_id"] == topic.name) {
+      return stat["initiatives"];
+    }
+  }
+};
+
+onMounted(() => {
+  api
+    .getOverallStats()
+    .then((response) => {
+      stats.value = response.topics.politicas;
+      loaded.value = true;
+    })
+    .catch((error) => {
+      console.log(error);
+      router.push({ name: "Page404", params: { 0: "404" } });
+    });
+});
 </script>

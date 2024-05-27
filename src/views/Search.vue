@@ -1,10 +1,10 @@
 <template>
   <div>
     <div id="search" class="o-container o-section u-margin-bottom-10">
-      <page-header :title="'Buscador de iniciativas'" />
+      <PageHeader :title="'Buscador de iniciativas'" />
 
-      <initiatives-form
-        v-model:formData="this.formData"
+      <InitiativesForm
+        v-model:formData="formData"
         @getResults="getResults"
         @clearInitiatives="clearInitiatives"
       />
@@ -12,10 +12,10 @@
       <div v-if="initiatives.length > 0">
         <div class="o-grid o-grid--align-center u-margin-bottom-4" id="results">
           <div class="o-grid__col o-grid__col--fill">
-            <h2 class="u-uppercase" v-if="this.query_meta.page">
+            <h2 class="u-uppercase" v-if="query_meta.page">
               {{ message.message }}
             </h2>
-            <csv-download
+            <CsvDownload
               :initiatives="initiatives || []"
               :csvItems="csvItems"
               :canDownloadCSV="canDownloadCSV"
@@ -25,11 +25,11 @@
           <div class="o-grid__col o-grid__col--right">
             <AlertButton
               :searchparams="formData"
-              v-if="use_alerts && this.query_meta.page"
+              v-if="use_alerts && query_meta.page"
             />
           </div>
         </div>
-        <results
+        <Results
           :loadingResults="loadingResults"
           :initiatives="initiatives || []"
           :topicsStyles="topicsStyles"
@@ -43,180 +43,166 @@
         id="results"
         class="u-padding-top-6 u-text-center"
       >
-        <not-found
+        <NotFound
           message="No se han encontrado resultados. Crea una alerta y te avisaremos."
         />
         <AlertButton
           :searchparams="formData"
-          v-if="use_alerts && this.query_meta.page"
+          v-if="use_alerts && query_meta.page"
         />
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import InitiativesForm from "@/components/InitiativesForm.vue";
-import AlertButton from "@/components/AlertButton.vue";
-import config from "@/config";
-import api from "@/api";
-import PageHeader from "@/components/PageHeader.vue";
-import CsvDownload from "@/components/CsvDownload.vue";
-import Message from "@/components/Message.vue";
-import Results from "@/components/Results.vue";
-import NotFound from "@/components/NotFound.vue";
-import { nextTick } from "vue";
+<script setup>
+import { ref, computed, nextTick, onUpdated, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import qs from "qs";
 import VueScrollTo from "vue-scrollto";
-import { useParliamentStore } from "@/stores/parliament";
 
-export default {
-  name: "search",
-  components: {
-    AlertButton,
-    InitiativesForm,
-    PageHeader,
-    Results,
-    NotFound,
-    Message,
-    CsvDownload,
-  },
-  setup() {
-    const store = useParliamentStore();
-    return { store };
-  },
-  data: function () {
+import api from "@/api";
+import config from "@/config";
+import InitiativesForm from "@/components/InitiativesForm.vue";
+import AlertButton from "@/components/AlertButton.vue";
+import PageHeader from "@/components/PageHeader.vue";
+import CsvDownload from "@/components/CsvDownload.vue";
+import Results from "@/components/Results.vue";
+import NotFound from "@/components/NotFound.vue";
+
+const route = useRoute();
+const router = useRouter();
+
+const LIMITCSV = 20000;
+const use_alerts = config.USE_ALERTS;
+const topicsStyles = config.STYLES.topics;
+
+const errors = ref(null);
+const initiatives = ref([]);
+const query_meta = ref({});
+const formData = ref({
+  topic: "",
+  author: "",
+  deputy: "",
+  startdate: "",
+  enddate: "",
+  place: "",
+  reference: "",
+  page: 1,
+  tags: [],
+  subtopics: [],
+});
+const loadingResults = ref(false);
+const csvItems = ref([]);
+const scrollToID = ref("#results");
+const cleanedForm = ref(true);
+
+const canDownloadCSV = computed(() => query_meta.value.total < LIMITCSV);
+
+const message = computed(() => {
+  if (errors.value) {
+    return { icon: true, type: "error", message: errors.value };
+  }
+  if (query_meta.value.total) {
     return {
-      errors: null,
-      initiatives: [],
-      query_meta: {},
-      formData: {
-        topic: "",
-        author: "",
-        deputy: "",
-        startdate: "",
-        enddate: "",
-        place: "",
-        reference: "",
-        page: 1,
-        tags: [],
-        subtopics: [],
-      },
-      loadingResults: false,
-      csvItems: [],
-      LIMITCSV: 20000,
-      use_alerts: config.USE_ALERTS,
-      topicsStyles: config.STYLES.topics,
-      scrollToID: "#results",
-      cleanedForm: true,
+      icon: true,
+      type: "success",
+      message: `Se han encontrado ${query_meta.value.total} iniciativas`,
     };
-  },
-  computed: {
-    canDownloadCSV: function () {
-      return this.query_meta.total < this.LIMITCSV;
-    },
-    message: function () {
-      if (this.errors) {
-        return { icon: true, type: "error", message: this.errors };
+  }
+  return {
+    icon: true,
+    type: "error",
+    message: `No se han encontrado iniciativas que cumplan los criterios`,
+  };
+});
+
+const getResults = (event) => {
+  loadingResults.value = true;
+  cleanedForm.value = false;
+  csvItems.value = [];
+  const isNewSearch = event?.type === "submit";
+  const params =
+    route.params.data && !isNewSearch
+      ? qs.parse(route.params.data)
+      : formData.value;
+  formData.value = Object.assign(formData.value, params);
+  const urlParams = Object.assign({}, formData.value);
+
+  if (isNewSearch) {
+    scrollToID.value = "#results";
+    event.preventDefault();
+  }
+
+  Object.keys(urlParams).forEach(
+    (key) => (!urlParams[key] || key === "page") && delete urlParams[key]
+  );
+
+  router
+    .push({
+      name: "results",
+      params: {
+        data: qs.stringify(urlParams, { arrayFormat: "repeat" }),
+      },
+    })
+    .catch((e) => e);
+
+  api
+    .getInitiatives(formData.value)
+    .then((response) => {
+      if (!isNewSearch) {
+        initiatives.value.push.apply(initiatives.value, response.initiatives);
+      } else {
+        initiatives.value = response.initiatives;
       }
-      if (this.query_meta.total) {
-        return {
-          icon: true,
-          type: "success",
-          message: `Se han encontrado ${this.query_meta.total} iniciativas`,
-        };
-      }
-      return {
-        icon: true,
-        type: "error",
-        message: `No se han encontrado iniciativas que cumplan los criterios`,
-      };
-    },
-  },
-  methods: {
-    getResults: function (event) {
-      this.loadingResults = true;
-      this.cleanedForm = false;
-      this.csvItems = [];
-      const isNewSearch = event?.type === "submit";
-      const params =
-        this.$route.params.data && !isNewSearch
-          ? qs.parse(this.$route.params.data)
-          : this.formData;
-      this.formData = Object.assign(this.formData, params);
-      const urlParams = Object.assign({}, this.formData);
-
-      if (isNewSearch) {
-        this.scrollToID = "#results";
-        event.preventDefault();
-      }
-
-      Object.keys(urlParams).forEach(
-        (key) => (!urlParams[key] || key === "page") && delete urlParams[key]
-      );
-
-      this.$router
-        .push({
-          name: "results",
-          params: {
-            data: qs.stringify(urlParams, { arrayFormat: "repeat" }),
-          },
-        })
-        .catch((e) => e);
-
-      api
-        .getInitiatives(this.formData)
-        .then((response) => {
-          if (!isNewSearch) {
-            this.initiatives.push.apply(this.initiatives, response.initiatives);
-          } else {
-            this.initiatives = response.initiatives;
-          }
-          this.query_meta = response.query_meta;
-          this.loadingResults = false;
-          nextTick().then(() => {
-            VueScrollTo.scrollTo(this.scrollToID, 1500);
-          });
-        })
-        .catch((error) => (this.errors = error));
-    },
-    clearInitiatives: function () {
-      this.initiatives = [];
-      this.cleanedForm = true;
-    },
-    loadMore: function () {
-      let node = document.querySelectorAll(".c-initiative-card");
-      node = node[node.length - 1];
-      this.scrollToID = `#${node.id}`;
-      this.formData.page++;
-      this.getResults();
-    },
-    loadCSVItems: function (event) {
-      if (!this.canDownloadCSV) return false;
-      event.target.innerText = "Procesando descarga...";
-      let params = Object.assign({ per_page: this.LIMITCSV }, this.formData);
-      api
-        .getInitiatives(params)
-        .then((response) => {
-          this.csvItems = response.initiatives.map((initiative) => ({
-            ...initiative,
-            topics: initiative.tagged[0].topics.join(", "),
-            tags: initiative.tagged[0].tags.map((tag) => tag.tag).join(", "),
-          }));
-          event.target.innerText = "Descargar resultados";
-        })
-        .catch((error) => (this.errors = error));
-    },
-  },
-  created: function () {
-    if (this.$route.name == "results") {
-      this.getResults();
-    }
-  },
-  updated: function () {
-    if (document.getElementById("downloadCSV")) {
-      document.getElementById("downloadCSV").click();
-    }
-  },
+      query_meta.value = response.query_meta;
+      loadingResults.value = false;
+      nextTick().then(() => {
+        VueScrollTo.scrollTo(scrollToID.value, 1500);
+      });
+    })
+    .catch((error) => (errors.value = error));
 };
+
+const clearInitiatives = () => {
+  initiatives.value = [];
+  cleanedForm.value = true;
+};
+
+const loadMore = () => {
+  let node = document.querySelectorAll(".c-initiative-card");
+  node = node[node.length - 1];
+  scrollToID.value = `#${node.id}`;
+  formData.value.page++;
+  getResults();
+};
+
+const loadCSVItems = (event) => {
+  if (!canDownloadCSV.value) return false;
+  event.target.innerText = "Procesando descarga...";
+  let params = Object.assign({ per_page: LIMITCSV }, formData.value);
+  api
+    .getInitiatives(params)
+    .then((response) => {
+      csvItems.value = response.initiatives.map((initiative) => ({
+        ...initiative,
+        topics: initiative.tagged[0].topics.join(", "),
+        tags: initiative.tagged[0].tags.map((tag) => tag.tag).join(", "),
+      }));
+      event.target.innerText = "Descargar resultados";
+    })
+    .catch((error) => (errors.value = error));
+};
+
+onMounted(() => {
+  if (route.name == "results") {
+    getResults();
+  }
+});
+
+onUpdated(() => {
+  if (document.getElementById("downloadCSV")) {
+    document.getElementById("downloadCSV").click();
+  }
+});
 </script>

@@ -129,11 +129,14 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, computed, watch, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { useHead } from "@unhead/vue";
+
 import CardGrid from "@/components/CardGrid.vue";
 import ParliamentaryGroupCard from "@/components/ParliamentaryGroupCard.vue";
 import Results from "@/components/Results.vue";
-import CustomText from "@/components/CustomText.vue";
 import Gender from "@/components/Gender.vue";
 import Barchart from "@/components/Barchart.vue";
 import Loader from "@/components/Loader.vue";
@@ -143,108 +146,95 @@ import api from "@/api";
 import config from "@/config";
 import { useParliamentStore } from "@/stores/parliament";
 
-export default {
-  name: "parliamentarygroup",
-  components: {
-    CardGrid,
-    Results,
-    CustomText,
-    Gender,
-    Barchart,
-    Loader,
-    SaveAlert,
-    FootprintInfo,
-    ParliamentaryGroupCard,
-  },
-  setup() {
-    const store = useParliamentStore();
-    return { store };
-  },
-  data: function () {
-    return {
-      parliamentarygroup: null,
-      latestInitiatives: null,
-      use_alerts: config.USE_ALERTS,
-      topicsStyles: config.STYLES.topics,
-    };
-  },
-  head() {
-    return {
-      title: () => this.headTitle,
-    };
-  },
-  computed: {
-    headTitle: function () {
-      return this.parliamentarygroup?.name
-        ? `${this.parliamentarygroup.name} - Qué hacen los diputados`
-        : "Qué hacen los diputados";
-    },
-    deputies: function () {
-      if (this.parliamentarygroup) {
-        return this.store
-          .getDeputiesByParliamentaryGroup(this.parliamentarygroup.shortname)
-          .filter((deputy) => deputy.active)
-          .map((deputy) => deputy);
-      }
-      return [];
-    },
-    dividedDeputies: function () {
-      let results = [];
-      let divided = this.deputies;
+const route = useRoute();
+const router = useRouter();
+const store = useParliamentStore();
 
-      for (let i = 3; i > 0; i--) {
-        results.push(divided.splice(0, Math.ceil(divided.length / i)));
-      }
+const use_alerts = config.USE_ALERTS;
+const topicsStyles = config.STYLES.topics;
 
-      return results;
-    },
-    footprintByTopics: function () {
-      if (this.parliamentarygroup) {
-        return this.parliamentarygroup.footprint_by_topics
-          .filter((item) =>
-            this.store.allTopics.some((topic) => topic.name === item.name)
-          )
-          .filter((item) => item.score > 0)
-          .slice(0, 5);
-      }
-      return [];
-    },
-  },
-  methods: {
-    getParliamentaryGroup: function () {
-      api
-        .getGroup(this.$route.params.id)
-        .then((response) => {
-          this.parliamentarygroup = response;
-          this.getLatestInitiatives();
-        })
-        .catch((error) => {
-          this.errors = error;
-          this.$router.push({ name: "Page404", params: { 0: "404" } });
-        });
-    },
-    getLatestInitiatives: function () {
-      api
-        .getInitiatives({ author: this.parliamentarygroup.name, per_page: 6 })
-        .then((response) => {
-          if (response.initiatives)
-            this.latestInitiatives = response.initiatives;
-        })
-        .catch((error) => (this.errors = error));
-    },
-    calculatePercentage: function (value) {
-      return Math.round(
-        (value / this.parliamentarygroup.composition.deputies) * 100
-      );
-    },
-  },
-  created: function () {
-    this.getParliamentaryGroup();
-  },
-  watch: {
-    $route: "getParliamentaryGroup",
-  },
+const parliamentarygroup = ref(null);
+const latestInitiatives = ref([]);
+const errors = ref([]);
+
+const headTitle = computed(() => {
+  return parliamentarygroup.value?.name
+    ? `${parliamentarygroup.value.name} - Qué hacen los diputados`
+    : "Qué hacen los diputados";
+});
+
+useHead({
+  title: headTitle,
+});
+
+const deputies = computed(() => {
+  if (parliamentarygroup.value) {
+    return store
+      .getDeputiesByParliamentaryGroup(parliamentarygroup.value.shortname)
+      .filter((deputy) => deputy.active)
+      .map((deputy) => deputy);
+  }
+  return [];
+});
+
+const dividedDeputies = computed(() => {
+  let results = [];
+  let divided = deputies.value;
+
+  for (let i = 3; i > 0; i--) {
+    results.push(divided.splice(0, Math.ceil(divided.length / i)));
+  }
+
+  return results;
+});
+
+const footprintByTopics = computed(() => {
+  if (parliamentarygroup.value) {
+    return parliamentarygroup.value.footprint_by_topics
+      .filter((item) =>
+        store.allTopics.some((topic) => topic.name === item.name)
+      )
+      .filter((item) => item.score > 0)
+      .slice(0, 5);
+  }
+  return [];
+});
+
+const getParliamentaryGroup = () => {
+  api
+    .getGroup(route.params.id)
+    .then((response) => {
+      parliamentarygroup.value = response;
+      getLatestInitiatives();
+    })
+    .catch((error) => {
+      errors.value.push(error);
+      router.push({ name: "Page404", params: { 0: "404" } });
+    });
 };
+
+const getLatestInitiatives = () => {
+  api
+    .getInitiatives({ author: parliamentarygroup.value.name, per_page: 6 })
+    .then((response) => {
+      if (response.initiatives) latestInitiatives.value = response.initiatives;
+    })
+    .catch((error) => errors.value.push(error));
+};
+
+const calculatePercentage = (value) => {
+  return Math.round(
+    (value / parliamentarygroup.value.composition.deputies) * 100
+  );
+};
+
+onMounted(() => {
+  getParliamentaryGroup();
+});
+
+watch(route, () => {
+  getParliamentaryGroup();
+});
 </script>
 
 <style lang="scss" scoped>

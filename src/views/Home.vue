@@ -47,8 +47,9 @@
   </div>
 </template>
 
-<script>
-import Icon from "@/components/Icon.vue";
+<script setup>
+import { ref, onMounted } from "vue";
+
 import ImageHeader from "@/components/ImageHeader.vue";
 import LastActivity from "@/components/LastActivity.vue";
 import Loader from "@/components/Loader.vue";
@@ -56,83 +57,66 @@ import Results from "@/components/Results.vue";
 import config from "@/config";
 import api from "@/api";
 
-export default {
-  name: "home",
-  components: {
-    Icon,
-    ImageHeader,
-    LastActivity,
-    Loader,
-    Results,
-  },
-  data: function () {
-    return {
-      isLoaded: false,
-      home: {
-        Date: "Diciembre 2023",
-        TitleDate: "Ya tenemos comisiones",
-        ImageUrl:
-          "https://www.congreso.es/es/fotonoticias?p_p_id=fotonoticias&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_fotonoticias_mvcPath=detalle&_fotonoticias_fotonId=4406",
-        ImageAuthor: "Congreso.es",
-      },
-      relatedInitiatives: [],
-      lastdays: null,
-      topicsStyles: config.STYLES.topics,
-    };
-  },
-  methods: {
-    getHome: function () {
-      api
-        .getHome()
-        .then((home) => {
-          this.home = home;
-          this._parseRelatedInitiatives();
-          this.getRelatedInitiatives();
-        })
-        .catch((error) => (this.errors = error));
-    },
-    getHomeImageSrcset: function () {
-      return this.home.Image
-        ? `${api.getHomeResourceUrl(this.home.Image.formats.small.url)} 500w, ${api.getHomeResourceUrl(this.home.Image.formats.medium.url)} 750w, ${api.getHomeResourceUrl(this.home.Image.formats.large.url)} 1000w`
-        : null;
-    },
-    getHomeImage: function () {
-      return this.home.Image
-        ? api.getHomeResourceUrl(this.home.Image.formats.large.url)
-        : null;
-    },
-    getLastdays: function () {
-      api
-        .getLastdaysStats()
-        .then((lastdays) => (this.lastdays = lastdays))
-        .catch((error) => (this.errors = error));
-    },
-    getRelatedInitiatives: function () {
-      this.home.RelatedInitiativesIds.forEach((id) => {
-        api
-          .getInitiative(id, false)
-          .then((initiative) => {
-            this.relatedInitiatives.push(initiative);
-            this.isLoaded = true;
-          })
-          .catch((error) => (this.errors = error));
-      });
-    },
-    _parseRelatedInitiatives: function () {
-      if (this.home.RelatedInitiativesIds !== undefined) {
-        return;
-      }
-      const RELATED_INITIATIVES = 6;
-      this.home.RelatedInitiativesIds = [...Array(RELATED_INITIATIVES).keys()]
-        .map((el) => el + 1)
-        .map((el) => this.home["Initiative" + el])
-        .filter((element) => element !== null);
-      // for (let i=1; i<=RELATED_INITIATIVES; i++) delete this.home['Initiative'+i];
-    },
-  },
-  created: function () {
-    this.getHome();
-    this.getLastdays();
-  },
+const topicsStyles = config.STYLES.topics;
+
+const isLoaded = ref(false);
+const home = ref(null);
+const relatedInitiatives = ref([]);
+const lastdays = ref(null);
+const errors = ref(null);
+
+const getHome = () => {
+  api
+    .getHome()
+    .then((response) => {
+      home.value = response;
+      _parseRelatedInitiatives();
+      getRelatedInitiatives();
+    })
+    .catch((error) => (errors.value = error));
 };
+
+const getHomeImageSrcset = () => {
+  return home.value.Image
+    ? `${api.getHomeResourceUrl(home.value.Image.formats.small.url)} 500w, ${api.getHomeResourceUrl(home.value.Image.formats.medium.url)} 750w, ${api.getHomeResourceUrl(home.value.Image.formats.large.url)} 1000w`
+    : null;
+};
+const getHomeImage = () => {
+  return home.value.Image
+    ? api.getHomeResourceUrl(home.value.Image.formats.large.url)
+    : null;
+};
+const getLastdays = () => {
+  api
+    .getLastdaysStats()
+    .then((response) => (lastdays.value = response))
+    .catch((error) => (errors.value = error));
+};
+const getRelatedInitiatives = () => {
+  home.value.RelatedInitiativesIds.forEach((id) => {
+    api
+      .getInitiative(id, false)
+      .then((initiative) => {
+        relatedInitiatives.value.push(initiative);
+        isLoaded.value = true;
+      })
+      .catch((error) => (errors.value = error));
+  });
+};
+const _parseRelatedInitiatives = () => {
+  if (home.value.RelatedInitiativesIds !== undefined) {
+    return;
+  }
+  const RELATED_INITIATIVES = 6;
+  home.value.RelatedInitiativesIds = [...Array(RELATED_INITIATIVES).keys()]
+    .map((el) => el + 1)
+    .map((el) => home.value["Initiative" + el])
+    .filter((element) => element !== null);
+  // for (let i=1; i<=RELATED_INITIATIVES; i++) delete this.home['Initiative'+i];
+};
+
+onMounted(() => {
+  getHome();
+  getLastdays();
+});
 </script>
