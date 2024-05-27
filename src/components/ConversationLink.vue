@@ -1,35 +1,31 @@
 <template>
-  <router-link :to="{name: 'initiative', params: { id: getId() }}" class="c-congress-link u-uppercase u-border-link" :title="getName()">{{ getName() }}<icon icon="conversation"></icon></router-link>
+  <router-link
+    :to="{ name: 'initiative', params: { id: getId() } }"
+    class="c-congress-link u-uppercase u-border-link"
+    :title="getName()"
+    >{{ getName() }}<icon icon="conversation"></icon
+  ></router-link>
 </template>
 
-<script>
-import Icon from '@/components/Icon.vue';
+<script setup>
+import Icon from "@/components/Icon.vue";
 
-export default {
-  name: 'ConversationLink',
-  components: {
-    Icon,
+const { id, isAnswer } = defineProps({
+  id: {
+    type: String,
+    required: true,
   },
-  props: {
-    id: {
-      type: String,
-      required: true
-    },
-    isAnswer: {
-      type: Boolean,
-      required: true
-    }
+  isAnswer: {
+    type: Boolean,
+    required: true,
   },
-  methods: {
-    getId: function() {
-      if (this.isAnswer) return this.id.replace('-respuesta', '')
-      return this.id + "-respuesta"
-    },
-    getName: function() {
-      if (this.isAnswer) return "Ver pregunta"
-      return "Ver respuesta"
-    }
-  }
-}
+});
+
+const getId = () => {
+  return isAnswer ? id.replace("-respuesta", "") : id + "-respuesta";
+};
+
+const getName = () => {
+  return isAnswer ? "Ver pregunta" : "Ver respuesta";
+};
 </script>
-

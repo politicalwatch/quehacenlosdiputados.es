@@ -60,7 +60,7 @@
               <ParliamentaryGroupCard
                 v-for="author in initiative.authors"
                 v-bind:key="author"
-                :parliamentary_group="getGroup(author)"
+                :parliamentaryGroup="getGroup(author)"
                 layout="small"
               />
             </div>

@@ -34,14 +34,14 @@ const { topic, topicsStyles } = defineProps({
   },
 });
 
-const getIcon = function (topic) {
+const getIcon = (topic) => {
   return topicsStyles.hasOwnProperty(topic.name) &&
     topicsStyles[topic.name].image
     ? topicsStyles[topic.name].image
     : topic.icon;
 };
 
-const getColor = function (topic) {
+const getColor = (topic) => {
   return topicsStyles.hasOwnProperty(topic.name) &&
     topicsStyles[topic.name].color
     ? topicsStyles[topic.name].color

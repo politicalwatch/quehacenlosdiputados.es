@@ -40,7 +40,7 @@ const descriptions = {
     "Los grupos parlamentarios controlan la labor del Gobierno a través de preguntas y de la solicitud de informes y comparecencias.",
 };
 
-const getLink = function (type) {
+const getLink = (type) => {
   return "/buscar";
 };
 </script>

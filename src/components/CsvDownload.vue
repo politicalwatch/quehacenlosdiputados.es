@@ -54,41 +54,33 @@
   </h5>
 </template>
 
-<script>
+<script setup>
 import JsonExcel from "vue-json-excel3";
 
-export default {
-  name: "CsvDownload",
-  components: {
-    JsonExcel,
-  },
-  props: {
+const { initiatives, csvItems, canDownloadCSV, csvFields, label, buttonClass } =
+  defineProps({
     initiatives: {
       type: Array,
-      default: function () {
-        return [];
-      },
+      default: () => [],
     },
     csvItems: Array,
     canDownloadCSV: Boolean,
     csvFields: {
       type: Object,
-      default: function () {
-        return {
-          title: "title",
-          reference: "reference",
-          initiative_type_alt: "initiative_type_alt",
-          authors: "authors",
-          deputies: "deputies",
-          topics: "topics",
-          tags: "tags",
-          place: "place",
-          status: "status",
-          created: "created",
-          updated: "updated",
-          url: "url",
-        };
-      },
+      default: () => ({
+        title: "title",
+        reference: "reference",
+        initiative_type_alt: "initiative_type_alt",
+        authors: "authors",
+        deputies: "deputies",
+        topics: "topics",
+        tags: "tags",
+        place: "place",
+        status: "status",
+        created: "created",
+        updated: "updated",
+        url: "url",
+      }),
     },
     label: {
       type: String,
@@ -98,16 +90,17 @@ export default {
       type: String,
       default: "c-button--compact",
     },
-  },
-  methods: {
-    loadCSVItems: function (event) {
-      this.$emit("loadCSVItems", event);
-    },
-    getNameFromCSV: function () {
-      let d = new Date();
-      return "export-" + d.toISOString() + ".csv";
-    },
-  },
+  });
+
+const emit = defineEmits(["loadCSVItems"]);
+
+const loadCSVItems = (event) => {
+  emit("loadCSVItems", event);
+};
+
+const getNameFromCSV = () => {
+  let d = new Date();
+  return "export-" + d.toISOString() + ".csv";
 };
 </script>
 

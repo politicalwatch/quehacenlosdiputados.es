@@ -6,7 +6,7 @@
       class="o-container o-section u-margin-bottom-10"
     >
       <ParliamentaryGroupCard
-        :parliamentary_group="parliamentarygroup"
+        :parliamentaryGroup="parliamentarygroup"
         layout="large"
       />
 

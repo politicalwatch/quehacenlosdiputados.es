@@ -27,27 +27,19 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Icon from "@/components/Icon.vue";
 
-export default {
-  name: "LastActivity",
-  components: {
-    Icon,
-  },
-  props: {
-    home: Object,
-    alt: String,
-    imageSrcset: String,
-    imageSizes: String,
-    imageSrc: String,
-  },
-  methods: {
-    isUnsplashPhoto: function () {
-      if (this.$props.home.ImageUrl.includes("unsplash.com")) return true;
-      return false;
-    },
-  },
+const { home, alt, imageSrcset, imageSizes, imageSrc } = defineProps({
+  home: Object,
+  alt: String,
+  imageSrcset: String,
+  imageSizes: String,
+  imageSrc: String,
+});
+
+const isUnsplashPhoto = () => {
+  return home.ImageUrl.includes("unsplash.com") ? true : false;
 };
 </script>
 

@@ -1,17 +1,18 @@
 <template>
   <div>
     <loader
-      v-if="this.loadingResults"
+      v-if="loadingResults"
       title="Cargando resultados"
       subtitle="Puede llevar algun tiempo"
     />
     <section
       class="o-masonry o-grid"
-      v-if="this.initiatives && this.initiatives.length && !this.loadingResults"
+      ref="masonryRef"
+      v-if="initiatives && initiatives.length && !loadingResults"
     >
       <div
         class="o-grid__col u-12 u-4@sm o-masonry__item"
-        v-for="(initiative, index) in this.initiatives"
+        v-for="(initiative, index) in initiatives"
         :key="index"
       >
         <initiative-card
@@ -31,83 +32,80 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, toRefs, computed, watch, onMounted, onUpdated } from "vue";
 import Masonry from "masonry-layout";
+
 import InitiativeCard from "@/components/InitiativeCard.vue";
 import Loader from "@/components/Loader.vue";
 import Icon from "@/components/Icon.vue";
 
-export default {
-  name: "Results",
-  components: {
-    Icon,
-    InitiativeCard,
-    Loader,
+const props = defineProps({
+  loadingResults: Boolean,
+  initiatives: {
+    type: Array,
+    default: () => [],
   },
-  props: {
-    loadingResults: Boolean,
-    initiatives: {
-      type: Array,
-      default: function () {
-        return [];
-      },
-    },
-    queryMeta: Object,
-    layout: String,
-    topicsStyles: Object,
-  },
-  computed: {
-    isMoreResults: function () {
-      return (
-        !this.loadingResults && this.queryMeta?.page < this.queryMeta?.pages
-      );
-    },
-    nextResultsLabel: function () {
-      let nextResult = this.queryMeta?.page * this.queryMeta?.per_page + 1;
-      let lastResult = nextResult + this.queryMeta?.per_page - 1;
-      return `(${nextResult}-${lastResult})`;
-    },
-    extendedLayout: function () {
-      return this.layout != "tiny";
-    },
-  },
-  methods: {
-    loadMore: function () {
-      this.$emit("loadMore");
-    },
-    setupMasonry: function () {
-      let grid = document.querySelector(".o-masonry");
-      if (grid) {
-        let msnry = new Masonry(grid, {
-          columnWidth: ".o-masonry__item",
-          percentPosition: true,
-          itemSelector: ".o-masonry__item",
-        });
-        msnry.layout();
-      }
-    },
-  },
-  watch: {
-    initiatives: function () {
-      if (this.initiatives && this.initiatives.length && !this.loadingResults) {
-        this.setupMasonry();
-      }
-    },
-  },
-  updated: function () {
-    this.setupMasonry();
-  },
-  created: function () {
-    this.setupMasonry();
-  },
-  mounted: function () {
-    this.setupMasonry();
-    window.addEventListener(
-      "resize",
-      function () {
-        this.setupMasonry();
-      }.bind(this)
-    );
-  },
+  queryMeta: Object,
+  layout: String,
+  topicsStyles: Object,
+});
+
+const { loadingResults, initiatives, queryMeta, layout, topicsStyles } =
+  toRefs(props);
+
+const emit = defineEmits(["loadMore"]);
+
+const isMoreResults = computed(() => {
+  return (
+    !loadingResults.value && queryMeta.value?.page < queryMeta.value?.pages
+  );
+});
+
+const nextResultsLabel = computed(() => {
+  let nextResult = queryMeta.value?.page * queryMeta.value?.per_page + 1;
+  let lastResult = nextResult + queryMeta.value?.per_page - 1;
+  return `(${nextResult}-${lastResult})`;
+});
+
+const extendedLayout = computed(() => {
+  return layout.value != "tiny";
+});
+
+const loadMore = () => {
+  emit("loadMore");
 };
+
+const masonryRef = ref(null);
+
+const setupMasonry = () => {
+  if (masonryRef.value) {
+    let msnry = new Masonry(masonryRef.value, {
+      columnWidth: ".o-masonry__item",
+      percentPosition: true,
+      itemSelector: ".o-masonry__item",
+    });
+    msnry.layout();
+  }
+};
+
+onUpdated(() => {
+  setupMasonry();
+});
+
+onMounted(() => {
+  setupMasonry();
+  window.addEventListener(
+    "resize",
+    function () {
+      setupMasonry();
+    }.bind(this)
+  );
+});
+
+watch(initiatives, () => {
+  if (initiatives.value?.length && !loadingResults.value) {
+    setupMasonry();
+  }
+});
 </script>

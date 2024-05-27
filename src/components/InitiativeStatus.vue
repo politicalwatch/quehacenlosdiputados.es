@@ -22,45 +22,43 @@ const { initiative, mappedStatus } = defineProps({
   initiative: { type: Object, required: true },
   mappedStatus: {
     type: Object,
-    default: function () {
-      return {
-        completed: [
-          "Aprobada",
-          "Respondida",
-          "Celebrada",
-          "Convalidada",
-          "Convertida en otra",
-          "Acumulada en otra",
-        ],
-        neutral: ["En tramitación", "Desconocida"],
-        error: [
-          "No admitida a trámite",
-          "No debatida",
-          "Caducada",
-          "Rechazada",
-          "Retirada",
-          "Derogada",
-          "No celebrada",
-        ],
-      };
-    },
+    default: () => ({
+      completed: [
+        "Aprobada",
+        "Respondida",
+        "Celebrada",
+        "Convalidada",
+        "Convertida en otra",
+        "Acumulada en otra",
+      ],
+      neutral: ["En tramitación", "Desconocida"],
+      error: [
+        "No admitida a trámite",
+        "No debatida",
+        "Caducada",
+        "Rechazada",
+        "Retirada",
+        "Derogada",
+        "No celebrada",
+      ],
+    }),
   },
 });
 
-const getColorByStatus = function (status) {
+const getColorByStatus = (status) => {
   for (let color in mappedStatus) {
     if (mappedStatus[color].indexOf(status) != -1) return color;
   }
   return "neutral";
 };
 
-const getIcon = function (initiative) {
+const getIcon = (initiative) => {
   const color = getColorByStatus(initiative["status"]);
   const map = { completed: "success", neutral: "clock", error: "denied" };
   return map[color];
 };
 
-const getStateMessage = function (initiative) {
+const getStateMessage = (initiative) => {
   if (initiative["status"] == "Desconocida") {
     return `${initiative["status"]}`;
   }

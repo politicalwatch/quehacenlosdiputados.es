@@ -1,10 +1,10 @@
 <template>
-  <transition-group tag="div" class="c-barchart" name="barfade">
+  <TransitionGroup tag="div" class="c-barchart" name="barfade">
     <div class="c-barchart__row" v-for="d in rows" :key="d.name">
       <div class="c-barchart__name u-text-th4 u-uppercase">{{ d.name }}</div>
 
       <div class="c-barchart__more">
-        <router-link
+        <RouterLink
           :to="{
             name: 'results',
             params: { data: paramsData(d.name, entity) },
@@ -12,7 +12,7 @@
           class="u-border-link u-uppercase"
         >
           Consultar
-        </router-link>
+        </RouterLink>
       </div>
 
       <div class="c-barchart__bar">
@@ -21,91 +21,101 @@
         <div class="c-barchart__score u-text-th3">{{ d.score }}</div>
       </div>
     </div>
-  </transition-group>
+  </TransitionGroup>
 </template>
 
-<script>
+<script setup>
+import { ref, toRefs, onMounted, watch } from "vue";
 import qs from "qs";
 
-export default {
-  name: "Barchart",
-  data() {
-    return {
-      rows: [],
-    };
+const props = defineProps({
+  result: {
+    type: Array,
+    required: true,
+    default: () => [],
   },
-  props: {
-    result: {
-      type: Array,
-      required: true,
-      default: () => [],
-    },
-    barHeight: {
-      type: Number,
-      required: false,
-      default: 56,
-    },
-    barGap: {
-      type: Number,
-      required: false,
-      default: 24,
-    },
-    barColor: {
-      type: String,
-      required: false,
-      default: "#efca53",
-    },
-    barBackgroundColor: {
-      type: String,
-      required: false,
-      default: "#f3f3f3",
-    },
-    entity: {
-      type: Object,
-      required: true,
-    },
-    entityType: {
-      type: String,
-      requred: true,
-    },
+  barHeight: {
+    type: Number,
+    required: false,
+    default: 56,
   },
-  created() {
-    this.calculeRows();
+  barGap: {
+    type: Number,
+    required: false,
+    default: 24,
   },
-  watch: {
-    result: "calculeRows",
+  barColor: {
+    type: String,
+    required: false,
+    default: "#efca53",
   },
-  methods: {
-    calculeRows() {
-      this.rows = [];
-      const max = this.result[0].score;
-      this.result.forEach((d) => {
-        this.rows.push({
-          name: d.name,
-          score: d.score,
-          backbarStyle: {
-            height: `${this.barHeight}px`,
-            backgroundColor: this.barBackgroundColor,
-          },
-          overbarStyle: {
-            height: `${this.barHeight}px`,
-            width: `${(d.score / max) * 100}%`,
-            backgroundColor: this.barColor,
-          },
-        });
-      });
-    },
-    getFieldToSearch: function () {
-      if (this.entityType == "deputy") return "deputy";
-      if (this.entityType == "parliamentarygroup") return "author";
-      return "";
-    },
-    paramsData: function (topic, entity) {
-      return qs.stringify({
-        topic: topic,
-        [this.getFieldToSearch()]: entity["name"],
-      });
-    },
+  barBackgroundColor: {
+    type: String,
+    required: false,
+    default: "#f3f3f3",
   },
+  entity: {
+    type: Object,
+    required: true,
+  },
+  entityType: {
+    type: String,
+    requred: true,
+  },
+});
+
+const {
+  result,
+  barHeight,
+  barGap,
+  barColor,
+  barBackgroundColor,
+  entity,
+  entityType,
+} = toRefs(props);
+
+const rows = ref([]);
+
+const calculateRows = () => {
+  const tempRows = [];
+  const max = result.value[0].score;
+  result.value.forEach((d) => {
+    tempRows.push({
+      name: d.name,
+      score: d.score,
+      backbarStyle: {
+        height: `${barHeight.value}px`,
+        backgroundColor: barBackgroundColor.value,
+      },
+      overbarStyle: {
+        height: `${barHeight.value}px`,
+        width: `${(d.score / max) * 100}%`,
+        backgroundColor: barColor.value,
+      },
+    });
+  });
+
+  rows.value = tempRows;
 };
+
+const getFieldToSearch = () => {
+  if (entityType.value == "deputy") return "deputy";
+  if (entityType.value == "parliamentarygroup") return "author";
+  return "";
+};
+
+const paramsData = (topic, entity) => {
+  return qs.stringify({
+    topic: topic,
+    [getFieldToSearch()]: entity["name"],
+  });
+};
+
+onMounted(() => {
+  calculateRows();
+});
+
+watch(result, () => {
+  calculateRows();
+});
 </script>

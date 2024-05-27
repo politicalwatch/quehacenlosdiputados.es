@@ -3,7 +3,7 @@
     id="deputies-form"
     class="u-margin-bottom-8"
     role="form"
-    @submit.prevent="preventSubmission($event)"
+    @submit.prevent=""
   >
     <div class="o-grid">
       <div class="o-grid__col u-12 u-4@sm">
@@ -79,7 +79,7 @@
         <footprint-info :withLabel="true" />
       </div>
     </div>
-    <div class="o-grid">
+    <div class="o-grid" v-if="isFormDirty">
       <div class="o-grid__col u-8 u-12@sm u-text-right@sm">
         <button class="c-button u-padding-right-0" @click.prevent="cleanForm">
           Limpiar búsqueda
@@ -89,53 +89,55 @@
   </form>
 </template>
 
-<script>
+<script setup>
+import { ref, computed } from "vue";
+
 import VueMultiselect from "vue-multiselect";
 import FootprintInfo from "@/components/FootprintInfo.vue";
 
-export default {
-  name: "DeputiesForm",
-  components: {
-    VueMultiselect,
-    FootprintInfo,
-  },
-  data: function () {
-    return {
-      form: {},
-    };
-  },
-  props: {
-    deputies: Array,
-    groups: Array,
-    ranking: Array,
-  },
-  methods: {
-    cleanForm: function () {
-      this.form.group = null;
-      this.form.constituency = null;
-      this.form.name = "";
-      this.emitFilters();
-    },
-    emitFilters: function () {
-      this.$emit("setFilters", this.form);
-    },
-    getConstituencies: function () {
-      const constituencies = {};
-      for (const deputy of this.deputies) {
-        constituencies[deputy["constituency"]] = deputy["constituency"];
-      }
-      return Object.keys(constituencies).sort(Intl.Collator().compare);
-    },
-    preventSubmission: function (e) {
-      e.preventDefault();
-    },
-    getRanking: function () {
-      const ranking = {};
-      for (const option of this.ranking) {
-        ranking[option] = option;
-      }
-      return ranking;
-    },
-  },
+const { deputies, groups, ranking } = defineProps({
+  deputies: Array,
+  groups: Array,
+  ranking: Array,
+});
+
+const emit = defineEmits(["setFilters"]);
+
+const form = ref({
+  group: null,
+  constituency: null,
+  name: "",
+  footprint: null,
+});
+
+const isFormDirty = computed(() => {
+  return (
+    form.value.group ||
+    form.value.constituency ||
+    form.value.name ||
+    form.value.footprint
+  );
+});
+
+const cleanForm = () => {
+  form.value = {
+    group: null,
+    constituency: null,
+    name: "",
+    footprint: null,
+  };
+  emitFilters();
+};
+
+const emitFilters = () => {
+  emit("setFilters", form.value);
+};
+
+const getConstituencies = () => {
+  const constituencies = {};
+  for (const deputy of deputies) {
+    constituencies[deputy["constituency"]] = deputy["constituency"];
+  }
+  return Object.keys(constituencies).sort(Intl.Collator().compare);
 };
 </script>

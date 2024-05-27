@@ -4,32 +4,32 @@
   </span>
 </template>
 
-<script>
-import { defineAsyncComponent } from "vue";
+<script setup>
+import { toRefs, computed, defineAsyncComponent, onMounted } from "vue";
 
-export default {
-  name: "Icon",
-  props: {
-    icon: String,
-    color: String,
-  },
-  computed: {
-    svg() {
-      let svg = "";
-      try {
-        svg = defineAsyncComponent(() =>
-          import(`@/assets/svg/icon-${this.icon}.svg`)
-        );
-      } catch (error) {
-        svg = this.icon;
-      }
-      return svg;
-    },
-  },
-  updated() {
-    if (this.color && this.$el.querySelector("svg path")) {
-      this.$el.querySelector("svg path").style.fill = this.color;
-    }
-  },
-};
+const props = defineProps({
+  icon: { type: String },
+  color: { type: String },
+});
+
+const { icon, color } = toRefs(props);
+
+const svg = computed(() => {
+  let svg = "";
+  try {
+    svg = defineAsyncComponent(
+      () => import(`@/assets/svg/icon-${icon.value}.svg`)
+    );
+  } catch (error) {
+    svg = icon.value;
+  }
+  return svg;
+});
+
+onMounted(() => {
+  const svgPathElement = document.querySelector(".c-icon svg path");
+  if (color.value && svgPathElement) {
+    svgPathElement.style.fill = color.value;
+  }
+});
 </script>

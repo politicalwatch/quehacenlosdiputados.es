@@ -2,7 +2,7 @@
   <div class="o-grid c-card_grid">
     <div :class="classes" v-for="item in items" v-bind:key="item.id">
       <ParliamentaryGroupCard
-        :parliamentary_group="item"
+        :parliamentaryGroup="item"
         v-if="isParliamentaryGroup()"
         :layout="layout"
       />

@@ -46,7 +46,7 @@ const logos = {
   BNG: "bng.png",
 };
 
-const getLogoSrc = function () {
+const getLogoSrc = () => {
   let logo = "";
   if (party in logos) {
     logo = new URL(`@/assets/party_logos/${logos[party]}`, import.meta.url)
