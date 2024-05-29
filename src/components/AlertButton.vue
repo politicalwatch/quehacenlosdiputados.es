@@ -8,21 +8,24 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, toRefs } from "vue";
 import Swal from "sweetalert2";
+
 import api from "@/api";
 import Icon from "@/components/Icon.vue";
 
-const { searchParams } = defineProps({
+const props = defineProps({
   searchParams: {
     type: Object,
   },
 });
 
+const { searchParams } = toRefs(props);
+
 const errors = ref(null);
 
 const saveAlert = async () => {
-  let search_params = Object.assign({}, searchparams);
+  let search_params = Object.assign({}, searchParams.value);
   if (search_params.hasOwnProperty("page")) delete search_params.page;
 
   if (!search_params.hasOwnProperty("knowledgebase"))
@@ -74,7 +77,7 @@ const saveAlert = async () => {
           title: "Alerta creada",
           text: "Recibirá en breve un correo de confirmación",
           focusConfirm: false,
-          type: "success",
+          icon: "success",
         });
       })
       .catch((error) => {
@@ -86,7 +89,7 @@ const saveAlert = async () => {
             : "Error al crear la alerta",
           text: "Inténtalo de nuevo más tarde",
           focusConfirm: false,
-          type: "error",
+          icon: "error",
         });
       });
   } else {
