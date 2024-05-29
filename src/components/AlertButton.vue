@@ -52,7 +52,6 @@ const saveAlert = async () => {
       "Al crear una alerta manifiestas estar conforme con la Política de privacidad de QHLD.",
     input: "email",
     inputPlaceholder: "nombre@dominio.com",
-    showCancelButton: true,
     inputValidator: (value) => {
       if (!value) {
         return "Debes introducir un correo electrónico";
@@ -64,8 +63,11 @@ const saveAlert = async () => {
     imageAlt: "Imagen de correo electrónico",
     animation: false,
     focusConfirm: false,
-    confirmButtonText: "Crear",
-    confirmButtonAriaLabel: "Crear",
+    confirmButtonText: "Crear alerta",
+    confirmButtonAriaLabel: "Crear alerta",
+    showCancelButton: true,
+    cancelButtonText: "Cancelar",
+    cancelButtonAriaLabel: "Cancelar",
   });
   if (email) {
     let params = {
