@@ -1,5 +1,5 @@
 .c-info-dropdown {
-  background-color:$lightgrey;
+  background-color: $lightgrey;
   padding: 32px;
   margin-bottom: 32px;
 
@@ -21,19 +21,15 @@
     margin-top: 32px;
 
     &__item {
-      display:block;
-      margin-top:0;
+      display: block;
+      margin-top: 0;
       margin-bottom: 16px;
     }
   }
 
   &__icon {
-    float: right;
-    display:inline-block;
+    display: flex;
+    gap: 1rem;
     font-family: $font-headline;
-
-    .c-icon {
-      margin-left: 16px;
-    }
   }
 }

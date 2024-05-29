@@ -5,8 +5,6 @@
 </template>
 
 <script setup>
-import Icon from "@/components/Icon.vue";
-
 const { link, icon } = defineProps({
   link: {
     type: String,

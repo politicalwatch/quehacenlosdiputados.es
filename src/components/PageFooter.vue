@@ -71,27 +71,27 @@
                   aria-label="Go to Twitter"
                   target="_blank"
                 >
-                  <icon icon="twitter" class="c-icon--white" />
+                  <icon icon="mdi:twitter" class="c-icon--white" />
                 </a>
                 <a
                   href="https://www.instagram.com/_PoliticalWatch/"
                   aria-label="Go to Instagram"
                   target="_blank"
-                  ><icon icon="instagram" class="c-icon--white"
+                  ><icon icon="mdi:instagram" class="c-icon--white"
                 /></a>
                 <a
                   href="https://t.me/quehacenlosdiputados"
                   aria-label="Go to Telegram"
                   target="_blank"
                 >
-                  <icon icon="telegram" class="c-icon--white" />
+                  <icon icon="mdi:telegram" class="c-icon--white" />
                 </a>
                 <a
                   href="https://github.com/politicalwatch/quehacenlosdiputados.es"
                   aria-label="Go to Github"
                   target="_blank"
                 >
-                  <icon icon="github" class="c-icon--white" />
+                  <icon icon="mdi:github" class="c-icon--white" />
                 </a>
               </div>
             </div>
@@ -153,8 +153,8 @@ import { defineAsyncComponent } from "vue";
 import VueCookieAcceptDecline from "vue-cookie-accept-decline";
 import "vue-cookie-accept-decline/dist/vue-cookie-accept-decline.css";
 import { bootstrap } from "vue-gtag";
+import { Icon } from "@iconify/vue";
 
-import Icon from "@/components/Icon.vue";
 import LogoPW from "@/assets/logo-political-watch.svg";
 
 const getLogoVersion = () => {

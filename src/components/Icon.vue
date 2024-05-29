@@ -1,11 +1,11 @@
 <template>
   <span class="c-icon" :class="`c-icon--type-${icon}`">
-    <component :is="svg" />
+    <component :is="svg" :style="{ fill: customColor }" />
   </span>
 </template>
 
 <script setup>
-import { toRefs, computed, defineAsyncComponent, onMounted } from "vue";
+import { toRefs, computed, defineAsyncComponent } from "vue";
 
 const props = defineProps({
   icon: { type: String },
@@ -26,10 +26,5 @@ const svg = computed(() => {
   return svg;
 });
 
-onMounted(() => {
-  const svgPathElement = document.querySelector(".c-icon svg path");
-  if (color.value && svgPathElement) {
-    svgPathElement.style.fill = color.value;
-  }
-});
+const customColor = computed(() => color.value || "#2d4252");
 </script>

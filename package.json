@@ -38,6 +38,7 @@
     "vue-scrollto": "^2.15.0"
   },
   "devDependencies": {
+    "@iconify/vue": "^4.1.2",
     "@rushstack/eslint-patch": "^1.1.0",
     "@vitejs/plugin-legacy": "^5.1.0",
     "@vitejs/plugin-vue": "^5.0.0",

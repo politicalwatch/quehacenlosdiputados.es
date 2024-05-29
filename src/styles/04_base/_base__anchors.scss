@@ -13,6 +13,10 @@ a {
   @include border-link;
   transition: all 0.15s ease-in-out;
   cursor: pointer;
+  // display: flex;
+  // justify-content: center;
+  // gap: 1rem;
+  // align-items: center;
 
   &:hover {
     background: $black;

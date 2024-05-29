@@ -1,7 +1,7 @@
 <template>
   <div class="c-gender u-justify-center u-justify-normal@md">
     <div class="c-gender__icon">
-      <icon :icon="gender"></icon>
+      <icon :icon="`material-symbols:${gender}`" :height="68"></icon>
     </div>
     <div class="c-gender__info">
       <div class="c-gender__info__percentage">{{ percentage }}%</div>
@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import Icon from "@/components/Icon.vue";
+import { Icon } from "@iconify/vue";
 
 const { gender, percentage } = defineProps({
   gender: {

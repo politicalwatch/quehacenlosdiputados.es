@@ -13,7 +13,8 @@
           <p class="c-topic__header__description">{{ topic.description[0] }}</p>
           <h6 class="u-uppercase c-topic__header__author">
             <a :href="credits[topic.id].url" target="_blank"
-              ><icon icon="camera" />Unsplash: {{ credits[topic.id].name }}</a
+              ><icon icon="mdi:camera" />Unsplash:
+              {{ credits[topic.id].name }}</a
             >
           </h6>
         </div>
@@ -79,8 +80,8 @@
 import { ref, computed, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useHead } from "@unhead/vue";
+import { Icon } from "@iconify/vue";
 
-import Icon from "@/components/Icon.vue";
 import Results from "@/components/Results.vue";
 import CardGrid from "@/components/CardGrid.vue";
 import Loader from "@/components/Loader.vue";

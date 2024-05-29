@@ -16,7 +16,7 @@
 <script setup>
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import es from "date-fns/locale/es";
-import Icon from "@/components/Icon.vue";
+import { Icon } from "@iconify/vue";
 
 const { initiative, mappedStatus } = defineProps({
   initiative: { type: Object, required: true },
@@ -54,7 +54,11 @@ const getColorByStatus = (status) => {
 
 const getIcon = (initiative) => {
   const color = getColorByStatus(initiative["status"]);
-  const map = { completed: "success", neutral: "clock", error: "denied" };
+  const map = {
+    completed: "mdi:check-bold",
+    neutral: "mdi:clock-outline",
+    error: "mdi:times",
+  };
   return map[color];
 };
 

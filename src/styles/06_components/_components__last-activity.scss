@@ -27,6 +27,8 @@
     font-size: rem(64px);
     line-height: rem(80px);
     width: 100%;
+    display: flex;
+    align-items: center;
 
     @media (min-width: $sm) {
       width: auto;

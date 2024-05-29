@@ -39,7 +39,17 @@
   }
 
   &__deputies {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
     margin-bottom: rem($spacer-unit);
+
+    .c-deputy-card__small-layout {
+      img {
+        margin: 0;
+      }
+    }
   }
 
   &__label {

@@ -56,19 +56,18 @@
             </router-link>
           </h3>
           <div class="c-deputy__personal-info">
+            <span class="c-deputy__personal">
+              <party-logo-icon :party="deputy.party_name" />
+              {{ deputy.party_name }}
+            </span>
             <span class="c-deputy__personal"
-              ><party-logo-icon :party="deputy.party_name" />{{
-                deputy.party_name
-              }}</span
+              ><Icon icon="mdi:location" />{{ deputy.constituency }}</span
             >
             <span class="c-deputy__personal"
-              ><icon icon="location" />{{ deputy.constituency }}</span
-            >
-            <span class="c-deputy__personal"
-              ><icon v-if="addBirthdayClass()" icon="birthday" />{{
-                deputy.age
-              }}
-              años</span
+              ><icon
+                v-if="addBirthdayClass()"
+                icon="mdi:birthday-cake-outline"
+              />{{ deputy.age }} años</span
             >
             <span class="c-deputy__personal">{{ getLegislatures() }}</span>
           </div>
@@ -76,7 +75,7 @@
             <p
               class="c-info-dropdown__content__item"
               v-for="bio in deputy.bio"
-              v-bind:key="bio"
+              :key="bio"
             >
               {{ bio }}
             </p>
@@ -85,7 +84,7 @@
             <p
               class="c-info-dropdown__content__item"
               v-for="position in deputy.public_position"
-              v-bind:key="position"
+              :key="position"
             >
               {{ position }}
             </p>
@@ -94,7 +93,7 @@
             <a
               class="c-info-dropdown__content__item"
               v-for="(link, declaration) in deputy.extra.declarations"
-              v-bind:key="declaration"
+              :key="declaration"
               :href="link"
               target="_blank"
               >{{ declaration }}</a
@@ -146,12 +145,12 @@ import { ref, computed, onBeforeMount } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useParliamentStore } from "@/stores/parliament";
 import { useSeoMeta } from "@unhead/vue";
+import { Icon } from "@iconify/vue";
 
 import Footprint from "@/components/Footprint.vue";
 import CongressLink from "@/components/CongressLink.vue";
 import Message from "@/components/Message.vue";
 import Results from "@/components/Results.vue";
-import Icon from "@/components/Icon.vue";
 import InfoDropdown from "@/components/InfoDropdown.vue";
 import Loader from "@/components/Loader.vue";
 import PartyLogoIcon from "@/components/PartyLogoIcon.vue";

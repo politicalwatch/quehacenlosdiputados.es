@@ -30,13 +30,16 @@
           </h3>
           <div class="c-deputy__extra">
             <span class="c-deputy__personal"
-              ><icon v-if="isBirthday" icon="birthday" />{{
+              ><icon v-if="isBirthday" icon="mdi:birthday-cake-outline" />{{
                 getAge()
               }}
               años</span
-            ><span class="c-deputy__personal"
-              ><icon icon="location" />{{ getConstituency() }}</span
             >
+            <span class="c-deputy__personal">
+              <icon icon="mdi:location" color="#2d4252" :width="18" />{{
+                getConstituency()
+              }}
+            </span>
           </div>
           <div class="c-deputy__links">
             <slot />
@@ -44,13 +47,16 @@
         </div>
         <div class="o-grid__col u-12 u-12@sm c-deputy__more">
           <a href="#" @click="collapse"
-            >{{ getCollapseMessage() }}<icon :icon="getCollapseIcon()"
+            >{{ getCollapseMessage()
+            }}<icon :icon="getCollapseIcon()" color="#F00"
           /></a>
         </div>
         <div :class="getCollapsedClass()" class="o-grid__col u-12 u-4@sm">
           <h3>Declaraciones</h3>
           <p v-for="(link, title) in deputy.extra.declarations" :key="title">
-            <icon icon="document" /><a :href="link">{{ title }}</a>
+            <icon icon="mdi:file-document-outline" /><a :href="link">{{
+              title
+            }}</a>
           </p>
         </div>
         <div :class="getCollapsedClass()" class="o-grid__col u-12 u-4@sm">
@@ -70,8 +76,8 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import { Icon } from "@iconify/vue";
 
-import Icon from "@/components/Icon.vue";
 import PartyLogo from "@/components/PartyLogo.vue";
 
 const { deputy, parliamentaryGroup } = defineProps({
@@ -86,7 +92,7 @@ const getCollapsedClass = () => {
 };
 
 const getCollapseIcon = () => {
-  return isCollapsed.value ? "plus" : "less";
+  return isCollapsed.value ? "mdi:plus" : "mdi:minus";
 };
 
 const getCollapseMessage = () => {

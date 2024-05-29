@@ -25,7 +25,7 @@
     <div class="o-grid o-grid--center" v-if="isMoreResults">
       <div class="o-grid__col">
         <a href="#" class="u-border-link" @click.prevent="loadMore">
-          <icon icon="load-more" />Cargar más {{ nextResultsLabel }}
+          <icon icon="mdi:reload" />Cargar más {{ nextResultsLabel }}
         </a>
       </div>
     </div>
@@ -35,10 +35,10 @@
 <script setup>
 import { ref, toRefs, computed, watch, onMounted, onUpdated } from "vue";
 import Masonry from "masonry-layout";
+import { Icon } from "@iconify/vue";
 
 import InitiativeCard from "@/components/InitiativeCard.vue";
 import Loader from "@/components/Loader.vue";
-import Icon from "@/components/Icon.vue";
 
 const props = defineProps({
   loadingResults: Boolean,

@@ -25,7 +25,10 @@
           :deputy="store.getDeputyByName(deputyName)"
           layout="small"
         />
-        <Icon v-if="initiative.deputies.length > 10" icon="more" />
+        <Icon
+          v-if="initiative.deputies.length > 10"
+          icon="mdi:dots-horizontal"
+        />
       </div>
       <RouterLink
         v-if="initiative.id"
@@ -48,11 +51,12 @@
 </template>
 
 <script setup>
-import Icon from "@/components/Icon.vue";
+import { Icon } from "@iconify/vue";
+
+import { useParliamentStore } from "@/stores/parliament";
 import TopicPill from "@/components/TopicPill.vue";
 import InitiativeStatus from "@/components/InitiativeStatus.vue";
 import DeputyCard from "@/components/DeputyCard.vue";
-import { useParliamentStore } from "@/stores/parliament";
 
 const { initiative, topicsStyles, extendedLayout } = defineProps({
   initiative: { type: Object, required: true },

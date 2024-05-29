@@ -210,10 +210,10 @@
       <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4">
         <a
           href="#"
-          class="c-button u-padding-left-0"
+          class="c-button c-button--advanced u-padding-left-0"
           @click.prevent="toggleAdvanced"
         >
-          <icon icon="advanced" />
+          <Icon icon="mdi:mixer-settings" />
           <span v-if="!advanced">Mostrar búsqueda avanzada</span>
           <span v-else>Ocultar búsqueda avanzada</span>
         </a>
@@ -237,12 +237,12 @@ import { useRouter } from "vue-router";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 import Multiselect from "vue-multiselect";
-import Icon from "@/components/Icon.vue";
+import { Icon } from "@iconify/vue";
+import format from "date-fns/format";
+
 import * as Utils from "@/utils";
 import api from "@/api";
 import { useParliamentStore } from "@/stores/parliament";
-
-import format from "date-fns/format";
 
 const props = defineProps({
   formData: Object,
@@ -472,5 +472,11 @@ span.multiselect__option--selected {
   span {
     color: white;
   }
+}
+
+.c-button--advanced {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 </style>

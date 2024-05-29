@@ -1,12 +1,12 @@
 .c-gender {
   display: flex;
   gap: rem($spacer-unit);
-  margin-bottom: rem($spacer-unit*2);
+  margin-bottom: rem($spacer-unit * 2);
 
   &__icon {
     svg {
-      width: 48px;
-      height: 48px;
+      // width: 48px;
+      // height: 48px;
     }
   }
 

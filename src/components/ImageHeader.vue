@@ -20,7 +20,8 @@
     </h3>
     <h6 class="u-uppercase c-image-header__author u-hide u-block@sm">
       <a :href="home.ImageUrl" target="_blank"
-        ><icon icon="camera" /><span v-if="isUnsplashPhoto()">Unsplash: </span
+        ><icon icon="mdi:camera" :height="16" /><span v-if="isUnsplashPhoto()"
+          >Unsplash: </span
         >Photo by {{ home.ImageAuthor }}</a
       >
     </h6>
@@ -28,7 +29,7 @@
 </template>
 
 <script setup>
-import Icon from "@/components/Icon.vue";
+import { Icon } from "@iconify/vue";
 
 const { home, alt, imageSrcset, imageSizes, imageSrc } = defineProps({
   home: Object,

@@ -1,14 +1,15 @@
 <template>
-  <router-link
+  <RouterLink
     :to="{ name: 'initiative', params: { id: getId() } }"
     class="c-congress-link u-uppercase u-border-link"
     :title="getName()"
-    >{{ getName() }}<icon icon="conversation"></icon
-  ></router-link>
+  >
+    {{ getName() }} <icon icon="mdi:conversation" color="#2d4252" :width="18" />
+  </RouterLink>
 </template>
 
 <script setup>
-import Icon from "@/components/Icon.vue";
+import { Icon } from "@iconify/vue";
 
 const { id, isAnswer } = defineProps({
   id: {

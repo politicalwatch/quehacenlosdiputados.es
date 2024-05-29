@@ -1,8 +1,10 @@
 .c-icon {
+  svg {
+    fill: #2d4252;
+  }
+
   @each $color-name, $color-value in $colors {
-
     &--#{$color-name} {
-
       path {
         fill: $color-value !important;
       }

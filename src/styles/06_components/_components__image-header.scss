@@ -46,6 +46,10 @@
 
     a {
       text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
 
       &:hover {
         text-decoration: underline;
@@ -61,7 +65,7 @@
     margin: 0;
     overflow: hidden;
     max-height: 480px;
-    
+
     img {
       width: 100%;
     }

@@ -3,16 +3,18 @@
     class="c-save-alert__button u-border-link u-uppercase"
     href="#"
     @click.prevent="saveAlert"
-    ><icon icon="bell" /> Crea una alerta</a
   >
+    <Icon icon="mdi:bell" color="#2d4252" />
+    Crea una alerta
+  </a>
 </template>
 
 <script setup>
 import { ref, toRefs } from "vue";
 import Swal from "sweetalert2";
+import { Icon } from "@iconify/vue";
 
 import api from "@/api";
-import Icon from "@/components/Icon.vue";
 
 const props = defineProps({
   searchParams: {
@@ -98,4 +100,13 @@ const saveAlert = async () => {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.c-save-alert {
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+</style>

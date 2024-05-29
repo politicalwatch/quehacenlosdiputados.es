@@ -45,6 +45,10 @@
       h5 {
         margin-top: 0px;
         margin-bottom: rem(calc($spacer-unit / 4));
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 4px;
       }
     }
   }
@@ -100,7 +104,6 @@
         svg {
           width: 10px;
           height: auto;
-          margin-right: 4px;
         }
       }
     }

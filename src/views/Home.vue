@@ -50,12 +50,12 @@
 <script setup>
 import { ref, onMounted } from "vue";
 
+import api from "@/api";
+import config from "@/config";
 import ImageHeader from "@/components/ImageHeader.vue";
 import LastActivity from "@/components/LastActivity.vue";
 import Loader from "@/components/Loader.vue";
 import Results from "@/components/Results.vue";
-import config from "@/config";
-import api from "@/api";
 
 const topicsStyles = config.STYLES.topics;
 

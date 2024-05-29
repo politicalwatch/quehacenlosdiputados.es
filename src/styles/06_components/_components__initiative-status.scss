@@ -1,17 +1,15 @@
 .c-initiative-status {
-
   display: flex;
   align-items: center;
 
   &__icon {
-    text-align: left;
     margin-right: 8px;
     width: rem(24px);
     height: rem(24px);
     display: flex;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
-
 
     svg {
       width: rem(10px);
@@ -20,7 +18,6 @@
       path {
         fill: $white;
       }
-
     }
 
     &--neutral {
@@ -36,11 +33,10 @@
     &--error {
       background-color: $error;
       border-color: $error;
-      }
+    }
   }
 
   &__message {
     @include overline;
   }
-
 }

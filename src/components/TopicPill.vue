@@ -6,13 +6,14 @@
       class="c-topics__topic c-topics__topic__small"
       style="background-color: #a3d5c8"
     >
-      <icon icon="more" />
+      <icon icon="mdi:dots-horizontal" />
     </div>
   </div>
 </template>
 
 <script setup>
-import Icon from "@/components/Icon.vue";
+import { Icon } from "@iconify/vue";
+
 import * as Utils from "@/utils";
 
 const { topics, topicsStyles, withLinks, limit } = defineProps({

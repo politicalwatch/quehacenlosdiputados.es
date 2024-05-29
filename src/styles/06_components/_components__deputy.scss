@@ -1,5 +1,4 @@
 .c-deputy {
-
   &__image_container {
     width: rem($spacer-unit * 16);
     margin: 0 auto 30px;
@@ -85,9 +84,9 @@
     padding-right: 22px;
     padding-left: 22px;
     border-right: solid 2px $black;
-    line-height: 32px;
-    display:flex;
-    align-content:center;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
     margin-bottom: 96px;
 
     &:last-child {
@@ -103,12 +102,12 @@
     }
 
     .c-party_logo_icon {
-       width: 32px;
-       height: 32px;
-       margin-top: 0;
-       margin-bottom: 0;
-       margin-left: 0;
-       margin-right: 8px;
+      width: 32px;
+      height: 32px;
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 8px;
 
       img {
         width: 50%;
@@ -124,7 +123,8 @@
       text-align: left;
     }
 
-    a, a:hover {
+    a,
+    a:hover {
       color: $secondary-dark;
       font-weight: 500;
       text-decoration: none;
@@ -146,7 +146,8 @@
       font-size: 12px;
     }
 
-    p, a {
+    p,
+    a {
       margin-top: 8px;
       margin-bottom: 8px;
     }
@@ -166,7 +167,7 @@
   }
 
   &__birthday {
-    background: url('../assets/birthday_bg.png');
+    background: url("../assets/birthday_bg.png");
   }
 
   &__personal-info {
@@ -174,9 +175,7 @@
   }
 
   &__inactive {
-
     .c-message {
-
       .c-message__wrapper {
         background-color: $lightgrey;
       }

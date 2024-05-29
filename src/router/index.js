@@ -12,15 +12,15 @@ const routes = [
       metaTags: [
         {
           name: "description",
-          content: "Test Home",
+          content: "Home - Qué hacen los diputados",
         },
         {
           property: "og:description",
-          content: "Test Home",
+          content: "Home - Qué hacen los diputados",
         },
         {
           property: "og:title",
-          content: "Test Home",
+          content: "Home - Qué hacen los diputados",
         },
         ...config.DEFAULT_METATAGS,
       ],
@@ -35,15 +35,15 @@ const routes = [
       metaTags: [
         {
           name: "description",
-          content: "Test Buscar",
+          content: "Buscar - Qué hacen los diputados",
         },
         {
           property: "og:description",
-          content: "Test Buscar",
+          content: "Buscar - Qué hacen los diputados",
         },
         {
           property: "og:title",
-          content: "Test Buscar",
+          content: "Buscar - Qué hacen los diputados",
         },
         ...config.DEFAULT_METATAGS,
       ],
@@ -58,11 +58,11 @@ const routes = [
       metaTags: [
         {
           name: "description",
-          content: "Test Resultados",
+          content: "Iniciativas - Qué hacen los diputados",
         },
         {
           property: "og:description",
-          content: "Test Resultados",
+          content: "Iniciativas - Qué hacen los diputados",
         },
         ...config.DEFAULT_METATAGS,
       ],
@@ -77,15 +77,15 @@ const routes = [
       metaTags: [
         {
           name: "description",
-          content: "Test Iniciativa",
+          content: "Iniciativa - Qué hacen los diputados",
         },
         {
           property: "og:title",
-          content: "Iniciativa OG title",
+          content: "Iniciativa - Qué hacen los diputados",
         },
         {
           property: "og:description",
-          content: "Test Iniciativa",
+          content: "Iniciativa - Qué hacen los diputados",
         },
         ...config.DEFAULT_METATAGS,
       ],

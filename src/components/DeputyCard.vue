@@ -1,5 +1,5 @@
 <template>
-  <div v-if="deputy" :class="'c-deputy-card ' + layout + '-layout'">
+  <div v-if="deputy" :class="`c-deputy-card c-deputy-card__${layout}-layout`">
     <div class="c-deputy-card__wrapper">
       <router-link
         :to="{ name: 'deputy', params: { id: deputy.id } }"
@@ -31,7 +31,9 @@
         </router-link>
         <p>{{ deputy.parliamentarygroup }}</p>
         <h5 v-if="layout == 'large'">
-          <icon icon="location" />{{ deputy.constituency }}
+          <icon icon="mdi:location" color="#2d4252" :width="18" />{{
+            deputy.constituency
+          }}
         </h5>
       </div>
     </div>
@@ -39,10 +41,11 @@
 </template>
 
 <script setup>
+import { Icon } from "@iconify/vue";
+
+import config from "@/config";
 import Footprint from "@/components/Footprint.vue";
 import PartyLogoIcon from "@/components/PartyLogoIcon.vue";
-import Icon from "@/components/Icon.vue";
-import config from "@/config";
 
 const { deputy, layout, footprint } = defineProps({
   deputy: {

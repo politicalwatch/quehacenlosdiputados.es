@@ -9,7 +9,7 @@
     <div v-if="layout == 'large'" class="c-parliamentary_group_card__wrapper">
       <h1 class="u-uppercase">{{ getGroupName() }}</h1>
       <h3 class="u-uppercase">
-        <icon icon="person" class="c-icon--secondary c-icon--white" />{{
+        <Icon icon="mdi:person" class="c-icon--secondary c-icon--white" />{{
           parliamentaryGroup.composition.deputies
         }}
         Diputados/as
@@ -31,7 +31,7 @@
       >
         <h3 class="u-uppercase">{{ getGroupName() }}</h3>
         <h4 class="u-uppercase">
-          <icon icon="person" class="c-icon--secondary c-icon--white" />{{
+          <Icon icon="mdi:person" class="c-icon--secondary c-icon--white" />{{
             parliamentaryGroup.composition.deputies
           }}
           Diputados/as
@@ -59,7 +59,8 @@
 </template>
 
 <script setup>
-import Icon from "@/components/Icon.vue";
+import { Icon } from "@iconify/vue";
+
 import PartyLogoIcon from "@/components/PartyLogoIcon.vue";
 
 const { parliamentaryGroup, layout } = defineProps({

@@ -22,7 +22,7 @@
         aria-label="Close Disclaimer"
         @click="closeDisclaimer"
       >
-        <icon icon="close" color="#ffffff" />
+        <Icon icon="mdi:close-circle" color="#ffffff" />
       </button>
     </div>
 
@@ -71,6 +71,7 @@
                   'c-menu__link--icon': link.icon,
                 }"
                 v-if="link.icon"
+                :height="20"
               />
             </a>
             <router-link
@@ -78,7 +79,12 @@
               :to="{ name: link.route }"
               :class="{ 'c-menu__link': true, 'c-menu__link--icon': link.icon }"
             >
-              <icon :icon="link.icon" class="c-menu__icon" v-if="link.icon" />
+              <icon
+                :icon="link.icon"
+                class="c-menu__icon"
+                v-if="link.icon"
+                :height="20"
+              />
               <span>{{ link.name }}</span>
             </router-link>
           </li>
@@ -90,9 +96,9 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import { Icon } from "@iconify/vue";
 
 import Logo from "@/assets/logo.svg";
-import Icon from "@/components/Icon.vue";
 
 const { links, disclaimer, preImage, logo } = defineProps({
   links: { type: Array },

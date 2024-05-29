@@ -6,7 +6,9 @@
     </h4>
     <div v-for="type in types" class="c-last-activity__stat">
       <h1 class="c-last-activity__number">
-        <icon :icon="lastdays[type].trend" />{{ lastdays[type].initiatives }}
+        <icon :icon="getIcon(type)" :color="getIconColor(type)" />{{
+          lastdays[type].initiatives
+        }}
       </h1>
       <h4 class="c-last-activity__type u-uppercase">{{ titles[type] }}</h4>
       <span class="c-last-activity__description">{{ descriptions[type] }}</span>
@@ -16,7 +18,7 @@
 </template>
 
 <script setup>
-import Icon from "@/components/Icon.vue";
+import { Icon } from "@iconify/vue";
 
 const { lastdays } = defineProps({
   lastdays: {
@@ -24,6 +26,24 @@ const { lastdays } = defineProps({
     required: true,
   },
 });
+
+const getIcon = (type) => {
+  const map = {
+    up: "mdi:arrow-up-bold",
+    down: "mdi:arrow-down-bold",
+    equal: "mdi:equal",
+  };
+  return map[lastdays[type].trend];
+};
+
+const getIconColor = (type) => {
+  const map = {
+    up: "#4DCA7F",
+    down: "#E50047",
+    equal: "#1D1D1B",
+  };
+  return map[lastdays[type].trend];
+};
 
 const types = ["legislative", "orientation", "oversight"];
 const titles = {

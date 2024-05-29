@@ -7,7 +7,7 @@
       class="c-topics__label u-uppercase"
     >
       <a @click="activateKb(kb)" href="#tagged"
-        ><icon icon="ods" v-if="kb == 'ods'" />{{ titles[kb] }}</a
+        ><ODSIcon icon="ods" v-if="kb == 'ods'" />{{ titles[kb] }}</a
       >
     </h3>
     <ul class="c-topics__list">
@@ -101,7 +101,7 @@
 import { ref } from "vue";
 import qs from "qs";
 
-import Icon from "@/components/Icon.vue";
+import ODSIcon from "@/assets/svg/icon-ods.svg";
 import * as Utils from "@/utils";
 
 const { initiative, topicsStyles } = defineProps({
