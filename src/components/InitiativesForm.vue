@@ -290,20 +290,18 @@ const formattedEndDate = computed(() => {
 });
 
 const cleanForm = () => {
-  formData.value = {
-    topic: "",
-    subtopics: [],
-    tags: [],
-    author: "",
-    deputy: "",
-    status: "",
-    place: "",
-    type: "",
-    reference: "",
-    enddate: "",
-    startdate: "",
-    text: "",
-  };
+  formData.value.topic = "";
+  formData.value.subtopics = [];
+  formData.value.tags = [];
+  formData.value.author = "";
+  formData.value.deputy = "";
+  formData.value.status = "";
+  formData.value.place = "";
+  formData.value.type = "";
+  formData.value.reference = "";
+  formData.value.enddate = "";
+  formData.value.startdate = "";
+  formData.value.text = "";
   clearSubtopicsAndTags();
   // //clear url
   router.push({ name: "search" });
