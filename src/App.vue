@@ -57,8 +57,24 @@ onMounted(() => {
 input[type="email"].swal2-input {
   width: auto;
 }
-.swal2-confirm {
-  background-color: $primary !important;
+
+.swal2-actions {
+  flex-direction: row-reverse;
+  .swal2-confirm {
+    background-color: $primary;
+  }
+  .swal2-cancel {
+    background-color: transparent;
+    color: $secondary-dark;
+
+    &:hover {
+      background-color: transparent;
+      color: #8095a0;
+    }
+    &.swal2-styled:hover {
+      background-image: none !important;
+    }
+  }
 }
 </style>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
