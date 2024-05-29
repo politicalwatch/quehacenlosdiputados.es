@@ -24,7 +24,7 @@
           </div>
           <div class="o-grid__col o-grid__col--right">
             <AlertButton
-              :searchparams="formData"
+              :searchParams="formData"
               v-if="use_alerts && query_meta.page"
             />
           </div>

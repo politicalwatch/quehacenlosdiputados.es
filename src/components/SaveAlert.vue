@@ -9,7 +9,7 @@
           No te pierdas nada de la actividad parlamentaria relacionada con
         </h4>
         <h1 class="u-uppercase">{{ text }}</h1>
-        <AlertButton :searchparams="searchparams" />
+        <AlertButton :searchParams="searchparams" />
       </div>
     </div>
   </div>
