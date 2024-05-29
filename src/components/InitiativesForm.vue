@@ -393,7 +393,9 @@ const getSubtopicsAndTags = (topicID) => {
         Utils.naturalSort
       );
       tags.value = tempTags;
-      filteredTags = tags.value.map((tag) => tag.tag).sort(Utils.naturalSort);
+      filteredTags.value = tags.value
+        .map((tag) => tag.tag)
+        .sort(Utils.naturalSort);
     })
     .catch((error) => (errors.value = error));
 };
