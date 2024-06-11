@@ -9,9 +9,10 @@
 </template>
 
 <script setup>
+import { toRefs } from "vue";
 import { Icon } from "@iconify/vue";
 
-const { id, isAnswer } = defineProps({
+const props = defineProps({
   id: {
     type: String,
     required: true,
@@ -22,11 +23,15 @@ const { id, isAnswer } = defineProps({
   },
 });
 
+const { id, isAnswer } = toRefs(props);
+
 const getId = () => {
-  return isAnswer ? id.replace("-respuesta", "") : id + "-respuesta";
+  return isAnswer.value
+    ? id.value.replace("-respuesta", "")
+    : id.value + "-respuesta";
 };
 
 const getName = () => {
-  return isAnswer ? "Ver pregunta" : "Ver respuesta";
+  return isAnswer.value ? "Ver pregunta" : "Ver respuesta";
 };
 </script>
