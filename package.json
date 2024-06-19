@@ -32,7 +32,7 @@
     "vue-cookie-accept-decline": "^6.1.0",
     "vue-gtag": "^2.0.1",
     "vue-inline-svg": "^3.1.2",
-    "vue-json-excel3": "^1.0.20",
+    "vue-json-excel3": "^1.0.24",
     "vue-multiselect": "^3.0.0-beta.2",
     "vue-router": "^4.2.5",
     "vue-scrollto": "^2.15.0"
