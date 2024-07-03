@@ -66,7 +66,7 @@
             </li>
             <li>¿Cómo se están tratando ciertos temas en la Cámara?</li>
           </ul>
-          <h2>Objetivos</h2>
+          <h2>Metodología</h2>
           <p>
             El objetivo de este proyecto es recopilar toda la información sobre
             las iniciativas parlamentarias lo más objetivamente posible. Eso
@@ -83,6 +83,7 @@
             seguir cuando se mencionan juntas facilita detectar intentos de
             estigmatización en posibles iniciativaspropuestas parlamentarias.
           </p>
+          <h2>Objetivos</h2>
           <ul>
             <li>
               Ofrecer información a la ciudadanía acerca de lo que se hace en el
