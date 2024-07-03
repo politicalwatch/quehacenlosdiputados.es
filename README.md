@@ -20,5 +20,5 @@ Finally, edit *config/index.js* file with your specific values.
 ## Run
 
 `````
-npm run serve
+npm run dev
 `````````
