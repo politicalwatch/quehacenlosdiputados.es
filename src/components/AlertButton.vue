@@ -105,7 +105,7 @@ const saveAlert = async () => {
 <style scoped lang="scss">
 .c-save-alert {
   &__button {
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;

@@ -99,7 +99,7 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import { useHead } from "@unhead/vue";
 
 import ParliamentaryGroupCard from "@/components/ParliamentaryGroupCard.vue";

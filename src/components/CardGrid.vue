@@ -1,12 +1,12 @@
 <template>
   <div class="o-grid c-card_grid">
-    <div :class="classes" v-for="item in items" v-bind:key="item.id">
+    <div :class="classes" v-for="item in items" :key="item.id">
       <ParliamentaryGroupCard
-        :parliamentaryGroup="item"
         v-if="isParliamentaryGroup()"
+        :parliamentaryGroup="item"
         :layout="layout"
       />
-      <deputy-card
+      <DeputyCard
         v-if="isDeputy()"
         :deputy="item"
         :layout="layout"

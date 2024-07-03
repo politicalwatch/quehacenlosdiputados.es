@@ -1,13 +1,13 @@
 <template>
   <div id="deputies" class="o-container o-section u-margin-bottom-10">
-    <page-header title="Listado de diputados" />
-    <deputies-form
+    <PageHeader title="Listado de diputados" />
+    <DeputiesForm
       :deputies="store.allDeputies"
       :groups="getGroupsLongNames"
       @setFilters="setFilters"
       :ranking="getRanking"
-    ></deputies-form>
-    <loader
+    />
+    <Loader
       v-if="store.allDeputies.length == 0"
       title="Cargando diputados"
       subtitle="Puede llevar algun tiempo"
@@ -19,10 +19,6 @@
       layout="large"
       :extra="{ footprint: getSelectedFootprint }"
     />
-    <not-found
-      v-if="hasLoadedDeputies && getFilteredDeputies.length == 0"
-      message="No se han encontrado diputados."
-    />
   </div>
 </template>
 
@@ -33,7 +29,6 @@ import DeputiesForm from "@/components/DeputiesForm.vue";
 import PageHeader from "@/components/PageHeader.vue";
 import Loader from "@/components/Loader.vue";
 import CardGrid from "@/components/CardGrid.vue";
-import NotFound from "@/components/NotFound.vue";
 import { useParliamentStore } from "@/stores/parliament";
 
 const store = useParliamentStore();
