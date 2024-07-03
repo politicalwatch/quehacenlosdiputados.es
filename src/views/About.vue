@@ -67,6 +67,22 @@
             <li>¿Cómo se están tratando ciertos temas en la Cámara?</li>
           </ul>
           <h2>Objetivos</h2>
+          <p>
+            El objetivo de este proyecto es recopilar toda la información sobre
+            las iniciativas parlamentarias lo más objetivamente posible. Eso
+            incluye tanto información positiva como negativa sobre derechos
+            humanos y grupos vulnerables. De esta manera, la herramienta permite
+            tanto identificar propuestas de avance social como detectar
+            discursos de odio.
+          </p>
+          <p>
+            Las etiquetas actuales se han creado con la participación de
+            entidades de referencia en los temas a analizar. Muchas de estas
+            etiquetas no afectan solo a un colectivo -por ejemplo, la
+            información sobre ETS no afecta solo a la comunidad LGTBI-, pero
+            seguir cuando se mencionan juntas facilita detectar intentos de
+            estigmatización en posibles iniciativaspropuestas parlamentarias.
+          </p>
           <ul>
             <li>
               Ofrecer información a la ciudadanía acerca de lo que se hace en el
@@ -144,4 +160,8 @@ import { useParliamentStore } from "@/stores/parliament";
 const store = useParliamentStore();
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+ul + h2 {
+  margin-top: 2rem;
+}
+</style>
