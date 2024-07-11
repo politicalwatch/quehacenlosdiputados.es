@@ -238,6 +238,216 @@ onBeforeMount(getDeputy);
 </script>
 
 <style lang="scss" scoped>
+.c-deputy {
+  &__image_container {
+    width: rem($spacer-unit * 16);
+    margin: 0 auto 30px;
+    text-align: center;
+
+    @media (min-width: $md) {
+      width: rem($spacer-unit * 16);
+    }
+  }
+
+  &__image {
+    width: rem($spacer-unit * 16);
+    height: rem($spacer-unit * 16);
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    z-index: 0;
+  }
+
+  &__name {
+    font-size: rem(56px);
+    line-height: 72px;
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 0;
+
+    @media (min-width: $sm) {
+      text-align: left;
+    }
+  }
+
+  &__group {
+    font-family: $font-primary;
+    font-size: 24px;
+    line-height: 32px;
+    text-transform: uppercase;
+    text-align: center;
+
+    @media (min-width: $sm) {
+      text-align: left;
+    }
+
+    a {
+      font-weight: 300;
+      text-decoration: none;
+      color: $secondary-dark;
+    }
+  }
+
+  &__description {
+    @include subtitle;
+
+    & {
+      text-align: center;
+    }
+
+    @media (min-width: $sm) {
+      text-align: left;
+    }
+  }
+
+  &__links {
+    margin-top: 32px;
+    margin-bottom: 32px;
+
+    a {
+      margin-left: 4px;
+      margin-right: 4px;
+      display: inline-block;
+    }
+  }
+
+  &__extra {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    text-align: center;
+
+    @media (min-width: $md) {
+      text-align: left;
+    }
+  }
+
+  &__personal {
+    font-family: $font-headline;
+    padding-right: 22px;
+    padding-left: 22px;
+    border-right: solid 2px $black;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    margin-bottom: 96px;
+
+    &:last-child {
+      border: none;
+    }
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    span {
+      margin-right: 4px;
+    }
+
+    .c-party_logo_icon {
+      width: 32px;
+      height: 32px;
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 8px;
+
+      img {
+        width: 50%;
+        height: 50%;
+      }
+    }
+  }
+
+  &__more {
+    text-align: center;
+
+    @media (min-width: $md) {
+      text-align: left;
+    }
+
+    a,
+    a:hover {
+      color: $secondary-dark;
+      font-weight: 500;
+      text-decoration: none;
+
+      .c-icon {
+        margin-left: 8px;
+      }
+    }
+  }
+
+  &__info {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+    margin-top: rem($spacer-unit * 8);
+
+    h3 {
+      color: $secondary;
+      font-size: 12px;
+    }
+
+    p,
+    a {
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+
+    a {
+      font-weight: 500;
+      color: $secondary-dark;
+    }
+
+    span {
+      margin-right: 8px;
+    }
+  }
+
+  &__hidden {
+    display: none;
+  }
+
+  &__birthday {
+    background: url("../assets/birthday_bg.png");
+  }
+
+  &__personal-info {
+    display: flex;
+  }
+
+  &__inactive {
+    .c-message {
+      .c-message__wrapper {
+        background-color: $lightgrey;
+      }
+
+      &__wrapper {
+        width: 100%;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        display: flex;
+        justify-content: center;
+
+        h4 {
+          margin-bottom: 0;
+          line-height: 24px;
+        }
+      }
+
+      &__icon {
+        position: initial;
+        margin-top: 2px;
+        margin-right: 16px;
+
+        svg path {
+          fill: black !important;
+        }
+      }
+    }
+  }
+}
+
 .c-deputy__links a.c-button {
   display: inline-block;
 }

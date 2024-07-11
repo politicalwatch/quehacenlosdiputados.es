@@ -48,3 +48,42 @@ const classes = computed(() => {
   );
 });
 </script>
+
+<style lang="scss" scoped>
+.c-card_grid {
+  &__item {
+    margin-bottom: 32px;
+
+    &__parliamentarygroup {
+      &.c-card_grid__medium {
+        height: 350px;
+        min-width: 350px;
+        padding-bottom: 0px;
+        position: relative;
+
+        @media (min-width: $sm) {
+          height: 0;
+          padding-bottom: 33.33333%;
+          float: left;
+          overflow: hidden;
+        }
+      }
+
+      &.c-card_grid__small {
+        position: relative;
+        height: 64px;
+
+        @media (min-width: $sm) {
+          overflow: hidden;
+        }
+      }
+    }
+
+    &__deputy {
+      &.c-card_grid__large {
+        margin-bottom: 6rem;
+      }
+    }
+  }
+}
+</style>

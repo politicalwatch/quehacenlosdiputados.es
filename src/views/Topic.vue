@@ -302,6 +302,93 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
+.c-topic {
+  &__header {
+    width: 100%;
+    height: 360px;
+    background-size: cover;
+    padding: 0;
+
+    &__overlay {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      padding-top: 64px;
+      padding-left: 64px;
+      padding-bottom: 32px;
+      padding-right: 32px;
+      color: $white;
+
+      background-color: #33333340;
+    }
+
+    &__column {
+      max-width: 460px;
+    }
+
+    &__name {
+      margin-bottom: 24px;
+    }
+
+    &__description {
+      margin-bottom: 52px;
+    }
+
+    &__author {
+      float: right;
+
+      a {
+        text-decoration: none;
+        color: $white;
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        .c-icon {
+          margin-right: 8px;
+
+          svg path {
+            fill: $white;
+          }
+        }
+      }
+    }
+
+    &__stat {
+      display: inline-block;
+      margin-bottom: 32px;
+      margin-right: 8px;
+    }
+  }
+
+  &__title {
+    text-align: center;
+    width: 100%;
+
+    @media (min-width: $sm) {
+      text-align: left;
+      width: auto;
+    }
+  }
+
+  &__initiatives {
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: rem(64px);
+    }
+  }
+
+  .c-save-alert {
+    margin-bottom: 180px;
+  }
+}
+
 .c-topic-card__title {
   color: $secondary-dark;
 }

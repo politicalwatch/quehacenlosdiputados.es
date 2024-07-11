@@ -22,7 +22,6 @@
                 :id="initiative.id"
                 :isAnswer="isAnswer()"
               ></ConversationLink>
-              &nbsp; &nbsp;
               <CongressLink :url="initiative.url"></CongressLink>
             </div>
           </div>
@@ -200,11 +199,19 @@ watch(route, () => {
 });
 </script>
 
-<style lang="scss">
-#initiative {
-  .c-congress-link {
-    display: inline-block;
-    margin-bottom: 37px;
+<style lang="scss" scoped>
+.c-initiative {
+  h2 {
+    margin-bottom: 32px;
+  }
+
+  &__info {
+    margin-top: 0px;
+  }
+
+  &__status {
+    height: 56px;
+    padding-top: 16px;
   }
 }
 </style>

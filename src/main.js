@@ -6,7 +6,7 @@ import router from "@/router";
 import VueGtag from "vue-gtag";
 import VueScrollTo from "vue-scrollto";
 
-import "./styles/App.scss";
+// import "./styles/App.scss";
 
 const app = createApp(App);
 app.use(router);

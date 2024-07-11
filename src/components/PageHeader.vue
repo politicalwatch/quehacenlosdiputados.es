@@ -16,3 +16,31 @@ const { title, subtitle } = defineProps({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.c-page-header {
+  margin-bottom: rem($spacer-unit * 4);
+
+  @media (min-width: $md) {
+    margin-bottom: rem($spacer-unit * 4);
+  }
+
+  &__title {
+    color: $secondary-dark;
+
+    a {
+      color: $secondary-dark;
+    }
+  }
+
+  &--nosub {
+    padding-bottom: rem($spacer-unit * 2);
+
+    .c-page-header {
+      &__title {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+</style>

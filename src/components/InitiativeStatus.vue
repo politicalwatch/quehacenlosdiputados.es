@@ -80,3 +80,48 @@ const getStateMessage = (initiative) => {
   return `${initiative["status"]} ${formattedDate}`;
 };
 </script>
+
+<style lang="scss" scoped>
+.c-initiative-status {
+  display: flex;
+  align-items: center;
+
+  &__icon {
+    margin-right: 8px;
+    width: rem(24px);
+    height: rem(24px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    svg {
+      width: rem(10px);
+      height: rem(10px);
+
+      path {
+        fill: $white;
+      }
+    }
+
+    &--neutral {
+      background-color: $secondary;
+      border-color: $secondary;
+    }
+
+    &--completed {
+      background-color: $completed;
+      border-color: $completed;
+    }
+
+    &--error {
+      background-color: $error;
+      border-color: $error;
+    }
+  }
+
+  &__message {
+    @include overline;
+  }
+}
+</style>

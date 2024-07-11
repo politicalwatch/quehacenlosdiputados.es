@@ -1,7 +1,7 @@
 <template>
   <RouterLink
     :to="{ name: 'initiative', params: { id: getId() } }"
-    class="c-congress-link u-uppercase u-border-link"
+    class="c-conversation-link u-uppercase u-border-link"
     :title="getName()"
   >
     {{ getName() }} <icon icon="mdi:conversation" color="#2d4252" :width="18" />
@@ -35,3 +35,23 @@ const getName = () => {
   return isAnswer.value ? "Ver pregunta" : "Ver respuesta";
 };
 </script>
+
+<style lang="scss" scoped>
+.c-conversation-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  .c-icon {
+    margin-left: 8px;
+
+    path {
+      fill: $black;
+    }
+  }
+}
+</style>

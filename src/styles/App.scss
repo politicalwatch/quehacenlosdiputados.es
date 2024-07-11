@@ -1,5 +1,5 @@
 @import "01_settings/settings__variables";
-@import 'variables'; // Rewrite main variables
+@import "variables"; // Rewrite main variables
 @import "01_settings/settings__breakpoints";
 @import "01_settings/settings__colors";
 @import "01_settings/settings__fonts";
@@ -26,46 +26,13 @@
 @import "05_objects/objects__masonry";
 
 // Components
-@import "06_components/components__barchart";
 @import "06_components/components__button";
-@import "06_components/components__card-grid";
-@import "06_components/components__congress-link";
-@import "06_components/components__csv-download";
 @import "06_components/components__decorator";
-@import "06_components/components__deputy";
-@import "06_components/components__deputy-card";
-@import "06_components/components__disclaimer";
-@import "06_components/components__footer";
-@import "06_components/components__footprint";
 @import "06_components/components__forms";
-@import "06_components/components__header";
-@import "06_components/components__gender";
-@import "06_components/components__government-card";
-@import "06_components/components__otherauthor-card";
-@import "06_components/components__home";
 @import "06_components/components__icon";
-@import "06_components/components__image-header";
-@import "06_components/components__info-dropdown";
-@import "06_components/components__initiative";
-@import "06_components/components__initiative-card";
-@import "06_components/components__initiative-status";
-@import "06_components/components__loader";
-@import "06_components/components__last-activity";
-@import "06_components/components__message";
-@import "06_components/components__menu";
-@import "06_components/components__navbar";
-@import "06_components/components__parliamentary-group-card";
-@import "06_components/components__party-logo";
-@import "06_components/components__party-logo-icon";
 @import "06_components/components__responsive-table";
-@import "06_components/components__save_alert";
-@import "06_components/components__social_icon";
-@import "06_components/components__splash";
 @import "06_components/components__text";
-@import "06_components/components__topic";
 @import "06_components/components__topics";
-@import "06_components/components__topic-card";
-@import "06_components/components__topic-link";
 
 // End components
 @import "07_trumps/trumps__grid";

@@ -48,3 +48,42 @@ const getColor = (topic) => {
     : "#000";
 };
 </script>
+
+<style lang="scss" scoped>
+.c-topic-card {
+  padding: rem($spacer-unit * 8) rem($spacer-unit * 4);
+  color: $white;
+
+  @media (min-width: $md) {
+    margin-bottom: rem($spacer-unit * 4);
+  }
+
+  &__image {
+    width: 100%;
+    display: block;
+    margin-bottom: rem($spacer-unit * 4);
+    max-height: 150px;
+  }
+
+  &__title {
+    @include th2;
+
+    text-transform: uppercase;
+    text-align: center;
+
+    @media (min-width: $sm) {
+      text-align: left;
+    }
+  }
+
+  &__description {
+    @include subtitle;
+
+    text-align: center;
+
+    @media (min-width: $sm) {
+      text-align: left;
+    }
+  }
+}
+</style>

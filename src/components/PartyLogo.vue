@@ -56,4 +56,26 @@ const getLogoSrc = () => {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.c-party_logo {
+  &__container {
+    width: rem($spacer-unit * 10);
+    height: rem($spacer-unit * 10);
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    bottom: rem($spacer-unit * 10 * -0.25);
+    left: rem($spacer-unit * 10 * -0.25);
+    position: absolute;
+    text-align: center;
+    background-color: white;
+    overflow: hidden;
+  }
+
+  &__image {
+    max-width: 100%;
+    vertical-align: middle;
+  }
+}
+</style>

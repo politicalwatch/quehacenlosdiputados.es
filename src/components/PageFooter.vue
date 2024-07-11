@@ -203,13 +203,75 @@ const cookieClickedDecline = () => {
 </script>
 
 <style scoped lang="scss">
-.c-footer .cookie {
-  color: #1d1d1b;
-}
+.c-footer {
+  background-color: $secondary-dark;
+  color: $white;
 
-#footer {
+  .cookie {
+    color: #1d1d1b;
+  }
+
   img {
     width: 200px;
+  }
+
+  &__brand {
+    &-link {
+      display: block;
+    }
+
+    &-logo {
+      display: block;
+      height: auto;
+      width: 200px;
+      padding-bottom: rem($spacer-unit * 2);
+    }
+  }
+
+  &__section {
+    &-title {
+      text-transform: uppercase;
+    }
+
+    &-links {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      a {
+        color: $white;
+        text-decoration: none;
+        line-height: 2;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &-icons {
+      a {
+        display: inline;
+        padding-right: rem($spacer-unit);
+        color: $white;
+        text-decoration: none;
+        line-height: 2;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &__menu {
+    list-style: none;
+  }
+
+  &__credits {
+    color: $white;
+    font-size: rem(14px);
+    line-height: 1.5;
+    text-align: right;
   }
 }
 </style>

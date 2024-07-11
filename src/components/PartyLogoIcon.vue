@@ -46,13 +46,31 @@ const getName = computed(() => {
 </script>
 
 <style scoped lang="scss">
-.c-party_logo_icon__image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.c-party_logo_icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 8px;
+  margin-top: 8px;
+  position: relative;
 
-  svg {
-    width: 65%;
+  &__image {
+    display: flex;
+    max-width: 100%;
+    vertical-align: middle;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      width: 65%;
+    }
   }
 }
 </style>

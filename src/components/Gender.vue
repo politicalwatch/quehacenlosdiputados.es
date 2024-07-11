@@ -33,4 +33,30 @@ const getNameFromType = (type) => {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.c-gender {
+  display: flex;
+  gap: rem($spacer-unit);
+  margin-bottom: rem($spacer-unit * 2);
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+
+    &__percentage {
+      @include th1;
+      & {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    &__name {
+      @include th3;
+      & {
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}
+</style>

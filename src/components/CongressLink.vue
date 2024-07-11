@@ -17,3 +17,19 @@ const { url } = defineProps({
   url: { type: String },
 });
 </script>
+
+<style lang="scss" scoped>
+.c-congress-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  .c-icon {
+    margin-left: 8px;
+
+    path {
+      fill: $black;
+    }
+  }
+}
+</style>

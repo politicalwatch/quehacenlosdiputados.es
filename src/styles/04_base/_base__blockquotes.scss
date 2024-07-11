@@ -1,8 +1,9 @@
 blockquote {
   @include subtitle;
-
-  color: $secondary;
-  border-left: 8px solid $primary;
-  padding-left: rem($spacer-unit * 4);
-  margin-left: 0;
+  & {
+    color: $secondary;
+    border-left: 8px solid $primary;
+    padding-left: rem($spacer-unit * 4);
+    margin-left: 0;
+  }
 }

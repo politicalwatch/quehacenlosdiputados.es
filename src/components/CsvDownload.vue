@@ -134,6 +134,29 @@ const getNameFromCSV = () => {
 </script>
 
 <style scoped lang="scss">
+.c-csv-download {
+  .c-icon {
+    margin-right: 16px;
+  }
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .disabled {
+    color: $neutral;
+    cursor: not-allowed;
+
+    svg path {
+      fill: $neutral;
+    }
+  }
+}
+
 .c-button--secondary {
   margin-right: 16px;
 }

@@ -98,4 +98,65 @@ const getDeputies = (initiative) => {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.c-initiative-card {
+  @include tbody2;
+
+  padding-bottom: rem($spacer-unit * 3);
+
+  &__topics {
+    margin-bottom: rem($spacer-unit);
+  }
+
+  &__title {
+    font-size: rem(20px);
+    line-height: 1.67;
+    text-transform: none;
+    margin-bottom: rem($spacer-unit);
+
+    a {
+      color: $secondary-dark;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__groups-gov-others {
+    @include tbody2;
+    margin-bottom: rem($spacer-unit);
+
+    h5 {
+      display: flex;
+      align-items: left;
+      flex-direction: column;
+
+      span {
+        padding-bottom: rem(calc($spacer-unit / 2));
+      }
+    }
+  }
+
+  &__deputies {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: rem($spacer-unit);
+
+    .c-deputy-card__small-layout {
+      img {
+        margin: 0;
+      }
+    }
+  }
+
+  &__label {
+    @include overline;
+
+    margin: 0;
+  }
+}
+</style>

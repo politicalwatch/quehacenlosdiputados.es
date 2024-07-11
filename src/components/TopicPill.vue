@@ -63,7 +63,7 @@ const getTopics = () => {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .c-icon--type-more {
   svg {
     path {

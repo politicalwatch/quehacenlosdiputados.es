@@ -14,3 +14,20 @@ const { name } = defineProps({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.c-otherauthor_card {
+  position: initial;
+  width: 256px;
+  height: auto;
+  background-color: $secondary;
+
+  &__wrapper {
+    padding: 20px 32px 10px 32px;
+
+    h4 {
+      color: $black;
+    }
+  }
+}
+</style>

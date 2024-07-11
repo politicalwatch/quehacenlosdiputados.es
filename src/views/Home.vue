@@ -120,3 +120,21 @@ onMounted(() => {
   getLastdays();
 });
 </script>
+
+<style lang="scss" scoped>
+.c-home {
+  &__initiatives {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &_title {
+      margin: 0 auto;
+
+      @media (min-width: $sm) {
+        margin: 0;
+      }
+    }
+  }
+}
+</style>

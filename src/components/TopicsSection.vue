@@ -187,3 +187,5 @@ const getP2030SearchLink = (params) => {
   return baseUrl + params;
 };
 </script>
+
+<style lang="scss"></style>

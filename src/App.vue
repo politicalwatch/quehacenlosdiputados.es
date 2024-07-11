@@ -40,20 +40,6 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-.c-disclaimer {
-  background-color: $yellow !important;
-  color: $secondary-dark !important;
-  align-items: center;
-  justify-content: center;
-  a {
-    color: $secondary-dark !important;
-  }
-  svg {
-    path {
-      fill: $secondary-dark;
-    }
-  }
-}
 input[type="email"].swal2-input {
   width: auto;
 }

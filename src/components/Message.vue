@@ -34,3 +34,72 @@ const getIcon = () => {
   return icon ? map[type] : null;
 };
 </script>
+
+<style lang="scss" scoped>
+.c-message {
+  margin-bottom: rem($spacer-unit * 2);
+
+  &__wrapper {
+    @include tbody2;
+
+    display: inline-block;
+    padding: rem($spacer-unit * 2) rem($spacer-unit * 4);
+    background-color: $completed;
+    color: $white;
+    position: relative;
+  }
+
+  &__icon {
+    position: absolute;
+    left: rem($spacer-unit * 2);
+    margin-top: rem(calc($spacer-unit / 4));
+
+    svg {
+      path {
+        fill: $white;
+      }
+    }
+  }
+
+  &--error {
+    .c-message {
+      &__wrapper {
+        background-color: $error;
+      }
+    }
+  }
+
+  &--info {
+    .c-message {
+      &__wrapper {
+        color: $secondary-dark;
+        background-color: $secondary-light;
+      }
+
+      &__icon {
+        svg {
+          path {
+            fill: $secondary;
+          }
+        }
+      }
+    }
+  }
+
+  &--icon {
+    .c-message {
+      &__wrapper {
+        padding-left: rem($spacer-unit * 5);
+      }
+    }
+  }
+
+  &.u-block {
+    .c-message {
+      &__wrapper {
+        display: block;
+      }
+    }
+  }
+}
+</style>
