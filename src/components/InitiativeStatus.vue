@@ -5,7 +5,7 @@
         initiative.status
       )}`"
     >
-      <icon :icon="getIcon(initiative)" />
+      <Icon :icon="getIcon(initiative)" color="#ffffff" />
     </div>
     <div class="c-initiative-status__message">
       {{ getStateMessage(initiative) }}
@@ -98,10 +98,6 @@ const getStateMessage = (initiative) => {
     svg {
       width: rem(10px);
       height: rem(10px);
-
-      path {
-        fill: $white;
-      }
     }
 
     &--neutral {

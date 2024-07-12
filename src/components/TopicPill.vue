@@ -1,6 +1,23 @@
 <template>
   <div class="c-topics">
-    <span v-html="getTopics()" />
+    <a
+      v-if="withLinks"
+      v-for="(topic, i) in getTopics()"
+      :href="`#topic-${i}`"
+      class="c-topics__topic c-topics__topic--small"
+      :style="`background-color:${topicsStyles[topic]?.color}`"
+    >
+      {{ topicsStyles[topic]?.shortname }}
+    </a>
+    <a
+      v-else
+      v-for="(topic, i) in getTopics()"
+      :href="`#topic-${i}`"
+      class="c-topics__topic c-topics__topic--small"
+      :style="`background-color:${topicsStyles[topic]?.color}`"
+    >
+      {{ topicsStyles[topic]?.shortname }}
+    </a>
     <div
       v-if="limit && limit < topics.length"
       class="c-topics__topic c-topics__topic__small"
@@ -39,31 +56,37 @@ const getTopics = () => {
     topicsArray = topicsArray.slice(0, limit);
   }
   if (topicsStyles && topicsArray.length) {
-    return topicsArray
-      .slice()
-      .sort(Utils.naturalSort)
-      .map((element, i) => {
-        if (withLinks) {
-          return `
-          <a href="#topic-${i}" class="c-topics__topic c-topics__topic__small" style="background-color:${topicsStyles[element]?.color}">
-            ${topicsStyles[element]?.shortname}
-          </a>
-        `;
-        } else {
-          return `
-          <div class="c-topics__topic c-topics__topic__small" style="background-color:${topicsStyles[element]?.color}">
-            ${topicsStyles[element]?.shortname}
-          </div>
-        `;
-        }
-      })
-      .join("");
+    return topicsArray.slice().sort(Utils.naturalSort);
   }
-  return topicsArray.length ? topicsArray.join("<br/>") : "";
+  return topicsArray.length ? topicsArray : [];
 };
 </script>
 
 <style lang="scss" scoped>
+.c-topics {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__topic {
+    @include overline;
+    @include th6;
+
+    flex: 0 0 auto;
+    color: $topic-pill-color;
+    padding: rem(calc($spacer-unit / 2));
+    text-decoration: none;
+    margin: 0 $topic-pill-separator $topic-pill-separator 0;
+
+    &--small {
+      margin-left: 1px;
+      float: left;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
 .c-icon--type-more {
   svg {
     path {

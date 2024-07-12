@@ -188,4 +188,129 @@ const getP2030SearchLink = (params) => {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.c-topics {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__topic {
+    @include overline;
+    @include th6;
+
+    flex: 0 0 auto;
+    color: $topic-pill-color;
+    padding: rem(calc($spacer-unit / 2));
+    text-decoration: none;
+    margin: 0 $topic-pill-separator $topic-pill-separator 0;
+
+    &--small {
+      margin-left: 1px;
+      float: left;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__label {
+    padding: 16px 32px;
+    display: inline-block;
+    margin-bottom: 0;
+
+    &--active {
+      background-color: $lightgrey;
+    }
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .c-icon {
+      margin-right: 14px;
+    }
+  }
+
+  &--extended {
+    display: block;
+
+    .c-topics {
+      &__list {
+        background-color: $lightgrey;
+        padding: 32px;
+
+        &-subtopic {
+          margin-top: rem($spacer-unit);
+        }
+
+        &-tags {
+          display: flex;
+          flex-wrap: wrap;
+
+          .c-topics__tag {
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        &-topic {
+          margin-bottom: rem(32px);
+        }
+      }
+
+      &__subtopic {
+        font-size: rem(14px);
+        line-height: rem(24px);
+        font-family: $font-headline;
+
+        text-decoration: none;
+        font-weight: 500;
+
+        > .c-topics__link {
+          display: block;
+          margin: rem($spacer-unit) 0;
+          color: $secondary-dark;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      &__tag {
+        @include overline;
+        @include th6;
+
+        padding: 8px;
+        margin: 0 1px 0 0;
+        background-color: $white;
+        display: inline-block;
+        text-transform: none;
+        flex: 0 auto;
+
+        .c-topics__link {
+          color: $secondary-dark;
+          text-decoration: none;
+        }
+      }
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+
+      li {
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+}
+</style>
