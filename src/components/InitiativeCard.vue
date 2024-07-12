@@ -130,11 +130,11 @@ const getDeputies = (initiative) => {
 
     h5 {
       display: flex;
-      align-items: left;
+      align-items: flex-start;
       flex-direction: column;
 
-      span {
-        padding-bottom: rem(calc($spacer-unit / 2));
+      :deep(span) {
+        margin-bottom: rem(calc($spacer-unit / 2));
       }
     }
   }
