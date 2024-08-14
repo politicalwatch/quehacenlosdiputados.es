@@ -1,4 +1,4 @@
-FROM node:lts-bookworm as build-stage
+FROM node:lts-bookworm AS build-stage
 
 WORKDIR /app
 COPY package*.json /app
