@@ -27,7 +27,7 @@ const isSmall = () => {
     .c-footprint {
       &__wrapper {
         font-size: 12px;
-        padding: 4px;
+        padding: 4px 6px;
 
         .c-icon {
           padding-right: 4px;
@@ -43,9 +43,12 @@ const isSmall = () => {
 
   &__wrapper {
     background-color: $tipi-yellow;
-    padding: 8px;
+    padding: 6px 8px;
     font-family: $font-headline;
     font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
   }
 
   .c-icon {
