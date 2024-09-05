@@ -47,7 +47,7 @@
     "autoprefixer": "^10.4.16",
     "eslint": "^9.0.0",
     "eslint-plugin-vue": "^9.0.0",
-    "jsdom": "^24.0.0",
+    "jsdom": "^25.0.0",
     "prettier": "^3.0.3",
     "sass": "^1.67.0",
     "stylelint": "^16.0.0",
