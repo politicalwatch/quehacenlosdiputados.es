@@ -5,6 +5,7 @@
       'c-deputy-card',
       `c-deputy-card__${layout}-layout`,
       { 'c-deputy-card--birthday': isBirthday() },
+      { 'c-deputy-card--inactive': !deputy.active },
     ]"
   >
     <div class="c-deputy-card__wrapper">
@@ -226,4 +227,9 @@ const groupColor = config.STYLES.parties[deputy.party_name]?.color ?? "#A3D5C8";
 .c-deputy-card.medium-layout {
   margin-bottom: rem($spacer-unit);
 }
+
+.c-deputy-card--inactive {
+  opacity: 0.5;
+}
+
 </style>
