@@ -1,5 +1,13 @@
 <template>
-  <div v-if="deputy" id="deputy" class="u-margin-bottom-10 c-deputy">
+  <div
+    v-if="deputy"
+    id="deputy"
+    :class="[
+      'u-margin-bottom-10',
+      'c-deputy',
+      { 'c-deputy--birthday': isBirthday() },
+    ]"
+  >
     <div class="o-container c-deputy__inactive" v-if="!deputy.active">
       <message type="info" icon>
         <h4 class="u-uppercase">Causó baja en el Congreso de los Diputados</h4>
@@ -63,12 +71,11 @@
             <span class="c-deputy__personal"
               ><Icon icon="mdi:location" />{{ deputy.constituency }}</span
             >
-            <span class="c-deputy__personal"
-              ><icon
-                v-if="addBirthdayClass()"
-                icon="mdi:birthday-cake-outline"
-              />{{ deputy.age }} años</span
-            >
+            <span class="c-deputy__personal">
+              <icon v-if="isBirthday()" icon="mdi:birthday-cake-outline" />
+              {{ deputy.age }}
+              años
+            </span>
             <span class="c-deputy__personal">{{ getLegislatures() }}</span>
           </div>
           <info-dropdown title="Ficha personal">
@@ -196,15 +203,14 @@ useSeoMeta({
   ogImage: () => (deputy.value ? deputy.value.image : null),
 });
 
-const addBirthdayClass = () => {
+const isBirthday = () => {
   const date = new Date(deputy.value.birthdate);
   const today = new Date();
-  if (
+  return (
+    deputy.value.parliamentarygroup != "GVOX" &&
     date.getDate() == today.getDate() &&
     date.getMonth() == today.getMonth()
-  ) {
-    return "c-deputy__birthday";
-  }
+  );
 };
 
 const getDeputy = async () => {
@@ -328,7 +334,8 @@ onBeforeMount(getDeputy);
     border-right: solid 2px $black;
     display: flex;
     flex-wrap: wrap;
-    align-content: center;
+    align-items: center;
+    gap: 4px;
     margin-bottom: 96px;
 
     &:last-child {
@@ -408,7 +415,7 @@ onBeforeMount(getDeputy);
     display: none;
   }
 
-  &__birthday {
+  &--birthday {
     background: url("../assets/birthday_bg.png");
   }
 

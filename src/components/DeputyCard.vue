@@ -1,5 +1,12 @@
 <template>
-  <div v-if="deputy" :class="`c-deputy-card c-deputy-card__${layout}-layout`">
+  <div
+    v-if="deputy"
+    :class="[
+      'c-deputy-card',
+      `c-deputy-card__${layout}-layout`,
+      { 'c-deputy-card--birthday': isBirthday() },
+    ]"
+  >
     <div class="c-deputy-card__wrapper">
       <router-link
         :to="{ name: 'deputy', params: { id: deputy.id } }"
@@ -8,10 +15,10 @@
         <img
           :src="deputy.image"
           :title="deputy.name"
-          :class="
-            'c-deputy-card__wrapper__image c-deputy-card__wrapper__image-' +
-            layout
-          "
+          :class="[
+            'c-deputy-card__wrapper__image',
+            `c-deputy-card__wrapper__image-${layout}`,
+          ]"
         />
         <party-logo-icon
           :party="deputy.party_name"
@@ -21,6 +28,7 @@
       </router-link>
 
       <div v-if="layout != 'small'" class="c-deputy-card__wrapper__info">
+        <icon v-if="isBirthday()" icon="mdi:birthday-cake-outline" />
         <footprint
           v-if="layout == 'large'"
           :footprint="getFootprint()"
@@ -63,6 +71,16 @@ const getSeparatedName = () => {
   return deputy.name.split(",").join(",<br/>");
 };
 
+const isBirthday = () => {
+  const date = new Date(deputy.birthdate);
+  const today = new Date();
+  return (
+    deputy.parliamentarygroup != "GVOX" &&
+    date.getDate() == today.getDate() &&
+    date.getMonth() == today.getMonth()
+  );
+};
+
 const getFootprint = () => {
   if (footprint != "General") {
     const filtered_footprint = deputy.footprint_by_topics.filter(
@@ -79,6 +97,12 @@ const groupColor = config.STYLES.parties[deputy.party_name]?.color ?? "#A3D5C8";
 <style lang="scss" scoped>
 .c-deputy-card {
   @include tbody2;
+
+  &--birthday {
+    background: url("../assets/birthday_bg.png");
+    background-size: contain;
+    background-position: center;
+  }
 
   &__wrapper {
     display: flex;
