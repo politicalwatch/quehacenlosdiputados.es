@@ -29,7 +29,6 @@
       </router-link>
 
       <div v-if="layout != 'small'" class="c-deputy-card__wrapper__info">
-        <icon v-if="isBirthday()" icon="mdi:birthday-cake-outline" />
         <footprint
           v-if="layout == 'large'"
           :footprint="getFootprint()"
