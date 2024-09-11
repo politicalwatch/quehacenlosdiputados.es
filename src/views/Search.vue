@@ -47,7 +47,7 @@
           message="No se han encontrado resultados. Crea una alerta y te avisaremos."
         />
         <AlertButton
-          :searchparams="formData"
+          :searchParams="formData"
           v-if="use_alerts && query_meta.page"
         />
       </div>
@@ -91,6 +91,7 @@ const formData = ref({
   page: 1,
   tags: [],
   subtopics: [],
+  text: "",
 });
 const loadingResults = ref(false);
 const csvItems = ref([]);
