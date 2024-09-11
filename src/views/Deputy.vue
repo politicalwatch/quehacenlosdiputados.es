@@ -416,7 +416,7 @@ onBeforeMount(getDeputy);
   }
 
   &--birthday {
-    background: url("../assets/birthday_bg.png");
+    background: url("../assets/birthday-bg.png");
   }
 
   &__personal-info {

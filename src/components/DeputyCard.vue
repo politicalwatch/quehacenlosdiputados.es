@@ -99,7 +99,7 @@ const groupColor = config.STYLES.parties[deputy.party_name]?.color ?? "#A3D5C8";
   @include tbody2;
 
   &--birthday {
-    background: url("../assets/birthday_bg.png");
+    background: url("../assets/birthday-bg-card.png");
     background-size: contain;
     background-position: center;
   }
@@ -230,5 +230,4 @@ const groupColor = config.STYLES.parties[deputy.party_name]?.color ?? "#A3D5C8";
 .c-deputy-card--inactive {
   opacity: 0.5;
 }
-
 </style>
