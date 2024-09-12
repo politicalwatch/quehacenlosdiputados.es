@@ -1,5 +1,13 @@
 <template>
   <div id="deputies" class="o-container o-section u-margin-bottom-10">
+    <div v-if="store.birthdays.length > 0">
+      <h3 class="u-uppercase u-padding-bottom-2">Hoy es el cumpleaños de...</h3>
+      <CardGrid
+        :items="store.birthdays"
+        type="deputy"
+        layout="large"
+      />
+    </div>
     <PageHeader title="Listado de diputados" />
     <DeputiesForm
       :deputies="store.allDeputies"
