@@ -75,7 +75,6 @@ const isBirthday = () => {
   const date = new Date(deputy.birthdate);
   const today = new Date();
   return (
-    deputy.parliamentarygroup != "GVOX" &&
     date.getDate() == today.getDate() &&
     date.getMonth() == today.getMonth()
   );
