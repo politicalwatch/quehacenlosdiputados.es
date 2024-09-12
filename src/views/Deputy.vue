@@ -51,7 +51,14 @@
           </div>
         </div>
         <div class="o-grid__col u-12 u-8@sm">
-          <footprint :footprint="deputy.footprint" />
+          <router-link
+            :to="{ name: 'footprint' }"
+            target="_blank"
+            class="c-deputy__footprint"
+          >
+            <footprint :footprint="deputy.footprint" />
+            <span class="c-deputy__footprint-more-info">¿Qué es esto?</span>
+          </router-link>
           <h1 class="c-deputy__name">{{ deputy.name }}</h1>
           <h3 class="c-deputy__group" v-if="parliamentarygroup">
             <router-link
@@ -207,8 +214,7 @@ const isBirthday = () => {
   const date = new Date(deputy.value.birthdate);
   const today = new Date();
   return (
-    date.getDate() == today.getDate() &&
-    date.getMonth() == today.getMonth()
+    date.getDate() == today.getDate() && date.getMonth() == today.getMonth()
   );
 };
 
@@ -244,6 +250,23 @@ onBeforeMount(getDeputy);
 
 <style lang="scss" scoped>
 .c-deputy {
+  &__footprint {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    .c-footprint {
+      margin-bottom: 0;
+    }
+  }
+
+  &__footprint-more-info {
+    margin-left: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: $secondary-dark;
+  }
+
   &__image_container {
     width: rem($spacer-unit * 16);
     margin: 0 auto 30px;
