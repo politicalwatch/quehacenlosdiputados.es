@@ -10,6 +10,7 @@ export const useParliamentStore = defineStore("parliament", {
       allTypes: [],
       allStatus: [],
       allPlaces: [],
+      birthdays: [],
     };
   },
   getters: {
@@ -54,6 +55,15 @@ export const useParliamentStore = defineStore("parliament", {
         .getDeputies()
         .then((response) => {
           this.allDeputies = response;
+        })
+        .catch((error) => (this.errors = error));
+    },
+    getBirthdays() {
+      api
+        .getBirthdays()
+        .then((response) => {
+          console.log(response);
+          this.birthdays = response;
         })
         .catch((error) => (this.errors = error));
     },

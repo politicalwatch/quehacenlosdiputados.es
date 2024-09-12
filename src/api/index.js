@@ -85,6 +85,15 @@ export default {
       return [config.BACKEND_URL, "/deputies/", deputyId].join("");
     }
   },
+  getBirthdays() {
+    return axios
+      .get(getEndpoint(), { params })
+      .then((response) => response.data);
+
+    function getEndpoint() {
+      return [config.BACKEND_URL, "/deputies/todays-birthdays"].join("");
+    }
+  },
   getPlaces() {
     return axios
       .get(getEndpoint(), { params })

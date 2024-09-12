@@ -36,6 +36,7 @@ onMounted(() => {
   store.getTopics();
   store.getParliamentaryGroups();
   store.getDeputies();
+  store.getBirthdays();
 });
 </script>
 
