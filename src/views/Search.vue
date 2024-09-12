@@ -46,7 +46,6 @@
         <NotFound
           message="No se han encontrado resultados. Crea una alerta y te avisaremos."
         />
-        {{ formData }}
         <AlertButton
           :searchParams="formData"
           v-if="use_alerts && query_meta.page"
