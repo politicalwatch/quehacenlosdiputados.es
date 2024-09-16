@@ -62,7 +62,6 @@ export const useParliamentStore = defineStore("parliament", {
       api
         .getBirthdays()
         .then((response) => {
-          console.log(response);
           this.birthdays = response;
         })
         .catch((error) => (this.errors = error));
