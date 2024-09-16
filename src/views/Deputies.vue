@@ -1,12 +1,14 @@
 <template>
   <div id="deputies" class="o-container o-section u-margin-bottom-10">
     <div v-if="store.birthdays.length > 0">
-      <h3 class="u-uppercase u-padding-bottom-2">Hoy es el cumpleaños de...</h3>
-      <CardGrid
-        :items="store.birthdays"
-        type="deputy"
-        layout="large"
-      />
+      <Callout
+        closeId="qhld-birthday"
+        :checkClosed="checkCalloutClosedDate"
+        :closeCallback="getTodayDate"
+      >
+        <h3 class="u-uppercase">Hoy es el cumpleaños de...</h3>
+        <CardGrid :items="store.birthdays" type="deputy" layout="large" />
+      </Callout>
     </div>
     <PageHeader title="Listado de diputados" />
     <DeputiesForm
@@ -37,6 +39,7 @@ import DeputiesForm from "@/components/DeputiesForm.vue";
 import PageHeader from "@/components/PageHeader.vue";
 import Loader from "@/components/Loader.vue";
 import CardGrid from "@/components/CardGrid.vue";
+import Callout from "@/components/Callout.vue";
 import { useParliamentStore } from "@/stores/parliament";
 
 const store = useParliamentStore();
@@ -141,5 +144,22 @@ const prepareForSorting = (name) => {
     .replace("Ñ", "NZ");
 
   return clean_name;
+};
+
+const checkCalloutClosedDate = () => {
+  const savedDate = localStorage.getItem("qhld-birthday-closed");
+  if (!savedDate) {
+    return false;
+  }
+
+  const today = new Date();
+  const formattedToday = today.toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+
+  return savedDate === formattedToday;
+};
+
+const getTodayDate = () => {
+  const today = new Date();
+  return today.toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
 };
 </script>
