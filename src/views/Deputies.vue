@@ -91,23 +91,24 @@ const getFilteredDeputies = computed(() => {
   if ("footprint" in filters.value && filters.value["footprint"] != undefined) {
     const footprint_sort = filters.value["footprint"];
 
-    const updated_list = [...filteredDeputies].sort((a, b) => {
-      const a_footprint_filter = a.footprint_by_topics.filter(
-        (item) => item.name == footprint_sort
+    const getFootprintScore = (deputy) => {
+      const footprint = deputy.footprint_by_topics.find(
+        (item) => item.name === footprint_sort
       );
-      const a_footprint =
-        a_footprint_filter.length > 0 ? a_footprint_filter[0].score : 0;
-      const b_footprint_filter = b.footprint_by_topics.filter(
-        (item) => item.name == footprint_sort
-      );
-      const b_footprint =
-        b_footprint_filter.length > 0 ? b_footprint_filter[0].score : 0;
+      return footprint ? footprint.score : 0;
+    };
 
-      return b_footprint - a_footprint;
-    });
+    const filteredList = filteredDeputies.filter(
+      (deputy) => getFootprintScore(deputy) !== 0
+    );
 
-    return updated_list;
+    const sortedList = filteredList.sort(
+      (a, b) => getFootprintScore(b) - getFootprintScore(a)
+    );
+
+    return sortedList;
   }
+
   return [...filteredDeputies].sort((a, b) => {
     const a_name = prepareForSorting(a.name);
     const b_name = prepareForSorting(b.name);
