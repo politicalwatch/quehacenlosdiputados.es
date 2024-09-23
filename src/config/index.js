@@ -512,6 +512,11 @@ export default {
         logo: "psoe",
         color: "#e30613",
       },
+      "PSE-EE (PSOE)": {
+        name: "Partido Socialista Obrero Español",
+        logo: "psoe",
+        color: "#e30613",
+      },
       "PsdeG-PSOE": {
         name: "Partido Socialista Obrero Español",
         logo: "psoe",
