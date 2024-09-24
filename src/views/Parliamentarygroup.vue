@@ -91,18 +91,37 @@
         <footprint-info />
       </div>
 
-      <h2
-        class="u-uppercase u-margin-top-4 u-margin-bottom-4 u-text-center u-text-left@sm"
-        v-if="latestInitiatives && latestInitiatives.length"
-      >
-        Últimas iniciativas
-      </h2>
+    <div
+      v-if="latestInitiatives && latestInitiatives.length"
+      class="o-container o-section"
+    >
+      <div
+        class="c-parliamentarygroup__initiatives-header"
+        >
+        <h2 class="c-parliamentarygroup__title u-margin-bottom-4 u-uppercase">Últimas iniciativas</h2>
+        <router-link
+          v-if="totalInitiatives > initiativesToShow"
+          :to="{
+            name: 'results',
+            params: { data: 'author=' + parliamentarygroup.name } }"
+          class="c-parliamentarygroup__initiatives-more u-border-link u-hide u-block@sm u-uppercase"
+        >Ver todas
+        </router-link>
+      </div>
       <results
         layout="extended"
         :initiatives="latestInitiatives"
-        class="u-margin-bottom-8"
         :topicsStyles="topicsStyles"
       />
+      <router-link
+        v-if="totalInitiatives > initiativesToShow"
+        :to="{
+          name: 'results',
+          params: { data: 'author=' + parliamentarygroup.name } }"
+        class="c-parliamentarygroup__initiatives-more u-border-link u-hide@sm u-uppercase"
+      >Ver todas
+      </router-link>
+    </div>
 
       <save-alert
         v-if="use_alerts"
@@ -155,6 +174,8 @@ const topicsStyles = config.STYLES.topics;
 
 const parliamentarygroup = ref(null);
 const latestInitiatives = ref([]);
+const totalInitiatives = ref(null);
+const initiativesToShow = 6
 const errors = ref([]);
 
 const headTitle = computed(() => {
@@ -215,9 +236,12 @@ const getParliamentaryGroup = () => {
 
 const getLatestInitiatives = () => {
   api
-    .getInitiatives({ author: parliamentarygroup.value.name, per_page: 6 })
+    .getInitiatives({ author: parliamentarygroup.value.name, per_page: initiativesToShow })
     .then((response) => {
-      if (response.initiatives) latestInitiatives.value = response.initiatives;
+      if (response.initiatives) {
+        latestInitiatives.value = response.initiatives;
+        totalInitiatives.value = response.query_meta.total;
+      }
     })
     .catch((error) => errors.value.push(error));
 };
@@ -238,6 +262,33 @@ watch(route, () => {
 </script>
 
 <style lang="scss" scoped>
+
+.c-parliamentarygroup {
+
+  &__initiatives-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__initiatives-more {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  &__title {
+    text-align: center;
+    width: 100%;
+
+    @media (min-width: $sm) {
+      text-align: left;
+      width: auto;
+    }
+  }
+
+
+}
+
 .alerts-block {
   text-align: left;
   margin-top: -4rem;
