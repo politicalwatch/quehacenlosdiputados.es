@@ -2,16 +2,18 @@
   <div class="c-thematic-priorities">
     <div class="c-thematic-priorities__header">
       <h2>Prioridades temáticas de</h2>
-      <select v-model="parliamentaryGroup" class="c-select">
-        <option
-          v-for="group in parliamentaryGroups"
-          :key="group.id"
-          :value="group"
-        >
-          <span class="c-thematic-priorities__group"></span>
-          {{ group.name }}
-        </option>
-      </select>
+      <div class="c-thematic-priorities__selector">
+        <div class="c-thematic-priorities__selector-group"></div>
+        <select v-model="parliamentaryGroup" class="c-select">
+          <option
+            v-for="group in parliamentaryGroups"
+            :key="group.id"
+            :value="group"
+          >
+            {{ group.name }}
+          </option>
+        </select>
+      </div>
     </div>
     <Barchart
       :entity="parliamentaryGroup"
@@ -75,19 +77,37 @@ const footprintByTopics = computed(() => {
     h2 {
       margin-bottom: 0;
     }
+  }
 
+  &__selector {
+    position: relative;
     select {
-      padding: 0.5rem;
+      padding: 0.5rem 4rem 0.5rem 2.5rem;
       text-transform: uppercase;
       font-weight: 500;
       border: 2px solid #000;
       color: v-bind(parliamentaryGroupColor);
+      appearance: none;
+      background: url("/public/assets/svg/icon-chevron-down.svg") no-repeat
+        right 0.5rem center;
+      background-size: 1rem; /* Adjust size as needed */
+      padding-right: 2rem; /* Add space for the custom arrow */
 
       &:focus {
         border-color: v-bind(parliamentaryGroupColor);
         outline: none;
       }
     }
+  }
+
+  &__selector-group {
+    position: absolute;
+    top: 9px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: v-bind(parliamentaryGroupColor);
   }
 }
 </style>
