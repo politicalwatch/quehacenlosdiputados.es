@@ -131,12 +131,33 @@
       v-if="latestInitiatives && latestInitiatives.length"
       class="o-container o-section"
     >
-      <h2 class="u-margin-bottom-4 u-uppercase">Últimas iniciativas</h2>
+      <div
+        class="c-deputy__initiatives-header"
+        >
+        <h2 class="u-margin-bottom-4 u-uppercase">Últimas iniciativas</h2>
+        <router-link
+          v-if="totalInitiatives > initiativesToShow"
+          :to="{
+            name: 'results',
+            params: { data: 'deputy=' + deputy.name + '&author=' + parliamentarygroup.name } }"
+          class="c-deputy__initiatives-more u-border-link u-hide u-block@sm u-uppercase"
+        >Ver todas
+        </router-link>
+      </div>
       <results
         layout="extended"
         :initiatives="latestInitiatives"
         :topicsStyles="styles.topics"
       />
+      <router-link
+        v-if="totalInitiatives > initiativesToShow"
+        :to="{
+          name: 'results',
+          params: { data: 'deputy=' + deputy.name + '&author=' + parliamentarygroup.name } }"
+        class="c-deputy__initiatives-more u-border-link u-hide@sm u-uppercase"
+      >Ver todas
+      </router-link>
+
     </div>
     <div class="o-container" v-else>
       <message type="info" icon>
@@ -182,6 +203,8 @@ const store = useParliamentStore();
 const deputy = ref(null);
 const parliamentarygroup = ref(null);
 const latestInitiatives = ref(null);
+const totalInitiatives = ref(null);
+const initiativesToShow = 6
 const errors = ref(null);
 const use_alerts = config.USE_ALERTS;
 const styles = config.STYLES;
@@ -235,9 +258,12 @@ const getDeputy = async () => {
 };
 const getLatestInitiatives = () => {
   api
-    .getInitiatives({ deputy: deputy.value.name, per_page: 6 })
+    .getInitiatives({ deputy: deputy.value.name, per_page: initiativesToShow })
     .then((response) => {
-      if (response.initiatives) latestInitiatives.value = response.initiatives;
+      if (response.initiatives) {
+        latestInitiatives.value = response.initiatives;
+        totalInitiatives.value = response.query_meta.total;
+      }
     })
     .catch((error) => (errors.value = error));
 };
@@ -474,6 +500,17 @@ onBeforeMount(getDeputy);
         }
       }
     }
+  }
+  &__initiatives-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__initiatives-more {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
   }
 }
 
