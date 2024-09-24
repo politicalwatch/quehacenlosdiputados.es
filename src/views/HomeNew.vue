@@ -3,6 +3,7 @@
     <div>
       <InitiativesFormCompact v-model:formData="formData" />
     </div>
+
     <div>
       <GroupThematicPriorities
         v-if="store.allParliamentaryGroups.length > 0"
@@ -13,6 +14,30 @@
         title="Cargando prioridades temáticas"
         subtitle="Puede llevar algun tiempo"
       />
+    </div>
+    <div class="o-grid">
+      <div class="o-grid__col u-12">
+        <ApprovedInitiatives :initiatives="approvedInitiatives" />
+      </div>
+    </div>
+    <div class="o-grid">
+      <div class="o-grid__col u-12 u-4@sm">
+        <InitiativeStatusChart
+          v-if="isLoaded"
+          :initiativesStats="initiativesStats"
+        />
+        <loader
+          v-else
+          title="Cargando prioridades temáticas"
+          subtitle="Puede llevar algun tiempo"
+        />
+      </div>
+      <div class="o-grid__col u-12 u-8@sm">
+        <InProcessInitiatives
+          :initiatives="inProcessInitiatives"
+          :numInitiatives="6"
+        />
+      </div>
     </div>
     <div>
       <LastActivity v-if="lastdays" :lastdays="lastdays" />
@@ -26,13 +51,16 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted, watch, computed } from "vue";
 
 import api from "@/api";
 import config from "@/config";
 import { useParliamentStore } from "@/stores/parliament";
 import InitiativesFormCompact from "@/components/InitiativesFormCompact.vue";
 import GroupThematicPriorities from "@/components/GroupThematicPriorities.vue";
+import ApprovedInitiatives from "@/components/ApprovedInitiatives.vue";
+import InProcessInitiatives from "@/components/InProcessInitiatives.vue";
+import InitiativeStatusChart from "@/components/InitiativeStatusChart.vue";
 import LastActivity from "@/components/LastActivity.vue";
 import Loader from "@/components/Loader.vue";
 
@@ -51,6 +79,13 @@ const formData = ref({
 const approvedInitiatives = ref([]);
 const inProcessInitiatives = ref([]);
 const rejectedInitiatives = ref([]);
+const initiativesStats = computed(() => {
+  return {
+    approved: approvedInitiatives.value.length,
+    inProcess: inProcessInitiatives.value.length,
+    rejected: rejectedInitiatives.value.length,
+  };
+});
 const lastdays = ref(null);
 
 const per_page = 1000;
@@ -76,7 +111,7 @@ const getApprovedInitiatives = () => {
 
   api
     .getInitiatives(params)
-    .then((response) => (approvedInitiatives.value = response))
+    .then((response) => (approvedInitiatives.value = response.initiatives))
     .catch((error) => (errors.value = error));
 };
 
@@ -94,6 +129,8 @@ const getInProcessInitiatives = () => {
 };
 
 const getRejectedInitiatives = () => {
+  const newInitiatives = [];
+
   const paramsRejected = {
     per_page,
     type: legislativeInitiativeTypes,
@@ -106,26 +143,16 @@ const getRejectedInitiatives = () => {
     status: "No debatida",
   };
 
-  api
-    .getInitiatives(paramsRejected)
-    .then(
-      (response) =>
-        (rejectedInitiatives.value = [
-          ...rejectedInitiatives.value,
-          ...response.initiatives,
-        ])
-    )
-    .catch((error) => (errors.value = error));
-
-  api
-    .getInitiatives(paramsNotDebated)
-    .then(
-      (response) =>
-        (rejectedInitiatives.value = [
-          ...rejectedInitiatives.value,
-          ...response.initiatives,
-        ])
-    )
+  Promise.all([
+    api.getInitiatives(paramsRejected),
+    api.getInitiatives(paramsNotDebated),
+  ])
+    .then((responses) => {
+      responses.forEach((response) => {
+        newInitiatives.push(...response.initiatives);
+      });
+      rejectedInitiatives.value = newInitiatives;
+    })
     .catch((error) => (errors.value = error));
 };
 
@@ -141,8 +168,16 @@ onMounted(() => {
   getInProcessInitiatives();
   getRejectedInitiatives();
   getLastdays();
-  isLoaded.value = true;
 });
+
+watch(
+  () => initiativesStats.value,
+  (newValue) => {
+    console.log(newValue);
+    if (newValue.approved && newValue.inProcess && newValue.rejected)
+      isLoaded.value = true;
+  }
+);
 </script>
 
 <style lang="scss" scoped>
