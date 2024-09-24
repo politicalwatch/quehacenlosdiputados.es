@@ -53,7 +53,7 @@
             class="u-border-link u-uppercase u-hide u-inline@sm"
             :to="{ name: 'results', params: { data: 'topic=' + topic.name } }"
           >
-            Explorar todas
+          Ver todas
           </router-link>
         </div>
         <results :initiatives="latestInitiatives" :topicsStyles="styles" />
@@ -61,7 +61,7 @@
           class="u-border-link u-uppercase u-hide@sm"
           :to="{ name: 'results', params: { data: 'topic=' + topic.name } }"
         >
-          Explorar todas
+        Ver todas
         </router-link>
       </div>
     </div>
