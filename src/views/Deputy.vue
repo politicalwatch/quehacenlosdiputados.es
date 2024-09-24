@@ -118,7 +118,7 @@
     </div>
 
     <div v-if="footprintByTopics.length > 0" class="o-container o-section">
-      <h2 class="u-margin-bottom-4 u-uppercase">Temáticas destacadas</h2>
+      <h2 class="c-deputy__title u-margin-bottom-4 u-uppercase">Temáticas destacadas</h2>
       <barchart
         :entity="deputy"
         entityType="deputy"
@@ -134,7 +134,7 @@
       <div
         class="c-deputy__initiatives-header"
         >
-        <h2 class="u-margin-bottom-4 u-uppercase">Últimas iniciativas</h2>
+        <h2 class="c-deputy__title u-margin-bottom-4 u-uppercase">Últimas iniciativas</h2>
         <router-link
           v-if="totalInitiatives > initiativesToShow"
           :to="{
@@ -511,6 +511,15 @@ onBeforeMount(getDeputy);
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+  }
+  &__title {
+    text-align: center;
+    width: 100%;
+
+    @media (min-width: $sm) {
+      text-align: left;
+      width: auto;
+    }
   }
 }
 
