@@ -1,6 +1,9 @@
 <template>
   <div id="home" class="o-container u-margin-bottom-10 c-home">
     <div>
+      <InitiativesFormCompact v-model:formData="formData" />
+    </div>
+    <div>
       <GroupThematicPriorities
         v-if="store.allParliamentaryGroups.length > 0"
         :parliamentaryGroups="store.allParliamentaryGroups"
@@ -28,6 +31,7 @@ import { ref, onMounted, watch } from "vue";
 import api from "@/api";
 import config from "@/config";
 import { useParliamentStore } from "@/stores/parliament";
+import InitiativesFormCompact from "@/components/InitiativesFormCompact.vue";
 import GroupThematicPriorities from "@/components/GroupThematicPriorities.vue";
 import LastActivity from "@/components/LastActivity.vue";
 import Loader from "@/components/Loader.vue";
@@ -37,6 +41,12 @@ const store = useParliamentStore();
 
 const isLoaded = ref(false);
 const errors = ref(null);
+
+const formData = ref({
+  topic: "",
+  author: "",
+  page: 1,
+});
 
 const approvedInitiatives = ref([]);
 const inProcessInitiatives = ref([]);
