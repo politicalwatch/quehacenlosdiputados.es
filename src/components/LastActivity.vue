@@ -1,6 +1,6 @@
 <template>
   <div class="o-section c-last-activity">
-    <h1 class="u-uppercase">Iniciativas en los últimos 15 días</h1>
+    <h2 class="u-uppercase">Iniciativas en los últimos 15 días</h2>
     <h4 class="u-uppercase u-hide u-inline@sm">
       Últimas iniciativas presentadas en el Congreso de los Diputados
     </h4>

@@ -1,13 +1,23 @@
 <template>
   <div id="home" class="o-container u-margin-bottom-10 c-home">
     <div>
+      <GroupThematicPriorities
+        v-if="store.allParliamentaryGroups.length > 0"
+        :parliamentaryGroups="store.allParliamentaryGroups"
+      />
       <loader
-        v-if="!isLoaded"
-        title="Cargando datos"
+        v-else
+        title="Cargando prioridades temáticas"
         subtitle="Puede llevar algun tiempo"
       />
-
-      <LastActivity v-if="isLoaded && lastdays" :lastdays="lastdays" />
+    </div>
+    <div>
+      <LastActivity v-if="lastdays" :lastdays="lastdays" />
+      <loader
+        v-else
+        title="Cargando evolución de los últimos días"
+        subtitle="Puede llevar algun tiempo"
+      />
     </div>
   </div>
 </template>
@@ -17,10 +27,13 @@ import { ref, onMounted, watch } from "vue";
 
 import api from "@/api";
 import config from "@/config";
+import { useParliamentStore } from "@/stores/parliament";
+import GroupThematicPriorities from "@/components/GroupThematicPriorities.vue";
 import LastActivity from "@/components/LastActivity.vue";
 import Loader from "@/components/Loader.vue";
 
 const topicsStyles = config.STYLES.topics;
+const store = useParliamentStore();
 
 const isLoaded = ref(false);
 const errors = ref(null);
