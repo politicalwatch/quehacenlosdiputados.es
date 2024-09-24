@@ -88,8 +88,8 @@ const footprintByTopics = computed(() => {
       border: 2px solid #000;
       color: v-bind(parliamentaryGroupColor);
       appearance: none;
-      background: url("/public/assets/svg/icon-chevron-down.svg") no-repeat
-        right 0.5rem center;
+      background: url("/assets/svg/icon-chevron-down.svg") no-repeat right
+        0.5rem center;
       background-size: 1rem; /* Adjust size as needed */
       padding-right: 2rem; /* Add space for the custom arrow */
 
