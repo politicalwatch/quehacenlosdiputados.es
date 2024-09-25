@@ -1,26 +1,40 @@
 <template>
   <div id="home" class="o-container u-margin-bottom-10 c-home">
-    <div>
-      <InitiativesFormCompact v-model:formData="formData" />
-    </div>
-
-    <div>
-      <GroupThematicPriorities
-        v-if="store.allParliamentaryGroups.length > 0"
-        :parliamentaryGroups="store.allParliamentaryGroups"
-      />
-      <loader
-        v-else
-        title="Cargando prioridades temáticas"
-        subtitle="Puede llevar algun tiempo"
-      />
-    </div>
-    <div class="o-grid">
+    <div class="o-grid u-margin-bottom-4">
       <div class="o-grid__col u-12">
-        <ApprovedInitiatives :initiatives="approvedInitiatives" />
+        <InitiativesFormCompact v-model:formData="formData" />
       </div>
     </div>
-    <div class="o-grid">
+
+    <div class="o-grid u-margin-bottom-4">
+      <div class="o-grid__col u-12">
+        <GroupThematicPriorities
+          v-if="store.allParliamentaryGroups.length > 0"
+          :parliamentaryGroups="store.allParliamentaryGroups"
+        />
+        <loader
+          v-else
+          title="Cargando prioridades temáticas"
+          subtitle="Puede llevar algun tiempo"
+        />
+      </div>
+    </div>
+
+    <div class="o-grid u-margin-bottom-4">
+      <div class="o-grid__col u-12">
+        <ApprovedInitiatives
+          v-if="approvedInitiatives.length > 0 && isLoaded"
+          :initiatives="approvedInitiatives"
+        />
+        <loader
+          v-else
+          title="Cargando prioridades temáticas"
+          subtitle="Puede llevar algun tiempo"
+        />
+      </div>
+    </div>
+
+    <div class="o-grid u-margin-bottom-4">
       <div class="o-grid__col u-12 u-4@sm">
         <InitiativeStatusChart
           v-if="isLoaded"
@@ -35,17 +49,20 @@
       <div class="o-grid__col u-12 u-8@sm">
         <InProcessInitiatives
           :initiatives="inProcessInitiatives"
-          :numInitiatives="6"
+          :numInitiatives="12"
         />
       </div>
     </div>
-    <div>
-      <LastActivity v-if="lastdays" :lastdays="lastdays" />
-      <loader
-        v-else
-        title="Cargando evolución de los últimos días"
-        subtitle="Puede llevar algun tiempo"
-      />
+
+    <div class="o-grid u-margin-bottom-4">
+      <div class="o-grid__col u-12">
+        <LastActivity v-if="lastdays" :lastdays="lastdays" />
+        <loader
+          v-else
+          title="Cargando evolución de los últimos días"
+          subtitle="Puede llevar algun tiempo"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -89,7 +106,19 @@ const initiativesStats = computed(() => {
 const lastdays = ref(null);
 
 const per_page = 1000;
-const legislativeInitiativeTypes = [
+const legislativeTypeIds = [
+  "120",
+  "121",
+  "122",
+  "123",
+  "124",
+  "125",
+  "127",
+  "130",
+  "131",
+  "132",
+];
+const legislativeTypeNames = [
   "Iniciativa legislativa popular",
   "Proyecto de ley",
   "Proposición de ley de Grupos Parlamentarios del Congreso",
@@ -105,7 +134,7 @@ const legislativeInitiativeTypes = [
 const getApprovedInitiatives = () => {
   const params = {
     per_page,
-    type: legislativeInitiativeTypes,
+    type: legislativeTypeNames,
     status: "Aprobada",
   };
 
@@ -118,7 +147,7 @@ const getApprovedInitiatives = () => {
 const getInProcessInitiatives = () => {
   const params = {
     per_page,
-    type: legislativeInitiativeTypes,
+    type: legislativeTypeNames,
     status: "En tramitación",
   };
 
@@ -133,13 +162,13 @@ const getRejectedInitiatives = () => {
 
   const paramsRejected = {
     per_page,
-    type: legislativeInitiativeTypes,
+    type: legislativeTypeNames,
     status: "Rechazada",
   };
 
   const paramsNotDebated = {
     per_page,
-    type: legislativeInitiativeTypes,
+    type: legislativeTypeNames,
     status: "No debatida",
   };
 

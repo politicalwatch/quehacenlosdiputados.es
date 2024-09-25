@@ -11,8 +11,9 @@
           <RouterLink
             v-if="initiative.id"
             :to="{ name: 'initiative', params: { id: initiative.id } }"
-            >{{ showOnlyNCharacters(initiative.title, 140) }}</RouterLink
           >
+            {{ showOnlyNCharacters(initiative.title, 140) }}
+          </RouterLink>
         </h3>
         <span class="c-in-process-initiatives__initiative-days"
           >{{ daysFromToday(new Date(initiative.created)) }} días</span
@@ -78,12 +79,17 @@ const showOnlyNCharacters = (text, maxChars) => {
 
 <style lang="scss" scoped>
 .c-in-process-initiatives {
+  h2 {
+    text-transform: uppercase;
+  }
+
   &__content {
     display: flex;
     flex-direction: column;
     gap: 2rem;
     margin-bottom: 3rem;
   }
+
   &__initiative {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -97,6 +103,7 @@ const showOnlyNCharacters = (text, maxChars) => {
       }
     }
   }
+
   &__initiative-days {
     font-weight: 300;
     font-size: 1.25rem;
