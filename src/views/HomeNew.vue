@@ -132,15 +132,30 @@ const legislativeTypeNames = [
 ];
 
 const getApprovedInitiatives = () => {
-  const params = {
+  const newInitiatives = [];
+
+  const paramsApproved = {
     per_page,
     type: legislativeTypeNames,
     status: "Aprobada",
   };
 
-  api
-    .getInitiatives(params)
-    .then((response) => (approvedInitiatives.value = response.initiatives))
+  const paramsRatified = {
+    per_page,
+    type: "Real Decreto-Ley",
+    status: "Convalidada",
+  };
+
+  Promise.all([
+    api.getInitiatives(paramsApproved),
+    api.getInitiatives(paramsRatified),
+  ])
+    .then((responses) => {
+      responses.forEach((response) => {
+        newInitiatives.push(...response.initiatives);
+      });
+      approvedInitiatives.value = newInitiatives;
+    })
     .catch((error) => (errors.value = error));
 };
 
