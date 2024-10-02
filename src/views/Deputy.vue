@@ -119,11 +119,14 @@
 
     <div v-if="footprintByTopics.length > 0" class="o-container o-section">
       <h2 class="u-margin-bottom-4 u-uppercase">Temáticas destacadas</h2>
-      <barchart
+      <Barchart
         :entity="deputy"
         entityType="deputy"
         :result="footprintByTopics"
+        :maxValue="store.footprintDeputyMax"
       />
+      El tamaño de la barra es relativo al valor de huella máximo para todos los
+      diputados.
       <footprint-info />
     </div>
 

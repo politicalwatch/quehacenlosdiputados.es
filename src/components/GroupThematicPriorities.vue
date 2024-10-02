@@ -19,7 +19,12 @@
       :entity="parliamentaryGroup"
       entityType="parliamentarygroup"
       :result="footprintByTopics"
+      :maxValue="store.footprintParliamentaryGroupMax"
     />
+    <p>
+      El tamaño de la barra es relativo al valor de huella máximo para todos los
+      grupos parlamentarios.
+    </p>
   </div>
 </template>
 

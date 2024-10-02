@@ -196,6 +196,15 @@ export default {
       return [config.BACKEND_URL, "/footprint/by-topic"].join("");
     }
   },
+  getFootprintMax() {
+    return axios
+      .get(getEndpoint(), { params })
+      .then((response) => response.data);
+
+    function getEndpoint() {
+      return [config.BACKEND_URL, "/footprint/max-by-all-topics"].join("");
+    }
+  },
   annotate(text, file) {
     let formData = new FormData();
     formData.append("text", text);

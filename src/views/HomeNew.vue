@@ -217,7 +217,6 @@ onMounted(() => {
 watch(
   () => initiativesStats.value,
   (newValue) => {
-    console.log(newValue);
     if (newValue.approved && newValue.inProcess && newValue.rejected)
       isLoaded.value = true;
   }

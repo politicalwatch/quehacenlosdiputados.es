@@ -11,6 +11,9 @@ export const useParliamentStore = defineStore("parliament", {
       allStatus: [],
       allPlaces: [],
       birthdays: [],
+      footprintMax: [],
+      footprintParliamentaryGroupMax: null,
+      footprintDeputyMax: null,
     };
   },
   getters: {
@@ -103,6 +106,34 @@ export const useParliamentStore = defineStore("parliament", {
         .getTypes()
         .then((response) => {
           this.allTypes = response;
+        })
+        .catch((error) => (this.errors = error));
+    },
+    getFootprintMax() {
+      api
+        .getFootprintMax()
+        .then((response) => {
+          this.footprintMax = response;
+          const maxScores = response.reduce(
+            (acc, item) => {
+              if (!item.name.startsWith("ODS")) {
+                if (item.deputy.score > acc.maxDeputyScore) {
+                  acc.maxDeputyScore = item.deputy.score;
+                }
+                if (
+                  item.parliamentarygroup.score > acc.maxParliamentaryGroupScore
+                ) {
+                  acc.maxParliamentaryGroupScore =
+                    item.parliamentarygroup.score;
+                }
+              }
+              return acc;
+            },
+            { maxDeputyScore: 0, maxParliamentaryGroupScore: 0 }
+          );
+          this.footprintDeputyMax = maxScores.maxDeputyScore;
+          this.footprintParliamentaryGroupMax =
+            maxScores.maxParliamentaryGroupScore;
         })
         .catch((error) => (this.errors = error));
     },

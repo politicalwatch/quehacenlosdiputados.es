@@ -34,6 +34,10 @@ const props = defineProps({
     required: true,
     default: () => [],
   },
+  maxValue: {
+    type: Number,
+    required: false,
+  },
   barHeight: {
     type: Number,
     required: false,
@@ -66,6 +70,7 @@ const props = defineProps({
 
 const {
   result,
+  maxValue,
   barHeight,
   barGap,
   barColor,
@@ -78,7 +83,7 @@ const rows = ref([]);
 
 const calculateRows = () => {
   const tempRows = [];
-  const max = result.value[0].score;
+  const max = maxValue.value ?? result.value[0].score;
   result.value.forEach((d) => {
     tempRows.push({
       name: d.name,
@@ -115,7 +120,7 @@ onMounted(() => {
   calculateRows();
 });
 
-watch(result, () => {
+watch([result, maxValue], () => {
   calculateRows();
 });
 </script>

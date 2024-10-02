@@ -37,6 +37,7 @@ onMounted(() => {
   store.getParliamentaryGroups();
   store.getDeputies();
   store.getBirthdays();
+  store.getFootprintMax();
 });
 </script>
 

@@ -83,11 +83,16 @@
         <h2 class="u-margin-bottom-4 u-uppercase u-text-center u-text-left@md">
           Temáticas destacadas
         </h2>
-        <barchart
+        <Barchart
           :entity="parliamentarygroup"
           entityType="parliamentarygroup"
           :result="footprintByTopics"
+          :maxValue="store.footprintParliamentaryGroupMax"
         />
+        <p>
+          El tamaño de la barra es relativo al valor de huella máximo para todos
+          los grupos parlamentarios.
+        </p>
         <footprint-info />
       </div>
 
