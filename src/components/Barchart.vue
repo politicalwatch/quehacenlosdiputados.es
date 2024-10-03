@@ -1,5 +1,5 @@
 <template>
-  <TransitionGroup tag="div" class="c-barchart" name="barfade">
+  <TransitionGroup v-if="rows" tag="div" class="c-barchart" name="barfade">
     <div class="c-barchart__row" v-for="d in rows" :key="d.name">
       <div class="c-barchart__name u-text-th4 u-uppercase">{{ d.name }}</div>
 
@@ -26,17 +26,16 @@
 
 <script setup>
 import { ref, toRefs, onMounted, watch } from "vue";
+import { storeToRefs } from "pinia";
 import qs from "qs";
+
+import { useParliamentStore } from "@/stores/parliament";
 
 const props = defineProps({
   result: {
     type: Array,
     required: true,
     default: () => [],
-  },
-  maxValue: {
-    type: Number,
-    required: false,
   },
   barHeight: {
     type: Number,
@@ -64,13 +63,12 @@ const props = defineProps({
   },
   entityType: {
     type: String,
-    requred: true,
+    required: true,
   },
 });
 
 const {
   result,
-  maxValue,
   barHeight,
   barGap,
   barColor,
@@ -79,11 +77,14 @@ const {
   entityType,
 } = toRefs(props);
 
+const store = useParliamentStore();
+const { footprintMax } = storeToRefs(store);
+
 const rows = ref([]);
 
 const calculateRows = () => {
+  if (!footprintMax.value.length) return;
   const tempRows = [];
-  const max = maxValue.value ?? result.value[0].score;
   result.value.forEach((d) => {
     tempRows.push({
       name: d.name,
@@ -94,7 +95,7 @@ const calculateRows = () => {
       },
       overbarStyle: {
         height: `${barHeight.value}px`,
-        width: `${(d.score / max) * 100}%`,
+        width: `${(d.score / footprintMax.value.find((footprint) => footprint.name == d.name)[entityType.value].score) * 100}%`,
         backgroundColor: barColor.value,
       },
     });
@@ -120,7 +121,7 @@ onMounted(() => {
   calculateRows();
 });
 
-watch([result, maxValue], () => {
+watch([result, footprintMax], () => {
   calculateRows();
 });
 </script>

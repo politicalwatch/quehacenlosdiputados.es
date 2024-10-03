@@ -87,13 +87,18 @@
           :entity="parliamentarygroup"
           entityType="parliamentarygroup"
           :result="footprintByTopics"
-          :maxValue="store.footprintParliamentaryGroupMax"
         />
         <p>
-          El tamaño de la barra es relativo al valor de huella máximo para todos
-          los grupos parlamentarios.
+          El tamaño de la barra es relativo al valor máximo de la huella para
+          cada temática.
+          <router-link
+            :to="{ name: 'footprint' }"
+            target="_blank"
+            style="text-decoration: none !important"
+            >Consulta aquí cómo funciona el algoritmo de huella
+            parlamentaria.</router-link
+          >
         </p>
-        <footprint-info />
       </div>
 
       <h2
