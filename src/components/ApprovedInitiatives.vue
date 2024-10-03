@@ -103,6 +103,7 @@ const initiativeCategories = computed(() => {
 .c-approved-initiatives {
   h2 {
     text-transform: uppercase;
+    margin-bottom: 2rem;
   }
 
   &__nav {

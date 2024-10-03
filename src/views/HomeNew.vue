@@ -1,8 +1,82 @@
 <template>
-  <div id="home" class="o-container u-margin-bottom-10 c-home">
+  <div id="home" class="o-container u-margin-bottom-10 u-padding-top-4 c-home">
+    <div v-if="home" class="o-grid u-margin-bottom-6 u-border-bottom">
+      <div class="o-grid__col u-12">
+        <ImageHeader
+          :home="home"
+          :imageSrcset="getHomeImageSrcset()"
+          imageSizes="(min-width: 1000px) 1000px, (min-width: 750px) 750px, 500px"
+          :imageSrc="getHomeImage()"
+          class="u-margin-bottom-4"
+        />
+
+        <loader
+          v-if="!homeLoaded"
+          title="Cargando datos"
+          subtitle="Puede llevar algun tiempo"
+        />
+
+        <div
+          class="o-section c-home__initiatives"
+          v-if="home && relatedInitiatives.length"
+        >
+          <h1 class="u-uppercase c-home__initiatives_title">
+            Iniciativas relacionadas
+          </h1>
+          <a
+            class="c-home__more u-border-link u-hide u-block@sm u-uppercase"
+            :href="home.RelatedInitiativesSearch"
+            >Más iniciativas</a
+          >
+        </div>
+
+        <Results
+          v-if="home && relatedInitiatives.length"
+          :initiatives="relatedInitiatives"
+          :topicsStyles="topicsStyles"
+        />
+      </div>
+    </div>
+
     <div class="o-grid u-margin-bottom-4">
       <div class="o-grid__col u-12">
+        <div class="c-home__cta">
+          <h2 class="c-home__cta-title">El Congreso fácil</h2>
+          <h3 class="c-home__cta-subtitle">
+            Consulta todas las iniciativas y sé parte del debate democrático
+          </h3>
+        </div>
+      </div>
+      <div class="o-grid__col u-12">
         <InitiativesFormCompact v-model:formData="formData" />
+      </div>
+    </div>
+
+    <div class="o-grid u-margin-bottom-6">
+      <div class="o-grid__col u-12">
+        <InitiativeStatusChart
+          v-if="initiativesLoaded"
+          :initiativesStats="initiativesStats"
+        />
+        <Loader
+          v-else
+          title="Cargando prioridades temáticas"
+          subtitle="Puede llevar algun tiempo"
+        />
+      </div>
+    </div>
+
+    <div class="o-grid u-margin-bottom-4">
+      <div class="o-grid__col u-12">
+        <ApprovedInitiatives
+          v-if="approvedInitiatives.length > 0 && initiativesLoaded"
+          :initiatives="approvedInitiatives"
+        />
+        <Loader
+          v-else
+          title="Cargando prioridades temáticas"
+          subtitle="Puede llevar algun tiempo"
+        />
       </div>
     </div>
 
@@ -22,42 +96,8 @@
 
     <div class="o-grid u-margin-bottom-4">
       <div class="o-grid__col u-12">
-        <ApprovedInitiatives
-          v-if="approvedInitiatives.length > 0 && isLoaded"
-          :initiatives="approvedInitiatives"
-        />
-        <loader
-          v-else
-          title="Cargando prioridades temáticas"
-          subtitle="Puede llevar algun tiempo"
-        />
-      </div>
-    </div>
-
-    <div class="o-grid u-margin-bottom-4">
-      <div class="o-grid__col u-12 u-4@sm">
-        <InitiativeStatusChart
-          v-if="isLoaded"
-          :initiativesStats="initiativesStats"
-        />
-        <loader
-          v-else
-          title="Cargando prioridades temáticas"
-          subtitle="Puede llevar algun tiempo"
-        />
-      </div>
-      <div class="o-grid__col u-12 u-8@sm">
-        <InProcessInitiatives
-          :initiatives="inProcessInitiatives"
-          :numInitiatives="12"
-        />
-      </div>
-    </div>
-
-    <div class="o-grid u-margin-bottom-4">
-      <div class="o-grid__col u-12">
         <LastActivity v-if="lastdays" :lastdays="lastdays" />
-        <loader
+        <Loader
           v-else
           title="Cargando evolución de los últimos días"
           subtitle="Puede llevar algun tiempo"
@@ -73,6 +113,8 @@ import { ref, onMounted, watch, computed } from "vue";
 import api from "@/api";
 import config from "@/config";
 import { useParliamentStore } from "@/stores/parliament";
+import ImageHeader from "@/components/ImageHeader.vue";
+import Results from "@/components/Results.vue";
 import InitiativesFormCompact from "@/components/InitiativesFormCompact.vue";
 import GroupThematicPriorities from "@/components/GroupThematicPriorities.vue";
 import ApprovedInitiatives from "@/components/ApprovedInitiatives.vue";
@@ -84,7 +126,8 @@ import Loader from "@/components/Loader.vue";
 const topicsStyles = config.STYLES.topics;
 const store = useParliamentStore();
 
-const isLoaded = ref(false);
+const homeLoaded = ref(false);
+const initiativesLoaded = ref(false);
 const errors = ref(null);
 
 const formData = ref({
@@ -92,6 +135,9 @@ const formData = ref({
   author: "",
   page: 1,
 });
+
+const home = ref(null);
+const relatedInitiatives = ref([]);
 
 const approvedInitiatives = ref([]);
 const inProcessInitiatives = ref([]);
@@ -104,6 +150,50 @@ const initiativesStats = computed(() => {
   };
 });
 const lastdays = ref(null);
+
+const getHome = () => {
+  api
+    .getHome()
+    .then((response) => {
+      home.value = response;
+      _parseRelatedInitiatives();
+      getRelatedInitiatives();
+    })
+    .catch((error) => (errors.value = error));
+};
+
+const getHomeImageSrcset = () => {
+  return home.value.Image
+    ? `${api.getHomeResourceUrl(home.value.Image.formats.small.url)} 500w, ${api.getHomeResourceUrl(home.value.Image.formats.medium.url)} 750w, ${api.getHomeResourceUrl(home.value.Image.formats.large.url)} 1000w`
+    : null;
+};
+const getHomeImage = () => {
+  return home.value.Image
+    ? api.getHomeResourceUrl(home.value.Image.formats.large.url)
+    : null;
+};
+const getRelatedInitiatives = () => {
+  home.value.RelatedInitiativesIds.forEach((id) => {
+    api
+      .getInitiative(id, false)
+      .then((initiative) => {
+        relatedInitiatives.value.push(initiative);
+        homeLoaded.value = true;
+      })
+      .catch((error) => (errors.value = error));
+  });
+};
+const _parseRelatedInitiatives = () => {
+  if (home.value.RelatedInitiativesIds !== undefined) {
+    return;
+  }
+  const RELATED_INITIATIVES = 6;
+  home.value.RelatedInitiativesIds = [...Array(RELATED_INITIATIVES).keys()]
+    .map((el) => el + 1)
+    .map((el) => home.value["Initiative" + el])
+    .filter((element) => element !== null);
+  // for (let i=1; i<=RELATED_INITIATIVES; i++) delete this.home['Initiative'+i];
+};
 
 const per_page = 1000;
 const legislativeTypeIds = [
@@ -168,7 +258,12 @@ const getInProcessInitiatives = () => {
 
   api
     .getInitiatives(params)
-    .then((response) => (inProcessInitiatives.value = response.initiatives))
+    .then(
+      (response) =>
+        (inProcessInitiatives.value = response.initiatives.filter(
+          (initiative) => initiative.title.includes("XIV Legislatura")
+        ))
+    )
     .catch((error) => (errors.value = error));
 };
 
@@ -208,6 +303,7 @@ const getLastdays = () => {
 };
 
 onMounted(() => {
+  getHome();
   getApprovedInitiatives();
   getInProcessInitiatives();
   getRejectedInitiatives();
@@ -218,13 +314,33 @@ watch(
   () => initiativesStats.value,
   (newValue) => {
     if (newValue.approved && newValue.inProcess && newValue.rejected)
-      isLoaded.value = true;
+      initiativesLoaded.value = true;
   }
 );
 </script>
 
 <style lang="scss" scoped>
 .c-home {
+  &__cta {
+    margin-bottom: 4rem;
+  }
+
+  &__cta-title {
+    color: $secondary-dark;
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+    margin-top: 0;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  &__cta-subtitle {
+    color: $secondary-dark;
+    opacity: 0.9;
+    font-size: 1.6rem;
+    font-weight: 200;
+    margin-bottom: 2rem;
+  }
+
   &__initiatives {
     display: flex;
     justify-content: space-between;

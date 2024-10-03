@@ -1,7 +1,7 @@
 <template>
   <form
     id="initiatives-form"
-    class="c-initiatives-form u-margin-bottom-4 u-border-bottom"
+    class="c-initiatives-form u-margin-bottom-4 u-padding-bottom-2 u-border-bottom"
     role="form"
     @submit.prevent="getResults()"
   >
@@ -82,7 +82,10 @@ const getResults = () => {
 <style lang="scss">
 .c-initiatives-form {
   .o-grid {
-    align-items: start;
+    align-items: center;
+  }
+  button {
+    width: 100%;
   }
 }
 span.multiselect__option--selected {
