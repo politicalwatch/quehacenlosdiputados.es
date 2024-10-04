@@ -83,12 +83,22 @@
         <h2 class="u-margin-bottom-4 u-uppercase u-text-center u-text-left@md">
           Temáticas destacadas
         </h2>
-        <barchart
+        <Barchart
           :entity="parliamentarygroup"
           entityType="parliamentarygroup"
           :result="footprintByTopics"
         />
-        <footprint-info />
+        <p>
+          El tamaño de la barra es relativo al valor máximo de la huella para
+          cada temática.
+          <router-link
+            :to="{ name: 'footprint' }"
+            target="_blank"
+            style="text-decoration: none !important"
+            >Consulta aquí cómo funciona el algoritmo de huella
+            parlamentaria.</router-link
+          >
+        </p>
       </div>
 
     <div
