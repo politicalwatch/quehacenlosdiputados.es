@@ -76,7 +76,7 @@ const initiativeCategories = computed(() => {
       ),
     },
     ilp: {
-      name: "Iniciativas legislativa popular",
+      name: "Iniciativas legislativas populares",
       initiatives: initiatives.filter(
         (initiative) =>
           initiative.initiative_type_alt === "Iniciativa legislativa popular"

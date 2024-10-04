@@ -12,7 +12,6 @@
       </h1>
       <h4 class="c-last-activity__type u-uppercase">{{ titles[type] }}</h4>
       <span class="c-last-activity__description">{{ descriptions[type] }}</span>
-      <!-- <a class="u&#45;border&#45;link u&#45;uppercase" :href="getLink(type)">Consultar</a> -->
     </div>
   </div>
 </template>
@@ -55,13 +54,9 @@ const descriptions = {
   legislative:
     "Los diputados y diputadas tienen la capacidad de proponer y aprobar leyes, así como de ratificar y convalidar leyes a propuesta del Gobierno.",
   orientation:
-    "Los grupos parlamentarios pueden orientar políticamente al Gobierno a través de la aprobación de iniciativas, que no son legalmente vinculantes.",
+    "Los grupos parlamentarios orientan políticamente al Gobierno a través de la aprobación de iniciativas, como Proposiciones No de Ley.",
   oversight:
     "Los grupos parlamentarios controlan la labor del Gobierno a través de preguntas y de la solicitud de informes y comparecencias.",
-};
-
-const getLink = (type) => {
-  return "/buscar";
 };
 </script>
 

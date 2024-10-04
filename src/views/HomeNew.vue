@@ -41,7 +41,9 @@
     <div class="o-grid u-margin-bottom-4">
       <div class="o-grid__col u-12">
         <div class="c-home__cta">
-          <h2 class="c-home__cta-title">El Congreso fácil</h2>
+          <h2 class="c-home__cta-title">
+            Qué hacen los diputados: el Congreso fácil
+          </h2>
           <h3 class="c-home__cta-subtitle">
             Consulta todas las iniciativas y sé parte del debate democrático
           </h3>
