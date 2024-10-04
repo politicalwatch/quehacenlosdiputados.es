@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/views/Home.vue";
-import HomeNew from "@/views/HomeNew.vue";
 import config from "@/config";
 
 const routes = [
@@ -8,29 +7,6 @@ const routes = [
     path: "/",
     name: "home",
     component: Home,
-    meta: {
-      title: "Home - Qué hacen los diputados",
-      metaTags: [
-        {
-          name: "description",
-          content: "Home - Qué hacen los diputados",
-        },
-        {
-          property: "og:description",
-          content: "Home - Qué hacen los diputados",
-        },
-        {
-          property: "og:title",
-          content: "Home - Qué hacen los diputados",
-        },
-        ...config.DEFAULT_METATAGS,
-      ],
-    },
-  },
-  {
-    path: "/home-new",
-    name: "home-new",
-    component: HomeNew,
     meta: {
       title: "Home - Qué hacen los diputados",
       metaTags: [
