@@ -118,7 +118,9 @@
     </div>
 
     <div v-if="footprintByTopics.length > 0" class="o-container o-section">
-      <h2 class="u-margin-bottom-4 u-uppercase">Temáticas destacadas</h2>
+      <h2 class="c-deputy__title u-margin-bottom-4 u-uppercase">
+        Temáticas destacadas
+      </h2>
       <Barchart
         :entity="deputy"
         entityType="deputy"
@@ -141,17 +143,21 @@
       v-if="latestInitiatives && latestInitiatives.length"
       class="o-container o-section"
     >
-      <div
-        class="c-deputy__initiatives-header"
-        >
-        <h2 class="c-deputy__title u-margin-bottom-4 u-uppercase">Últimas iniciativas</h2>
+      <div class="c-deputy__initiatives-header">
+        <h2 class="c-deputy__title u-margin-bottom-4 u-uppercase">
+          Últimas iniciativas
+        </h2>
         <router-link
           v-if="totalInitiatives > initiativesToShow"
           :to="{
             name: 'results',
-            params: { data: 'deputy=' + deputy.name + '&author=' + parliamentarygroup.name } }"
+            params: {
+              data:
+                'deputy=' + deputy.name + '&author=' + parliamentarygroup.name,
+            },
+          }"
           class="c-deputy__initiatives-more u-border-link u-hide u-block@sm u-uppercase"
-        >Ver todas
+          >Ver todas
         </router-link>
       </div>
       <results
@@ -163,11 +169,14 @@
         v-if="totalInitiatives > initiativesToShow"
         :to="{
           name: 'results',
-          params: { data: 'deputy=' + deputy.name + '&author=' + parliamentarygroup.name } }"
+          params: {
+            data:
+              'deputy=' + deputy.name + '&author=' + parliamentarygroup.name,
+          },
+        }"
         class="c-deputy__initiatives-more u-border-link u-hide@sm u-uppercase"
-      >Ver todas
+        >Ver todas
       </router-link>
-
     </div>
     <div class="o-container" v-else>
       <message type="info" icon>
@@ -214,7 +223,7 @@ const deputy = ref(null);
 const parliamentarygroup = ref(null);
 const latestInitiatives = ref(null);
 const totalInitiatives = ref(null);
-const initiativesToShow = 6
+const initiativesToShow = 6;
 const errors = ref(null);
 const use_alerts = config.USE_ALERTS;
 const styles = config.STYLES;
