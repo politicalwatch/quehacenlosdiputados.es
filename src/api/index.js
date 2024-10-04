@@ -198,7 +198,7 @@ export default {
   },
   getFootprintMax() {
     return axios
-      .get(getEndpoint(), { params })
+      .get(getEndpoint(), { params: {} })
       .then((response) => response.data);
 
     function getEndpoint() {

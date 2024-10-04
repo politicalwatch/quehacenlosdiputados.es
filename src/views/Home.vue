@@ -158,8 +158,10 @@ const getHome = () => {
     .getHome()
     .then((response) => {
       home.value = response;
-      _parseRelatedInitiatives();
-      getRelatedInitiatives();
+      if (home.value) {
+        _parseRelatedInitiatives();
+        getRelatedInitiatives();
+      }
     })
     .catch((error) => (errors.value = error));
 };
