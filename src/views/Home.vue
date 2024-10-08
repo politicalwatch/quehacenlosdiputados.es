@@ -262,12 +262,7 @@ const getInProcessInitiatives = () => {
 
   api
     .getInitiatives(params)
-    .then(
-      (response) =>
-        (inProcessInitiatives.value = response.initiatives.filter(
-          (initiative) => initiative.title.includes("XIV Legislatura")
-        ))
-    )
+    .then((response) => (inProcessInitiatives.value = response.initiatives))
     .catch((error) => (errors.value = error));
 };
 
