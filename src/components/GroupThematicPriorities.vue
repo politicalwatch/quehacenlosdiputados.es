@@ -1,12 +1,12 @@
 <template>
-  <div class="c-thematic-priorities">
+  <div v-if="allParliamentaryGroups.length" class="c-thematic-priorities">
     <div class="c-thematic-priorities__header">
       <h2>Prioridades temáticas de</h2>
       <div class="c-thematic-priorities__selector">
         <div class="c-thematic-priorities__selector-group"></div>
         <select v-model="parliamentaryGroup" class="c-select">
           <option
-            v-for="group in parliamentaryGroups"
+            v-for="group in allParliamentaryGroups"
             :key="group.id"
             :value="group"
           >
@@ -29,21 +29,19 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import { storeToRefs } from "pinia";
 
 import { useParliamentStore } from "@/stores/parliament";
 import Barchart from "@/components/Barchart.vue";
 
 const store = useParliamentStore();
 
-const { parliamentaryGroups } = defineProps({
-  parliamentaryGroups: {
-    type: Array,
-    required: true,
-  },
-});
+const { allParliamentaryGroups } = storeToRefs(store);
 
 const parliamentaryGroup = ref(
-  parliamentaryGroups[Math.floor(Math.random() * parliamentaryGroups.length)]
+  allParliamentaryGroups.value[
+    Math.floor(Math.random() * allParliamentaryGroups.value.length)
+  ]
 );
 
 const parliamentaryGroupColor = computed(() => {
@@ -54,7 +52,7 @@ const parliamentaryGroupColor = computed(() => {
 });
 
 const footprintByTopics = computed(() => {
-  if (parliamentaryGroup.value) {
+  if (parliamentaryGroup.value.footprint_by_topics) {
     return parliamentaryGroup.value.footprint_by_topics
       .filter((item) =>
         store.allTopics.some((topic) => topic.name === item.name)
@@ -73,10 +71,17 @@ const footprintByTopics = computed(() => {
   }
 
   &__header {
+    position: relative;
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      margin-bottom: 2rem;
+    }
 
     h2 {
       margin-bottom: 0;
@@ -85,8 +90,13 @@ const footprintByTopics = computed(() => {
 
   &__selector {
     position: relative;
+    max-width: 100%;
+    overflow: hidden;
+
     select {
+      max-width: 100%;
       padding: 0.5rem 4rem 0.5rem 2.5rem;
+      text-wrap: balance;
       text-transform: uppercase;
       font-weight: 500;
       border: 2px solid #000;
@@ -106,7 +116,7 @@ const footprintByTopics = computed(() => {
 
   &__selector-group {
     position: absolute;
-    top: 9px;
+    top: calc(50% - 10px);
     left: 10px;
     width: 20px;
     height: 20px;

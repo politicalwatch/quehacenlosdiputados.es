@@ -112,11 +112,17 @@ const initiativeCategories = computed(() => {
 
   &__nav-items {
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 3rem;
   }
 
   &__nav-item {
     display: block;
+    max-width: 40%;
+
+    @media (min-width: 768px) {
+      max-width: fit-content;
+    }
 
     &::before {
       display: none;

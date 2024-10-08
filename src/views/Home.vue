@@ -86,7 +86,6 @@
       <div class="o-grid__col u-12">
         <GroupThematicPriorities
           v-if="store.allParliamentaryGroups.length > 0"
-          :parliamentaryGroups="store.allParliamentaryGroups"
         />
         <loader
           v-else
