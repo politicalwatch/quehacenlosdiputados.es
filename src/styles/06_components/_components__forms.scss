@@ -62,7 +62,8 @@
       pointer-events: none;
       width: rem($spacer-unit * 4);
       height: rem($spacer-unit * 3);
-      background: url("../assets/svg/icon-upload.svg") no-repeat center center;
+      background: url("../../assets/svg/icon-upload.svg") no-repeat center
+        center;
     }
   }
 }
@@ -112,7 +113,7 @@
     pointer-events: none;
     width: rem($spacer-unit * 4);
     height: rem($spacer-unit * 3);
-    background: url("../assets/svg/icon-chevron-down.svg") no-repeat right
+    background: url("../../assets/svg/icon-chevron-down.svg") no-repeat right
       center;
   }
 
@@ -321,7 +322,8 @@
     pointer-events: none;
     width: rem($spacer-unit * 4);
     height: rem($spacer-unit * 3);
-    background: url("../assets/svg/icon-calendar.svg") no-repeat center center;
+    background: url("../../assets/svg/icon-calendar.svg") no-repeat center
+      center;
   }
 
   .vdp-datepicker {
@@ -340,7 +342,7 @@
             border: 0;
             width: rem(10px);
             height: rem($spacer-unit * 2);
-            background: url("../assets/svg/icon-chevron-left.svg") transparent;
+            background: url("../../assets/svg/icon-chevron-left.svg") transparent;
           }
         }
 
@@ -370,7 +372,7 @@
             border: 0;
             width: rem(10px);
             height: rem($spacer-unit * 2);
-            background: url("../assets/svg/icon-chevron-right.svg") transparent;
+            background: url("../../assets/svg/icon-chevron-right.svg") transparent;
           }
         }
       }
