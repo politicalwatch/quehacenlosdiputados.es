@@ -56,7 +56,7 @@
 </template>
 
 <script setup>
-import { ref, computed, nextTick, onUpdated, onMounted } from "vue";
+import { ref, computed, nextTick, onUpdated, onMounted, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import qs from "qs";
 import VueScrollTo from "vue-scrollto";
@@ -194,6 +194,21 @@ const loadCSVItems = (event) => {
     })
     .catch((error) => (errors.value = error));
 };
+
+const resetPage = () => {
+  formData.value.page = 1;
+};
+
+watch(() => formData.value.topic, resetPage);
+watch(() => formData.value.author, resetPage);
+watch(() => formData.value.deputy, resetPage);
+watch(() => formData.value.startdate, resetPage);
+watch(() => formData.value.enddate, resetPage);
+watch(() => formData.value.place, resetPage);
+watch(() => formData.value.reference, resetPage);
+watch(() => formData.value.tags, resetPage, { deep: true });
+watch(() => formData.value.subtopics, resetPage, { deep: true });
+watch(() => formData.value.text, resetPage);
 
 onMounted(() => {
   if (route.name == "results") {
