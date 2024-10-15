@@ -16,7 +16,7 @@
             @select="fillSubtopicsAndTags"
             @remove="clearSubtopicsAndTags"
             v-model="formData.topic"
-            :options="store.allTopics.map((topic) => topic.name)"
+            :options="allTopics.map((topic) => topic.name)"
             :allow-empty="true"
             name="topic"
             id="topic"
@@ -40,11 +40,9 @@
             :options="filteredTags"
             :allow-empty="true"
             :hide-selected="true"
-            :disabled="!filteredTags.length"
+            :disabled="!tagsInputEnabled"
             :placeholder="
-              filteredTags.length
-                ? 'Todas'
-                : 'Selecciona previamente una temática'
+              tagsInputEnabled ? 'Todas' : 'Selecciona previamente una temática'
             "
             name="tags"
             id="tags"
@@ -119,7 +117,7 @@
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
             v-model="formData.status"
-            :options="store.allStatus"
+            :options="allStatus"
             :allow-empty="true"
             name="status"
             id="status"
@@ -234,7 +232,7 @@
 </template>
 
 <script setup>
-import { ref, toRefs, computed, onMounted } from "vue";
+import { ref, toRefs, computed, onMounted, watch } from "vue";
 import { useRouter } from "vue-router";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
@@ -245,6 +243,7 @@ import format from "date-fns/format";
 import * as Utils from "@/utils";
 import api from "@/api";
 import { useParliamentStore } from "@/stores/parliament";
+import { storeToRefs } from "pinia";
 
 const props = defineProps({
   formData: Object,
@@ -256,6 +255,8 @@ const emit = defineEmits(["getResults", "clearInitiatives"]);
 
 const router = useRouter();
 const store = useParliamentStore();
+const { allTopics, allStatus } = storeToRefs(store);
+
 const textInputOptions = {
   enterSubmit: true,
   tabSubmit: true,
@@ -268,6 +269,11 @@ const tags = ref([]);
 const errors = ref(null);
 const selectedSubtopics = ref([]);
 const filteredTags = ref([]);
+
+const tagsInputEnabled = computed(() => {
+  return formData.value.topic && filteredTags.value.length;
+});
+
 const advanced = ref(
   formData.value &&
     (formData.value.startdate ||
@@ -339,7 +345,7 @@ const fillSubtopicsAndTags = (selectedTopic, clearValues) => {
     formData.value.subtopics = [];
     formData.value.tags = [];
   }
-  const currentTopic = store.allTopics.find(
+  const currentTopic = allTopics.value.find(
     (topic) => topic.name === selectedTopic
   );
   getSubtopicsAndTags(currentTopic.id);
@@ -380,6 +386,7 @@ const selectEndDate = (date) => {
 };
 
 const prepareForm = () => {
+  console.log("prepareForm");
   if (formData.value.topic) {
     fillSubtopicsAndTags(formData.value.topic, false);
   }
@@ -433,11 +440,7 @@ const toggleAdvanced = () => {
   advanced.value = !advanced.value;
 };
 
-onMounted(() => {
-  if (store.allTopics.length) {
-    prepareForm();
-  }
-});
+watch(() => allTopics.value, prepareForm);
 </script>
 
 <style lang="scss">
