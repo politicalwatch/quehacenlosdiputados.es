@@ -218,7 +218,9 @@
           <span v-else>Ocultar búsqueda avanzada</span>
         </a>
       </div>
-      <div class="o-grid__col u-12 u-6@sm u-padding-bottom-4 u-text-right@sm">
+      <div
+        class="c-initiatives-form__actions o-grid__col u-12 u-6@sm u-padding-bottom-4 u-text-right@sm"
+      >
         <button
           class="c-button u-padding-left-0 u-margin-right-2"
           @click.prevent="clearInitiatives"
@@ -443,6 +445,18 @@ onMounted(() => {
   .o-grid {
     align-items: start;
   }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
+
+.c-button--advanced {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .dp__theme_light {
@@ -470,11 +484,5 @@ span.multiselect__option--selected {
   span {
     color: white;
   }
-}
-
-.c-button--advanced {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
 }
 </style>
