@@ -13,7 +13,7 @@
               :src="deputy.image"
               :alt="'Foto de ' + deputy.name"
             />
-            <party-logo :party="deputy.party_name" />
+            <party-logo v-if="deputy.party_name" :party="deputy.party_name" />
           </div>
         </div>
         <div class="o-grid__col u-12 u-8@sm">

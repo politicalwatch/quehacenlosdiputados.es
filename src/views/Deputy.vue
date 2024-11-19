@@ -72,8 +72,11 @@
           </h3>
           <div class="c-deputy__personal-info">
             <span class="c-deputy__personal">
-              <party-logo-icon :party="deputy.party_name" />
-              {{ deputy.party_name }}
+              <party-logo-icon
+                v-if="deputy.party_name"
+                :party="deputy.party_name"
+              />
+              {{ deputy.party_name ?? "" }}
             </span>
             <span class="c-deputy__personal"
               ><Icon icon="mdi:location" />{{ deputy.constituency }}</span

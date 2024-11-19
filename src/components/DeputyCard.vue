@@ -22,8 +22,8 @@
           ]"
         />
         <party-logo-icon
+          v-if="layout == 'large' && deputy.party_name"
           :party="deputy.party_name"
-          v-if="layout == 'large'"
           style="position: absolute; bottom: 0; left: 6rem"
         />
       </router-link>
@@ -49,6 +49,7 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
 import { Icon } from "@iconify/vue";
 
 import config from "@/config";
@@ -75,8 +76,7 @@ const isBirthday = () => {
   const date = new Date(deputy.birthdate);
   const today = new Date();
   return (
-    date.getDate() == today.getDate() &&
-    date.getMonth() == today.getMonth()
+    date.getDate() == today.getDate() && date.getMonth() == today.getMonth()
   );
 };
 
@@ -90,7 +90,12 @@ const getFootprint = () => {
   return deputy.footprint;
 };
 
-const groupColor = config.STYLES.parties[deputy.party_name]?.color ?? "#A3D5C8";
+const groupColor = computed(() => {
+  return (
+    (deputy.party_name && config.STYLES.parties[deputy.party_name]?.color) ??
+    "#A3D5C8"
+  );
+});
 </script>
 
 <style lang="scss" scoped>

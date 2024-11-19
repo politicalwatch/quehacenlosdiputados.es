@@ -68,14 +68,14 @@
                 v-for="author in initiative.authors"
                 v-bind:key="author"
                 :name="author"
-              ></OtherAuthorCard>
+              />
             </div>
 
             <div class="u-margin-bottom-4"></div>
 
             <DeputyCard
               v-for="deputyName in initiative.deputies"
-              v-bind:key="deputyName"
+              :key="deputyName"
               :deputy="store.getDeputyByName(deputyName)"
               layout="medium"
             />
