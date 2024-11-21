@@ -32,11 +32,7 @@ export default {
       condition: true,
     },
   ],
-  DISCLAIMER: {
-    route: "https://xiv.quehacenlosdiputados.es/",
-    name: "También tienes disponibles los datos de la XIV legislatura.",
-    external: true,
-  },
+  DISCLAIMER: {},
   LOGO: "/img/logo.svg",
 
   DEFAULT_PAGE_TITLE: "Qué hacen los diputados",
