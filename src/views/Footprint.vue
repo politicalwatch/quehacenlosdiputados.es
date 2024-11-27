@@ -11,6 +11,48 @@
             diputada, en su capacidad para sacar adelante propuestas y en su
             grado de accesibilidad ante la ciudadanía.
           </h3>
+          <p>
+            La huella parlamentaria es el reflejo de la actividad de un diputado
+            o diputada. A mayor huella, consideramos que su trabajo
+            parlamentario es más relevante. Para calcularla, combinamos 4
+            factores:
+          </p>
+          <div class="footprint__factors">
+            <div>
+              <img src="/img/footprint-volumen.png" />
+              <h4>Volumen de actividad</h4>
+              <p>
+                La cantidad de iniciativas que presenta, dando más peso a las
+                más elaboradas. Por ejemplo, suma más puntos una Proposición No
+                de Ley que una pregunta oral.
+              </p>
+            </div>
+            <div>
+              <img src="/img/footprint-efectividad.png" />
+              <h4>Efectividad</h4>
+              <p>
+                La efectividad de sus propuestas y su capacidad para alcanzar
+                consensos en torno a ellas.
+              </p>
+            </div>
+            <div>
+              <img src="/img/footprint-accesibilidad.png" />
+              <h4>Accesibilidad</h4>
+              <p>
+                La facilidad de contacto con el parlamentario/a (valoramos si
+                tiene un correo electrónico directo y publicado de forma
+                visible, si cuenta con redes sociales…).
+              </p>
+            </div>
+            <div>
+              <img src="/img/footprint-inactividad.png" />
+              <h4>Tiempo de inactividad</h4>
+              <p>
+                La frecuencia de su actividad: a más inactividad, más
+                penalización.
+              </p>
+            </div>
+          </div>
           <h2>El algoritmo</h2>
           <p>
             El indicador de Huella parlamentaria está construido en base a
@@ -326,5 +368,44 @@ thead {
   border: solid 4px #1d1d1b;
   margin-top: 32px;
   margin-bottom: 32px;
+}
+
+.footprint {
+  &__factors {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+    margin-bottom: 4rem;
+
+    @media (min-width: $md) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      background: $lightgrey;
+      border-radius: 16px;
+
+      img {
+        max-width: 80%;
+        margin-bottom: 2rem;
+      }
+      h4 {
+        font-size: 1.5rem;
+        line-height: 1.5;
+        font-size: 1.5rem;
+        line-height: 1.5;
+        margin-top: 0;
+        margin-bottom: 1rem;
+      }
+      p {
+        margin-top: 0;
+        line-height: 1.5;
+      }
+    }
+  }
 }
 </style>
