@@ -42,7 +42,7 @@
   "devDependencies": {
     "@iconify/vue": "^4.1.2",
     "@rushstack/eslint-patch": "^1.1.0",
-    "@vitejs/plugin-legacy": "^5.1.0",
+    "@vitejs/plugin-legacy": "^6.0.0",
     "@vitejs/plugin-vue": "^5.0.0",
     "@vue/eslint-config-prettier": "^10.0.0",
     "@vue/test-utils": "^2.4.1",
@@ -54,7 +54,7 @@
     "sass-embedded": "^1.79.4",
     "stylelint": "^16.0.0",
     "terser": "^5.14.2",
-    "vite": "^5.0.12",
+    "vite": "^6.0.0",
     "vitest": "^2.0.0"
   },
   "browserslist": [
