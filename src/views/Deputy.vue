@@ -51,14 +51,18 @@
           </div>
         </div>
         <div class="o-grid__col u-12 u-8@sm">
-          <router-link
-            :to="{ name: 'footprint' }"
-            target="_blank"
-            class="c-deputy__footprint"
-          >
+          <div class="c-deputy__footprint">
             <footprint :footprint="deputy.footprint" />
-            <span class="c-deputy__footprint-more-info">¿Qué es esto?</span>
-          </router-link>
+            <Tooltip
+              text="<p>La huella parlamentaria es el reflejo de la actividad de un diputado o diputada.</p><p>A mayor huella, consideramos que su trabajo parlamentario es más relevante.</p>"
+              routeLink="footprint"
+              position="bottom"
+            >
+              <button class="c-deputy__footprint-more-info">
+                ¿Qué es esto?
+              </button>
+            </Tooltip>
+          </div>
           <h1 class="c-deputy__name">{{ deputy.name }}</h1>
           <h3 class="c-deputy__group" v-if="parliamentarygroup">
             <router-link
@@ -215,6 +219,7 @@ import SaveAlert from "@/components/SaveAlert.vue";
 import SocialIcon from "@/components/SocialIcon.vue";
 import Barchart from "@/components/Barchart.vue";
 import FootprintInfo from "@/components/FootprintInfo.vue";
+import Tooltip from "@/components/Tooltip.vue";
 import api from "@/api";
 import config from "@/config";
 
@@ -309,6 +314,9 @@ onBeforeMount(getDeputy);
   }
 
   &__footprint-more-info {
+    background: none;
+    border: none;
+    cursor: pointer;
     margin-left: 8px;
     font-weight: 500;
     font-size: 0.95rem;
