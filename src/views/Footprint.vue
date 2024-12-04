@@ -9,7 +9,7 @@
           <h3 class="u-uppercase">
             Es un indicador basado en el volumen de actividad de cada diputado o
             diputada, en su capacidad para sacar adelante propuestas y en su
-            grado de accesibilidad ante la ciudadanía.
+            cercanía a la ciudadanía.
           </h3>
           <p>
             La huella parlamentaria es el reflejo de la actividad de un diputado
@@ -37,7 +37,7 @@
             </div>
             <div>
               <img src="/img/footprint-accesibilidad.png" />
-              <h4>Accesibilidad</h4>
+              <h4>Cercanía</h4>
               <p>
                 La facilidad de contacto con el parlamentario/a (valoramos si
                 tiene un correo electrónico directo y publicado de forma
