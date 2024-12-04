@@ -11,9 +11,15 @@ export const useParliamentStore = defineStore("parliament", {
       allStatus: [],
       allPlaces: [],
       birthdays: [],
-      footprintMax: [],
-      footprintParliamentaryGroupMax: null,
-      footprintDeputyMax: null,
+      footprintRange: [],
+      footprintParliamentaryGroupRange: {
+        max: null,
+        min: null,
+      },
+      footprintDeputyRange: {
+        max: null,
+        min: null,
+      },
     };
   },
   getters: {
@@ -109,11 +115,11 @@ export const useParliamentStore = defineStore("parliament", {
         })
         .catch((error) => (this.errors = error));
     },
-    getFootprintMax() {
+    getFootprintRange() {
       api
-        .getFootprintMax()
+        .getFootprintRange()
         .then((response) => {
-          this.footprintMax = response;
+          this.footprintRange = response;
           const maxScores = response.reduce(
             (acc, item) => {
               if (!item.name.startsWith("ODS")) {
@@ -131,9 +137,31 @@ export const useParliamentStore = defineStore("parliament", {
             },
             { maxDeputyScore: 0, maxParliamentaryGroupScore: 0 }
           );
-          this.footprintDeputyMax = maxScores.maxDeputyScore;
-          this.footprintParliamentaryGroupMax =
-            maxScores.maxParliamentaryGroupScore;
+          const minScores = response.reduce(
+            (acc, item) => {
+              if (!item.name.startsWith("ODS")) {
+                if (item.deputy.score < acc.minDeputyScore) {
+                  acc.minDeputyScore = item.deputy.score;
+                }
+                if (
+                  item.parliamentarygroup.score < acc.minParliamentaryGroupScore
+                ) {
+                  acc.minParliamentaryGroupScore =
+                    item.parliamentarygroup.score;
+                }
+              }
+              return acc;
+            },
+            { minDeputyScore: 0, minParliamentaryGroupScore: 0 }
+          );
+          this.footprintDeputyRange = {
+            max: maxScores.maxDeputyScore,
+            min: minScores.minDeputyScore,
+          };
+          this.footprintParliamentaryGroupRange = {
+            max: maxScores.maxParliamentaryGroupScore,
+            min: minScores.minParliamentaryGroupScore,
+          };
         })
         .catch((error) => (this.errors = error));
     },

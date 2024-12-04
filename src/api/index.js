@@ -196,13 +196,13 @@ export default {
       return [config.BACKEND_URL, "/footprint/by-topic"].join("");
     }
   },
-  getFootprintMax() {
+  getFootprintRange() {
     return axios
       .get(getEndpoint(), { params: {} })
       .then((response) => response.data);
 
     function getEndpoint() {
-      return [config.BACKEND_URL, "/footprint/max-by-all-topics"].join("");
+      return [config.BACKEND_URL, "/footprint/range-by-all-topics"].join("");
     }
   },
   annotate(text, file) {

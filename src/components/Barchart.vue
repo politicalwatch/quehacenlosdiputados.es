@@ -78,14 +78,19 @@ const {
 } = toRefs(props);
 
 const store = useParliamentStore();
-const { footprintMax } = storeToRefs(store);
+const { footprintRange } = storeToRefs(store);
 
 const rows = ref([]);
 
 const calculateRows = () => {
-  if (!footprintMax.value.length) return;
+  if (!footprintRange.value.length) return;
   const tempRows = [];
+
   result.value.forEach((d) => {
+    const themeMaxFootprint = footprintRange.value.find(
+      (footprint) => footprint.name == d.name
+    )[entityType.value].max.score;
+
     tempRows.push({
       name: d.name,
       score: d.score,
@@ -95,7 +100,7 @@ const calculateRows = () => {
       },
       overbarStyle: {
         height: `${barHeight.value}px`,
-        width: `${(d.score / footprintMax.value.find((footprint) => footprint.name == d.name)[entityType.value].score) * 100}%`,
+        width: `${(d.score / themeMaxFootprint) * 100}%`,
         backgroundColor: barColor.value,
       },
     });
@@ -121,7 +126,7 @@ onMounted(() => {
   calculateRows();
 });
 
-watch([result, footprintMax], () => {
+watch([result, footprintRange], () => {
   calculateRows();
 });
 </script>
