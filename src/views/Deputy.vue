@@ -136,6 +136,7 @@
         :dataset="footprintByTopics"
         :defaultWidth="parentWidth"
         :entityName="deputy.name"
+        :entityImage="deputy.image"
       />
       <p>
         El tamaño es relativo al valor máximo de la huella para cada temática.
@@ -206,7 +207,6 @@
 
 <script setup>
 import { ref, computed, onBeforeMount } from "vue";
-import { storeToRefs } from "pinia";
 import { useRoute, useRouter } from "vue-router";
 import { useParliamentStore } from "@/stores/parliament";
 import { useElementSize } from "@vueuse/core";
@@ -222,7 +222,6 @@ import Loader from "@/components/Loader.vue";
 import PartyLogoIcon from "@/components/PartyLogoIcon.vue";
 import SaveAlert from "@/components/SaveAlert.vue";
 import SocialIcon from "@/components/SocialIcon.vue";
-import Barchart from "@/components/Barchart.vue";
 import FootprintRangeChart from "@/components/FootprintRangeChart.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import api from "@/api";

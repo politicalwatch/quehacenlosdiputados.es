@@ -7,27 +7,32 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, nextTick, onUnmounted, watch } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
 import { scaleLinear, scaleBand, axisBottom, axisLeft, select } from "d3";
 
-const { dataset, defaultWidth, defaultHeight, entityName } = defineProps({
-  dataset: {
-    type: Array,
-    default: () => [],
-  },
-  defaultWidth: {
-    type: Number,
-    default: 1200,
-  },
-  defaultHeight: {
-    type: Number,
-    default: 400,
-  },
-  entityName: {
-    type: String,
-    default: "",
-  },
-});
+const { dataset, defaultWidth, defaultHeight, entityName, entityImage } =
+  defineProps({
+    dataset: {
+      type: Array,
+      default: () => [],
+    },
+    defaultWidth: {
+      type: Number,
+      default: 1200,
+    },
+    defaultHeight: {
+      type: Number,
+      default: 400,
+    },
+    entityName: {
+      type: String,
+      default: "",
+    },
+    entityImage: {
+      type: String,
+      default: "",
+    },
+  });
 
 const availableWidth = ref(defaultWidth);
 const availableHeight = ref(defaultHeight);
@@ -201,10 +206,7 @@ const drawChart = () => {
     .style("overflow", "hidden")
     .append("img")
     .style("object-fit", "cover")
-    .attr(
-      "src",
-      (d) => "https://www.congreso.es/docu/imgweb/diputados/160_15.jpg"
-    )
+    .attr("src", entityImage)
     .style("width", "100%")
     .style("height", "100%")
     .on("mouseover", function (event, d) {
