@@ -8,7 +8,7 @@
       <p v-if="withLabel">
         <footprint
           v-if="withLabel"
-          :footprint="184.8"
+          :footprint="70.55"
           style="display: inline-block !important"
         />&nbsp;&nbsp;¿Qué es esto?
       </p>
