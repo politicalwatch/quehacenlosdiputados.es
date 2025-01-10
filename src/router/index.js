@@ -118,6 +118,11 @@ const routes = [
     component: () => import("@/views/Deputy.vue"),
   },
   {
+    path: "/diputados/buscador-cumpleanos",
+    name: "deputies-birthday-search",
+    component: () => import("@/views/DeputiesBirthdaySearch.vue"),
+  },
+  {
     path: "/grupos",
     name: "parliamentarygroups",
     component: () => import("@/views/Parliamentarygroups.vue"),

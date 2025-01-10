@@ -1,15 +1,31 @@
 <template>
   <div id="deputies" class="o-container o-section u-margin-bottom-10">
-    <div v-if="store.birthdays.length > 0">
-      <Callout
-        closeId="qhld-birthday"
-        :checkClosed="checkCalloutClosedDate"
-        :closeCallback="getTodayDate"
-      >
+    <Callout
+      closeId="qhld-birthday"
+      :checkClosed="checkCalloutClosedDate"
+      :closeCallback="getTodayDate"
+    >
+      <div v-if="store.birthdays.length">
         <h3 class="u-uppercase">Hoy es el cumpleaños de...</h3>
         <CardGrid :items="store.birthdays" type="deputy" layout="large" />
-      </Callout>
-    </div>
+        <p class="u-text-center">
+          Puedes consultar el resto de cumpleaños usando nuestro
+          <router-link :to="{ name: 'deputies-birthday-search' }">
+            buscador.
+          </router-link>
+        </p>
+      </div>
+      <div v-else class="c-callout__birthday-message">
+        <icon icon="mdi:birthday-cake-outline" height="24px" />
+        <p class="u-text-center u-margin-0">
+          ¡Vaya! Hoy no celebran cumpleaños en el Congreso. Puedes consultar
+          nuestro
+          <router-link :to="{ name: 'deputies-birthday-search' }">
+            buscador de cumpleaños.
+          </router-link>
+        </p>
+      </div>
+    </Callout>
     <PageHeader title="Listado de diputados" />
     <DeputiesForm
       :deputies="store.allDeputies"
@@ -23,7 +39,6 @@
       subtitle="Puede llevar algun tiempo"
     />
     <CardGrid
-      v-bind:key="filters['footprint']"
       :items="getFilteredDeputies"
       type="deputy"
       layout="large"
@@ -34,6 +49,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import { Icon } from "@iconify/vue";
 
 import DeputiesForm from "@/components/DeputiesForm.vue";
 import PageHeader from "@/components/PageHeader.vue";
@@ -164,3 +180,15 @@ const getTodayDate = () => {
   return today.toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
 };
 </script>
+
+<style lang="scss" scoped>
+.c-callout__birthday-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    margin-right: 10px;
+  }
+}
+</style>
