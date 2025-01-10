@@ -53,7 +53,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import VueMultiselect from "vue-multiselect";
 
 const emit = defineEmits(["setFilters"]);
@@ -71,7 +71,13 @@ const form = ref({
   day: currentDay,
 });
 
-const dayOptions = ref([]);
+const dayOptions = computed(() => {
+  if (form.value.month) {
+    const daysInMonth = getDaysInMonth(form.value.month);
+    return Array.from({ length: daysInMonth }, (_, i) => i + 1);
+  }
+  return [];
+});
 
 const getDaysInMonth = (month) => {
   if (month === 2) {
@@ -121,14 +127,4 @@ const cleanForm = () => {
 onMounted(() => {
   emitFilters();
 });
-
-watch(
-  () => form.value.month,
-  (newMonth) => {
-    if (newMonth) {
-      const daysInMonth = getDaysInMonth(newMonth);
-      dayOptions.value = Array.from({ length: daysInMonth }, (_, i) => i + 1);
-    }
-  }
-);
 </script>
