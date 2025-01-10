@@ -1,7 +1,7 @@
 <template>
   <div class="c-footprint" :class="{ 'c-footprint--small': isSmall() }">
     <span class="c-footprint__wrapper">
-      <icon icon="mdi:bar-chart" :height="18" /><span>{{ footprint }}</span>
+      <icon icon="mdi:bar-chart" :height="18" /><span>{{ footprint }} <small>/ 100</small></span>
     </span>
   </div>
 </template>
