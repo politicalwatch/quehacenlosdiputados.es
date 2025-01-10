@@ -124,18 +124,22 @@
       </div>
     </div>
 
-    <div v-if="footprintByTopics.length > 0" class="o-container o-section">
+    <div
+      v-if="footprintByTopics.length > 0"
+      class="o-container o-section"
+      ref="footprintRangeWrapper"
+    >
       <h2 class="c-deputy__title u-margin-bottom-4 u-uppercase">
         Temáticas destacadas
       </h2>
-      <Barchart
-        :entity="deputy"
-        entityType="deputy"
-        :result="footprintByTopics"
+      <FootprintRangeChart
+        :dataset="footprintByTopics"
+        :defaultWidth="parentWidth"
+        :entityName="deputy.name"
+        :entityImage="deputy.image"
       />
       <p>
-        El tamaño de la barra es relativo al valor máximo de la huella para cada
-        temática.
+        El tamaño es relativo al valor máximo de la huella para cada temática.
         <router-link
           :to="{ name: 'footprint' }"
           target="_blank"
@@ -205,6 +209,7 @@
 import { ref, computed, onBeforeMount } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useParliamentStore } from "@/stores/parliament";
+import { useElementSize } from "@vueuse/core";
 import { useSeoMeta } from "@unhead/vue";
 import { Icon } from "@iconify/vue";
 
@@ -217,8 +222,7 @@ import Loader from "@/components/Loader.vue";
 import PartyLogoIcon from "@/components/PartyLogoIcon.vue";
 import SaveAlert from "@/components/SaveAlert.vue";
 import SocialIcon from "@/components/SocialIcon.vue";
-import Barchart from "@/components/Barchart.vue";
-import FootprintInfo from "@/components/FootprintInfo.vue";
+import FootprintRangeChart from "@/components/FootprintRangeChart.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import api from "@/api";
 import config from "@/config";
@@ -242,14 +246,29 @@ const headTitle = computed(() => {
     : "Qué hacen los diputados";
 });
 
+const footprintRangeWrapper = ref(null);
+const { width: parentWidth } = useElementSize(footprintRangeWrapper);
+
 const footprintByTopics = computed(() => {
   if (deputy.value) {
-    return deputy.value.footprint_by_topics
+    const deputyFootprintByTopic = deputy.value.footprint_by_topics
       .filter((item) =>
         store.allTopics.some((topic) => topic.name === item.name)
       )
       .filter((item) => item.score > 0)
-      .slice(0, 5);
+      .slice(0, 5)
+      .map((item) => {
+        const topic = store.footprintRange.find(
+          (topic) => topic.name === item.name
+        );
+        return {
+          ...item,
+          max: topic.deputy.max.score ?? 0,
+          min: topic.deputy.min.score ?? 0,
+        };
+      });
+
+    return deputyFootprintByTopic;
   }
   return [];
 });
