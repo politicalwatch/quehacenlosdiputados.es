@@ -10,29 +10,39 @@
 import { ref, computed, onMounted, watch } from "vue";
 import { scaleLinear, scaleBand, axisBottom, axisLeft, select } from "d3";
 
-const { dataset, defaultWidth, defaultHeight, entityName, entityImage } =
-  defineProps({
-    dataset: {
-      type: Array,
-      default: () => [],
-    },
-    defaultWidth: {
-      type: Number,
-      default: 1200,
-    },
-    defaultHeight: {
-      type: Number,
-      default: 400,
-    },
-    entityName: {
-      type: String,
-      default: "",
-    },
-    entityImage: {
-      type: String,
-      default: "",
-    },
-  });
+const {
+  dataset,
+  defaultWidth,
+  defaultHeight,
+  entityType,
+  entityName,
+  entityImage,
+} = defineProps({
+  dataset: {
+    type: Array,
+    default: () => [],
+  },
+  defaultWidth: {
+    type: Number,
+    default: 1200,
+  },
+  defaultHeight: {
+    type: Number,
+    default: 400,
+  },
+  entityType: {
+    type: String,
+    default: "deputy",
+  },
+  entityName: {
+    type: String,
+    default: "",
+  },
+  entityImage: {
+    type: String,
+    default: "",
+  },
+});
 
 const availableWidth = ref(defaultWidth);
 const availableHeight = ref(defaultHeight);
@@ -51,9 +61,6 @@ onMounted(() => {
 });
 
 const drawChart = () => {
-  console.log("Drawing chart");
-  console.log("dataset", dataset);
-
   const margin = { top: 20, right: 200, bottom: 40, left: 180 };
   const width = availableWidth.value - margin.left - margin.right;
   const height = availableHeight.value - margin.top - margin.bottom;
@@ -109,8 +116,6 @@ const drawChart = () => {
       if (currentLine.length > 0) {
         lines.push(currentLine.trim());
       }
-
-      console.log("lines", lines);
 
       for (let i = 0; i < lines.length; i++) {
         const tspan = self.append("tspan").text(lines[i]);
@@ -241,7 +246,7 @@ const drawChart = () => {
     .append("xhtml:div")
     .html(
       (d) =>
-        `<button class="footprint-range-chart__button" onclick="window.location.href='/resultados/topic=${d.name}&deputy=${entityName}'">Consultar</button>`
+        `<button class="footprint-range-chart__button" onclick="window.location.href='/resultados/topic=${d.name}&${entityType == "deputy" ? "deputy" : "author"}=${entityName}'">Consultar</button>`
     );
 };
 

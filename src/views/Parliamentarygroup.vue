@@ -79,14 +79,20 @@
         </div>
       </div>
 
-      <div v-if="footprintByTopics.length > 0" class="o-container o-section">
+      <div
+        v-if="footprintByTopics.length > 0"
+        class="o-container o-section"
+        ref="footprintRangeWrapper"
+      >
         <h2 class="u-margin-bottom-4 u-uppercase u-text-center u-text-left@md">
           Temáticas destacadas
         </h2>
-        <Barchart
-          :entity="parliamentarygroup"
+        <FootprintRangeChart
+          :dataset="footprintByTopics"
+          :defaultWidth="parentWidth"
           entityType="parliamentarygroup"
-          :result="footprintByTopics"
+          :entityName="parliamentarygroup.name"
+          :entityImage="`/assets/gp/${parliamentarygroup.id}.png`"
         />
         <p>
           El tamaño de la barra es relativo al valor máximo de la huella para
@@ -101,37 +107,39 @@
         </p>
       </div>
 
-    <div
-      v-if="latestInitiatives && latestInitiatives.length"
-      class="o-container o-section"
-    >
       <div
-        class="c-parliamentarygroup__initiatives-header"
-        >
-        <h2 class="c-parliamentarygroup__title u-margin-bottom-4 u-uppercase">Últimas iniciativas</h2>
+        v-if="latestInitiatives && latestInitiatives.length"
+        class="o-container o-section"
+      >
+        <div class="c-parliamentarygroup__initiatives-header">
+          <h2 class="c-parliamentarygroup__title u-margin-bottom-4 u-uppercase">
+            Últimas iniciativas
+          </h2>
+          <router-link
+            v-if="totalInitiatives > initiativesToShow"
+            :to="{
+              name: 'results',
+              params: { data: 'author=' + parliamentarygroup.name },
+            }"
+            class="c-parliamentarygroup__initiatives-more u-border-link u-hide u-block@sm u-uppercase"
+            >Ver todas
+          </router-link>
+        </div>
+        <results
+          layout="extended"
+          :initiatives="latestInitiatives"
+          :topicsStyles="topicsStyles"
+        />
         <router-link
           v-if="totalInitiatives > initiativesToShow"
           :to="{
             name: 'results',
-            params: { data: 'author=' + parliamentarygroup.name } }"
-          class="c-parliamentarygroup__initiatives-more u-border-link u-hide u-block@sm u-uppercase"
-        >Ver todas
+            params: { data: 'author=' + parliamentarygroup.name },
+          }"
+          class="c-parliamentarygroup__initiatives-more u-border-link u-hide@sm u-uppercase"
+          >Ver todas
         </router-link>
       </div>
-      <results
-        layout="extended"
-        :initiatives="latestInitiatives"
-        :topicsStyles="topicsStyles"
-      />
-      <router-link
-        v-if="totalInitiatives > initiativesToShow"
-        :to="{
-          name: 'results',
-          params: { data: 'author=' + parliamentarygroup.name } }"
-        class="c-parliamentarygroup__initiatives-more u-border-link u-hide@sm u-uppercase"
-      >Ver todas
-      </router-link>
-    </div>
 
       <save-alert
         v-if="use_alerts"
@@ -161,16 +169,16 @@
 <script setup>
 import { ref, computed, watch, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { useElementSize } from "@vueuse/core";
 import { useHead } from "@unhead/vue";
 
 import CardGrid from "@/components/CardGrid.vue";
 import ParliamentaryGroupCard from "@/components/ParliamentaryGroupCard.vue";
 import Results from "@/components/Results.vue";
 import Gender from "@/components/Gender.vue";
-import Barchart from "@/components/Barchart.vue";
 import Loader from "@/components/Loader.vue";
 import SaveAlert from "@/components/SaveAlert.vue";
-import FootprintInfo from "@/components/FootprintInfo.vue";
+import FootprintRangeChart from "@/components/FootprintRangeChart.vue";
 import api from "@/api";
 import config from "@/config";
 import { useParliamentStore } from "@/stores/parliament";
@@ -185,8 +193,11 @@ const topicsStyles = config.STYLES.topics;
 const parliamentarygroup = ref(null);
 const latestInitiatives = ref([]);
 const totalInitiatives = ref(null);
-const initiativesToShow = 6
+const initiativesToShow = 6;
 const errors = ref([]);
+
+const footprintRangeWrapper = ref(null);
+const { width: parentWidth } = useElementSize(footprintRangeWrapper);
 
 const headTitle = computed(() => {
   return parliamentarygroup.value?.name
@@ -208,25 +219,27 @@ const deputies = computed(() => {
   return [];
 });
 
-const dividedDeputies = computed(() => {
-  let results = [];
-  let divided = deputies.value;
-
-  for (let i = 3; i > 0; i--) {
-    results.push(divided.splice(0, Math.ceil(divided.length / i)));
-  }
-
-  return results;
-});
-
 const footprintByTopics = computed(() => {
   if (parliamentarygroup.value) {
-    return parliamentarygroup.value.footprint_by_topics
-      .filter((item) =>
-        store.allTopics.some((topic) => topic.name === item.name)
-      )
-      .filter((item) => item.score > 0)
-      .slice(0, 5);
+    const parliamentarygroupFootprintByTopic =
+      parliamentarygroup.value.footprint_by_topics
+        .filter((item) =>
+          store.allTopics.some((topic) => topic.name === item.name)
+        )
+        .filter((item) => item.score > 0)
+        .slice(0, 5)
+        .map((item) => {
+          const topic = store.footprintRange.find(
+            (topic) => topic.name === item.name
+          );
+          return {
+            ...item,
+            max: topic.parliamentarygroup.max.score ?? 0,
+            min: topic.parliamentarygroup.min.score ?? 0,
+          };
+        });
+
+    return parliamentarygroupFootprintByTopic;
   }
   return [];
 });
@@ -246,7 +259,10 @@ const getParliamentaryGroup = () => {
 
 const getLatestInitiatives = () => {
   api
-    .getInitiatives({ author: parliamentarygroup.value.name, per_page: initiativesToShow })
+    .getInitiatives({
+      author: parliamentarygroup.value.name,
+      per_page: initiativesToShow,
+    })
     .then((response) => {
       if (response.initiatives) {
         latestInitiatives.value = response.initiatives;
@@ -272,9 +288,7 @@ watch(route, () => {
 </script>
 
 <style lang="scss" scoped>
-
 .c-parliamentarygroup {
-
   &__initiatives-header {
     display: flex;
     justify-content: space-between;
@@ -295,8 +309,6 @@ watch(route, () => {
       width: auto;
     }
   }
-
-
 }
 
 .alerts-block {
