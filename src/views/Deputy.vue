@@ -137,6 +137,7 @@
         :defaultWidth="parentWidth"
         :entityName="deputy.name"
         :entityImage="deputy.image"
+        :entityColor="groupColor"
       />
       <p>
         El tamaño es relativo al valor máximo de la huella para cada temática.
@@ -286,6 +287,14 @@ const isBirthday = () => {
     date.getDate() == today.getDate() && date.getMonth() == today.getMonth()
   );
 };
+
+const groupColor = computed(() => {
+  return (
+    (deputy.value.party_name &&
+      config.STYLES.parties[deputy.value.party_name]?.color) ??
+    "#efca53"
+  );
+});
 
 const getDeputy = async () => {
   api

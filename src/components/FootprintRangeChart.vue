@@ -17,6 +17,7 @@ const {
   entityType,
   entityName,
   entityImage,
+  entityColor,
 } = defineProps({
   dataset: {
     type: Array,
@@ -41,6 +42,10 @@ const {
   entityImage: {
     type: String,
     default: "",
+  },
+  entityColor: {
+    type: String,
+    default: null,
   },
 });
 
@@ -206,7 +211,7 @@ const drawChart = () => {
     .append("xhtml:div")
     .style("width", `${circleRadius * 6}px`)
     .style("height", `${circleRadius * 6}px`)
-    .style("border", "4px solid rgb(239,202,83)")
+    .style("border", `4px solid ${entityColor}`)
     .style("border-radius", "50%")
     .style("overflow", "hidden")
     .append("img")
