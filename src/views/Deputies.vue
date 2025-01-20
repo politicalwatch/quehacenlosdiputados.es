@@ -5,9 +5,9 @@
       :checkClosed="checkCalloutClosedDate"
       :closeCallback="getTodayDate"
     >
-      <div v-if="store.birthdays.length">
+      <div v-if="birthdays.length">
         <h3 class="u-uppercase">Hoy es el cumpleaños de...</h3>
-        <CardGrid :items="store.birthdays" type="deputy" layout="large" />
+        <CardGrid :items="birthdays" type="deputy" layout="large" />
         <p class="u-text-center">
           Puedes consultar el resto de cumpleaños usando nuestro
           <router-link :to="{ name: 'deputies-birthday-search' }">
@@ -28,13 +28,13 @@
     </Callout>
     <PageHeader title="Listado de diputados" />
     <DeputiesForm
-      :deputies="store.allDeputies"
+      :deputies="allDeputies"
       :groups="getGroupsLongNames"
       @setFilters="setFilters"
       :ranking="getRanking"
     />
     <Loader
-      v-if="store.allDeputies.length == 0"
+      v-if="allDeputies.length == 0"
       title="Cargando diputados"
       subtitle="Puede llevar algun tiempo"
     />
@@ -49,6 +49,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import { storeToRefs } from "pinia";
 import { Icon } from "@iconify/vue";
 
 import DeputiesForm from "@/components/DeputiesForm.vue";
@@ -59,15 +60,17 @@ import Callout from "@/components/Callout.vue";
 import { useParliamentStore } from "@/stores/parliament";
 
 const store = useParliamentStore();
+const { birthdays, allDeputies, allParliamentaryGroups, allTopics } =
+  storeToRefs(store);
 
 const filters = ref({});
 
 const getGroupsLongNames = computed(() => {
-  return store.allParliamentaryGroups.map((group) => group.name || group);
+  return allParliamentaryGroups.value.map((group) => group.name || group);
 });
 
 const getGroupShortName = (longname) => {
-  const group = store.allParliamentaryGroups
+  const group = allParliamentaryGroups.value
     .filter((group) => group["name"] == longname)
     .pop();
   return group["shortname"].toUpperCase();
@@ -78,7 +81,7 @@ const setFilters = (updatedFilters) => {
 };
 
 const getFilteredDeputies = computed(() => {
-  let filteredDeputies = store.allDeputies;
+  let filteredDeputies = allDeputies.value;
 
   if (
     "constituency" in filters.value &&
@@ -135,7 +138,7 @@ const getFilteredDeputies = computed(() => {
 
 const getRanking = computed(() => {
   const ranking = [];
-  for (const item of store.allTopics) {
+  for (const item of allTopics.value) {
     ranking.push(item.name);
   }
 

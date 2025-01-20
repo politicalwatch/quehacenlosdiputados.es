@@ -14,7 +14,7 @@
             selectLabel=""
             deselectLabel="Pulsa para deseleccionar"
             v-model="formData.topic"
-            :options="store.allTopics.map((topic) => topic.name)"
+            :options="allTopics.map((topic) => topic.name)"
             :allow-empty="true"
             name="topic"
             id="topic"
@@ -53,6 +53,7 @@
 
 <script setup>
 import { toRefs } from "vue";
+import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import "@vuepic/vue-datepicker/dist/main.css";
 import Multiselect from "vue-multiselect";
@@ -63,11 +64,12 @@ import { useParliamentStore } from "@/stores/parliament";
 const props = defineProps({
   formData: Object,
 });
-
 const { formData } = toRefs(props);
 
 const router = useRouter();
+
 const store = useParliamentStore();
+const { allTopics } = storeToRefs(store);
 
 const getResults = () => {
   router.push({

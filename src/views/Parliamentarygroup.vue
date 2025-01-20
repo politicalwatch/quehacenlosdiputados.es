@@ -168,6 +168,7 @@
 
 <script setup>
 import { ref, computed, watch, onMounted } from "vue";
+import { storeToRefs } from "pinia";
 import { useRoute, useRouter } from "vue-router";
 import { useElementSize } from "@vueuse/core";
 import { useHead } from "@unhead/vue";
@@ -185,7 +186,9 @@ import { useParliamentStore } from "@/stores/parliament";
 
 const route = useRoute();
 const router = useRouter();
+
 const store = useParliamentStore();
+const { allTopics, footprintRange } = storeToRefs(store);
 
 const use_alerts = config.USE_ALERTS;
 const topicsStyles = config.STYLES.topics;
@@ -224,12 +227,12 @@ const footprintByTopics = computed(() => {
     const parliamentarygroupFootprintByTopic =
       parliamentarygroup.value.footprint_by_topics
         .filter((item) =>
-          store.allTopics.some((topic) => topic.name === item.name)
+          allTopics.value.some((topic) => topic.name === item.name)
         )
         .filter((item) => item.score > 0)
         .slice(0, 5)
         .map((item) => {
-          const topic = store.footprintRange.find(
+          const topic = footprintRange.value.find(
             (topic) => topic.name === item.name
           );
           return {

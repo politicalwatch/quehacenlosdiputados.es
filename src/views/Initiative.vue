@@ -98,6 +98,7 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from "vue";
+import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
 import { useHead } from "@unhead/vue";
 
@@ -117,7 +118,9 @@ import { useParliamentStore } from "@/stores/parliament";
 import format from "date-fns/format";
 
 const route = useRoute();
+
 const store = useParliamentStore();
+const { allParliamentaryGroups, allTopics } = storeToRefs(store);
 
 const styles = config.STYLES;
 
@@ -136,7 +139,7 @@ useHead({
 });
 
 const dataLoaded = computed(() => {
-  return Object.keys(initiative.value).length && store.allTopics.length > 0;
+  return Object.keys(initiative.value).length && allTopics.value.length > 0;
 });
 
 const formattedDate = computed(() => {
@@ -157,7 +160,7 @@ const getInitiative = () => {
 };
 
 const getGroup = (parliamentary_group) => {
-  for (const group of store.allParliamentaryGroups) {
+  for (const group of allParliamentaryGroups.value) {
     if (group.name == parliamentary_group) {
       return group;
     }
@@ -172,7 +175,7 @@ const isAGroupInitiative = () => {
   if (initiative.value.authors.length == 0) return false;
   else {
     const aPossibleGroup = initiative.value.authors[0];
-    for (const group of store.allParliamentaryGroups) {
+    for (const group of allParliamentaryGroups.value) {
       if (group.name == aPossibleGroup) return true;
     }
     return false;

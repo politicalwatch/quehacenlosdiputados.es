@@ -84,9 +84,7 @@
 
     <div class="o-grid u-margin-bottom-4">
       <div class="o-grid__col u-12">
-        <GroupThematicPriorities
-          v-if="store.allParliamentaryGroups.length > 0"
-        />
+        <GroupThematicPriorities v-if="allParliamentaryGroups.length" />
         <loader
           v-else
           title="Cargando prioridades temáticas"
@@ -110,6 +108,7 @@
 
 <script setup>
 import { ref, onMounted, watch, computed } from "vue";
+import { storeToRefs } from "pinia";
 
 import api from "@/api";
 import config from "@/config";
@@ -126,6 +125,7 @@ import Loader from "@/components/Loader.vue";
 
 const topicsStyles = config.STYLES.topics;
 const store = useParliamentStore();
+const { allParliamentaryGroups } = storeToRefs(store);
 
 const homeLoaded = ref(false);
 const initiativesLoaded = ref(false);

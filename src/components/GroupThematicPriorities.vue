@@ -16,6 +16,7 @@
       </div>
     </div>
     <Barchart
+      v-if="footprintByTopics.length"
       :entity="parliamentaryGroup"
       entityType="parliamentarygroup"
       :result="footprintByTopics"
@@ -36,7 +37,7 @@ import Barchart from "@/components/Barchart.vue";
 
 const store = useParliamentStore();
 
-const { allParliamentaryGroups } = storeToRefs(store);
+const { allParliamentaryGroups, allTopics } = storeToRefs(store);
 
 const parliamentaryGroup = ref(
   allParliamentaryGroups.value[
@@ -55,7 +56,7 @@ const footprintByTopics = computed(() => {
   if (parliamentaryGroup.value.footprint_by_topics) {
     return parliamentaryGroup.value.footprint_by_topics
       .filter((item) =>
-        store.allTopics.some((topic) => topic.name === item.name)
+        allTopics.value.some((topic) => topic.name === item.name)
       )
       .filter((item) => item.score > 0)
       .slice(0, 5);

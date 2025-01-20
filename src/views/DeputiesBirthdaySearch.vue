@@ -3,7 +3,7 @@
     <PageHeader title="Buscador de cumpleaños" />
     <DeputiesBirthdayForm @setFilters="setFilters" />
     <Loader
-      v-if="store.allDeputies.length == 0"
+      v-if="allDeputies.length == 0"
       title="Cargando diputados"
       subtitle="Puede llevar algun tiempo"
     />
@@ -21,6 +21,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import { storeToRefs } from "pinia";
 
 import DeputiesBirthdayForm from "@/components/DeputiesBirthdayForm.vue";
 import PageHeader from "@/components/PageHeader.vue";
@@ -29,6 +30,7 @@ import CardGrid from "@/components/CardGrid.vue";
 import { useParliamentStore } from "@/stores/parliament";
 
 const store = useParliamentStore();
+const { allDeputies } = storeToRefs(store);
 
 const filters = ref({});
 
@@ -37,7 +39,7 @@ const setFilters = (updatedFilters) => {
 };
 
 const getFilteredDeputies = computed(() => {
-  let filteredDeputies = store.allDeputies;
+  let filteredDeputies = allDeputies.value;
 
   if ("month" in filters.value && filters.value["month"] != null) {
     filteredDeputies = filteredDeputies.filter((deputy) => {

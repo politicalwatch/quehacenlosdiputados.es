@@ -27,6 +27,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 
 import api from "@/api";
@@ -37,7 +38,9 @@ import Loader from "@/components/Loader.vue";
 import { useParliamentStore } from "@/stores/parliament";
 
 const router = useRouter();
+
 const store = useParliamentStore();
+const { allTopics } = storeToRefs(store);
 
 const topicsStyles = config.STYLES.topics;
 const stats = ref(null);
@@ -45,7 +48,7 @@ const loaded = ref(false);
 
 const getTopics = () => {
   let topics = [];
-  for (const topic of store.allTopics) {
+  for (const topic of allTopics.value) {
     topic.initiatives = getTopicStat(topic);
     topics.push(topic);
   }

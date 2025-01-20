@@ -25,17 +25,24 @@
 </template>
 
 <script setup>
-import { ref, toRefs, onMounted, watch } from "vue";
+import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import qs from "qs";
 
 import { useParliamentStore } from "@/stores/parliament";
 
-const props = defineProps({
+const {
+  result,
+  barHeight,
+  barGap,
+  barColor,
+  barBackgroundColor,
+  entity,
+  entityType,
+} = defineProps({
   result: {
     type: Array,
     required: true,
-    default: () => [],
   },
   barHeight: {
     type: Number,
@@ -67,51 +74,36 @@ const props = defineProps({
   },
 });
 
-const {
-  result,
-  barHeight,
-  barGap,
-  barColor,
-  barBackgroundColor,
-  entity,
-  entityType,
-} = toRefs(props);
-
 const store = useParliamentStore();
 const { footprintRange } = storeToRefs(store);
 
-const rows = ref([]);
+const rows = computed(() => {
+  if (!footprintRange.value.length) return [];
 
-const calculateRows = () => {
-  if (!footprintRange.value.length) return;
-  const tempRows = [];
-
-  result.value.forEach((d) => {
+  return result.map((d) => {
     const themeMaxFootprint = footprintRange.value.find(
       (footprint) => footprint.name == d.name
-    )[entityType.value].max.score;
+    )[entityType].max.score;
 
-    tempRows.push({
+    return {
       name: d.name,
       score: d.score,
       backbarStyle: {
-        height: `${barHeight.value}px`,
-        backgroundColor: barBackgroundColor.value,
+        height: `${barHeight}px`,
+        backgroundColor: barBackgroundColor,
       },
       overbarStyle: {
-        height: `${barHeight.value}px`,
+        height: `${barHeight}px`,
         width: `${(d.score / themeMaxFootprint) * 100}%`,
-        backgroundColor: barColor.value,
+        backgroundColor: barColor,
       },
-    });
+    };
   });
-
-  rows.value = tempRows;
-};
+});
 
 const getFieldToSearch = () => {
-  if (entityType.value == "deputy") return "deputy";
-  if (entityType.value == "parliamentarygroup") return "author";
+  if (entityType == "deputy") return "deputy";
+  if (entityType == "parliamentarygroup") return "author";
   return "";
 };
 
@@ -121,14 +113,6 @@ const paramsData = (topic, entity) => {
     [getFieldToSearch()]: entity["name"],
   });
 };
-
-onMounted(() => {
-  calculateRows();
-});
-
-watch([result, footprintRange], () => {
-  calculateRows();
-});
 </script>
 
 <style lang="scss" scoped>

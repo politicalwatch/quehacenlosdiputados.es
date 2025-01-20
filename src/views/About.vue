@@ -106,10 +106,10 @@
           <p>
             La tecnología de QHLD escanea toda la actividad parlamentaria del
             Congreso de España y la clasifica automáticamente según su relación
-            con alguna de las {{ store.allTopics.length }} temáticas
-            prioritarias para la pobreza, la justicia social y el desarrollo
-            sostenible y con alguno de los 17 Objetivos de Desarrollo Sostenible
-            de las Naciones Unidas. Todas estas
+            con alguna de las {{ allTopics.length }} temáticas prioritarias para
+            la pobreza, la justicia social y el desarrollo sostenible y con
+            alguno de los 17 Objetivos de Desarrollo Sostenible de las Naciones
+            Unidas. Todas estas
             <router-link :to="{ name: 'topics' }">áreas temáticas</router-link>
             han sido diseñadas junto con personas y organizaciones expertas en
             cada una de ellas.
@@ -155,10 +155,13 @@
 </template>
 
 <script setup>
+import { storeToRefs } from "pinia";
+
 import PageHeader from "@/components/PageHeader.vue";
 import { useParliamentStore } from "@/stores/parliament";
 
 const store = useParliamentStore();
+const { allTopics } = storeToRefs(store);
 </script>
 
 <style scoped lang="scss">

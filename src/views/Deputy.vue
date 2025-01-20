@@ -208,6 +208,7 @@
 
 <script setup>
 import { ref, computed, onBeforeMount } from "vue";
+import { storeToRefs } from "pinia";
 import { useRoute, useRouter } from "vue-router";
 import { useParliamentStore } from "@/stores/parliament";
 import { useElementSize } from "@vueuse/core";
@@ -230,7 +231,10 @@ import config from "@/config";
 
 const route = useRoute();
 const router = useRouter();
+
 const store = useParliamentStore();
+const { allTopics, footprintRange, allParliamentaryGroups } =
+  storeToRefs(store);
 
 const deputy = ref(null);
 const parliamentarygroup = ref(null);
@@ -254,12 +258,12 @@ const footprintByTopics = computed(() => {
   if (deputy.value) {
     const deputyFootprintByTopic = deputy.value.footprint_by_topics
       .filter((item) =>
-        store.allTopics.some((topic) => topic.name === item.name)
+        allTopics.value.some((topic) => topic.name === item.name)
       )
       .filter((item) => item.score > 0)
       .slice(0, 5)
       .map((item) => {
-        const topic = store.footprintRange.find(
+        const topic = footprintRange.value.find(
           (topic) => topic.name === item.name
         );
         return {
@@ -301,7 +305,7 @@ const getDeputy = async () => {
     .getDeputy(route.params.id)
     .then((response) => {
       deputy.value = response;
-      parliamentarygroup.value = store.allParliamentaryGroups.find(
+      parliamentarygroup.value = allParliamentaryGroups.value.find(
         (allPG) => allPG.shortname === deputy.value.parliamentarygroup
       );
       getLatestInitiatives();

@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --mode development",
     "serve": "vite preview",
     "test:unit": "vitest --environment jsdom",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
@@ -56,7 +56,7 @@
     "stylelint": "^16.0.0",
     "terser": "^5.14.2",
     "vite": "^6.0.0",
-    "vitest": "^2.0.0"
+    "vitest": "^3.0.0"
   },
   "browserslist": [
     "> 1%",
