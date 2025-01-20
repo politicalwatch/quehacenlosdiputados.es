@@ -62,7 +62,7 @@
         />
         <Loader
           v-else
-          title="Cargando prioridades temáticas"
+          title="Cargando estado de las iniciativas"
           subtitle="Puede llevar algun tiempo"
         />
       </div>
@@ -76,7 +76,7 @@
         />
         <Loader
           v-else
-          title="Cargando prioridades temáticas"
+          title="Cargando iniciativas legislativas aprobadas"
           subtitle="Puede llevar algun tiempo"
         />
       </div>
