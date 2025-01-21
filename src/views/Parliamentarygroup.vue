@@ -237,8 +237,8 @@ const footprintByTopics = computed(() => {
           );
           return {
             ...item,
-            max: topic.parliamentarygroup.max.score ?? 0,
-            min: topic.parliamentarygroup.min.score ?? 0,
+            max: topic?.parliamentarygroup?.max.score ?? 100,
+            min: topic?.parliamentarygroup?.min.score ?? 0,
           };
         });
 

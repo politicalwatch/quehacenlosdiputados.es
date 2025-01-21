@@ -84,7 +84,9 @@
 
     <div class="o-grid u-margin-bottom-4">
       <div class="o-grid__col u-12">
-        <GroupThematicPriorities v-if="allParliamentaryGroups.length" />
+        <GroupThematicPriorities
+          v-if="allParliamentaryGroups.length && allTopics.length"
+        />
         <loader
           v-else
           title="Cargando prioridades temáticas"
@@ -125,7 +127,7 @@ import Loader from "@/components/Loader.vue";
 
 const topicsStyles = config.STYLES.topics;
 const store = useParliamentStore();
-const { allParliamentaryGroups } = storeToRefs(store);
+const { allParliamentaryGroups, allTopics } = storeToRefs(store);
 
 const homeLoaded = ref(false);
 const initiativesLoaded = ref(false);

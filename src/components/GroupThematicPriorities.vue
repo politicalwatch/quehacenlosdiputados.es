@@ -1,5 +1,5 @@
 <template>
-  <div v-if="allParliamentaryGroups.length" class="c-thematic-priorities">
+  <div class="c-thematic-priorities" ref="groupThematicPrioritiesWrapper">
     <div class="c-thematic-priorities__header">
       <h2>Prioridades temáticas de</h2>
       <div class="c-thematic-priorities__selector">
@@ -15,11 +15,13 @@
         </select>
       </div>
     </div>
-    <Barchart
-      v-if="footprintByTopics.length"
-      :entity="parliamentaryGroup"
+    <FootprintRangeChart
+      v-if="parliamentaryGroup && footprintByTopics.length"
+      :dataset="footprintByTopics"
+      :defaultWidth="parentWidth"
       entityType="parliamentarygroup"
-      :result="footprintByTopics"
+      :entityName="parliamentaryGroup.name"
+      :entityImage="`/assets/gp/${parliamentaryGroup.id}.png`"
     />
     <p>
       El tamaño de la barra es relativo al valor máximo de la huella para cada
@@ -31,13 +33,18 @@
 <script setup>
 import { ref, computed } from "vue";
 import { storeToRefs } from "pinia";
+import { useElementSize } from "@vueuse/core";
 
 import { useParliamentStore } from "@/stores/parliament";
-import Barchart from "@/components/Barchart.vue";
+import FootprintRangeChart from "@/components/FootprintRangeChart.vue";
 
 const store = useParliamentStore();
 
-const { allParliamentaryGroups, allTopics } = storeToRefs(store);
+const { allParliamentaryGroups, allTopics, footprintRange } =
+  storeToRefs(store);
+
+const groupThematicPrioritiesWrapper = ref(null);
+const { width: parentWidth } = useElementSize(groupThematicPrioritiesWrapper);
 
 const parliamentaryGroup = ref(
   allParliamentaryGroups.value[
@@ -53,13 +60,26 @@ const parliamentaryGroupColor = computed(() => {
 });
 
 const footprintByTopics = computed(() => {
-  if (parliamentaryGroup.value.footprint_by_topics) {
-    return parliamentaryGroup.value.footprint_by_topics
-      .filter((item) =>
-        allTopics.value.some((topic) => topic.name === item.name)
-      )
-      .filter((item) => item.score > 0)
-      .slice(0, 5);
+  if (parliamentaryGroup.value) {
+    const parliamentaryGroupFootprintByTopic =
+      parliamentaryGroup.value.footprint_by_topics
+        .filter((item) =>
+          allTopics.value.some((topic) => topic.name === item.name)
+        )
+        .filter((item) => item.score > 0)
+        .slice(0, 5)
+        .map((item) => {
+          const topic = footprintRange.value.find(
+            (topic) => topic.name === item.name
+          );
+          return {
+            ...item,
+            max: topic?.parliamentarygroup?.max.score ?? 100,
+            min: topic?.parliamentarygroup?.min.score ?? 0,
+          };
+        });
+
+    return parliamentaryGroupFootprintByTopic;
   }
   return [];
 });

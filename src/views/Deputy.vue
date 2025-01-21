@@ -268,8 +268,8 @@ const footprintByTopics = computed(() => {
         );
         return {
           ...item,
-          max: topic.deputy.max.score ?? 0,
-          min: topic.deputy.min.score ?? 0,
+          max: topic?.deputy?.max.score ?? 100,
+          min: topic?.deputy?.min.score ?? 0,
         };
       });
 
