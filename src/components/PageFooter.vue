@@ -53,6 +53,9 @@
                 <a href="https://github.com/politicalwatch/" target="_blank"
                   >Código fuente</a
                 >
+                <router-link :to="{ name: 'collaborate' }"
+                  >Colabora</router-link
+                >
                 <router-link :to="{ name: 'collaborate', hash: '#dona' }"
                   >Haz una donación</router-link
                 >

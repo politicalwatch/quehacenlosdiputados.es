@@ -148,6 +148,11 @@ const routes = [
     component: () => import("@/views/Collaborate.vue"),
   },
   {
+    path: "/contacta",
+    name: "contact",
+    component: () => import("@/views/Contact.vue"),
+  },
+  {
     path: "/huella",
     name: "footprint",
     component: () => import("@/views/Footprint.vue"),

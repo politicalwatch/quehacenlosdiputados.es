@@ -26,9 +26,8 @@ export default {
       condition: true,
     },
     {
-      route: "collaborate",
-      name: "Colabora",
-      icon: "fluent:handshake-16-filled",
+      route: "contact",
+      name: "Contacta",
       condition: true,
     },
   ],
