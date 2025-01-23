@@ -95,14 +95,14 @@
           :entityImage="`/assets/gp/${parliamentarygroup.id}.png`"
         />
         <p>
-          El tamaño de la barra es relativo al valor máximo de la huella para
-          cada temática.
+          El tamaño de la barra es relativo al valor máximo del índice parlamentario
+          para cada temática.
           <router-link
             :to="{ name: 'footprint' }"
             target="_blank"
             style="text-decoration: none !important"
-            >Consulta aquí cómo funciona el algoritmo de huella
-            parlamentaria.</router-link
+            >Consulta aquí cómo funciona nuestro índice
+            parlamentario.</router-link
           >
         </p>
       </div>

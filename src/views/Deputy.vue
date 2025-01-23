@@ -54,7 +54,7 @@
           <div class="c-deputy__footprint">
             <footprint :footprint="deputy.footprint" />
             <Tooltip
-              text="<p>La huella parlamentaria es el reflejo de la actividad de un diputado o diputada.</p><p>A mayor huella, consideramos que su trabajo parlamentario es más relevante.</p>"
+              text="<p>Nustro índice parlamentario es el reflejo de la actividad de un diputado o diputada.</p><p>A mayor índice, consideramos que su trabajo parlamentario es más relevante.</p>"
               routeLink="footprint"
               position="bottom"
             >
@@ -140,13 +140,14 @@
         :entityColor="groupColor"
       />
       <p>
-        El tamaño es relativo al valor máximo de la huella para cada temática.
+        El tamaño es relativo al valor máximo del índice parlamentario para
+        cada temática.
         <router-link
           :to="{ name: 'footprint' }"
           target="_blank"
           style="text-decoration: none !important"
-          >Consulta aquí cómo funciona el algoritmo de huella
-          parlamentaria.</router-link
+          >Consulta aquí cómo funciona nuestro índice
+          parlamentario.</router-link
         >
       </p>
     </div>

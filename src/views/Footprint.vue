@@ -3,7 +3,7 @@
     <div id="footprint" class="o-container o-section u-margin-bottom-10">
       <div class="o-grid">
         <div class="o-grid__col u-12 u-4@sm">
-          <page-header title="Huella parlamentaria" />
+          <page-header title="Índice parlamentario" />
         </div>
         <div class="o-grid__col u-12 u-8@sm">
           <h3 class="u-uppercase">
@@ -12,8 +12,8 @@
             cercanía a la ciudadanía.
           </h3>
           <p>
-            La huella parlamentaria es el reflejo de la actividad de un diputado
-            o diputada. A mayor huella, consideramos que su trabajo
+            El índice parlamentario es el reflejo de la actividad de un diputado
+            o diputada. A mayor índice, consideramos que su trabajo
             parlamentario es más relevante. Para calcularla, combinamos 4
             factores:
           </p>
@@ -55,7 +55,7 @@
           </div>
           <h2>El algoritmo</h2>
           <p>
-            El indicador de Huella parlamentaria está construido en base a
+            Este índice parlamentario está construido en base a
             diferentes variables que permiten medir y comparar la actividad e
             influencia de los diputados y diputadas tanto a nivel general como
             en las diferentes
@@ -101,7 +101,7 @@
               La constancia del diputado o diputada en el debate parlamentario.
             </li>
           </ul>
-          <p>Para calcular la Huella se han definido 3 fases diferenciadas:</p>
+          <p>Para calcular el índice se han definido 3 fases diferenciadas:</p>
 
           <h3>
             Fase 1: Cálculo del volumen de actividad y efectividad parlamentaria
@@ -126,8 +126,8 @@
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
             <p>
-              Así al aplicar este primer cálculo, una diputada obtendría una
-              Huella parlamentaria de 190 tras haber presentado las siguientes
+              Así al aplicar este primer cálculo, una diputada obtendría un
+              índice parlamentario de 190 tras haber presentado las siguientes
               iniciativas:
             </p>
             <ul>
@@ -150,7 +150,7 @@
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
             <p>
-              Así, la diputada obtendría 25 puntos extra y su Huella se elevaría
+              Así, la diputada obtendría 25 puntos extra y su índice se elevaría
               a 270, si tuviera:
             </p>
             <ul>
@@ -163,14 +163,14 @@
             Si el resultado del cálculo de la Fase 1 es mayor que cero, se
             procede a las Fases 2 y 3. En cambio, si este valor es de 0, se
             entiende que el diputado o diputada no cuenta aún con actividad
-            parlamentaria y por tanto su Huella es de cero. En este sentido, las
+            parlamentaria y por tanto su índice es de cero. En este sentido, las
             variables de las fases 2 y 3 están condicionadas a que exista una
             actividad parlamentaria ya en marcha.
           </p>
 
           <h3>Fase 2: Accesibilidad</h3>
           <p>
-            En esta segunda fase, a la puntuación de la Huella ya obtenida se
+            En esta segunda fase, a la puntuación del índice ya obtenida se
             sumarán los siguientes puntos en función de dos variables:
           </p>
           <table>
@@ -201,14 +201,14 @@
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
             <p>
-              La huella de la diputada anterior ascendería a 350 si tuviera
+              El índice de la diputada anterior ascendería a 350 si tuviera
               tanto una cuenta de Twitter como un correo electrónico público.
             </p>
           </div>
 
           <h3>Fase 3: Tiempo de inactividad</h3>
           <p>
-            El último paso antes de obtener el puntaje final de la Huella es
+            El último paso antes de obtener el puntaje final del índice es
             verificar el tiempo de inactividad de cada uno de los diputados y
             diputadas en cada una de las temáticas. Se entiende por inactividad
             el periodo en el cual no se ha presentado ningún tipo de iniciativa.
@@ -219,10 +219,10 @@
             de entre el 10 y el 50%, de acuerdo a las siguientes condiciones:
           </p>
           <ul>
-            <li>Inactivo entre 3 y 6 meses: 10% de reducción de su Huella.</li>
-            <li>Inactivo entre 6 y 12 meses: 25% de reducción de su Huella.</li>
+            <li>Inactivo entre 3 y 6 meses: 10% de reducción de su índice.</li>
+            <li>Inactivo entre 6 y 12 meses: 25% de reducción de su índice.</li>
             <li>
-              Inactivo por más de 12 meses: 50% de reducción de su Huella.
+              Inactivo por más de 12 meses: 50% de reducción de su índice.
             </li>
           </ul>
 
@@ -230,7 +230,7 @@
             <h5 class="u-uppercase">Ejemplo</h5>
             <p>
               Finalmente, suponiendo que la diputada llevara inactiva 7 meses,
-              su Huella parlamentaria pasaría de 351 a 262.5.
+              su índice parlamentario pasaría de 351 a 262.5.
             </p>
           </div>
         </div>

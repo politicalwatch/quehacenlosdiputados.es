@@ -13,7 +13,7 @@
         />&nbsp;&nbsp;¿Qué es esto?
       </p>
       <p v-else>
-        Consulta aquí cómo funciona el algoritmo de huella parlamentaria
+        Consulta aquí cómo funciona nuestro índice parlamentario
       </p>
     </router-link>
   </div>

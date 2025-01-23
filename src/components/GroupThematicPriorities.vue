@@ -24,8 +24,8 @@
       :entityImage="`/assets/gp/${parliamentaryGroup.id}.png`"
     />
     <p>
-      El tamaño de la barra es relativo al valor máximo de la huella para cada
-      temática.
+      El tamaño de la barra es relativo al valor máximo de nuestro índice parlamentario
+      para cada temática.
     </p>
   </div>
 </template>

@@ -32,7 +32,7 @@
                 <router-link
                   :to="{ name: 'footprint' }"
                   class="c-footer__menu-link"
-                  >Huella</router-link
+                  >Índice parlamentario</router-link
                 >
                 <a href="https://www.parlamento2030.es/" target="_blank"
                   >Agenda 2030</a

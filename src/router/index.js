@@ -153,7 +153,7 @@ const routes = [
     component: () => import("@/views/Contact.vue"),
   },
   {
-    path: "/huella",
+    path: "/indice-actividad-parlamentaria",
     name: "footprint",
     component: () => import("@/views/Footprint.vue"),
   },
