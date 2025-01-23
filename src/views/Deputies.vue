@@ -117,11 +117,7 @@ const getFilteredDeputies = computed(() => {
       return footprint ? footprint.score : 0;
     };
 
-    const filteredList = [...filteredDeputies].filter(
-      (deputy) => getFootprintScore(deputy) !== 0
-    );
-
-    const sortedList = filteredList.sort(
+    const sortedList = filteredDeputies.sort(
       (a, b) => getFootprintScore(b) - getFootprintScore(a)
     );
 
