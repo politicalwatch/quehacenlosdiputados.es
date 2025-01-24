@@ -63,7 +63,7 @@
             que da seguimiento QHLD.
           </p>
           <p>
-            Se trata de un indicador acumulado, que se actualiza semanalmente
+            Se trata de un indicador que se actualiza semanalmente
             (todos los domingos) para cada uno de los miembros del Congreso de
             los Diputados y además para cada una de las temáticas.
           </p>
@@ -84,7 +84,9 @@
             <li>
               Existencia o no de una cuenta de correo electrónico pública.
             </li>
-            <li>Existencia o no de redes sociales públicas.</li>
+            <li>
+              Existencia o no de redes sociales públicas.
+            </li>
             <li>
               Número de meses transcurridos desde la última iniciativa
               presentada.
@@ -233,6 +235,14 @@
               su índice parlamentario pasaría de 351 a 262.5.
             </p>
           </div>
+
+          <h3>
+            Fase final: Normalización
+          </h3>
+          <p>
+          Por último, el valor obtenido en cada una de las fases anteriores para cada diputado/a o grupo parlamentario se expresa en forma de porcentaje. De este modo, en el índice, el valor de un diputado/a o grupo se calcula tomando como el máximo el del diputado/a o grupo con mayor puntuación.
+          </p>
+
         </div>
       </div>
     </div>
