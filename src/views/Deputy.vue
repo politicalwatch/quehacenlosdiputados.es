@@ -111,14 +111,18 @@
             </p>
           </info-dropdown>
           <info-dropdown title="Bienes y actividades">
-            <a
-              class="c-info-dropdown__content__item"
-              v-for="(link, declaration) in deputy.extra.declarations"
-              :key="declaration"
-              :href="link"
-              target="_blank"
-              >{{ declaration }}</a
-            >
+            <ul>
+              <li v-for="(link, declaration) in deputy.extra.declarations">
+                <a
+                  class="c-info-dropdown__content__item"
+                  :key="declaration"
+                  :href="link"
+                  target="_blank"
+                >
+                  {{ declaration }}
+                </a>
+              </li>
+            </ul>
           </info-dropdown>
         </div>
       </div>
@@ -140,8 +144,8 @@
         :entityColor="groupColor"
       />
       <p>
-        El tamaño es relativo al valor máximo del índice parlamentario para
-        cada temática.
+        El tamaño es relativo al valor máximo del índice parlamentario para cada
+        temática.
         <router-link
           :to="{ name: 'footprint' }"
           target="_blank"
