@@ -24,7 +24,7 @@
     </nav>
     <div class="c-approved-initiatives__content">
       <Results
-        v-if="initiativeCategories[selectedCategory].initiatives.length > 0"
+        v-if="initiativeCategories[selectedCategory].initiatives.length"
         :initiatives="initiativeCategories[selectedCategory].initiatives || []"
         :topicsStyles="topicsStyles"
       />

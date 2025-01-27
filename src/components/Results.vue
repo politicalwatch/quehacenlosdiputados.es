@@ -85,6 +85,7 @@ const setupMasonry = () => {
       percentPosition: true,
       itemSelector: ".o-masonry__item",
     });
+    msnry.reloadItems();
     msnry.layout();
   }
 };
@@ -101,11 +102,5 @@ onMounted(() => {
       setupMasonry();
     }.bind(this)
   );
-});
-
-watch(initiatives, () => {
-  if (initiatives.value?.length && !loadingResults.value) {
-    setupMasonry();
-  }
 });
 </script>
