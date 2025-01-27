@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/views/Home.vue";
 import config from "@/config";
+import { path } from "d3";
 
 const routes = [
   {
@@ -156,6 +157,10 @@ const routes = [
     path: "/indice-actividad-parlamentaria",
     name: "footprint",
     component: () => import("@/views/Footprint.vue"),
+  },
+  {
+    path: "/huella",
+    redirect: { name: "footprint" },
   },
   {
     path: "/aviso-legal",
