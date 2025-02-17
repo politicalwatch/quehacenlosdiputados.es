@@ -59,6 +59,9 @@
                 <router-link :to="{ name: 'collaborate', hash: '#dona' }"
                   >Haz una donación</router-link
                 >
+                <router-link :to="{ name: 'contact' }"
+                  >Contacta</router-link
+                >
                 <a
                   href="mailto:qhld@politicalwatch.es?subject=Contacto+a+través+de+qhld.es"
                   target="_blank"
