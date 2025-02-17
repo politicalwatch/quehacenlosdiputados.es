@@ -95,6 +95,7 @@
             }"
             @mouseover="activeBar = bar"
             @mouseout="activeBar = null"
+            @click="searchWeekInitiatives(bar)"
           ></rect>
           <!-- visible-->
           <rect
@@ -238,6 +239,7 @@ To avoid loading unused data, the dataset for the aggregated dataset is provided
 */
 
 import { ref, computed, onMounted, nextTick, onUnmounted, watch } from "vue";
+import { useRouter } from "vue-router";
 import {
   min,
   max,
@@ -251,6 +253,9 @@ import {
 } from "d3";
 import vTr3nsition from "@/components/vTr3nsition.js";
 import UiSwitch from "@/components/UiSwitch.vue";
+
+const router = useRouter();
+
 const props = defineProps({
   defaultHeight: {
     type: Number,
@@ -537,6 +542,30 @@ function getSundayFromYearWeek(yearWeek) {
   date.setDate(date.getDate() + 6); // add 6 days to get to Sunday
   return date;
 }
+
+const formatSearchDate = (date) => {
+  const formattedDate = date.toLocaleDateString("sv-SE", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+
+  return formattedDate.replace(/\//g, '-');
+};
+
+const searchWeekInitiatives = (bar) => {
+  const topic = props.topic.name;
+  const startDate = formatSearchDate(getMondayOfISOWeek(bar.week));
+  const endDate = formatSearchDate(getSundayFromYearWeek(bar.week));
+  const data = 'topic='+topic+'&startdate='+startDate+'&enddate='+endDate;
+
+  router.push({
+    name: "results",
+    params: { data }
+  });
+};
+
+
 </script>
 
 <style scoped>
