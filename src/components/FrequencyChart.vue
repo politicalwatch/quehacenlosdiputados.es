@@ -550,22 +550,20 @@ const formatSearchDate = (date) => {
     day: "2-digit",
   });
 
-  return formattedDate.replace(/\//g, '-');
+  return formattedDate.replace(/\//g, "-");
 };
 
 const searchWeekInitiatives = (bar) => {
   const topic = props.topic.name;
   const startDate = formatSearchDate(getMondayOfISOWeek(bar.week));
   const endDate = formatSearchDate(getSundayFromYearWeek(bar.week));
-  const data = 'topic='+topic+'&startdate='+startDate+'&enddate='+endDate+'&knowledgebase=politicas';
+  const data = `topic=${topic}&startdate=${startDate}&enddate=${endDate}&knowledgebase=politicas`;
 
   router.push({
     name: "results",
-    params: { data }
+    params: { data },
   });
 };
-
-
 </script>
 
 <style scoped>
