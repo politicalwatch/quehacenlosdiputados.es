@@ -557,7 +557,7 @@ const searchWeekInitiatives = (bar) => {
   const topic = props.topic.name;
   const startDate = formatSearchDate(getMondayOfISOWeek(bar.week));
   const endDate = formatSearchDate(getSundayFromYearWeek(bar.week));
-  const data = 'topic='+topic+'&startdate='+startDate+'&enddate='+endDate;
+  const data = 'topic='+topic+'&startdate='+startDate+'&enddate='+endDate+'&knowledgebase=politicas';
 
   router.push({
     name: "results",
