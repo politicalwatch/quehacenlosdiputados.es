@@ -26,8 +26,8 @@ export default {
       condition: true,
     },
     {
-      route: "contact",
-      name: "Contacta",
+      route: "topics",
+      name: "Temáticas",
       condition: true,
     },
   ],
