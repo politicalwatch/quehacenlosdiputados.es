@@ -232,7 +232,7 @@
 </template>
 
 <script setup>
-import { ref, toRefs, computed, onMounted, watch } from "vue";
+import { ref, toRefs, computed, onMounted, watch, nextTick } from "vue";
 import { useRouter } from "vue-router";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
@@ -272,6 +272,15 @@ const filteredTags = ref([]);
 
 const tagsInputEnabled = computed(() => {
   return formData.value.topic && filteredTags.value.length;
+});
+
+onMounted(() => {
+  nextTick(() => {
+    // Populates topic dependant fields on redirection (from topic graphs)
+    if (formData.value.topic) {
+      fillSubtopicsAndTags(formData.value.topic);
+    }
+  });
 });
 
 const advanced = ref(
