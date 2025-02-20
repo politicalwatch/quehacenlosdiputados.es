@@ -543,6 +543,13 @@ function getSundayFromYearWeek(yearWeek) {
   return date;
 }
 
+function getSundayFromMonday(weekMonday) {
+  let dateObj = new Date(weekMonday);
+  dateObj.setDate(dateObj.getDate() + 6);
+
+  return dateObj.toISOString().split("T")[0];
+}
+
 const formatSearchDate = (date) => {
   const formattedDate = date.toLocaleDateString("sv-SE", {
     year: "numeric",
@@ -556,7 +563,7 @@ const formatSearchDate = (date) => {
 const searchWeekInitiatives = (bar) => {
   const topic = props.topic.name;
   const startDate = formatSearchDate(getMondayOfISOWeek(bar.week));
-  const endDate = formatSearchDate(getSundayFromYearWeek(bar.week));
+  const endDate = getSundayFromMonday(startDate);
   const data = `topic=${topic}&startdate=${startDate}&enddate=${endDate}&knowledgebase=politicas`;
 
   router.push({
