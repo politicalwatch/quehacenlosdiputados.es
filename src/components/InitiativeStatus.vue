@@ -11,6 +11,11 @@
       {{ getStateMessage(initiative) }}
     </div>
   </div>
+  <div v-if="showLastUpdate && hasNeutralStatus(initiative.status)" class="c-initiative-status">
+    <div class="c-initiative-status__message c-initiative-status__subtitle">
+      {{ getLastUpdate(initiative) }}
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -18,8 +23,9 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import es from "date-fns/locale/es";
 import { Icon } from "@iconify/vue";
 
-const { initiative, mappedStatus } = defineProps({
+const { initiative, showLastUpdate, mappedStatus } = defineProps({
   initiative: { type: Object, required: true },
+  showLastUpdate: { type: Boolean, default: true },
   mappedStatus: {
     type: Object,
     default: () => ({
@@ -52,6 +58,10 @@ const getColorByStatus = (status) => {
   return "neutral";
 };
 
+const hasNeutralStatus = (status) => {
+  return mappedStatus.neutral.includes(status);
+}
+
 const getIcon = (initiative) => {
   const color = getColorByStatus(initiative["status"]);
   const map = {
@@ -73,18 +83,30 @@ const getStateMessage = (initiative) => {
     date = initiative["created"];
   }
 
-  const formattedDate = formatDistanceToNow(new Date(date), {
+  const formattedDate = formatDate(date);
+
+  return `${initiative["status"]} ${formattedDate}`;
+};
+
+const formatDate = (date) => {
+  return formatDistanceToNow(new Date(date), {
     locale: es,
     addSuffix: true,
   }).replace("alrededor de ", "");
-  return `${initiative["status"]} ${formattedDate}`;
 };
+
+const getLastUpdate = (initiative) => {
+  const formattedDate = formatDate(initiative.updated);
+
+  return `( actualizada ${formattedDate} )`;
+}
 </script>
 
 <style lang="scss" scoped>
 .c-initiative-status {
   display: flex;
   align-items: center;
+  margin-bottom: rem(5px);
 
   &__icon {
     margin-right: 8px;
@@ -118,6 +140,12 @@ const getStateMessage = (initiative) => {
 
   &__message {
     @include overline;
+  }
+
+  &__subtitle {
+    text-transform: lowercase;
+    margin-left: 0.8rem;
+
   }
 }
 </style>
