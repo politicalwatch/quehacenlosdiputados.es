@@ -17,7 +17,7 @@
         >
           <tspan :x="xScale(activeBar.week)" :y="margin.top / 2">
             Semana {{ activeBar.week.split("-")[1] }} ({{
-              getMondayOfISOWeek(activeBar.week).toLocaleDateString("es-ES", {
+              new Date(getYearWeekRange(activeBar.week).monday).toLocaleDateString("es-ES", {
                 day: "2-digit",
                 month: "long",
               })
@@ -95,6 +95,7 @@
             }"
             @mouseover="activeBar = bar"
             @mouseout="activeBar = null"
+            @click="searchWeekInitiatives(bar)"
           ></rect>
           <!-- visible-->
           <rect
@@ -238,6 +239,8 @@ To avoid loading unused data, the dataset for the aggregated dataset is provided
 */
 
 import { ref, computed, onMounted, nextTick, onUnmounted, watch } from "vue";
+import { setWeek, startOfWeek, endOfWeek, format } from 'date-fns';
+import { useRouter } from "vue-router";
 import {
   min,
   max,
@@ -251,6 +254,9 @@ import {
 } from "d3";
 import vTr3nsition from "@/components/vTr3nsition.js";
 import UiSwitch from "@/components/UiSwitch.vue";
+
+const router = useRouter();
+
 const props = defineProps({
   defaultHeight: {
     type: Number,
@@ -449,7 +455,7 @@ const xScaleTimeForAxis = computed(() => {
   const week0 = xScale.value?.domain()[0];
   const week1 = xScale.value?.domain()[xScale.value?.domain().length - 1];
   const scale = scaleTime()
-    .domain([getMondayOfISOWeek(week0), getSundayFromYearWeek(week1)])
+    .domain([new Date(getYearWeekRange(week0).monday), new Date(getYearWeekRange(week1).sunday)])
     .range([0, width.value]);
 
   return scale;
@@ -514,29 +520,30 @@ const isRelativeModeReady = computed(
     showComparativeMode.value === true && props.aggreagatedDataset?.length > 0
 );
 
-// utils for time conversion beteween yearly-weeks and dates according to the iso standard
-// https://stackoverflow.com/questions/16590500/javascript-calculate-date-from-week-number
-function getMondayOfISOWeek(yearWeek) {
-  const [year, week] = yearWeek.split("-");
-  let date = new Date(Date.UTC(year, 0, 1 + (week - 1) * 7));
-  let day = date.getUTCDay();
-
-  // If the day is not Monday (1), adjust the date
-  if (day !== 1) {
-    date.setUTCDate(date.getUTCDate() + (day <= 4 ? -(day - 1) : 8 - day));
-  }
-  return date;
-}
-
-function getSundayFromYearWeek(yearWeek) {
+function getYearWeekRange(yearWeek) {
   let [year, week] = yearWeek.split("-").map(Number);
-  let date = new Date(year, 0, 1 + (week - 1) * 7);
-  let day = date.getDay();
-  let diff = date.getDate() - day + (day == 0 ? -6 : 1); // adjust if the first day of the year is later than Monday
-  date = new Date(date.setDate(diff));
-  date.setDate(date.getDate() + 6); // add 6 days to get to Sunday
-  return date;
+  let baseDate = new Date(year, 0, 4);
+  let weekDate = setWeek(baseDate, week, { weekStartsOn: 1, firstWeekContainsDate: 4 });
+  let monday = startOfWeek(weekDate, { weekStartsOn: 1 });
+  let sunday = endOfWeek(weekDate, { weekStartsOn: 1 });
+
+  return {
+    monday: format(monday, 'yyyy-MM-dd'),
+    sunday: format(sunday, 'yyyy-MM-dd'),
+  };
 }
+
+const searchWeekInitiatives = (bar) => {
+  let weekRange = getYearWeekRange(bar.week);
+  let topic = props.topic.name;
+
+  const data = `topic=${topic}&startdate=${weekRange.monday}&enddate=${weekRange.sunday}&knowledgebase=politicas`;
+
+  router.push({
+    name: "results",
+    params: { data },
+  });
+};
 </script>
 
 <style scoped>
