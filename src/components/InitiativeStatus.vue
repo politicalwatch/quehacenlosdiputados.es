@@ -98,7 +98,7 @@ const formatDate = (date) => {
 const getLastUpdate = (initiative) => {
   const formattedDate = formatDate(initiative.updated);
 
-  return `( actualizada ${formattedDate} )`;
+  return `Última actualización ${formattedDate}`;
 }
 </script>
 
@@ -143,9 +143,9 @@ const getLastUpdate = (initiative) => {
   }
 
   &__subtitle {
-    text-transform: lowercase;
+    text-transform: none;
     margin-left: 2rem;
-
+    color: #9f9f9f;
   }
 }
 </style>
