@@ -144,7 +144,7 @@ const getLastUpdate = (initiative) => {
 
   &__subtitle {
     text-transform: lowercase;
-    margin-left: 0.8rem;
+    margin-left: 2rem;
 
   }
 }
