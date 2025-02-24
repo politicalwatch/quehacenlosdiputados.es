@@ -1,10 +1,10 @@
 export default {
   SHORTNAME: import.meta.env.VITE_VUE_APP_SHORTNAME || "qhld",
   BACKEND_URL:
-    import.meta.env.VITE_VUE_APP_BACKEND_URL || "http://localhost:5000",
+  import.meta.env.VITE_VUE_APP_BACKEND_URL || "http://localhost:5000",
   HOMEBUILDER_URL:
-    import.meta.env.VITE_VUE_APP_HOMEBUILDER_URL ||
-    "https://homebuilder.quehacenlosdiputados.es",
+  import.meta.env.VITE_VUE_APP_HOMEBUILDER_URL ||
+  "https://homebuilder.quehacenlosdiputados.es",
   GOOGLE_ANALYTICS: import.meta.env.VUE_APP_GOOGLE_ANALYTICS || "XXXXXXXXXXXX",
   USE_ALERTS: import.meta.env.VITE_VUE_APP_USE_ALERTS === "true",
   KNOWLEDGEBASE: import.meta.env.VITE_KNOWLEDGEBASE || "politicas",
@@ -39,12 +39,12 @@ export default {
     {
       name: "description",
       content:
-        "Que todos los días sean de puertas abiertas en el Congreso de los Diputados",
+      "Que todos los días sean de puertas abiertas en el Congreso de los Diputados",
     },
     {
       name: "keywords",
       content:
-        "transparencia, incidencia política, participación, investigación, periodismo de datos, política, pobreza, exclusión social, justicia social, españa, congreso de los diputados, monitorización parlamentaria",
+      "transparencia, incidencia política, participación, investigación, periodismo de datos, política, pobreza, exclusión social, justicia social, españa, congreso de los diputados, monitorización parlamentaria",
     },
     {
       itemprop: "image",
@@ -65,7 +65,7 @@ export default {
     {
       name: "twitter:description",
       content:
-        "Que todos los días sean de puertas abiertas en el Congreso de los Diputados",
+      "Que todos los días sean de puertas abiertas en el Congreso de los Diputados",
     },
     {
       name: "twitter:creator",
@@ -94,12 +94,222 @@ export default {
     {
       property: "og:description",
       content:
-        "Que todos los días sean de puertas abiertas en el Congreso de los Diputados",
+      "Que todos los días sean de puertas abiertas en el Congreso de los Diputados",
     },
     {
       property: "og:site_name",
       content: "Qué hacen los diputados",
     },
+  ],
+  CONSTITUENCIES: [
+    {
+      "slug": "albacete",
+      "name": "Albacete"
+    },
+    {
+      "slug": "alacant",
+      "name": "Alicante/Alacant"
+    },
+    {
+      "slug": "almeria",
+      "name": "Almería"
+    },
+    {
+      "slug": "araba",
+      "name": "Araba/Álava"
+    },
+    {
+      "slug": "asturias",
+      "name": "Asturias"
+    },
+    {
+      "slug": "avila",
+      "name": "Ávila"
+    },
+    {
+      "slug": "badajoz",
+        "name": "Badajoz"
+    },
+    {
+      "slug": "illes-balears",
+      "name": "Balears (Illes)"
+    },
+    {
+      "slug": "barcelona",
+      "name": "Barcelona"
+    },
+    {
+      "slug": "bizkaia",
+      "name": "Bizkaia"
+    },
+    {
+      "slug": "burgos",
+      "name": "Burgos"
+    },
+    {
+      "slug": "cantabria",
+      "name": "Cantabria"
+    },
+    {
+      "slug": "castello",
+      "name": "Castellón/Castelló"
+    },
+    {
+      "slug": "ceuta",
+      "name": "Ceuta"
+    },
+    {
+      "slug": "ciudad-real",
+      "name": "Ciudad Real"
+    },
+    {
+      "slug": "a-coruna",
+      "name": "Coruña (A)"
+    },
+    {
+      "slug": "cuenca",
+      "name": "Cuenca"
+    },
+    {
+      "slug": "caceres",
+      "name": "Cáceres"
+    },
+    {
+      "slug": "cadiz",
+      "name": "Cádiz"
+    },
+    {
+      "slug": "cordoba",
+      "name": "Córdoba"
+    },
+    {
+      "slug": "gipuzkoa",
+      "name": "Gipuzkoa"
+    },
+    {
+      "slug": "girona",
+      "name": "Girona"
+    },
+    {
+      "slug": "granada",
+      "name": "Granada"
+    },
+    {
+      "slug": "guadalajara",
+      "name": "Guadalajara"
+    },
+    {
+      "slug": "huelva",
+      "name": "Huelva"
+    },
+    {
+      "slug": "huesca",
+      "name": "Huesca"
+    },
+    {
+      "slug": "jaen",
+      "name": "Jaén"
+    },
+    {
+      "slug": "leon",
+      "name": "León"
+    },
+    {
+      "slug": "lleida",
+      "name": "Lleida"
+    },
+    {
+      "slug": "lugo",
+      "name": "Lugo"
+    },
+    {
+      "slug": "madrid",
+      "name": "Madrid"
+    },
+    {
+      "slug": "melilla",
+      "name": "Melilla"
+    },
+    {
+      "slug": "murcia",
+      "name": "Murcia"
+    },
+    {
+      "slug": "malaga",
+      "name": "Málaga"
+    },
+    {
+      "slug": "navarra",
+      "name": "Navarra"
+    },
+    {
+      "slug": "ourense",
+      "name": "Ourense"
+    },
+    {
+      "slug": "palencia",
+      "name": "Palencia"
+    },
+    {
+      "slug": "las-palmas",
+      "name": "Palmas (Las)"
+    },
+    {
+      "slug": "pontevedra",
+      "name": "Pontevedra"
+    },
+    {
+      "slug": "la-rioja",
+      "name": "Rioja (La)"
+    },
+    {
+      "slug": "sc-tenerife",
+      "name": "S/C Tenerife"
+    },
+    {
+      "slug": "salamanca",
+      "name": "Salamanca"
+    },
+    {
+      "slug": "segovia",
+      "name": "Segovia"
+    },
+    {
+      "slug": "sevilla",
+      "name": "Sevilla"
+    },
+    {
+      "slug": "soria",
+      "name": "Soria"
+    },
+    {
+      "slug": "tarragona",
+      "name": "Tarragona"
+    },
+    {
+      "slug": "teruel",
+      "name": "Teruel"
+    },
+    {
+      "slug": "toledo",
+      "name": "Toledo"
+    },
+    {
+      "slug": "valencia",
+      "name": "Valencia/València"
+    },
+    {
+      "slug": "valladolid",
+      "name": "Valladolid"
+    },
+    {
+      "slug": "zamora",
+      "name": "Zamora"
+    },
+    {
+      "slug": "zaragoza",
+      "name": "Zaragoza"
+    }
   ],
   STYLES: {
     topics: {
@@ -394,7 +604,7 @@ export default {
         logo: "compromis",
         color: "#f29127",
         "color-gradient":
-          "linear-gradient(204deg, #f29127 100%, #ec8427 80%, #de6527 42%, #d13b27 3%)",
+        "linear-gradient(204deg, #f29127 100%, #ec8427 80%, #de6527 42%, #d13b27 3%)",
       },
       "MÁS PAÍS-EQUO": {
         name: "Más País",

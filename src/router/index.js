@@ -134,6 +134,11 @@ const routes = [
     component: () => import("@/views/Parliamentarygroup.vue"),
   },
   {
+    path: "/provincias/:id",
+    name: "constituency",
+    component: () => import("@/views/Constituency.vue"),
+  },
+  {
     path: "/acerca",
     name: "about",
     component: () => import("@/views/About.vue"),
