@@ -45,3 +45,32 @@ jobs:
             docker compose pull
             docker compose down
             docker compose up -d --remove-orphans
+
+  notify:
+    name: Send Slack Notification
+    needs: deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send success message to Slack
+        uses: slackapi/slack-github-action@v2
+        with:
+          payload: |
+            {
+              "channel": "#deployments",
+              "text": "🚀 ¡Despliegue de QHLD con éxito! {{ github.event.head_commit.message }}"
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+      - name: Send failure message to Slack on error
+        if: failure()
+        uses: slackapi/slack-github-action@v2
+        with:
+          payload: |
+            {
+              channel: "#tech",
+              "text": "❌ ¡Fallo durante el despliegue de QHLD! {{ github.event.head_commit.message }}"
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
