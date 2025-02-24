@@ -190,6 +190,12 @@ const router = createRouter({
     if (savedPosition) {
       return savedPosition;
     } else {
+      if (to.hash) {
+        return {
+          el: to.hash,
+          behavior: "smooth",
+        };
+      }
       return { top: 0 };
     }
   },
