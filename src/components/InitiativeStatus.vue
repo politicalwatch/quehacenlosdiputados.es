@@ -11,6 +11,11 @@
       {{ getStateMessage(initiative) }}
     </div>
   </div>
+  <div v-if="showLastUpdate()" class="c-initiative-status">
+    <div class="c-initiative-status__message c-initiative-status__subtitle">
+      {{ getLastUpdate(initiative) }}
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -18,8 +23,9 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import es from "date-fns/locale/es";
 import { Icon } from "@iconify/vue";
 
-const { initiative, mappedStatus } = defineProps({
+const { initiative, hasLastUpdate, mappedStatus } = defineProps({
   initiative: { type: Object, required: true },
+  hasLastUpdate: { type: Boolean, default: true },
   mappedStatus: {
     type: Object,
     default: () => ({
@@ -52,6 +58,18 @@ const getColorByStatus = (status) => {
   return "neutral";
 };
 
+const hasNeutralStatus = () => {
+  return mappedStatus.neutral.includes(initiative.status);
+}
+
+const datesDiffer = () => {
+  return initiative.created != initiative.updated;
+}
+
+const showLastUpdate = () => {
+  return hasLastUpdate && hasNeutralStatus() && datesDiffer();
+}
+
 const getIcon = (initiative) => {
   const color = getColorByStatus(initiative["status"]);
   const map = {
@@ -73,18 +91,30 @@ const getStateMessage = (initiative) => {
     date = initiative["created"];
   }
 
-  const formattedDate = formatDistanceToNow(new Date(date), {
+  const formattedDate = formatDate(date);
+
+  return `${initiative["status"]} ${formattedDate}`;
+};
+
+const formatDate = (date) => {
+  return formatDistanceToNow(new Date(date), {
     locale: es,
     addSuffix: true,
   }).replace("alrededor de ", "");
-  return `${initiative["status"]} ${formattedDate}`;
 };
+
+const getLastUpdate = (initiative) => {
+  const formattedDate = formatDate(initiative.updated);
+
+  return `Última actualización ${formattedDate}`;
+}
 </script>
 
 <style lang="scss" scoped>
 .c-initiative-status {
   display: flex;
   align-items: center;
+  margin-bottom: rem(5px);
 
   &__icon {
     margin-right: 8px;
@@ -118,6 +148,12 @@ const getStateMessage = (initiative) => {
 
   &__message {
     @include overline;
+  }
+
+  &__subtitle {
+    text-transform: none;
+    margin-left: 2rem;
+    color: $secondary;
   }
 }
 </style>
