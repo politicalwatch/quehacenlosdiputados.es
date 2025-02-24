@@ -59,7 +59,7 @@ jobs:
           token: ${{ secrets.SLACK_BOT_TOKEN }}
           payload: |
             {
-              "channel": "#deployments",
+              "channel": "#tech",
               "text": "🚀 ¡Despliegue de QHLD con éxito! {{ github.event.head_commit.message }}"
             }
 
