@@ -60,7 +60,7 @@ jobs:
           payload: |
             {
               "channel": "#tech",
-              "text": "🚀 ¡Despliegue de QHLD con éxito! {{ github.event.head_commit.message }}"
+              "text": "🚀 ¡Despliegue de QHLD con éxito!\n*Commit:* `${{ github.event.head_commit.message }}`\n*Branch:* `${{ github.ref }}`"
             }
 
       - name: Send failure message to Slack on error
@@ -72,5 +72,5 @@ jobs:
           payload: |
             {
               channel: "#tech",
-              "text": "❌ ¡Fallo durante el despliegue de QHLD! {{ github.event.head_commit.message }}"
+              "text": "❌ ¡Fallo durante el despliegue de QHLD!\n*Commit:* `${{ github.event.head_commit.message }}`\n*Branch:* `${{ github.ref }}`"
             }
