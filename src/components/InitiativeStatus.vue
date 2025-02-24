@@ -11,7 +11,7 @@
       {{ getStateMessage(initiative) }}
     </div>
   </div>
-  <div v-if="showLastUpdate && hasNeutralStatus(initiative.status)" class="c-initiative-status">
+  <div v-if="showLastUpdate()" class="c-initiative-status">
     <div class="c-initiative-status__message c-initiative-status__subtitle">
       {{ getLastUpdate(initiative) }}
     </div>
@@ -23,9 +23,9 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import es from "date-fns/locale/es";
 import { Icon } from "@iconify/vue";
 
-const { initiative, showLastUpdate, mappedStatus } = defineProps({
+const { initiative, hasLastUpdate, mappedStatus } = defineProps({
   initiative: { type: Object, required: true },
-  showLastUpdate: { type: Boolean, default: true },
+  hasLastUpdate: { type: Boolean, default: true },
   mappedStatus: {
     type: Object,
     default: () => ({
@@ -58,8 +58,16 @@ const getColorByStatus = (status) => {
   return "neutral";
 };
 
-const hasNeutralStatus = (status) => {
-  return mappedStatus.neutral.includes(status);
+const hasNeutralStatus = () => {
+  return mappedStatus.neutral.includes(initiative.status);
+}
+
+const datesDiffer = () => {
+  return initiative.created != initiative.updated;
+}
+
+const showLastUpdate = () => {
+  return hasLastUpdate && hasNeutralStatus() && datesDiffer();
 }
 
 const getIcon = (initiative) => {
@@ -145,7 +153,7 @@ const getLastUpdate = (initiative) => {
   &__subtitle {
     text-transform: none;
     margin-left: 2rem;
-    color: #9f9f9f;
+    color: $secondary;
   }
 }
 </style>
