@@ -55,22 +55,22 @@ jobs:
       - name: Send success message to Slack
         uses: slackapi/slack-github-action@v2
         with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
           payload: |
             {
               "channel": "#deployments",
               "text": "🚀 ¡Despliegue de QHLD con éxito! {{ github.event.head_commit.message }}"
             }
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
       - name: Send failure message to Slack on error
         if: failure()
         uses: slackapi/slack-github-action@v2
         with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
           payload: |
             {
               channel: "#tech",
               "text": "❌ ¡Fallo durante el despliegue de QHLD! {{ github.event.head_commit.message }}"
             }
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
