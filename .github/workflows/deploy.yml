@@ -48,11 +48,13 @@ jobs:
 
   notify:
     name: Send Slack Notification
-    needs: deploy
+    needs: [build-and-push, deploy]
     runs-on: ubuntu-latest
+    if: always()
 
     steps:
-      - name: Send success message to Slack
+      - name: Send success message to Slack on success
+        if: ${{ needs.build-and-push.result == 'success' && needs.deploy.result == 'success' }}
         uses: slackapi/slack-github-action@v2
         with:
           method: chat.postMessage
@@ -60,17 +62,17 @@ jobs:
           payload: |
             {
               "channel": "#tech",
-              "text": "🚀 ¡Despliegue de QHLD con éxito!\n*Commit:* `${{ github.event.head_commit.message }}`\n*Branch:* `${{ github.ref }}`"
+              "text": "🚀 ¡Despliegue de QHLD con éxito!"
             }
 
       - name: Send failure message to Slack on error
-        if: failure()
+        if: ${{ needs.build-and-push.result == 'failure' || needs.deploy.result == 'failure' }}
         uses: slackapi/slack-github-action@v2
         with:
           method: chat.postMessage
           token: ${{ secrets.SLACK_BOT_TOKEN }}
           payload: |
             {
-              channel: "#tech",
-              "text": "❌ ¡Fallo durante el despliegue de QHLD!\n*Commit:* `${{ github.event.head_commit.message }}`\n*Branch:* `${{ github.ref }}`"
+              "channel": "#tech",
+              "text": "❌ ¡Fallo durante el despliegue de QHLD!"
             }
