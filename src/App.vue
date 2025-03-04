@@ -8,7 +8,9 @@
           :logo="LOGO"
           :disclaimer="DISCLAIMER"
         />
-        <router-view />
+        <div class="page-container">
+          <router-view />
+        </div>
         <page-footer />
       </div>
     </transition>
@@ -42,6 +44,13 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
+.page-container {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 input[type="email"].swal2-input {
   width: auto;
 }

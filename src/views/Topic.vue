@@ -35,7 +35,7 @@
           v-if="topicsByWeek != null"
         />
       </div>
-      <div class="u-padding-top-2" v-if="deputies.length > 0">
+      <div class="u-padding-top-2" v-if="deputies.length">
         <h2 class="u-uppercase u-margin-bottom-4 c-topic__title">
           En esta temática destacan...
         </h2>
@@ -53,7 +53,7 @@
             class="u-border-link u-uppercase u-hide u-inline@sm"
             :to="{ name: 'results', params: { data: 'topic=' + topic.name } }"
           >
-          Ver todas
+            Ver todas
           </router-link>
         </div>
         <results :initiatives="latestInitiatives" :topicsStyles="styles" />
@@ -61,7 +61,7 @@
           class="u-border-link u-uppercase u-hide@sm"
           :to="{ name: 'results', params: { data: 'topic=' + topic.name } }"
         >
-        Ver todas
+          Ver todas
         </router-link>
       </div>
     </div>
