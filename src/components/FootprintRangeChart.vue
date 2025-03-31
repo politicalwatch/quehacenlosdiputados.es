@@ -13,7 +13,6 @@ import { scaleLinear, scaleBand, axisBottom, axisLeft, select } from "d3";
 
 const {
   dataset,
-  defaultWidth,
   defaultHeight,
   entityType,
   entityName,
@@ -23,10 +22,6 @@ const {
   dataset: {
     type: Array,
     default: () => [],
-  },
-  defaultWidth: {
-    type: Number,
-    default: 800,
   },
   defaultHeight: {
     type: Number,
@@ -68,7 +63,7 @@ onMounted(() => {
 
 const drawChart = () => {
   const margin = { top: 20, right: 200, bottom: 40, left: 180 };
-  const marginMobile = { right: 20, left: 180 };
+  const marginMobile = { right: 20, left: 110 };
 
   const isMobile = availableWidth.value <= 600;
 
@@ -88,7 +83,10 @@ const drawChart = () => {
 
   const circleRadius = 8;
 
-  g.attr("transform", `translate(${margin.left},${margin.top})`);
+  g.attr(
+    "transform",
+    `translate(${isMobile ? marginMobile.left : margin.left},${margin.top})`
+  );
 
   g.append("g")
     .attr("transform", `translate(0,${height})`)
@@ -102,9 +100,9 @@ const drawChart = () => {
     .call(axisLeft(yScale))
     .selectAll("text")
     .style("text-anchor", "start")
-    .attr("x", -180)
+    .attr("x", isMobile ? -marginMobile.left : -margin.left)
     .style("text-transform", "uppercase")
-    .style("font-size", isMobile ? "13px" : "16px")
+    .style("font-size", isMobile ? "12px" : "16px")
     .style("font-family", "Fjalla One")
     .each(function (d) {
       const self = select(this);
@@ -132,7 +130,9 @@ const drawChart = () => {
       for (let i = 0; i < lines.length; i++) {
         const tspan = self.append("tspan").text(lines[i]);
         if (i > 0) {
-          tspan.attr("x", -180).attr("dy", "1.2em");
+          tspan
+            .attr("x", isMobile ? -marginMobile.left : -margin.left)
+            .attr("dy", "1.2em");
         }
       }
       self.attr("y", -6 * (lines.length - 1));
