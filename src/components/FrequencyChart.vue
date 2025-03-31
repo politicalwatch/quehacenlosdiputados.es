@@ -237,7 +237,16 @@ Since the default state is false, the chart will display the evolution of the to
 To avoid loading unused data, the dataset for the aggregated dataset is provided by the parent component when the user clicks on the relative mode switch
 */
 
-import { ref, computed, onMounted, nextTick, onUnmounted, watch } from "vue";
+import {
+  ref,
+  computed,
+  onMounted,
+  nextTick,
+  onUnmounted,
+  watch,
+  useTemplateRef,
+} from "vue";
+import { useElementSize } from "@vueuse/core";
 import { setWeek, startOfWeek, endOfWeek, format } from "date-fns";
 import { useRouter } from "vue-router";
 import {
@@ -260,7 +269,7 @@ const { defaultHeight, topicsStyles, topic, dataset, aggreagatedDataset } =
   defineProps({
     defaultHeight: {
       type: Number,
-      default: 400,
+      default: 800,
     },
 
     topicsStyles: {
@@ -301,14 +310,10 @@ const { defaultHeight, topicsStyles, topic, dataset, aggreagatedDataset } =
   });
 
 //*** set responsive width and  heights */
-const chartWrapper = ref(null); // wrapper for the svg. Template reference
+const chartWrapper = useTemplateRef("chartWrapper"); // wrapper for the svg. Template reference
 /* svg size */
-const availableWidth = ref(800);
+const { width: availableWidth } = useElementSize(chartWrapper);
 const availableHeight = ref(defaultHeight);
-
-// useResizeObserver(chartWrapper, () => {
-//   availableWidth.value = chartWrapper.value.clientWidth;
-// });
 
 const margin = { top: 40, right: 60, bottom: 60, left: 50 };
 const MARGIN_AXIS = 10;
@@ -318,20 +323,6 @@ const width = computed(() => availableWidth.value - margin.left - margin.right);
 const height = computed(
   () => availableHeight.value - margin.top - margin.bottom
 );
-
-// adjust on resize
-onMounted(() => {
-  availableWidth.value = chartWrapper.value.clientWidth;
-  window.addEventListener("resize", () => {
-    availableWidth.value = chartWrapper.value.clientWidth;
-  });
-});
-
-onUnmounted(() => {
-  window.removeEventListener("resize", () => {
-    availableWidth.value = chartWrapper.value.clientWidth;
-  });
-});
 //**** end of size block**************** ***/
 
 const currentStyle = computed(() => topicsStyles[topic.name]);

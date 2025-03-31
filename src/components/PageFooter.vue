@@ -162,7 +162,7 @@
 import { defineAsyncComponent } from "vue";
 import VueCookieAcceptDecline from "vue-cookie-accept-decline";
 import "vue-cookie-accept-decline/dist/vue-cookie-accept-decline.css";
-import { addGtag, consent, consentDeniedAll } from "vue-gtag";
+import { addGtag, consent } from "vue-gtag";
 import { Icon } from "@iconify/vue";
 
 import LogoPW from "@/assets/logo-political-watch.svg";
