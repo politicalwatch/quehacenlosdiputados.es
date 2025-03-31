@@ -7,7 +7,8 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from "vue";
+import { ref, computed, onMounted, watch, useTemplateRef } from "vue";
+import { useElementSize } from "@vueuse/core";
 import { scaleLinear, scaleBand, axisBottom, axisLeft, select } from "d3";
 
 const {
@@ -25,7 +26,7 @@ const {
   },
   defaultWidth: {
     type: Number,
-    default: 1200,
+    default: 800,
   },
   defaultHeight: {
     type: Number,
@@ -49,11 +50,11 @@ const {
   },
 });
 
-const availableWidth = ref(defaultWidth);
-const availableHeight = ref(defaultHeight);
+const chartWrapper = useTemplateRef("chartWrapper");
+const rangeChartGroup = useTemplateRef("rangeChartGroup");
 
-const chartWrapper = ref(null);
-const rangeChartGroup = ref(null);
+const { width: availableWidth } = useElementSize(chartWrapper);
+const availableHeight = ref(defaultHeight);
 
 const maxValueX = computed(() => {
   return Math.max(...dataset.map((d) => d.max));
@@ -67,7 +68,13 @@ onMounted(() => {
 
 const drawChart = () => {
   const margin = { top: 20, right: 200, bottom: 40, left: 180 };
-  const width = availableWidth.value - margin.left - margin.right;
+  const marginMobile = { right: 20, left: 180 };
+
+  const isMobile = availableWidth.value <= 600;
+
+  const width = isMobile
+    ? availableWidth.value - marginMobile.left - marginMobile.right
+    : availableWidth.value - margin.left - margin.right;
   const height = availableHeight.value - margin.top - margin.bottom;
 
   const xScale = scaleLinear().domain([0, maxValueX.value]).range([0, width]);
@@ -97,7 +104,7 @@ const drawChart = () => {
     .style("text-anchor", "start")
     .attr("x", -180)
     .style("text-transform", "uppercase")
-    .style("font-size", "16px")
+    .style("font-size", isMobile ? "13px" : "16px")
     .style("font-family", "Fjalla One")
     .each(function (d) {
       const self = select(this);
@@ -224,35 +231,22 @@ const drawChart = () => {
     })
     .on("mouseout", hideTooltip);
 
-  // Append circles for score values
-  // g.selectAll(".circle")
-  //   .data(dataset)
-  //   .enter()
-  //   .append("circle")
-  //   .attr("class", "circle")
-  //   .attr("cx", (d) => xScale(d.score))
-  //   .attr("cy", (d) => yScale(d.name) + yScale.bandwidth() / 2)
-  //   .attr("r", circleRadius * 3)
-  //   .attr("fill", "transparent")
-  //   .on("mouseover", function (event, d) {
-  //     showTooltip(event, `Score: ${d.score}`);
-  //   })
-  //   .on("mouseout", hideTooltip);
-
   // Append foreignObject for buttons
-  g.selectAll(".button")
-    .data(dataset)
-    .enter()
-    .append("foreignObject")
-    .attr("x", width + 70)
-    .attr("y", (d) => yScale(d.name) + yScale.bandwidth() / 2 - 25)
-    .attr("width", 130)
-    .attr("height", 52)
-    .append("xhtml:div")
-    .html(
-      (d) =>
-        `<button class="footprint-range-chart__button" onclick="window.location.href='/resultados/topic=${d.name}&${entityType == "deputy" ? "deputy" : "author"}=${entityName}'">Consultar</button>`
-    );
+  if (!isMobile) {
+    g.selectAll(".button")
+      .data(dataset)
+      .enter()
+      .append("foreignObject")
+      .attr("x", width + 70)
+      .attr("y", (d) => yScale(d.name) + yScale.bandwidth() / 2 - 25)
+      .attr("width", 130)
+      .attr("height", 52)
+      .append("xhtml:div")
+      .html(
+        (d) =>
+          `<button class="footprint-range-chart__button" onclick="window.location.href='/resultados/topic=${d.name}&${entityType == "deputy" ? "deputy" : "author"}=${entityName}'">Consultar</button>`
+      );
+  }
 };
 
 const cleanChart = () => {
@@ -261,41 +255,26 @@ const cleanChart = () => {
 
 watch(
   () => dataset,
-  (newData) => {
+  () => {
     cleanChart();
     drawChart();
   }
 );
 
 watch(
-  () => defaultWidth,
-  (newWidth) => {
-    cleanChart();
-    availableWidth.value = newWidth;
-    drawChart();
+  () => availableWidth.value,
+  (newWidth, oldWidth) => {
+    if (newWidth !== oldWidth) {
+      cleanChart();
+      drawChart();
+    }
   }
 );
 </script>
 
 <style lang="scss" scoped>
-.footprint-scatter-chart-wrapper {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-:depp(.tooltip) {
-  position: absolute;
-  text-align: center;
-  width: auto;
-  height: auto;
-  padding: 5px;
-  font: 12px sans-serif;
-  background: lightsteelblue;
-  border: 0px;
-  border-radius: 8px;
-  pointer-events: none;
+.footprint-range-chart-wrapper {
+  max-width: calc(100vw - 32px);
 }
 
 :deep(.footprint-range-chart__button) {

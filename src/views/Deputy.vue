@@ -128,17 +128,12 @@
       </div>
     </div>
 
-    <div
-      v-if="footprintByTopics.length > 0"
-      class="o-container o-section"
-      ref="footprintRangeWrapper"
-    >
+    <div v-if="footprintByTopics.length > 0" class="o-container o-section">
       <h2 class="c-deputy__title u-margin-bottom-4 u-uppercase">
         Temáticas destacadas
       </h2>
       <FootprintRangeChart
         :dataset="footprintByTopics"
-        :defaultWidth="parentWidth"
         :entityName="deputy.name"
         :entityImage="deputy.image"
         :entityColor="groupColor"
@@ -255,9 +250,6 @@ const headTitle = computed(() => {
     ? `${deputy.value.name} - Qué hacen los diputados`
     : "Qué hacen los diputados";
 });
-
-const footprintRangeWrapper = ref(null);
-const { width: parentWidth } = useElementSize(footprintRangeWrapper);
 
 const footprintByTopics = computed(() => {
   if (deputy.value) {
