@@ -17,10 +17,7 @@
         >
           <tspan :x="xScale(activeBar.week)" :y="margin.top / 2">
             Semana {{ activeBar.week.split("-")[1] }} ({{
-              new Date(getYearWeekRange(activeBar.week).monday).toLocaleDateString("es-ES", {
-                day: "2-digit",
-                month: "long",
-              })
+              formatActiveWeekMonday
             }})
           </tspan>
           <tspan dy="1em" :x="xScale(activeBar.week)" :y="margin.top / 2">
@@ -224,7 +221,7 @@
 <script setup>
 // test at http://localhost:5173/ods/ods-2
 
-/* component functionality 
+/* component functionality
 Displays one barchart for the evolution of the topic
 The chart can be displayed in two modes:
 - All data: the chart displays the evolution of the topic for all years in the dataset
@@ -239,7 +236,7 @@ To avoid loading unused data, the dataset for the aggregated dataset is provided
 */
 
 import { ref, computed, onMounted, nextTick, onUnmounted, watch } from "vue";
-import { setWeek, startOfWeek, endOfWeek, format } from 'date-fns';
+import { setWeek, startOfWeek, endOfWeek, format } from "date-fns";
 import { useRouter } from "vue-router";
 import {
   min,
@@ -279,7 +276,7 @@ const props = defineProps({
       ],
     }),
   },
-  /* 
+  /*
   dataset is an array of objects with the format {week: '2021-01', initiatives: 10}
   It is the dataset for the selected topic
   if dataset is provided as null value, component might fail
@@ -290,8 +287,8 @@ const props = defineProps({
     default: () => [[]],
   },
   /*
-  aggreagatedDataset is an array of objects with the format {week: '2021-01', initiatives: 10} 
-  It is the dataset for the aggregation of all topics. 
+  aggreagatedDataset is an array of objects with the format {week: '2021-01', initiatives: 10}
+  It is the dataset for the aggregation of all topics.
   It can be provided later on, when the user clicks on the relative mode switch
   */
   aggreagatedDataset: {
@@ -455,7 +452,10 @@ const xScaleTimeForAxis = computed(() => {
   const week0 = xScale.value?.domain()[0];
   const week1 = xScale.value?.domain()[xScale.value?.domain().length - 1];
   const scale = scaleTime()
-    .domain([new Date(getYearWeekRange(week0).monday), new Date(getYearWeekRange(week1).sunday)])
+    .domain([
+      new Date(getYearWeekRange(week0).monday),
+      new Date(getYearWeekRange(week1).sunday),
+    ])
     .range([0, width.value]);
 
   return scale;
@@ -520,18 +520,32 @@ const isRelativeModeReady = computed(
     showComparativeMode.value === true && props.aggreagatedDataset?.length > 0
 );
 
-function getYearWeekRange(yearWeek) {
+const getYearWeekRange = (yearWeek) => {
   let [year, week] = yearWeek.split("-").map(Number);
   let baseDate = new Date(year, 0, 4);
-  let weekDate = setWeek(baseDate, week, { weekStartsOn: 1, firstWeekContainsDate: 4 });
+  let weekDate = setWeek(baseDate, week, {
+    weekStartsOn: 1,
+    firstWeekContainsDate: 4,
+  });
   let monday = startOfWeek(weekDate, { weekStartsOn: 1 });
   let sunday = endOfWeek(weekDate, { weekStartsOn: 1 });
 
   return {
-    monday: format(monday, 'yyyy-MM-dd'),
-    sunday: format(sunday, 'yyyy-MM-dd'),
+    monday: format(monday, "yyyy-MM-dd"),
+    sunday: format(sunday, "yyyy-MM-dd"),
   };
-}
+};
+
+const formatActiveWeekMonday = computed(() => {
+  if (activeBar.value) {
+    return new Date(
+      getYearWeekRange(activeBar.value.week).monday
+    ).toLocaleDateString("es-ES", {
+      day: "2-digit",
+      month: "long",
+    });
+  }
+});
 
 const searchWeekInitiatives = (bar) => {
   let weekRange = getYearWeekRange(bar.week);
