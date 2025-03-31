@@ -182,7 +182,7 @@
       </g>
     </svg>
     <div class="controls-container o-grid">
-      <div class="o-grid__col u-9">
+      <div class="o-grid__col u-12 u-9@sm u-margin-bottom-2">
         <div class="yearSelectors" v-if="multiYearMode">
           <a
             href="#"
@@ -198,21 +198,23 @@
           >
         </div>
       </div>
-      <div class="o-grid__col u-3">
-        <UiSwitch
-          label="Comparar con toda la actividad"
-          :checked="showComparativeMode"
-          @update:checked="showComparativeMode = $event"
-        ></UiSwitch>
-        <UiSwitch
-          v-if="availableMultiYearOptions"
-          label="Mostrar todo el periodo"
-          :checked="forceSingleYearMode"
-          @update:checked="forceSingleYearMode = $event"
-          datasetAnalytics.value.countYears
-        >
-          1 >
-        </UiSwitch>
+      <div class="o-grid__col u-12 u-3@sm u-margin-bottom-2">
+        <div class="rangeSwitches">
+          <UiSwitch
+            label="Comparar con toda la actividad"
+            :checked="showComparativeMode"
+            @update:checked="showComparativeMode = $event"
+          ></UiSwitch>
+          <UiSwitch
+            v-if="availableMultiYearOptions"
+            label="Mostrar todo el periodo"
+            :checked="forceSingleYearMode"
+            @update:checked="forceSingleYearMode = $event"
+            datasetAnalytics.value.countYears
+          >
+            1 >
+          </UiSwitch>
+        </div>
       </div>
     </div>
   </div>
@@ -254,54 +256,59 @@ import UiSwitch from "@/components/UiSwitch.vue";
 
 const router = useRouter();
 
-const props = defineProps({
-  defaultHeight: {
-    type: Number,
-    default: 400,
-  },
+const { defaultHeight, topicsStyles, topic, dataset, aggreagatedDataset } =
+  defineProps({
+    defaultHeight: {
+      type: Number,
+      default: 400,
+    },
 
-  topicsStyles: {
-    type: Object,
-    required: true,
-  },
-  topic: {
-    type: Object,
-    default: () => ({
-      knowledgebase: "ods",
-      name: "ODS 2 Hambre cero",
-      shortname: "ODS 2",
-      id: "ods-2",
-      description: [
-        "Poner fin al hambre, lograr la seguridad alimentaria y la mejora de la nutrición y promover la agricultura sostenible",
-      ],
-    }),
-  },
-  /*
+    topicsStyles: {
+      type: Object,
+      required: true,
+    },
+    topic: {
+      type: Object,
+      default: () => ({
+        knowledgebase: "ods",
+        name: "ODS 2 Hambre cero",
+        shortname: "ODS 2",
+        id: "ods-2",
+        description: [
+          "Poner fin al hambre, lograr la seguridad alimentaria y la mejora de la nutrición y promover la agricultura sostenible",
+        ],
+      }),
+    },
+    /*
   dataset is an array of objects with the format {week: '2021-01', initiatives: 10}
   It is the dataset for the selected topic
   if dataset is provided as null value, component might fail
   if dataset is provided as an empty array, component will generate a random dataset
   */
-  dataset: {
-    type: Array,
-    default: () => [[]],
-  },
-  /*
+    dataset: {
+      type: Array,
+      default: () => [[]],
+    },
+    /*
   aggreagatedDataset is an array of objects with the format {week: '2021-01', initiatives: 10}
   It is the dataset for the aggregation of all topics.
   It can be provided later on, when the user clicks on the relative mode switch
   */
-  aggreagatedDataset: {
-    type: [null, Array],
-    default: () => [[]],
-  },
-});
+    aggreagatedDataset: {
+      type: [null, Array],
+      default: () => [[]],
+    },
+  });
 
 //*** set responsive width and  heights */
 const chartWrapper = ref(null); // wrapper for the svg. Template reference
 /* svg size */
 const availableWidth = ref(800);
-const availableHeight = ref(props.defaultHeight);
+const availableHeight = ref(defaultHeight);
+
+// useResizeObserver(chartWrapper, () => {
+//   availableWidth.value = chartWrapper.value.clientWidth;
+// });
 
 const margin = { top: 40, right: 60, bottom: 60, left: 50 };
 const MARGIN_AXIS = 10;
@@ -327,12 +334,12 @@ onUnmounted(() => {
 });
 //**** end of size block**************** ***/
 
-const currentStyle = computed(() => props.topicsStyles[props.topic.name]);
+const currentStyle = computed(() => topicsStyles[topic.name]);
 
 const data = computed(() => {
-  if (props.dataset.length > 0) {
+  if (dataset.length > 0) {
     // props .dataset.weeks is a string with the format YYYY-WW where WW is the week number
-    return props.dataset;
+    return dataset;
   } else {
     // if dataset is empty generate data points for a full year one for each week:
     const arr = [];
@@ -369,15 +376,14 @@ const datasetAnalytics = computed(() => {
 
 /* analytics for the aggreagated dataset ****/
 const aggreagatedDatasetAnalytics = computed(() => {
-  if (props.aggreagatedDataset == null || props.aggreagatedDataset.length == 0)
-    return null;
+  if (aggreagatedDataset == null || aggreagatedDataset.length == 0) return null;
   const a = {
-    initDate: min(props.aggreagatedDataset, (d) => d.week),
-    endDate: max(props.aggreagatedDataset, (d) => d.week),
-    firstYear: min(props.aggreagatedDataset, (d) => d.week).split("-")[0],
-    lastYear: max(props.aggreagatedDataset, (d) => d.week).split("-")[0],
-    maxInitiatives: max(props.aggreagatedDataset, (d) => d.initiatives),
-    minInitiatives: min(props.aggreagatedDataset, (d) => d.initiatives),
+    initDate: min(aggreagatedDataset, (d) => d.week),
+    endDate: max(aggreagatedDataset, (d) => d.week),
+    firstYear: min(aggreagatedDataset, (d) => d.week).split("-")[0],
+    lastYear: max(aggreagatedDataset, (d) => d.week).split("-")[0],
+    maxInitiatives: max(aggreagatedDataset, (d) => d.initiatives),
+    minInitiatives: min(aggreagatedDataset, (d) => d.initiatives),
   };
   // allyears is an array going from firstYear to lastYear (both included)
   a.countYears = parseInt(a.lastYear) - parseInt(a.firstYear);
@@ -395,10 +401,10 @@ const activeData = computed(() => {
 
 const activeDataAggregated = computed(() => {
   if (multiYearMode.value === true)
-    return props.aggreagatedDataset.filter(
+    return aggreagatedDataset.filter(
       (d) => d.week.split("-")[0] == activeYear.value
     );
-  else return props.aggreagatedDataset;
+  else return aggreagatedDataset;
 });
 
 /*
@@ -516,8 +522,7 @@ watch(showComparativeMode, (newValue, oldValue) => {
 });
 
 const isRelativeModeReady = computed(
-  () =>
-    showComparativeMode.value === true && props.aggreagatedDataset?.length > 0
+  () => showComparativeMode.value === true && aggreagatedDataset?.length > 0
 );
 
 const getYearWeekRange = (yearWeek) => {
@@ -549,7 +554,7 @@ const formatActiveWeekMonday = computed(() => {
 
 const searchWeekInitiatives = (bar) => {
   let weekRange = getYearWeekRange(bar.week);
-  let topic = props.topic.name;
+  let topic = topic.name;
 
   const data = `topic=${topic}&startdate=${weekRange.monday}&enddate=${weekRange.sunday}&knowledgebase=politicas`;
 
@@ -609,11 +614,22 @@ const searchWeekInitiatives = (bar) => {
   border-radius: 0;
 }
 
+.rangeSwitches {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+
+  @media (min-width: 768px) {
+    flex-direction: column;
+  }
+}
+
 .controls-container {
   align-items: center;
   margin-top: 0rem;
 }
 .frequency-chart-wrapper {
+  max-width: calc(100vw - 32px);
   margin-bottom: 1rem;
 }
 </style>
