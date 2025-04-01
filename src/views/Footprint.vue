@@ -116,14 +116,13 @@
             tipo de iniciativa tiene un peso diferente en función de su
             relevancia política dentro de la actividad del Congreso de los
             Diputados, así como a la dedicación que implica su elaboración. Los
-            pesos, que son una adaptación de los planteados por el
-            <a
-              href="https://politicalwatch.es/documentos/Capacidad-Congreso-Diputados-para-impulsar-Coherencia-de-Politicas-CIECODE.pdf"
-              target="_blank"
-              >proyecto AVIZOR</a
-            >, van desde el 0.1 al 40.0 y son los siguientes:
+            pesos, son los siguientes:
           </p>
           <responsive-table :columns="weights.columns" :rows="weights.rows" />
+
+          <p>
+          Además, para calcular la puntuación que le corresponde a cada diputada/o, se tiene en cuenta el número de personas firmantes de cada iniciativas. Con esto conseguimos un reparto equitativo.
+          </p>
 
           <div class="example">
             <h5 class="u-uppercase">Ejemplo</h5>
